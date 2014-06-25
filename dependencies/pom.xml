@@ -1105,7 +1105,7 @@
 
 				<avalon.framework.version>4.1.3</avalon.framework.version>
 				<odmg.version>3.0</odmg.version>
-				<aopalliance.version>1.0</aopalliance.version>
+				<aopalliance.version>1.0</aopalliance.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 				<activemq.core.version>4.1.1</activemq.core.version>
 
 				<taglibs.version>1.1.2</taglibs.version>
@@ -1158,8 +1158,12 @@
 				<jboss.embeddable.version>1.0.0.Alpha9</jboss.embeddable.version>
 				<jboss.microcontainer.version>alpha_9</jboss.microcontainer.version>
 				<jboss.interceptors.api.spec.version>1.0.0.Final</jboss.interceptors.api.spec.version>
+				<jboss.annotations.api.spec.version>1.0.0.Final</jboss.annotations.api.spec.version>
+				<jboss.jaxrs.api.spec.version>1.0.0.Final</jboss.jaxrs.api.spec.version>
+				<jboss.ejb.api.spec.version>1.0.1.Final</jboss.ejb.api.spec.version>
 				<jboss.cache.version>1.4.1.SP9</jboss.cache.version>
-				<jboss.el.version>1.0_02.CR5</jboss.el.version>
+				<jboss.el.version>1.0_02.CR6</jboss.el.version>				
+				<!-- <jboss.logging.version>3.1.0.GA</jboss.logging.version>--><!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->	
 				<jboss.logging.version>3.1.2.GA</jboss.logging.version>
 				<jboss.common.core.version>2.2.20.GA</jboss.common.core.version>
 				<jbossws.framework.version>3.0.2-GA</jbossws.framework.version>
@@ -1167,6 +1171,7 @@
 				<el.api.version>2.2.1-b04</el.api.version>
 				<el.ri.version>1.0</el.ri.version>
 				<org.mvel.mvel2.version>2.0.10</org.mvel.mvel2.version>
+				<!--<org.mvel.mvel2.version>2.1.9.Final</org.mvel.mvel2.version>-->
 				<openejb.javaee.api.version>5.0-3</openejb.javaee.api.version>
 				<openejb.core.version>3.1.4</openejb.core.version>
 				<seam.embedded.version>beta3.SP15</seam.embedded.version>
@@ -1191,7 +1196,7 @@
 				<jsf.impl.version>${jsf.version}</jsf.impl.version>
 				<sun.jsf.version>2.1.7</sun.jsf.version>
 				<ajax4jsf.version>1.0.6</ajax4jsf.version>
-				<aspectj.version>1.7.1</aspectj.version>
+				<aspectj.version>1.7.1</aspectj.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 		
 				<clickstream.version>1.0.2</clickstream.version>
 				<corejsf.validator.version>1.0</corejsf.validator.version>
@@ -1211,36 +1216,42 @@
 				<toplink.essentials.version>2.0-40</toplink.essentials.version>
 				<openjpa.version>1.2.1</openjpa.version>
 				<openjpa.all.version>0.9.7-incubating-SNAPSHOT</openjpa.all.version>
-				<hibernate.version>3.2.6.ga</hibernate.version>
+				<!--OK <hibernate.version>3.2.6.ga</hibernate.version> TODO REMOVE-->
+				<hibernate.legacy.version>3.2.7.ga</hibernate.legacy.version>
 				<hibernate.legacy.core.version>3.3.2.GA</hibernate.legacy.core.version>
+				<!-- TODO TEST ME <hibernate.legacy.core.version>3.6.10.Final</hibernate.legacy.core.version>--> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 				<hibernate.legacy.entitymanager.version>${hibernate.legacy.core.version}</hibernate.legacy.entitymanager.version>
 				<!-- https://community.jboss.org/wiki/HibernateCompatibilityMatrix -->
 				<!--<hibernate3.version>3.6.8.Final</hibernate3.version>--> <!-- for hibernate-core and hibernate-entitymanager -->
-				<hibernate.core.version>3.3.2.GA</hibernate.core.version>
+				<!--OK <hibernate.core.version>3.3.2.GA</hibernate.core.version>-->
 				<!--<hibernate.core.version>3.6.8.Final</hibernate.core.version>-->
-				<!--<hibernate.core.version>4.1.8.Final</hibernate.core.version>-->
+				<hibernate.core.version>4.2.0.Final</hibernate.core.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 				<hibernate.entitymanager.version>${hibernate.core.version}</hibernate.entitymanager.version>
 				<!--<hibernate.infinispan.version>${hibernate.core.version}</hibernate.infinispan.version>-->
-				<hibernate.infinispan.version>3.6.8.Final</hibernate.infinispan.version>
+				<!--OK <hibernate.infinispan.version>3.6.8.Final</hibernate.infinispan.version>-->
+				<hibernate.infinispan.version>${hibernate.core.version}</hibernate.infinispan.version>
 				<!--<hibernate.annotations.version>3.3.1.GA</hibernate.annotations.version>-->
 				<hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>
 				<hibernate.tools.version>3.2.0.ga</hibernate.tools.version>
+				<!--<hibernate.validator.legacy.version>3.1.0.GA</hibernate.validator.legacy.version>-->
 				<hibernate.validator.legacy.version>4.0.2.GA</hibernate.validator.legacy.version>
-				<hibernate.legacy.validator.version>4.1.0.Final</hibernate.legacy.validator.version>
-				<!--<hibernate.validator.version>3.1.0.GA</hibernate.validator.version>--> <!-- works with hibernate.core.version 3.3.2.GA -->
+				<!--<hibernate.legacy.validator.version>3.1.0.GA</hibernate.legacy.validator.version>--> <!-- works with hibernate.core.version 3.3.2.GA -->  <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom --> 
+				<hibernate.legacy.validator.version>4.1.0.Final</hibernate.legacy.validator.version> <!-- works with hibernate.core.version 3.3.2.GA -->
 				<!--<hibernate.validator.version>4.0.2.GA</hibernate.validator.version>--> <!-- works with hibernate.core.version 3.6.8.GA -->				
 				<!--<hibernate.validator.version>4.3.0.Final</hibernate.validator.version>--> <!-- works with hibernate.core.version 4.1.8.Final -->
 				<!--<hibernate.validator.version>4.3.1.Final</hibernate.validator.version>--> <!-- works with hibernate.core.version 4.1.8.Final -->	
-				<hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
+				<hibernate.validator.version>4.2.0.Final</hibernate.validator.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 				<!--<hibernate.commons.annotations.version>3.3.0.ga</hibernate.commons.annotations.version>--> <!-- Do not use 3.3.0.ga See https://jira.springsource.org/browse/SPR-7701, http://forum.springsource.org/showthread.php?89693-AnnotationSessionFactoryBean-needs-MetadataProvider -->
-				<hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version> <!-- works with hibernate.core.version 3.3.2.GA -->	
-				<!--<hibernate.commons.annotations.version>4.0.1.Final</hibernate.commons.annotations.version>--> <!-- works with hibernate.core.version 4.1.8.Final -->		
-				<hibernate.search.version>3.1.1.GA</hibernate.search.version>
-				<!--<hibernate.search.version>4.0.0.Final</hibernate.search.version>-->
+				<hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version> <!-- works with hibernate.core.version 3.3.2.GA --> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
+				<!--OK <hibernate.commons.annotations.version>4.0.1.Final</hibernate.commons.annotations.version>--> <!-- works with hibernate.core.version 4.1.8.Final -->		
+				<hibernate.legacy.search.version>3.1.1.GA</hibernate.legacy.search.version>
+				<hibernate.search.version>4.3.0.Final</hibernate.search.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
+				<!--<hibernate.ehcache.version>4.1.1.Final</hibernate.ehcache.version>-->
+				<hibernate.ehcache.version>4.2.0.Final</hibernate.ehcache.version>
 				<!--<hibernate.jpa.api.version>1.0.0.Final</hibernate.jpa.api.version>-->
 				<hibernate.jpa.api.version>1.0.1.Final</hibernate.jpa.api.version>
 				<!--<hibernate.jpamodelgen.version>1.1.1.Final</hibernate.jpamodelgen.version>-->
-				<hibernate.jpamodelgen.version>1.2.0.Final</hibernate.jpamodelgen.version>
+				<hibernate.jpamodelgen.version>1.2.0.Final</hibernate.jpamodelgen.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 				<ejb3.persistence.version>1.0.2.GA</ejb3.persistence.version>
 				<jboss.ejb3.persistence.version>4.0.5-GA</jboss.ejb3.persistence.version>
 				<net.sf.hibernate.version>2.1.8</net.sf.hibernate.version>
@@ -1254,9 +1265,13 @@
 				<oscache.version>2.3</oscache.version>
 				<shale.version>1.0.4</shale.version>
 				<sitemesh.version>2.2.1</sitemesh.version>
-				<spring.version>2.5.6</spring.version>
-				<spring3.version>3.1.3.RELEASE</spring3.version>
-				<spring.security.web>3.1.3.RELEASE</spring.security.web> <!-- TODO spring3.version -->
+				<spring.version>2.5.6</spring.version> <!-- TODO remove because it is still required in ~/databases/sample/dao/business/test -->
+				<spring.agent.version>2.5.6.SEC03</spring.agent.version>
+				<spring.legacy.version>3.1.3.RELEASE</spring.legacy.version>
+				<!-- OK <spring3.version>3.1.3.RELEASE</spring3.version>-->
+				<spring3.version>3.2.3.RELEASE</spring3.version> <!-- TODO spring3.version --> <!-- OK see http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
+				<!-- OK <spring.security.web>3.1.3.RELEASE</spring.security.web>-->
+				<spring.security.web>3.1.4.RELEASE</spring.security.web> <!-- TODO spring3.version --> <!-- OK see http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 				<!--<spring.jpa.version>2.0.6</spring.jpa.version>-->
 				<springmodules.validation.version>0.8</springmodules.validation.version>
 				<spring.springloaded.version>1.2.0.RELEASE</spring.springloaded.version>
@@ -1286,16 +1301,25 @@
 				<jsp-api.version>2.2.1-b03</jsp-api.version>
 				<junit.version>4.11</junit.version>
 				<protoj.nodep.version>1.8.4</protoj.nodep.version>
-				<bean.matchers.version>0.8.1</bean.matchers.version>
-				<org.jboss.arquillian.version>1.1.4.Final</org.jboss.arquillian.version>
+				<bean.matchers.version>0.8.1</bean.matchers.version>				
+				<!--<org.jboss.arquillian.version>1.1.0.Final</org.jboss.arquillian.version>--> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
+				<org.jboss.arquillian.version>1.0.0.CR7</org.jboss.arquillian.version>
+				<!-- NOK <org.jboss.arquillian.version>1.1.4.Final</org.jboss.arquillian.version> NOK with 1.1.4.Final java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
+				<!-- NOK with 1.1.0.Final <org.jboss.arquillian.bom.version>${org.jboss.arquillian.version}</org.jboss.arquillian.bom.version>-->
+				<org.jboss.arquillian.bom.version>1.0.0.CR7</org.jboss.arquillian.bom.version>
+				<org.jboss.shrinkwrap.bom.version>2.0.0</org.jboss.shrinkwrap.bom.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 				<!--<org.jboss.arquillian.junit.version>1.0.0.Alpha5</org.jboss.arquillian.junit.version>-->
-				<org.jboss.arquillian.junit.version>1.0.0.CR7</org.jboss.arquillian.junit.version>
+				<!--<org.jboss.arquillian.junit.version>${org.jboss.arquillian.bom.version}</org.jboss.arquillian.junit.version>-->
+				<org.jboss.arquillian.junit.version>${org.jboss.arquillian.version}</org.jboss.arquillian.junit.version><!-- NOK with 1.1.4.Final java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
 				<org.jboss.arquillian.jsfunit.version>1.0.0.Alpha4.SP1</org.jboss.arquillian.jsfunit.version>
 				<org.jboss.arquillian.jacoco.version>1.0.0.Alpha6</org.jboss.arquillian.jacoco.version>
 				<org.jboss.arquillian.glassfish.embedded.version>1.0.0.CR3</org.jboss.arquillian.glassfish.embedded.version>	
-				<!--<org.jboss.as.arquillian.container.version>7.1.1.Final</org.jboss.as.arquillian.container.version>-->
-				<org.jboss.as.arquillian.container.version>7.2.0.Final</org.jboss.as.arquillian.container.version> <!-- same as version.jbossas7 -->			
-				<org.jboss.arquillian.spi.version>1.0.0.Alpha5</org.jboss.arquillian.spi.version>	
+				<!--<org.jboss.as.arquillian.container.version>7.1.1.Final</org.jboss.as.arquillian.container.version>--> 
+				<org.jboss.as.arquillian.container.version>7.2.0.Final</org.jboss.as.arquillian.container.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
+				<org.jboss.arquillian.spi.version>1.0.0.Alpha5</org.jboss.arquillian.spi.version>		
+				<org.jboss.arquillian.weld.ee.embedded.version>1.0.0.CR5</org.jboss.arquillian.weld.ee.embedded.version>
+				<org.jboss.weld.core.version>1.1.9.Final</org.jboss.weld.core.version>
+				<org.jboss.spec.javax.faces>2.1.28.Final</org.jboss.spec.javax.faces>
 				<glassfish.embedded.all.version>3.1.2</glassfish.embedded.all.version>
 				<httpunit.version>1.7</httpunit.version>
 				<xmlunit.version>1.5</xmlunit.version>
@@ -1305,14 +1329,15 @@
 				<akka.version>2.2.1</akka.version>
 
 				<google.api.client.version>1.0.10-alpha</google.api.client.version>
-				<gwt.version>2.5.1</gwt.version>
+				<gwt.version>2.5.1</gwt.version> <!-- OK see http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 				<!--<gwt.version>2.6.0</gwt.version>-->
 				<gae.version>1.5.3</gae.version>
 				<gwtp.all.version>1.0.2</gwtp.all.version>
 				<gwt.seam.version>${project.version}</gwt.seam.version>
 				<gwt.test.utils.version>0.38</gwt.test.utils.version>
 				<objectify.version>4.0b1</objectify.version>
-				<errai.version>2.0.Beta3</errai.version>
+				<!-- OK <errai.version>2.0.Beta3</errai.version>-->
+				<errai.version>2.3.2.Final</errai.version> <!-- http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->				
 				<weld.servlet.version>1.0.1-Final</weld.servlet.version>
 				<atmosphere.version>0.8.1</atmosphere.version>
 				<vaadin.version>6.7.4</vaadin.version>						
@@ -1336,7 +1361,7 @@
 				<!--<webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
 				<!--<webdriver.firefox.bin>/usr/lib/firefox/firefox</webdriver.firefox.bin>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
 				<!--<arquillian>arq-jbossas-managed</arquillian>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
-				<drools.version>5.0.1</drools.version>
+				<drools.version>5.5.0.Final</drools.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 				<drools.transformer.xstream.version>5.1.0.M2</drools.transformer.xstream.version>
 				<!--<drools.version>5.1.1</drools.version>-->
 				<jbpm.jpdl.version>3.2.3</jbpm.jpdl.version>
@@ -1402,7 +1427,7 @@
 				<geronimo.jsp.2.1.spec.version>1.0.1</geronimo.jsp.2.1.spec.version>
 
 				<seam.version>2.2.1.Final</seam.version>
-				<seam.bom.version>3.1.0.Final</seam.bom.version>
+				<!--<seam.bom.version>3.1.0.Final</seam.bom.version>-->
 				<!--<seam.version>2.3.0.CR1</seam.version>-->
 				<seam.international.version>3.0.0.Alpha1</seam.international.version>
 
@@ -1410,8 +1435,8 @@
 				<jaxb.impl.version>2.1.13</jaxb.impl.version>
 				<javax.jms.version>1.1</javax.jms.version>
 				<!-- jetty 8 migration implies migrate to servlet api 3. The official maven
-			artifact name changed to javax.servlet:javax.servlet-api:3.0.1 -->
-		<javax.servlet.api.version>3.0.1</javax.servlet.api.version>
+				artifact name changed to javax.servlet:javax.servlet-api:3.0.1 -->
+				<javax.servlet.api.version>3.0.1</javax.servlet.api.version>
 				<json.lib.version>2.3</json.lib.version>
 
 				<saaj.api.version>1.3</saaj.api.version>
@@ -1419,7 +1444,7 @@
 				<servlet.api.version>2.5</servlet.api.version>
 				<!--<servlet.version>2.4</servlet.version>-->
 				<wstx.asl.version>3.2.9</wstx.asl.version>
-				<validation.api.version>1.0.0.GA</validation.api.version>
+				<validation.api.version>1.0.0.GA</validation.api.version> <!-- OK see http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 
 				<xml.resolver>1.2</xml.resolver>
 				<xmlschema.version>1.4.7</xmlschema.version>
@@ -1612,6 +1637,7 @@
 				<maven.torque.plugin.version>3.3-RC2</maven.torque.plugin.version>
 				<maven.exec.plugin.version>1.3</maven.exec.plugin.version>
 				<maven.gwt.plugin.version>${gwt.version}</maven.gwt.plugin.version>
+				<maven.jacoco.gwt.plugin.version>0.5.4.201202141554</maven.jacoco.gwt.plugin.version>
 				<maven.vaadin.plugin.version>1.0.2</maven.vaadin.plugin.version>
 				<maven.java.formatter.plugin.version>0.4</maven.java.formatter.plugin.version>
 				<maven.failsafe.plugin.version>2.17</maven.failsafe.plugin.version>
@@ -1630,28 +1656,30 @@
 				<hibernate3.maven.plugin.version>2.2</hibernate3.maven.plugin.version>
 
 				<package.tomcat.zip.version>${tomcat.version}</package.tomcat.zip.version>
-
+ 
 				<!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any
 				  dependencies from org.jboss.spec will have their version defined by this
 				  BOM -->
-				<!--<org.jboss.spec.jboss.javaee6.version>2.0.0.Final</org.jboss.spec.jboss.javaee6.version>-->
-				<org.jboss.spec.jboss.javaee6.version>3.0.1.Final</org.jboss.spec.jboss.javaee6.version>
-				<!--<org.jboss.spec.jboss.javaee6.version>3.0.1.Final</org.jboss.spec.jboss.javaee6.version>-->
+				<org.jboss.spec.jboss.javaee6.version>3.0.2.Final</org.jboss.spec.jboss.javaee6.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
+				<!-- OK <org.jboss.spec.jboss.javaee6.version>1.0.0.Final</org.jboss.spec.jboss.javaee6.version>-->
 				<!-- Define the version of Tomcat' Java EE 6 APIs we want to import. Any
 				  dependencies from org.jboss.spec will have their version defined by this
 				  BOM -->
-				<javax.javaee.api.version>6.0</javax.javaee.api.version>
+				<!--<javax.javaee.api.version>6.0</javax.javaee.api.version>-->
 				<!-- Alternatively, comment out the above line, and un-comment the line
 				  below to use version 3.0.0.Beta1-redhat-1 which is a release certified to
 				  work with JBoss EAP 6. It requires you have access to the JBoss EAP 6 maven
 				  repository. -->
-				<!-- <org.jboss.spec.jboss.javaee6.version>3.0.0.Beta1-redhat-1</org.jboss.spec.jboss.javaee6.version> -->
 				<!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
-				<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>			   				
-				<org.jboss.spec.jboss.javaee.6.0.version>${org.jboss.bom.jboss.javaee6.with.tools.version}</org.jboss.spec.jboss.javaee.6.0.version>
+				<!-- NOK <org.jboss.bom.version>1.0.7.Final</org.jboss.bom.version>-->
+				<!--OK <org.jboss.bom.version>1.0.0.M6</org.jboss.bom.version>-->
+				<!-- NOK <org.jboss.bom.version>1.0.0.Final</org.jboss.bom.version>-->
+				<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>
+				<org.jboss.bom.jboss.javaee6.with.hibernate.version>1.0.0.Final</org.jboss.bom.jboss.javaee6.with.hibernate.version>
 				<!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
-				<jboss.bom.version>1.0.3.Final</jboss.bom.version>
-				<org.richfaces.bom.version>4.3.6.Final</org.richfaces.bom.version>   
+				
+				<org.richfaces.bom.version>4.3.6.Final</org.richfaces.bom.version>
+				<!--OK <org.richfaces.bom.version>4.3.3.Final</org.richfaces.bom.version>--> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 		</properties>
 
 		<build>
@@ -2070,7 +2098,20 @@
 																				<ignore></ignore>
 																		</action>
 																</pluginExecution>
-														</pluginExecutions>
+																<pluginExecution>
+																	<pluginExecutionFilter>
+																		<groupId>org.jboss.errai</groupId>
+																		<artifactId>jacoco-gwt-maven-plugin</artifactId>
+																		<versionRange>[${maven.jacoco.gwt.plugin.version},)</versionRange>
+																		<goals>
+																			<goal>prepare-agent</goal>
+																		</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																		<ignore></ignore>
+																	</action>
+																</pluginExecution>																	
+														</pluginExecutions>											
 												</lifecycleMappingMetadata>
 										</configuration>
 								</plugin>
@@ -2428,13 +2469,22 @@
 													<classpathDependencyExclude>javaee:javaee-api</classpathDependencyExclude>
 													<classpathDependencyExclude>javax.jms:jms-api</classpathDependencyExclude>
 													<classpathDependencyExclude>javax.servlet:servlet-api</classpathDependencyExclude>
-												</classpathDependencyExcludes>												
+												</classpathDependencyExcludes>
+												<!--
+                                                <environmentVariables>
+                                                    <JBOSS_HOME>${project.build.directory}/jboss-as-${server.version}</JBOSS_HOME>
+                                                </environmentVariables>
+                                                -->
+                                                <environmentVariables>
+                                                    <JBOSS_HOME>${jboss.home}</JBOSS_HOME>
+                                                </environmentVariables>					
 												<!-- Folder for generated testing stuff -->
 												<systemProperties>
 												  <property>
 													<name>gwt.args</name>
 													<value>-out ${project.build.directory}/${project.build.finalName}</value>
 												  </property>
+												  <jboss.version>${server.version}</jboss.version>
 												</systemProperties>		 
 												<excludes>
 													<exclude>**/*ITest*</exclude>
@@ -3703,6 +3753,30 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 										<version>${maven.gwt.plugin.version}</version>
 								</plugin>
 								<plugin>
+									  <groupId>org.jboss.errai</groupId>
+									  <artifactId>jacoco-gwt-maven-plugin</artifactId>
+									  <version>${maven.jacoco.gwt.plugin.version}</version>
+									  <executions>
+										<execution>
+										  <id>jacoco-initialize</id>
+										  <phase>initialize</phase>
+										  <goals>
+											<goal>prepare-agent</goal>
+										  </goals>
+										  <configuration>
+											<propertyName>jacocoArgs</propertyName>
+										  </configuration>
+										</execution>
+										<execution>
+										  <id>jacoco-site</id>
+										  <phase>site</phase>
+										  <goals>
+											<goal>report</goal>
+										  </goals>
+										</execution>
+									  </executions>
+								</plugin>								
+								<plugin>
 										<groupId>com.vaadin</groupId>
 										<artifactId>vaadin-maven-plugin</artifactId>
 										<version>${maven.vaadin.plugin.version}</version>
@@ -4245,6 +4319,8 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						</dependency>
 						-->
 						<!-- Arquillian : http://arquillian.org/guides/getting_started_fr -->
+						
+						<!-- VERSION ARE http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 
 						<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill
 								of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
@@ -4269,11 +4345,34 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						<dependency>
 							<groupId>org.jboss.bom</groupId>
 							<artifactId>jboss-javaee-6.0-with-hibernate</artifactId>
-							<version>${jboss.bom.version}</version>
+							<version>${org.jboss.bom.jboss.javaee6.with.hibernate.version}</version>
 							<type>pom</type>
 							<scope>import</scope>
 						</dependency>
 								
+						<!-- this included in jboss-javaee-6.0-with-tools -->
+						<!-- see http://central.maven.org/maven2/org/jboss/arquillian/arquillian-bom/1.1.4.Final/arquillian-bom-1.1.4.Final.pom -->
+						<!-- NOK with 1.1.4.Final arquillian junit java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
+						<!--
+						<dependency>
+						  <groupId>org.jboss.arquillian</groupId>
+						  <artifactId>arquillian-bom</artifactId>
+						  <version>${org.jboss.arquillian.bom.version}</version>
+						  <type>pom</type>
+						  <scope>import</scope>
+						</dependency>
+						-->
+
+						<!--
+						<dependency>
+							<groupId>org.jboss.shrinkwrap.resolver</groupId>
+							<artifactId>shrinkwrap-resolver-bom</artifactId>
+							<version>${org.jboss.shrinkwrap.bom.version}</version>
+							<scope>test</scope>
+							<type>pom</type>
+						</dependency>
+						-->
+											
 						<!-- Similarly to the JBoss Java EE 6 BOM above, the RichFaces BOM specifies the
 							versions of artifacts required for using RichFaces in your project. -->
 						<dependency>
@@ -4282,6 +4381,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<version>${org.richfaces.bom.version}</version>
 							<type>pom</type>
 							<scope>import</scope>
+							<!--<scope>provided</scope>-->
 						</dependency>
 						
 						<!-- TODO use jboss-javaee-6.0-with-tools instead of jboss-javaee-6.0-->
@@ -4291,6 +4391,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								<version>${hibernate.jpa.api.version}</version>
 								<scope>provided</scope>
 						</dependency>
+						
 						<!-- Tomcat -->
 						<!--
 						<dependency>
@@ -4309,6 +4410,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						   <type>pom</type>
 						</dependency>
 						-->
+						<!--
 						<dependency>
 								<groupId>org.jboss.seam</groupId>
 								<artifactId>seam-bom</artifactId>
@@ -4316,6 +4418,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								<scope>import</scope>
 								<type>pom</type>
 						</dependency>
+						-->
 						
 						<dependency>
 							<groupId>org.seleniumhq.selenium</groupId>
@@ -4549,19 +4652,31 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<artifactId>protoj-nodep</artifactId>
 							<version>${protoj.nodep.version}</version>
 							<scope>test</scope>
-						</dependency>							
+						</dependency>						
 						<dependency>
 							<groupId>org.jboss.arquillian.junit</groupId>
 							<artifactId>arquillian-junit-container</artifactId>
 							<version>${org.jboss.arquillian.junit.version}</version>
 							<scope>test</scope>
-						</dependency>						
+						</dependency>			
+						<dependency>
+						    <groupId>org.jboss.arquillian.testng</groupId>
+						    <artifactId>arquillian-testng-container</artifactId>
+						    <version>${org.jboss.arquillian.junit.version}</version>
+						    <scope>test</scope>
+						</dependency>									
 						<dependency>
 							<groupId>org.jboss.arquillian.protocol</groupId>
 							<artifactId>arquillian-protocol-servlet</artifactId>
 							<version>${org.jboss.arquillian.junit.version}</version>
 							<scope>test</scope>
 						</dependency>		
+						<dependency>
+							<groupId>org.jboss.arquillian</groupId>
+							<artifactId>arquillian-spi</artifactId>
+							<version>${org.jboss.arquillian.spi.version}</version>
+							<scope>test</scope>
+						</dependency>						
 						<dependency>
 							<groupId>org.jboss.as</groupId>
 							<artifactId>jboss-as-arquillian-container-managed</artifactId>							
@@ -4574,20 +4689,75 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<version>${org.jboss.as.arquillian.container.version}</version>
 							<scope>test</scope>
 						</dependency>
+						<dependency>
+							<groupId>org.jboss.arquillian.container</groupId>
+							<artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
+							<version>${org.jboss.arquillian.weld.ee.embedded.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<!--
+						<dependency>
+							<groupId>org.jboss.arquillian.testenricher</groupId>
+							<artifactId>arquillian-testenricher-cdi</artifactId>
+							<version>1.0.0.CR7</version>
+							<scope>test</scope>
+						</dependency>	
+						-->		
+						
+						<dependency>
+							<groupId>org.jboss.weld</groupId>
+							<artifactId>weld-core</artifactId>
+							<version>${org.jboss.weld.core.version}</version>
+							<scope>test</scope>
+						</dependency>								
+						<dependency>
+							<groupId>org.jboss.arquillian.extension</groupId>
+							<artifactId>arquillian-jacoco</artifactId>
+							<version>${org.jboss.arquillian.jacoco.version}</version>  
+							<scope>test</scope>
+						</dependency>	
 
+						<!--
+						<dependency>
+							<groupId>org.jboss.shrinkwrap</groupId>
+							<artifactId>shrinkwrap-api</artifactId>
+							<version>1.0.0-cr-1</version>  
+							<scope>test</scope>
+						</dependency>	
+							
+						<dependency>
+							<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+							<artifactId>shrinkwrap-descriptors-api-base</artifactId>
+							<version>2.0.0-alpha-5</version>  
+							<scope>test</scope>
+						</dependency>		
+
+						<dependency>
+							<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+							<artifactId>shrinkwrap-descriptors-api</artifactId>
+							<version>0.1.4</version>  
+							<scope>test</scope>
+						</dependency>		
+						-->
+	
 						<dependency>
 							<groupId>org.jboss.arquillian.container</groupId>
 							<artifactId>arquillian-glassfish-embedded-3.1</artifactId>
 							<version>${org.jboss.arquillian.glassfish.embedded.version}</version>
 							<scope>test</scope>
-						</dependency>
+						</dependency>						
 						<dependency>
 							<groupId>org.glassfish.main.extras</groupId>
 							<artifactId>glassfish-embedded-all</artifactId>
 							<version>${glassfish.embedded.all.version}</version>
 							<scope>provided</scope>
 						</dependency>
-																
+						<dependency>
+							<groupId>org.jboss.spec.javax.faces</groupId>
+							<artifactId>jboss-jsf-api_2.1_spec</artifactId>
+							<version>${org.jboss.spec.javax.faces}</version>
+							<scope>provided</scope>
+						</dependency>	
 						<dependency>
 							<groupId>org.fitnesse</groupId>
 							<artifactId>fitnesse</artifactId>
@@ -4651,25 +4821,52 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						<!-- Spring -->
 
 						<!-- to remove for spring 3.x -->
+						<!--
 						<dependency>
 								<groupId>org.springframework</groupId>
 								<artifactId>spring</artifactId>
 								<version>${spring.version}</version>
+								<type>jar</type>
 								<scope>compile</scope>
 						</dependency>
+						-->
+						<!-- Support for testing Spring applications with tools such as JUnit and TestNG This artifact is generally always defined with a 'test' scope for the integration testing framework and unit testing stubs -->
+						<dependency>
+								<groupId>org.springframework</groupId>
+								<artifactId>spring-test</artifactId>
+								<version>${spring.legacy.version}</version>
+								<scope>test</scope>
+						</dependency>								
 						<!-- Spring MVC for Servlet Environments (depends on spring-core, spring-beans, spring-context, spring-web) Define this if you use Spring MVC with a Servlet Container such as Apache Tomcat (org.springframework.web.servlet.*) -->
 						<dependency>
 								<groupId>org.springframework</groupId>
 								<artifactId>spring-webmvc</artifactId>
-								<version>${spring.version}</version>
+								<version>${spring.legacy.version}</version>
 								<scope>compile</scope>
 						</dependency>
 						<!-- Spring MVC for Portlet Environments (depends on spring-core, spring-beans, spring-context, spring-web) Define this if you use Spring MVC with a Portlet Container (org.springframework.web.portlet.*) -->
 						<dependency>
 								<groupId>org.springframework</groupId>
 								<artifactId>spring-webmvc-portlet</artifactId>
-								<version>${spring.version}</version>
+								<version>${spring.legacy.version}</version> 
+						</dependency>				
+						<dependency>
+							<groupId>org.springframework</groupId>
+							<artifactId>spring-agent</artifactId>
+							<!-- <version>2.0.3</version> -->
+							<version>${spring.agent.version}</version>
 						</dependency>
+						<dependency>
+							<groupId>org.springframework</groupId>
+							<artifactId>spring-aspects</artifactId>
+							<version>${spring.legacy.version}</version>
+						</dependency>			
+					    <!-- JMS Library (depends on spring-core, spring-beans, spring-context, spring-context-support, spring-tx) Define this if you use Spring's JMS integration classes (org.springframework.jms.*) -->
+						<dependency>
+							<groupId>org.springframework</groupId>
+							<artifactId>spring-jms</artifactId>
+							<version>${spring.legacy.version}</version>
+						</dependency>									
 						<!-- Core utilities used by other modules. Define this if you use Spring Utility APIs (org.springframework.core.*/org.springframework.util.*) -->
 						<dependency>
 								<groupId>org.springframework</groupId>
@@ -4724,12 +4921,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								<artifactId>spring-tx</artifactId>
 								<version>${spring3.version}</version>
 						</dependency>
-						<!-- JMS Library (depends on spring-core, spring-beans, spring-context, spring-context-support, spring-tx) Define this if you use Spring's JMS integration classes (org.springframework.jms.*) -->
-						<dependency>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-jms</artifactId>
-							<version>${spring.version}</version>
-						</dependency>
+
 						<!-- Object-to-Relation-Mapping (ORM) integration with Hibernate, JPA, and iBatis. (depends on spring-core, spring-beans, spring-context, spring-tx) Define this if you need ORM (org.springframework.orm.*) -->
 						<dependency>
 								<groupId>org.springframework</groupId>
@@ -4741,13 +4933,6 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								<groupId>org.springframework</groupId>
 								<artifactId>spring-jdbc</artifactId>
 								<version>${spring3.version}</version>
-						</dependency>
-						<!-- Support for testing Spring applications with tools such as JUnit and TestNG This artifact is generally always defined with a 'test' scope for the integration testing framework and unit testing stubs -->
-						<dependency>
-								<groupId>org.springframework</groupId>
-								<artifactId>spring-test</artifactId>
-								<version>${spring.version}</version>
-								<scope>test</scope>
 						</dependency>
 						<dependency>
 								<groupId>org.springframework</groupId>
@@ -4767,7 +4952,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						<dependency>
 								<groupId>org.hibernate</groupId>
 								<artifactId>hibernate</artifactId>
-								<version>${hibernate.version}</version>
+								<version>${hibernate.legacy.version}</version>
 								<!--<scope>compile</scope> error when deployed in jboss -->
 								<scope>provided</scope>
 								<exclusions>
@@ -4805,6 +4990,11 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								</exclusion>
 							</exclusions>
 						</dependency>
+						<dependency>
+							<groupId>org.hibernate</groupId>
+							<artifactId>hibernate-ehcache</artifactId>
+							<version>${hibernate.ehcache.version}</version>
+						</dependency>				
 						<!-- validator-legacy forces an earlier version of annotations. Change scope if < JBoss6 -->
 						<dependency>
 							<groupId>org.hibernate</groupId>
@@ -4961,9 +5151,9 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							</exclusions>
 						</dependency>
 						<dependency>
-								<groupId>org.hibernate</groupId>
-								<artifactId>ejb3-persistence</artifactId>
-								<version>${ejb3.persistence.version}</version>
+							<groupId>org.hibernate</groupId>
+							<artifactId>ejb3-persistence</artifactId>
+							<version>${ejb3.persistence.version}</version>
 						</dependency>
 						<!-- With these dependencies here it is possible to use annotation processing
 						in Eclipse: Project -> Properties -> Java Compiler -> AnnotationProcessing
@@ -6140,10 +6330,10 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						</dependency>
 
 						<dependency>
-								<groupId>jboss</groupId>
-								<artifactId>jboss-j2ee</artifactId>
-								<version>${jboss4.version}</version>
-								<scope>provided</scope>
+							<groupId>jboss</groupId>
+							<artifactId>jboss-j2ee</artifactId>
+							<version>${jboss4.version}</version>
+							<scope>provided</scope>
 						</dependency>
 					   <dependency>
 							<groupId>jboss</groupId>
@@ -6181,7 +6371,29 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<version>${jboss.interceptors.api.spec.version}</version>
 							<scope>provided</scope>
 						</dependency>
+						<!-- Import the Common Annotations API (JSR-250), we use provided scope as the API is included in JBoss AS 7 -->
+						<dependency>
+							<groupId>org.jboss.spec.javax.annotation</groupId>
+							<artifactId>jboss-annotations-api_1.1_spec</artifactId>
+							<version>${jboss.annotations.api.spec.version}</version>
+							<scope>provided</scope>
+						</dependency>
 
+						<!-- Import the JAX-RS API, we use provided scope as the API is included in JBoss AS 7 -->
+						<dependency>
+							<groupId>org.jboss.spec.javax.ws.rs</groupId>
+							<artifactId>jboss-jaxrs-api_1.1_spec</artifactId>
+							<version>${jboss.jaxrs.api.spec.version}</version>
+							<scope>provided</scope>
+						</dependency>			
+						
+						<dependency>
+							<groupId>org.jboss.spec.javax.ejb</groupId>
+							<artifactId>jboss-ejb-api_3.1_spec</artifactId>
+							<version>${jboss.ejb.api.spec.version}</version>
+							<scope>provided</scope>
+						</dependency>			
+						
 						<dependency>
 							<groupId>jboss</groupId>
 							<artifactId>jboss-serialization</artifactId>
