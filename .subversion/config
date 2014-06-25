@@ -64,6 +64,7 @@ diff3-cmd = meld
 ### merging tool of choice. Subversion will pass 4 arguments to
 ### the specified command: base theirs mine merged
 # merge-tool-cmd = merge_command
+merge-tool-cmd = ~/.subversion/svn-merge-meld.py
 
 ### Section for configuring tunnel agents.
 [tunnels]
