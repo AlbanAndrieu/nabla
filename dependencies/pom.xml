@@ -1315,8 +1315,8 @@
 				<org.jboss.arquillian.jsfunit.version>1.0.0.Alpha4.SP1</org.jboss.arquillian.jsfunit.version>
 				<org.jboss.arquillian.jacoco.version>1.0.0.Alpha6</org.jboss.arquillian.jacoco.version>
 				<org.jboss.arquillian.glassfish.embedded.version>1.0.0.CR3</org.jboss.arquillian.glassfish.embedded.version>	
-				<!--<org.jboss.as.arquillian.container.version>7.1.1.Final</org.jboss.as.arquillian.container.version>--> 
-				<org.jboss.as.arquillian.container.version>7.2.0.Final</org.jboss.as.arquillian.container.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
+				<org.jboss.as.arquillian.container.version>7.1.1.Final</org.jboss.as.arquillian.container.version>
+				<!--NOK with arq-jbossas-managed <org.jboss.as.arquillian.container.version>7.2.0.Final</org.jboss.as.arquillian.container.version>-->  <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 				<org.jboss.arquillian.spi.version>1.0.0.Alpha5</org.jboss.arquillian.spi.version>		
 				<org.jboss.arquillian.weld.ee.embedded.version>1.0.0.CR5</org.jboss.arquillian.weld.ee.embedded.version>
 				<org.jboss.weld.core.version>1.1.9.Final</org.jboss.weld.core.version>
