@@ -1306,11 +1306,12 @@
 				<org.jboss.arquillian.version>1.0.0.CR7</org.jboss.arquillian.version>
 				<!-- NOK <org.jboss.arquillian.version>1.1.4.Final</org.jboss.arquillian.version> NOK with 1.1.4.Final java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
 				<!-- NOK with 1.1.0.Final <org.jboss.arquillian.bom.version>${org.jboss.arquillian.version}</org.jboss.arquillian.bom.version>-->
-				<org.jboss.arquillian.bom.version>1.0.0.CR7</org.jboss.arquillian.bom.version>
+				<org.jboss.arquillian.bom.version>${org.jboss.arquillian.version}</org.jboss.arquillian.bom.version>
 				<org.jboss.shrinkwrap.bom.version>2.0.0</org.jboss.shrinkwrap.bom.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 				<!--<org.jboss.arquillian.junit.version>1.0.0.Alpha5</org.jboss.arquillian.junit.version>-->
 				<!--<org.jboss.arquillian.junit.version>${org.jboss.arquillian.bom.version}</org.jboss.arquillian.junit.version>-->
 				<org.jboss.arquillian.junit.version>${org.jboss.arquillian.version}</org.jboss.arquillian.junit.version><!-- NOK with 1.1.4.Final java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
+				<org.jboss.arquillian.core.version>${org.jboss.arquillian.version}</org.jboss.arquillian.core.version>
 				<org.jboss.arquillian.jsfunit.version>1.0.0.Alpha4.SP1</org.jboss.arquillian.jsfunit.version>
 				<org.jboss.arquillian.jacoco.version>1.0.0.Alpha6</org.jboss.arquillian.jacoco.version>
 				<org.jboss.arquillian.glassfish.embedded.version>1.0.0.CR3</org.jboss.arquillian.glassfish.embedded.version>	
@@ -1319,7 +1320,8 @@
 				<org.jboss.arquillian.spi.version>1.0.0.Alpha5</org.jboss.arquillian.spi.version>		
 				<org.jboss.arquillian.weld.ee.embedded.version>1.0.0.CR5</org.jboss.arquillian.weld.ee.embedded.version>
 				<org.jboss.weld.core.version>1.1.9.Final</org.jboss.weld.core.version>
-				<org.jboss.spec.javax.faces>2.1.28.Final</org.jboss.spec.javax.faces>
+				<org.jboss.spec.javax.faces.jsf.api.2.1.version>2.1.28.Final</org.jboss.spec.javax.faces.jsf.api.2.1.version>
+				<org.jboss.spec.javax.faces.jsf.api.2.0.version>1.0.0.Final</org.jboss.spec.javax.faces.jsf.api.2.0.version>
 				<glassfish.embedded.all.version>3.1.2</glassfish.embedded.all.version>
 				<httpunit.version>1.7</httpunit.version>
 				<xmlunit.version>1.5</xmlunit.version>
@@ -4353,7 +4355,6 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						<!-- this included in jboss-javaee-6.0-with-tools -->
 						<!-- see http://central.maven.org/maven2/org/jboss/arquillian/arquillian-bom/1.1.4.Final/arquillian-bom-1.1.4.Final.pom -->
 						<!-- NOK with 1.1.4.Final arquillian junit java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
-						<!--
 						<dependency>
 						  <groupId>org.jboss.arquillian</groupId>
 						  <artifactId>arquillian-bom</artifactId>
@@ -4361,7 +4362,6 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						  <type>pom</type>
 						  <scope>import</scope>
 						</dependency>
-						-->
 
 						<!--
 						<dependency>
@@ -4658,7 +4658,21 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<artifactId>arquillian-junit-container</artifactId>
 							<version>${org.jboss.arquillian.junit.version}</version>
 							<scope>test</scope>
+							<!--
+							<exclusions>
+								<exclusion>
+									<artifactId>arquillian-core-api</artifactId>
+									<groupId>org.jboss.arquillian.core</groupId>
+								</exclusion>
+							</exclusions>		
+							-->					
 						</dependency>			
+						<dependency>
+							<artifactId>arquillian-core-api</artifactId>
+							<groupId>org.jboss.arquillian.core</groupId>
+							<version>${org.jboss.arquillian.core.version}</version>
+							<scope>test</scope>
+						</dependency>						
 						<dependency>
 						    <groupId>org.jboss.arquillian.testng</groupId>
 						    <artifactId>arquillian-testng-container</artifactId>
@@ -4686,6 +4700,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						<dependency>
 							<groupId>org.jboss.as</groupId>
 							<artifactId>jboss-as-arquillian-container-remote</artifactId>
+							<version>${org.jboss.as.arquillian.container.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.jboss.as</groupId>
+							<artifactId>jboss-as-controller-client</artifactId>
 							<version>${org.jboss.as.arquillian.container.version}</version>
 							<scope>test</scope>
 						</dependency>
@@ -4755,9 +4775,15 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						<dependency>
 							<groupId>org.jboss.spec.javax.faces</groupId>
 							<artifactId>jboss-jsf-api_2.1_spec</artifactId>
-							<version>${org.jboss.spec.javax.faces}</version>
+							<version>${org.jboss.spec.javax.faces.jsf.api.2.1.version}</version>
 							<scope>provided</scope>
 						</dependency>	
+						<dependency>
+							<groupId>org.jboss.spec.javax.faces</groupId>
+							<artifactId>jboss-jsf-api_2.0_spec</artifactId>
+							<version>${org.jboss.spec.javax.faces.jsf.api.2.0.version}</version>							
+							<scope>provided</scope>
+						</dependency>						
 						<dependency>
 							<groupId>org.fitnesse</groupId>
 							<artifactId>fitnesse</artifactId>
