@@ -94,7 +94,6 @@
 					<artifactId>jboss-deployers-client-spi</artifactId>
 				</exclusion>
 			</exclusions>
-
 		</dependency>
 		<dependency>
 			<groupId>org.jboss.seam.embedded</groupId>
@@ -321,7 +320,6 @@
 			<artifactId>jboss-el</artifactId>
 			<version>${jboss.el.version}</version>
 		</dependency>
-
 	</dependencies>
 
 	<build>

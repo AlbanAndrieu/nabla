@@ -137,10 +137,10 @@
 		</dependency>
 		-->
 		
-                <dependency>
-                    <groupId>org.hibernate</groupId>
-                    <artifactId>hibernate-search</artifactId>
-                    <version>${hibernate.search.version}</version>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-search</artifactId>
+			<version>${hibernate.legacy.search.version}</version>
 		    <!--<version>3.0.1.GA</version>-->
 		    <exclusions>
 		    	<exclusion>
@@ -148,7 +148,8 @@
 		    		<artifactId>hibernate</artifactId>
 		    	</exclusion>
 		    </exclusions>     
-                </dependency>	
+        </dependency>	
+        
 		<dependency>
 		   <groupId>org.apache.lucene</groupId>
 		   <artifactId>lucene-core</artifactId>

@@ -311,13 +311,13 @@
         <!--
         <hibernate.core.version>3.6.10.Final</hibernate.core.version>
         -->
-	<sun.jsf.api.version>2.1.7</sun.jsf.api.version>
-	<sun.jsf.impl.version>2.1.7</sun.jsf.impl.version>
-	<jsf.api.version>1.2_15</jsf.api.version>
-        <jsf.impl.version>1.2_15</jsf.impl.version>
-        <hibernate.jpa.api.version>1.0.1.Final</hibernate.jpa.api.version>        
+		<!--<sun.jsf.api.version>${sun.jsf.version}</sun.jsf.api.version>-->
+		<!--<sun.jsf.impl.version>${sun.jsf.version}</sun.jsf.impl.version>-->
+		<!--<jsf.api.version>1.2_15</jsf.api.version>-->
+        <!--<jsf.impl.version>1.2_15</jsf.impl.version>-->
+        <!--<hibernate.jpa.api.version>1.0.1.Final</hibernate.jpa.api.version>        -->
         <org.jboss.arquillian.seam2.version>1.0.0.Final-SNAPSHOT</org.jboss.arquillian.seam2.version>
-        <!--<hibernate.validator.version>4.2.0.Final</hibernate.validator.version> TODO -->
+        <!--OK <hibernate.validator.version>4.2.0.Final</hibernate.validator.version> TODO -->
         <!--error in test <hibernate.annotations.version>3.2.0.ga</hibernate.annotations.version>-->
 
         <!--<hibernate3.version>3.6.8.Final</hibernate3.version>-->
@@ -326,17 +326,18 @@
         <!--<javax.faces.version>1.2_12</javax.faces.version>-->
         <!--<richfaces.version>3.1.2.GA</richfaces.version>-->
         <!--<richfaces.version>3.3.2.SR1</richfaces.version>-->
-        <richfaces.version>3.3.3.Final</richfaces.version>
+        <!--OK <richfaces.version>3.3.3.Final</richfaces.version>-->
         <!--<drools.version>5.0.1</drools.version>-->
         <!--<drools.version>5.3.0.Final</drools.version>-->
 
-        <jbpm.jpdl.version>3.2.3</jbpm.jpdl.version>
-        <jboss.cache.version>1.4.1.SP9</jboss.cache.version>
+        <!--OK<jbpm.jpdl.version>3.2.3</jbpm.jpdl.version>-->
+        <!--OK <jboss.cache.version>1.4.1.SP9</jboss.cache.version>-->
         <!--<org.mvel.mvel2.version>2.0.10-SNAPSHOT</org.mvel.mvel2.version>-->
+        <org.mvel.mvel2.version>2.1.0.Final</org.mvel.mvel2.version>
 
         <!--<el.api.version>1.0</el.api.version>-->
-        <el.api.version>2.2.1-b04</el.api.version>
-        <jboss.el.version>1.0_02.CR6</jboss.el.version>
+        <!--OK <el.api.version>2.2.1-b04</el.api.version>-->
+        <!--OK<jboss.el.version>1.0_02.CR6</jboss.el.version>-->
         <!--<jboss.el.version>2.0.1.GA</jboss.el.version>-->
         <!--<gwt.version>1.5.2</gwt.version>-->
 
@@ -368,28 +369,28 @@
         <!--<ejb.jndi.pattern.test>/#{ejbName}/Local</ejb.jndi.pattern.test>-->
         <!--<ejb.jndi.mappedname.pattern>java:</ejb.jndi.mappedname.pattern> check ServiceLocator.java-->
 
-	<hibernate.hbm2ddl>create-drop</hibernate.hbm2ddl> <!-- update -->
-	<hibernate.showsql>true</hibernate.showsql>
-	<hibernate.default_batch_fetch_size>16</hibernate.default_batch_fetch_size>
+		<hibernate.hbm2ddl>create-drop</hibernate.hbm2ddl> <!-- update -->
+		<hibernate.showsql>true</hibernate.showsql>
+		<hibernate.default_batch_fetch_size>16</hibernate.default_batch_fetch_size>
 
-	<!-- see components.properties or components.xml -->
-	<ejbJndiPattern>/#{ejbName}/Local</ejbJndiPattern>
-	<jndiPattern>${ejbJndiPattern}</jndiPattern>
-	<debug>true</debug>
-	<seamBootstrapsPu>true</seamBootstrapsPu>
-	<!--<seamEmfRef>\#null</seamEmfRef>-->
-	<seamEmfRef>#myEntityManagerFactory</seamEmfRef>
-	<!--<puJndiName>java\:comp/env/core-test/pu</puJndiName>-->
-	<puJndiName>#null</puJndiName>
+		<!-- see components.properties or components.xml -->
+		<ejbJndiPattern>/#{ejbName}/Local</ejbJndiPattern>
+		<jndiPattern>${ejbJndiPattern}</jndiPattern>
+		<debug>true</debug>
+		<seamBootstrapsPu>true</seamBootstrapsPu>
+		<!--<seamEmfRef>\#null</seamEmfRef>-->
+		<seamEmfRef>#myEntityManagerFactory</seamEmfRef>
+		<!--<puJndiName>java\:comp/env/core-test/pu</puJndiName>-->
+		<puJndiName>#null</puJndiName>
 
-	<ds.jndi.name>${application.id}</ds.jndi.name>
-	<!--<pu.transaction-type>RESOURCE_LOCAL</pu.transaction-type>-->
-	<pu.transaction-type>JTA</pu.transaction-type>
-	<pu.name>${application.id}</pu.name>
-	<pu.jta.data.source>${dataSource}</pu.jta.data.source>
-	<pu.hibernate.transaction.manager_lookup_class>org.hibernate.transaction.JBossTransactionManagerLookup</pu.hibernate.transaction.manager_lookup_class> <!-- transactionManagerLookupClass -->
-	<pu.hibernate.transaction.manager_lookup_class.test>org.apache.openejb.hibernate.TransactionManagerLookup</pu.hibernate.transaction.manager_lookup_class.test>
-	<pu.jboss.entity.manager.factory.jndi.name>java:/myEntityManagerFactory</pu.jboss.entity.manager.factory.jndi.name> <!--java:/${application.id}EntityManagerFactory-->
+		<ds.jndi.name>${application.id}</ds.jndi.name>
+		<!--<pu.transaction-type>RESOURCE_LOCAL</pu.transaction-type>-->
+		<pu.transaction-type>JTA</pu.transaction-type>
+		<pu.name>${application.id}</pu.name>
+		<pu.jta.data.source>${dataSource}</pu.jta.data.source>
+		<pu.hibernate.transaction.manager_lookup_class>org.hibernate.transaction.JBossTransactionManagerLookup</pu.hibernate.transaction.manager_lookup_class> <!-- transactionManagerLookupClass -->
+		<pu.hibernate.transaction.manager_lookup_class.test>org.apache.openejb.hibernate.TransactionManagerLookup</pu.hibernate.transaction.manager_lookup_class.test>
+		<pu.jboss.entity.manager.factory.jndi.name>java:/myEntityManagerFactory</pu.jboss.entity.manager.factory.jndi.name> <!--java:/${application.id}EntityManagerFactory-->
     </properties>
     <profiles>
     	<profile>
@@ -410,6 +411,8 @@
         		<!--<seam.version>2.3.0.Final</seam.version>-->
         		<!--<hibernate.validator.version>4.3.1.Final</hibernate.validator.version> -->  
         		<!--<hibernate.search.version>3.0.0.GA</hibernate.search.version> does not works-->
+        		<hibernate.search.version>3.1.1.GA</hibernate.search.version>
+        		<hibernate.infinispan.version>3.6.8.Final</hibernate.infinispan.version>
     		</properties>
     	</profile>
     	<profile>
@@ -464,11 +467,15 @@
 			</dependencies>
 			-->
     		<properties>
-    			<spring3.version>4.0.0.RELEASE</spring3.version>
-    			<validation.api.version>1.1.0.Beta2</validation.api.version>
-    			<cxf.version>2.7.1</cxf.version>
-    		    <jsf.version>1.2_15</jsf.version>
-        		<hibernate.core.version>4.3.0.Final</hibernate.core.version>
+    			<!--<spring3.version>4.0.0.RELEASE</spring3.version>-->    			
+    			<spring3.version>3.2.3.RELEASE</spring3.version>
+    			<!--<validation.api.version>1.1.0.Beta2</validation.api.version>-->
+    			<validation.api.version>1.0.0.GA</validation.api.version> <!-- OK see http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
+    			<!--<cxf.version>2.7.1</cxf.version>-->
+    			<cxf.version>2.7.8</cxf.version>
+    		    <!--<jsf.version>1.2_15</jsf.version>-->
+        		<!--<hibernate.core.version>4.3.0.Final</hibernate.core.version>-->
+        		<hibernate.core.version>4.2.0.Final</hibernate.core.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
         		<hibernate.entitymanager.version>4.3.0.Final</hibernate.entitymanager.version>
         		<hibernate.validator.version>5.1.0.Alpha1</hibernate.validator.version>
         		<hibernate.search.version>4.5.0.Alpha2</hibernate.search.version>
@@ -479,7 +486,8 @@
 				<richfaces.version>4.2.2.Final</richfaces.version>
 				<ehcache.version>2.6.2</ehcache.version>
 				<javassist.version>3.17.1-GA</javassist.version>
-				<infinispan.version>5.1.3.FINAL</infinispan.version>
+				<!--<infinispan.version>5.1.3.FINAL</infinispan.version>-->
+				<hibernate.infinispan.version>${hibernate.core.version}</hibernate.infinispan.version>
 				<!--<seam.version>2.3.0.Final</seam.version>-->
 				<!--<openejb.javaee.api.version>6.0-5</openejb.javaee.api.version>-->
 				<!--<openejb.core.version>4.6.0.2</openejb.core.version>-->

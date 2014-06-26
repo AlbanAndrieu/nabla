@@ -270,7 +270,7 @@
         <dependency>
            <groupId>org.hibernate</groupId>
            <artifactId>hibernate-search</artifactId>
-           <version>${hibernate.search.version}</version>
+           <version>${hibernate.legacy.search.version}</version>
            <scope>provided</scope>
 	   <exclusions>
 	   	<exclusion>
@@ -291,19 +291,19 @@
 	   <version>${gwt.version}</version>
 	</dependency>
         -->
-        <dependency>
-             <groupId>com.google.gwt</groupId>
-             <artifactId>gwt-servlet</artifactId>
-             <version>${gwt.version}</version>
-        </dependency>
+	<dependency>
+		 <groupId>com.google.gwt</groupId>
+		 <artifactId>gwt-servlet</artifactId>
+		 <version>${gwt.version}</version>
+	</dependency>
 
-        <!-- remove andromda-script-wrappers and xml-apis because lib in app must be empty -->
-        <!--
-        <dependency>
-            <groupId>org.andromda</groupId>
-            <artifactId>andromda-script-wrappers</artifactId>
-            <scope>provided</scope>
-        </dependency>
+	<!-- remove andromda-script-wrappers and xml-apis because lib in app must be empty -->
+	<!--
+	<dependency>
+		<groupId>org.andromda</groupId>
+		<artifactId>andromda-script-wrappers</artifactId>
+		<scope>provided</scope>
+	</dependency>
 	<dependency>
 	    <groupId>xml-apis</groupId>
 	    <artifactId>xml-apis</artifactId>
