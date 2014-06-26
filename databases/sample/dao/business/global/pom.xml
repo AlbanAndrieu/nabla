@@ -9,11 +9,11 @@
 	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
-        <name>Databases DAO global</name>
-        <groupId>com.nabla.project.databases.sample.dao.business.global</groupId>
-        <artifactId>global</artifactId>
+	<name>Databases DAO global</name>
+	<groupId>com.nabla.project.databases.sample.dao.business.global</groupId>
+	<artifactId>global</artifactId>
 	<packaging>jar</packaging>
-        <description>Database-Business-Global Dao : mapping objet-relationnel (ORM)</description>
+    <description>Database-Business-Global Dao : mapping objet-relationnel (ORM)</description>
 	<build>
 		<plugins>
 		<!--
@@ -63,11 +63,13 @@
 			<version>${appfuse.version}</version>
 		</dependency>
 		
+		<!-- 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring</artifactId>
 			<scope>compile</scope>
 		</dependency>	
+		-->
 		
 		<dependency>
 			<groupId>org.easymock</groupId>

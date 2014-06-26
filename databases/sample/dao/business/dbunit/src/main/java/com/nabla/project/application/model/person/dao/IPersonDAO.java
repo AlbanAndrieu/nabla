@@ -8,7 +8,7 @@ import java.util.List;
 
 /**
  * Interface for PersonDAO.
- *
+ * 
  * @author MyEclipse Persistence Tools
  */
 public interface IPersonDAO extends GenericDao<Person, Long>

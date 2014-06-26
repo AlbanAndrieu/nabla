@@ -12,7 +12,7 @@ import com.nabla.project.application.model.person.entity.Person;
 
 /**
  * Data access object (DAO) for domain model class Person.
- *
+ * 
  * @see com.nabla.project.application.model.dao.person.entity.Person
  * @author MyEclipse Persistence Tools
  */
@@ -104,8 +104,7 @@ public class PersonDAO extends GenericDaoJpa<Person, Long> implements IPersonDAO
 
             // String queryString = "select model from Person model where model." + propertyName + "= ?1";
             // return getJpaTemplate( ).find( queryString, value );
-        }
-        catch (final RuntimeException re)
+        } catch (final RuntimeException re)
         {
             PersonDAO.logger.error("find by property name failed", re);
             ;
@@ -165,8 +164,7 @@ public class PersonDAO extends GenericDaoJpa<Person, Long> implements IPersonDAO
 
             // String queryString = "select model from Person model";
             // return getJpaTemplate( ).find( queryString );
-        }
-        catch (final RuntimeException re)
+        } catch (final RuntimeException re)
         {
             PersonDAO.logger.error("find all failed", re);
             ;

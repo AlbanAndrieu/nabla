@@ -45,11 +45,11 @@ import org.compass.annotations.SearchableId;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 @Entity
 @Table(name = "person", schema = "APP", catalog = "")
 public class Person extends BaseObject
@@ -61,7 +61,7 @@ public class Person extends BaseObject
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     @Id
@@ -76,7 +76,7 @@ public class Person extends BaseObject
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param id DOCUMENT ME!
      */
     public void setId(final Long id)
@@ -88,7 +88,7 @@ public class Person extends BaseObject
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     @Column(name = "first_name", length = 50)
@@ -101,7 +101,7 @@ public class Person extends BaseObject
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param firstName DOCUMENT ME!
      */
     public void setFirstName(final String firstName)
@@ -113,7 +113,7 @@ public class Person extends BaseObject
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     @Column(name = "last_name", length = 50)
@@ -126,7 +126,7 @@ public class Person extends BaseObject
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param lastName DOCUMENT ME!
      */
     public void setLastName(final String lastName)
@@ -138,9 +138,8 @@ public class Person extends BaseObject
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param o DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     @Override
@@ -183,7 +182,7 @@ public class Person extends BaseObject
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     @Override
@@ -201,7 +200,7 @@ public class Person extends BaseObject
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     @Override

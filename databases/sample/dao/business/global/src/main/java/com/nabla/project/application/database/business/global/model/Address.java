@@ -137,7 +137,7 @@ public class Address /* extends BaseObject */implements Serializable
 
     /**
      * DOCUMENT ME! Alban.
-     *
+     * 
      * @return the province
      */
     public String getProvince()
@@ -147,7 +147,7 @@ public class Address /* extends BaseObject */implements Serializable
 
     /**
      * DOCUMENT ME! Alban.
-     *
+     * 
      * @param province the province to set
      */
     public void setProvince(final String province)
@@ -157,7 +157,7 @@ public class Address /* extends BaseObject */implements Serializable
 
     /**
      * DOCUMENT ME! Alban.
-     *
+     * 
      * @return the postalCode
      */
     public String getPostalCode()
@@ -167,7 +167,7 @@ public class Address /* extends BaseObject */implements Serializable
 
     /**
      * DOCUMENT ME! Alban.
-     *
+     * 
      * @param postalCode the postalCode to set
      */
     public void setPostalCode(final String postalCode)
@@ -207,6 +207,7 @@ public class Address /* extends BaseObject */implements Serializable
 
     /**
      * Overridden equals method for object comparison. Compares based on hashCode.
+     * 
      * @param o Object to compare
      * @return true/false based on hashCode
      */
@@ -229,6 +230,7 @@ public class Address /* extends BaseObject */implements Serializable
 
     /**
      * Overridden hashCode method - compares on address, city, province, country and postal code.
+     * 
      * @return hashCode
      */
     @Override
@@ -245,6 +247,7 @@ public class Address /* extends BaseObject */implements Serializable
 
     /**
      * Returns a multi-line String with key=value pairs.
+     * 
      * @return a String representation of this class.
      */
     @Override

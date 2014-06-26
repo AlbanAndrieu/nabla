@@ -73,13 +73,11 @@ public class PersonDaoJpaTest extends BaseDaoTestCase
         {
             this.personDao.get(person.getId());
             Assert.fail("Person found in database");
-        }
-        catch (final EntityNotFoundException enf)
+        } catch (final EntityNotFoundException enf)
         {
             this.log.debug("Expected exception: " + enf.getMessage());
             Assert.assertNotNull(enf);
-        }
-        catch (final ObjectRetrievalFailureException orf)
+        } catch (final ObjectRetrievalFailureException orf)
         {
             this.log.debug("Expected exception: " + orf.getMessage());
         }

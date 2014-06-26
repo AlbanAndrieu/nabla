@@ -66,7 +66,7 @@ public class TestNG extends TestCase
 
     /**
      * Create the test case
-     *
+     * 
      * @param testName name of the test case
      */
     public TestNG(final String testName)
@@ -111,7 +111,8 @@ public class TestNG extends TestCase
         p2.getActivities().add(act1);
         p2.getActivities().add(act3);
         // persistance des personnes avec leurs activites
-        this.service.savePersonsWithActivities(new Person[] { p1, p2, p3 });
+        this.service.savePersonsWithActivities(new Person[]
+        { p1, p2, p3 });
     }
 
     // supression elements des tables
@@ -321,9 +322,9 @@ public class TestNG extends TestCase
         try
         {
             // persister les personnes et les activites
-            this.service.savePersonsWithActivities(new Person[] { p4, p5 });
-        }
-        catch (final RuntimeException e)
+            this.service.savePersonsWithActivities(new Person[]
+            { p4, p5 });
+        } catch (final RuntimeException e)
         {
             erreur = true;
         }

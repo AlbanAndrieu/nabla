@@ -116,7 +116,8 @@ public class InitDB
         p2.getActivities().add(act1);
         p2.getActivities().add(act3);
         // persistance des personnes avec leurs activites
-        InitDB.service.savePersonsWithActivities(new Person[] { p1, p2, p3 });
+        InitDB.service.savePersonsWithActivities(new Person[]
+        { p1, p2, p3 });
     }
 
     // supression elements des tables

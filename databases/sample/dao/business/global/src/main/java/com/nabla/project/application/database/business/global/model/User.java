@@ -33,8 +33,7 @@ import org.springframework.security.userdetails.UserDetails;
 
 /**
  * This class represents the basic "user" object in AppFuse that allows for authentication
- * and user management.  It implements Acegi Security's UserDetails interface.
- *
+ * and user management. It implements Acegi Security's UserDetails interface.
  */
 @Entity
 @Table(name = "app_user")
@@ -70,7 +69,7 @@ public class User extends BaseObject implements Serializable, UserDetails
 
     /**
      * Create a new instance and set the username.
-     *
+     * 
      * @param username login name for user.
      */
     public User(final String username)
@@ -149,7 +148,7 @@ public class User extends BaseObject implements Serializable, UserDetails
 
     /**
      * Returns the full name.
-     *
+     * 
      * @return firstName + ' ' + lastName
      */
     @Transient
@@ -168,7 +167,8 @@ public class User extends BaseObject implements Serializable, UserDetails
     }
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role", joinColumns = { @JoinColumn(name = "user_id") }, inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JoinTable(name = "user_role", joinColumns =
+    { @JoinColumn(name = "user_id") }, inverseJoinColumns = @JoinColumn(name = "role_id"))
     public Set<Role> getRoles()
     {
         return this.roles;
@@ -176,7 +176,7 @@ public class User extends BaseObject implements Serializable, UserDetails
 
     /**
      * Convert user roles to LabelValue objects for convenience.
-     *
+     * 
      * @return a list of LabelValue objects with role information
      */
     @Transient
@@ -198,7 +198,7 @@ public class User extends BaseObject implements Serializable, UserDetails
 
     /**
      * Adds a role for the user
-     *
+     * 
      * @param role the fully instantiated role
      */
     public void addRole(final Role role)

@@ -66,8 +66,7 @@ public class PersonDaoHibernateTest extends BaseDaoTestCase
         {
             this.personDao.get(person.getId());
             Assert.fail("Person found in database");
-        }
-        catch (final DataAccessException dae)
+        } catch (final DataAccessException dae)
         {
             this.log.debug("Expected exception: " + dae.getMessage());
             Assert.assertNotNull(dae);

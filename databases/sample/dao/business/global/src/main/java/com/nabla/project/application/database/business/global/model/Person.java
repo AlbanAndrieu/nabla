@@ -24,7 +24,8 @@ import org.apache.commons.lang.builder.ToStringBuilder;
 import org.apache.commons.lang.builder.ToStringStyle;
 import org.compass.annotations.SearchableProperty;
 
-@SuppressWarnings({ "unused", "serial" })
+@SuppressWarnings(
+{ "unused", "serial" })
 @Entity
 @Table(name = "Person")
 public class Person /* extends BaseObject */implements Serializable

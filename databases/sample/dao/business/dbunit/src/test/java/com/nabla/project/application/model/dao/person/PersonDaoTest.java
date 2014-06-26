@@ -64,13 +64,11 @@ public class PersonDaoTest extends AbstractDaoDatabase
         {
             this.personDao.get(person.getId());
             Assert.fail("Person found in database");
-        }
-        catch (final EntityNotFoundException enf)
+        } catch (final EntityNotFoundException enf)
         {
             PersonDaoTest.logger.debug("Expected exception: " + enf.getMessage());
             Assert.assertNotNull(enf);
-        }
-        catch (final ObjectRetrievalFailureException orf)
+        } catch (final ObjectRetrievalFailureException orf)
         {
             PersonDaoTest.logger.debug("Expected exception: " + orf.getMessage());
         }

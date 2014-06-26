@@ -28,20 +28,21 @@
                 <url>${JOB_URL}</url>
         </ciManagement>
 
-	<properties>
-		<sonar.build-stability.url>Jenkins:${JOB_URL}</sonar.build-stability.url>
-	</properties>
+		<properties>
+			<!--<sonar.build-stability.url>Jenkins:${JOB_URL}</sonar.build-stability.url>-->
+			<hibernate.cache.provider>org.hibernate.cache.HashtableCacheProvider</hibernate.cache.provider>
+		</properties>
 			        
         <profiles>
                 <!-- ================= START Database Profiles ================= -->
                 <profile>
                         <id>mysql</id>
-			<activation>
+						<activation>
                                 <property>
                                         <name>database</name>
-					<value>mysql</value>
+										<value>mysql</value>
                                 </property>
-		 	</activation>
+						</activation>
                         <properties>
 
                                 <database>mysql</database>
@@ -218,12 +219,12 @@
                 </profile>
                 <profile>
                         <id>sybase</id>
-			<activation>
+						<activation>
                                 <property>
                                         <name>database</name>
-					<value>sybase</value>
+										<value>sybase</value>
                                 </property>
-		 	</activation>
+						</activation>
                         <properties>
 
                                 <database>sybase</database>
@@ -291,12 +292,12 @@
                 </profile>
                 <profile>
                         <id>derby</id>
-			<activation>				
+						<activation>				
                                 <property>
                                         <name>database</name>
-					<value>derby</value>
+										<value>derby</value>
                                 </property>
-		 	</activation>
+						</activation>
                         <properties>
                                 <database>derby</database>
                                 <database.name>myDBGlobal</database.name>
@@ -390,16 +391,16 @@
                 </profile>
                 <profile>
                         <id>h2</id>	     		
-			<activation>
-				<activeByDefault>true</activeByDefault>
+						<activation>
+								<activeByDefault>true</activeByDefault>
                                 <property>  
                                 	<!--                              	
                                         <name>database</name>
-					<value>h2</value>
-					-->
+										<value>h2</value>
+										-->
                                         <name>!database</name>					
                                 </property>                            
-		 	</activation>
+						</activation>
                         <properties>
                                 <database>h2</database>
                                 <database.name>myDBGlobal</database.name>
@@ -444,12 +445,12 @@
                 </profile>
                 <profile>
                         <id>hsqldb</id>
-			<activation>
+						<activation>
                                 <property>
                                         <name>database</name>
-					<value>hsqldb</value>
+										<value>hsqldb</value>
                                 </property>
-		 	</activation>
+						</activation>
                         <properties>
                                 <database>hsqldb</database>
                                 <database.name>myDBGlobal</database.name>
@@ -542,12 +543,12 @@
                 </profile>
                 <profile>
                         <id>postgresql</id>
-			<activation>
+						<activation>
                                 <property>
                                         <name>database</name>
-					<value>postgresql</value>
+										<value>postgresql</value>
                                 </property>
-		 	</activation>
+						</activation>
                         <properties>
                                 <hibernate.dialect>org.hibernate.dialect.PostgreSQLDialect</hibernate.dialect>
                                 <jdbc.groupId>postgresql</jdbc.groupId>
@@ -575,12 +576,12 @@
                         -->
                         <!-- http://www.mattwoodward.com/blog/index.cfm?commentID=211 -->
                         <id>sqlserver</id>
-			<activation>
+						<activation>
                                 <property>
                                         <name>database</name>
-					<value>sqlserver</value>
+									<value>sqlserver</value>
                                 </property>
-		 	</activation>
+						</activation>
                         <properties>
                                 <dbunit.dataTypeFactoryName>org.dbunit.ext.mssql.MsSqlDataTypeFactory</dbunit.dataTypeFactoryName>
                                 <dbunit.operation.type>MSSQL_CLEAN_INSERT</dbunit.operation.type>
@@ -605,48 +606,48 @@
                 </profile>
                 <!-- ================= END Database Profiles ================= -->
 
-		<profile>
-			<id>sonar</id>
-			<activation>
-				<file>
-					<!-- This employs that the basedir expression is only recognized by
-						Maven 3.x (see MNG-2363) -->
-					<exists>${basedir}</exists>
-				</file>
-			</activation>			
-			<build>
-    			<!-- To use the plugin goals in your POM or parent POM -->
-    			
-    			<plugins>
-    			  <plugin>
-    			    <groupId>org.codehaus.mojo</groupId>
-    			    <artifactId>sonar-maven-plugin</artifactId>
-    			    <version>${maven.sonar.maven.plugin.version}</version>
-    			  </plugin>
-    			</plugins>	
-    			</build>		
-			<properties>
-				<!-- sonar user admin password admin -->
-				<!--
-				<sonar.jdbc.url>jdbc:derby://localhost:${sonar.derby.port}/sonar;create=true</sonar.jdbc.url>
-				<sonar.jdbc.driver>org.apache.derby.jdbc.ClientDriver</sonar.jdbc.driver>
-				-->				
-				<sonar.jdbc.url><![CDATA[jdbc:mysql://localhost:${sonar.mysql.port}/sonar?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></sonar.jdbc.url>		
-				<sonar.jdbc.driver>com.mysql.jdbc.Driver</sonar.jdbc.driver>
-				<sonar.jdbc.defaultTransactionIsolation>1</sonar.jdbc.defaultTransactionIsolation>
-				<!--
-					<sonar.jdbc.url>jdbc:mysql://localhost:3306/sonar</sonar.jdbc.url>
-					<sonar.jdbc.driver>com.mysql.jdbc.Driver</sonar.jdbc.driver>
-				-->
-				<sonar.jdbc.username>sonar</sonar.jdbc.username>
-				<sonar.jdbc.password>sonar</sonar.jdbc.password>
-				<!--
-					La ligne ci-dessous n'est utile que si le port par defaut (9000)
-					est modifie dans le fichier de configuration.
-				-->
-				<sonar.host.url>http://localhost:${sonar.port}</sonar.host.url>
-			</properties>
-		</profile>
+				<profile>
+					<id>sonar</id>
+					<activation>
+						<file>
+							<!-- This employs that the basedir expression is only recognized by
+								Maven 3.x (see MNG-2363) -->
+							<exists>${basedir}</exists>
+						</file>
+					</activation>			
+					<build>
+						<!-- To use the plugin goals in your POM or parent POM -->
+						
+						<plugins>
+						  <plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>sonar-maven-plugin</artifactId>
+							<version>${maven.sonar.maven.plugin.version}</version>
+						  </plugin>
+						</plugins>	
+						</build>		
+					<properties>
+						<!-- sonar user admin password admin -->
+						<!--
+						<sonar.jdbc.url>jdbc:derby://localhost:${sonar.derby.port}/sonar;create=true</sonar.jdbc.url>
+						<sonar.jdbc.driver>org.apache.derby.jdbc.ClientDriver</sonar.jdbc.driver>
+						-->				
+						<sonar.jdbc.url><![CDATA[jdbc:mysql://localhost:${sonar.mysql.port}/sonar?createDatabaseIfNotExist=true&amp;useUnicode=true&amp;characterEncoding=utf-8]]></sonar.jdbc.url>		
+						<sonar.jdbc.driver>com.mysql.jdbc.Driver</sonar.jdbc.driver>
+						<sonar.jdbc.defaultTransactionIsolation>1</sonar.jdbc.defaultTransactionIsolation>
+						<!--
+							<sonar.jdbc.url>jdbc:mysql://localhost:3306/sonar</sonar.jdbc.url>
+							<sonar.jdbc.driver>com.mysql.jdbc.Driver</sonar.jdbc.driver>
+						-->
+						<sonar.jdbc.username>sonar</sonar.jdbc.username>
+						<sonar.jdbc.password>sonar</sonar.jdbc.password>
+						<!--
+							La ligne ci-dessous n'est utile que si le port par defaut (9000)
+							est modifie dans le fichier de configuration.
+						-->
+						<sonar.host.url>http://localhost:${sonar.port}</sonar.host.url>
+					</properties>
+				</profile>
                 <profile>
                     <id>sample</id>
                     <activation>

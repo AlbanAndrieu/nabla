@@ -52,8 +52,7 @@ public class DaoTest extends AbstractDaoDatabase
         {
             date = new SimpleDateFormat("dd/MM/yy").parse("20/04/2007");
             Assert.assertTrue(persons.get(0).getBirthdate().compareTo(date) == 0);
-        }
-        catch (final ParseException e)
+        } catch (final ParseException e)
         {
             // TODO Auto-generated catch block
             e.printStackTrace();

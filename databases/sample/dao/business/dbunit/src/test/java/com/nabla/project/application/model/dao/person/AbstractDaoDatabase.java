@@ -24,11 +24,13 @@ public class AbstractDaoDatabase extends AbstractTransactionalDataSourceSpringCo
     @Override
     protected String[] getConfigLocations()
     {
-        return new String[] { "/spring-test-config.xml" };
+        return new String[]
+        { "/spring-test-config.xml" };
     }
 
     private static ConfigurableApplicationContext factory;
-    private final String[]                        TABLES = { "PERSONACTIVITY", "ACTIVITY", "PERSON", "ADDRESS" };
+    private final String[]                        TABLES =
+                                                         { "PERSONACTIVITY", "ACTIVITY", "PERSON", "ADDRESS" };
 
     // This method is used to perform any setup operations, such as
     // populating a database table, within the transaction.
@@ -57,8 +59,7 @@ public class AbstractDaoDatabase extends AbstractTransactionalDataSourceSpringCo
             AbstractDaoDatabase.logger.info("*** Inserting test data ***");
             // DatabaseOperation.CLEAN_INSERT.execute(dbUnitCon, dataSet);
             DatabaseOperation.INSERT.execute(dbUnitCon, dataSet);
-        }
-        finally
+        } finally
         {
             DataSourceUtils.releaseConnection(con, ds);
             AbstractDaoDatabase.logger.info("*** Finished inserting test data ***");
@@ -81,8 +82,7 @@ public class AbstractDaoDatabase extends AbstractTransactionalDataSourceSpringCo
         {
             DatabaseOperation.DELETE.execute(dbUnitCon, dataSet);
 
-        }
-        finally
+        } finally
         {
             DataSourceUtils.releaseConnection(con, ds);
             AbstractDaoDatabase.logger.info("*** Finished removing test data ***");

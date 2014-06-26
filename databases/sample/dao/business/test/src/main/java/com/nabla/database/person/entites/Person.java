@@ -21,7 +21,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-@SuppressWarnings({ "unused", "serial" })
+@SuppressWarnings(
+{ "unused", "serial" })
 @Entity
 @Table(name = "Person")
 public class Person implements Serializable

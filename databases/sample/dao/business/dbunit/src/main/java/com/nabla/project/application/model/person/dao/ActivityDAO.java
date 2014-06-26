@@ -11,7 +11,7 @@ import com.nabla.project.application.model.person.entity.Activity;
 
 /**
  * Data access object (DAO) for domain model class Activity.
- *
+ * 
  * @see com.nabla.project.application.model.dao.person.entity.Activity
  * @author MyEclipse Persistence Tools
  */
@@ -33,8 +33,7 @@ public class ActivityDAO extends JpaDaoSupport implements IActivityDAO
         {
             this.getJpaTemplate().persist(transientInstance);
             this.logger.info("save successful");
-        }
-        catch (final RuntimeException re)
+        } catch (final RuntimeException re)
         {
             this.logger.error("save failed", re);
             throw re;
@@ -50,8 +49,7 @@ public class ActivityDAO extends JpaDaoSupport implements IActivityDAO
         {
             this.getJpaTemplate().remove(persistentInstance);
             this.logger.info("delete successful");
-        }
-        catch (final RuntimeException re)
+        } catch (final RuntimeException re)
         {
             this.logger.error("delete failed", re);
             throw re;
@@ -69,8 +67,7 @@ public class ActivityDAO extends JpaDaoSupport implements IActivityDAO
             this.logger.info("update successful");
 
             return result;
-        }
-        catch (final RuntimeException re)
+        } catch (final RuntimeException re)
         {
             this.logger.error("update failed", re);
             throw re;
@@ -87,8 +84,7 @@ public class ActivityDAO extends JpaDaoSupport implements IActivityDAO
             final Activity instance = this.getJpaTemplate().find(Activity.class, id);
 
             return instance;
-        }
-        catch (final RuntimeException re)
+        } catch (final RuntimeException re)
         {
             this.logger.error("find failed", re);
             throw re;
@@ -106,8 +102,7 @@ public class ActivityDAO extends JpaDaoSupport implements IActivityDAO
             final String queryString = "select model from Activity model where model." + propertyName + "= ?1";
 
             return this.getJpaTemplate().find(queryString, value);
-        }
-        catch (final RuntimeException re)
+        } catch (final RuntimeException re)
         {
             this.logger.error("find by property name failed", re);
             ;
@@ -138,8 +133,7 @@ public class ActivityDAO extends JpaDaoSupport implements IActivityDAO
             final String queryString = "select model from Activity model";
 
             return this.getJpaTemplate().find(queryString);
-        }
-        catch (final RuntimeException re)
+        } catch (final RuntimeException re)
         {
             this.logger.error("find all failed", re);
             ;

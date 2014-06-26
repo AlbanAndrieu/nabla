@@ -11,7 +11,6 @@
 	<groupId>com.nabla.project.databases.sample.dao.business.jpa</groupId>
 	<artifactId>jpa</artifactId>
 	<name>Databases DAO Jpa</name>
-	<!-- <version>1.0</version> -->
 	<packaging>jar</packaging>
 
 	<build>
@@ -42,12 +41,14 @@
 			<version>${appfuse.version}</version>
 		</dependency>
 
+		<!-- 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring</artifactId>
 			<scope>compile</scope>
 		</dependency>
-		
+		-->
+							
 		<dependency>
 			<groupId>org.easymock</groupId>
 			<artifactId>easymock</artifactId>

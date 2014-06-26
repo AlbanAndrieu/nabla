@@ -16,10 +16,12 @@
 	<description>Database DAO Test : Test Spring Jpa Hibernate and Derby compatibility</description>
 
 	<dependencies>
+		<!-- TODO remove old spring version -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring</artifactId>
-			<!-- <version>2.5.6</version> -->
+			<version>${spring.version}</version>
+			<scope>compile</scope>
 		</dependency>
         <!--
         <dependency>
@@ -41,23 +43,35 @@
 		</dependency>
 		<!-- batik avoid java.lang.NoClassDefFoundError: org/w3c/dom/ElementTraversal -->
 		<dependency>
-            		<groupId>batik</groupId>
-            		<artifactId>batik-ext</artifactId>
-            		<version>${batik.ext.version}</version>    
-        	</dependency>		
+			<groupId>batik</groupId>
+			<artifactId>batik-ext</artifactId>
+			<version>${batik.ext.version}</version>    
+		</dependency>		
         	
 		<!-- used by org.springframework.instrument.classloading.InstrumentationLoadTimeWeaver -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-agent</artifactId>
-			<!-- <version>2.0.3</version> -->
-			<version>${spring.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-aspects</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		</dependency>		
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>		
+		<!--
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+		</dependency>		
+		-->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-mock</artifactId>
@@ -118,29 +132,42 @@
 			<!-- <version>3.2</version> -->
 		</dependency>
 
+		<!--
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate</artifactId> 
-			<!-- <version>3.2.6.GA</version> -->
-			<version>${hibernate.version}</version>
-			<!--
-			<exclusions>
-				<exclusion>
-					<groupId>asm</groupId>
-					<artifactId>asm</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>asm</groupId>
-					<artifactId>asm-attrs</artifactId>
-				</exclusion>
-				<exclusion>
-					<groupId>cglib</groupId>
-					<artifactId>cglib</artifactId>
-				</exclusion>
-			</exclusions>
-			-->
+			<version>${hibernate.legacy.version}</version>
+			<type>jar</type>
+			<scope>compile</scope>
 		</dependency>
-
+		-->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<!-- <version>3.3.1.GA</version> -->
+			<version>${hibernate.annotations.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>${hibernate.legacy.validator.version}</version>
+			<scope>compile</scope>
+		</dependency>				
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.legacy.core.version}</version>
+			<scope>compile</scope>
+		</dependency>			
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-entitymanager</artifactId>
+			<!-- <version>3.3.2.GA</version> -->
+			<version>${hibernate.legacy.entitymanager.version}</version>
+			<scope>compile</scope>
+		</dependency>
+		
 		<dependency>
 			<groupId>asm</groupId>
 			<artifactId>asm</artifactId>
@@ -156,24 +183,10 @@
 			<artifactId>jta</artifactId>
 			<!-- <version>${javax.transaction.version}</version> -->
 		</dependency>
-                <dependency>
+        <dependency>
 			<groupId>javassist</groupId>
-		        <artifactId>javassist</artifactId>
-		        <!-- <version>${javassist.version}</version> -->
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-annotations</artifactId>
-			<!-- <version>3.3.1.GA</version> -->
-			<version>${hibernate.annotations.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-entitymanager</artifactId>
-			<!-- <version>3.3.2.GA</version> -->
-			<version>${hibernate.entitymanager.version}</version>
+		    <artifactId>javassist</artifactId>
+		    <!-- <version>${javassist.version}</version> -->
 		</dependency>
 
                 <!--

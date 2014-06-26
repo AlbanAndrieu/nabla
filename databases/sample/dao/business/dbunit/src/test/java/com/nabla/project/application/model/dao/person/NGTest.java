@@ -101,7 +101,8 @@ public class NGTest
          * p3.getActivities().add(act3);
          */
         // persistance des personnes avec leurs activites
-        this.service.savePersonsWithActivities(new Person[] { p1, p2, p3 });
+        this.service.savePersonsWithActivities(new Person[]
+        { p1, p2, p3 });
     }
 
     // supression elements des tables
@@ -311,9 +312,9 @@ public class NGTest
         try
         {
             // persister les personnes et les activites
-            this.service.savePersonsWithActivities(new Person[] { p4, p5 });
-        }
-        catch (final RuntimeException e)
+            this.service.savePersonsWithActivities(new Person[]
+            { p4, p5 });
+        } catch (final RuntimeException e)
         {
             erreur = true;
         }

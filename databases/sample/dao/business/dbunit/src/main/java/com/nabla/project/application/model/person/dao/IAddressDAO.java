@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Interface for AddressDAO.
- *
+ * 
  * @author MyEclipse Persistence Tools
  */
 public interface IAddressDAO

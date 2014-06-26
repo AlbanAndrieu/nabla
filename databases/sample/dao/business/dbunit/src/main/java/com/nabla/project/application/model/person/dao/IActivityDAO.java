@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * Interface for ActivityDAO.
- *
+ * 
  * @author MyEclipse Persistence Tools
  */
 public interface IActivityDAO
