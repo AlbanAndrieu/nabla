@@ -28,13 +28,11 @@
             <dependency>
                 <groupId>org.apache.myfaces.core</groupId>
                 <artifactId>myfaces-api</artifactId>
-                <!--<version>1.2.9</version>-->
                 <version>${myfaces.version}</version>                
             </dependency>
             <dependency>
                 <groupId>org.apache.myfaces.core</groupId>
                 <artifactId>myfaces-impl</artifactId>
-                <!--<version>1.2.9</version>-->
                 <version>${myfaces.version}</version>
             </dependency>  
             <!--          
@@ -103,7 +101,6 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-core</artifactId>
-                <!--<version>${hibernate3.version}</version>-->
                 <version>${hibernate.core.version}</version>        
                 <scope>provided</scope>
                 <exclusions>
@@ -120,7 +117,6 @@
             <dependency>
                 <groupId>org.hibernate</groupId>
                 <artifactId>hibernate-entitymanager</artifactId>
-                <!--<version>${hibernate3.version}</version>-->
                 <version>${hibernate.entitymanager.version}</version>
                 <exclusions>
                     <exclusion>
@@ -215,53 +211,19 @@
         <database.name>${application.id}</database.name>     
     </properties>
     <profiles>
-        <profile>
-            <id>instrument</id>
-            <activation>
-                <activeByDefault>true</activeByDefault>
-            </activation>
-            <build>
-                <pluginManagement>
-                    <plugins>
-                        <plugin>
-                            <groupId>org.andromda.maven.plugins</groupId>
-                            <artifactId>andromdapp-maven-plugin</artifactId> 
-                            <version>${andromda.version}</version>
-                            <!-- provides the injection of the script wrapper support into the class files (this should only
-                                 be done when developing locally), uncomment this executions element to enable
-                            -->
-                            <!-- Error ocurs when tests are run
-                            <executions>
-                                <execution>
-                                    <id>instrument-scripts</id>
-                                    <goals>
-                                        <goal>instrument-scripts</goal>
-                                    </goals>
-                                </execution>
-                            </executions>
-                            -->
-                            <configuration>
-                                <scriptWrapper>org.andromda.scriptwrappers.GroovyScriptWrapper</scriptWrapper>
-                                <locations>
-                                    <location>
-                                        <rootPath>${project.basedir}/src/main/java</rootPath> 
-                                        <!--<rootPath>${project.basedir}/${maven.build.generated}/main/java</rootPath>-->
-                                        <!-- adjust these to include or exclude specific files, by default
-                                             all files found in the rootPath are considered
-                                        <includes>
-                                            <include>relative/path/to/file/to/include/SomeClass.java</include>
-                                        </includes>
-                                        <excludes>
-                                            <exclude>relative/path/to/file/to/include/SomeClass.java</exclude>
-                                        </excludes>
-                                        -->
-                                    </location>
-                                </locations>
-                            </configuration>
-                        </plugin>
-                    </plugins>
-                </pluginManagement>
-            </build>
-        </profile>       
+    	<profile>
+    		<id>hibernate-3</id>
+    		<activation>
+    			<property>
+    				<name>!profile.activation</name>
+    			</property>
+    		</activation>
+    		<properties>
+				<hibernate.core.version>${hibernate.legacy.core.version}</hibernate.core.version> 			
+				<hibernate.entitymanager.version>${hibernate.legacy.entitymanager.version}</hibernate.entitymanager.version>
+				<hibernate.validator.version>${hibernate.legacy.validator.version}</hibernate.validator.version>
+				<hibernate.legacy.search.version>${hibernate.search.version}</hibernate.legacy.search.version>        
+    		</properties>
+    	</profile>		  
     </profiles>
 </project>
