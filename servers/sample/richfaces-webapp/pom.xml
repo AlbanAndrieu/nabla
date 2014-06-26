@@ -175,13 +175,12 @@
 		-->
 		
         <!-- Import the JSF API, we use provided scope as the API is included in JBoss AS 7 -->
-        <!-- instead use profile arq-weld-ee-embedded 
+        <!-- instead use profile arq-weld-ee-embedded -->
         <dependency>
             <groupId>org.jboss.spec.javax.faces</groupId>
             <artifactId>jboss-jsf-api_2.0_spec</artifactId>
             <scope>provided</scope>
         </dependency>
-        -->
 
         <!-- Import the JSF impl, to allow for application debugging -->
         <dependency>
@@ -329,13 +328,10 @@
         </plugins>
     </build>
 
-	<!--
     <profiles>
-        <profile>
-			-->
-            <!-- The default profile skips all tests, though you can tune it to run just unit tests based on a custom pattern -->
-            <!-- Seperate profiles are provided for running all tests, including Arquillian tests that execute in the specified container -->
-            <!--
+        <!-- The default profile skips all tests, though you can tune it to run just unit tests based on a custom pattern -->
+        <!-- Seperate profiles are provided for running all tests, including Arquillian tests that execute in the specified container -->		
+        <!--<profile>
             <id>default</id>
             <activation>
                 <activeByDefault>true</activeByDefault>
@@ -403,6 +399,7 @@
                 </plugins>
             </build>
         </profile>
+     -->        
     </profiles>
-     -->
+
 </project>
