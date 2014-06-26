@@ -189,19 +189,29 @@ public abstract class $entity.daoBaseName## no new line
         try
         {
 #if ($entity.genericFinders)
+##TypedQuery is JPA 2
 #if($hibernateUtils.version4)
-            //javax.persistence.TypedQuery<${entity.fullyQualifiedEntityName}> query = this.entityManager.createNamedQuery("${entity.name}.findAll", ${entity.fullyQualifiedEntityName}.class);
+            javax.persistence.TypedQuery<${entity.fullyQualifiedEntityName}> query = this.entityManager.createNamedQuery("${entity.name}.findAll", ${entity.fullyQualifiedEntityName}.class);
+#else       
+##Query is JPA 1
+  #if($hibernateUtils.version3)   
             javax.persistence.Query<${entity.fullyQualifiedEntityName}> query = this.entityManager.createNamedQuery("${entity.name}.findAll", ${entity.fullyQualifiedEntityName}.class);
-#else
+  #else
             javax.persistence.Query query = entityManager.createNamedQuery("${entity.name}.findAll");            
+  #end
 #end
 
 #else
+##TypedQuery is JPA 2
 #if($hibernateUtils.version4)
-            //javax.persistence.TypedQuery<${entity.fullyQualifiedEntityName}> query = this.entityManager.createQuery("from ${entity.entityName} as entity", ${entity.fullyQualifiedEntityName}.class);
+            javax.persistence.TypedQuery<${entity.fullyQualifiedEntityName}> query = this.entityManager.createQuery("from ${entity.entityName} as entity", ${entity.fullyQualifiedEntityName}.class);
+#else       
+##Query is JPA 1            
+  #if($hibernateUtils.version3)              
             javax.persistence.Query<${entity.fullyQualifiedEntityName}> query = this.entityManager.createQuery("from ${entity.entityName} as entity", ${entity.fullyQualifiedEntityName}.class);
-#else
+  #else
             javax.persistence.Query query = entityManager.createQuery("from ${entity.entityName} as entity");
+  #end
 #end
 
 #end
@@ -633,11 +643,16 @@ public abstract class $entity.daoBaseName## no new line
     {
         try
         {
+##TypedQuery is JPA 2        
 #if($hibernateUtils.version4)
-            //javax.persistence.TypedQuery<${rootEntityType}> queryObject = this.entityManager.createNamedQuery("${entity.name}.${finder.name}", ${rootEntityType}.class);
+            javax.persistence.TypedQuery<${rootEntityType}> queryObject = this.entityManager.createNamedQuery("${entity.name}.${finder.name}", ${rootEntityType}.class);
+#else       
+##Query is JPA 1            
+  #if($hibernateUtils.version3)            
             javax.persistence.Query<${rootEntityType}> queryObject = this.entityManager.createNamedQuery("${entity.name}.${finder.name}", ${rootEntityType}.class);
-#else
+  #else
             javax.persistence.Query queryObject = entityManager.createNamedQuery("${entity.name}.${finder.name}");
+  #end   
 #end        
 #**##foreach($argument in $finder.arguments)
 #*  *##set ($count = $velocityCount - 1)
@@ -708,12 +723,17 @@ public abstract class $entity.daoBaseName## no new line
     {
         try
         {
+##TypedQuery is JPA 2        
 #if($hibernateUtils.version4)
-            //javax.persistence.TypedQuery<${entity.fullyQualifiedEntityName}> queryObject = this.entityManager.createQuery(queryString, ${entity.fullyQualifiedEntityName}.class);
+            javax.persistence.TypedQuery<${entity.fullyQualifiedEntityName}> queryObject = this.entityManager.createQuery(queryString, ${entity.fullyQualifiedEntityName}.class);
+#else       
+##Query is JPA 1            
+  #if($hibernateUtils.version3)             
             javax.persistence.Query<${entity.fullyQualifiedEntityName}> queryObject = this.entityManager.createQuery(queryString, ${entity.fullyQualifiedEntityName}.class);
-#else
+  #else
             javax.persistence.Query queryObject = entityManager.createQuery(queryString);
-#end               
+  #end          
+#end       
 #**##foreach($argument in $finder.arguments)
 #*  *##set ($count = $velocityCount - 1)
 #*  *##set ($argumentValue = $argument.name)
