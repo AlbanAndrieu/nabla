@@ -146,7 +146,7 @@
 			<dependency>
 				<groupId>org.jboss.errai</groupId>
 				<artifactId>jboss7-support</artifactId>
-				<version>${errai.version}</version>
+				<version>${errai.jboss7.support.version}</version>
 			</dependency>
 
 			<dependency>
