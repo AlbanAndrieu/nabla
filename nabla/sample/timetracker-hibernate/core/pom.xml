@@ -93,7 +93,6 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator-legacy</artifactId>
-            <version>${hibernate.validator.legacy.version}</version>
             <exclusions>
                 <exclusion>
                     <groupId>org.hibernate</groupId>
@@ -109,7 +108,6 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-commons-annotations</artifactId>
-            <version>${hibernate.commons.annotations.version}</version>
             <scope>provided</scope>
         </dependency>
 
@@ -159,11 +157,11 @@
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>
         </dependency>
-	<dependency>
-	    <groupId>commons-io</groupId>
-	    <artifactId>commons-io</artifactId>
-	    <scope>test</scope>
-	</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<scope>test</scope>
+		</dependency>
         <dependency>
             <groupId>jboss</groupId>
             <artifactId>jboss-j2ee</artifactId>
@@ -171,7 +169,6 @@
         <dependency>
             <groupId>batik</groupId>
             <artifactId>batik-ext</artifactId>
-            <version>${batik.ext.version}</version>
         </dependency>
 	<!--
         <dependency>
@@ -279,15 +276,15 @@
                     <goal>hbm2ddl</goal>
                   </goals>
                 </execution>
-		<execution>
-		  <id>hbm2doc</id>
+				<execution>
+				  <id>hbm2doc</id>
                   <phase>site</phase>
                   <goals>
                     <goal>hbm2doc</goal>
-		    <goal>hbm2cfgxml</goal>
-		    <!--<goal>hbm2java</goal>-->
-		    <!--<goal>hbm2hbmxml</goal>-->
-		    <!--<goal>hbmtemplate</goal>-->
+					<goal>hbm2cfgxml</goal>
+					<!--<goal>hbm2java</goal>-->
+					<!--<goal>hbm2hbmxml</goal>-->
+					<!--<goal>hbmtemplate</goal>-->
                   </goals>
                 </execution>
               </executions>
@@ -318,7 +315,7 @@
                   <!--<persistenceunit>${project.parent.artifactId}</persistenceunit>-->
                   <!--<configurationfile>src/test/resources/hibernate.cfg.xml</configurationfile>-->
                   <configurationfile>${target.dir}/classes/hibernate.cfg.xml</configurationfile>
-		  <propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
+				  <propertyfile>${target.dir}/classes/jdbc.properties</propertyfile>
                   <outputfilename>schema-hibernate.sql</outputfilename>
                   <!--
                   <revengfile>${target.dir}/classes/hibernate.reveng.xml</revengfile>
@@ -329,8 +326,8 @@
               <dependencies>
                   <dependency>
                     <groupId>${jdbc.groupId}</groupId>
-		    <artifactId>${jdbc.artifactId}</artifactId>
-		    <version>${jdbc.version}</version>
+					<artifactId>${jdbc.artifactId}</artifactId>
+					<version>${jdbc.version}</version>
                   </dependency>
                   <dependency>
                     <groupId>org.hibernate</groupId>
@@ -439,8 +436,8 @@
                 <dependencies>
                   <dependency>
                     <groupId>${jdbc.groupId}</groupId>
-		    <artifactId>${jdbc.artifactId}</artifactId>
-		    <version>${jdbc.version}</version>
+					<artifactId>${jdbc.artifactId}</artifactId>
+					<version>${jdbc.version}</version>
                   </dependency>
                 </dependencies>
             </plugin>
@@ -507,7 +504,7 @@
             -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-		<artifactId>maven-ejb-plugin</artifactId>
+				<artifactId>maven-ejb-plugin</artifactId>
                 <configuration>
                     <archive>
                         <manifest>
@@ -526,10 +523,10 @@
                 <version>${maven.surefire.plugin.version}</version>
                 <inherited>true</inherited>
                 <configuration>
-			<!-- Enable or disable JUnit tests -->
-			<skip>${maven.test.skip}</skip>
-			<!-- Enable or disable Stop maven -->
-			<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>                
+				<!-- Enable or disable JUnit tests -->
+				<skip>${maven.test.skip}</skip>
+				<!-- Enable or disable Stop maven -->
+				<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>                
                         <suiteXmlFiles>
                                 <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
                         </suiteXmlFiles>
@@ -540,12 +537,12 @@
         <resources>
             <resource>
                 <directory>src/main/resources</directory>
-		<filtering>true</filtering>
-		<includes>
-		        <include>**/*.xml</include>
-		        <include>**/*.properties</include>
-		        <include>**/*.sql</include>
-		</includes>
+				<filtering>true</filtering>
+				<includes>
+						<include>**/*.xml</include>
+						<include>**/*.properties</include>
+						<include>**/*.sql</include>
+				</includes>
             </resource>
             <resource>
                 <directory>${maven.build.generated}/main/resources</directory>
