@@ -104,6 +104,12 @@
 							<artifactId>spring-agent</artifactId>
 							<version>${spring.agent.version}</version>
 					</dependency>				
+					<dependency>
+							<groupId>org.springframework</groupId>
+							<artifactId>spring-test</artifactId>
+							<version>${spring.legacy.version}</version>
+							<scope>test</scope>
+					</dependency>									
 				</dependencies>
 	</dependencyManagement>				
     
