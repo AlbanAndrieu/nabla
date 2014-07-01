@@ -296,5 +296,15 @@
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:   
    - vnc4server   
-   
+
+- name: Configure main supervisor file
+  template: src=supervisord.conf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/supervisor/supervisord.conf
+  tags: supervisor
+  notify: restart supervisor
+
+- name: Configure supervisor file
+  template: src=supervisor-jenkins.conf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/supervisor/conf.d/supervisor-jenkins.conf
+  tags: supervisor
+  notify: restart supervisor
+       
 - include: copy-keys.yml

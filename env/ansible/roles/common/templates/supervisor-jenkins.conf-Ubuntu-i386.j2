@@ -1,0 +1,13 @@
+[program:jenkins-last]
+command = /usr/bin/java -Xmx1024m -XX:MaxPermSize=512m -server -Djava.net.preferIPv4Stack=true -jar /usr/share/jenkins/jenkins.war --webroot=/var/cache/jenkins/war --httpPort=8380 --ajp13Port=-1 --prefix=/jenkins --logfile=/var/log/jenkins/jenkins.log
+stdout_logfile = syslog
+redirect_stderr = true
+autostart=false
+autorestart=false
+user = jenkins
+
+[program:fitness-last]
+directory=/workspace/xebium
+autostart=false
+autorestart=false
+command=/workspace/xebium/run.sh

@@ -1,3 +1,13 @@
+sudo service webmin stop
+sudo service jetty stop
+sudo service jenkins stop
+sudo service sonar stop
+sudo service rabbitmq-server stop
+sudo service jboss stop
+sudo service zabbix-agent stop
+sudo service supervisor stop
+sudo service mon stop
+
 #webmin
 
 sudo mkdir -p /workspace/users/albandri30
@@ -325,3 +335,9 @@ sudo apt-get install meld
 sudo add-apt-repository ppa:peterlevi/ppa
 sudo apt-get update
 sudo apt-get install variety
+
+#supervisor
+#http://supervisord.org/configuration.html
+sudo easy_install supervisor
+sudo apt-cache show supervisor
+sudo apt-get install supervisor
