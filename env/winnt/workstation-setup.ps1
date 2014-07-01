@@ -28,15 +28,18 @@ if (Install-NeededFor 'chocolatey') {
   iex ((new-object net.webclient).DownloadString('http://bit.ly/psChocInstall')) 
 }
 
-# install nuget, ruby.devkit, and ruby if they are missing
-cinstm nuget.commandline
+# install nuget
+cinst nuget.commandline
 
-if (Install-NeededFor 'ruby / ruby devkit') {
-  cinstm ruby.devkit
-  #cinstm ruby #devkit install will automatically install ruby
-}
+cinst .\workstation-packages.config
+
+# install ruby.devkit, and ruby if they are missing
+#if (Install-NeededFor 'ruby / ruby devkit') {
+#  cinst ruby2.devkit
+#  #cinstm ruby #devkit install will automatically install ruby
+#}
 
 #perform ruby updates and get gems
-gem update --system
-gem install rake
-gem install bundler
+#gem update --system
+#gem install rake
+#gem install bundler
