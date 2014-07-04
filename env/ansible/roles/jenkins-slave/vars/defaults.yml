@@ -3,5 +3,6 @@
 jenkins_home: /jenkins
 jenkins_url: https://home.nabla.mobi/jenkins
 jenkins_slave_name: swarm-{{ ansible_hostname }}
+nexus_url: http://home.nabla.mobi:8081
 #prompted jenkins_username: tbd
 #prompted jenkins_password: tbd
