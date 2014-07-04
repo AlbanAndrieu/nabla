@@ -1,0 +1,30 @@
+---
+# Handler to handle common notifications. Handlers are called by other plays.
+# See http://ansible.cc/docs/playbooks.html for more information about handlers.
+
+- name: restart ntp
+  service: name=ntpd state=restarted
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'    
+  
+- name: restart ntp
+  service: name=ntp state=restarted
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+
+- name: restart nis
+  service: name=nis state=restarted
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+
+- name: restart yp
+  service: name=ypbind state=restarted
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+      
+- name: restart autofs
+  service: name=autofs state=restarted
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+      
+#- name: restart iptables
+#  service: name=iptables state=restarted
+
+- name: restart zabbix-agent
+  service: name=zabbix-agent state=restarted
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    

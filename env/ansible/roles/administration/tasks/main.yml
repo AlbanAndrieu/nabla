@@ -1,0 +1,177 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+# ansible
+- name: Test ansible is installed
+  shell: ansible --version
+  register: ansible_is_installed
+  ignore_errors: yes
+
+- name: Run install script as sudo
+  script: setup-ansible.sh
+  sudo: yes
+  when: "ansible_is_installed|failed and (ansible_distribution == 'Ubuntu' or ansible_distribution == 'CentOS')"
+  register: ansible_init_used_sudo
+
+- name: Run install script without sudo
+  script: setup-ansible.sh
+  when: ansible_is_installed|failed and ansible_init_used_sudo|skipped
+
+- name: Test ansible is installed
+  shell: ansible --version
+
+- name: Install monitoring tools (apt))
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:   
+   - smartmontools
+   - mon
+   - ssmtp
+   - snmp #for cacti
+   - snmpd #for cacti
+
+- name: install zabbix agent for Debian OS family
+  apt: pkg=zabbix-agent state={{ zabbix_agent_pkg_state }}
+  when: ansible_os_family == 'Debian'
+  tags: package
+
+- name: install zabbix agent for RedHat OS family
+  yum: name=zabbix-agent state={{ zabbix_agent_pkg_state }}
+  when: ansible_os_family == 'RedHat'
+  tags: package
+
+- name: configure zabbix agent
+  template: src=zabbix_agentd.conf.j2 dest=/etc/zabbix/zabbix_agentd.conf
+  notify: restart zabbix-agent
+  tags: configuration
+  
+#TODO must be removed as well as files  under template dir
+#- name: Configure xabbix file
+#  template: src=zabbix_agentd.conf-${ansible_distribution}-${ansible_architecture}.j2 dest=/etc/zabbix/zabbix_agentd.conf
+#  notify: restart zabbix-agent  
+#  tags: zabbix-agent
+  
+- name: create zabbix agent optional config directory
+  file: path={{ zabbix_agent_config_include }} state=directory
+  tags: configuration
+
+- name: copy additional configs
+  copy: src={{ item }} dest={{ zabbix_agent_config_include }}/
+  with_items: zabbix_agent_config_include_confs
+  notify: restart zabbix-agent
+  tags: configuration
+
+- name: ensure zabbix agent started/stopped
+  service: name=zabbix-agent state={{ zabbix_agent_service_state }} enabled={{ zabbix_agent_service_enabled }}
+  tags: service
+
+- name: Install AWS tools (apt))
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:
+   - ec2-api-tools    
+   - s3cmd
+         
+- name: Install other tools (apt))
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:
+   - daemon
+   - mailutils
+
+- name: Install connection tools (apt))
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package
+  with_items:   
+   - nis  
+   - ntp
+   - autofs
+
+# ptxidns01/nissrv01 is dns for france.effix.fr and nis for france.effix.fr
+- name: Configure domain file
+  template: src=defaultdomain-{{ ansible_distribution }}-{{ ansible_architecture}}.j2 dest=/etc/defaultdomain
+  tags: configure
+
+- name: Install ntp (yum)
+  yum: name=ntp state=present
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+  tags: package
+
+- name: Install ntp (apt)
+  apt: pkg=ntp state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package  
+
+- name: Configure ntp file
+  template: src=ntp.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/ntp.conf
+  tags: configure
+  notify: restart ntp
+
+- name: Start the ntp service
+  service: name=ntp state=started enabled=true
+  tags: service  
+ 
+- name: Install nis (apt)
+  apt: pkg=nis state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package  
+  
+- name: Configure yellow page file
+  template: src=yp.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/yp.conf
+  tags: configure
+  notify: restart nis
+
+- name: Configure nis file
+  template: src=nsswitch.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/nsswitch.conf
+  tags: configure
+  notify: restart nis
+
+- name: Copy the nis init script
+  copy: src=nis-{{ ansible_distribution }}-{{ ansible_architecture }}.sh dest=/etc/init.d/nis mode=0755
+  tags: configure
+  
+- name: Start the nis service
+  service: name=nis state=started enabled=true
+  tags: service  
+  
+- name: Install autofs (apt)
+  apt: pkg=autofs state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package  
+ 
+- name: Configure autofs file
+  template: src=rc.local-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/rc.local
+  tags: configure
+  notify: restart autofs
+  
+- name: Configure autofs file
+  template: src=auto.master-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/auto.master
+  tags: autofs
+  notify: restart autofs
+   
+- name: Configure autofs file
+  template: src=autofs_ldap_auth.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/autofs_ldap_auth.conf
+  tags: configure
+  notify: restart autofs
+
+- name: Start the autofs service
+  service: name=autofs state=started enabled=true
+  tags: service    
+
+- name: Install sendmail tools (apt))
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:   
+   - sendmail
+   
+- name: Configure sendmail file
+  template: src=sendmail.cf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/mail/sendmail.cf
+  tags: configure
+  notify: restart sendmail
+
+- include: copy-keys.yml
