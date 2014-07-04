@@ -45,13 +45,7 @@
   template: src=zabbix_agentd.conf.j2 dest=/etc/zabbix/zabbix_agentd.conf
   notify: restart zabbix-agent
   tags: configuration
-  
-#TODO must be removed as well as files  under template dir
-#- name: Configure xabbix file
-#  template: src=zabbix_agentd.conf-${ansible_distribution}-${ansible_architecture}.j2 dest=/etc/zabbix/zabbix_agentd.conf
-#  notify: restart zabbix-agent  
-#  tags: zabbix-agent
-  
+
 - name: create zabbix agent optional config directory
   file: path={{ zabbix_agent_config_include }} state=directory
   tags: configuration
@@ -87,14 +81,14 @@
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   tags: package
   with_items:   
-   - nis  
+#   - nis  
    - ntp
-   - autofs
+#   - autofs
 
 # ptxidns01/nissrv01 is dns for france.effix.fr and nis for france.effix.fr
-- name: Configure domain file
-  template: src=defaultdomain-{{ ansible_distribution }}-{{ ansible_architecture}}.j2 dest=/etc/defaultdomain
-  tags: configure
+#- name: Configure domain file
+#  template: src=defaultdomain-{{ ansible_distribution }}-{{ ansible_architecture}}.j2 dest=/etc/defaultdomain
+#  tags: configure
 
 - name: Install ntp (yum)
   yum: name=ntp state=present
@@ -115,52 +109,52 @@
   service: name=ntp state=started enabled=true
   tags: service  
  
-- name: Install nis (apt)
-  apt: pkg=nis state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  tags: package  
+#- name: Install nis (apt)
+#  apt: pkg=nis state=present update_cache=yes
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+#  tags: package  
   
-- name: Configure yellow page file
-  template: src=yp.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/yp.conf
-  tags: configure
-  notify: restart nis
+#- name: Configure yellow page file
+#  template: src=yp.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/yp.conf
+#  tags: configure
+#  notify: restart nis
 
-- name: Configure nis file
-  template: src=nsswitch.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/nsswitch.conf
-  tags: configure
-  notify: restart nis
+#- name: Configure nis file
+#  template: src=nsswitch.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/nsswitch.conf
+#  tags: configure
+#  notify: restart nis
 
-- name: Copy the nis init script
-  copy: src=nis-{{ ansible_distribution }}-{{ ansible_architecture }}.sh dest=/etc/init.d/nis mode=0755
-  tags: configure
+#- name: Copy the nis init script
+#  copy: src=nis-{{ ansible_distribution }}-{{ ansible_architecture }}.sh dest=/etc/init.d/nis mode=0755
+#  tags: configure
   
-- name: Start the nis service
-  service: name=nis state=started enabled=true
-  tags: service  
+#- name: Start the nis service
+#  service: name=nis state=started enabled=true
+#  tags: service  
   
-- name: Install autofs (apt)
-  apt: pkg=autofs state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  tags: package  
+#- name: Install autofs (apt)
+#  apt: pkg=autofs state=present update_cache=yes
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+#  tags: package  
  
-- name: Configure autofs file
-  template: src=rc.local-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/rc.local
-  tags: configure
-  notify: restart autofs
+#- name: Configure autofs file
+#  template: src=rc.local-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/rc.local
+#  tags: configure
+#  notify: restart autofs
   
-- name: Configure autofs file
-  template: src=auto.master-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/auto.master
-  tags: autofs
-  notify: restart autofs
+#- name: Configure autofs file
+#  template: src=auto.master-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/auto.master
+#  tags: autofs
+#  notify: restart autofs
    
-- name: Configure autofs file
-  template: src=autofs_ldap_auth.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/autofs_ldap_auth.conf
-  tags: configure
-  notify: restart autofs
+#- name: Configure autofs file
+#  template: src=autofs_ldap_auth.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/autofs_ldap_auth.conf
+#  tags: configure
+#  notify: restart autofs
 
-- name: Start the autofs service
-  service: name=autofs state=started enabled=true
-  tags: service    
+#- name: Start the autofs service
+#  service: name=autofs state=started enabled=true
+#  tags: service
 
 - name: Install sendmail tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes

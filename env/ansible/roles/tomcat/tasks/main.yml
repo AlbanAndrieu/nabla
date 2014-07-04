@@ -46,12 +46,12 @@
 #  file: path=/usr/share/tomcat/ owner=tomcat group=tomcat state=directory recurse=yes
 
 - name: Configure Tomcat server
-  template: src=server-$ansible_distribution-$ansible_architecture.xml dest=/usr/share/tomcat/conf/server.xml
+  template: src=server-{{ ansible_distribution }}-{{ ansible_architecture }}.xml dest=/usr/share/tomcat/conf/server.xml
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
   notify: restart tomcat
 
 - name: Configure Tomcat server
-  template: src=server-$ansible_distribution-$ansible_architecture.xml dest=/var/lib/tomcat7/conf/server.xml
+  template: src=server-{{ ansible_distribution }}-{{ ansible_architecture }}.xml dest=/var/lib/tomcat7/conf/server.xml
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   notify: restart tomcat
 
@@ -84,4 +84,4 @@
 #  notify: restart iptables
 
 - name: wait for tomcat to start
-  wait_for: port={{tomcat_http_port}}
+  wait_for: port={{ tomcat_http_port }}

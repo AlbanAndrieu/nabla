@@ -13,53 +13,6 @@
   when: "ansible_distribution == 'Debian' and sources.stdout == 'a'"  
 #      when: "ansible_os_family == 'RedHat' and sources.stdout == 'a'"
 
-- name: Install basic tools (apt))
-  apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  with_items:
-   - wget
-   - curl
-   - nmap
-   - ssh  
-   - iotop
-   - htop
-   
-- name: Install editor tools (apt))
-  apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  with_items:   
-   - apt-show-versions
-   - vim
-   - geany
-   - gedit
-   - xxdiff
-   - meld
-   - dos2unix
-   
-- name: Install cowsay (apt))
-  apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  with_items:   
-   - aptitude
-   - randomize-lines
-   - cowsay 
-   - fortunes 
-   - fortunes-fr   
-#TO CHECK sudo aptitude install cowsay fortunes fortunes-fr
-
-#TODO sudo apt-get remove whoopsie   
-   
-- name: Install monitoring tools (apt))
-  apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  with_items:   
-   - smartmontools
-   - mon
-   - ssmtp
-   - zabbix-agent 
-   - snmp #for cacti
-   - snmpd #for cacti
-
 # ansible
 - name: Test ansible is installed
   shell: ansible --version
@@ -79,9 +32,49 @@
 - name: Test ansible is installed
   shell: ansible --version
 
+- name: Install basic tools (apt))
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:
+   - wget
+   - curl
+   - nmap
+   - ssh  
+   - iotop
+   - htop
+   
+- name: Install editor tools (apt))
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:   
+   - apt-show-versions
+   - vim
+   - geany
+   - gedit
+   - xxdiff
+   - meld
+   - dos2unix
+   
+- name: Install cowsay (apt))
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:   
+   - aptitude
+   - randomize-lines
+   - cowsay 
+   - fortunes 
+   - fortunes-fr   
+#TO CHECK sudo aptitude install cowsay fortunes fortunes-fr
+
+#TODO sudo apt-get remove whoopsie   
+
 - name: Install perl (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
   with_items:
    - perl       
    - libnet-ssleay-perl
@@ -92,7 +85,8 @@
 
 - name: Install python (apt))
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' 
+  tags: package   
   with_items:
    - python
    - python-pip 
@@ -102,19 +96,22 @@
 - name: Install SCM (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
   with_items:
    - subversion
    - cvs
    - git
 #   - gitg
 #   - gitk   
-      
-- name: Install JDK (apt))
-  apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  with_items:
-   - openjdk-6-jdk 
-   - openjdk-7-jdk
+ 
+#TODO use instead JDK for jenkins_slaves scripts
+#- name: Install JDK (apt))
+#  apt: pkg={{ item }} state=present update_cache=yes
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+#  tags: package
+#  with_items:
+#   - openjdk-6-jdk 
+#   - openjdk-7-jdk
 
 #sudo add-apt-repository ppa:webupd8team/java
 #sudo apt-get update
@@ -130,12 +127,14 @@
 - name: Install Java build tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
   with_items:
    - maven
 
 - name: Install CPP build tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
   with_items:
    - cmake
    - scons
@@ -143,141 +142,30 @@
 - name: Install test tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
   with_items:
    - xvfb
       
 - name: Copy the xvfb init script
-  copy: src=xvfb-$ansible_distribution-$ansible_architecture.sh dest=/etc/init.d/xvfb mode=0755
-
-- name: Enable xvfb to be started at boot
-  service: name=xvfb enabled=yes state=started 
-    
+  copy: src=xvfb-{{ ansible_distribution }}-{{ ansible_architecture }}.sh dest=/etc/init.d/xvfb mode=0755
+  tags: configure
+  
 - name: Start the xvfb service
   service: name=xvfb state=started enabled=true
-  tags: xvfb
+  tags: service  
         
 - name: Install AWS tools (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
   with_items:
    - ec2-api-tools    
    - s3cmd
-         
-- name: Install other tools (apt))
-  apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  with_items:
-   - daemon
-   - mailutils
-
-#- name: Install connection tools (apt))
-#  apt: pkg={{ item }} state=present update_cache=yes
-#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-#  with_items:   
-#   - nis  
-#   - ntp
-#   - autofs
-
-# ptxidns01/nissrv01 is dns for france.effix.fr and nis for france.effix.fr
-- name: Configure domain file
-  template: src=defaultdomain-$ansible_distribution-$ansible_architecture.j2 dest=/etc/defaultdomain
-  tags: domain
-    
-- name: Configure resolv.conf file
-  template: src=resolv.conf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/resolv.conf
-  tags: domain    
-    
-- name: Install ntp (yum)
-  yum: name=ntp state=present
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
-  tags: ntp
-
-- name: Install ntp (apt)
-  apt: pkg=ntp state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  tags: ntp
-
-- name: Configure ntp file
-  template: src=ntp.conf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/ntp.conf
-  tags: ntp
-  notify: restart ntp
-
-- name: Start the ntp service
-  service: name=ntp state=started enabled=true
-  tags: ntp
  
-- name: Install nis (apt)
-  apt: pkg=nis state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  tags: nis
-
-- name: Configure yellow page file
-  template: src=yp.conf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/yp.conf
-  tags: nis
-  notify: restart nis
-
-- name: Configure nis file
-  template: src=nsswitch.conf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/nsswitch.conf
-  tags: nis
-  notify: restart nis
-
-- name: Copy the nis init script
-  copy: src=nis-$ansible_distribution-$ansible_architecture.sh dest=/etc/init.d/nis mode=0755
-
-- name: Enable nis to be started at boot
-  service: name=nis enabled=yes state=started 
-    
-- name: Start the nis service
-  service: name=nis state=started enabled=true
-  tags: nis
-  
-- name: Install autofs (apt)
-  apt: pkg=autofs state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  tags: autofs 
- 
-- name: Configure autofs file
-  template: src=rc.local-$ansible_distribution-$ansible_architecture.j2 dest=/etc/rc.local
-  tags: autofs
-  notify: restart autofs
-  
-- name: Configure autofs file
-  template: src=auto.master-$ansible_distribution-$ansible_architecture.j2 dest=/etc/auto.master
-  tags: autofs
-  notify: restart autofs
-   
-- name: Configure autofs file
-  template: src=autofs_ldap_auth.conf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/autofs_ldap_auth.conf
-  tags: autofs
-  notify: restart autofs
-
-- name: Start the autofs service
-  service: name=autofs state=started enabled=true
-  tags: autofs  
-
-- name: Configure xabbix file
-  template: src=zabbix_agentd.conf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/zabbix/zabbix_agentd.conf
-  tags: zabbix-agent
-  notify: restart zabbix-agent
-
-#- name: Start the xabbix service
-#  service: name=zabbix-agent state=started enabled=true
-#  tags: zabbix-agent
-  
-- name: Install sendmail tools (apt))
-  apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  with_items:   
-   - sendmail
-   
-- name: Configure sendmail file
-  template: src=sendmail.cf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/mail/sendmail.cf
-  tags: autofs
-  notify: restart autofs
-
 #- name: Install virtualbox (apt))
 #  apt: pkg={{ item }} state=present update_cache=yes
 #  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+#  tags: package  
 #  with_items:   
 #   - virtualbox-4.3
 #   - vagrant
@@ -285,15 +173,17 @@
 - name: Install messagingg (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package    
   with_items:   
    - pidgin 
    - pidgin-sipe 
-   - pidgin-skype   
-   - teamviewer
+   - pidgin-skype  
+   - teamviewer 
 
 - name: Install VNC (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package    
   with_items:   
    - vnc4server   
 
@@ -306,5 +196,4 @@
   template: src=supervisor-jenkins.conf-$ansible_distribution-$ansible_architecture.j2 dest=/etc/supervisor/conf.d/supervisor-jenkins.conf
   tags: supervisor
   notify: restart supervisor
-       
-- include: copy-keys.yml
+

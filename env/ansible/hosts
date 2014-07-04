@@ -1,3 +1,6 @@
+[all]
+127.0.0.1
+
 [tomcat-servers]
 #webserver1
 albandri
@@ -21,8 +24,8 @@ albandri
 albandri
 
 [test-boxes]
-#albandri
-#192.168.33.10
+#vagrant local box
+192.168.33.10
 #192.168.33.11
 #192.168.33.12
 

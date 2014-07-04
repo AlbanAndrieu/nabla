@@ -40,7 +40,7 @@
   file: path=/usr/share/jboss-as/ owner=jboss group=jboss state=directory recurse=yes
 
 - name: Copy the init script
-  copy: src=jboss-as-standalone-$ansible_distribution-$ansible_architecture.sh dest=/etc/init.d/jboss mode=0755
+  copy: src=jboss-as-standalone-{{ ansible_distribution }}-{{ ansible_architecture }}.sh dest=/etc/init.d/jboss mode=0755
 
 - name: Enable JBoss to be started at boot
   service: name=jboss enabled=yes state=started 

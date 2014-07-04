@@ -5,10 +5,12 @@
 # --extra-vars "jenkins_username=aandrieu jenkins_password=tbd"
 
 - name: apply common configuration to all jenkins slaves
-  connection: local  
-  hosts: test-boxes
-  sudo: yes
-  user: vagrant
+  hosts: jenkins-slaves
+  user: root
+#  hosts: albandri  
+#  connection: local  
+#  hosts: test-boxes
+#  sudo: yes
 #  remote_user: vagrant
   vars_files:
   - [ "roles/jenkins-slave/vars/defaults.yml" ]

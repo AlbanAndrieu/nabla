@@ -1,30 +1,54 @@
 ---     
+#This script is used to configure your workstation (for developer)
 
 #as root (without vagrant)
 #ansible-playbook -i hosts site.yml -vvvv
 #as root (pass vagrant is needed for vagrant to work)
 #ansible-playbook -i hosts site.yml -vvvv --ask-pass --sudo
 
+- hosts: all
+  gather_facts: true
+  tasks:
+    - name: group hosts by distribution
+      group_by: key="{{ ansible_distribution }}-{{ ansible_distribution_version }}"
+
+- hosts: RedHat-7*:RedHat-6*:CentOS-6*:Ubuntu-12.04:Ubuntu-14.04
+  gather_facts: false
+  tasks:
+    - name: group hosts for supported distributions
+      group_by: key="supported"
+
+- hosts: "!supported"
+  gather_facts: false
+  tasks:
+    - name: fail for unsupported distribution
+      fail: msg="{{ ansible_distribution }} {{ ansible_distribution_version }}
+                 is not a supported OS for a Tower installation.  Supported
+                 OSes include Red Hat Enterprise Linux 6/7, CentOS 6, or
+                 Ubuntu 12.04/14.04."
+                 
 # This playbook can be run using vagrant (on virtual box). 
-- hosts: test-boxes
-  sudo: yes
-  remote_user: vagrant
-  
-  roles:
-    - common  
+#- hosts: test-boxes
+#  sudo: yes
+#  remote_user: vagrant
+#  
+#  roles:
+#    - common  
         
 # This playbook deploys a simple standalone Tomcat 7 server. 
 
-- name: apply common configuration to all nodes
-  hosts: all
-#  hosts: albandri
-  user: root
-#  connection: local
-  
-  roles:
-    - common
+#Use below only if you want your servers to be part of MGR build farm
+#- name: apply common configuration to all nodes
+#  hosts: Ubuntu-12*:Ubuntu-14*
+#  gather_facts: false
+#  user: root
+##  connection: local
+#  
+#  roles:
+#    - common
 
-- hosts: tomcat-servers 
+- name: deploy Tomcat 
+  hosts: tomcat-servers 
   user: root
 #  connection: local
   
@@ -33,9 +57,10 @@
 
 # This playbook deploys a simple standalone JBoss server. 
 
-- hosts: jboss-servers 
+- name: deploy Jboss 
+  hosts: jboss-servers 
   user: root
-  connection: local
+#  connection: local
   
   roles:
     - jboss-standalone
@@ -45,7 +70,7 @@
 - name: deploy MySQL and configure the databases
   hosts: dbservers
   user: root
-# connection: local
+#  connection: local
   
   roles:
     - db
@@ -66,7 +91,7 @@
 #  connection: local
   vars_files:
   - [ "roles/jenkins-slave/vars/defaults.yml" ]
-  - [ "roles/jenkins-slave/vars/$ansible_distribution-$ansible_architecture.yml", "roles/jenkins-slave/vars/$ansible_distribution.yml" ]
+  - [ "roles/jenkins-slave/vars/{{ ansible_distribution }}-{{ ansible_architecture }}.yml", "roles/jenkins-slave/vars/{{ ansible_distribution }}.yml" ]
     
   roles:
     - jenkins-slave

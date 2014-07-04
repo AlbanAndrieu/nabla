@@ -471,11 +471,11 @@
 - name: Install swarm client script
   template: src=jenkins-swarm-client.tmpl dest=/etc/init.d/jenkins-swarm-client mode=0700
 
-- fail: msg="Missing parameters!"
-  when_string: $jenkins_username == '' or $jenkins_password == ''
+#- fail: msg="Missing parameters!"
+#  when_string: $jenkins_username == '' or $jenkins_password == ''
 
-- name: Start Jenkins swarm client
-  action: service name=jenkins-swarm-client state=started enabled=yes
+#- name: Start Jenkins swarm client
+#  action: service name=jenkins-swarm-client state=started enabled=yes
 
 #http://drupalcode.org/sandbox/franskuipers/1801378.git/blob/e0d2e3dd3f3b9ff7f9ace61f9e56c56a1f28e915:/ansible.yml  #
 
