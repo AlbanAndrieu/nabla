@@ -54,6 +54,7 @@
    - geany
    - gedit
    - xxdiff
+#   - xxdiff-scripts
    - meld
    - dos2unix
    

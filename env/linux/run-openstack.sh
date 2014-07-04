@@ -1,5 +1,4 @@
 #http://doc.ubuntu-fr.org/openstack
-
 #https://wiki.ubuntu.com/ServerTeam/CloudArchive#Havana
 #https://github.com/mseknibilel/OpenStack-Grizzly-Install-Guide/blob/OVS_MultiNode/OpenStack_Grizzly_Install_Guide.rst
 
