@@ -44,6 +44,7 @@
 				<!-- TODO <maven.test.failure.skip>false</maven.test.failure.skip>-->
 				<maven.test.failure.skip>true</maven.test.failure.skip>
 				<lastModifiedCheck>true</lastModifiedCheck> <!-- for mvn site to work with andromda-cartridge-plugin -->
+				<surefire.useFile>true</surefire.useFile>
 			</properties>
 		</profile>
     		<!-- ================= PLATFORM DEPENDENT CONFIGURATION ======= -->
