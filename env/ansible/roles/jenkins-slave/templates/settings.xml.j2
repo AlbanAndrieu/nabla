@@ -460,6 +460,7 @@ under the License.
             </snapshots>
             <releases>
                 <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
             </releases>
         </repository>
         <repository>
@@ -470,6 +471,7 @@ under the License.
             <snapshots>
                 <enabled>true</enabled>
                 <updatePolicy>daily</updatePolicy>
+                <!--<updatePolicy>always</updatePolicy>-->
                 <checksumPolicy>ignore</checksumPolicy>
             </snapshots>
             <releases>
@@ -620,17 +622,17 @@ under the License.
                 </releases>
         </repository>
         -->
-            <repository>
-              <id>smartics</id>
-                  <name>Smartics Repository</name>
-              <url>http://www.smartics.eu/nexus/content/groups/public-group</url>
-              <releases>
-                <enabled>true</enabled>
-              </releases>
-              <snapshots>
-                <enabled>false</enabled>
-              </snapshots>
-            </repository>
+		<repository>
+		  <id>smartics</id>
+			  <name>Smartics Repository</name>
+		  <url>http://www.smartics.eu/nexus/content/groups/public-group</url>
+		  <releases>
+			<enabled>true</enabled>
+		  </releases>
+		  <snapshots>
+			<enabled>false</enabled>
+		  </snapshots>
+		</repository>
         <repository>
             <id>mule-deps</id>
             <name>Mule Dependencies</name>
@@ -645,7 +647,6 @@ under the License.
         <pluginRepository>
             <id>nexus-releases</id>
             <name>Nexus Staging Repository</name>
-            <!--<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>-->
 			<url>{{ nexus_url }}/nexus/content/repositories/releases</url>
             <snapshots>
                 <enabled>false</enabled>
@@ -655,15 +656,16 @@ under the License.
             </releases>
         </pluginRepository>
         <pluginRepository>
-                <id>nexus-snapshots</id>
-                <name>Nexus Staging Repository</name>
-                <url>{{ nexus_url }}/nexus/content/repositories/snapshots</url>
-                <snapshots>
-                        <enabled>true</enabled>
-                </snapshots>
-                <releases>
-                        <enabled>false</enabled>
-                </releases>
+			<id>nexus-snapshots</id>
+			<name>Nexus Staging Repository</name>
+			<url>{{ nexus_url }}/nexus/content/repositories/snapshots</url>
+			<snapshots>
+					<enabled>true</enabled>
+					<updatePolicy>interval:60</updatePolicy>
+			</snapshots>
+			<releases>
+					<enabled>false</enabled>
+			</releases>
         </pluginRepository>
 
         <!--
@@ -814,37 +816,63 @@ under the License.
         -->
       </pluginRepositories>
     </profile>
-        <profile>
-            <id>nexus</id>
-            <!--all requests to nexus via the mirror -->
-            <repositories>
-                <repository>
-                    <id>nexus-releases</id>
-                    <url>{{ nexus_url }}/nexus/content/repositories/server-forge-release</url>
-                    <releases><enabled>true</enabled></releases>
-                    <snapshots><enabled>false</enabled></snapshots>
-                </repository>
-                <repository>
-                    <id>nexus-snapshots</id>
-                    <url>{{ nexus_url }}/nexus/content/repositories/server-forge-snapshot</url>
-                    <releases><enabled>false</enabled></releases>
-                    <snapshots><enabled>true</enabled></snapshots>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>nexus-releases</id>
-                    <url>{{ nexus_url }}/nexus/content/repositories/server-forge-release</url>
-                    <releases><enabled>true</enabled></releases>
-                    <snapshots><enabled>false</enabled></snapshots>
-                </pluginRepository>
-                <pluginRepository>
-                    <id>nexus-snapshots</id>
-                    <url>{{ nexus_url }}/nexus/content/repositories/server-forge-snapshot</url>
-                    <releases><enabled>false</enabled></releases>
-                    <snapshots><enabled>true</enabled></snapshots>
-                </pluginRepository>
-            </pluginRepositories>
+	<profile>
+		<id>nexus</id>
+		<!--all requests to nexus via the mirror -->
+		<repositories>
+			<repository>
+				<id>nexus-releases</id>
+				<name>External Staging Repository</name>
+				<url>{{ nexus_url }}/nexus/content/repositories/server-forge-release</url>
+				<releases>
+					<enabled>true</enabled>
+					<updatePolicy>never</updatePolicy>
+				</releases>
+				<snapshots>
+					<enabled>false</enabled>
+				</snapshots>
+			</repository>
+			<repository>
+				<id>nexus-snapshots</id>
+				<name>External Snapshot Repository</name>
+				<url>{{ nexus_url }}/nexus/content/repositories/server-forge-snapshot</url>
+				<releases>
+					<enabled>false</enabled>
+				</releases>
+				<snapshots>
+					<enabled>true</enabled>
+					<!--<updatePolicy>always</updatePolicy>-->
+					<updatePolicy>interval:60</updatePolicy>
+				</snapshots>
+			</repository>
+		</repositories>
+		<pluginRepositories>
+			<pluginRepository>
+				<id>nexus-releases</id>
+				<name>External Staging Repository</name>
+				<url>{{ nexus_url }}/nexus/content/repositories/server-forge-release</url>
+				<releases>
+					<enabled>true</enabled>
+					<updatePolicy>never</updatePolicy>
+				</releases>
+				<snapshots>
+					<enabled>false</enabled>
+				</snapshots>
+			</pluginRepository>
+			<pluginRepository>
+				<id>nexus-snapshots</id>
+				<name>External Snapshot Repository</name>
+				<url>{{ nexus_url }}/nexus/content/repositories/server-forge-snapshot</url>
+				<releases>
+					<enabled>false</enabled>
+				</releases>
+				<snapshots>
+					<enabled>true</enabled>
+					<!--<updatePolicy>always</updatePolicy>-->
+					<updatePolicy>interval:60</updatePolicy>
+				</snapshots>
+			</pluginRepository>
+		</pluginRepositories>
             <!--
         <properties>
           <maven.clover.licenseLocation>${user.home}/clover.license</maven.clover.licenseLocation>
