@@ -1,12 +1,3 @@
-sudo service webmin stop
-sudo service jetty stop
-sudo service jenkins stop
-sudo service sonar stop
-sudo service rabbitmq-server stop
-sudo service jboss stop
-sudo service zabbix-agent stop
-sudo service supervisor stop
-sudo service mon stop
 
 #webmin
 
@@ -289,6 +280,13 @@ LC_TELEPHONE=en_US.UTF-8
 LC_MEASUREMENT=en_US.UTF-8
 LC_IDENTIFICATION=en_US.UTF-8
 
+#dhcp
+sudo nano /etc/dhcp/dhclient.conf
+#add 
+append domain-name " nabla.mobi";
+#restart dhcp
+sudo dhclient
+
 #http://www.isalo.org/wiki.debian-fr/Cowsay_et_fortunes
 sudo apt-get install aptitude
 sudo aptitude install cowsay fortunes fortunes-fr
@@ -300,7 +298,23 @@ sudo apt-get install randomize-lines
 sudo apt-get remove whoopsie
 
 #messaging
+#http://mylinuxbook.com/how-to-get-pidgin-working-with-gtalk/
 sudo apt-get install pidgin pidgin-sipe pidgin-skype
+#add my google account
+#Username alban.andrieu
+#Domain nabla.mobi
+#Resource home
+#In advanced tab
+#Connection security Use old-style SSL
+#Connect port 5223
+#Connect server  talk.google.com
+#add my misys account 
+#Protocol Office Communicator
+#Username alban.andrieu@misys.com
+#Login alban.andrieu@misys.com
+#add my Skype account
+#Username alban.andrieu
+#Local Alias Alban Andrieu
 
 #SVN
 #sudo apt-get install python-nautilus python-configobj python-gtk2 python-glade2 python-svn python-dbus python-dulwich subversion meld
@@ -341,3 +355,23 @@ sudo apt-get install variety
 sudo easy_install supervisor
 sudo apt-cache show supervisor
 sudo apt-get install supervisor
+
+#startup application display all prg
+sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/*.desktop
+
+#start prog to run app faster
+sudo apt-get install preload
+
+#Decrease swappiness value
+cat /proc/sys/vm/swappiness
+gksu gedit /etc/sysctl.conf
+#add the following 2 lines at the end
+#Decrease swappiness value
+vm.swappiness=10
+cat /proc/sys/vm/swappiness
+
+# extra package to add
+sudo apt-get install ubuntu-restricted-extras
+
+#remove incinga
+sudo apt-get remove icinga-web

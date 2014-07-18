@@ -58,6 +58,16 @@
    - meld
    - dos2unix
    
+- name: Install extra (apt))
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:   
+   - ubuntu-restricted-extras
+   - preload
+   
+#TO CHECK sudo aptitude install cowsay fortunes fortunes-fr
+
 - name: Install cowsay (apt))
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
@@ -68,8 +78,7 @@
    - cowsay 
    - fortunes 
    - fortunes-fr   
-#TO CHECK sudo aptitude install cowsay fortunes fortunes-fr
-
+   
 #TODO sudo apt-get remove whoopsie   
 
 - name: Install perl (apt))

@@ -17,5 +17,12 @@ sudo service icinga stop
 sudo service webmin stop
 sudo service ssh stop
 
+sudo service jetty stop
+sudo service rabbitmq-server stop
+sudo service jboss stop
+sudo service zabbix-agent stop
+sudo service supervisor stop
+sudo service mon stop
+
 sudo service --status-all
 

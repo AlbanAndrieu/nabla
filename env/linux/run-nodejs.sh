@@ -110,6 +110,7 @@ npm -g ls
 
 #add nabla repository
 #see https://github.com/georgy/nexus-npm-repository-plugin
+#inside nexus use http://registry.npmjs.org/ without the s
 #as jenkins and albandri user
 npm config set registry http://home.nabla.mobi:8081/nexus/content/npm/registry.npmjs.org/ 
 npm config ls -l | grep registry
@@ -133,5 +134,7 @@ npm run protractor : run the Protractor end 2 end tests
 npm run update-webdriver : install the drivers needed by Protractor
 
 #update clean up npm repo
+sudo chown -R albandri:albandri  ~/.npm
 npm cache clear 
 npm update
+

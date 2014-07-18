@@ -11,6 +11,8 @@ sudo apt-get dist-upgrade
 
 #remove havana version
 sudo apt-get remove keystone python-keystone python-keystoneclient python-nova python-novaclient
+sudo apt-get remove rabbitmq-server glance glance-api 
+sudo apt-get remove cinder-api cinder-common cinder-scheduler cinder-volume
 sudo apt-get autoremove
 
 #install first package 
