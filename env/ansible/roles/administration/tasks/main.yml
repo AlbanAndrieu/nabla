@@ -20,7 +20,7 @@
 - name: Test ansible is installed
   shell: ansible --version
 
-- name: Install monitoring tools (apt))
+- name: Install monitoring tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   tags: package  
@@ -60,7 +60,7 @@
   service: name=zabbix-agent state={{ zabbix_agent_service_state }} enabled={{ zabbix_agent_service_enabled }}
   tags: service
 
-- name: Install AWS tools (apt))
+- name: Install AWS tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   tags: package  
@@ -68,7 +68,7 @@
    - ec2-api-tools    
    - s3cmd
          
-- name: Install other tools (apt))
+- name: Install other tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   tags: package  
@@ -76,7 +76,7 @@
    - daemon
    - mailutils
 
-- name: Install connection tools (apt))
+- name: Install connection tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   tags: package
@@ -84,6 +84,7 @@
 #   - nis  
    - ntp
 #   - autofs
+   - ufw
 
 # ptxidns01/nissrv01 is dns for france.effix.fr and nis for france.effix.fr
 #- name: Configure domain file
@@ -156,16 +157,41 @@
 #  service: name=autofs state=started enabled=true
 #  tags: service
 
-- name: Install sendmail tools (apt))
+- name: Install sendmail tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package  
-  with_items:   
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package
+  with_items:
    - sendmail
-   
-- name: Configure sendmail file
-  template: src=sendmail.cf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/mail/sendmail.cf
-  tags: configure
-  notify: restart sendmail
 
+#copy current user key
 - include: copy-keys.yml
+  
+#TODO use authorized_key instead of copy-keys.yml
+#See http://brokenbad.com/better-handling-of-public-ssh-keys-using-ansible/
+#- name: Checking public keys list
+#  authorized_key:
+#    user: "{{ base_admin_username }}"
+#    key: "{{ item }}"
+#  with_items: base_admin_keys
+
+- name: Checks if resolver is working properly (issues with some VBox/Host OS combinations)
+  command: host -t A ansible.cc
+  register: ns
+  ignore_errors: yes
+
+#TODO add the following in /etc/resolv.conf
+#domain nabla.global.ad
+#search nabla.global.ad nabla.global.ad. home.nabla.mobi. nabla.mobi.
+
+#- name: Pushes new resolver configuration is resolver fails
+#  lineinfile: regexp="^nameserver " line="nameserver 8.8.8.8" dest=/etc/resolv.conf
+#  when: ns|failed
+
+- name: Checks if resolver is working properly with new nameserver
+  command: host -t A ansible.cc
+
+#- name: Final greeting
+#  pause: prompt="Don't worry about all the red above; if you made it here, your Vagrant VMs are probably fine !
+#    Please press [Enter]"
+

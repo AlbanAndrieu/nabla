@@ -1,6 +1,23 @@
 ---
 # Variables listed here are applicable to all host groups
 
+#TODO use authorized_key instead of copy-keys.yml
+#See http://brokenbad.com/better-handling-of-public-ssh-keys-using-ansible/
+base_admin_username: ubuntu # something non-root
+base_admin_keys: []
+
+apt_cache_valid_time: 3600    # Time (in seconds) the apt cache stays valid
+apt_upgrade: safe             # Perfoms aptupgrade. Values are (safe, full, dist)
+apt_install_recommends: no    # Install the "recommended" packages
+apt_install_suggests: no      # Install the "suggested" packages
+apt_repositories: []          # List of sources which be added
+apt_install_packages: no      # Install some utilities (see lise bellow)
+apt_install_packages_list:    # List of packages which be installed
+  - command-not-found
+  - mosh
+  - pciutils
+  - screen
+  
 httpd_port: 8081
 #ubuntu
 ntpserver1: ntp.ubuntu.com
@@ -11,7 +28,6 @@ ntpserver2: timehost
 repository: http://github.com/bennojoy/mywebapp.git
 defaultdomain: home.nabla.mobi
 nameserver: 82.231.208.223
-supervisor_inet_http_server: 9042
 
 #zabbix_agent_config_server: 82.231.208.223,82.231.208.224
 zabbix_agent_config_server: zabbix.{{ ansible_domain }}

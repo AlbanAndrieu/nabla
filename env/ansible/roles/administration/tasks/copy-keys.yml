@@ -22,19 +22,3 @@
   # Workaround for #2372
   copy: src=~/.ssh/id_dsa.pub dest=/root/.ssh/authorized_keys owner=root mode=0600
   when: rsa|failed
-
-- name: Checks if resolver is working properly (issues with some VBox/Host OS combinations)
-  command: host -t A ansible.cc
-  register: ns
-  ignore_errors: yes
-
-#- name: Pushes new resolver configuration is resolver fails
-#  lineinfile: regexp="^nameserver " line="nameserver 8.8.8.8" dest=/etc/resolv.conf
-#  when: ns|failed
-
-- name: Checks if resolver is working properly with new nameserver
-  command: host -t A ansible.cc
-
-#- name: Final greeting
-#  pause: prompt="Don't worry about all the red above; if you made it here, your Vagrant VMs are probably fine !
-#    Please press [Enter]"

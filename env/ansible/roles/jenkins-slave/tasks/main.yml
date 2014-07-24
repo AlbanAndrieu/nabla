@@ -153,7 +153,7 @@
 #- name: add node.js repos
 - name: Node.js | Add the node.js PPA
 #  action: command add-apt-repository -y ppa:chris-lea/node.js creates=/etc/apt/sources.list.d/custom-node_js-{{ ansible_lsb.codename }}.list
-  apt_repository: repo='ppa:chris-lea/node.js'
+  apt_repository: repo='ppa:chris-lea/node.js' update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: nodejs
 
@@ -277,7 +277,7 @@
 #TODO wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
 #TODO add sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 - name: Add google repos
-  apt_repository: repo='deb http://dl.google.com/linux/chrome/deb/ stable main'
+  apt_repository: repo='deb http://dl.google.com/linux/chrome/deb/ stable main' update_cache=yes
 
 - name: Addkey google
   apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub  state=present
@@ -385,6 +385,14 @@
 
 - name: Add passwordless connection for jenkins (Alban Andrieu)
   authorized_key: user=jenkins key="ssh-rsa AAAAB3NzaC1yc2EAAAABJQAAAIEAio3SOQ9yeK6QfKqSFNKyTasuzjStxWevG1Vz1wgJIxPF+KB0XoMAPD081J+Bzj2LCDRSWisNv2L4xv2jbFxW/Pl7NEakoX47eNx3U+Dxaf+szeWBTryYcDUGkduLV7G8Qncm0luIFd+HDIe/Qir1E2f56Qu2uuBNE6Tz5TFt1vc= Alban"
+
+#TODO use authorized_key instead of copy-keys.yml
+#http://brokenbad.com/better-handling-of-public-ssh-keys-using-ansible/
+#- name: Checking public keys list
+#  authorized_key:
+#    user: "{{ base_admin_username }}"
+#    key: "{{ item }}"
+#  with_items: base_admin_keys
 
 - name: Update authorized_keys rights
   file: path={{ jenkins_home }}/.ssh/authorized_keys state=file mode=0600 owner=jenkins

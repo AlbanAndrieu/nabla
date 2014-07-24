@@ -1,31 +1,35 @@
 [all]
-127.0.0.1
+#127.0.0.1
+albandri-laptop-misys
 
 [tomcat-servers]
 #webserver1
-albandri
+albandri-laptop-misys
 
 [jboss-servers]
 #webserver1
-albandri
+albandri-laptop-misys
 
 [webservers]
 #web3
-albandri
+albandri-laptop-misys
 
 [dbservers]
 #web2
-albandri
+albandri-laptop-misys
 
 [mongodbservers]
-albandri
+albandri-laptop-misys
 
 [jenkins-slaves]
-albandri
+albandri-laptop-misys
+
+[supervisors]
+albandri-laptop-misys
 
 [test-boxes]
 #vagrant local box
-192.168.33.10
+#192.168.33.10
 #192.168.33.11
 #192.168.33.12
 

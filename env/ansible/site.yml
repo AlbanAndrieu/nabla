@@ -35,7 +35,24 @@
 #  roles:
 #    - common  
         
-# This playbook deploys a simple standalone Tomcat 7 server. 
+- name: apply hostname configuration
+  hosts: all
+  user: root
+#  connection: local
+  
+  roles:
+    - hostname
+  vars_files:
+    - [ "roles/hostname/vars/defaults.yml" ]
+  
+- name: apply common configuration to all nodes
+  hosts: Ubuntu-12*:Ubuntu-14*
+  gather_facts: false
+  user: root
+#  connection: local
+  
+  roles:
+    - common
 
 #Use below only if you want your servers to be part of MGR build farm
 #- name: apply common configuration to all nodes
@@ -45,8 +62,9 @@
 ##  connection: local
 #  
 #  roles:
-#    - common
+#    - administration
 
+# This playbook deploys a simple standalone Tomcat 7 server. 
 - name: deploy Tomcat 
   hosts: tomcat-servers 
   user: root
@@ -85,6 +103,30 @@
   roles:
     - web
 
+- name: configure supervisor
+  hosts: supervisors
+  user: root
+#  connection: local
+  roles:
+    - role: supervisor
+      name: webserver
+      command: python -m SimpleHTTPServer
+      directory: /opt/web
+# user is the same as base_admin_username      
+      user: ubuntu
+
+#- name: configure supervisor
+#  hosts: supervisors
+#  user: root
+##  connection: local
+#  roles:
+#    - role: supervisor
+#      name: fitness
+#      command: /workspace/xebium/run.sh
+#      directory: /workspace/xebium
+## user is the same as base_admin_username      
+#      user: ubuntu
+      
 - name: apply common configuration to all jenkins slaves
   hosts: test-boxes
   user: root
