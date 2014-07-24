@@ -24,5 +24,7 @@ sudo service zabbix-agent stop
 sudo service supervisor stop
 sudo service mon stop
 
+#sudo service lightdm stop
+
 sudo service --status-all
 

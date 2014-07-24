@@ -360,7 +360,8 @@ sudo apt-get install supervisor
 sudo sed -i "s/NoDisplay=true/NoDisplay=false/g" /etc/xdg/autostart/*.desktop
 
 #start prog to run app faster
-sudo apt-get install preload
+#WARNING it must be tested
+#sudo apt-get install preload
 
 #Decrease swappiness value
 cat /proc/sys/vm/swappiness
@@ -369,6 +370,8 @@ gksu gedit /etc/sysctl.conf
 #Decrease swappiness value
 vm.swappiness=10
 cat /proc/sys/vm/swappiness
+#for more info about swap please see 
+#https://help.ubuntu.com/community/SwapFaq
 
 # extra package to add
 sudo apt-get install ubuntu-restricted-extras

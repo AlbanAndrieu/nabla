@@ -27,6 +27,8 @@ dhcpcd eth1
 
 #Default install of zabbix with Chocolatey is in C:\Program Files\Zabbix Agent
 
+#In order to install zabbix by hand on windows
+#Download zabbix-agent for windows at http://www.zabbix.com/download.php
 #Open cmd with run as Administrator
 REM cd C:\Program Files\Zabbix Agent
 REM zabbix_agentd.exe -c zabbix_agentd.conf -i
