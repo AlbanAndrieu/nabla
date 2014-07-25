@@ -26,3 +26,5 @@
 - name: Start the supervisord service
   service: name=supervisord state=started enabled=true
   tags: service  
+
+- debug: msg="See GUI at http://{{ inventory_hostname }}:{{ supervisor_inet_http_server }}/"
