@@ -21,6 +21,9 @@ albandri-laptop-misys
 [mongodbservers]
 albandri-laptop-misys
 
+[locale]
+albandri-laptop-misys
+
 [zabbix-server]
 albandri-laptop-misys
 
@@ -41,6 +44,17 @@ albandri-laptop-misys
 
 [supervisors]
 albandri-laptop-misys
+
+[virtualbox]
+albandri-laptop-misys
+
+[vagrant]
+albandri-laptop-misys
+
+[docker]
+albandri-laptop-misys
+#vagrant local box
+#192.168.33.10
 
 [test-boxes]
 #vagrant local box

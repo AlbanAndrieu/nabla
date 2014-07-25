@@ -43,8 +43,40 @@
   roles:
     - common
 
+- name: Install virtualbox
+  hosts: virtualbox
+  user: root
+#  connection: local
+  
+  roles:
+    - virtualbox
+      
+- name: Install vagrant
+  hosts: vagrant
+  user: root
+#  connection: local
+  
+  roles:
+    - vagrant
+   
+- name: Install Docker
+  hosts: docker
+  user: root
+#  connection: local  
+  roles:
+    - docker
+
 # This playbook can be run using vagrant (on virtual box). 
-- name: Install zabbix-agent 
+- name: Install locale
+  hosts: locale
+  user: root
+#  connection: local
+  
+  roles:
+    - locale
+    
+# This playbook can be run using vagrant (on virtual box). 
+- name: Install zabbix-agent
   hosts: zabbix-agent
   user: root
 #  connection: local

@@ -13,35 +13,25 @@ zabbix_agent_major                : '2'
 zabbix_agent_minor                : '2'
 zabbix_agent_revision             : '4'
 #zabbix_agent_config_server: 82.231.208.223,82.231.208.224
-#OLD zabbix_agent_Server = zabbix_agent_config_server: zabbix.{{ ansible_domain }}
 zabbix_agent_Server               : "127.0.0.1"  ## List of comma delimited IP addresses (or hostnames) of Zabbix servers.
-#OLD zabbix_agent_ServerActive = zabbix_agent_config_server_active: 127.0.0.1 
 zabbix_agent_ServerActive         : "{{ zabbix_agent_Server }}"
-#OLD zabbix_agent_Hostname = zabbix_agent_config_hostname: '{{ ansible_fqdn }}'
-#zabbix_agent_Hostname             : "system.hostname"
 zabbix_agent_Hostname             : "{{ ansible_fqdn }}"
 zabbix_agent_LogFile              : "/var/log/zabbix/zabbix_agentd.log"
 zabbix_agent_LogFileSize          : 0    ## 0 - disable automatic log rotation.
 zabbix_agent_DebugLevel           : 3    ## (0) no, (1) critical info (2) error info (3) warnings (4) A lots of infor)
 zabbix_agent_PidFile              : "/var/run/zabbix/zabbix_agentd.pid"
-#OLD zabbix_agent_ListenIP = zabbix_agent_config_listen_ip: '{{ ansible_default_ipv4.address }}'
 #zabbix_agent_ListenIP             : "0.0.0.0"
 zabbix_agent_ListenIP             : "{{ ansible_default_ipv4.address }}"
 zabbix_agent_ListenPort           : 10050
-#OLD zabbix_agent_StartAgents = zabbix_agent_config_start_agents: 3
 zabbix_agent_StartAgents          : 3
 zabbix_agent_EnableRemoteCommands : 0 ## 0 or 1
 zabbix_agent_LogRemoteCommands    : 0 ## 0 or 1
 zabbix_agent_RefreshActiveChecks  : 120 ## checks is refreshed, in sec 60-3600
 #zbx_agent_source_ip               : 192.168.56.150 ## if you want Source IP address for outgoing connections
-#OLD zabbix_agent_ConfigHostMetaData = zabbix_agent_config_host_meta_data: ''
 zabbix_agent_ConfigHostMetaData        :
  
 ### Directory configuration
 # NOTE: keep the trailing / !
-#OLD zabbix_agent_config_include: /etc/zabbix/zabbix_agentd.d/
-#OLD zabbix_agent_config_include_confs: []
-
 zabbix_agent_dir_includes         : "/etc/zabbix/zabbix_agentd.d/"
 zabbix_agent_dir_custom           : "/etc/zabbix/zabbix_custom_scripts"
 

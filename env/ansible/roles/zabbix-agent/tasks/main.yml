@@ -8,4 +8,3 @@
 - name: SSH Tunnel management for zabbix
   include: mon_user.yml
   when: zabbix_agent_tunnel 
-

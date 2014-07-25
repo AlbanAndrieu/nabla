@@ -199,15 +199,7 @@
   with_items:
    - ec2-api-tools    
    - s3cmd
- 
-#- name: Install virtualbox (apt)
-#  apt: pkg={{ item }} state=present update_cache=yes
-#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-#  tags: package  
-#  with_items:   
-#   - virtualbox-4.3
-#   - vagrant
-   
+
 - name: Install messagingg (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  

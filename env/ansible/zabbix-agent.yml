@@ -1,10 +1,4 @@
----     
-#This script is used to configure your workstation (for developer)
-
-#as root (without vagrant)
-#ansible-playbook -i hosts test-boxes.yml -vvvv
-#as root (pass vagrant is needed for vagrant to work)
-#sudo ansible-playbook -i hosts test-boxes.yml -vvvv --ask-pass --sudo
+#sudo ansible-playbook -i hosts -c local -v zabbix-agent.yml | tee setup.log
 
 - hosts: all
   gather_facts: true
@@ -28,29 +22,14 @@
                  Ubuntu 12.04/14.04."
 
 # This playbook can be run using vagrant (on virtual box). 
-- name: apply common configuration to all nodes
-  hosts: test-boxes
+- name: Install zabbix-agent 
+  hosts: zabbix-agent
   user: root
 #  connection: local
   
   roles:
-    - common
-
-- name: Install Docker
-  hosts: docker
-  user: root
-#  connection: local  
-  roles:
-    - docker
-
-- name: apply common configuration to all jenkins slaves
-  hosts: test-boxes
-  user: root
-#  connection: local
-  vars_files:
-  - [ "roles/jenkins-slave/defaults/main.yml" ]
-  - [ "roles/jenkins-slave/vars/{{ ansible_distribution }}-{{ ansible_architecture }}.yml", "roles/jenkins-slave/vars/{{ ansible_distribution }}.yml" ]
+    - role: zabbix-agent
+      name: zabbix-agent  
+#force inventory_hostname
+      zabbix_agent_Server: 10.0.0.45
     
-  roles:
-    - jenkins-slave
-
