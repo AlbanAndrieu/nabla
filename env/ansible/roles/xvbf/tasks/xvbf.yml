@@ -1,0 +1,19 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+- name: Install test tools (apt)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:
+   - xvfb
+      
+- name: Copy the xvfb init script
+  copy: src=xvfb-{{ ansible_distribution }}-{{ ansible_architecture }}.sh dest=/etc/init.d/xvfb mode=0755
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  tags: configure
+  
+- name: Start the xvfb service
+  service: name=xvfb state=started enabled=true
+  tags: service  
+        

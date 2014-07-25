@@ -1,0 +1,42 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+- name: Install ZFS repo (apt)
+  apt_repository: repo={{ item }} update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  with_items: 
+     - ppa:zfs-native/stable
+     - ppa:zfs-native/grub
+     
+- name: Install ZFS (apt)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  with_items:
+     - debootstrap 
+     - zfs-initramfs
+     - zfsutils
+     - ubuntu-zfs
+     - zfs-fuse
+     - grub2-common 
+     - grub-pc
+     - zfs-dkms 
+
+#sudo apt-get install --no-install-recommends linux-image-generic linux-headers-generic
+
+- name: Create a zfs file system
+  action: zfs name={{ zfs_pool }}/home state=present 
+
+- name: Create a zfs file system with quota of 10GiB and visible snapdir
+  action: zfs name={{ zfs_pool }}/jenkins quota='10G' snapdir=visible state=present
+
+- name: Crate zfs snapshot of the above file system
+  action: zfs name={{ zfs_pool }}/jenkins@initial-snapshot state=present 
+
+- name: Create zfs volume named log with a size of 10MiB
+  action: zfs name={{ zfs_pool }}/log volsize=10M state=present
+
+#- name: Removes snapshot of rpool/oldfs
+#  action: zfs name={{ zfs_pool }}/oldfs@oldsnapshot state=absent
+
+#- name: Removes file system rpool/oldfs
+#  action: zfs name={{ zfs_pool }}/oldfs state=absent

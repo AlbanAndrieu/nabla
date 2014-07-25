@@ -1,0 +1,4 @@
+---
+
+zfs_enabled: yes                       # Enable module
+zfs_pool: rpool

@@ -31,35 +31,6 @@
    - snmp #for cacti
    - snmpd #for cacti
 
-- name: install zabbix agent for Debian OS family
-  apt: pkg=zabbix-agent state={{ zabbix_agent_pkg_state }}
-  when: ansible_os_family == 'Debian'
-  tags: package
-
-- name: install zabbix agent for RedHat OS family
-  yum: name=zabbix-agent state={{ zabbix_agent_pkg_state }}
-  when: ansible_os_family == 'RedHat'
-  tags: package
-
-- name: configure zabbix agent
-  template: src=zabbix_agentd.conf.j2 dest=/etc/zabbix/zabbix_agentd.conf
-  notify: restart zabbix-agent
-  tags: configuration
-
-- name: create zabbix agent optional config directory
-  file: path={{ zabbix_agent_config_include }} state=directory
-  tags: configuration
-
-- name: copy additional configs
-  copy: src={{ item }} dest={{ zabbix_agent_config_include }}/
-  with_items: zabbix_agent_config_include_confs
-  notify: restart zabbix-agent
-  tags: configuration
-
-- name: ensure zabbix agent started/stopped
-  service: name=zabbix-agent state={{ zabbix_agent_service_state }} enabled={{ zabbix_agent_service_enabled }}
-  tags: service
-
 - name: Install AWS tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  

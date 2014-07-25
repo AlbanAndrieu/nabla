@@ -1,0 +1,7 @@
+---
+# This playbook play all post common installation for all servers
+
+- hosts: all
+  sudo: True
+  roles:
+    - ansible-zabbix_agent

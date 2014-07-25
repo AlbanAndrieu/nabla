@@ -1,0 +1,34 @@
+---
+
+- name: Create tunnel mon user
+  user: 
+    name="{{zabbix_agent_tunnel_user}}"
+    home="{{zabbix_agent_tunnel_home}}"
+    shell="/bin/false"
+    password="NOPASSWORD"
+    append="True"
+    state="present"
+    comment="tunnel user"
+    force="yes"
+  tags: mon_user
+
+- name: Deploy mon ssh public key
+  authorized_key: 
+     user={{zabbix_agent_tunnel_user}}
+     key="{{zabbix_agent_tunnel_pub_key}}"
+     key_options="{{zabbix_agent_tunnel_key_options}}"
+     manage_dir=yes
+  tags: mon_user
+
+# - name: Create .ssh dir for mon user
+#   file: 
+#      dest="{{zabbix_server_tunnel_home}}/.ssh" 
+#      state=directory 
+#      mode=700 
+#      owner="{{zabbix_agent_tunnel_user}}"
+#   tags: tunnel_mgt
+#   tags: mon_user
+
+
+
+

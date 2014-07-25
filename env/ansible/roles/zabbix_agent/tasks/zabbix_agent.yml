@@ -1,0 +1,61 @@
+---
+
+- name : zabbix-agent | Update apt cache
+  apt :
+     update_cache="yes"
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'       
+
+- name: zabbix-agent | Install pre dependency 
+  apt:  
+     pkg="{{item}}"
+     state={{ zabbix_agent_pkg_state }}
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'       
+  with_items:
+     - python-pip
+     - libcurl3-gnutls
+     - update-notifier-common
+  tags: zabbix-agent
+
+- name: zabbix-agent | Add zabbix.com repository key
+  apt_key: 
+     url=http://repo.zabbix.com/zabbix-official-repo.key 
+     state={{ zabbix_agent_pkg_state }}
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'       
+  tags: zabbix-agent
+
+- name: zabbix-agent | Add zabbix.com repository
+  apt_repository:
+     repo="deb http://repo.zabbix.com/zabbix/{{zabbix_agent_major}}.{{zabbix_agent_minor}}/{{ansible_distribution|lower}} {{ansible_lsb.codename}} main contrib non-free"
+     state={{ zabbix_agent_pkg_state }}
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'       
+  tags: zabbix-agent
+ 
+- name : zabbix-agent | Update apt after adding repository
+  apt :
+     update_cache="yes"
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'       
+
+- name: zabbix-agent | Install Zabbix agent for Debian OS family
+  apt: pkg="zabbix-agent={{zabbix_agent_ubuntu}}" state={{ zabbix_agent_pkg_state }}
+  when: ansible_os_family == 'Debian'     
+  tags: zabbix-agent
+
+- name:zabbix-agent | Install Zabbix agent for RedHat OS family
+  yum: name=zabbix-agent state={{ zabbix_agent_pkg_state }}
+  when: ansible_os_family == 'RedHat'
+  tags: zabbix-agent
+  
+- name: zabbix-agent | Deploy zabbix_agentd.conf file
+  template: 
+     src="conf/zabbix_agentd.conf.j2"
+     dest="/etc/zabbix/zabbix_agentd.conf"
+     owner=root
+     group=root
+     mode=0644
+  tags: zabbix-agent
+  notify: restart zabbix-agent
+
+- name: ensure zabbix agent started/stopped
+  service: name=zabbix-agent state={{ zabbix_agent_service_state }} enabled={{ zabbix_agent_service_enabled }}
+  tags: service
+  

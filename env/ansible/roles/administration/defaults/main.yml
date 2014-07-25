@@ -1,14 +1,6 @@
---
-
 #ubuntu
 ntpserver1: ntp.ubuntu.com
 ntpserver2: timehost
 nisserver: albandri
 mailserver: smtp.gmail.com
 
-defaultdomain: home.nabla.mobi
-#domain nabla.global.ad
-defaultsearch: 
-#defaultsearch: nabla.global.ad nabla.global.ad. home.nabla.mobi. nabla.mobi.
-nameserver1: 8.8.8.8
-nameserver2: 

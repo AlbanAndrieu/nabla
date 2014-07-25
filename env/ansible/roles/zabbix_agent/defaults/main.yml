@@ -1,0 +1,112 @@
+## Zabbix agent conf section
+### zabbix Agent version marjor.minor.revision
+
+# Package states: installed or latest
+#zabbix_agent_pkg_state: installed
+zabbix_agent_pkg_state: present
+# Service states: started or stopped
+zabbix_agent_service_state: started
+# Service enabled: yes or no
+zabbix_agent_service_enabled: yes
+
+zabbix_agent_major                : '2'
+zabbix_agent_minor                : '2'
+zabbix_agent_revision             : '4'
+#zabbix_agent_config_server: 82.231.208.223,82.231.208.224
+#OLD zabbix_agent_Server = zabbix_agent_config_server: zabbix.{{ ansible_domain }}
+zabbix_agent_Server               : "127.0.0.1"  ## List of comma delimited IP addresses (or hostnames) of Zabbix servers.
+#OLD zabbix_agent_ServerActive = zabbix_agent_config_server_active: 127.0.0.1 
+zabbix_agent_ServerActive         : "127.0.0.1"
+#OLD zabbix_agent_Hostname = zabbix_agent_config_hostname: '{{ ansible_fqdn }}'
+#zabbix_agent_Hostname             : "system.hostname"
+zabbix_agent_Hostname             : "{{ ansible_fqdn }}"
+zabbix_agent_LogFile              : "/var/log/zabbix/zabbix_agentd.log"
+zabbix_agent_LogFileSize          : 0    ## 0 - disable automatic log rotation.
+zabbix_agent_DebugLevel           : 3    ## (0) no, (1) critical info (2) error info (3) warnings (4) A lots of infor)
+zabbix_agent_PidFile              : "/var/run/zabbix/zabbix_agentd.pid"
+#OLD zabbix_agent_ListenIP = zabbix_agent_config_listen_ip: '{{ ansible_default_ipv4.address }}'
+#zabbix_agent_ListenIP             : "0.0.0.0"
+zabbix_agent_ListenIP             : "{{ ansible_default_ipv4.address }}"
+zabbix_agent_ListenPort           : 10050
+#OLD zabbix_agent_StartAgents = zabbix_agent_config_start_agents: 3
+zabbix_agent_StartAgents          : 3
+zabbix_agent_EnableRemoteCommands : 0 ## 0 or 1
+zabbix_agent_LogRemoteCommands    : 0 ## 0 or 1
+zabbix_agent_RefreshActiveChecks  : 120 ## checks is refreshed, in sec 60-3600
+#zbx_agent_source_ip               : 192.168.56.150 ## if you want Source IP address for outgoing connections
+#OLD zabbix_agent_ConfigHostMetaData = zabbix_agent_config_host_meta_data: ''
+zabbix_agent_ConfigHostMetaData        :
+ 
+### Directory configuration
+# NOTE: keep the trailing / !
+#OLD zabbix_agent_config_include: /etc/zabbix/zabbix_agentd.d/
+#OLD zabbix_agent_config_include_confs: []
+
+zabbix_agent_dir_includes         : "/etc/zabbix/zabbix_agentd.d/"
+zabbix_agent_dir_custom           : "/etc/zabbix/zabbix_custom_scripts"
+
+zabbix_agent_custom_scripts_deploy: true ## Deploy custom scripts
+zabbix_agent_custom_apt           : 
+    - sysstat
+
+zabbix_agent_Include              :
+                                    - /etc/zabbix/zabbix_agentd.d/
+zabbix_agent_sudoers              : 
+                                    - comments : "Discovery for disks" 
+                                      sudo     : "zabbix  ALL=NOPASSWD: {{zabbix_agent_dir_custom}}/discovery_disks.pl"
+                                    - comments : "RAID special privileges" 
+                                      sudo     : "zabbix  ALL=NOPASSWD:   /sbin/mdadm --detail *, /sbin/vgs"
+
+## Custom user parmeters section 
+### Variable based parameters
+zabbix_agent_parameters           :
+   - name  : apt 
+     param :
+       - "UserParameter=custom.apt.security,/usr/lib/update-notifier/apt-check 2>&1 | cut -d ';' -f 2"
+       - "UserParameter=custom.apt.update,/usr/lib/update-notifier/apt-check 2>&1 | cut -d ';' -f 1"
+       - "UserParameter=custom.apt.restart,[ -f /var/run/reboot-required  ] && echo 1 || echo 0"
+   - name : raid
+     param :
+       - "UserParameter=custom.raidstate.md0,grep -A1 md0 /proc/mdstat | grep -c _"
+       - "UserParameter=custom.raidstate.md1,grep -A1 md1 /proc/mdstat | grep -c _"
+   - name : disk
+     param :       
+       - "# disks stats"
+       - "UserParameter=custom.vfs.dev.read.ops[*],cat /proc/diskstats | grep \"$1\" | head -1 | awk '{print $$4}'"
+       - "UserParameter=custom.vfs.dev.read.ms[*],cat /proc/diskstats | grep \"$1\" | head -1 | awk '{print $$7}'"
+       - "UserParameter=custom.vfs.dev.write.ops[*],cat /proc/diskstats | grep \"$1\" | head -1 | awk '{print $$8}'"
+       - "UserParameter=custom.vfs.dev.write.ms[*],cat /proc/diskstats | grep \"$1\" | head -1 | awk '{print $$11}'"
+       - "UserParameter=custom.vfs.dev.io.active[*],cat /proc/diskstats | grep \"$1\" | head -1 | awk '{print $$12}'"
+       - "UserParameter=custom.vfs.dev.io.ms[*],cat /proc/diskstats | grep \"$1\" | head -1 | awk '{print $$13}'"
+       - "UserParameter=custom.vfs.dev.read.sectors[*],cat /proc/diskstats | grep \"$1\" | head -1 | awk '{print $$6}'"
+       - "UserParameter=custom.vfs.dev.write.sectors[*],cat /proc/diskstats | grep \"$1\" | head -1 | awk '{print $$10}'"
+       - "# autodiscovery scripts"
+       - "UserParameter=custom.disks.discovery_perl,/usr/bin/sudo {{zabbix_agent_dir_custom}}/discovery_disks.pl"
+       - "UserParameter=custom.vgs.discovery,{{zabbix_agent_dir_custom}}/discovery_vgs.sh"
+       - "#lvm"
+       - "UserParameter=custom.lvm.pvcount[*],sudo vgs $1 --noheadings -o pv_count"
+       - "UserParameter=custom.lvm.lvcount[*],sudo vgs $1 --noheadings -o lv_count"
+       - "UserParameter=custom.lvm.pv_size[*],sudo vgs $1 -o pv_size --units B --noheading  | tr -d B"
+       - "UserParameter=custom.lvm.pv_free[*],sudo vgs $1 -o pv_free --units B --noheading  | tr -d B"
+   - name : iostat
+     param :  
+       - "UserParameter=custom.iostat[*],{{zabbix_agent_dir_custom}}/iostat.sh \"$1\" \"$2\""                 
+### File based parameters   
+zabbix_agent_parameters_files     : 
+   - zabbix_agentd.d/*
+
+##
+## SSH tunnel management
+##   Zabbix by default does not have authentication and encryption 
+##   if your using zabbix to monitor hosts in a non private network you can use ssh tunnel
+zabbix_agent_tunnel             : false
+zabbix_agent_tunnel_user        : "mon"
+zabbix_agent_tunnel_group       : "mon"
+zabbix_agent_tunnel_home        : "/home/{{zabbix_agent_tunnel_user}}"
+zabbix_agent_tunnel_key_options : 'no-pty' #'no-pty,permitopen="localhost:10050"' #Due to bug cant use permitopen for now
+## WARNNING This is TEST KEY PLEASE REPLACE THEM
+zabbix_agent_tunnel_pub_key     : ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCootXD63hexEQnbCmKGC7DjFSWxkqJ2neaC5S6POEdgwo7jQ60JWy0VCm5JS5d2ZNDQh+vi1wZ2cTr6n9X9bAkYhQ/eACmzYBjf8I8AXcqaigAOjRMLADU2qQfZmnRGyOLaGDI/EH52yBjeZHbgQdJOGrB07qgAu2facA2bd6kvI8eLwCx5yjqA+mInYEewRYrr5tUduGFdPhmyoKSGpaEeWWkLhafTj9eGRMSB3unBcMtux+LxXH4TfWgVBmWNVbr2Mcv+M6tYxix/iKniBLBUH/AfM/dTHlk38y2mjemUMUc/HBW+HmH3NXMwOks8po6Iohh8JNhywUlLKN9MvB7
+
+## Compilation of variables (No need to change them unless you have issues)
+zabbix_agent_version            : "{{zabbix_agent_major}}.{{zabbix_agent_minor}}.{{zabbix_agent_revision}}"
+zabbix_agent_ubuntu             : "1:{{zabbix_agent_version}}-1+precise"
