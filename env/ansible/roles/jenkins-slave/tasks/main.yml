@@ -482,8 +482,9 @@
 #- fail: msg="Missing parameters!"
 #  when_string: $jenkins_username == '' or $jenkins_password == ''
 
-#- name: Start Jenkins swarm client
-#  action: service name=jenkins-swarm-client state=started enabled=yes
+#- name: Start the Jenkins swarm client service
+#  service: name=jenkins-swarm-client state=started enabled=true
+#  tags: service  
 
 #http://drupalcode.org/sandbox/franskuipers/1801378.git/blob/e0d2e3dd3f3b9ff7f9ace61f9e56c56a1f28e915:/ansible.yml  #
 
