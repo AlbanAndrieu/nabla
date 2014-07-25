@@ -1,3 +1,4 @@
+supervisor_gui_enabled: yes                       # Enable module
 supervisor_inet_http_server: 9042
 supervisor_dir: "/etc/supervisor/"
 supervisor_config_dir: "/etc/supervisor/conf.d/"

@@ -1,4 +1,5 @@
 #/bin/bash
+# {{ ansible_managed }}
 
 function check_linux_distro() {
 	distro=$1; shift

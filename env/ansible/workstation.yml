@@ -1,10 +1,7 @@
 ---     
 #This script is used to configure your workstation (for developer)
 
-#as root (without vagrant)
-#ansible-playbook -i hosts site.yml -vvvv
-#as root (pass vagrant is needed for vagrant to work)
-#ansible-playbook -i hosts site.yml -vvvv --ask-pass --sudo
+#sudo ansible-playbook -i hosts -c local -v workstation.yml | tee setup.log
 
 - hosts: all
   gather_facts: true
@@ -26,15 +23,7 @@
                  is not a supported OS for a Tower installation.  Supported
                  OSes include Red Hat Enterprise Linux 6/7, CentOS 6, or
                  Ubuntu 12.04/14.04."
-                 
-# This playbook can be run using vagrant (on virtual box). 
-#- hosts: test-boxes
-#  sudo: yes
-#  remote_user: vagrant
-#  
-#  roles:
-#    - common  
-        
+
 - name: apply hostname configuration
   hosts: all
   user: root
@@ -43,7 +32,7 @@
   roles:
     - hostname
   vars_files:
-    - [ "roles/hostname/vars/defaults.yml" ]
+    - [ "roles/hostname/defaults/main.yml" ]
   
 - name: apply common configuration to all nodes
   hosts: Ubuntu-12*:Ubuntu-14*
@@ -54,8 +43,35 @@
   roles:
     - common
 
+# This playbook can be run using vagrant (on virtual box). 
+- name: apply webmin to all nodes
+  hosts: webmin
+  user: root
+#  connection: local
+  
+  roles:
+    - webmin
+        
+# This playbook can be run using vagrant (on virtual box). 
+- name: apply xvbf to all nodes
+  hosts: xvbf
+  user: root
+#  connection: local
+  
+  roles:
+    - xvbf
+
+## This playbook can be run using vagrant (on virtual box). 
+#- name: apply zfs configuration to all nodes
+#  hosts: zfs
+#  user: root
+##  connection: local
+#  
+#  roles:
+#    - zfs
+    
 #Use below only if you want your servers to be part of MGR build farm
-#- name: apply common configuration to all nodes
+#- name: apply administration configuration to all nodes
 #  hosts: Ubuntu-12*:Ubuntu-14*
 #  gather_facts: false
 #  user: root
@@ -64,6 +80,26 @@
 #  roles:
 #    - administration
 
+- name: apply common configuration to all jenkins slaves
+  hosts: jenkins-slaves
+  user: root
+#  connection: local
+
+  vars_files:
+  - [ "roles/jenkins-slave/defaults/main.yml" ]
+  - [ "roles/jenkins-slave/vars/{{ ansible_distribution }}-{{ ansible_architecture }}.yml", "roles/jenkins-slave/vars/{{ ansible_distribution }}.yml" ]
+
+#  vars_prompt:
+#  - name: jenkins_username
+#    prompt: "What is your jenkins user?"
+#    private: no
+#  - name: jenkins_password
+#    prompt: "What is your jenkins password?"
+#    private: yes
+
+  roles:
+    - jenkins-slave
+    
 # This playbook deploys a simple standalone Tomcat 7 server. 
 - name: deploy Tomcat 
   hosts: tomcat-servers 
@@ -126,15 +162,3 @@
 #      directory: /workspace/xebium
 ## user is the same as base_admin_username      
 #      user: ubuntu
-      
-- name: apply common configuration to all jenkins slaves
-  hosts: test-boxes
-  user: root
-#  connection: local
-  vars_files:
-  - [ "roles/jenkins-slave/vars/defaults.yml" ]
-  - [ "roles/jenkins-slave/vars/{{ ansible_distribution }}-{{ ansible_architecture }}.yml", "roles/jenkins-slave/vars/{{ ansible_distribution }}.yml" ]
-    
-  roles:
-    - jenkins-slave
-

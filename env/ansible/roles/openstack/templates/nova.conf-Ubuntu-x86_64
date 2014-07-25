@@ -1,3 +1,4 @@
+#{{ ansible_managed }}
 #[DEFAULT]
 #dhcpbridge_flagfile=/etc/nova/nova.conf
 #dhcpbridge=/usr/bin/nova-dhcpbridge

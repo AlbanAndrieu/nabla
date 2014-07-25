@@ -1,4 +1,5 @@
 #!/bin/sh
+# {{ ansible_managed }}
 #
 # JBoss standalone control script
 #

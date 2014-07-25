@@ -21,6 +21,15 @@ albandri-laptop-misys
 [mongodbservers]
 albandri-laptop-misys
 
+[webmin]
+albandri-laptop-misys
+
+[zfs]
+albandri-laptop-misys
+
+[xvbf]
+albandri-laptop-misys
+
 [jenkins-slaves]
 albandri-laptop-misys
 

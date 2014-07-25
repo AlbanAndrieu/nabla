@@ -1,4 +1,4 @@
-domain misys.global.ad
-search misys.global.ad misys.global.ad. nt.france.effix.fr. france.effix.fr. effix.fr.
-nameserver 10.25.200.3
-nameserver 10.21.200.3
+domain {{ defaultdomain }}
+{% if defaultsearch is defined %}search {{ defaultsearch }}{% endif %}
+{% if nameserver1 is defined %}nameserver {{ nameserver1 }}{% endif %}
+{% if nameserver2 is defined %}nameserver {{ nameserver2 }}{% endif %}

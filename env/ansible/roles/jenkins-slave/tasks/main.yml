@@ -26,7 +26,7 @@
   ignore_errors: True
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
-#- debug: msg="jdk7_installed value is ${jdk7_installed.stdout} "
+#- debug: msg="jdk7_installed value is {{ jdk7_installed.stdout }} "
 
 - debug: msg="jdk7_installed value is {{ jdk7_installed }} {{ jdk7_installed.skipped }} {{ jdk7_installed.changed }}"
 
@@ -50,7 +50,7 @@
   ignore_errors: True  
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'  
 
-#- debug: msg="jdk8_installed value is ${jdk8_installed.stdout} "
+#- debug: msg="jdk8_installed value is {{ jdk8_installed.stdout }} "
 
 - debug: msg="jdk8_installed value is {{ jdk8_installed }} {{ jdk8_installed.skipped }} {{ jdk8_installed.changed }}"
 
@@ -273,15 +273,14 @@
 #- name: Ensure the webdriverjs npm dependencies are installed
 #  command: chdir=/usr/bin npm install -g webdriverjs
 
-#TODO check /etc/apt/sources.list
-#TODO wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-#TODO add sudo sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
 - name: Add google repos
   apt_repository: repo='deb http://dl.google.com/linux/chrome/deb/ stable main' update_cache=yes
-
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  
 - name: Addkey google
   apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub  state=present
-
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  
 - name: install google
   apt: name=google-chrome-stable state=latest update_cache=yes
 
@@ -477,7 +476,7 @@
   get_url: dest=${jenkins_home}/swarm-client-1.9-jar-with-dependencies.jar url=http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.9/swarm-client-1.9-jar-with-dependencies.jar owner=jenkins
 
 - name: Install swarm client script
-  template: src=jenkins-swarm-client.tmpl dest=/etc/init.d/jenkins-swarm-client mode=0700
+  template: src=jenkins-swarm-client.sh.j2 dest=/etc/init.d/jenkins-swarm-client mode=0700
 
 #- fail: msg="Missing parameters!"
 #  when_string: $jenkins_username == '' or $jenkins_password == ''

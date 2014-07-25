@@ -127,6 +127,7 @@
 
 #- name: Copy the nis init script
 #  copy: src=nis-{{ ansible_distribution }}-{{ ansible_architecture }}.sh dest=/etc/init.d/nis mode=0755
+#  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release == 'precise' )
 #  tags: configure
   
 #- name: Start the nis service
@@ -174,24 +175,4 @@
 #    user: "{{ base_admin_username }}"
 #    key: "{{ item }}"
 #  with_items: base_admin_keys
-
-- name: Checks if resolver is working properly (issues with some VBox/Host OS combinations)
-  command: host -t A ansible.cc
-  register: ns
-  ignore_errors: yes
-
-#TODO add the following in /etc/resolv.conf
-#domain nabla.global.ad
-#search nabla.global.ad nabla.global.ad. home.nabla.mobi. nabla.mobi.
-
-#- name: Pushes new resolver configuration is resolver fails
-#  lineinfile: regexp="^nameserver " line="nameserver 8.8.8.8" dest=/etc/resolv.conf
-#  when: ns|failed
-
-- name: Checks if resolver is working properly with new nameserver
-  command: host -t A ansible.cc
-
-#- name: Final greeting
-#  pause: prompt="Don't worry about all the red above; if you made it here, your Vagrant VMs are probably fine !
-#    Please press [Enter]"
 

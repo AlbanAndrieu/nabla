@@ -1,3 +1,4 @@
+#{{ ansible_managed }}
 [DEFAULT]
 bind_host = 0.0.0.0
 public_port = 5000

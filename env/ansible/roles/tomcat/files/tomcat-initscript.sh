@@ -1,4 +1,5 @@
 #!/bin/bash
+# {{ ansible_managed }}
 #
 # chkconfig: 345 99 28
 # description: Starts/Stops Apache Tomcat

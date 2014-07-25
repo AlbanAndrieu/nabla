@@ -1,17 +1,38 @@
+#see https://blog.trifork.com/2013/04/02/ansible-example-playbook-to-setup-jenkins-slave/
+
 #as root 
 #ansible-playbook jenkins-slave.yml -i hosts -vvvv
 #as albandri 
 #ansible-playbook jenkins-slave.yml -i hosts -vvvv --ask-sudo-pass --sudo
 # --extra-vars "jenkins_username=aandrieu jenkins_password=tbd"
 
+- name: apply hostname configuration
+  hosts: test-boxes
+  user: root
+#  connection: local
+  
+  roles:
+    - hostname
+  vars_files:
+    - [ "roles/hostname/defaults/main.yml" ]
+    
+# This playbook can be run using vagrant (on virtual box). 
+- name: apply zfs configuration to all nodes
+  hosts: test-boxes
+  user: root
+#  connection: local
+  
+  roles:
+    - zfs
+    
 - name: apply common configuration to all jenkins slaves
-  connection: local  
   hosts: test-boxes
   sudo: yes
   user: vagrant
+  connection: local    
 #  remote_user: vagrant
   vars_files:
-  - [ "roles/jenkins-slave/vars/defaults.yml" ]
+  - [ "roles/jenkins-slave/defaults/main.yml" ]
   - [ "roles/jenkins-slave/vars/{{ ansible_distribution }}-{{ ansible_architecture }}.yml", "roles/jenkins-slave/vars/{{ ansible_distribution }}.yml" ]
 
 #  vars_prompt:
@@ -24,3 +45,12 @@
 
   roles:
     - jenkins-slave
+
+# This playbook can be run using vagrant (on virtual box). 
+- name: apply xvbf configuration to all nodes
+  hosts: test-boxes
+  user: root
+#  connection: local
+  
+  roles:
+    - xvbf

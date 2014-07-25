@@ -17,17 +17,6 @@ apt_install_packages_list:    # List of packages which be installed
   - mosh
   - pciutils
   - screen
-  
-httpd_port: 8081
-#ubuntu
-ntpserver1: ntp.ubuntu.com
-ntpserver2: timehost
-nisserver: albandri
-mailserver: smtp.gmail.com
-ntpserver2: timehost
-repository: http://github.com/bennojoy/mywebapp.git
-defaultdomain: home.nabla.mobi
-nameserver: 82.231.208.223
 
 #zabbix_agent_config_server: 82.231.208.223,82.231.208.224
 zabbix_agent_config_server: zabbix.{{ ansible_domain }}

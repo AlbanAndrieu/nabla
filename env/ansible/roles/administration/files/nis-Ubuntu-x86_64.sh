@@ -1,5 +1,5 @@
-
 #!/bin/sh
+# {{ ansible_managed }}
 #
 # /etc/init.d/nis   Start NIS (formerly YP) daemons.
 #
