@@ -21,6 +21,12 @@ albandri-laptop-misys
 [mongodbservers]
 albandri-laptop-misys
 
+[zabbix-server]
+albandri-laptop-misys
+
+[zabbix-agent]
+albandri-laptop-misys
+
 [webmin]
 albandri-laptop-misys
 

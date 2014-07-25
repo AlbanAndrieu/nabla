@@ -24,6 +24,7 @@
                  OSes include Red Hat Enterprise Linux 6/7, CentOS 6, or
                  Ubuntu 12.04/14.04."
 
+# This playbook can be run using vagrant (on virtual box). 
 - name: configure supervisor
   hosts: supervisors
   user: root

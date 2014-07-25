@@ -9,9 +9,10 @@ git clone https://github.com/AlbanAndrieu/ansible-xvbf.git xvbf
 
 git clone https://github.com/AlbanAndrieu/ansible-zfs.git zfs
 
-git clone https://github.com/ahelal/ansible-zabbix_agent zabbix_agent
+#git clone https://github.com/ahelal/ansible-zabbix_agent zabbix_agent
+git clone https://github.com/AlbanAndrieu/ansible-zabbix_agent.git zabbix-agent
 
-git clone https://github.com/ahelal/ansible-zabbix_server zabbix_server
+git clone https://github.com/ahelal/ansible-zabbix_server zabbix-server
 
 #TODO
 https://github.com/sivel/ansible-newrelic

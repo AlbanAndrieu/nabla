@@ -16,7 +16,7 @@ zabbix_agent_revision             : '4'
 #OLD zabbix_agent_Server = zabbix_agent_config_server: zabbix.{{ ansible_domain }}
 zabbix_agent_Server               : "127.0.0.1"  ## List of comma delimited IP addresses (or hostnames) of Zabbix servers.
 #OLD zabbix_agent_ServerActive = zabbix_agent_config_server_active: 127.0.0.1 
-zabbix_agent_ServerActive         : "127.0.0.1"
+zabbix_agent_ServerActive         : "{{ zabbix_agent_Server }}"
 #OLD zabbix_agent_Hostname = zabbix_agent_config_hostname: '{{ ansible_fqdn }}'
 #zabbix_agent_Hostname             : "system.hostname"
 zabbix_agent_Hostname             : "{{ ansible_fqdn }}"

@@ -18,25 +18,4 @@ apt_install_packages_list:    # List of packages which be installed
   - pciutils
   - screen
 
-#zabbix_agent_config_server: 82.231.208.223,82.231.208.224
-zabbix_agent_config_server: zabbix.{{ ansible_domain }}
-#zabbix_agent_config_listen_ip: 0.0.0.0
-zabbix_agent_config_listen_ip: '{{ ansible_default_ipv4.address }}'
-zabbix_agent_config_server_active: 127.0.0.1
-zabbix_agent_config_hostname: '{{ ansible_fqdn }}'
-#zabbix_agent_config_hostname: '{{ inventory_hostname }}'
-zabbix_agent_config_start_agents: 3
-zabbix_agent_config_host_meta_data: ''
-
-# NOTE: keep the trailing / !
-zabbix_agent_config_include: /etc/zabbix/zabbix_agentd.d/
-zabbix_agent_config_include_confs: []
-
-# Package states: installed or latest
-zabbix_agent_pkg_state: installed
-
-# Service states: started or stopped
-zabbix_agent_service_state: started
-
-# Service enabled: yes or no
-zabbix_agent_service_enabled: yes
+defaultdomain: home.nabla.mobi

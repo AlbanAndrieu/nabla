@@ -37,13 +37,15 @@
 
 - name: zabbix-agent | Install Zabbix agent for Debian OS family
   apt: pkg="zabbix-agent={{zabbix_agent_ubuntu}}" state={{ zabbix_agent_pkg_state }}
-  when: ansible_os_family == 'Debian'     
+#  when: ansible_os_family == 'Debian'     
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'      
   tags: zabbix-agent
 
-- name:zabbix-agent | Install Zabbix agent for RedHat OS family
-  yum: name=zabbix-agent state={{ zabbix_agent_pkg_state }}
-  when: ansible_os_family == 'RedHat'
-  tags: zabbix-agent
+#- name:zabbix-agent | Install Zabbix agent for RedHat OS family
+#  yum: name=zabbix-agent state={{ zabbix_agent_pkg_state }}
+##  when: ansible_os_family == 'RedHat'
+#  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'  
+#  tags: zabbix-agent
   
 - name: zabbix-agent | Deploy zabbix_agentd.conf file
   template: 

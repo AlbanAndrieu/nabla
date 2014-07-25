@@ -44,6 +44,15 @@
     - common
 
 # This playbook can be run using vagrant (on virtual box). 
+- name: Install zabbix-agent 
+  hosts: zabbix-agent
+  user: root
+#  connection: local
+  
+  roles:
+    - zabbix-agent
+    
+# This playbook can be run using vagrant (on virtual box). 
 - name: Install webmin
   hosts: webmin
   user: root
