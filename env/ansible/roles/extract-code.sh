@@ -3,6 +3,12 @@
 #git clone https://github.com/EDITD/ansible-supervisor_task.git supervisor
 git clone https://github.com/AlbanAndrieu/ansible-supervisor_task.git supervisor
 
+git clone https://github.com/AlbanAndrieu/ansible-webmin.git webmin
+
+git clone https://github.com/AlbanAndrieu/ansible-xvbf.git xvbf
+
+git clone https://github.com/AlbanAndrieu/ansible-zfs.git zfs
+
 #TODO
 https://github.com/sivel/ansible-newrelic
 https://github.com/ahelal/ansible-zabbix_agent

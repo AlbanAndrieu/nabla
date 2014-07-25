@@ -1,0 +1,49 @@
+---     
+#This script is used to configure your workstation (for developer)
+
+#as root (without vagrant)
+#ansible-playbook -i hosts test-boxes.yml -vvvv
+#as root (pass vagrant is needed for vagrant to work)
+#sudo ansible-playbook -i hosts test-boxes.yml -vvvv --ask-pass --sudo
+
+- hosts: all
+  gather_facts: true
+  tasks:
+    - name: group hosts by distribution
+      group_by: key="{{ ansible_distribution }}-{{ ansible_distribution_version }}"
+
+- hosts: RedHat-7*:RedHat-6*:CentOS-6*:Ubuntu-12.04:Ubuntu-14.04
+  gather_facts: false
+  tasks:
+    - name: group hosts for supported distributions
+      group_by: key="supported"
+
+- hosts: "!supported"
+  gather_facts: false
+  tasks:
+    - name: fail for unsupported distribution
+      fail: msg="{{ ansible_distribution }} {{ ansible_distribution_version }}
+                 is not a supported OS for a Tower installation.  Supported
+                 OSes include Red Hat Enterprise Linux 6/7, CentOS 6, or
+                 Ubuntu 12.04/14.04."
+                 
+# This playbook can be run using vagrant (on virtual box). 
+- name: apply common configuration to all nodes
+  hosts: test-boxes
+  user: root
+#  connection: local
+  
+  roles:
+    - common
+      
+- name: apply common configuration to all jenkins slaves
+  hosts: test-boxes
+  user: root
+#  connection: local
+  vars_files:
+  - [ "roles/jenkins-slave/defaults/main.yml" ]
+  - [ "roles/jenkins-slave/vars/{{ ansible_distribution }}-{{ ansible_architecture }}.yml", "roles/jenkins-slave/vars/{{ ansible_distribution }}.yml" ]
+    
+  roles:
+    - jenkins-slave
+

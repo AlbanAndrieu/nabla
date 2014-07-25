@@ -44,7 +44,7 @@
     - common
 
 # This playbook can be run using vagrant (on virtual box). 
-- name: apply webmin to all nodes
+- name: Install webmin
   hosts: webmin
   user: root
 #  connection: local
@@ -53,7 +53,7 @@
     - webmin
         
 # This playbook can be run using vagrant (on virtual box). 
-- name: apply xvbf to all nodes
+- name: Install xvbf
   hosts: xvbf
   user: root
 #  connection: local
@@ -62,7 +62,7 @@
     - xvbf
 
 ## This playbook can be run using vagrant (on virtual box). 
-#- name: apply zfs configuration to all nodes
+#- name: Install zfs
 #  hosts: zfs
 #  user: root
 ##  connection: local

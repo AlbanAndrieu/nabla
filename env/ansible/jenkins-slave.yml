@@ -17,7 +17,7 @@
     - [ "roles/hostname/defaults/main.yml" ]
     
 # This playbook can be run using vagrant (on virtual box). 
-- name: apply zfs configuration to all nodes
+- name: Install zfs
   hosts: test-boxes
   user: root
 #  connection: local
@@ -47,7 +47,7 @@
     - jenkins-slave
 
 # This playbook can be run using vagrant (on virtual box). 
-- name: apply xvbf configuration to all nodes
+- name: Install xvbf
   hosts: test-boxes
   user: root
 #  connection: local

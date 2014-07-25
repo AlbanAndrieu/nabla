@@ -1,1 +1,7 @@
 defaultdomain: home.nabla.mobi
+# Who has sudo access - use %foo for groups
+sudo_users:
+  - "%wheel"
+
+# Do users need to enter a password?
+sudo_nopasswd: true
