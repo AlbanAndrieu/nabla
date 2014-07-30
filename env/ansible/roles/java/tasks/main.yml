@@ -1,0 +1,27 @@
+---
+# Main list of tasks to be executed.
+#
+#   Fail the play if it runs on an unsupported platform,
+- name: Assert platform is supported
+  tags:
+    - java
+    - download
+  assert:
+    that:
+      - ansible_os_family in ['Debian', 'RedHat']
+      - ansible_architecture in ['x86_64']
+
+
+# Install OpenJDK only if specifically activated.
+- include: OpenJDK.yml
+  when: java_openjdk_when
+
+# Install Oracle JDK only if specifically activated.
+- include: Oracle.yml
+  when: java_oracle_when
+
+# Configure the systems default Java implementation if any
+#   implementation has been installed.
+- include: default.yml
+  tags: java
+  when: java_openjdk_when or java_oracle_when

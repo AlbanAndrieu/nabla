@@ -8,6 +8,23 @@
   action: yum name='wget' state=installed
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
+######
+# JAVA
+#
+
+#- name: Install JDK (apt)
+#  apt: pkg={{ item }} state=present update_cache=yes
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+#  tags: package
+#  with_items:
+#   - openjdk-6-jdk 
+#   - openjdk-7-jdk
+
+#sudo add-apt-repository ppa:webupd8team/java
+#sudo apt-get update
+#sudo apt-get install oracle-java7-installer
+#sudo apt-get install oracle-java8-installer
+
 - name: Copy download JDK7 script
   copy: src=download-jdk7.sh dest=/tmp mode=0555
 
@@ -17,13 +34,13 @@
 - name: Unpack JDK7
   action: command creates={{ jvm_folder }}/jdk1.7.0 chdir={{ jvm_folder }} tar zxvf {{ jvm_folder }}/{{ jdk7_archive }} --owner=root
   register: jdk7_installed
-  ignore_errors: True
+#  ignore_errors: True
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
 - name: Install JDK7 RPM package
-  action: command creates={{ jvm_folder }}/latest chdir={{ jvm_folder }} rpm --force -Uvh {{ jvm_folder }}/{{ jdk7_archive }}
+  action: command creates={{ jvm_folder }}/jdk1.7.0 chdir={{ jvm_folder }} rpm --force -Uvh {{ jvm_folder }}/{{ jdk7_archive }}
   register: jdk7_installed
-  ignore_errors: True
+#  ignore_errors: True
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
 #- debug: msg="jdk7_installed value is {{ jdk7_installed.stdout }} "
@@ -41,13 +58,13 @@
 - name: Unpack JDK8
   action: command creates={{ jvm_folder }}/jdk1.8.0 chdir={{ jvm_folder }} tar zxvf {{jvm_folder}}/{{ jdk8_archive }} --owner=root
   register: jdk8_installed
-  ignore_errors: True    
+#  ignore_errors: True    
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'      
 
 - name: Install JDK8 RPM package
-  action: command creates={{ jvm_folder }}/latest chdir={{ jvm_folder }} rpm --force -Uvh {{ jvm_folder }}/{{ jdk8_archive }}
+  action: command creates={{ jvm_folder }}/jdk1.8.0 chdir={{ jvm_folder }} rpm --force -Uvh {{ jvm_folder }}/{{ jdk8_archive }}
   register: jdk8_installed
-  ignore_errors: True  
+#  ignore_errors: True
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'  
 
 #- debug: msg="jdk8_installed value is {{ jdk8_installed.stdout }} "
@@ -55,14 +72,10 @@
 - debug: msg="jdk8_installed value is {{ jdk8_installed }} {{ jdk8_installed.skipped }} {{ jdk8_installed.changed }}"
 
 - include: jdk8-tasks.yml
- 
-- name: Install subversion package (Debian based)
-  action: apt pkg='subversion' state=installed
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 
-- name: Install subversion package (RedHat based)
-  action: yum name='subversion' state=installed
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+#######
+# MAVEN
+#
 
 - name: Create /opt directory
   file: path=/opt state=directory
@@ -143,6 +156,18 @@
   file: path=/opt/maven209.tar.gz state=absent
 
 ##
+ # subversion
+ #
+ 
+- name: Install subversion package (Debian based)
+  action: apt pkg='subversion' state=installed
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: Install subversion package (RedHat based)
+  action: yum name='subversion' state=installed
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+##
  # node.js installation (latest stable instead of Ubuntu's out-of-date one)
  #
 - name: Node.js | Package prerequisites for node.js
@@ -175,18 +200,6 @@
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   with_items:
    - karma-tools
-
-- name: Install selenium tools (Debian based)
-  apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  with_items:
-   - xfonts-100dpi
-   - xfonts-75dpi
-   - xfonts-scalable
-   - xfonts-cyrillic
-   - xvfb
-   - x11-apps
-   - imagemagick
 
 # NPM may or may not succeed, if you give it time, care, etc. it eventually works
 
@@ -272,79 +285,7 @@
 
 #- name: Ensure the webdriverjs npm dependencies are installed
 #  command: chdir=/usr/bin npm install -g webdriverjs
-
-- name: Add google repos
-  apt_repository: repo='deb http://dl.google.com/linux/chrome/deb/ stable main' update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  
-- name: Addkey google
-  apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub  state=present
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  
-- name: install google
-  apt: name=google-chrome-stable state=latest update_cache=yes
-
-- name: Install browser tools (Debian based)
-  apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  with_items:
-   - firefox
-   - chromium-browser
-
-- name: Install browser tools specific (Debian based)
-  apt: pkg={{ item }} state=present update_cache=yes
-#specific for ubuntu 13.04 and 13.10
-  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release == 'saucy' )
-  with_items:
-   - chromium-chromedriver
    
-#TODO by hand for Ubuntu saucy
-#better is to us Jenkins plugins that is intalling chromedriver
-#cd /usr/lib/chromium-browser
-#sudo wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip
-#sudo wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux32.zip
-#unzip chromedriver_linux64.zip   
-#unzip chromedriver_linux32.zip   
-   
-- name: Enable Yum repo for Google Chrome
-  copy: dest=/etc/yum.repos.d/google-chrome.repo src=google-chrome.repo
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
-
-- name: Install Google Chrome
-  yum: name=google-chrome-stable state=present
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
-
-- name: Enable Yum repo for Google Talk
-  copy: dest=/etc/yum.repos.d/google-talkplugin.repo src=google-talkplugin.repo
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
-
-- name: Install Google Talk Plugin
-  yum: name=google-talkplugin state=present
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
-
-##
- # CSS compiling tools.
- #
-- name: CSS | Install rubygems package
-  action: apt pkg=rubygems state=installed
-  tags: css
-
-- name: CSS | Install SASS
-  action: command gem install sass creates=/usr/local/bin/sass
-  tags: css
-
-- name: CSS | Install Susy (no more --pre required as it's 1.0 now)
-  action: command gem install susy
-  tags: css
-
-- name: CSS | Install Compass
-  action: command gem install compass creates=/usr/local/bin/compass
-  tags: css
-
-#- name: CSS | Install Respond-to
-#  action: command gem install respond-to
-#  tags: css
-
 - name: Install coverage and metrics tools (Debian based)
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
@@ -412,29 +353,26 @@
   lineinfile: "line='jenkins ALL=NOPASSWD: ALL' dest=/etc/sudoers regexp='^jenkins'"
  
 - name: Copy sonar runner configuration
-  copy: src=sonar-runner.properties dest=/kgr-mvn/ backup=yes owner=jenkins
+  copy: src=sonar-runner.properties dest={{ jenkins_slave_home }}/ backup=yes owner=jenkins
   
-- name: Create /kgr-mvn directory
-  file: path=/kgr-mvn state=directory
+- name: Create {{ jenkins_slave_home }} directory
+  file: path={{ jenkins_slave_home }} state=directory
 
 - name: Create /repository directory
-  file: path=/kgr-mvn/repository state=directory owner=jenkins
+  file: path={{ jenkins_slave_home }}/repository state=directory owner=jenkins
 
 - name: Create Jenkins slave directory
-  file: path=/kgr-mvn/Jenkins-slave state=directory owner=jenkins mode=0775
+  file: path={{ jenkins_slave_home }}/Jenkins-slave state=directory owner=jenkins mode=0775
 
 - name: Create Java directory link (legacy required)
-  file: path=/kgr-mvn/jdk src=/usr/lib/jvm/jdk1.7.0 state=link
+  file: path={{ jenkins_slave_home }}/jdk src=/usr/lib/jvm/jdk1.7.0 state=link
 
 #END OF TODO extract jenkins user to another script
 
-- name: Set java link
-  action: command update-alternatives --install /usr/bin/java java {{ jvm_folder }}/jdk1.7.0/bin/java 1
-  when: "jdk7_installed.changed == 'True'"
-
-- name: Set jar link
-  action: command update-alternatives --install /usr/bin/jar jar {{ jvm_folder }}/jdk1.7.0/bin/jar 1
-  when: "jdk7_installed.changed == 'True'"
+#sudo update-alternatives --list java
+#sudo update-alternatives --remove java /usr/lib/jvm/jdk1.7.0/bin/java
+#sudo update-alternatives --remove java /usr/lib/jvm/java-6-openjdk-amd64/jre/bin/java
+#sudo update-alternatives --remove java /usr/lib/jvm/java-7-openjdk-amd64/jre/bin/java
 
 #TODO  
 #sudo update-alternatives --install /usr/bin/javac javac /usr/lib/jvm/jdk1.6.0_32/bin/javac 1
@@ -452,15 +390,31 @@
 #sudo update-alternatives --config javafxpackager
 #sudo update-alternatives --config javah
 #sudo update-alternatives --config javap
-#- name: Set jar link
-#  action: command update-alternatives --install /usr/bin/jar jar {{ jvm_folder }}/jdk1.8.0/bin/jar 1
-#  when: "jdk8_installed.changed == 'True'"
-  
+
 #TODO Verify the symlinks all point to the new java location:
 #ls -la /etc/alternatives/java*
    
-#- name: Set mvn link to Maven 3.0.4
-#  action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven3/bin/mvn 1
+#------------------------------
+
+#Setting Java environment variables
+#sudo apt-get install oracle-java8-set-default
+
+#Switching between Oracle Java 8 and Java 7
+#sudo update-java-alternatives -s java-7-oracle
+#sudo update-java-alternatives -s java-8-oracle
+
+#- name: Set java link
+#  action: command update-alternatives --install /usr/bin/java java {{ jvm_folder }}/jdk1.7.0/bin/java 1
+#  when: "jdk7_installed.changed == 'True'"
+
+#- name: Set jar link
+#  action: command update-alternatives --install /usr/bin/jar jar {{ jvm_folder }}/jdk1.7.0/bin/jar 1
+#  when: "jdk7_installed.changed == 'True'"
+
+#sudo update-alternatives --list mvn
+#sudo update-alternatives --remove mvn /usr/share/maven/bin/mvn
+#sudo update-alternatives --remove mvn /opt/maven321/bin/mvn
+#sudo update-alternatives --remove mvn /opt/maven3/bin/mvn
 
 #sudo update-alternatives --config mvn
 #- name: Set mvn link to Maven 3.0.5
@@ -468,22 +422,6 @@
   
 #- name: Set mvn local link to Maven 3.0.5
 #  action: command update-alternatives --install /usr/local/bin/mvn mvn /opt/maven305/bin/mvn 1
-
-- name: Set mvn link to Maven 3.2.1
-  action: command update-alternatives --install /usr/bin/mvn mvn /opt/maven321/bin/mvn 1
-  
-- name: Download Jenkins Swarm Client
-  get_url: dest={{ jenkins_home }}/swarm-client-1.9-jar-with-dependencies.jar url=http://maven.jenkins-ci.org/content/repositories/releases/org/jenkins-ci/plugins/swarm-client/1.9/swarm-client-1.9-jar-with-dependencies.jar owner=jenkins
-
-#- name: Install swarm client script
-#  template: src=jenkins-swarm-client.sh.j2 dest=/etc/init.d/jenkins-swarm-client mode=0700
-
-#- fail: msg="Missing parameters!"
-#  when_string: $jenkins_username == '' or $jenkins_password == ''
-
-#- name: Start the Jenkins swarm client service
-#  service: name=jenkins-swarm-client state=started enabled=true
-#  tags: service  
 
 #http://drupalcode.org/sandbox/franskuipers/1801378.git/blob/e0d2e3dd3f3b9ff7f9ace61f9e56c56a1f28e915:/ansible.yml  #
 

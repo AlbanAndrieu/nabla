@@ -1,0 +1,56 @@
+# Setup for Vagrant
+
+- group_by: key={{ ansible_distribution }}
+
+- name: Create vagrant user/group/homedir
+  user: >
+    state=present
+    name=vagrant
+    comment="Vagrant User"
+    shell={{ vagrant_user_shell }}
+    home=/home/vagrant
+    createhome=yes
+    password="$1$re6ft8gy$PweYoLIPFrEo/y0OeVQyA/"
+
+- name: Create vagrant/.ssh directory
+  file: >
+    state=directory
+    path=/home/vagrant/.ssh
+    owner=vagrant
+    group=vagrant
+    mode=0700
+
+- name: Download the insecure public SSH key
+  get_url: >
+    url=https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub
+    dest=/home/vagrant/.ssh/authorized_keys
+    owner=vagrant
+    group=vagrant
+    mode=0600
+    sha256sum=9aa9292172c915821e29bcbf5ff42d4940f59d6a148153c76ad638f5f4c6cd8b
+
+- name: Install sudo (FreeBSD only)
+  command: pkg_add -r sudo -F
+  when: ansible_distribution == 'FreeBSD'
+
+- name: Install sudo (Debian only)
+  apt: pkg=sudo state=present
+  when: ansible_distribution == 'Debian'
+
+- name: Install sudo (CentOS only)
+  yum: pkg=sudo state=present
+  when: ansible_distribution == 'CentOS'
+
+- name: Ensure vagrant user is allowed to sudo
+  lineinfile: >
+    state=present
+    dest={{ sudoers_path }}
+    create=yes
+    regexp="vagrant"
+    mode=0440
+    line="vagrant ALL=NOPASSWD:ALL"
+
+- name: Change root password
+  user: >
+    name=root
+    password="$1$re6ft8gy$PweYoLIPFrEo/y0OeVQyA/"

@@ -1,9 +1,10 @@
 ## Zabbix agent conf section
 ### zabbix Agent version marjor.minor.revision
 
-# Package states: installed or latest
-#zabbix_agent_pkg_state: installed
+# Package states: present or installed or latest
 zabbix_agent_pkg_state: present
+# Repository states: present or absent
+zabbix_agent_repository_state: present
 # Service states: started or stopped
 zabbix_agent_service_state: started
 # Service enabled: yes or no

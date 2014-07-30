@@ -1,0 +1,2 @@
+sudoers_path: /etc/sudoers.d/vagrant
+vagrant_user_shell: /bin/bash

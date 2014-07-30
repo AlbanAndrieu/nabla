@@ -1,0 +1,6 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+- include: selenium.yml
+  when: selenium_enabled 
+  tags: [selenium]

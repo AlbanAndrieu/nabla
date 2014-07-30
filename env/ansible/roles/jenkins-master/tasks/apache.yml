@@ -1,0 +1,6 @@
+---
+
+- name: jenkins-apache | Compile Apache configuration
+  template: src=apache.conf.j2 dest=/etc/apache2/sites-enabled/jenkins.conf
+  notify:
+    - apache restart

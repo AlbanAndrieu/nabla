@@ -1,0 +1,33 @@
+---
+
+- name: Add Google Chrome key (apt)
+  apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub state={{ google_agent_repository_state }}
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' ) and ( google_chrome_stable_enabled or google_talkplugin_enabled )
+  
+- name: Add Google Chrome repo (apt)
+  apt_repository: repo="deb http://dl.google.com/linux/chrome/deb/ stable main" update_cache=yes state={{ google_agent_repository_state }}
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( google_chrome_stable_enabled or google_talkplugin_enabled )
+
+- name: Install Google Chrome (apt)
+  apt: pkg=google-chrome-stable state={{ google_agent_pkg_state }}
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' ) and google_chrome_stable_enabled
+
+- name: Install Google Talk Plugin (apt)
+  apt: pkg=google-talkplugin state={{ google_agent_pkg_state }}
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' ) and google_talkplugin_enabled
+
+- name: Enable Yum repo for Google Chrome (yum)
+  copy: dest=/etc/yum.repos.d/google-chrome.repo src=google-chrome.repo
+  when: ( ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' ) and google_chrome_stable_enabled
+  
+- name: Install Google Chrome (yum)
+  yum: name=google-chrome-stable state={{ google_agent_pkg_state }}
+  when: ( ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' ) and google_chrome_stable_enabled
+  
+- name: Enable Yum repo for Google Talk (yum)
+  copy: dest=/etc/yum.repos.d/google-talkplugin.repo src=google-talkplugin.repo
+  when: ( ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' ) and google_talkplugin_enabled
+  
+- name: Install Google Talk Plugin (yum)
+  yum: name=google-talkplugin state={{ google_agent_pkg_state }}
+  when: ( ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux' ) and google_talkplugin_enabled

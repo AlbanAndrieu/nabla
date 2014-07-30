@@ -157,33 +157,6 @@
 #   - gitk   
 #   - mercurial   
  
-#TODO use instead JDK for jenkins_slaves scripts
-#- name: Install JDK (apt)
-#  apt: pkg={{ item }} state=present update_cache=yes
-#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-#  tags: package
-#  with_items:
-#   - openjdk-6-jdk 
-#   - openjdk-7-jdk
-
-#sudo add-apt-repository ppa:webupd8team/java
-#sudo apt-get update
-#sudo apt-get install oracle-java7-installer
-#sudo apt-get install oracle-java8-installer
-#Switching between Oracle Java 8 and Java 7
-#sudo update-java-alternatives -s java-7-oracle
-#sudo update-java-alternatives -s java-8-oracle
-
-#Setting Java environment variables
-#sudo apt-get install oracle-java8-set-default    
-      
-- name: Install Java build tools (apt)
-  apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package  
-  with_items:
-   - maven
-
 - name: Install CPP build tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  

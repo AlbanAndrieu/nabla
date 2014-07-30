@@ -43,6 +43,15 @@
   roles:
     - common
 
+# This playbook can be run using vagrant (on virtual box). 
+- name: Install java
+  hosts: java
+  user: root
+#  connection: local
+  
+  roles:
+    - java
+    
 - name: Install virtualbox
   hosts: virtualbox
   user: root
@@ -121,6 +130,20 @@
 #  roles:
 #    - administration
 
+- hosts: all
+
+  roles:
+    - role: jenkins
+
+  vars:
+      jenkins_proxy: apache
+      jenkins_proxy_hostname: jenkins.myhost.com
+#      jenkins_ssh_key_file: "{{resources_to}}/resources/jenkins/ssh_key"    # (you can manage remote files with Stouts.resources role)
+      jenkins_ssh_key_file:~/.ssh/id_rsa.pub
+      jenkins_jobs:
+        - name: test
+          action: delete
+
 - name: apply common configuration to all jenkins slaves
   hosts: jenkins-slaves
   user: root
@@ -140,7 +163,54 @@
 
   roles:
     - jenkins-slave
+
+# This playbook can be run using vagrant (on virtual box). 
+- name: Install maven
+  hosts: maven
+  user: root
+#  connection: local
+  
+  roles:
+    - maven
+
+# This playbook can be run using vagrant (on virtual box). 
+- name: Install css
+  hosts: css
+  user: root
+#  connection: local
+  
+  roles:
+    - css
     
+# This playbook can be run using vagrant (on virtual box). 
+- name: Install chrome
+  hosts: chrome
+  user: root
+#  connection: local
+  
+  roles:
+     - role: chrome
+     
+  vars:     
+       google_talkplugin_enabled: yes                       # Enable module
+       google_agent_pkg_state: installed # Package states: present or installed or latest
+
+#- name: apply swarm configuration to all jenkins slaves
+#  hosts: jenkins-swarm
+#  user: root
+##  connection: local
+#
+#  vars_prompt:
+#  - name: jenkins_username
+#    prompt: "What is your jenkins user?"
+#    private: no
+#  - name: jenkins_password
+#    prompt: "What is your jenkins password?"
+#    private: yes
+#
+#  roles:
+#    - jenkins-swarm
+
 # This playbook deploys a simple standalone Tomcat 7 server. 
 - name: deploy Tomcat 
   hosts: tomcat-servers 
@@ -186,6 +256,8 @@
 #  connection: local
   roles:
     - role: supervisor
+    
+  vars:    
       name: webserver
       command: python -m SimpleHTTPServer
       directory: /opt/web

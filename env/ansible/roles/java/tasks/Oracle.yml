@@ -1,0 +1,151 @@
+---
+# Install Oracle Java JDK
+#
+# Installing Java while fetching the distribution from Oracle is
+# a nightmare.
+#
+# Version information is a huge mess with Oracle Java. Naming of
+# files, directories and zip archives is never consistent and one
+# never knows what they are up to next.
+#
+# What this does is trying to use Ansible capabilities while
+# allowing a usable installation of the Oracle Java JDK.
+
+
+# Any implementation of Java (Oracle and OpenJDK) need some Ansible
+#   specific configuration.
+- include: common.yml
+  tags:
+    - java
+    - download
+
+# Test whether we need to download Java.
+- name: Verify Oracle Java redis package sha256sum (local)
+  tags:
+    - java
+    - download
+  ignore_errors: true
+  failed_when: false
+  register: java_oracle_redis_exists
+  local_action: command
+    shasum
+      --algorithm 256
+      --portable
+      --check
+      --status
+      {{ ansible_data_path }}/java.sha256sum
+
+# Ensure there is no broken download on the local disk
+- name: Remove possible broken Java redis package (local)
+  tags:
+    - java
+    - download
+  when: java_oracle_redis_exists.rc != 0
+  local_action: file
+    state=absent
+    dest={{ ansible_data_path }}/{{ java_oracle_redis_filename }}
+
+# Download the Java distribution from Oracle to the workstations'
+# filesystem. Yeah, right, accept license agreement...
+# This allows to distribute Java to any number of hosts in the
+# context of a local network instead of downloading Java again
+# for every role/node which depends on this role.
+- name: Download Oracle Java redis package (local)
+  tags:
+    - java
+    - download
+  sudo: no
+  register: java_oracle_redis_download
+  when: java_oracle_redis_exists.rc != 0
+  local_action: command
+    curl
+      --location
+      --insecure
+      --remote-name
+      --cookie oraclelicense=accept-securebackup-cookie
+      --cookie-jar /tmp/{{ java_oracle_redis_filename }}.cookie
+      {{ java_oracle_redis_mirror }}
+    chdir={{ ansible_data_path }}
+    creates={{ ansible_data_path }}/{{ java_oracle_redis_filename }}
+
+- name: Ensure downloaded archive is world readable (local)
+  tags:
+    - java
+    - download
+  local_action: file
+    dest={{ ansible_data_path }}/{{ java_oracle_redis_filename }}
+    mode=0644
+
+# Test whether downloaded redistributable package passes sha256sum
+- name: Verify Oracle Java redis package sha256sum (local)
+  tags:
+    - java
+    - download
+  when: java_oracle_redis_download|changed
+  local_action: command
+    shasum
+      --algorithm 256
+      --portable
+      --check
+      --status
+      {{ ansible_data_path }}/java.sha256sum
+
+
+# Directory for unarchiving the configured version of Java.
+- name: Install Oracle Java base directory
+  tags: java
+  file:
+    state=directory
+    owner=0
+    group=0
+    mode=0755
+    dest={{ java_install_dir }}/oracle
+
+# Install the Oracle redistributable package to the node
+#unarchive below does not work for tar.gz
+- name: Install Oracle Java Debian package 
+  action: command creates={{ java_install_dir }}/oracle/{{ java_oracle_version_str_pkg }} chdir={{ java_install_dir }}/oracle tar zxvf {{ ansible_data_path }}/{{ java_oracle_redis_filename }} --owner=root
+  register: java_installed
+#  ignore_errors: True 
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+ 
+- name: Install Oracle Java RPM package
+  action: command creates={{ java_install_dir }}/oracle/{{ java_oracle_version_str_pkg }} chdir={{ java_install_dir }}/oracle rpm --force -Uvh {{ ansible_data_path }}/{{ java_oracle_redis_filename }}
+  register: java_installed
+#  ignore_errors: True
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- debug: msg="java_installed value is {{ java_installed }} {{ java_installed.skipped }} {{ java_installed.changed }}"
+
+- name: Install Oracle Java
+  tags: java
+  unarchive:
+    src={{ ansible_data_path }}/{{ java_oracle_redis_filename }}
+    dest={{ java_install_dir }}/oracle/
+  when: ansible_distribution != 'Debian' and ansible_distribution != 'Ubuntu' and ansible_distribution != 'CentOS' and ansible_distribution != 'Red Hat Enterprise Linux'
+
+- name: Remove Java archive
+  file: path={{ ansible_data_path }}/{{ java_oracle_redis_filename }} state=absent
+  when: java_download_when  
+  
+- name: Remove sha256sum file
+  file: path={{ ansible_data_path }}/java.sha256sum state=absent
+  when: java_download_when  
+  
+# Archives may be packaged with some useless uid and gid
+- name: Fixup filesystem permissions
+  file:
+    state=directory
+    owner=0
+    group=0
+    recurse=true
+    dest={{ java_install_dir }}
+
+
+# Setup a custom fact to allow roles depending on Java to configure
+#   JAVA_HOME variable
+- name: Set JAVA_HOME ansible fact
+  tags: java
+  when: java_default_implementation == 'oracle'
+  set_fact:
+    java_home={{ java_install_dir }}/oracle/{{ java_oracle_version_str_pkg }}

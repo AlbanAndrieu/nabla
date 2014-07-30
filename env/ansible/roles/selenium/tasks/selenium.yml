@@ -1,0 +1,58 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+- name: Download selenium on 'master' if we don't have it
+  sudo: False
+  get_url: url={{ selenium_download_url }}  dest={{ ansible_data_path }}/{{ selenium_jar_file }} force=no
+
+- name: Copy selenium into place
+  copy: src={{ selenium_jar_file }}  dest={{ selenium_server_path }}/{{ selenium_jar_file }} owner=root group=root mode=644
+
+- name: Install Config
+  template: src=defaults.j2 dest=/etc/default/selenium_{{ selenium_sel_role }} owner=root group=root mode=644
+  tags: ['config']
+  notify: selenium_reload
+
+- name: Install init script
+  template: src=selenium-server-{{ ansible_distribution }}-{{ ansible_architecture }} dest=/etc/init.d/selenium_{{ selenium_sel_role }} owner=root group=root mode=755
+  tags: ['config']
+  notify: selenium_started
+ 
+- name: Install selenium tools (Debian based)
+  apt: pkg={{ item }} state={{ selenium_pkg_state }} update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  when: selenium_sel_role != 'hub'
+  with_items:
+   - xfonts-100dpi
+   - xfonts-75dpi
+   - xfonts-scalable
+   - xfonts-cyrillic
+   - xvfb
+   - x11-apps
+   - imagemagick
+
+- name: Install browser tools specific (Debian based)
+  apt: pkg={{ item }} state={{ selenium_pkg_state }} update_cache=yes
+#specific for ubuntu 13.04 and 13.10
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release == 'saucy' )
+  when: selenium_sel_role != 'hub'
+  with_items:
+   - chromium-chromedriver
+   
+- name: Install browser tools (Debian based)
+  apt: pkg={{ item }} state={{ selenium_pkg_state }} update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  when: selenium_sel_role != 'hub'
+  with_items:
+   - firefox
+#   - chromium-browser 
+# use chrome-stable
+   
+#TODO by hand for Ubuntu saucy
+#better is to us Jenkins plugins that is intalling chromedriver
+#cd /usr/lib/chromium-browser
+#sudo wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip
+#sudo wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux32.zip
+#unzip chromedriver_linux64.zip   
+#unzip chromedriver_linux32.zip   
+

@@ -35,16 +35,26 @@
   - [ "roles/jenkins-slave/defaults/main.yml" ]
   - [ "roles/jenkins-slave/vars/{{ ansible_distribution }}-{{ ansible_architecture }}.yml", "roles/jenkins-slave/vars/{{ ansible_distribution }}.yml" ]
 
-#  vars_prompt:
-#  - name: jenkins_username
-#    prompt: "What is your jenkins user?"
-#    private: no
-#  - name: jenkins_password
-#    prompt: "What is your jenkins password?"
-#    private: yes
-
   roles:
     - jenkins-slave
+
+- name: apply swarm configuration to all jenkins slaves
+  hosts: test-boxes
+  sudo: yes
+  user: vagrant
+  connection: local    
+#  remote_user: vagrant
+
+  vars_prompt:
+  - name: jenkins_username
+    prompt: "What is your jenkins user?"
+    private: no
+  - name: jenkins_password
+    prompt: "What is your jenkins password?"
+    private: yes
+
+  roles:
+    - jenkins-swarm
 
 # This playbook can be run using vagrant (on virtual box). 
 - name: Install xvbf

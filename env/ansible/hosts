@@ -2,6 +2,18 @@
 #127.0.0.1
 albandri-laptop-misys
 
+[java]
+albandri-laptop-misys
+
+[maven]
+albandri-laptop-misys
+
+[css]
+albandri-laptop-misys
+
+[chrome]
+albandri-laptop-misys
+
 [tomcat-servers]
 #webserver1
 albandri-laptop-misys
@@ -39,8 +51,14 @@ albandri-laptop-misys
 [xvbf]
 albandri-laptop-misys
 
+[jenkins-master]
+albandri-laptop-misys
+
 [jenkins-slaves]
 albandri-laptop-misys
+
+[jenkins-swarm]
+#albandri-laptop-misys
 
 [supervisors]
 albandri-laptop-misys

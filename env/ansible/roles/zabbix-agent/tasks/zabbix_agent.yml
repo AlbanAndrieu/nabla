@@ -19,14 +19,14 @@
 - name: zabbix-agent | Add zabbix.com repository key
   apt_key: 
      url=http://repo.zabbix.com/zabbix-official-repo.key 
-     state={{ zabbix_agent_pkg_state }}
+     state={{ zabbix_agent_repository_state }}
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'       
   tags: zabbix-agent
 
 - name: zabbix-agent | Add zabbix.com repository
   apt_repository:
      repo="deb http://repo.zabbix.com/zabbix/{{zabbix_agent_major}}.{{zabbix_agent_minor}}/{{ansible_distribution|lower}} {{ansible_lsb.codename}} main contrib non-free"
-     state={{ zabbix_agent_pkg_state }}
+     state={{ zabbix_agent_repository_state }}
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'       
   tags: zabbix-agent
  

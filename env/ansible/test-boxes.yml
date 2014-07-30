@@ -36,6 +36,24 @@
   roles:
     - common
 
+# This playbook can be run using vagrant (on virtual box). 
+- name: Install java
+  hosts: java
+  user: root
+#  connection: local
+  
+  roles:
+    - java
+ 
+# This playbook can be run using vagrant (on virtual box). 
+- name: Install xvbf
+  hosts: xvbf
+  user: root
+#  connection: local
+  
+  roles:
+    - xvbf
+        
 - name: Install Docker
   hosts: docker
   user: root
@@ -54,3 +72,32 @@
   roles:
     - jenkins-slave
 
+# This playbook can be run using vagrant (on virtual box). 
+- name: Install maven
+  hosts: maven
+  user: root
+#  connection: local
+  
+  roles:
+    - maven
+
+# This playbook can be run using vagrant (on virtual box). 
+- name: Install css
+  hosts: css
+  user: root
+#  connection: local
+  
+  roles:
+    - css
+    
+# This playbook can be run using vagrant (on virtual box). 
+- name: Install chrome
+  hosts: chrome
+  user: root
+#  connection: local
+  
+  roles:
+  roles:
+     - role: chrome 
+       google_talkplugin_enabled: yes                       # Enable module
+       google_agent_pkg_state: installed # Package states: present or installed or latest

@@ -1,0 +1,24 @@
+---
+# Package states: present or installed or latest
+selenium_pkg_state: present
+
+selenium_enabled: yes                       # Enable module
+selenium_server_major_version: 2.42            # Selenium client version
+selenium_server_minor_version: .2            # Selenium client version
+selenium_server_version: {{ selenium_server_major_version }}{{ selenium_server_minor_version }}           # Selenium client version
+
+selenium_download_url: http://selenium-release.storage.googleapis.com/{{ selenium_server_major_version }}/{{ selenium_jar_file }}
+selenium_jar_file: selenium-server-standalone-{{ selenium_server_version }}.jar
+selenium_server_path: '/usr/local/lib'
+#todo used in jenkins /var/lib/selenium/selenium.jar
+
+selenium_sel_role: standalone
+
+selenium_hub: ''
+selenium_java_opts: ''
+selenium_extra_args: ''
+selenium_port: ''
+
+# path for ansible to store downloaded or templated data
+ansible_data_path: '/usr/local/src/ansible/data'
+#ansible_data_path: {{ cur_dir }}

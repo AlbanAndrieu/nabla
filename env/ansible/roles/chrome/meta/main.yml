@@ -1,0 +1,15 @@
+---
+galaxy_info:
+  author: "Alex Lourie <djay.il@gmail.com>"
+  description: Install Chrome stable on Ubuntu system
+  license: LGPL
+  min_ansible_version: 1.4
+  platforms:
+  - name: Debian
+    versions:
+      - wheezy
+  - name: Ubuntu
+  - name: elementary os
+  categories:
+    - system
+dependencies: []

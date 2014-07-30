@@ -1,5 +1,12 @@
 #!/bin/sh
 
+#touch README.md
+#git init
+#git add README.md
+#git commit -m "first commit"
+#git remote add origin https://github.com/AlbanAndrieu/ansible-swarm.git
+#git push -u origin master
+
 #git clone https://github.com/EDITD/ansible-supervisor_task.git supervisor
 git clone https://github.com/AlbanAndrieu/ansible-supervisor_task.git supervisor
 
@@ -23,13 +30,29 @@ git clone https://github.com/aw/ansible-galaxy-vagrant.git vagrant
 
 git clone https://github.com/angstwad/docker.ubuntu.git docker
 
+#git clone https://github.com/silpion/ansible-maven maven
+git clone https://github.com/AlbanAndrieu/ansible-maven.git maven
+
+#git clone https://github.com/silpion/ansible-java java
+git clone https://github.com/AlbanAndrieu/ansible-java.git java
+
+#git clone https://github.com/alourie/devbox.chrome.git chrome
+git clone https://github.com/AlbanAndrieu/devbox.chrome.git chrome
+
+#git clone https://github.com/Stouts/Stouts.jenkins.git jenkins-master
+git clone https://github.com/AlbanAndrieu/Stouts.jenkins.git jenkins-master
+
+git clone https://github.com/AlbanAndrieu/ansible-swarm.git jenkins-swarm
+
+git clone https://github.com/AlbanAndrieu/ansible-selenium.git selenium
+#TODO add to ansible
+
 #TODO
+https://github.com/sheldonh/dotfiles-ansible
 https://github.com/sivel/ansible-newrelic
-https://github.com/silpion/ansible-java
 https://github.com/fretscha-ansible/ansible-role-first-five-minutes
 https://github.com/bennojoy/memcached
 
-https://github.com/silpion/ansible-maven
 https://github.com/AnsibleShipyard/ansible-nodejs
 https://github.com/Stouts/Stouts.backup
 https://github.com/Stouts/Stouts.jenkins
