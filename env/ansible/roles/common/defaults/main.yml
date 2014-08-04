@@ -10,5 +10,5 @@ sudo_nopasswd: true
 #defaultsearch: 
 defaultsearch:  misys.global.ad misys.global.ad. nt.france.effix.fr. france.effix.fr. effix.fr.
 #defaultsearch: nabla.global.ad nabla.global.ad. home.nabla.mobi. nabla.mobi.
-nameserver1: 8.8.8.8
-nameserver2: 
+#nameserver1: 8.8.8.8
+#nameserver2: 
