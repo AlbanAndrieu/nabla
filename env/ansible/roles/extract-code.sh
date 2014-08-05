@@ -35,19 +35,33 @@ git clone https://github.com/AlbanAndrieu/ansible-maven.git maven
 
 #git clone https://github.com/silpion/ansible-java java
 git clone https://github.com/AlbanAndrieu/ansible-java.git java
+#pull request issue
 
 #git clone https://github.com/alourie/devbox.chrome.git chrome
 git clone https://github.com/AlbanAndrieu/devbox.chrome.git chrome
+#pull request pending
 
 #git clone https://github.com/Stouts/Stouts.jenkins.git jenkins-master
 git clone https://github.com/AlbanAndrieu/Stouts.jenkins.git jenkins-master
+#pull request issue
 
 git clone https://github.com/AlbanAndrieu/ansible-swarm.git jenkins-swarm
+
+#TODO add dropbox to github and ansible
+
+#git clone https://github.com/ahelal/ansible-sonar.git sonar
+git clone https://github.com/AlbanAndrieu/ansible-sonar.git sonar
+#pull request mysql
 
 git clone https://github.com/AlbanAndrieu/ansible-selenium.git selenium
 #TODO add to ansible
 
+#SEE
+https://github.com/ansible/ansible-examples/tree/master/language_features
+https://github.com/sheldonh/dotfiles-ansible
+
 #TODO
+https://github.com/Ansibles/monit
 https://github.com/sheldonh/dotfiles-ansible
 https://github.com/sivel/ansible-newrelic
 https://github.com/fretscha-ansible/ansible-role-first-five-minutes

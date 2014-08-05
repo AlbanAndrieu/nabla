@@ -4,3 +4,7 @@ ntpserver2: timehost
 nisserver: albandri
 mailserver: smtp.gmail.com
 
+#TODO use authorized_key instead of copy-keys.yml
+#See http://brokenbad.com/better-handling-of-public-ssh-keys-using-ansible/
+base_admin_username: ubuntu # something non-root
+base_admin_keys: []

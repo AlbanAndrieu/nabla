@@ -215,19 +215,19 @@
 - name: Ensure the grunt-cli npm dependencies are installed
   command: chdir=/usr/bin npm install -g grunt-cli@0.1.13
 
-- name: Ensure the bower npm dependencies are installed
-  command: chdir=/usr/bin npm install -g bower@1.3.2
-
-- name: Ensure the protractor npm dependencies are installed
-  command: chdir=/usr/bin npm install -g protractor@0.20.1
-
-- debug: msg="ansible_distribution_version value is {{ ansible_distribution_version }} "
-- debug: msg="ansible_distribution_release is {{ ansible_distribution_release }} "
-
-- name: Ensure the karma npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma@0.12.9
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-#  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release != 'precise' )
+#- name: Ensure the bower npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g bower@1.3.2
+#
+#- name: Ensure the protractor npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g protractor@0.20.1
+#
+#- debug: msg="ansible_distribution_version value is {{ ansible_distribution_version }} "
+#- debug: msg="ansible_distribution_release is {{ ansible_distribution_release }} "
+#
+#- name: Ensure the karma npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma@0.12.9
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+##  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release != 'precise' )
 
 #Ubuntu 12 ln -s /usr/local/lib/node_modules/karma/bin/karma /usr/local/bin/karma
 #- name: Create karma binaries link (legacy required)
@@ -246,45 +246,44 @@
 #cd /usr/local/lib/node_modules
 #chown -R nobody:jenkins *
 
-- name: Ensure the karma-junit-reporter npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-junit-reporter@0.2.2 
-
-- name: Ensure the karma-ng-scenario npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-ng-scenario@0.1.0
-
-- name: Ensure the karma-ng-html2js-preprocessor npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-ng-html2js-preprocessor@0.1.0
-
-- name: Ensure the karma-coverage npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-coverage@0.2.1
-
-- name: Ensure the karma-jasmine npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-jasmine@0.1.5
-
-- name: Ensure the jasmine-reporters npm dependencies are installed
-  command: chdir=/usr/bin npm install -g jasmine-reporters@0.4.1
-
-- name: Ensure the phantomjs npm dependencies are installed
-  command: chdir=/usr/bin npm install -g phantomjs@1.9.2-4
-#  command: chdir=/usr/bin npm install -g phantomjs@1.9.7-6
-
-- name: Ensure the karma-requirejs npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-requirejs@0.2.1
-  
-#- name: Ensure the karma-phantomjs-launcher npm dependencies are installed
-#  command: chdir=/usr/bin npm install -g karma-phantomjs-launcher@0.1.4
-  
-- name: Ensure the karma-chrome-launcher npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-chrome-launcher@0.1.3
-  
-- name: Ensure the karma-firefox-launcher npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-firefox-launcher@0.1.3
-  
-- name: Ensure the karma-ie-launcher npm dependencies are installed
-  command: chdir=/usr/bin npm install -g karma-ie-launcher
-
-#- name: Ensure the webdriverjs npm dependencies are installed
-#  command: chdir=/usr/bin npm install -g webdriverjs
+#- name: Ensure the karma-junit-reporter npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-junit-reporter@0.2.2 
+#
+#- name: Ensure the karma-ng-scenario npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-ng-scenario@0.1.0
+#
+#- name: Ensure the karma-ng-html2js-preprocessor npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-ng-html2js-preprocessor@0.1.0
+#
+#- name: Ensure the karma-coverage npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-coverage@0.2.1
+#
+#- name: Ensure the karma-jasmine npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-jasmine@0.1.5
+#
+#- name: Ensure the jasmine-reporters npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g jasmine-reporters@0.4.1
+#
+#- name: Ensure the phantomjs npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g phantomjs@1.9.2-4
+#
+#- name: Ensure the karma-requirejs npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-requirejs@0.2.1
+#  
+##- name: Ensure the karma-phantomjs-launcher npm dependencies are installed
+##  command: chdir=/usr/bin npm install -g karma-phantomjs-launcher@0.1.4
+#  
+#- name: Ensure the karma-chrome-launcher npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-chrome-launcher@0.1.3
+#  
+#- name: Ensure the karma-firefox-launcher npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-firefox-launcher@0.1.3
+#  
+#- name: Ensure the karma-ie-launcher npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-ie-launcher
+#
+##- name: Ensure the webdriverjs npm dependencies are installed
+##  command: chdir=/usr/bin npm install -g webdriverjs
    
 - name: Install coverage and metrics tools (Debian based)
   apt: pkg={{ item }} state=present update_cache=yes
@@ -353,7 +352,7 @@
   lineinfile: "line='jenkins ALL=NOPASSWD: ALL' dest=/etc/sudoers regexp='^jenkins'"
  
 - name: Copy sonar runner configuration
-  copy: src=sonar-runner.properties dest={{ jenkins_slave_home }}/ backup=yes owner=jenkins
+  copy: src=sonar-runner.properties.j2 dest={{ jenkins_slave_home }}/sonar-runner.properties backup=yes owner=jenkins
   
 - name: Create {{ jenkins_slave_home }} directory
   file: path={{ jenkins_slave_home }} state=directory

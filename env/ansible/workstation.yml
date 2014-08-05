@@ -133,16 +133,16 @@
 - hosts: all
 
   roles:
-    - role: jenkins
+    - role: jenkins-master
 
   vars:
       jenkins_proxy: apache
       jenkins_proxy_hostname: jenkins.myhost.com
 #      jenkins_ssh_key_file: "{{resources_to}}/resources/jenkins/ssh_key"    # (you can manage remote files with Stouts.resources role)
-      jenkins_ssh_key_file:~/.ssh/id_rsa.pub
-      jenkins_jobs:
-        - name: test
-          action: delete
+      jenkins_ssh_key_file: "~/.ssh/id_rsa.pub"
+#      jenkins_jobs:
+#        - name: test
+#          action: delete
 
 - name: apply common configuration to all jenkins slaves
   hosts: jenkins-slaves
@@ -195,6 +195,23 @@
        google_talkplugin_enabled: yes                       # Enable module
        google_agent_pkg_state: installed # Package states: present or installed or latest
 
+- name: Install workstation add-on
+  hosts: workstation
+  user: root
+#  connection: local
+  
+  roles:
+    - workstation
+
+- name: Install dropbox
+  hosts: workstation
+  sudo: yes
+  sudo_user: "{{ user }}"
+#  connection: local
+  
+  roles:
+    - dropbox
+    
 #- name: apply swarm configuration to all jenkins slaves
 #  hosts: jenkins-swarm
 #  user: root
@@ -275,3 +292,19 @@
 #      directory: /workspace/xebium
 ## user is the same as base_admin_username      
 #      user: ubuntu
+
+- name: Install sonar
+  hosts: sonar
+  user: root
+#  connection: local
+  roles:
+    - role: sonar
+    
+  vars:    
+#TODO merge sonar-runner.properties.j2 file from jenkins_slave role  
+      sonar_analyzer_runner_install : false 
+#Handle by jenkins_slave role, Warning it will override settings.xml.j2 from jenkins_slave role      
+      maven_install : false 
+      sonar_postgres_install : false
+#Handle by hand      
+      sonar_projects : false 

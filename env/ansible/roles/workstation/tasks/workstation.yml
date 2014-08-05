@@ -1,0 +1,80 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+#- name: Install enhanced vim with command-t plugin
+#  yum: name={{item}} state=present
+#  with_items:
+#    - vim-enhanced
+#    - vim-command-t
+#    
+#- name: Clone dotvim repo
+#  git: dest={{home}}/.vim repo=git@github.com:sheldonh/dotvim.git update=no
+#
+#- name: Link dotvim config to vimrc
+#  file: path={{home}}/.vimrc src={{home}}/.vim/vimrc state=link
+  
+- name: Install editor tools (apt)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:   
+   - geany
+   - gedit
+   - xxdiff
+#   - xxdiff-scripts
+   - meld
+   - dos2unix
+      
+- name: Install extra (apt)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:   
+   - ubuntu-restricted-extras
+#   - preload
+
+- name: Install SCM (apt)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:
+   - subversion
+   - cvs
+   - git
+#   - gitg
+#   - gitk   
+#   - mercurial   
+ 
+- name: Install CPP build tools (apt)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:
+   - cmake
+   - scons
+      
+- name: Install AWS tools (apt)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:
+   - ec2-api-tools    
+   - s3cmd
+
+- name: Install messagingg (apt)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package    
+  with_items:   
+   - pidgin 
+   - pidgin-sipe 
+   - pidgin-skype  
+#   - teamviewer
+
+- name: Install VNC (apt)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package    
+  with_items:   
+   - vnc4server   
+   

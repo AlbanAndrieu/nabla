@@ -3,6 +3,7 @@
 albandri-laptop-misys
 
 [administration]
+#127.0.0.1
 
 [java]
 albandri-laptop-misys
@@ -76,12 +77,19 @@ albandri-laptop-misys
 #vagrant local box
 #192.168.33.10
 
+[workstation]
+albandri-laptop-misys
+
+[sonar]
+albandri-laptop-misys
+
 [test-boxes]
 #vagrant local box
 #192.168.33.10
 #192.168.33.11
 #192.168.33.12
 
-[appservers:vars]
-tomcat_version=7
-java_version=7
+[workstation:vars]
+user=albandri
+version=10
+home=/workspace/users/{{ user }}{{ version }}/
