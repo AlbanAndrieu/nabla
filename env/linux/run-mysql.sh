@@ -19,6 +19,14 @@ sudo mysqladmin -u root -h localhost password "microsoft"
 GRANT SUPER ON *.* TO nabla@'localhost' IDENTIFIED BY 'nabla';
 
 #/etc/mysql/
+#/var/lib/mysql/
 
 mysql -u root -p
 
+update mysql.user set password=PASSWORD(’jakarta’) where user=’root’;
+
+#mysqld_safe –user=mysql &
+#mysqld_safe –skip-grant-tables –user=root &
+
+#/usr/bin/mysqladmin -u root password 'new-password'
+#/usr/bin/mysqladmin -u root -h alban password 'new-password'

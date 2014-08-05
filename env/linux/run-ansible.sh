@@ -82,3 +82,6 @@ sudo tar -xvf ansible-tower-setup-latest.tar.gz
 https://localhost/
 #admin Microsoft
 #admin Microsoft
+
+#see example
+#https://github.com/ansible/ansible-examples/tree/master/language_features

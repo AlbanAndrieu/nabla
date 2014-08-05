@@ -6,7 +6,7 @@
     - name: group hosts by distribution
       group_by: key="{{ ansible_distribution }}-{{ ansible_distribution_version }}"
 
-- hosts: RedHat-7*:RedHat-6*:CentOS-6*:Ubuntu-12.04:Ubuntu-14.04
+- hosts: RedHat-7*:RedHat-6*:RedHat-5*:CentOS-6*:Ubuntu-12*:Ubuntu-13*:Ubuntu-14*
   gather_facts: false
   tasks:
     - name: group hosts for supported distributions
@@ -23,7 +23,7 @@
                  
 #Use below only if you want your servers to be part of MGR build farm                 
 - name: apply administration configuration to all nodes
-  hosts: Ubuntu-12*:Ubuntu-14*
+  hosts: RedHat-7*:RedHat-6*:RedHat-5*:CentOS-6*:Ubuntu-12*:Ubuntu-13*:Ubuntu-14*
 #  hosts: all  
   gather_facts: false
   user: root

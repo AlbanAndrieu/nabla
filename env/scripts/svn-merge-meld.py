@@ -1,29 +1,34 @@
 #!/usr/bin/env python
 # svn merge-tool python wrapper for meld
-import os, sys
+import sys
 import subprocess
-import shutil
+
+# path to meld ($ which meld)
+meld = "/usr/bin/meld"
+log = False
+f = open('/tmp/svn-merge-meld.log', 'a')
+
+def main():
+if log:
+f.write("call: %r\n" % sys.argv)
+
+# file paths
+base   = sys.argv[1]
+theirs = sys.argv[2]
+mine   = sys.argv[3]
+merged = sys.argv[4]
+partial = sys.argv[5]
+
+# the call to meld
+cmd = [meld, mine, base, theirs, merged]
+
+# Call meld, making sure it exits correctly
+subprocess.check_call(cmd)
 
 try:
-   # path to meld
-   meld = "/usr/bin/meld"
-
-   # file paths
-   base   = sys.argv[-4]
-   theirs = sys.argv[-3]
-   mine   = sys.argv[-2]
-   merged = sys.argv[-1]
-
-   # Replace 'merged' file with a copy of 'mine'
-   # (because we can't open 4 files)
-   shutil.copy(mine, merged)
-
-   # the call to meld
-   # work right-to-left (result is far left file)
-   cmd = [meld, merged, theirs, base]
-
-   # Call meld, making sure it exits correctly
-   subprocess.check_call(cmd)
-except:
-   print "Oh noes, an error!"
-   sys.exit(-1)
+main()
+except Exception as e:
+print "Oh noes, an error: %r" % e
+if log:
+ f.write("Error: %r\n" % e)
+sys.exit(-1)

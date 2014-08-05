@@ -1,6 +1,6 @@
 - hosts: mongodbservers
   roles:
-   - role: bennojoy.mongo_mongod
+   - role: mongodb
      mongod_datadir_prefix: "/data/"
      mongod_replication: true
      mongod_port: 2701

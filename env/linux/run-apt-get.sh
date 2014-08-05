@@ -378,3 +378,10 @@ sudo apt-get install ubuntu-restricted-extras
 
 #remove incinga
 sudo apt-get remove icinga-web
+
+#remove doc in order to spare disk space
+sudo apt-get --purge remove tex.\*-doc$
+sudo rm -Rf /usr/share/doc/texlive-doc/
+sudo rm -Rf /var/lib/jenkins/tmp
+sudo find /var/log -name '*.gz' | xargs sudo rm -r $1
+sudo apt-get clean

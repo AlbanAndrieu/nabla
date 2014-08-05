@@ -27,3 +27,13 @@ login/passwd alban.andrieu@nabla.mobi/microsoft
 #http://public.kitware.com/Dart/HTML/Client.shtml
 
 cdash.log
+
+/opt/lamp/httpd/sbin
+./apachectl start
+
+apache2ctl start
+apache2ctl status
+voir /usr/share/apache2/
+voir /var/www/htdocs/CDash
+
+http://localhost/htdocs/CDash/
