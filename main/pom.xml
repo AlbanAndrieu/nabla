@@ -816,125 +816,7 @@
 						</plugins>
 					</build>
 				</profile>                
-                <!-- see http://www.aheritier.net/maven-failsafe-sonar-and-jacoco-are-in-a-boat/ -->
-				<profile>
-				  <id>coverage</id>
-				  <build>
-					<plugins>
-					  <plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-surefire-plugin</artifactId>
-						<inherited>true</inherited>
-						<configuration>
-						  <!--<argLine>${jacoco.agent.ut.arg} -Xms256m -Xmx512m -XX:MaxPermSize=512m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>-->
-						  <argLine>${jacoco.agent.ut.arg} -Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>
-						  <skip>${maven.test.skip}</skip>
-						  <forkMode>once</forkMode>
-						  <!-- Enable or disable Stop maven -->
-						  <testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
-						  <!-- Specific to generate mapping between tests and covered code -->
-						  <!-- 
-						  <properties>
-							<property>
-							  <name>listener</name>
-							  <value>org.sonar.java.jacoco.JUnitListener</value>
-							</property>
-						  </properties>
-						  -->
-						  <!-- NOT needed instead remove jmock-junit4 because it does not work with jacoco
-						  <excludes>
-							 <exclude>**/*DaoTest.java</exclude>
-						  </excludes>		 
-						  --> 
-						  <excludes>
-							<exclude>**/*ITest*</exclude>
-							<exclude>**/*STest*</exclude>
-							<exclude>**/*HibernateEnumType*</exclude>
-						  </excludes>
-						  <systemPropertyVariables>
-								<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
-								<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
-								<webdriver.safari.noinstall>true</webdriver.safari.noinstall>									
-								<arquillian.launch>${arquillian}</arquillian.launch>
-								<arquillian>${arquillian}</arquillian>
-								<cucumber.options>
-									  <![CDATA[--tags ${cucumber.tags} ${cucumber.features.dir}/${cucumber.feature}]]>
-								</cucumber.options>				
-						  </systemPropertyVariables>						  
-						</configuration>
-					  </plugin>
-					  <plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-failsafe-plugin</artifactId>
-						<configuration>
-						  <argLine>${jacoco.agent.it.arg} -Xmx1024m -XX:MaxPermSize=256m</argLine>
-						  <!-- Specific to generate mapping between tests and covered code -->
-						  <!--
-						  <properties>
-							<property>
-							  <name>listener</name>
-							  <value>org.sonar.java.jacoco.JUnitListener</value>
-							</property>
-						  </properties>
-						  -->
-						  <!-- Let's put failsafe reports with surefire to have access to tests failures/success reports in sonar -->
-						  <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>					  
-						</configuration>
-					  </plugin>
-					  <plugin>
-						<groupId>org.jacoco</groupId>
-						<artifactId>jacoco-maven-plugin</artifactId>
-						<version>${jacoco.version}</version>
-						<executions>
-						  <!-- Prepares a variable, jacoco.agent.ut.arg, that contains the info to be passed to the JVM hosting the code
-				being tested. -->
-						  <execution>
-							<id>prepare-ut-agent</id>
-							<phase>process-test-classes</phase>
-							<goals>
-							  <goal>prepare-agent</goal>
-							</goals>
-							<configuration>
-							  <destFile>${sonar.jacoco.reportPath}</destFile>
-							  <propertyName>jacoco.agent.ut.arg</propertyName>
-							  <append>true</append>
-							</configuration>
-						  </execution>
-						  <!-- Prepares a variable, jacoco.agent.it.arg, that contains the info to be passed to the JVM hosting the code
-				being tested. -->
-						  <execution>
-							<id>prepare-it-agent</id>
-							<phase>pre-integration-test</phase>
-							<goals>
-							  <goal>prepare-agent</goal>
-							</goals>
-							<configuration>
-							  <destFile>${sonar.jacoco.itReportPath}</destFile>
-							  <propertyName>jacoco.agent.it.arg</propertyName>
-							  <append>true</append>
-							</configuration>
-						  </execution>
-						</executions>
-						<configuration>
-						  <excludes>
-							<exclude>jsp/**/*.class</exclude>
-							<exclude>**/*STest*</exclude>
-						  </excludes>
-						</configuration>						  
-					  </plugin>
-					</plugins>
-				  </build>
-				  <!--
-				  <dependencies>
-					<dependency>
-					  <groupId>org.codehaus.sonar-plugins.java</groupId>
-					  <artifactId>sonar-jacoco-listeners</artifactId>
-					  <version>${sonar.jacoco.listeners.version}</version>
-					  <scope>test</scope>					  
-					</dependency>
-				  </dependencies>
-				  -->
-				</profile>					
+                <!-- see http://www.aheritier.net/maven-failsafe-sonar-and-jacoco-are-in-a-boat/ -->		
 				<!-- activate jacoco profile with coverage for arquillian to work -->
 				<profile>
 					<id>jacoco</id>
@@ -942,7 +824,40 @@
 							<property>
 									<name>!profile.activation</name>
 							</property>
-					</activation>					
+					</activation>			
+					<properties>
+						<!-- ************************ -->
+						<!-- Sonar/Reporting settings -->
+						<!-- ************************ -->
+						<!-- Sonar/Jacoco integration. Note that these properties need to be defined outside the "coverage" profile
+						because we want to be to able to execute mvn sonar:sonar without passing a profile -->
+						<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+						<sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>	
+						<!-- Tells Sonar to use jacoco for coverage results -->
+						<!-- Don't let Sonar execute tests. We will ask it to Maven -->
+						<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>		
+						<!-- The system property jacoco.outputDir needs to be override on the command line
+						with an absolute path if you want to merge results from all modules.
+						Example in a Jenkisn build where ${WORKSPACE} is defined and your project in the root directory of the workspace :
+						mvn clean install -Prun-its,coverage -Djacoco.outputDir=${WORKSPACE}/target
+						Note that unfortunately using the following does not work because of
+						 
+						http://jira.codehaus.org/browse/SONAR-3427:
+						 
+						<jacoco.outputDir>${session.executionRootDirectory}/target/</jacoco.outputDir>
+						-->						
+						<jacoco.outputDir>${project.build.directory}</jacoco.outputDir>
+						<!-- Jacoco output file for UTs -->
+						<jacoco.out.ut.file>jacoco-ut.exec</jacoco.out.ut.file>
+						<!-- Tells Sonar where the Jacoco coverage result file is located for Unit Tests -->
+						<sonar.jacoco.reportPath>${jacoco.outputDir}/${jacoco.out.ut.file}</sonar.jacoco.reportPath>
+						<!-- Jacoco output file for ITs -->
+						<jacoco.out.it.file>jacoco-it.exec</jacoco.out.it.file>
+						<!-- Tells Sonar where the Jacoco coverage result file is located for Integration Tests -->
+						<sonar.jacoco.itReportPath>${jacoco.outputDir}/${jacoco.out.it.file}</sonar.jacoco.itReportPath>
+						<!--<jacoco.skip>true</jacoco.skip>-->
+						<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>	
+					</properties>										
 					<dependencies>
 						<dependency>
 							<groupId>org.jboss.arquillian.extension</groupId>
@@ -956,54 +871,23 @@
 							<version>${jacoco.version}</version> 
 							<scope>provided</scope>
 						</dependency>
+						<!--
+						<dependency>
+						  <groupId>org.codehaus.sonar-plugins.java</groupId>
+						  <artifactId>sonar-jacoco-listeners</artifactId>
+						  <version>${sonar.jacoco.listeners.version}</version>
+						  <scope>test</scope>					  
+						</dependency>			
+						-->			
 					</dependencies>
 
 					<build>
-						<plugins>
+						<plugins>		
 							<!--
-							<plugin>
-								<groupId>org.codehaus.mojo</groupId>
-								<artifactId>build-helper-maven-plugin</artifactId>
-								<executions>
-									<execution>
-										<id>add-resources</id>
-										<phase>generate-resources</phase>
-										<goals>
-											<goal>add-resource</goal>
-										</goals>
-										<configuration>
-											<resources>
-												<resource>
-													<directory>../todo1/target/classes</directory>
-													<targetPath>.</targetPath>
-												</resource>
-												<resource>
-													<directory>../todo2/target/classes</directory>
-													<targetPath>.</targetPath>
-												</resource>
-											</resources>
-										</configuration>
-									</execution>
-									<execution>
-										<id>add-sources</id>
-										<phase>generate-sources</phase>
-										<goals>
-											<goal>add-source</goal>
-										</goals>
-										<configuration>
-											<sources>
-												<source>../todo1/src/main/java</source>
-												<source>../todo2/src/main/java</source>
-											</sources>
-										</configuration>
-									</execution>
-								</executions>
-							</plugin>
-							-->
 							<plugin>
 								<groupId>org.jacoco</groupId>
 								<artifactId>jacoco-maven-plugin</artifactId>
-								<version>${jacoco.version}</version>
+								<version>${maven.jacoco.plugin.version}</version>
 								<executions>
 									<execution>
 										<goals>
@@ -1019,6 +903,108 @@
 									</execution>
 								</executions>
 							</plugin>
+							-->
+							  <plugin>
+								<groupId>org.apache.maven.plugins</groupId>
+								<artifactId>maven-surefire-plugin</artifactId>
+								<inherited>true</inherited>
+								<configuration>
+								  <!--<argLine>${jacoco.agent.ut.arg} -Xms256m -Xmx512m -XX:MaxPermSize=512m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>-->
+								  <argLine>${jacoco.agent.ut.arg} -Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>
+								  <skip>${maven.test.skip}</skip>
+								  <forkMode>once</forkMode>
+								  <!-- Enable or disable Stop maven -->
+								  <testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
+								  <!-- Specific to generate mapping between tests and covered code -->
+								  <!-- 
+								  <properties>
+									<property>
+									  <name>listener</name>
+									  <value>org.sonar.java.jacoco.JUnitListener</value>
+									</property>
+								  </properties>
+								  -->
+								  <!-- NOT needed instead remove jmock-junit4 because it does not work with jacoco
+								  <excludes>
+									 <exclude>**/*DaoTest.java</exclude>
+								  </excludes>		 
+								  --> 
+								  <excludes>
+									<exclude>**/*ITest*</exclude>
+									<exclude>**/*STest*</exclude>
+									<exclude>**/*HibernateEnumType*</exclude>
+								  </excludes>
+								  <systemPropertyVariables>
+										<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
+										<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
+										<webdriver.safari.noinstall>true</webdriver.safari.noinstall>									
+										<arquillian.launch>${arquillian}</arquillian.launch>
+										<arquillian>${arquillian}</arquillian>
+										<cucumber.options>
+											  <![CDATA[--tags ${cucumber.tags} ${cucumber.features.dir}/${cucumber.feature}]]>
+										</cucumber.options>				
+								  </systemPropertyVariables>						  
+								</configuration>
+							  </plugin>
+							  <plugin>
+								<groupId>org.apache.maven.plugins</groupId>
+								<artifactId>maven-failsafe-plugin</artifactId>
+								<configuration>
+								  <argLine>${jacoco.agent.it.arg} -Xmx1024m -XX:MaxPermSize=256m</argLine>
+								  <!-- Specific to generate mapping between tests and covered code -->
+								  <!--
+								  <properties>
+									<property>
+									  <name>listener</name>
+									  <value>org.sonar.java.jacoco.JUnitListener</value>
+									</property>
+								  </properties>
+								  -->
+								  <!-- Let's put failsafe reports with surefire to have access to tests failures/success reports in sonar -->
+								  <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>					  
+								</configuration>
+							  </plugin>
+							  <plugin>
+								<groupId>org.jacoco</groupId>
+								<artifactId>jacoco-maven-plugin</artifactId>
+								<version>${maven.jacoco.plugin.version}</version>
+								<executions>
+								  <!-- Prepares a variable, jacoco.agent.ut.arg, that contains the info to be passed to the JVM hosting the code
+						being tested. -->
+								  <execution>
+									<id>prepare-ut-agent</id>
+									<phase>process-test-classes</phase>
+									<goals>
+									  <goal>prepare-agent</goal>
+									</goals>
+									<configuration>
+									  <destFile>${sonar.jacoco.reportPath}</destFile>
+									  <propertyName>jacoco.agent.ut.arg</propertyName>
+									  <append>true</append>
+									</configuration>
+								  </execution>
+								  <!-- Prepares a variable, jacoco.agent.it.arg, that contains the info to be passed to the JVM hosting the code
+						being tested. -->
+								  <execution>
+									<id>prepare-it-agent</id>
+									<phase>pre-integration-test</phase>
+									<goals>
+									  <goal>prepare-agent</goal>
+									</goals>
+									<configuration>
+									  <destFile>${sonar.jacoco.itReportPath}</destFile>
+									  <propertyName>jacoco.agent.it.arg</propertyName>
+									  <append>true</append>
+									</configuration>
+								  </execution>
+								</executions>
+								<configuration>
+								  <excludes>
+									<exclude>jsp/**/*.class</exclude>
+									<exclude>**/*STest*</exclude>
+								  </excludes>
+								</configuration>						  
+							  </plugin>							
 						</plugins>
 					</build>
 				</profile>
