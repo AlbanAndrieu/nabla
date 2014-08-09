@@ -1,7 +1,7 @@
 <andromda xmlns="http://andromda.org/core/configuration">
     <properties>
         <!--<property name="cartridgeFilter">gui</property>-->
-        <property name="failOnValidationErrors">false</property>
+        <property name="failOnValidationErrors">true</property>
     	<!-- Comma separated list of cartridges to be processed by namespace name, such as java,webservice. Empty = true = process all>
     	<property name="cartridgeFilter">${filter}</property -->
     	<!-- Debug andromda processing using example log4j.xml file> -->
