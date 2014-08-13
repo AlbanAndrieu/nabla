@@ -48,6 +48,7 @@ git clone https://github.com/AlbanAndrieu/Stouts.jenkins.git jenkins-master
 
 git clone https://github.com/AlbanAndrieu/ansible-swarm.git jenkins-swarm
 
+git clone https://github.com/AlbanAndrieu/ansible-dropbox.git dropbox
 #TODO add dropbox to github and ansible
 
 #git clone https://github.com/ahelal/ansible-sonar.git sonar
