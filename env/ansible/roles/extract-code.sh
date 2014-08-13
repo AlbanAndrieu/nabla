@@ -9,6 +9,7 @@
 
 #git clone https://github.com/EDITD/ansible-supervisor_task.git supervisor
 git clone https://github.com/AlbanAndrieu/ansible-supervisor_task.git supervisor
+#pull request pending
 
 git clone https://github.com/AlbanAndrieu/ansible-webmin.git webmin
 
@@ -35,7 +36,7 @@ git clone https://github.com/AlbanAndrieu/ansible-maven.git maven
 
 #git clone https://github.com/silpion/ansible-java java
 git clone https://github.com/AlbanAndrieu/ansible-java.git java
-#pull request issue
+#pull request pending
 
 #git clone https://github.com/alourie/devbox.chrome.git chrome
 git clone https://github.com/AlbanAndrieu/devbox.chrome.git chrome
@@ -56,6 +57,8 @@ git clone https://github.com/AlbanAndrieu/ansible-sonar.git sonar
 git clone https://github.com/AlbanAndrieu/ansible-selenium.git selenium
 #TODO add to ansible
 
+git clone https://github.com/AlbanAndrieu/ansible-nodejs.git nodejs
+
 #SEE
 https://github.com/ansible/ansible-examples/tree/master/language_features
 https://github.com/sheldonh/dotfiles-ansible
@@ -69,9 +72,6 @@ https://github.com/bennojoy/memcached
 
 https://github.com/AnsibleShipyard/ansible-nodejs
 https://github.com/Stouts/Stouts.backup
-https://github.com/Stouts/Stouts.jenkins
-https://github.com/ahelal/ansible-sonar
-https://github.com/geerlingguy/ansible-role-sonar
 
 #Below it can be usefull for maintenance purpose
 https://github.com/mivok/ansible-users

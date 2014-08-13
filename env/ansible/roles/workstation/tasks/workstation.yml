@@ -33,18 +33,39 @@
    - ubuntu-restricted-extras
 #   - preload
 
+##
+ # subversion
+ #
+- name: Install subversion package (Debian based)
+  action: apt pkg='subversion={{subversion_ubuntu}}' state=installed
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+- name: Install subversion package (RedHat based)
+  action: yum name='subversion' state=installed
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+  
 - name: Install SCM (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   tags: package  
   with_items:
-   - subversion
    - cvs
    - git
 #   - gitg
 #   - gitk   
 #   - mercurial   
  
+- name: Install SCM (RedHat based)
+  action: yum name={{ item }} state=installed
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+  tags: package  
+  with_items:
+   - cvs
+   - git
+#   - gitg
+#   - gitk   
+#   - mercurial  
+
 - name: Install CPP build tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
@@ -77,4 +98,122 @@
   tags: package    
   with_items:   
    - vnc4server   
+   
+##
+ # node.js installation (latest stable instead of Ubuntu's out-of-date one)
+ #
+- name: Node.js | Package prerequisites for node.js
+  action: apt pkg=python-software-properties state=installed
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: nodejs
+
+#- name: add node.js repos
+- name: Node.js | Add the node.js PPA
+#  action: command add-apt-repository -y ppa:chris-lea/node.js creates=/etc/apt/sources.list.d/custom-node_js-{{ ansible_lsb.codename }}.list
+  apt_repository: repo='ppa:chris-lea/node.js' update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: nodejs
+
+- name: Node.js | Update the apt cache for the new repository
+  action: apt update-cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: nodejs
+
+- name: Node.js | Install nodejs and npm
+  action: apt pkg={{ item }} state=installed
+  tags: nodejs
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  with_items:
+    - nodejs
+#WARNING DO NOT INSTALL    - node    
+
+- name: Install karma tools (Debian based)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  with_items:
+   - karma-tools
+
+# NPM may or may not succeed, if you give it time, care, etc. it eventually works
+
+- name: Ensure npm settings
+  command: chdir=/usr/bin npm config set prefix /usr/local
+
+- name: Ensure npm is properly installed
+  command: chdir=/usr/bin npm config get prefix
+
+- name: Ensure the grunt npm dependencies are installed
+  command: chdir=/usr/bin npm install -g grunt@0.4.4
+
+- name: Ensure the grunt-cli npm dependencies are installed
+  command: chdir=/usr/bin npm install -g grunt-cli@0.1.13
+
+#- name: Ensure the bower npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g bower@1.3.2
+#
+#- name: Ensure the protractor npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g protractor@0.20.1
+#
+#- debug: msg="ansible_distribution_version value is {{ ansible_distribution_version }} "
+#- debug: msg="ansible_distribution_release is {{ ansible_distribution_release }} "
+#
+#- name: Ensure the karma npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma@0.12.9
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+##  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release != 'precise' )
+
+#Ubuntu 12 ln -s /usr/local/lib/node_modules/karma/bin/karma /usr/local/bin/karma
+#- name: Create karma binaries link (legacy required)
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+#  file: path=/usr/local/bin/karma src=/usr/local/lib/node_modules/karma/bin/karma state=link
+ 
+#TODO below does not works
+#- name: Update karma rights
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+#  file: path=/usr/local/lib/node_modules mode=0777 owner=root group=root state=directory recurse=yes
+
+#TODO WORKAROUND by hand
+#cd /usr/local/bin
+#ln -s ../lib/node_modules/karma/bin/karma karma
+
+#cd /usr/local/lib/node_modules
+#chown -R nobody:jenkins *
+
+#- name: Ensure the karma-junit-reporter npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-junit-reporter@0.2.2 
+#
+#- name: Ensure the karma-ng-scenario npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-ng-scenario@0.1.0
+#
+#- name: Ensure the karma-ng-html2js-preprocessor npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-ng-html2js-preprocessor@0.1.0
+#
+#- name: Ensure the karma-coverage npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-coverage@0.2.1
+#
+#- name: Ensure the karma-jasmine npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-jasmine@0.1.5
+#
+#- name: Ensure the jasmine-reporters npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g jasmine-reporters@0.4.1
+#
+#- name: Ensure the phantomjs npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g phantomjs@1.9.2-4
+#
+#- name: Ensure the karma-requirejs npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-requirejs@0.2.1
+#  
+##- name: Ensure the karma-phantomjs-launcher npm dependencies are installed
+##  command: chdir=/usr/bin npm install -g karma-phantomjs-launcher@0.1.4
+#  
+#- name: Ensure the karma-chrome-launcher npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-chrome-launcher@0.1.3
+#  
+#- name: Ensure the karma-firefox-launcher npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-firefox-launcher@0.1.3
+#  
+#- name: Ensure the karma-ie-launcher npm dependencies are installed
+#  command: chdir=/usr/bin npm install -g karma-ie-launcher
+#
+##- name: Ensure the webdriverjs npm dependencies are installed
+##  command: chdir=/usr/bin npm install -g webdriverjs
    
