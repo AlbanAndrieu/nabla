@@ -25,5 +25,6 @@
 
 	<modules>
 		<module>jsf-simple-deploy</module>
+		<!--<module>gwt-kitchensink-deploy</module>-->
 	</modules>
 </project>
