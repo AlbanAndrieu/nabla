@@ -85,6 +85,7 @@ https://home.nabla.mobi:9090/sabnzbd/
 https://sabnzbd_1:9090/sabnzbd/
 https://127.0.0.1:9090/sabnzbd/
 https://192.168.0.8:9090/sabnzbd/
+#user admin
 
 #subsonic
 pkg_add -v -r xtrans

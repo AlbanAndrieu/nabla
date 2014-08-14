@@ -66,6 +66,7 @@ sudo lsof -i tcp:443
 From the machine 192.168.0.29 run the following and post back here.
 To list listening devices and ports
 sudo netstat -lnp
+sudo netstat -an | grep LISTEN
 
 To list firewall settings
 sudo iptables -L
@@ -81,6 +82,8 @@ sudo nmap -sV 192.168.0.29
 sudo nmap -p 80,8080 192.168.0.0-255
 sudo nmap -sS -O -p80,8180,8080 192.168.0.0/24
 sudo nmap localhost
+
+
 
 --------- change apache to port 8080 -----------
 #http://www.cyberciti.biz/faq/linux-apache2-change-default-port-ipbinding/

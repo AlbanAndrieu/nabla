@@ -17,6 +17,8 @@ REM KZONE
 NET USE Q: /delete /yes
 NET USE Q: \\PTXSVKGR175\kzone-export
 
+NET USE U: \\ptxsnasext13\HomeWin$\alban.andrieu
+
 REM WORKSTATION SAMBA
 NET USE X: \\Ptxw12662\share
 

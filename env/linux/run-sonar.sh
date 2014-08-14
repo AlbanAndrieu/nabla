@@ -121,3 +121,6 @@ mvn -Dsonargraph.prepareForSonar=true -Dsonargraph.license=<license-path> (or -D
 #cd /workspace/sonar/extensions/plugins/
 #sudo rm sonar-pitest-plugin-0.3.jar
 #sudo wget https://sonarplugins.ci.cloudbees.com/job/pitest/ws/target/sonar-pitest-plugin-0.4-SNAPSHOT.jar
+
+#DEBUG add parameters
+-Dsonar.showProfiling=true -Dsonar.showSql=true -Dsonar.showSqlResults=true -Dsonar.verbose=true
