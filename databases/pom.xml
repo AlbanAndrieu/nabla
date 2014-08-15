@@ -30,7 +30,10 @@
 
 		<properties>
 			<!--<sonar.build-stability.url>Jenkins:${JOB_URL}</sonar.build-stability.url>-->
-			<hibernate.cache.provider>org.hibernate.cache.HashtableCacheProvider</hibernate.cache.provider>
+			<!-- For Hibernate 4, use org.hibernate.cache.ehcache.EhCacheRegionFactory instead of net.sf.ehcache.hibernate.EhCacheRegionFactory and org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory instead of net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory -->
+			<hibernate.cache.region.factory.class>net.sf.ehcache.hibernate.EhCacheRegionFactory</hibernate.cache.region.factory.class>
+			<!--<hibernate.query.factory.class>org.hibernate.cache.ehcache.EhCacheRegionFactory</hibernate.query.factory.class>-->
+			<hibernate.cache.provider>org.hibernate.cache.HashtableCacheProvider</hibernate.cache.provider> <!-- TODO for hibernate 4 it has changed -->
 		</properties>
 			        
         <profiles>
@@ -530,7 +533,8 @@
 
                                 <hibernate.dialect>org.hibernate.dialect.Oracle10gDialect</hibernate.dialect>
                                 <jboss.typeMappings>Oracle10g</jboss.typeMappings>
-                                <datasource.name>jdbc/${application.id}</datasource.name>
+                                <!--<datasource.name>jdbc/${application.id}</datasource.name>-->
+                                <datasource.name>${application.id}</datasource.name>
                         </properties>
                         <dependencies>
                                 <dependency>
