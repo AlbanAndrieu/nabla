@@ -39,11 +39,11 @@ import java.io.Serializable;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public class RequestStatus implements Serializable
 {
 
@@ -54,7 +54,7 @@ public class RequestStatus implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public RequestId getId()
@@ -66,7 +66,7 @@ public class RequestStatus implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param id DOCUMENT ME!
      */
     public void setId(RequestId id)
@@ -78,7 +78,7 @@ public class RequestStatus implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public boolean isRecoverable()
@@ -90,7 +90,7 @@ public class RequestStatus implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param recoverable DOCUMENT ME!
      */
     public void setRecoverable(boolean recoverable)
@@ -102,7 +102,7 @@ public class RequestStatus implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public boolean isSucceeded()
@@ -114,7 +114,7 @@ public class RequestStatus implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param succeeded DOCUMENT ME!
      */
     public void setSucceeded(boolean succeeded)

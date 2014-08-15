@@ -135,7 +135,6 @@ public class FileDestinationHelper extends FileDestination
     } // end getInputStream()
 
     /**
-     * 
      * @return the lenght
      */
     public long getLenght()
@@ -144,7 +143,6 @@ public class FileDestinationHelper extends FileDestination
     } // end getLenght()
 
     /**
-     * 
      * @param lenght the lenght to set
      */
     public void setLenght(final long lenght)

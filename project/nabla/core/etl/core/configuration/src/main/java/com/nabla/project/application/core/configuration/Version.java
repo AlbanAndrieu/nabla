@@ -39,11 +39,11 @@ import java.util.Date;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author$
  * @version $Revision$
  * @since $Date$
-  */
+ */
 public class Version
 {
 
@@ -57,7 +57,7 @@ public class Version
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public int getReleaseMajor()
@@ -69,7 +69,7 @@ public class Version
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param releaseMajor DOCUMENT ME!
      */
     public void setReleaseMajor(int releaseMajor)
@@ -81,7 +81,7 @@ public class Version
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public int getReleaseMinor()
@@ -93,7 +93,7 @@ public class Version
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param releaseMinor DOCUMENT ME!
      */
     public void setReleaseMinor(int releaseMinor)
@@ -105,7 +105,7 @@ public class Version
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public int getVersionMajor()
@@ -117,7 +117,7 @@ public class Version
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param versionMajor DOCUMENT ME!
      */
     public void setVersionMajor(int versionMajor)
@@ -129,7 +129,7 @@ public class Version
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public int getVersionMinor()
@@ -141,7 +141,7 @@ public class Version
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param versionMinor DOCUMENT ME!
      */
     public void setVersionMinor(int versionMinor)
@@ -153,7 +153,7 @@ public class Version
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public synchronized String getVersionId()
@@ -177,7 +177,7 @@ public class Version
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param versionId DOCUMENT ME!
      */
     public void setVersionId(String versionId)
@@ -189,7 +189,7 @@ public class Version
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getCopyright()
@@ -201,7 +201,7 @@ public class Version
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param copyright DOCUMENT ME!
      */
     public void setCopyright(String copyright)
@@ -213,7 +213,7 @@ public class Version
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Date getReleaseDate()
@@ -225,7 +225,7 @@ public class Version
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param releaseDate DOCUMENT ME!
      */
     public void setReleaseDate(Date releaseDate)
@@ -237,7 +237,7 @@ public class Version
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getReleaseDateFormated()
@@ -251,7 +251,7 @@ public class Version
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String toString()

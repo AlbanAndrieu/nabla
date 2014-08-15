@@ -35,11 +35,10 @@ package com.nabla.project.application.api.transformer;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  *
  * @param <ObjectContainer> DOCUMENT ME!
  * @param <Object> DOCUMENT ME!
  */
@@ -48,9 +47,8 @@ public interface TransformerDataInterface<ObjectContainer, Object>
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param object DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public ObjectContainer transform(Object object);

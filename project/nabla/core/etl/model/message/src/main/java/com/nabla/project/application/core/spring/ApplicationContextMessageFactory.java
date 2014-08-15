@@ -16,9 +16,11 @@ public class ApplicationContextMessageFactory extends AbstractApplicationContext
     /**
      * The configuration file for the service application context
      */
-    private final static String[]                         springXmlJaxbConfiguration         = { SPRING_PACKAGE + "ExtractServiceConfig.xml", SPRING_PACKAGE + "ExtractServiceParametersConfig.xml", };
+    private final static String[]                         springXmlJaxbConfiguration         =
+                                                                                             { SPRING_PACKAGE + "ExtractServiceConfig.xml", SPRING_PACKAGE + "ExtractServiceParametersConfig.xml", };
     public final static String[]                          springXmlDefaultConfiguration      = springXmlJaxbConfiguration;
-    private final static String[]                         springXmlTestsDefaultConfiguration = { SPRING_PACKAGE + "ExtractServiceConfig.xml", SPRING_PACKAGE + "ExtractServiceParametersConfig.xml",
+    private final static String[]                         springXmlTestsDefaultConfiguration =
+                                                                                             { SPRING_PACKAGE + "ExtractServiceConfig.xml", SPRING_PACKAGE + "ExtractServiceParametersConfig.xml",
             SPRING_PACKAGE + "XmlComparisonConfig.xml",                                     };
     public static String[]                                springXmlConfiguration             = springXmlDefaultConfiguration;
     public static String[]                                springXmlConfigurationTest         = springXmlTestsDefaultConfiguration;
@@ -35,8 +37,8 @@ public class ApplicationContextMessageFactory extends AbstractApplicationContext
     private final static ApplicationContextMessageFactory applicationContextFactory          = new ApplicationContextMessageFactory();
 
     /**
-             * Singleton
-             */
+     * Singleton
+     */
     private ApplicationContextMessageFactory()
     {
         super();
@@ -54,7 +56,6 @@ public class ApplicationContextMessageFactory extends AbstractApplicationContext
     // The service bean factory instance
     // private ApplicationContext applicationContext = null;
     /**
-     * 
      * @return ApplicationContext
      */
     public synchronized ApplicationContext getApplicationContext()

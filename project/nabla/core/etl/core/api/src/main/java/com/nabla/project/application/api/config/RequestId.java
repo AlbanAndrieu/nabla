@@ -39,11 +39,11 @@ import java.io.Serializable;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public class RequestId implements Serializable, RequestIdMBean
 {
 
@@ -63,7 +63,7 @@ public class RequestId implements Serializable, RequestIdMBean
 
     /**
      * Creates a new RequestId object.
-     *
+     * 
      * @param id DOCUMENT ME!
      */
     public RequestId(String id)
@@ -82,7 +82,7 @@ public class RequestId implements Serializable, RequestIdMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getId()
@@ -94,7 +94,7 @@ public class RequestId implements Serializable, RequestIdMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param id DOCUMENT ME!
      */
     public void setId(String id)
@@ -106,9 +106,8 @@ public class RequestId implements Serializable, RequestIdMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param other DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public boolean equals(Object other)
@@ -120,7 +119,7 @@ public class RequestId implements Serializable, RequestIdMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String toString()

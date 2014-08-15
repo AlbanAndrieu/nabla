@@ -44,11 +44,11 @@ import java.lang.reflect.Method;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public class ServiceRunner implements Runnable
 {
 
@@ -57,7 +57,7 @@ public class ServiceRunner implements Runnable
 
     /**
      * Creates a new ServiceRunner object.
-     *
+     * 
      * @param invocation DOCUMENT ME!
      * @param service DOCUMENT ME!
      */
@@ -80,8 +80,7 @@ public class ServiceRunner implements Runnable
 
             invocation.getMethod().invoke(service, invocation.getArguments());
 
-        }
-        catch (Throwable t)
+        } catch (Throwable t)
         {
 
             throw new RuntimeException("Exception during service execution", t);
@@ -92,9 +91,8 @@ public class ServiceRunner implements Runnable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param args DOCUMENT ME!
-     *
      * @throws Exception DOCUMENT ME!
      * @throws RuntimeException DOCUMENT ME!
      */
@@ -114,7 +112,8 @@ public class ServiceRunner implements Runnable
         String configFileName = args[0];
         String beanName = args[1];
         String methodName = args[2];
-        ApplicationContext context = new ClassPathXmlApplicationContext(new String[] { configFileName });
+        ApplicationContext context = new ClassPathXmlApplicationContext(new String[]
+        { configFileName });
         Object service = context.getBean(beanName);
         Method serviceMethod = null;
         Method methods[] = service.getClass().getMethods();

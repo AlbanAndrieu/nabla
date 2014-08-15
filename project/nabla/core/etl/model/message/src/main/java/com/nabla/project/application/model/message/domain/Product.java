@@ -100,7 +100,6 @@ public class Product
     } // end setShortName()
 
     /**
-     * 
      * @return the valuationCurrency
      */
     public String getValuationCurrency()
@@ -109,7 +108,6 @@ public class Product
     } // end getValuationCurrency()
 
     /**
-     * 
      * @param valuationCurrency the valuationCurrency to set
      */
     public void setValuationCurrency(final String valuationCurrency)
@@ -118,7 +116,6 @@ public class Product
     } // end setValuationCurrency()
 
     /**
-     * 
      * @return the nominalAmount
      */
     public BigDecimal getNominalAmount()
@@ -127,7 +124,6 @@ public class Product
     } // end getNominalAmount()
 
     /**
-     * 
      * @param nominalAmount the nominalAmount to set
      */
     public void setNominalAmount(final BigDecimal nominalAmount)
@@ -136,7 +132,6 @@ public class Product
     } // end setNominalAmount()
 
     /**
-     * 
      * @return the name
      */
     public String getName()
@@ -145,7 +140,6 @@ public class Product
     } // end getName()
 
     /**
-     * 
      * @param name the name to set
      */
     public void setName(final String name)

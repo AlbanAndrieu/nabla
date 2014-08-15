@@ -65,7 +65,6 @@ public class Trade
     } // end toString()
 
     /**
-     * 
      * @return the id
      */
     public String getId()
@@ -74,7 +73,6 @@ public class Trade
     } // end getId()
 
     /**
-     * 
      * @param id the id to set
      */
     public void setId(final String id)
@@ -83,7 +81,6 @@ public class Trade
     } // end setId()
 
     /**
-     * 
      * @return the applicationFront
      */
     public String getApplicationFront()
@@ -92,7 +89,6 @@ public class Trade
     } // end getApplicationFront()
 
     /**
-     * 
      * @param applicationFront the applicationFront to set
      */
     public void setApplicationFront(final String applicationFront)
@@ -101,7 +97,6 @@ public class Trade
     } // end setApplicationFront()
 
     /**
-     * 
      * @return the idFront
      */
     public String getIdFront()
@@ -110,7 +105,6 @@ public class Trade
     } // end getIdFront()
 
     /**
-     * 
      * @param idFront the idFront to set
      */
     public void setIdFront(final String idFront)
@@ -119,7 +113,6 @@ public class Trade
     } // end setIdFront()
 
     /**
-     * 
      * @return the idVersion
      */
     public String getIdVersion()
@@ -128,7 +121,6 @@ public class Trade
     } // end getIdVersion()
 
     /**
-     * 
      * @param idVersion the idVersion to set
      */
     public void setIdVersion(final String idVersion)
@@ -137,7 +129,6 @@ public class Trade
     } // end setIdVersion()
 
     /**
-     * 
      * @return the price
      */
     public BigDecimal getPrice()
@@ -146,7 +137,6 @@ public class Trade
     } // end getPrice()
 
     /**
-     * 
      * @param price the price to set
      */
     public void setPrice(final BigDecimal price)
@@ -155,7 +145,6 @@ public class Trade
     } // end setPrice()
 
     /**
-     * 
      * @return the quantity
      */
     public BigDecimal getQuantity()
@@ -164,7 +153,6 @@ public class Trade
     } // end getQuantity()
 
     /**
-     * 
      * @param quantity the quantity to set
      */
     public void setQuantity(final BigDecimal quantity)
@@ -173,7 +161,6 @@ public class Trade
     } // end setQuantity()
 
     /**
-     * 
      * @return the saisieFrontDate
      */
     public Date getSaisieFrontDate()
@@ -182,7 +169,6 @@ public class Trade
     } // end getSaisieFrontDate()
 
     /**
-     * 
      * @param saisieFrontDate the saisieFrontDate to set
      */
     public void setSaisieFrontDate(final Date saisieFrontDate)
@@ -191,7 +177,6 @@ public class Trade
     } // end setSaisieFrontDate()
 
     /**
-     * 
      * @return the systemDate
      */
     public Date getSystemDate()
@@ -200,7 +185,6 @@ public class Trade
     } // end getSystemDate()
 
     /**
-     * 
      * @param systemDate the systemDate to set
      */
     public void setSystemDate(final Date systemDate)
@@ -209,7 +193,6 @@ public class Trade
     } // end setSystemDate()
 
     /**
-     * 
      * @return the tradeDate
      */
     public Date getTradeDate()
@@ -218,7 +201,6 @@ public class Trade
     } // end getTradeDate()
 
     /**
-     * 
      * @param tradeDate the tradeDate to set
      */
     public void setTradeDate(final Date tradeDate)
@@ -227,7 +209,6 @@ public class Trade
     } // end setTradeDate()
 
     /**
-     * 
      * @return the tradeDirection
      */
     public TradeDirection getTradeDirection()
@@ -236,7 +217,6 @@ public class Trade
     } // end getTradeDirection()
 
     /**
-     * 
      * @param tradeDirection the tradeDirection to set
      */
     public void setTradeDirection(final TradeDirection tradeDirection)
@@ -245,7 +225,6 @@ public class Trade
     } // end setTradeDirection()
 
     /**
-     * 
      * @return the valueDate
      */
     public Date getValueDate()
@@ -254,7 +233,6 @@ public class Trade
     } // end getValueDate()
 
     /**
-     * 
      * @param valueDate the valueDate to set
      */
     public void setValueDate(final Date valueDate)

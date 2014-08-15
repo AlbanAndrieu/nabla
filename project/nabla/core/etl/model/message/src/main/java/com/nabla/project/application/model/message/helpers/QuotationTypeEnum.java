@@ -19,11 +19,11 @@ public enum QuotationTypeEnum
     private final String xmlValue;
 
     /**
-         * Creates a new QuotationTypeEnum object.
-         *
-         * @param dbV DOCUMENT ME!
-         * @param xmlV DOCUMENT ME!
-         */
+     * Creates a new QuotationTypeEnum object.
+     * 
+     * @param dbV DOCUMENT ME!
+     * @param xmlV DOCUMENT ME!
+     */
     QuotationTypeEnum(String dbV, String xmlV)
     {
         databaseValue = dbV;

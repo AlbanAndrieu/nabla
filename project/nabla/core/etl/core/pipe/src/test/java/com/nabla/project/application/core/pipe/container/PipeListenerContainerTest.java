@@ -44,11 +44,11 @@ import junit.framework.TestCase;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public class PipeListenerContainerTest extends TestCase
 {
 
@@ -70,8 +70,7 @@ public class PipeListenerContainerTest extends TestCase
 
             PipeBlockingQueueService.destroyQueue(this.pipeName, this.requestId);
 
-        }
-        catch (Throwable ex)
+        } catch (Throwable ex)
         {
 
         }
@@ -90,7 +89,7 @@ public class PipeListenerContainerTest extends TestCase
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @throws Exception DOCUMENT ME!
      */
     public void testPipeContainerCounterEmpty() throws Exception
@@ -112,7 +111,7 @@ public class PipeListenerContainerTest extends TestCase
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @throws Exception DOCUMENT ME!
      */
     public void testPipeContainerCounter() throws Exception

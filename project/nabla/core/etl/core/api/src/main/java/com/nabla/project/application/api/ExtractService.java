@@ -41,17 +41,17 @@ import com.nabla.project.application.api.config.RequestId;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public interface ExtractService
 {
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param perimeter DOCUMENT ME!
      * @param id DOCUMENT ME!
      * @param destination DOCUMENT ME!
@@ -63,59 +63,54 @@ public interface ExtractService
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param status DOCUMENT ME!
      */
     public void recoverRequest(RequestStatus status);
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param p DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public boolean supportsPerimeter(Perimeter p);
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param outputDestination DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public boolean supportsOutputDestination(Destination outputDestination);
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param statusDestination DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public boolean supportsStatusDestination(Destination statusDestination);
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param f DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public boolean supportsFormat(Format f);
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param p DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public boolean supportsPackaging(Packaging p);
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getExtractServiceId();

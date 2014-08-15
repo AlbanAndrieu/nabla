@@ -44,11 +44,11 @@ import java.util.List;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public abstract class ExtractServiceCommon implements ExtractService
 {
 
@@ -63,7 +63,7 @@ public abstract class ExtractServiceCommon implements ExtractService
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public RequestId getRequestId()
@@ -75,7 +75,7 @@ public abstract class ExtractServiceCommon implements ExtractService
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param requestId DOCUMENT ME!
      */
     public void setRequestId(RequestId requestId)
@@ -87,7 +87,7 @@ public abstract class ExtractServiceCommon implements ExtractService
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public List<ExtractorThreadInterface<Object>> getExtractors()
@@ -99,7 +99,7 @@ public abstract class ExtractServiceCommon implements ExtractService
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param extractors DOCUMENT ME!
      */
     public void setExtractors(List<ExtractorThreadInterface<Object>> extractors)
@@ -111,7 +111,7 @@ public abstract class ExtractServiceCommon implements ExtractService
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public boolean isUsingWriterThread()
@@ -123,7 +123,7 @@ public abstract class ExtractServiceCommon implements ExtractService
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param isUsingWriterThread DOCUMENT ME!
      */
     public void setUsingWriterThread(boolean isUsingWriterThread)
@@ -135,7 +135,7 @@ public abstract class ExtractServiceCommon implements ExtractService
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public List<TransformerThreadInterface<Object, Object>> getTransformers()
@@ -147,7 +147,7 @@ public abstract class ExtractServiceCommon implements ExtractService
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param transformers DOCUMENT ME!
      */
     public void setTransformers(List<TransformerThreadInterface<Object, Object>> transformers)
@@ -159,7 +159,7 @@ public abstract class ExtractServiceCommon implements ExtractService
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public List<WriterThreadInterface<Object>> getWriters()
@@ -171,7 +171,7 @@ public abstract class ExtractServiceCommon implements ExtractService
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param writers DOCUMENT ME!
      */
     public void setWriters(List<WriterThreadInterface<Object>> writers)

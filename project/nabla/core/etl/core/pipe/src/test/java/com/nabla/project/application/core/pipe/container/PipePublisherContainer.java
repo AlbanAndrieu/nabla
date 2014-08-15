@@ -43,11 +43,10 @@ import com.nabla.project.application.core.spring.PipeConfig;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  *
  * @param <X> DOCUMENT ME!
  */
 public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean
@@ -59,7 +58,7 @@ public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean
 
     /**
      * Creates a new PipePublisherContainer object.
-     *
+     * 
      * @param name DOCUMENT ME!
      * @param requestId DOCUMENT ME!
      */
@@ -75,7 +74,7 @@ public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getName()
@@ -87,7 +86,7 @@ public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param name DOCUMENT ME!
      */
     public void setName(String name)
@@ -99,7 +98,7 @@ public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public RequestId getRequestId()
@@ -111,7 +110,7 @@ public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param requestId DOCUMENT ME!
      */
     public void setRequestId(RequestId requestId)
@@ -123,7 +122,7 @@ public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public PipePublisher<X> getPipePublisher()
@@ -135,7 +134,7 @@ public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param pipePublisher DOCUMENT ME!
      */
     public void setPipePublisher(PipePublisher<X> pipePublisher)
@@ -147,7 +146,7 @@ public class PipePublisherContainer<X> implements Pipe<X>, PipeQueueMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String toString()

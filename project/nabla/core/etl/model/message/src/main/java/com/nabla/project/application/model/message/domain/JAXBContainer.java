@@ -1,9 +1,9 @@
 package com.nabla.project.application.model.message.domain;
 
+import javax.xml.bind.JAXBElement;
+
 import com.nabla.project.application.model.xml.XMLInventoryTradeMessage;
 import com.nabla.project.application.model.xml.XMLProduct;
-
-import javax.xml.bind.JAXBElement;
 
 /**
  * Author : $author$ Date : $Date: 2010-06-14 12:02:51 +0200 (Thu, 14 Jun 2010) $ Revision : $revision$
@@ -15,7 +15,7 @@ public class JAXBContainer
 
     public JAXBElement<XMLProduct> getProduct()
     {
-        return product;
+        return this.product;
     } // end getProduct()
 
     public void setProduct(final JAXBElement<XMLProduct> product)
@@ -25,7 +25,7 @@ public class JAXBContainer
 
     public JAXBElement<XMLInventoryTradeMessage> getTrade()
     {
-        return trade;
+        return this.trade;
     } // end getTrade()
 
     public void setTrade(final JAXBElement<XMLInventoryTradeMessage> trade)
@@ -33,11 +33,12 @@ public class JAXBContainer
         this.trade = trade;
     } // end setTrade()
 
+    @Override
     public String toString()
     {
-        StringBuffer str = new StringBuffer();
-        str.append("trade=").append(trade);
-        str.append(",product=").append(product);
+        final StringBuffer str = new StringBuffer();
+        str.append("trade=").append(this.trade);
+        str.append(",product=").append(this.product);
 
         return str.toString();
     } // end toString()

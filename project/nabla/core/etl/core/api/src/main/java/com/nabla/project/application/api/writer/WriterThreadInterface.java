@@ -43,11 +43,10 @@ import org.springframework.beans.factory.InitializingBean;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  *
  * @param <X> DOCUMENT ME!
  */
 public interface WriterThreadInterface<X> extends Runnable, InitializingBean
@@ -55,91 +54,91 @@ public interface WriterThreadInterface<X> extends Runnable, InitializingBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Object getId();
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param id DOCUMENT ME!
      */
     public void setId(Object id);
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public RequestId getRequestId();
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param requestId DOCUMENT ME!
      */
     public void setRequestId(RequestId requestId);
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getName();
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param name DOCUMENT ME!
      */
     public void setName(String name);
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Pipe<X> getPipeIn();
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param pipeIn DOCUMENT ME!
      */
     public void setPipeIn(Pipe<X> pipeIn);
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public PipePublisher<Throwable> getPipeException();
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param pipeException DOCUMENT ME!
      */
     public void setPipeException(PipePublisher<Throwable> pipeException);
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public WriterDataInterface getWriterData();
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param writerData DOCUMENT ME!
      */
     public void setWriterData(WriterDataInterface writerData);
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param output DOCUMENT ME!
      * @param packaging DOCUMENT ME!
      */
@@ -147,7 +146,7 @@ public interface WriterThreadInterface<X> extends Runnable, InitializingBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param data DOCUMENT ME!
      */
     public void write(Object data);

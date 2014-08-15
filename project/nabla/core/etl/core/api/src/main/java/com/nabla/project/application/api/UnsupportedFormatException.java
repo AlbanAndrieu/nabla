@@ -37,11 +37,11 @@ import com.nabla.project.application.api.config.Format;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public class UnsupportedFormatException extends UnsupportedOperationException
 {
 
@@ -50,7 +50,7 @@ public class UnsupportedFormatException extends UnsupportedOperationException
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Format getUnsupportedFormat()
@@ -62,7 +62,7 @@ public class UnsupportedFormatException extends UnsupportedOperationException
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param unsupportedFormat DOCUMENT ME!
      */
     public void setUnsupportedFormat(Format unsupportedFormat)

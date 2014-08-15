@@ -34,7 +34,6 @@ public class Party
     private PartyType type;
 
     /**
-     * 
      * @return the id
      */
     public String getId()
@@ -43,7 +42,6 @@ public class Party
     } // end getId()
 
     /**
-     * 
      * @param id the id to set
      */
     public void setId(final String id)
@@ -52,7 +50,6 @@ public class Party
     } // end setId()
 
     /**
-     * 
      * @return the idVersion
      */
     public String getIdVersion()
@@ -61,7 +58,6 @@ public class Party
     } // end getIdVersion()
 
     /**
-     * 
      * @param idVersion the idVersion to set
      */
     public void setIdVersion(final String idVersion)
@@ -70,7 +66,6 @@ public class Party
     } // end setIdVersion()
 
     /**
-     * 
      * @return the name
      */
     public String getName()
@@ -79,7 +74,6 @@ public class Party
     } // end getName()
 
     /**
-     * 
      * @param name the name to set
      */
     public void setName(final String name)
@@ -88,7 +82,6 @@ public class Party
     } // end setName()
 
     /**
-     * 
      * @return the shortName
      */
     public String getShortName()
@@ -97,7 +90,6 @@ public class Party
     } // end getShortName()
 
     /**
-     * 
      * @param shortName the shortName to set
      */
     public void setShortName(final String shortName)
@@ -106,7 +98,6 @@ public class Party
     } // end setShortName()
 
     /**
-     * 
      * @return the type
      */
     public PartyType getType()
@@ -115,7 +106,6 @@ public class Party
     } // end getType()
 
     /**
-     * 
      * @param type the type to set
      */
     public void setType(final PartyType type)

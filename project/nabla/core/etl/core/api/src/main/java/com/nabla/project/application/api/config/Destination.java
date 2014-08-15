@@ -39,35 +39,33 @@ import java.io.Serializable;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public interface Destination extends Serializable
 {
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param packaging DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
-     *
      * @throws IOException DOCUMENT ME!
      */
     public OutputStream getOutputStream(Packaging packaging) throws IOException;
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getUrl();
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param aUrl DOCUMENT ME!
      */
     public void setUrl(String aUrl);

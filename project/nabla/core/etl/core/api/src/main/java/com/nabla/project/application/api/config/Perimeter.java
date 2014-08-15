@@ -43,11 +43,11 @@ import org.apache.log4j.Logger;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public abstract class Perimeter implements Serializable
 {
 
@@ -62,7 +62,7 @@ public abstract class Perimeter implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Perimeter getSubPerimeter()
@@ -74,7 +74,7 @@ public abstract class Perimeter implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param subPerimeter DOCUMENT ME!
      */
     public void setSubPerimeter(final Perimeter subPerimeter)
@@ -86,7 +86,7 @@ public abstract class Perimeter implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Set<Condition> getConditions()
@@ -98,7 +98,7 @@ public abstract class Perimeter implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param conditions DOCUMENT ME!
      */
     public void setConditions(final Set<Condition> conditions)
@@ -110,7 +110,7 @@ public abstract class Perimeter implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param condition DOCUMENT ME!
      */
     public void addCondition(final Condition condition)
@@ -122,7 +122,7 @@ public abstract class Perimeter implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param condition DOCUMENT ME!
      */
     public void removeCondition(final Condition condition)
@@ -134,7 +134,7 @@ public abstract class Perimeter implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Map<String, String> getQueryParts()
@@ -146,7 +146,7 @@ public abstract class Perimeter implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param queryParts DOCUMENT ME!
      */
     public void setQueryParts(final Map<String, String> queryParts)
@@ -158,7 +158,7 @@ public abstract class Perimeter implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getSqlQueryById()
@@ -170,7 +170,7 @@ public abstract class Perimeter implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param sqlQueryById DOCUMENT ME!
      */
     public void setSqlQueryById(final String sqlQueryById)
@@ -182,7 +182,7 @@ public abstract class Perimeter implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Set<String> getIdList()
@@ -194,7 +194,7 @@ public abstract class Perimeter implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param idList DOCUMENT ME!
      */
     public void setIdList(final Set<String> idList)
@@ -206,7 +206,7 @@ public abstract class Perimeter implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param id DOCUMENT ME!
      */
     public void addId(final String id)
@@ -223,14 +223,14 @@ public abstract class Perimeter implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public abstract String generateSqlQuery();
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public abstract String generateSqlQueryByIds();

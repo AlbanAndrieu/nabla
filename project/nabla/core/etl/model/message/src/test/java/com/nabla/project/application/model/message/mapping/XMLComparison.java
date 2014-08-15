@@ -39,7 +39,6 @@ public class XMLComparison implements InitializingBean
     } // end setId()
 
     /**
-     * 
      * @return the fileXMLControlName
      */
     public FileDestinationHelper getFileXMLControlName()
@@ -48,7 +47,6 @@ public class XMLComparison implements InitializingBean
     } // end getFileXMLControlName()
 
     /**
-     * 
      * @param fileXMLControlName the fileXMLControlName to set
      */
     public void setFileXMLControlName(final FileDestinationHelper fileXMLControlName)
@@ -57,7 +55,6 @@ public class XMLComparison implements InitializingBean
     } // end setFileXMLControlName()
 
     /**
-     * 
      * @return the fileXMLTestName
      */
     public FileDestinationHelper getFileXMLTestName()
@@ -66,7 +63,6 @@ public class XMLComparison implements InitializingBean
     } // end getFileXMLTestName()
 
     /**
-     * 
      * @param fileXMLTestName the fileXMLTestName to set
      */
     public void setFileXMLTestName(final FileDestinationHelper fileXMLTestName)

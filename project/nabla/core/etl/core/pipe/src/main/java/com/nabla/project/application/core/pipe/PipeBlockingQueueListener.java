@@ -40,11 +40,10 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  *
  * @param <T> DOCUMENT ME!
  */
 public abstract class PipeBlockingQueueListener<T> implements PipeListener<T>
@@ -52,7 +51,7 @@ public abstract class PipeBlockingQueueListener<T> implements PipeListener<T>
 
     /**
      * Creates a new PipeBlockingQueueListener object.
-     *
+     * 
      * @param name DOCUMENT ME!
      * @param requestId DOCUMENT ME!
      */
@@ -79,7 +78,7 @@ public abstract class PipeBlockingQueueListener<T> implements PipeListener<T>
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param t DOCUMENT ME!
      */
     public abstract void onMessage(T t);

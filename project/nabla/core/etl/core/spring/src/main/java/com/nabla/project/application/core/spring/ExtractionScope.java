@@ -50,11 +50,11 @@ import javax.management.ObjectName;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public class ExtractionScope implements Scope
 {
 
@@ -81,10 +81,9 @@ public class ExtractionScope implements Scope
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param beanName DOCUMENT ME!
      * @param objectFactory DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public Object get(String beanName, ObjectFactory objectFactory)
@@ -140,8 +139,7 @@ public class ExtractionScope implements Scope
                     logger.debug("JMX registration done for " + name);
                 }
 
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
 
                 logger.warn(ex);
@@ -156,7 +154,7 @@ public class ExtractionScope implements Scope
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getConversationId()
@@ -168,7 +166,7 @@ public class ExtractionScope implements Scope
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param beanName DOCUMENT ME!
      * @param arg1 DOCUMENT ME!
      */
@@ -184,9 +182,8 @@ public class ExtractionScope implements Scope
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param beanName DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public Object remove(String beanName)
@@ -222,8 +219,7 @@ public class ExtractionScope implements Scope
                 logger.debug("JMX registration done for " + name);
             }
 
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
 
             logger.warn(ex);

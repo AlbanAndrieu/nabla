@@ -105,7 +105,6 @@ public class FileDestination implements Destination
     } // end close()
 
     /**
-     * 
      * @return the path
      */
     public String getPath()
@@ -114,7 +113,6 @@ public class FileDestination implements Destination
     } // end getPath()
 
     /**
-     * 
      * @param path the path to set
      */
     public void setPath(final String path)

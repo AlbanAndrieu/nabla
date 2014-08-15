@@ -37,7 +37,6 @@ public class XMLProductSetMessageTransformer extends ModelTransformer
     } // end transform()
 
     /**
-     * 
      * @return the partyTransformer
      */
     public ModelTransformer getPartyTransformer()
@@ -46,7 +45,6 @@ public class XMLProductSetMessageTransformer extends ModelTransformer
     } // end getPartyTransformer()
 
     /**
-     * 
      * @param partyTransformer the partyTransformer to set
      */
     public void setPartyTransformer(final ModelTransformer partyTransformer)
@@ -55,7 +53,6 @@ public class XMLProductSetMessageTransformer extends ModelTransformer
     } // end setPartyTransformer()
 
     /**
-     * 
      * @return the productTransformer
      */
     public ModelTransformer getProductTransformer()
@@ -64,7 +61,6 @@ public class XMLProductSetMessageTransformer extends ModelTransformer
     } // end getProductTransformer()
 
     /**
-     * 
      * @param productTransformer the productTransformer to set
      */
     public void setProductTransformer(final ModelTransformer productTransformer)

@@ -37,59 +37,59 @@ import java.util.Date;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author$
  * @version $Revision$
  * @since $Date$
-  */
+ */
 public interface VersionMBean
 {
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public int getVersionMajor();
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public int getVersionMinor();
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public int getReleaseMajor();
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public int getReleaseMinor();
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getVersionId();
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getCopyright();
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Date getReleaseDate();

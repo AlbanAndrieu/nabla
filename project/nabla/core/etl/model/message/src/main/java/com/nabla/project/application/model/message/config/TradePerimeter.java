@@ -18,7 +18,6 @@ public class TradePerimeter extends Perimeter
     private String            dateFormat       = null;
 
     /**
-     * 
      * @return the dateFormat
      */
     public String getDateFormat()
@@ -27,7 +26,6 @@ public class TradePerimeter extends Perimeter
     } // end getDateFormat()
 
     /**
-     * 
      * @param dateFormat the dateFormat to set
      */
     public void setDateFormat(final String dateFormat)

@@ -59,7 +59,6 @@ public class XMLTradeEventMessageTransformer extends ModelTransformer
      * }
      */
     /**
-     * 
      * @return the partyTransformer
      */
     public ModelTransformer getPartyTransformer()
@@ -68,7 +67,6 @@ public class XMLTradeEventMessageTransformer extends ModelTransformer
     } // end getPartyTransformer()
 
     /**
-     * 
      * @param partyTransformer the partyTransformer to set
      */
     public void setPartyTransformer(final ModelTransformer partyTransformer)
@@ -77,7 +75,6 @@ public class XMLTradeEventMessageTransformer extends ModelTransformer
     } // end setPartyTransformer()
 
     /**
-     * 
      * @return the tradeTransformer
      */
     public ModelTransformer getTradeTransformer()
@@ -86,7 +83,6 @@ public class XMLTradeEventMessageTransformer extends ModelTransformer
     } // end getTradeTransformer()
 
     /**
-     * 
      * @param tradeTransformer the tradeTransformer to set
      */
     public void setTradeTransformer(final ModelTransformer tradeTransformer)

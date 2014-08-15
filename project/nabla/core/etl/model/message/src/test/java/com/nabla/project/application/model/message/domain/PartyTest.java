@@ -1,9 +1,9 @@
 package com.nabla.project.application.model.message.domain;
 
+import junit.framework.TestCase;
+
 import com.nabla.project.application.core.log.Log;
 import com.nabla.project.application.model.message.domain.Party.PartyType;
-
-import junit.framework.TestCase;
 
 /**
  * Author : $author$ Date : $Date: 2010-06-20 17:01:12 +0200 (Wed, 20 Jun 2010) $ Revision : $revision$ Test below are launched via class
@@ -11,6 +11,7 @@ import junit.framework.TestCase;
  */
 public class PartyTest extends TestCase
 {
+    @Override
     public void setUp()
     {
         Log.init();
@@ -22,8 +23,8 @@ public class PartyTest extends TestCase
 
     public static Party getPortfolioParty0()
     {
-        Party portfolioParty = new Party();
-        portfolioParty.setId(idPortfolio0);
+        final Party portfolioParty = new Party();
+        portfolioParty.setId(PartyTest.idPortfolio0);
         portfolioParty.setType(PartyType.PORTFOLIO);
 
         return portfolioParty;
@@ -31,8 +32,8 @@ public class PartyTest extends TestCase
 
     public static Party getCounterParty0()
     {
-        Party counterParty = new Party();
-        counterParty.setId(idCounterParty0);
+        final Party counterParty = new Party();
+        counterParty.setId(PartyTest.idCounterParty0);
         counterParty.setType(PartyType.EXTERNAL);
 
         return counterParty;
@@ -40,8 +41,8 @@ public class PartyTest extends TestCase
 
     public static Party getIssuerParty0()
     {
-        Party issuerParty = new Party();
-        issuerParty.setId(idIssuerParty0);
+        final Party issuerParty = new Party();
+        issuerParty.setId(PartyTest.idIssuerParty0);
         issuerParty.setType(PartyType.EXTERNAL);
 
         return issuerParty;
@@ -49,43 +50,43 @@ public class PartyTest extends TestCase
 
     public static void testPortfolioParty1(final Party portfolioParty)
     {
-        assertNotNull(portfolioParty);
-        assertEquals(idPortfolio0, portfolioParty.getId());
+        TestCase.assertNotNull(portfolioParty);
+        TestCase.assertEquals(PartyTest.idPortfolio0, portfolioParty.getId());
     } // end testPortfolioParty1()
 
     public void testPortfolioParty0()
     {
-        testPortfolioParty1(getPortfolioParty0());
+        PartyTest.testPortfolioParty1(PartyTest.getPortfolioParty0());
     } // end testPortfolioParty0()
 
     public static void testCounterParty0(final Party counterParty)
     {
-        assertNotNull(counterParty);
-        assertEquals(idCounterParty0, counterParty.getId());
+        TestCase.assertNotNull(counterParty);
+        TestCase.assertEquals(PartyTest.idCounterParty0, counterParty.getId());
     } // end testCounterParty0()
 
     public void testCounterParty1()
     {
-        testCounterParty0(getCounterParty0());
+        PartyTest.testCounterParty0(PartyTest.getCounterParty0());
     } // end testCounterParty1()
 
     public static void testIssuerParty0(final Party issuerParty)
     {
-        assertNotNull(issuerParty);
-        assertEquals(idIssuerParty0, issuerParty.getId());
+        TestCase.assertNotNull(issuerParty);
+        TestCase.assertEquals(PartyTest.idIssuerParty0, issuerParty.getId());
     } // end testIssuerParty0()
 
     public void testPIssuerParty0()
     {
-        testIssuerParty0(getIssuerParty0());
+        PartyTest.testIssuerParty0(PartyTest.getIssuerParty0());
     } // end testPIssuerParty0()
 
     public static String idParty0 = "idParty";
 
     public static Party getParty0()
     {
-        Party party = new Party();
-        party.setId(idParty0);
+        final Party party = new Party();
+        party.setId(PartyTest.idParty0);
         party.setType(PartyType.EXTERNAL);
 
         return party;
@@ -93,13 +94,13 @@ public class PartyTest extends TestCase
 
     public static void testParty0(final Party party)
     {
-        assertNotNull(party);
-        assertEquals(idParty0, party.getId());
+        TestCase.assertNotNull(party);
+        TestCase.assertEquals(PartyTest.idParty0, party.getId());
     } // end testParty0()
 
     public void testParty0()
     {
-        testParty0(getParty0());
+        PartyTest.testParty0(PartyTest.getParty0());
     } // end testParty0()
 
     public static String    id1        = "1";
@@ -110,29 +111,29 @@ public class PartyTest extends TestCase
 
     public static Party getParty1()
     {
-        Party party = new Party();
-        party.setId(id1);
-        party.setIdVersion(idVersion1);
-        party.setName(name1);
-        party.setShortName(shortName1);
-        party.setType(type1);
+        final Party party = new Party();
+        party.setId(PartyTest.id1);
+        party.setIdVersion(PartyTest.idVersion1);
+        party.setName(PartyTest.name1);
+        party.setShortName(PartyTest.shortName1);
+        party.setType(PartyTest.type1);
 
         return party;
     } // end getParty1()
 
     public static void testParty1(final Party party)
     {
-        assertNotNull(party);
-        assertEquals(id1, party.getId());
-        assertEquals(idVersion1, party.getIdVersion());
-        assertEquals(name1, party.getName());
-        assertEquals(shortName1, party.getShortName());
-        assertEquals(type1, party.getType());
+        TestCase.assertNotNull(party);
+        TestCase.assertEquals(PartyTest.id1, party.getId());
+        TestCase.assertEquals(PartyTest.idVersion1, party.getIdVersion());
+        TestCase.assertEquals(PartyTest.name1, party.getName());
+        TestCase.assertEquals(PartyTest.shortName1, party.getShortName());
+        TestCase.assertEquals(PartyTest.type1, party.getType());
     } // end testParty1()
 
     public void testParty1()
     {
-        testParty1(getParty1());
+        PartyTest.testParty1(PartyTest.getParty1());
     } // end testParty1()
 
     public static String    id2        = "2";
@@ -143,29 +144,29 @@ public class PartyTest extends TestCase
 
     public static Party getParty2()
     {
-        Party party = new Party();
-        party.setId(id2);
-        party.setIdVersion(idVersion2);
-        party.setName(name2);
-        party.setShortName(shortName2);
-        party.setType(type2);
+        final Party party = new Party();
+        party.setId(PartyTest.id2);
+        party.setIdVersion(PartyTest.idVersion2);
+        party.setName(PartyTest.name2);
+        party.setShortName(PartyTest.shortName2);
+        party.setType(PartyTest.type2);
 
         return party;
     } // end getParty2()
 
     public static void testParty2(final Party party)
     {
-        assertNotNull(party);
-        assertEquals(id2, party.getId());
-        assertEquals(idVersion2, party.getIdVersion());
-        assertEquals(name2, party.getName());
-        assertEquals(shortName2, party.getShortName());
-        assertEquals(type2, party.getType());
+        TestCase.assertNotNull(party);
+        TestCase.assertEquals(PartyTest.id2, party.getId());
+        TestCase.assertEquals(PartyTest.idVersion2, party.getIdVersion());
+        TestCase.assertEquals(PartyTest.name2, party.getName());
+        TestCase.assertEquals(PartyTest.shortName2, party.getShortName());
+        TestCase.assertEquals(PartyTest.type2, party.getType());
     } // end testParty2()
 
     public void testParty2()
     {
-        testParty2(getParty2());
+        PartyTest.testParty2(PartyTest.getParty2());
     } // end testParty2()
 
     public static String    id3        = "3";
@@ -176,29 +177,29 @@ public class PartyTest extends TestCase
 
     public static Party getParty3()
     {
-        Party party = new Party();
-        party.setId(id3);
-        party.setIdVersion(idVersion3);
-        party.setName(name3);
-        party.setShortName(shortName3);
-        party.setType(type3);
+        final Party party = new Party();
+        party.setId(PartyTest.id3);
+        party.setIdVersion(PartyTest.idVersion3);
+        party.setName(PartyTest.name3);
+        party.setShortName(PartyTest.shortName3);
+        party.setType(PartyTest.type3);
 
         return party;
     } // end getParty3()
 
     public static void testParty3(final Party party)
     {
-        assertNotNull(party);
-        assertEquals(id3, party.getId());
-        assertEquals(idVersion3, party.getIdVersion());
-        assertEquals(name3, party.getName());
-        assertEquals(shortName3, party.getShortName());
-        assertEquals(type3, party.getType());
+        TestCase.assertNotNull(party);
+        TestCase.assertEquals(PartyTest.id3, party.getId());
+        TestCase.assertEquals(PartyTest.idVersion3, party.getIdVersion());
+        TestCase.assertEquals(PartyTest.name3, party.getName());
+        TestCase.assertEquals(PartyTest.shortName3, party.getShortName());
+        TestCase.assertEquals(PartyTest.type3, party.getType());
     } // end testParty3()
 
     public void testParty3()
     {
-        testParty3(getParty3());
+        PartyTest.testParty3(PartyTest.getParty3());
     } // end testParty3()
 
     public static String    id4        = "4";
@@ -209,29 +210,29 @@ public class PartyTest extends TestCase
 
     public static Party getParty4()
     {
-        Party party = new Party();
-        party.setId(id4);
-        party.setIdVersion(idVersion4);
-        party.setName(name4);
-        party.setShortName(shortName4);
-        party.setType(type4);
+        final Party party = new Party();
+        party.setId(PartyTest.id4);
+        party.setIdVersion(PartyTest.idVersion4);
+        party.setName(PartyTest.name4);
+        party.setShortName(PartyTest.shortName4);
+        party.setType(PartyTest.type4);
 
         return party;
     } // end getParty4()
 
     public static void testParty4(final Party party)
     {
-        assertNotNull(party);
-        assertEquals(id4, party.getId());
-        assertEquals(idVersion4, party.getIdVersion());
-        assertEquals(name4, party.getName());
-        assertEquals(shortName4, party.getShortName());
-        assertEquals(type4, party.getType());
+        TestCase.assertNotNull(party);
+        TestCase.assertEquals(PartyTest.id4, party.getId());
+        TestCase.assertEquals(PartyTest.idVersion4, party.getIdVersion());
+        TestCase.assertEquals(PartyTest.name4, party.getName());
+        TestCase.assertEquals(PartyTest.shortName4, party.getShortName());
+        TestCase.assertEquals(PartyTest.type4, party.getType());
     } // end testParty4()
 
     public void testParty4()
     {
-        testParty4(getParty4());
+        PartyTest.testParty4(PartyTest.getParty4());
     } // end testParty4()
 
     public static String    id5        = "5";
@@ -242,29 +243,29 @@ public class PartyTest extends TestCase
 
     public static Party getParty5()
     {
-        Party party = new Party();
-        party.setId(id5);
-        party.setIdVersion(idVersion5);
-        party.setName(name5);
-        party.setShortName(shortName5);
-        party.setType(type5);
+        final Party party = new Party();
+        party.setId(PartyTest.id5);
+        party.setIdVersion(PartyTest.idVersion5);
+        party.setName(PartyTest.name5);
+        party.setShortName(PartyTest.shortName5);
+        party.setType(PartyTest.type5);
 
         return party;
     } // end getParty5()
 
     public static void testParty5(final Party party)
     {
-        assertNotNull(party);
-        assertEquals(id5, party.getId());
-        assertEquals(idVersion5, party.getIdVersion());
-        assertEquals(name5, party.getName());
-        assertEquals(shortName5, party.getShortName());
-        assertEquals(type5, party.getType());
+        TestCase.assertNotNull(party);
+        TestCase.assertEquals(PartyTest.id5, party.getId());
+        TestCase.assertEquals(PartyTest.idVersion5, party.getIdVersion());
+        TestCase.assertEquals(PartyTest.name5, party.getName());
+        TestCase.assertEquals(PartyTest.shortName5, party.getShortName());
+        TestCase.assertEquals(PartyTest.type5, party.getType());
     } // end testParty5()
 
     public void testParty5()
     {
-        testParty5(getParty5());
+        PartyTest.testParty5(PartyTest.getParty5());
     } // end testParty5()
 
     public static String    id6        = "6";
@@ -275,28 +276,28 @@ public class PartyTest extends TestCase
 
     public static Party getParty6()
     {
-        Party party = new Party();
-        party.setId(id6);
-        party.setIdVersion(idVersion6);
-        party.setName(name6);
-        party.setShortName(shortName6);
-        party.setType(type6);
+        final Party party = new Party();
+        party.setId(PartyTest.id6);
+        party.setIdVersion(PartyTest.idVersion6);
+        party.setName(PartyTest.name6);
+        party.setShortName(PartyTest.shortName6);
+        party.setType(PartyTest.type6);
 
         return party;
     } // end getParty6()
 
     public static void testParty6(final Party party)
     {
-        assertNotNull(party);
-        assertEquals(id6, party.getId());
-        assertEquals(idVersion6, party.getIdVersion());
-        assertEquals(name6, party.getName());
-        assertEquals(shortName6, party.getShortName());
-        assertEquals(type6, party.getType());
+        TestCase.assertNotNull(party);
+        TestCase.assertEquals(PartyTest.id6, party.getId());
+        TestCase.assertEquals(PartyTest.idVersion6, party.getIdVersion());
+        TestCase.assertEquals(PartyTest.name6, party.getName());
+        TestCase.assertEquals(PartyTest.shortName6, party.getShortName());
+        TestCase.assertEquals(PartyTest.type6, party.getType());
     } // end testParty6()
 
     public void testParty6()
     {
-        testParty6(getParty6());
+        PartyTest.testParty6(PartyTest.getParty6());
     } // end testParty6()
 } // end PartyTest

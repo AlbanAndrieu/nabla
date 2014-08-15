@@ -43,11 +43,11 @@ import java.util.List;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public class PipeListenerContainer implements Runnable
 {
 
@@ -58,7 +58,7 @@ public class PipeListenerContainer implements Runnable
 
     /**
      * Creates a new PipeListenerContainer object.
-     *
+     * 
      * @param name DOCUMENT ME!
      * @param requestId DOCUMENT ME!
      */
@@ -72,7 +72,7 @@ public class PipeListenerContainer implements Runnable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getName()
@@ -84,7 +84,7 @@ public class PipeListenerContainer implements Runnable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param name DOCUMENT ME!
      */
     public void setName(String name)
@@ -96,7 +96,7 @@ public class PipeListenerContainer implements Runnable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public RequestId getRequestId()
@@ -108,7 +108,7 @@ public class PipeListenerContainer implements Runnable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param requestId DOCUMENT ME!
      */
     public void setRequestId(RequestId requestId)
@@ -120,7 +120,7 @@ public class PipeListenerContainer implements Runnable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public List<Object> getList()
@@ -132,7 +132,7 @@ public class PipeListenerContainer implements Runnable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param list DOCUMENT ME!
      */
     public void setList(List<Object> list)
@@ -168,7 +168,7 @@ public class PipeListenerContainer implements Runnable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Thread launch()

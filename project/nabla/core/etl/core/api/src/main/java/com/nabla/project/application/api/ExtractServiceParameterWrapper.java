@@ -41,11 +41,11 @@ import com.nabla.project.application.api.config.RequestId;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public class ExtractServiceParameterWrapper
 {
 
@@ -58,7 +58,7 @@ public class ExtractServiceParameterWrapper
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Format getFormat()
@@ -70,7 +70,7 @@ public class ExtractServiceParameterWrapper
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param format DOCUMENT ME!
      */
     public void setFormat(Format format)
@@ -82,7 +82,7 @@ public class ExtractServiceParameterWrapper
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Destination getOutput()
@@ -94,7 +94,7 @@ public class ExtractServiceParameterWrapper
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param output DOCUMENT ME!
      */
     public void setOutput(Destination output)
@@ -106,7 +106,7 @@ public class ExtractServiceParameterWrapper
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Packaging getPackaging()
@@ -118,7 +118,7 @@ public class ExtractServiceParameterWrapper
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param packaging DOCUMENT ME!
      */
     public void setPackaging(Packaging packaging)
@@ -130,7 +130,7 @@ public class ExtractServiceParameterWrapper
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Perimeter getPerimeter()
@@ -142,7 +142,7 @@ public class ExtractServiceParameterWrapper
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param perimeter DOCUMENT ME!
      */
     public void setPerimeter(Perimeter perimeter)
@@ -154,7 +154,7 @@ public class ExtractServiceParameterWrapper
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public RequestId getRequestId()
@@ -166,7 +166,7 @@ public class ExtractServiceParameterWrapper
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param requestId DOCUMENT ME!
      */
     public void setRequestId(RequestId requestId)
@@ -178,7 +178,7 @@ public class ExtractServiceParameterWrapper
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Destination getStatus()
@@ -190,7 +190,7 @@ public class ExtractServiceParameterWrapper
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param status DOCUMENT ME!
      */
     public void setStatus(Destination status)

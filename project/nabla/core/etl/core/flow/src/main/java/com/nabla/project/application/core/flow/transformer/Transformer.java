@@ -42,11 +42,10 @@ import com.nabla.project.application.api.writer.WriterDataInterface;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  *
  * @param <SRC> DOCUMENT ME!
  * @param <TRG> DOCUMENT ME!
  */
@@ -65,7 +64,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Object getId()
@@ -77,7 +76,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param id DOCUMENT ME!
      */
     public void setId(Object id)
@@ -89,7 +88,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public RequestId getRequestId()
@@ -101,7 +100,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param requestId DOCUMENT ME!
      */
     public void setRequestId(RequestId requestId)
@@ -113,7 +112,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getName()
@@ -125,7 +124,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param name DOCUMENT ME!
      */
     public void setName(String name)
@@ -137,7 +136,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public PipePublisher<Throwable> getPipeException()
@@ -149,7 +148,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param pipeException DOCUMENT ME!
      */
     public void setPipeException(PipePublisher<Throwable> pipeException)
@@ -161,7 +160,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public TransformerDataInterface getTransformerData()
@@ -173,7 +172,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param transformerData DOCUMENT ME!
      */
     public void setTransformerData(TransformerDataInterface transformerData)
@@ -185,7 +184,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public WriterDataInterface getWriterData()
@@ -197,7 +196,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param writerData DOCUMENT ME!
      */
     public void setWriterData(WriterDataInterface writerData)
@@ -209,7 +208,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public boolean isUsePipeOut()
@@ -221,7 +220,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param isUsePipeOut DOCUMENT ME!
      */
     public void setUsePipeOut(boolean isUsePipeOut)
@@ -233,7 +232,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Pipe<SRC> getPipeIn()
@@ -245,7 +244,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param pipeIn DOCUMENT ME!
      */
     public void setPipeIn(Pipe<SRC> pipeIn)
@@ -257,7 +256,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Pipe<TRG> getPipeOut()
@@ -269,7 +268,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param pipeOut DOCUMENT ME!
      */
     public void setPipeOut(Pipe<TRG> pipeOut)
@@ -289,7 +288,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getPipeInName()
@@ -301,7 +300,7 @@ public abstract class Transformer<SRC, TRG> implements TransformerThreadInterfac
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getPipeOutName()

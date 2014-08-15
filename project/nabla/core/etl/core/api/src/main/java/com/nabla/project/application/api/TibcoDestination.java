@@ -35,11 +35,11 @@ package com.nabla.project.application.api;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 // TODO DELETE
 public class TibcoDestination
 {
@@ -51,7 +51,7 @@ public class TibcoDestination
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getDaemon()
@@ -63,7 +63,7 @@ public class TibcoDestination
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param daemon DOCUMENT ME!
      */
     public void setDaemon(final String daemon)
@@ -75,7 +75,7 @@ public class TibcoDestination
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getNetwork()
@@ -87,7 +87,7 @@ public class TibcoDestination
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param network DOCUMENT ME!
      */
     public void setNetwork(final String network)
@@ -99,7 +99,7 @@ public class TibcoDestination
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getService()
@@ -111,7 +111,7 @@ public class TibcoDestination
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param service DOCUMENT ME!
      */
     public void setService(final String service)
@@ -123,7 +123,7 @@ public class TibcoDestination
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getTopic()
@@ -135,7 +135,7 @@ public class TibcoDestination
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param topic DOCUMENT ME!
      */
     public void setTopic(final String topic)

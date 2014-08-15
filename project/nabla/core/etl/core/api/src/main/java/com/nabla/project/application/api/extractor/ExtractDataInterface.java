@@ -38,11 +38,10 @@ import com.nabla.project.application.api.helpers.PipePublisher;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  *
  * @param <X> DOCUMENT ME!
  */
 public interface ExtractDataInterface<X>
@@ -50,35 +49,35 @@ public interface ExtractDataInterface<X>
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getName();
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param name DOCUMENT ME!
      */
     public void setName(String name);
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Perimeter getPerimeter();
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param perimeter DOCUMENT ME!
      */
     public void setPerimeter(Perimeter perimeter);
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public PipePublisher<X> getPipeOut();

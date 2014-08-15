@@ -42,11 +42,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public class Log
 {
 
@@ -81,7 +81,7 @@ public class Log
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param level DOCUMENT ME!
      */
     public static void setLogLevel(Level level)
@@ -93,7 +93,7 @@ public class Log
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public static Log4JLogger getCommonlogger()
@@ -105,7 +105,7 @@ public class Log
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param commonlogger DOCUMENT ME!
      */
     public static void setCommonlogger(Log4JLogger commonlogger)
@@ -117,7 +117,7 @@ public class Log
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public static ApplicationContext getApplicationContext()

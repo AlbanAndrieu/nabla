@@ -42,11 +42,10 @@ import org.apache.log4j.Logger;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  *
  * @param <SRC> DOCUMENT ME!
  * @param <TRG> DOCUMENT ME!
  */
@@ -111,8 +110,7 @@ public class TransformerThread<SRC, TRG> extends Transformer<SRC, TRG> implement
             chronometer.stop();
             logger.info(getName() + " completed. Time = " + chronometer);
 
-        }
-        catch (Throwable exception)
+        } catch (Throwable exception)
         {
 
             logger.error("Exception: " + exception.getMessage());

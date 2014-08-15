@@ -23,8 +23,8 @@ public class MessageConfig extends AbstractMessageConfig
     protected boolean    validationXmlOutput;
 
     /**
-             * Singleton
-             */
+     * Singleton
+     */
     private MessageConfig()
     {
         super();

@@ -37,11 +37,11 @@ import com.nabla.project.application.api.config.Packaging;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public class UnsupportedPackagingException extends UnsupportedOperationException
 {
 
@@ -50,7 +50,7 @@ public class UnsupportedPackagingException extends UnsupportedOperationException
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Packaging getUnsupportedPackaging()
@@ -62,7 +62,7 @@ public class UnsupportedPackagingException extends UnsupportedOperationException
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param unsupportedPackaging DOCUMENT ME!
      */
     public void setUnsupportedPackaging(Packaging unsupportedPackaging)

@@ -41,17 +41,17 @@ import java.util.Properties;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public class LoggingConfigurer
 {
 
     /**
      * Creates a new LoggingConfigurer object.
-     *
+     * 
      * @param props DOCUMENT ME!
      */
     public LoggingConfigurer(Properties props)
@@ -73,8 +73,7 @@ public class LoggingConfigurer
 
                 l.setLevel(level);
 
-            }
-            catch (IllegalArgumentException e)
+            } catch (IllegalArgumentException e)
             {
 
                 System.err.println("WARNING: Unable to parse '" + levelName + "' as a org.apache.log4j.Level for logger " + loggerName + "; ignoring...");

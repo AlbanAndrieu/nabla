@@ -60,11 +60,11 @@ import java.util.Set;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public class NablaExtractServiceSample extends ExtractServiceCommon implements NablaExtractServiceMBean
 {
 
@@ -72,7 +72,7 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param perimeter DOCUMENT ME!
      * @param id DOCUMENT ME!
      * @param output DOCUMENT ME!
@@ -270,15 +270,13 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
 
             dumpException(exceptionQueueName, this.requestId);
 
-        }
-        catch (Throwable ex)
+        } catch (Throwable ex)
         {
 
             logger.error("Exception :" + ex.getMessage());
             ex.printStackTrace();
 
-        }
-        finally
+        } finally
         {
 
             PipeBlockingQueueService.destroyQueues(queues);
@@ -292,7 +290,7 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param exceptionQueueName DOCUMENT ME!
      * @param requestId DOCUMENT ME!
      */
@@ -323,7 +321,7 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param status DOCUMENT ME!
      */
     public void recoverRequest(RequestStatus status)
@@ -335,9 +333,8 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param f DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public boolean supportsFormat(Format f)
@@ -349,9 +346,8 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param outputDestination DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public boolean supportsOutputDestination(Destination outputDestination)
@@ -363,9 +359,8 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param p DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public boolean supportsPackaging(Packaging p)
@@ -379,9 +374,8 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param p DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public boolean supportsPerimeter(Perimeter p)
@@ -393,9 +387,8 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param statusDestination DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public boolean supportsStatusDestination(Destination statusDestination)
@@ -407,7 +400,7 @@ public class NablaExtractServiceSample extends ExtractServiceCommon implements N
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getExtractServiceId()

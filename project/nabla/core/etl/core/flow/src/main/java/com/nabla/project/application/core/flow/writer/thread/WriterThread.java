@@ -43,11 +43,10 @@ import org.apache.log4j.Logger;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  *
  * @param <X> DOCUMENT ME!
  */
 public class WriterThread<X> extends Writer<X> implements WriterThreadMBean
@@ -57,7 +56,7 @@ public class WriterThread<X> extends Writer<X> implements WriterThreadMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param output DOCUMENT ME!
      * @param packaging DOCUMENT ME!
      */
@@ -80,7 +79,7 @@ public class WriterThread<X> extends Writer<X> implements WriterThreadMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param data DOCUMENT ME!
      */
     public void write(Object data)
@@ -122,8 +121,7 @@ public class WriterThread<X> extends Writer<X> implements WriterThreadMBean
             chronometer.stop();
             logger.info(getName() + " completed. Time = " + chronometer);
 
-        }
-        catch (Exception exception)
+        } catch (Exception exception)
         {
 
             exception.printStackTrace();
@@ -136,8 +134,7 @@ public class WriterThread<X> extends Writer<X> implements WriterThreadMBean
 
             }
 
-        }
-        catch (Throwable exception)
+        } catch (Throwable exception)
         {
 
             logger.error("Exception: " + exception.getMessage());

@@ -18,7 +18,6 @@ import com.nabla.project.application.model.xml.XMLProduct;
  * Author : $author$
  * Date : $Date: 2010-06-20 17:01:12 +0200 (Wed, 20 Jun 2010) $
  * Revision : $revision$
- *
  * Test below are launched via class TestsUnitairesMapping
  */
 public class XMLProductSetTest extends TestCase
@@ -34,7 +33,7 @@ public class XMLProductSetTest extends TestCase
 
     /**
      * Common tests on XMLProduct objects
-     *
+     * 
      * @param XMLProduct
      */
     public static void testXMLProduct(XMLProduct XMLProduct)
@@ -61,7 +60,7 @@ public class XMLProductSetTest extends TestCase
 
     /**
      * Specifics tests on Product 2
-     *
+     * 
      * @param XMLProduct
      */
     public static void testXMLProduct2(XMLProduct XMLProduct)
@@ -115,7 +114,7 @@ public class XMLProductSetTest extends TestCase
 
     /**
      * Specifics tests on Product 1
-     *
+     * 
      * @param XMLProduct
      */
     public static void testXMLProduct1(XMLProduct XMLProduct)

@@ -45,11 +45,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author$
  * @version $Revision$
  * @since $Date$
-  */
+ */
 public class JaxbDateHelper
 {
 
@@ -70,8 +70,7 @@ public class JaxbDateHelper
             logger.info("Initializing DatatypeFactory");
             myDataTypeFactory = DatatypeFactory.newInstance();
 
-        }
-        catch (DatatypeConfigurationException e)
+        } catch (DatatypeConfigurationException e)
         {
 
             logger.error("DatatypeFactory initialsation exception");
@@ -84,9 +83,8 @@ public class JaxbDateHelper
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param date DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public static XMLGregorianCalendar getJaxbDate(Date date)
@@ -118,9 +116,8 @@ public class JaxbDateHelper
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param date DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public static XMLGregorianCalendar getJaxbTime(Date date)
@@ -152,9 +149,8 @@ public class JaxbDateHelper
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param date DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public static XMLGregorianCalendar getJaxbDateTime(Date date)

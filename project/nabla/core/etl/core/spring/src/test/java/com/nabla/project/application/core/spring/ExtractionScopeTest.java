@@ -42,11 +42,11 @@ import org.apache.log4j.Logger;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public class ExtractionScopeTest extends TestCase
 {
 

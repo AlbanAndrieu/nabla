@@ -14,7 +14,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  * Author : $author$ Date : $Date: 2010-06-14 11:52:07 +0200 (Thu, 14 Jun 2010) $ Revision : $revision$
- *
+ * 
  * @deprecated
  */
 public class ParallelFullExtract
@@ -31,7 +31,8 @@ public class ParallelFullExtract
     {
         try
         {
-            context = new ClassPathXmlApplicationContext(new String[] { "com/nabla/services/extract/eoleextract/ExtractServiceConfig.xml", "com/nabla/services/extract/eoleextract/ExtractServiceParametersConfig.xml",
+            context = new ClassPathXmlApplicationContext(new String[]
+            { "com/nabla/services/extract/eoleextract/ExtractServiceConfig.xml", "com/nabla/services/extract/eoleextract/ExtractServiceParametersConfig.xml",
                     "com/nabla/services/extract/eoleextract/ExtractServiceParametersConfig2.xml", "com/nabla/services/extract/eoleextract/dbExtractorConfig.xml" });
 
             Thread extract1 = new Thread()

@@ -39,11 +39,11 @@ import java.util.Date;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public final class Chronometer
 {
 
@@ -64,7 +64,7 @@ public final class Chronometer
 
     /**
      * Creates a new Chronometer object.
-     *
+     * 
      * @param aDatePattern DOCUMENT ME!
      */
     public Chronometer(String aDatePattern)
@@ -108,7 +108,7 @@ public final class Chronometer
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public long time()
@@ -120,9 +120,8 @@ public final class Chronometer
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param timeMillis DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public static String convertMillisToString(long timeMillis)
@@ -134,7 +133,7 @@ public final class Chronometer
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     @Override
@@ -147,7 +146,7 @@ public final class Chronometer
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param args DOCUMENT ME!
      */
     public static void main(String... args)
@@ -171,8 +170,7 @@ public final class Chronometer
             chronometer.stop();
             System.out.println(chronometer);
 
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
 
         }

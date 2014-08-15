@@ -12,14 +12,13 @@ import javax.xml.bind.JAXBElement;
  * Author : $author$
  * Date : $Date: 2010-06-14 11:52:07 +0200 (Thu, 14 Jun 2010) $
  * Revision : $revision$
- *
  * Test below are launched via class TestsUnitairesMapping
  */
 public class XMLPartySetTest extends TestCase
 {
     /**
      * Common tests on XMLParty objects
-     *
+     * 
      * @param XMLParty
      */
     public static void testXMLParty(XMLParty XMLParty)
@@ -55,7 +54,7 @@ public class XMLPartySetTest extends TestCase
 
     /**
      * Specifics tests on Product 1925165
-     *
+     * 
      * @param deqtProduct
      */
     public static void testXMLParty1(XMLParty XMLParty)
@@ -96,7 +95,7 @@ public class XMLPartySetTest extends TestCase
 
     /**
      * Specifics tests on Product 1925165
-     *
+     * 
      * @param deqtProduct
      */
     public static void testXMLParty2(XMLParty XMLParty)
@@ -137,7 +136,7 @@ public class XMLPartySetTest extends TestCase
 
     /**
      * Specifics tests on Product 1925165
-     *
+     * 
      * @param deqtProduct
      */
     public static void testXMLParty3(XMLParty XMLParty)

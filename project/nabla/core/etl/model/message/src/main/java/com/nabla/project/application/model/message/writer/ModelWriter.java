@@ -31,7 +31,6 @@ public abstract class ModelWriter implements WriterDataInterface
     /* public static NamespacePrefixMapperWriter namespaces; */
 
     /**
-     * 
      * @return the xML_HEADER
      */
     public String getXML_HEADER()
@@ -40,7 +39,6 @@ public abstract class ModelWriter implements WriterDataInterface
     } // end getXML_HEADER()
 
     /**
-     * 
      * @param xml_header the xML_HEADER to set
      */
     public void setXML_HEADER(final String xml_header)
@@ -49,7 +47,6 @@ public abstract class ModelWriter implements WriterDataInterface
     } // end setXML_HEADER()
 
     /**
-     * 
      * @return the XML_NAMESPACE_FOOTER
      */
     public String getXML_NAMESPACE_FOOTER()
@@ -58,7 +55,6 @@ public abstract class ModelWriter implements WriterDataInterface
     } // end getXML_NAMESPACE_FOOTER()
 
     /**
-     * 
      * @param xml_namespace_footer the XML_NAMESPACE_FOOTER to set
      */
     public void setXML_NAMESPACE_FOOTER(final String xml_namespace_footer)
@@ -67,7 +63,6 @@ public abstract class ModelWriter implements WriterDataInterface
     } // end setXML_NAMESPACE_FOOTER()
 
     /**
-     * 
      * @return the XML_NAMESPACE_HEADER_END
      */
     public String getXML_NAMESPACE_HEADER_END()
@@ -76,7 +71,6 @@ public abstract class ModelWriter implements WriterDataInterface
     } // end getXML_NAMESPACE_HEADER_END()
 
     /**
-     * 
      * @param xml_namespace_header_end the XML_NAMESPACE_HEADER_END to set
      */
     public void setXML_NAMESPACE_HEADER_END(final String xml_namespace_header_end)
@@ -85,7 +79,6 @@ public abstract class ModelWriter implements WriterDataInterface
     } // end setXML_NAMESPACE_HEADER_END()
 
     /**
-     * 
      * @return the XML_NAMESPACE_HEADER_START
      */
     public String getXML_NAMESPACE_HEADER_START()
@@ -94,7 +87,6 @@ public abstract class ModelWriter implements WriterDataInterface
     } // end getXML_NAMESPACE_HEADER_START()
 
     /**
-     * 
      * @param xml_namespace_header_start the XML_NAMESPACE_HEADER_START to set
      */
     public void setXML_NAMESPACE_HEADER_START(final String xml_namespace_header_start)
@@ -103,7 +95,6 @@ public abstract class ModelWriter implements WriterDataInterface
     } // end setXML_NAMESPACE_HEADER_START()
 
     /**
-     * 
      * @return the namespaces
      */
     /*
@@ -113,7 +104,6 @@ public abstract class ModelWriter implements WriterDataInterface
      * } // end getNamespaces()
      */
     /**
-     * 
      * @param namespaces the namespaces to set
      */
     /*
@@ -123,7 +113,6 @@ public abstract class ModelWriter implements WriterDataInterface
      * } // end setNamespaces()
      */
     /**
-     * 
      * @return the xML_ROOT_END
      */
     public String getXML_ROOT_END()
@@ -132,7 +121,6 @@ public abstract class ModelWriter implements WriterDataInterface
     } // end getXML_ROOT_END()
 
     /**
-     * 
      * @param xml_root_end the xML_ROOT_END to set
      */
     public void setXML_ROOT_END(final String xml_root_end)
@@ -141,7 +129,6 @@ public abstract class ModelWriter implements WriterDataInterface
     } // end setXML_ROOT_END()
 
     /**
-     * 
      * @return the xML_ROOT_START
      */
     public String getXML_ROOT_START()
@@ -150,7 +137,6 @@ public abstract class ModelWriter implements WriterDataInterface
     } // end getXML_ROOT_START()
 
     /**
-     * 
      * @param xml_root_start the xML_ROOT_START to set
      */
     public void setXML_ROOT_START(final String xml_root_start)
@@ -159,7 +145,6 @@ public abstract class ModelWriter implements WriterDataInterface
     } // end setXML_ROOT_START()
 
     /**
-     * 
      * @return the XML_NAMESPACE_HEADER_BODY
      */
     public String getXML_NAMESPACE_HEADER_BODY()
@@ -168,7 +153,6 @@ public abstract class ModelWriter implements WriterDataInterface
     } // end getXML_NAMESPACE_HEADER_BODY()
 
     /**
-     * 
      * @param xml_namespace_header_body the XML_NAMESPACE_HEADER_BODY to set
      */
     public void setXML_NAMESPACE_HEADER_BODY(final String xml_namespace_header_body)
@@ -177,7 +161,6 @@ public abstract class ModelWriter implements WriterDataInterface
     } // end setXML_NAMESPACE_HEADER_BODY()
 
     /**
-     * 
      * @return the XML_NAMESPACE_HEADER_VALIDATION
      */
     /*
@@ -186,9 +169,8 @@ public abstract class ModelWriter implements WriterDataInterface
      * return XML_NAMESPACE_HEADER_VALIDATION;
      * } // end getXML_NAMESPACE_HEADER_VALIDATION()
      *//**
-       * 
-       * @param xml_namespace_header_validation the XML_NAMESPACE_HEADER_VALIDATION to set
-       */
+     * @param xml_namespace_header_validation the XML_NAMESPACE_HEADER_VALIDATION to set
+     */
     /*
      * public void setXML_NAMESPACE_HEADER_VALIDATION(final String xml_namespace_header_validation)
      * {
@@ -196,7 +178,6 @@ public abstract class ModelWriter implements WriterDataInterface
      * } // end setXML_NAMESPACE_HEADER_VALIDATION()
      */
     /**
-     * 
      * @return the isUsingValidation
      */
     public boolean isUsingValidation()
@@ -205,7 +186,6 @@ public abstract class ModelWriter implements WriterDataInterface
     } // end isUsingValidation()
 
     /**
-     * 
      * @param isUsingValidation the isUsingValidation to set
      */
     public void setUsingValidation(final boolean isUsingValidation)

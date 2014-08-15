@@ -37,7 +37,7 @@ import java.io.Serializable;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
@@ -51,7 +51,7 @@ public class Condition implements Serializable
 
     /**
      * Creates a new Condition object.
-     *
+     * 
      * @param conditionId DOCUMENT ME!
      */
     public Condition(ConditionId conditionId)
@@ -62,7 +62,7 @@ public class Condition implements Serializable
 
     /**
      * Creates a new Condition object.
-     *
+     * 
      * @param conditionId DOCUMENT ME!
      * @param parameter DOCUMENT ME!
      */
@@ -76,7 +76,7 @@ public class Condition implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public ConditionId getConditionId()
@@ -88,7 +88,7 @@ public class Condition implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param conditionId DOCUMENT ME!
      */
     public void setConditionId(ConditionId conditionId)
@@ -100,7 +100,7 @@ public class Condition implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getValue()
@@ -112,7 +112,7 @@ public class Condition implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param value DOCUMENT ME!
      */
     public void setValue(String value)
@@ -124,9 +124,8 @@ public class Condition implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param o DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public boolean equals(Object o)
@@ -157,7 +156,7 @@ public class Condition implements Serializable
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public int hashCode()
@@ -179,7 +178,7 @@ public class Condition implements Serializable
 
         /**
          * Creates a new ConditionId object.
-         *
+         * 
          * @param aXmlMapping DOCUMENT ME!
          */
         ConditionId(String aXmlMapping)
@@ -190,7 +189,7 @@ public class Condition implements Serializable
 
         /**
          * Creates a new ConditionId object.
-         *
+         * 
          * @param aXmlMapping DOCUMENT ME!
          * @param aSqlValueName DOCUMENT ME!
          */
@@ -204,7 +203,7 @@ public class Condition implements Serializable
 
         /**
          * DOCUMENT ME!
-         *
+         * 
          * @return DOCUMENT ME!
          */
         public String getXmlMapping()
@@ -216,7 +215,7 @@ public class Condition implements Serializable
 
         /**
          * DOCUMENT ME!
-         *
+         * 
          * @return DOCUMENT ME!
          */
         public String getSqlValueName()

@@ -38,17 +38,17 @@ import org.apache.log4j.LogManager;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 358 $
  * @since $Date: 2010-09-16 01:11:04 +0200 (jeu., 16 sept. 2010) $
-  */
+ */
 public class Log4jMBean
 {
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param category DOCUMENT ME!
      */
     public void activateInfo(String category)
@@ -60,7 +60,7 @@ public class Log4jMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param category DOCUMENT ME!
      */
     public void activateDebug(String category)
@@ -72,7 +72,7 @@ public class Log4jMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param category DOCUMENT ME!
      */
     public void activateWarn(String category)
@@ -84,7 +84,7 @@ public class Log4jMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param category DOCUMENT ME!
      */
     public void activateError(String category)
@@ -96,7 +96,7 @@ public class Log4jMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param category DOCUMENT ME!
      */
     public void activateFatal(String category)
@@ -108,7 +108,7 @@ public class Log4jMBean
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param packageName DOCUMENT ME!
      * @param level DOCUMENT ME!
      */
