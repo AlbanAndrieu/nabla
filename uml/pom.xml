@@ -407,7 +407,7 @@
                 <hibernate.enable.assoc.cache>false</hibernate.enable.assoc.cache>
                 <dao.enable.inheritance>true</dao.enable.inheritance>
                 <!--<cache.provider>org.hibernate.cache.EhCacheProvider</cache.provider>-->
-                <cache.provider>org.hibernate.cache.HashtableCacheProvider</cache.provider>
+                <cache.provider>org.hibernate.cache.HashtableCacheProvider</cache.provider> <!-- TODO is it duplicated with hibernate.cache.provider -->
                 <!-- Remoting configuration : by default, remoting is deactivated. -->
                 <!--
                 <remoting.type>none</remoting.type>

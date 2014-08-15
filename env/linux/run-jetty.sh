@@ -26,3 +26,10 @@ sudo lsof -i :8079
 cd /workspace/jetty
 cp ~/Downloads/jetty-distribution-9.1.5.v20140505.tar.gz  .
 tar -xvf jetty-distribution-9.1.5.v20140505.tar.gz
+
+#eclipse Jetty WTP plugins
+#NOK for jetty 9 http://wiki.eclipse.org/Jetty_WTP_Plugin
+#NOK for jetty 9 http://download.eclipse.org/jetty/updates/jetty-wtp
+#https://code.google.com/p/run-jetty-run/
+#http://run-jetty-run.googlecode.com/svn/trunk/updatesite
+#See marketplace

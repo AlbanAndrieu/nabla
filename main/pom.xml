@@ -60,8 +60,8 @@
                 <server.home>${jboss.home}</server.home>
                 <server.name>${product.name}</server.name>
                 <server.port>8180</server.port>
-                <dataSource.name>jdbc/${application.id}</dataSource.name>
-                <dataSource>java:/${dataSource.name}</dataSource>
+                <datasource.name>jdbc/${application.id}</datasource.name>
+                <datasource>java:/${dataSource.name}</datasource>
                 <webservice.host>localhost</webservice.host>
                 <webservice.port>8180</webservice.port>
                 -->
@@ -1053,6 +1053,95 @@
 					</dependency>						  
 					</dependencies>				
 			    </profile>				
+				<profile>
+					<id>tattletale</id>
+					<activation>
+							<property>
+									<name>!profile.activation</name>
+							</property>
+					</activation>		
+					<build>
+						<plugins>            
+							<plugin>
+								<groupId>org.apache.maven.plugins</groupId>
+								<artifactId>maven-dependency-plugin</artifactId>
+								<executions>					
+									<!-- tattletale is expecting a folder with jars in it, so I need to gather those together -->
+									<execution>
+									  <id>copy-dependency-jars-to-tattletale-source-directory</id>
+									  <phase>pre-site</phase>
+									  <goals>
+										<goal>copy-dependencies</goal>
+									  </goals>
+									  <configuration>
+										<outputDirectory>${tattletale-source-directory}</outputDirectory>
+									  </configuration>
+									</execution>					
+								</executions>
+							</plugin>		
+							<!-- ... gather up the last jars -->
+							<plugin>
+							  <groupId>org.apache.maven.plugins</groupId>
+							  <artifactId>maven-resources-plugin</artifactId>
+							  <version>${maven.resources.plugin.version}</version>
+							  <executions>
+								<execution>
+								  <id>copy-project-jar-and-java-rt-jar-to-tattletale-source-directory</id>
+								  <phase>pre-site</phase>
+								  <goals>
+									<goal>copy-resources</goal>
+								  </goals>
+								  <configuration>
+									<outputDirectory>${tattletale-source-directory}</outputDirectory>
+									<resources>
+									  <resource>
+										<directory>${project.build.directory}</directory>
+										<filtering>false</filtering>
+										<includes>
+										  <include>${project.build.finalName}.jar</include>
+										</includes>
+									  </resource>
+									  <resource>
+										<directory>${java.home}/lib</directory>
+										<filtering>false</filtering>
+										<includes>
+										  <include>rt.jar</include>
+										</includes>
+									  </resource>
+									</resources>
+								  </configuration>
+								</execution>
+							  </executions>
+							</plugin>
+							<!-- run the tattletale report, normally this would be in the reporting section of the pom, -->
+							<!-- but the mojo isn't a report mojo, also see src/site/site.xml -->
+							<plugin>
+							  <groupId>org.jboss.tattletale</groupId>
+							  <artifactId>tattletale-maven</artifactId>
+							  <version>${maven.tattletale.plugin.version}</version>
+							  <executions>
+								<execution>
+								  <id>run-tattletale-report</id>
+								  <!-- it is bound by default to "package" phase, which isn't what we want for reporting -->
+								  <phase>site</phase>
+								  <goals>
+									<goal>report</goal>
+								  </goals>
+								  <configuration>
+									<source>${tattletale-source-directory}</source>                    
+									<destination>${tattletale-destination-directory}</destination>
+									<!--
+									<profiles>
+									  <profile>java5</profile>
+									</profiles>
+									-->
+								  </configuration>
+								</execution>
+							  </executions>
+							</plugin>		            
+						</plugins>
+					</build>
+				</profile>			    
 				<profile>
 					<id>checkstyle.report</id>
 					<activation>
