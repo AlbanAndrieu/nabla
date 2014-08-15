@@ -749,8 +749,8 @@
         <application.package>org.andromda.test</application.package>
         <application.name>howtomodel</application.name>
         <application.version>1.0</application.version>
-        <dataSource.name>jdbc/${application.id}</dataSource.name>
-        <dataSource>java:/${dataSource.name}</dataSource>
+        <datasource.name>jdbc/${application.id}</datasource.name>
+        <datasource>java:/${datasource.name}</datasource>
         <!-- SCM user ID and Password here, or in user specific settings.xml file -->
         <username></username>
         <password></password>

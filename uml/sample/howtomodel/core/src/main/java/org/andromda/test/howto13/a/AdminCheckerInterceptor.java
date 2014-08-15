@@ -11,7 +11,7 @@ public class AdminCheckerInterceptor
 {
     /**
      * Default interceptor execution method
-     *
+     * 
      * @param ctx the invocation context
      * @return
      */
@@ -23,8 +23,7 @@ public class AdminCheckerInterceptor
         try
         {
             return ctx.proceed();
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             throw e;
         }

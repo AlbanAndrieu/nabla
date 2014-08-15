@@ -6,10 +6,8 @@ package org.andromda.test.howto10.a;
 
 /**
  * @see PaymentServiceBase
- *
  * Remember to manually configure the local business interface this bean implements if originally you only
- * defined the remote business interface.  However, this change is automatically reflected in the ejb-jar.xml.
- *
+ * defined the remote business interface. However, this change is automatically reflected in the ejb-jar.xml.
  * Do not specify the javax.ejb.Stateless annotation
  * Instead, the session bean is defined in the ejb-jar.xml descriptor.
  */

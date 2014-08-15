@@ -18,7 +18,7 @@ public class PaymentProcessorMDBBeanImpl extends PaymentProcessorMDBBean
 
     /**
      * MessageListener callback on arrival of a JMS message
-     *
+     * 
      * @param message The inbound JMS message to process
      */
     public void onMessage(Message message)

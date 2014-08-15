@@ -15,9 +15,8 @@ import org.testng.annotations.Configuration;
 
 /**
  * Boots the JBoss Microcontainer with an EJB3 configuration.
- *
  * You can also use this class to lookup managed beans from JNDI.
- *
+ * 
  * @author vancek
  * <p><b>Note</b>. code was copied from christian.bauer@jboss.com
  * example on Hibernate's CaveatEmptor application
@@ -65,8 +64,7 @@ public class EJB3Container
             deployer.start();
             logger.info("==>Deployer started");
             logger.info("==>End of bootstrapping EJB3 container");
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             logger.error(ex.getMessage(), ex);
             throw new RuntimeException(ex);
@@ -82,8 +80,7 @@ public class EJB3Container
             deployer.stop();
             deployer.destroy();
             EJB3StandaloneBootstrap.shutdown();
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new RuntimeException(ex);
         }
@@ -95,7 +92,7 @@ public class EJB3Container
     /**
      * Return a new InitialContext based on org.jnp.interfaces.LocalOnlyContextFactory,
      * setting the the default context.
-     *
+     * 
      * @return InitialContext
      * @throws Exception
      */
@@ -109,7 +106,7 @@ public class EJB3Container
     /**
      * Return a new InitialContext based on org.jboss.security.jndi.JndiLoginInitialContextFactory,
      * setting the default context. Use the specified username and password to set the security context.
-     *
+     * 
      * @param principal
      * @param credential
      * @return InitialContext
@@ -125,7 +122,7 @@ public class EJB3Container
     /**
      * Return the default InitialContext based on org.jnp.interfaces.LocalOnlyContextFactory
      * if one is already instantiated, otherwise create a new InitialContext and set as the default.
-     *
+     * 
      * @return InitialContext
      * @throws Exception
      */
@@ -143,7 +140,7 @@ public class EJB3Container
      * Return the default InitialContext based on org.jboss.security.jndi.JndiLoginInitialContextFactory
      * if one is already instantiated, otherwise create a new InitialContext and set as the default.
      * Use the specified username and password to set the security context.
-     *
+     * 
      * @param principal
      * @param credential
      * @return
