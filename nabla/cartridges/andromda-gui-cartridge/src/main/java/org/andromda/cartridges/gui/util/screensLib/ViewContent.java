@@ -37,7 +37,7 @@ import java.util.List;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author$
  * @version $Revision$
  * @since $Date$
@@ -62,7 +62,7 @@ public class ViewContent
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public Header getHeader()
@@ -74,7 +74,7 @@ public class ViewContent
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public List<Cell> getCells()
@@ -86,7 +86,7 @@ public class ViewContent
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public List<Field> getFields()
@@ -98,7 +98,7 @@ public class ViewContent
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param cells DOCUMENT ME!
      */
     public void setCells(final List<Cell> cells)
@@ -113,7 +113,7 @@ public class ViewContent
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param fields DOCUMENT ME!
      */
     public void setFields(final List<Field> fields)
@@ -128,7 +128,7 @@ public class ViewContent
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param header DOCUMENT ME!
      */
     public void setHeader(final Header header)
@@ -140,7 +140,7 @@ public class ViewContent
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public boolean getIsCells()
@@ -152,7 +152,7 @@ public class ViewContent
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public boolean getIsFields()
@@ -164,7 +164,7 @@ public class ViewContent
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public boolean getIsHeader()

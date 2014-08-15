@@ -55,7 +55,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3SessionFacade.
- *
+ * 
  * @see EJB3SessionFacade
  */
 public class EJB3SessionFacadeLogicImpl extends EJB3SessionFacadeLogic
@@ -366,7 +366,6 @@ public class EJB3SessionFacadeLogicImpl extends EJB3SessionFacadeLogic
          * If session view type is remote, check for operations with view type local and return both.
          * If session view type is local, check for operations with view type remote and return both.
          * Otherwise session view type is both, return both.
-         *
          * NOTE: do not invoke viewType on EJB3SessionOperationFacade to avoid cyclic dependency and throwing
          * StackOverFlowError.
          */
@@ -785,7 +784,6 @@ public class EJB3SessionFacadeLogicImpl extends EJB3SessionFacadeLogic
 
     /**
      * @see EJB3SessionFacadeLogic#getServiceReferences()
-     *
      * Returns the Collection of DependencyFacades where the target is a Service ONLY.
      */
     public Collection<DependencyFacade> getServiceReferences()

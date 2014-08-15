@@ -41,7 +41,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3SessionAttributeFacade.
- *
+ * 
  * @see EJB3SessionAttributeFacade
  */
 public class EJB3SessionAttributeFacadeLogicImpl extends EJB3SessionAttributeFacadeLogic

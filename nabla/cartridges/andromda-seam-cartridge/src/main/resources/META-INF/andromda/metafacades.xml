@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <metafacades>
+	<property reference="servletVersion"/>
+	<property reference="seamVersion"/>
     <property reference="normalizeMessages"/>
     <metafacade class="org.andromda.cartridges.gui.metafacades.GuiControllerOperationLogicImpl">
         <mapping>

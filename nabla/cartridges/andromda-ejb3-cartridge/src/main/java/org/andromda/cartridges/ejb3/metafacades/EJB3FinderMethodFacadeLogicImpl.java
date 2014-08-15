@@ -43,9 +43,8 @@ import org.apache.commons.lang.StringUtils;
 /**
  * <p/>
  * Represents an EJB finder method. </p>
- *
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3FinderMethodFacade.
- *
+ * 
  * @see EJB3FinderMethodFacade
  */
 public class EJB3FinderMethodFacadeLogicImpl extends EJB3FinderMethodFacadeLogic

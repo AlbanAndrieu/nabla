@@ -65,6 +65,10 @@
     	    <item name="Namespace" href="namespace.html"/>
     	</menu>
 
+        <menu name="Support">
+            <item name="FAQ" href="faq.html"/>
+        </menu>
+        
         <menu ref="reports"/>
     </body>
 </project>

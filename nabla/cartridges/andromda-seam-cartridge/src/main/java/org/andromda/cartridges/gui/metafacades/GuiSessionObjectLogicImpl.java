@@ -37,7 +37,7 @@ import org.andromda.cartridges.gui.GuiGlobals;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiSessionObject.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiSessionObject
  */
 public class GuiSessionObjectLogicImpl extends GuiSessionObjectLogic

@@ -1,16 +1,8 @@
 package org.andromda.cartridges.ejb3;
 
-import java.text.SimpleDateFormat;
-import java.util.Collection;
-import java.util.Date;
-import java.util.LinkedHashSet;
-import org.andromda.cartridges.ejb3.HibernateGlobals;
-import org.apache.commons.collections.Closure;
-import org.apache.commons.collections.CollectionUtils;
-
 /**
  * Contains utilities used within the Hibernate cartridge.
- *
+ * 
  * @author Chad Brandon
  * @author Joel Kozikowski
  * @author Wouter Zoons
@@ -24,8 +16,18 @@ public class HibernateUtils
     private String hibernateVersion;
 
     /**
+     * Stores the version of Persistence we're generating for.
+     */
+    private String persistenceVersion;
+
+    /**
+     * Stores the version of Seam we're generating for.
+     */
+    private String seamVersion;
+
+    /**
      * Sets the version of Hibernate we're generating for.
-     *
+     * 
      * @param hibernateVersion The version to set.
      */
     public void setHibernateVersion(final String hibernateVersion)
@@ -35,7 +37,7 @@ public class HibernateUtils
 
     /**
      * Retrieves the appropriate Hibernate package for the given version.
-     *
+     * 
      * @return the Hibernate package name.
      */
     public String getHibernatePackage()
@@ -46,7 +48,7 @@ public class HibernateUtils
     /**
      * Retrieves the appropriate package for Hibernate user types given
      * the version defined within this class.
-     *
+     * 
      * @return the hibernate user type package.
      */
     public String getHibernateUserTypePackage()
@@ -56,7 +58,7 @@ public class HibernateUtils
 
     /**
      * Indicates whether or not Hibernate 2 is enabled.
-     *
+     * 
      * @return true/false
      */
     public boolean isVersion2()
@@ -66,7 +68,7 @@ public class HibernateUtils
 
     /**
      * Indicates whether or not Hibernate 3 is enabled.
-     *
+     * 
      * @return true/false
      */
     public boolean isVersion3()
@@ -75,8 +77,8 @@ public class HibernateUtils
     }
 
     /**
-     * Indicates whether or not Hibernate 3 is enabled.
-     *
+     * Indicates whether or not Hibernate 4 is enabled.
+     * 
      * @return true/false
      */
     public boolean isVersion4()
@@ -86,7 +88,7 @@ public class HibernateUtils
 
     /**
      * Indicates whether or not the given property value is version 3 or not.
-     *
+     * 
      * @param hibernateVersionPropertyValue the value of the property
      * @return true/false
      */
@@ -102,7 +104,7 @@ public class HibernateUtils
 
     /**
      * Indicates whether or not the given property value is version 3 or not.
-     *
+     * 
      * @param hibernateVersionPropertyValue the value of the property
      * @return true/false
      */
@@ -117,8 +119,8 @@ public class HibernateUtils
     }
 
     /**
-     * Indicates whether or not the given property value is version 3 or not.
-     *
+     * Indicates whether or not the given property value is version 4 or not.
+     * 
      * @param hibernateVersionPropertyValue the value of the property
      * @return true/false
      */
@@ -130,6 +132,182 @@ public class HibernateUtils
             version4 = hibernateVersionPropertyValue.startsWith(HibernateGlobals.HIBERNATE_VERSION_4);
         }
         return version4;
+    }
+
+    /**
+     * Sets the version of Persistence we're generating for.
+     * 
+     * @param persistenceVersion The version to set.
+     */
+    public void setPersistenceVersion(final String persistenceVersion)
+    {
+        this.persistenceVersion = persistenceVersion;
+    }
+
+    /**
+     * Indicates whether or not Persistence 1 is enabled.
+     * 
+     * @return true/false
+     */
+    public boolean isPersistenceVersion1()
+    {
+        return isPersistenceVersion1(this.persistenceVersion);
+    }
+
+    /**
+     * Indicates whether or not Persistence 2 is enabled.
+     * 
+     * @return true/false
+     */
+    public boolean isPersistenceVersion2()
+    {
+        return isPersistenceVersion2(this.persistenceVersion);
+    }
+
+    /**
+     * Indicates whether or not Persistence 3 is enabled.
+     * 
+     * @return true/false
+     */
+    public boolean isPersistenceVersion3()
+    {
+        return isPersistenceVersion3(this.persistenceVersion);
+    }
+
+    /**
+     * Indicates whether or not the given property value is version 1 or not.
+     * 
+     * @param persistenceVersionPropertyValue the value of the property
+     * @return true/false
+     */
+    public static boolean isPersistenceVersion1(String persistenceVersionPropertyValue)
+    {
+        boolean version1 = false;
+        if (persistenceVersionPropertyValue != null)
+        {
+            version1 = persistenceVersionPropertyValue.startsWith(HibernateGlobals.PERSISTENCE_VERSION_1);
+        }
+        return version1;
+    }
+
+    /**
+     * Indicates whether or not the given property value is version 2 or not.
+     * 
+     * @param persistenceVersionPropertyValue the value of the property
+     * @return true/false
+     */
+    public static boolean isPersistenceVersion2(String persistenceVersionPropertyValue)
+    {
+        boolean version2 = false;
+        if (persistenceVersionPropertyValue != null)
+        {
+            version2 = persistenceVersionPropertyValue.startsWith(HibernateGlobals.PERSISTENCE_VERSION_2);
+        }
+        return version2;
+    }
+
+    /**
+     * Indicates whether or not the given property value is version 3 or not.
+     * 
+     * @param persistenceVersionPropertyValue the value of the property
+     * @return true/false
+     */
+    public static boolean isPersistenceVersion3(String persistenceVersionPropertyValue)
+    {
+        boolean version3 = false;
+        if (persistenceVersionPropertyValue != null)
+        {
+            version3 = persistenceVersionPropertyValue.startsWith(HibernateGlobals.PERSISTENCE_VERSION_3);
+        }
+        return version3;
+    }
+
+    /**
+     * Sets the version of Seam we're generating for.
+     * 
+     * @param seamVersion The version to set.
+     */
+    public void setSeamVersion(final String seamVersion)
+    {
+        this.seamVersion = seamVersion;
+    }
+
+    /**
+     * Indicates whether or not Seam 2 is enabled.
+     * 
+     * @return true/false
+     */
+    public boolean isSeamVersion22()
+    {
+        return isSeamVersion22(this.seamVersion);
+    }
+
+    /**
+     * Indicates whether or not Seam 3 is enabled.
+     * 
+     * @return true/false
+     */
+    public boolean isSeamVersion23()
+    {
+        return isSeamVersion23(this.seamVersion);
+    }
+
+    /**
+     * Indicates whether or not Seam 3 is enabled.
+     * 
+     * @return true/false
+     */
+    public boolean isSeamVersion3()
+    {
+        return isSeamVersion3(this.seamVersion);
+    }
+
+    /**
+     * Indicates whether or not the given property value is version 2.2 or not.
+     * 
+     * @param seamVersionPropertyValue the value of the property
+     * @return true/false
+     */
+    public static boolean isSeamVersion22(String seamVersionPropertyValue)
+    {
+        boolean version2 = false;
+        if (seamVersionPropertyValue != null)
+        {
+            version2 = seamVersionPropertyValue.startsWith(HibernateGlobals.SEAM_VERSION_2_2);
+        }
+        return version2;
+    }
+
+    /**
+     * Indicates whether or not the given property value is version 2.3 or not.
+     * 
+     * @param seamVersionPropertyValue the value of the property
+     * @return true/false
+     */
+    public static boolean isSeamVersion23(String seamVersionPropertyValue)
+    {
+        boolean version3 = false;
+        if (seamVersionPropertyValue != null)
+        {
+            version3 = seamVersionPropertyValue.startsWith(HibernateGlobals.SEAM_VERSION_2_3);
+        }
+        return version3;
+    }
+
+    /**
+     * Indicates whether or not the given property value is version 3 or not.
+     * 
+     * @param seamVersionPropertyValue the value of the property
+     * @return true/false
+     */
+    public static boolean isSeamVersion3(String seamVersionPropertyValue)
+    {
+        boolean version3 = false;
+        if (seamVersionPropertyValue != null)
+        {
+            version3 = seamVersionPropertyValue.startsWith(HibernateGlobals.SEAM_VERSION_3);
+        }
+        return version3;
     }
 
 }

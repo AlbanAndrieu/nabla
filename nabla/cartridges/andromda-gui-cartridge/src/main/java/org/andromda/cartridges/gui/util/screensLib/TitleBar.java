@@ -35,7 +35,7 @@ package org.andromda.cartridges.gui.util.screensLib;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author$
  * @version $Revision$
  * @since $Date$
@@ -47,7 +47,7 @@ public class TitleBar extends Field
 
     /**
      * Creates a new TitleBar object.
-     *
+     * 
      * @param title DOCUMENT ME!
      */
     public TitleBar(final String title)
@@ -59,7 +59,7 @@ public class TitleBar extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getTitle()
@@ -71,7 +71,7 @@ public class TitleBar extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param title DOCUMENT ME!
      */
     public void setTitle(final String title)

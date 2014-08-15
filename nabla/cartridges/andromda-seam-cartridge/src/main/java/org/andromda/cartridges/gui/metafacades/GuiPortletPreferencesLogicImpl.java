@@ -41,7 +41,7 @@ import java.util.Collection;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiPortletPreferences.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiPortletPreferences
  */
 public class GuiPortletPreferencesLogicImpl extends GuiPortletPreferencesLogic

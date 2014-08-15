@@ -46,7 +46,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3DependencyFacade.
- *
+ * 
  * @see EJB3DependencyFacade
  */
 public class EJB3DependencyFacadeLogicImpl extends EJB3DependencyFacadeLogic
@@ -187,7 +187,7 @@ public class EJB3DependencyFacadeLogicImpl extends EJB3DependencyFacadeLogic
 
     /**
      * Gets the value of the {@link EJB3Globals#DAO_PATTERN}.
-     *
+     * 
      * @return the DAO name pattern.
      */
     private String getDaoNamePattern()

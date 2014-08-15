@@ -38,7 +38,7 @@ import java.util.List;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author$
  * @version $Revision$
  * @since $Date$
@@ -60,7 +60,7 @@ public class Fieldline extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public List<Field> getItems()
@@ -72,7 +72,7 @@ public class Fieldline extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param items DOCUMENT ME!
      */
     public void setItems(final List<Field> items)

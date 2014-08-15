@@ -35,7 +35,7 @@ package org.andromda.cartridges.gui;
 
 /**
  * Stores globals for the Gui cartridge metafacades.
- *
+ * 
  * @author Chad Brandon
  */
 public class GuiGlobals
@@ -171,14 +171,14 @@ public class GuiGlobals
     public static final String VIEW_POPULATOR_PATTERN                = "viewPopulatorPattern";
 
     /**
-     * The pattern used for constructing a parameter's backing list name.  A backing list
+     * The pattern used for constructing a parameter's backing list name. A backing list
      * is used when you want to select the value of the parameter from a list (typically
      * used for drop-down select input types).
      */
     public static final String BACKING_LIST_PATTERN                  = "backingListPattern";
 
     /**
-     * The pattern used for constructing a parameter's backing value name.  A backing value
+     * The pattern used for constructing a parameter's backing value name. A backing value
      * is used when you want to select and submit values from a regular table (works well when
      * you have a list of complex items with values you need to submit).
      */
@@ -370,5 +370,25 @@ public class GuiGlobals
 
     // public static final String PATH_SEPARATOR = System.getProperty("path.separator");
     public static final String MANUAL_MAPPING_LOCATION               = "manual-mapping";
+
+    /**
+     * Servlet version to use.
+     */
+    static public final String SERVLET_VERSION                       = "servletVersion";
+
+    /**
+     * The version for Servlet 2.
+     */
+    public static final String SERVLET_VERSION_2                     = "2";
+
+    /**
+     * The version for Servlet 3.
+     */
+    public static final String SERVLET_VERSION_3                     = "3";
+
+    /**
+     * The version for Servlet 4.
+     */
+    public static final String SERVLET_VERSION_4                     = "4";
 
 }

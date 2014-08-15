@@ -39,7 +39,7 @@ import org.apache.log4j.Logger;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFUseCase.
- *
+ * 
  * @see org.andromda.cartridges.jsf2.metafacades.JSFUseCase
  */
 public class JSFUseCaseLogicImpl extends JSFUseCaseLogic
@@ -125,7 +125,7 @@ public class JSFUseCaseLogicImpl extends JSFUseCaseLogic
 
     /**
      * Indicates whether or not we should normalize messages.
-     *
+     * 
      * @return true/false
      */
     private boolean isNormalizeMessages()
@@ -389,7 +389,7 @@ public class JSFUseCaseLogicImpl extends JSFUseCaseLogic
 
     /**
      * Collects all attribute messages into the given Map.
-     *
+     * 
      * @param messages the Map in which messages are collected.
      * @param attributes the attributes to collect the messages from.
      * @param resolvingTypes used to prevent endless recursion.
@@ -410,7 +410,7 @@ public class JSFUseCaseLogicImpl extends JSFUseCaseLogic
 
     /**
      * Collects all association end messages into the given Map.
-     *
+     * 
      * @param messages the Map in which messages are collected.
      * @param associationEnds the association ends to collect the messages from.
      * @param resolvingTypes used to prevent endless recursion.
@@ -537,6 +537,7 @@ public class JSFUseCaseLogicImpl extends JSFUseCaseLogic
 
     /**
      * Returns the controller for this use-case.
+     * 
      * @see FrontEndUseCase#getController()
      */
     @Override
@@ -608,7 +609,7 @@ public class JSFUseCaseLogicImpl extends JSFUseCaseLogic
 
     /**
      * Gets the initial target when this use case is entered.
-     *
+     * 
      * @return the initial target.
      */
     private Object getInitialTarget()

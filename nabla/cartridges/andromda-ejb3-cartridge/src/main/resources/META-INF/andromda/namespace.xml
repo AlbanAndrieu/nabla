@@ -187,8 +187,8 @@
                                 <li>JTA</li>
                                 <li>RESOURCE_LOCAL</li>
                             </ul>
-		    	</documentation>		    	
-		    </property>		    	    		    
+		    	</documentation>
+		    </property>
 		    <property name="entityManagerJTADataSource">
 		    	<default>java:/DefaultDS</default>
 		    	<documentation>
@@ -268,7 +268,7 @@
                 <documentation>
                     Whether or not to format SQL statements.
                 </documentation>
-            </property>            
+            </property>
             <property name="hibernateMaxFetchDepth" required="false">
                 <documentation>
                     Sets a maximum "depth" for the outer join fetch tree.
@@ -290,7 +290,7 @@
                 <documentation>
                     A non-zero value determines the JDBC batch fetch size
                 </documentation>
-            </property>            
+            </property>
             <property name="hibernateJdbcUseScrollableResultSet" required="false">
                 <documentation>
                     Whether or not to enable use of JDBC2 scrollable resultsets by Hibernate.
@@ -411,10 +411,19 @@
                     Defines the Hibernate cache MBean object name
                     used in JBoss4.
                     <ul>
-                        <li>jboss.cache:service=EJB3EntityTreeCache</li>
+                        <li>org.hibernate:3</li>
                     </ul>
                 </documentation>
             </property>
+            <property name="hibernateJpaProviderModule" required="false">
+                <documentation>
+                    Defines the Jpa provider module
+                    used in JBoss7.
+                    <ul>
+                        <li>jboss.cache:service=EJB3EntityTreeCache</li>
+                    </ul>
+                </documentation>
+            </property>            
             <property name="hibernateEnableCache">
                 <default>false</default>
                 <documentation>
@@ -1330,7 +1339,31 @@
                         <li>4 - Hibernate 4.x</li>
                     </ul>
                 </documentation>
-            </property>            
+            </property>
+            <property name="persistenceVersion">
+                <default>1.0</default>
+                <documentation>
+                    The version of Persistence to use when generating.
+                    Allowable values are:
+                    <ul>
+                        <li>1.0 - Persistence 1.0</li>
+                        <li>2.0 - Persistence 2.0</li>
+                        <li>3.0 - Persistence 3.0</li>
+                    </ul>
+                </documentation>
+            </property>
+            <property name="seamVersion">
+                <default>2.2</default>
+                <documentation>
+                    The version of Servlet to use when generating.
+                    Allowable values are:
+                    <ul>
+                        <li>2.2 - Seam 2.2.x</li>
+                        <li>2.3 - Seam 2.3.x</li>
+                        <li>3 - Seam 3.x</li>
+                    </ul>
+                </documentation>
+            </property>
             <property name="deploymentPlatform">
                 <default>jboss6</default>
                 <documentation>
@@ -1551,7 +1584,7 @@
                 <documentation>
                     The name prefix for all spring bean ids.
                 </documentation>
-            </property>                        
+            </property>
             <property name="allowDefaultServiceException">
                 <default>true</default>
                 <documentation>

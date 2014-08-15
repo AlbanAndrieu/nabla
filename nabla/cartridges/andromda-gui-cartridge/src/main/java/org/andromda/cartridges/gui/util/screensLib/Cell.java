@@ -38,7 +38,7 @@ import java.util.List;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author$
  * @version $Revision$
  * @since $Date$
@@ -54,7 +54,7 @@ public class Cell
 
     /**
      * Creates a new Cell object.
-     *
+     * 
      * @param align DOCUMENT ME!
      */
     public Cell(final String align)
@@ -67,7 +67,7 @@ public class Cell
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getAlign()
@@ -79,7 +79,7 @@ public class Cell
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param align DOCUMENT ME!
      */
     public void setAlign(final String align)
@@ -91,7 +91,7 @@ public class Cell
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public List<Field> getFields()
@@ -103,7 +103,7 @@ public class Cell
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param fields DOCUMENT ME!
      */
     public void setFields(final List<Field> fields)

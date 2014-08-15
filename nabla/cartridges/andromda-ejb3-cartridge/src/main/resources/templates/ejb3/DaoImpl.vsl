@@ -29,6 +29,8 @@ package ${entity.packageName};
 //@org.jboss.seam.annotations.Scope(org.jboss.seam.ScopeType.${entity.seamComponentScopeType})
 @org.jboss.seam.annotations.Scope(org.jboss.seam.ScopeType.EVENT)
 @org.jboss.seam.annotations.AutoCreate
+@javax.ejb.TransactionAttribute(javax.ejb.TransactionAttributeType.REQUIRED)
+@javax.ejb.Local({${rootDaoType}.class})
 #else
 @javax.ejb.Stateless
 #end

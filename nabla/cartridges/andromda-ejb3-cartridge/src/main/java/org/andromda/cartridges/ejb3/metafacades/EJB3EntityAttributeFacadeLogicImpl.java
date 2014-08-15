@@ -42,7 +42,7 @@ import org.apache.commons.lang.math.NumberUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3EntityAttributeFacade.
- *
+ * 
  * @see EJB3EntityAttributeFacade
  */
 public class EJB3EntityAttributeFacadeLogicImpl extends EJB3EntityAttributeFacadeLogic
@@ -88,7 +88,7 @@ public class EJB3EntityAttributeFacadeLogicImpl extends EJB3EntityAttributeFacad
 
     /**
      * Overridden to provide handling of inheritance.
-     *
+     * 
      * @see org.andromda.metafacades.uml.AttributeFacade#isRequired()
      */
     @Override
@@ -448,7 +448,7 @@ public class EJB3EntityAttributeFacadeLogicImpl extends EJB3EntityAttributeFacad
     /**
      * Override the super method to first look at the tagged value if one exists.
      * If not, then return the default column length.
-     *
+     * 
      * @see org.andromda.metafacades.uml.EntityAttribute#getColumnLength()
      */
     @Override
@@ -465,7 +465,7 @@ public class EJB3EntityAttributeFacadeLogicImpl extends EJB3EntityAttributeFacad
     /**
      * Override the super method to first look at the tagged value if one exists.
      * If not, then return the default column name.
-     *
+     * 
      * @see org.andromda.metafacades.uml.EntityAttribute#getColumnName()
      */
     @Override
@@ -481,10 +481,9 @@ public class EJB3EntityAttributeFacadeLogicImpl extends EJB3EntityAttributeFacad
 
     /**
      * @see EJB3EntityAttributeFacadeLogic#handleGetColumnDefinition()
-     *
      * If the column definition has not manually been set and the attribute
      * type is an enumeration, work out the schema from the length and type
-     * of the enumeration literals.  The definition is only set for if the
+     * of the enumeration literals. The definition is only set for if the
      * literal types are String.
      */
     @Override

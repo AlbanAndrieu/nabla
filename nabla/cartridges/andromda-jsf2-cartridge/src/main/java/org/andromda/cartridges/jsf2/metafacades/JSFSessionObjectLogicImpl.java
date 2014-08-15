@@ -2,13 +2,13 @@ package org.andromda.cartridges.jsf2.metafacades;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFSessionObject.
- *
+ * 
  * @see org.andromda.cartridges.jsf2.metafacades.JSFSessionObject
  */
-public class JSFSessionObjectLogicImpl
-    extends JSFSessionObjectLogic
+public class JSFSessionObjectLogicImpl extends JSFSessionObjectLogic
 {
     private static final long serialVersionUID = 34L;
+
     /**
      * @param metaObject
      * @param context

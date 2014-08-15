@@ -7,13 +7,13 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFEnumeration.
- *
+ * 
  * @see org.andromda.cartridges.jsf2.metafacades.JSFEnumeration
  */
-public class JSFEnumerationLogicImpl
-    extends JSFEnumerationLogic
+public class JSFEnumerationLogicImpl extends JSFEnumerationLogic
 {
     private static final long serialVersionUID = 34L;
+
     /**
      * @param metaObject
      * @param context
@@ -29,10 +29,7 @@ public class JSFEnumerationLogicImpl
      */
     protected String handleGetConverterName()
     {
-        return StringUtils.replace(
-            ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.CONVERTER_PATTERN)),
-            "{0}",
-            this.getName());
+        return StringUtils.replace(ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.CONVERTER_PATTERN)), "{0}", this.getName());
     }
 
     /**

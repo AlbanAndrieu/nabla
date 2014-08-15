@@ -37,7 +37,7 @@ import org.andromda.cartridges.gui.GuiGlobals;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiBackendService.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiBackendService
  */
 public class GuiBackendServiceLogicImpl extends GuiBackendServiceLogic

@@ -23,19 +23,16 @@ import javax.servlet.http.HttpSession;
 
 /**
  * This class is a dummy HttpServletRequest.
- *
+ * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * @author Chad Brandon
  */
-public class HttpServletRequestWrapper
-    implements HttpServletRequest
+public class HttpServletRequestWrapper implements HttpServletRequest
 {
     private PortletRequest portletRequest;
     private PortletContext portletContext;
 
-    public HttpServletRequestWrapper(
-        PortletRequest portletRequest,
-        PortletContext portletContext)
+    public HttpServletRequestWrapper(PortletRequest portletRequest, PortletContext portletContext)
     {
         this.portletRequest = portletRequest;
         this.portletContext = portletContext;
@@ -129,14 +126,12 @@ public class HttpServletRequestWrapper
 
     public HttpSession getSession()
     {
-        return new HttpSessionWrapper(portletRequest.getPortletSession(),
-            this.portletContext);
+        return new HttpSessionWrapper(portletRequest.getPortletSession(), this.portletContext);
     }
 
     public HttpSession getSession(boolean create)
     {
-        return new HttpSessionWrapper(portletRequest.getPortletSession(create),
-            this.portletContext);
+        return new HttpSessionWrapper(portletRequest.getPortletSession(create), this.portletContext);
     }
 
     public Principal getUserPrincipal()

@@ -21,13 +21,13 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFManageableEntity.
- *
+ * 
  * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntity
  */
-public class JSFManageableEntityLogicImpl
-    extends JSFManageableEntityLogic
+public class JSFManageableEntityLogicImpl extends JSFManageableEntityLogic
 {
     private static final long serialVersionUID = 34L;
+
     /**
      * @param metaObject
      * @param context
@@ -153,8 +153,8 @@ public class JSFManageableEntityLogicImpl
      */
     protected boolean handleIsPreload()
     {
-        return false; //TODO think about...
-//        return this.isCreate() || this.isRead() || this.isUpdate() || this.isDelete();
+        return false; // TODO think about...
+        // return this.isCreate() || this.isRead() || this.isUpdate() || this.isDelete();
     }
 
     /**
@@ -273,10 +273,10 @@ public class JSFManageableEntityLogicImpl
     protected String handleGetTableExportTypes()
     {
         return null;
-        //TODO a resolver
-//        return JSFUtils.getDisplayTagExportTypes(
-//            this.findTaggedValues(JSFProfile.TAGGEDVALUE_TABLE_EXPORT),
-//            (String)getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_TABLE_EXPORT_TYPES) );
+        // TODO a resolver
+        // return JSFUtils.getDisplayTagExportTypes(
+        // this.findTaggedValues(JSFProfile.TAGGEDVALUE_TABLE_EXPORT),
+        // (String)getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_TABLE_EXPORT_TYPES) );
     }
 
     /**
@@ -291,8 +291,7 @@ public class JSFManageableEntityLogicImpl
         try
         {
             pageSize = Integer.parseInt(String.valueOf(taggedValue));
-        }
-        catch (Exception e)
+        } catch (Exception e)
         {
             pageSize = JSFProfile.TAGGEDVALUE_TABLE_MAXROWS_DEFAULT_COUNT;
         }
@@ -307,19 +306,17 @@ public class JSFManageableEntityLogicImpl
     protected boolean handleIsTableSortable()
     {
         final Object taggedValue = this.findTaggedValue(JSFProfile.TAGGEDVALUE_TABLE_SORTABLE);
-        return (taggedValue == null)
-            ? JSFProfile.TAGGEDVALUE_TABLE_SORTABLE_DEFAULT_VALUE
-            : Boolean.valueOf(String.valueOf(taggedValue)).booleanValue();
+        return (taggedValue == null) ? JSFProfile.TAGGEDVALUE_TABLE_SORTABLE_DEFAULT_VALUE : Boolean.valueOf(String.valueOf(taggedValue)).booleanValue();
     }
 
     /**
      * @return controllerType
      * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntity#getControllerType()
      */
-     protected String handleGetControllerType()
-     {
-         return this.getManageablePackageName() + this.getNamespaceProperty() + this.getControllerName();
-     }
+    protected String handleGetControllerType()
+    {
+        return this.getManageablePackageName() + this.getNamespaceProperty() + this.getControllerName();
+    }
 
     /**
      * @return StringUtils.uncapitalize(this.getName()) + "Controller"
@@ -387,9 +384,7 @@ public class JSFManageableEntityLogicImpl
      */
     protected String handleGetPopulatorName()
     {
-        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.VIEW_POPULATOR_PATTERN)).replaceAll(
-            "\\{0\\}",
-            StringUtilsHelper.upperCamelCaseName(this.getFormBeanClassName()));
+        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.VIEW_POPULATOR_PATTERN)).replaceAll("\\{0\\}", StringUtilsHelper.upperCamelCaseName(this.getFormBeanClassName()));
     }
 
     /**
@@ -425,7 +420,7 @@ public class JSFManageableEntityLogicImpl
      */
     protected String handleGetOdsExportFullPath()
     {
-        return '/' + this.getManageablePackagePath() + '/' + this.getName().toLowerCase()+"-ods-export";
+        return '/' + this.getManageablePackagePath() + '/' + this.getName().toLowerCase() + "-ods-export";
     }
 
     /**
@@ -436,9 +431,9 @@ public class JSFManageableEntityLogicImpl
     {
         for (final ManageableEntityAttribute attribute : this.getManageableAttributes())
         {
-            if(attribute instanceof JSFManageableEntityAttribute)
+            if (attribute instanceof JSFManageableEntityAttribute)
             {
-                final JSFManageableEntityAttribute jsfAttribute = (JSFManageableEntityAttribute)attribute;
+                final JSFManageableEntityAttribute jsfAttribute = (JSFManageableEntityAttribute) attribute;
                 if (jsfAttribute.isValidationRequired())
                 {
                     return true;
@@ -456,7 +451,7 @@ public class JSFManageableEntityLogicImpl
     {
         final String pattern = ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.FORM_BEAN_PATTERN));
         final String formBeanName = pattern.replaceFirst("\\{0\\}", "manage");
-        return formBeanName.replaceFirst("\\{1\\}",this.getName() + "Search");
+        return formBeanName.replaceFirst("\\{1\\}", this.getName() + "Search");
     }
 
     /**
@@ -492,16 +487,16 @@ public class JSFManageableEntityLogicImpl
      */
     protected Collection<JSFManageableEntityAttribute> handleGetManageableSearchAttributes()
     {
-           final Collection<JSFManageableEntityAttribute> coll = new ArrayList<JSFManageableEntityAttribute>();
-           for(final ManageableEntityAttribute attribute : getManageableAttributes())
-           {
-               if(attribute instanceof JSFManageableEntityAttribute)
-               {
-                   final JSFManageableEntityAttribute attr=(JSFManageableEntityAttribute)attribute;
-                   if(!attr.isHidden())
-                       coll.add(attr);
-               }
-           }
+        final Collection<JSFManageableEntityAttribute> coll = new ArrayList<JSFManageableEntityAttribute>();
+        for (final ManageableEntityAttribute attribute : getManageableAttributes())
+        {
+            if (attribute instanceof JSFManageableEntityAttribute)
+            {
+                final JSFManageableEntityAttribute attr = (JSFManageableEntityAttribute) attribute;
+                if (!attr.isHidden())
+                    coll.add(attr);
+            }
+        }
         return coll;
     }
 
@@ -521,21 +516,20 @@ public class JSFManageableEntityLogicImpl
      */
     protected boolean handleIsSearchable(Object element)
     {
-//           if(element instanceof JSFManageableEntityAttribute)
-//               return getManageableSearchAttributes().contains(element);
-//           else
-//               return getManageableSearchAssociationEnds().contains(element);
+        // if(element instanceof JSFManageableEntityAttribute)
+        // return getManageableSearchAttributes().contains(element);
+        // else
+        // return getManageableSearchAssociationEnds().contains(element);
 
-           //TODO corrigir
+        // TODO corrigir
 
-           if(element instanceof JSFManageableEntityAttribute)
-           {
-               return !((JSFManageableEntityAttribute)element).isHidden();
-           }
-           else
-           {
-               return true;
-           }
+        if (element instanceof JSFManageableEntityAttribute)
+        {
+            return !((JSFManageableEntityAttribute) element).isHidden();
+        } else
+        {
+            return true;
+        }
     }
 
     /**
@@ -543,158 +537,154 @@ public class JSFManageableEntityLogicImpl
      */
     private String getNamespaceProperty()
     {
-        return (String)this.getConfiguredProperty(UMLMetafacadeProperties.NAMESPACE_SEPARATOR);
+        return (String) this.getConfiguredProperty(UMLMetafacadeProperties.NAMESPACE_SEPARATOR);
     }
 
-   private void addSerialUIDData(StringBuilder buffer)
-   {
-       for (final ManageableEntityAttribute attribute : this.getManageableAttributes())
-       {
-           buffer.append(attribute.getName());
-       }
-       for (final ManageableEntityAssociationEnd end : this.getManageableAssociationEnds())
-       {
-           buffer.append(end.getName());
-       }
-   }
+    private void addSerialUIDData(StringBuilder buffer)
+    {
+        for (final ManageableEntityAttribute attribute : this.getManageableAttributes())
+        {
+            buffer.append(attribute.getName());
+        }
+        for (final ManageableEntityAssociationEnd end : this.getManageableAssociationEnds())
+        {
+            buffer.append(end.getName());
+        }
+    }
 
-   /**
-    * @return allRoles
-    * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntity#getRoles()
-    */
-   protected Collection handleGetRoles()
-   {
-       //copied form the Service <<Metafacade>>
-       final Collection roles = new ArrayList(this.getTargetDependencies());
-       CollectionUtils.filter(roles, new Predicate()
-       {
-           public boolean evaluate(final Object object)
-           {
-               DependencyFacade dependency = (DependencyFacade)object;
-               return dependency != null && dependency.getSourceElement() instanceof Role;
-           }
-       });
-       CollectionUtils.transform(roles, new Transformer()
-       {
-           public Object transform(final Object object)
-           {
-               return ((DependencyFacade)object).getSourceElement();
-           }
-       });
-       final Collection allRoles = new LinkedHashSet(roles);
-       // add all roles which are generalizations of this one
-       CollectionUtils.forAllDo(roles, new Closure()
-       {
-           public void execute(final Object object)
-           {
-               allRoles.addAll(((Role)object).getAllSpecializations());
-           }
-       });
-       return allRoles;
-   }
+    /**
+     * @return allRoles
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntity#getRoles()
+     */
+    protected Collection handleGetRoles()
+    {
+        // copied form the Service <<Metafacade>>
+        final Collection roles = new ArrayList(this.getTargetDependencies());
+        CollectionUtils.filter(roles, new Predicate()
+        {
+            public boolean evaluate(final Object object)
+            {
+                DependencyFacade dependency = (DependencyFacade) object;
+                return dependency != null && dependency.getSourceElement() instanceof Role;
+            }
+        });
+        CollectionUtils.transform(roles, new Transformer()
+        {
+            public Object transform(final Object object)
+            {
+                return ((DependencyFacade) object).getSourceElement();
+            }
+        });
+        final Collection allRoles = new LinkedHashSet(roles);
+        // add all roles which are generalizations of this one
+        CollectionUtils.forAllDo(roles, new Closure()
+        {
+            public void execute(final Object object)
+            {
+                allRoles.addAll(((Role) object).getAllSpecializations());
+            }
+        });
+        return allRoles;
+    }
 
-   /**
-    * @return actionRoles
-    * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntity#getActionRoles()
-    */
-   protected String handleGetActionRoles()
-   {
-       //copied from JSFUseCaseLogicImpl
-       final StringBuilder rolesBuffer = new StringBuilder();
-       boolean first = true;
-       for (final Role role : this.getRoles())
-       {
-           if (first)
-           {
-               first = false;
-           }
-           else
-           {
-               rolesBuffer.append(',');
-           }
-           rolesBuffer.append(role.getName());
-       }
-       return rolesBuffer.toString();
-   }
+    /**
+     * @return actionRoles
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntity#getActionRoles()
+     */
+    protected String handleGetActionRoles()
+    {
+        // copied from JSFUseCaseLogicImpl
+        final StringBuilder rolesBuffer = new StringBuilder();
+        boolean first = true;
+        for (final Role role : this.getRoles())
+        {
+            if (first)
+            {
+                first = false;
+            } else
+            {
+                rolesBuffer.append(',');
+            }
+            rolesBuffer.append(role.getName());
+        }
+        return rolesBuffer.toString();
+    }
 
-   /**
-    * @return needsFileUpload
-    * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntity#isNeedsFileUpload()
-    */
-   protected boolean handleIsNeedsFileUpload()
-   {
-       for (final ManageableEntityAttribute attribute : this.getManageableAttributes())
-       {
-           if(attribute instanceof JSFManageableEntityAttribute)
-           {
-               final JSFManageableEntityAttribute jsfAttribute = (JSFManageableEntityAttribute)attribute;
-               if(jsfAttribute.isNeedsFileUpload())
-               {
-                   return true;
-               }
-           }
-       }
-       return false;
-   }
+    /**
+     * @return needsFileUpload
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntity#isNeedsFileUpload()
+     */
+    protected boolean handleIsNeedsFileUpload()
+    {
+        for (final ManageableEntityAttribute attribute : this.getManageableAttributes())
+        {
+            if (attribute instanceof JSFManageableEntityAttribute)
+            {
+                final JSFManageableEntityAttribute jsfAttribute = (JSFManageableEntityAttribute) attribute;
+                if (jsfAttribute.isNeedsFileUpload())
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-   /**
-    * @return needsUserInterface
-    * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntity#isNeedsUserInterface()
-    */
-   protected boolean handleIsNeedsUserInterface()
-   {
-       for (final ManageableEntityAttribute attribute : this.getManageableAttributes())
-       {
-           if(attribute instanceof JSFManageableEntityAttribute)
-           {
-               final JSFManageableEntityAttribute jsfAttribute = (JSFManageableEntityAttribute)attribute;
-               if(!jsfAttribute.isHidden())
-               {
-                   return true;
-               }
-           }
-       }
-       for (final ManageableEntityAssociationEnd associationEnd : this.getManageableAssociationEnds())
-       {
-           if(associationEnd instanceof JSFManageableEntityAssociationEnd)
-           {
-               final JSFManageableEntityAssociationEnd jsfAssociationEnd = (JSFManageableEntityAssociationEnd)associationEnd;
-               if(!jsfAssociationEnd.isDisplay())
-               {
-                   return true;
-               }
-           }
-       }
-       return false;
-   }
+    /**
+     * @return needsUserInterface
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntity#isNeedsUserInterface()
+     */
+    protected boolean handleIsNeedsUserInterface()
+    {
+        for (final ManageableEntityAttribute attribute : this.getManageableAttributes())
+        {
+            if (attribute instanceof JSFManageableEntityAttribute)
+            {
+                final JSFManageableEntityAttribute jsfAttribute = (JSFManageableEntityAttribute) attribute;
+                if (!jsfAttribute.isHidden())
+                {
+                    return true;
+                }
+            }
+        }
+        for (final ManageableEntityAssociationEnd associationEnd : this.getManageableAssociationEnds())
+        {
+            if (associationEnd instanceof JSFManageableEntityAssociationEnd)
+            {
+                final JSFManageableEntityAssociationEnd jsfAssociationEnd = (JSFManageableEntityAssociationEnd) associationEnd;
+                if (!jsfAssociationEnd.isDisplay())
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 
-   /**
-    * @return converterClassName
-    * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntity#getConverterClassName
-    */
+    /**
+     * @return converterClassName
+     * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntity#getConverterClassName
+     */
     public String handleGetConverterClassName()
     {
-        return StringUtils.replace(
-            ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.CONVERTER_PATTERN)),
-            "{0}",
-            this.getName());
+        return StringUtils.replace(ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.CONVERTER_PATTERN)), "{0}", this.getName());
     }
 
     /**
      * @return converterType
      * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntity#getConverterType
      */
-     public String handleGetConverterType()
-     {
-         return this.getManageablePackageName() + this.getNamespaceProperty() + this.getConverterClassName();
-     }
+    public String handleGetConverterType()
+    {
+        return this.getManageablePackageName() + this.getNamespaceProperty() + this.getConverterClassName();
+    }
 
     /**
      * @return converterFullPath
      * @see org.andromda.cartridges.jsf.metafacades.JSFManageableEntity#getConverterFullPath
      */
-     public String handleGetConverterFullPath()
-     {
-         return StringUtils.replace(this.getConverterType(), this.getNamespaceProperty(), "/");
-     }
+    public String handleGetConverterFullPath()
+    {
+        return StringUtils.replace(this.getConverterType(), this.getNamespaceProperty(), "/");
+    }
 }

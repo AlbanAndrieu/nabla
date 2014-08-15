@@ -86,7 +86,7 @@ import java.util.Set;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiManageableEntity.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntity
  */
 public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
@@ -446,8 +446,7 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
             pageSize = Integer.parseInt(String.valueOf(taggedValue));
 
-        }
-        catch (final Exception e)
+        } catch (final Exception e)
         {
 
             pageSize = GuiProfile.TAGGEDVALUE_TABLE_MAXROWS_DEFAULT_COUNT;
@@ -755,7 +754,7 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     @Override
@@ -778,7 +777,7 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     @Override
@@ -793,7 +792,7 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public List<ManageableEntityAssociationEnd> getManageableAssociationEndsManageableEntity()
@@ -831,7 +830,7 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
     // TODO remove never used
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public List<ManageableEntityAssociationEnd> getManageableAssociationEndsGuiManageableEntity()
@@ -1947,14 +1946,12 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
             return viewContent;
 
-        }
-        catch (final MalformedURLException e)
+        } catch (final MalformedURLException e)
         {
 
             e.printStackTrace();
 
-        }
-        catch (final DocumentException e)
+        } catch (final DocumentException e)
         {
 
             e.printStackTrace();
@@ -2261,9 +2258,8 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param serviceName DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     @Override
@@ -2628,8 +2624,7 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
                     // voAttributes.addAll(voRequiredConstructorParameters);
                     //
                     // }
-                }
-                catch (final Exception e)
+                } catch (final Exception e)
                 {
 
                     this.logger_.info("Exception is : " + e + " and the Manageable attribute is : " + manageableAttribute.getName() + " Generalization is : " + vo.getGeneralizationList());
@@ -2837,9 +2832,9 @@ public class GuiManageableEntityLogicImpl extends GuiManageableEntityLogic
      * Retrieves manageable service facade for a given service name. This method
      * will search in directly attached services, and also in generalizations and
      * specializations.
-     *
+     * 
      * @param serviceName
-     *         the service name
+     * the service name
      * @return Service facade instance
      */
     private Service getManageableService(final String serviceName)

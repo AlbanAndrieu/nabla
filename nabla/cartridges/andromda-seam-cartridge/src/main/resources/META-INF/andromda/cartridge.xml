@@ -20,11 +20,15 @@
     <templateObject name="jsfUtils" className="org.andromda.cartridges.gui.GuiUtils">
         <property reference="strictDateTimeFormat"/>
         <property reference="portletContainer"/>
+        <property reference="servletVersion"/>
+        <property reference="seamVersion"/>
     </templateObject>
     <!-- cartridge-templateObject merge-point-->
 
     <templatePostProcessor className="org.andromda.core.common.ImportBeautifierPostProcessorImpl"/>
 
+    <property reference="servletVersion"/>
+    <property reference="seamVersion"/>
     <property reference="xmlEncoding"/>
     <property reference="facesConfig"/>
     <property reference="jspIncludes"/>

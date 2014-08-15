@@ -86,6 +86,8 @@
                 <property name="hibernateEntityCache">TRANSACTIONAL</property>
                 <!-- uncomment to enable default association caching configuration -->
                 <property name="hibernateAssociationCache">TRANSACTIONAL</property>
+                <property name="hibernateVersion">3</property>
+                <property name="persistenceVersion">1.0</property>                
                 <property name="enableClustering">true</property>
                 <property name="webServiceEnabled">true</property>
                 <property name="webServiceContextRoot">/${application.id}-ws</property>

@@ -6,10 +6,11 @@ import org.apache.commons.fileupload.FileItem;
 
 /**
  * This interface handles the multpart request for inputFileUpload components.
- *
+ * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  */
-public interface MultipartRequest {
+public interface MultipartRequest
+{
 
     // Hook for the t:inputFileUpload tag.
     public abstract FileItem getFileItem(String fieldName);

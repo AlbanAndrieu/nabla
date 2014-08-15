@@ -33,8 +33,7 @@ package ${entity.packageName};
  * @see $rootDaoType
  */
 ##if (!$entity.seamComponent)
-@javax.ejb.TransactionAttribute(javax.ejb.TransactionAttributeType.REQUIRED)
-@javax.ejb.Local({${rootDaoType}.class})
+//@javax.ejb.TransactionAttribute(javax.ejb.TransactionAttributeType.REQUIRED)
 ##end
 #if ($entity.securityEnabled)
 #**##if ($stringUtils.isBlank(${entity.rolesAllowed}))
@@ -56,7 +55,7 @@ public abstract class $entity.daoBaseName## no new line
     @javax.annotation.Resource
     protected javax.ejb.SessionContext context;
 
-#if ($entity.seamComponent)
+#if ( ($entity.seamComponent) && ($hibernateUtils.seamVersion22) )
     /**
      * Inject persistence seam context
      */    

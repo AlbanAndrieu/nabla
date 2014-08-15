@@ -5,13 +5,13 @@ import org.andromda.utils.StringUtilsHelper;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFEvent.
- *
+ * 
  * @see org.andromda.cartridges.jsf2.metafacades.JSFEvent
  */
-public class JSFEventLogicImpl
-    extends JSFEventLogic
+public class JSFEventLogicImpl extends JSFEventLogic
 {
     private static final long serialVersionUID = 34L;
+
     /**
      * @param metaObject
      * @param context
@@ -30,10 +30,10 @@ public class JSFEventLogicImpl
         String triggerKey = StringUtilsHelper.toResourceMessageKey(getName());
         if (!this.isNormalizeMessages())
         {
-            final JSFAction action = (JSFAction)this.getAction();
+            final JSFAction action = (JSFAction) this.getAction();
             if (action != null)
             {
-                final JSFView view = (JSFView)action.getInput();
+                final JSFView view = (JSFView) action.getInput();
                 if (view != null)
                 {
                     triggerKey = view.getMessageKey() + '.' + triggerKey;
@@ -72,11 +72,12 @@ public class JSFEventLogicImpl
 
     /**
      * Indicates whether or not we should normalize messages.
+     * 
      * @return normalizeMessages true/false
      */
     private boolean isNormalizeMessages()
     {
-        final String normalizeMessages = (String)getConfiguredProperty(JSFGlobals.NORMALIZE_MESSAGES);
+        final String normalizeMessages = (String) getConfiguredProperty(JSFGlobals.NORMALIZE_MESSAGES);
         return Boolean.valueOf(normalizeMessages).booleanValue();
     }
 }

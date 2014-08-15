@@ -8,13 +8,13 @@
             xmlns:web="http://jboss.org/schema/seam/web"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation=
-                    "http://jboss.org/schema/seam/core http://jboss.org/schema/seam/core-2.3.xsd
-                 http://jboss.org/schema/seam/persistence http://jboss.org/schema/seam/persistence-2.3.xsd
-                 http://jboss.org/schema/seam/security http://jboss.org/schema/seam/security-2.3.xsd
-                 http://jboss.org/schema/seam/theme http://jboss.org/schema/seam/theme-2.3.xsd
-                 http://jboss.org/schema/seam/cache http://jboss.org/schema/seam/cache-2.3.xsd
-                 http://jboss.org/schema/seam/web http://jboss.org/schema/seam/web-2.3.xsd
-                 http://jboss.org/schema/seam/components http://jboss.org/schema/seam/components-2.3.xsd">
+                    "http://jboss.org/schema/seam/core http://jboss.org/schema/seam/core-2.2.xsd
+                 http://jboss.org/schema/seam/persistence http://jboss.org/schema/seam/persistence-2.2.xsd
+                 http://jboss.org/schema/seam/security http://jboss.org/schema/seam/security-2.2.xsd
+                 http://jboss.org/schema/seam/theme http://jboss.org/schema/seam/theme-2.2.xsd
+                 http://jboss.org/schema/seam/cache http://jboss.org/schema/seam/cache-2.2.xsd
+                 http://jboss.org/schema/seam/web http://jboss.org/schema/seam/web-2.2.xsd
+                 http://jboss.org/schema/seam/components http://jboss.org/schema/seam/components-2.2.xsd">
 
     <core:init jndi-pattern="${ejbJndiNamePrefix}/#{ejbName}/local" debug="true"/>    
 

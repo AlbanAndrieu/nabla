@@ -10,13 +10,13 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAssociationEnd.
- *
+ * 
  * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAssociationEnd
  */
-public class JSFManageableEntityAssociationEndLogicImpl
-    extends JSFManageableEntityAssociationEndLogic
+public class JSFManageableEntityAssociationEndLogicImpl extends JSFManageableEntityAssociationEndLogic
 {
     private static final long serialVersionUID = 34L;
+
     /**
      * @param metaObject
      * @param context
@@ -38,8 +38,7 @@ public class JSFManageableEntityAssociationEndLogicImpl
         if (ownerType instanceof ManageableEntity)
         {
             messageKeyBuffer.append(ownerType.getName());
-        }
-        else
+        } else
         {
             messageKeyBuffer.append(ownerType.getName());
         }
@@ -92,11 +91,7 @@ public class JSFManageableEntityAssociationEndLogicImpl
      */
     protected String handleGetBackingListName()
     {
-        final String backingListName =
-            StringUtils.replace(
-                ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.BACKING_LIST_PATTERN)),
-                "{0}",
-                this.getName());
+        final String backingListName = StringUtils.replace(ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.BACKING_LIST_PATTERN)), "{0}", this.getName());
         return org.andromda.utils.StringUtilsHelper.lowerCamelCaseName(backingListName);
     }
 
@@ -106,9 +101,7 @@ public class JSFManageableEntityAssociationEndLogicImpl
      */
     protected String handleGetValueListName()
     {
-        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.VALUE_LIST_PATTERN)).replaceAll(
-            "\\{0\\}",
-            this.getName());
+        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.VALUE_LIST_PATTERN)).replaceAll("\\{0\\}", this.getName());
     }
 
     /**
@@ -117,8 +110,6 @@ public class JSFManageableEntityAssociationEndLogicImpl
      */
     protected String handleGetLabelListName()
     {
-        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.LABEL_LIST_PATTERN)).replaceAll(
-            "\\{0\\}",
-            this.getName());
+        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.LABEL_LIST_PATTERN)).replaceAll("\\{0\\}", this.getName());
     }
 }

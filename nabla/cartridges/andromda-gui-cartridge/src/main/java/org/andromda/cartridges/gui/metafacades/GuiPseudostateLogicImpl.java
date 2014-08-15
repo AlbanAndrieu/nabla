@@ -49,7 +49,7 @@ import java.util.Set;
  * Encapsulates a pseudostate and provides specific Gui services. This pseudostate can be a
  * decision point, junction or initial state.
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiPseudostate.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiPseudostate
  */
 public class GuiPseudostateLogicImpl extends GuiPseudostateLogic
@@ -59,6 +59,7 @@ public class GuiPseudostateLogicImpl extends GuiPseudostateLogic
 
     /**
      * Public constructor for GuiPseudostateLogicImpl
+     * 
      * @see org.andromda.cartridges.gui.metafacades.GuiPseudostate
      */
     public GuiPseudostateLogicImpl(final Object metaObject, final String context)
@@ -93,7 +94,7 @@ public class GuiPseudostateLogicImpl extends GuiPseudostateLogic
 
     /**
      * Overridden and not typesafe since GuiAction does not extend FrontEndAction
-     *
+     * 
      * @see org.andromda.metafacades.uml.FrontEndPseudostate#getContainerActions()
      */
     @Override

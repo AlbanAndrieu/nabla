@@ -42,7 +42,7 @@ import org.apache.log4j.Logger;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3WebServiceOperationFacade.
- *
+ * 
  * @see EJB3WebServiceOperationFacade
  */
 public class EJB3WebServiceOperationFacadeLogicImpl extends EJB3WebServiceOperationFacadeLogic

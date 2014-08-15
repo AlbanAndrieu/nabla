@@ -38,7 +38,7 @@ import org.andromda.metafacades.uml.AttributeFacade;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3EnumerationFacade.
- *
+ * 
  * @see EJB3EnumerationFacade
  */
 public class EJB3EnumerationFacadeLogicImpl extends EJB3EnumerationFacadeLogic

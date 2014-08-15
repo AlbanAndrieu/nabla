@@ -37,7 +37,7 @@ import org.andromda.cartridges.ejb3.EJB3Profile;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3SessionOperationParameterFacade.
- *
+ * 
  * @see EJB3SessionOperationParameterFacade
  */
 public class EJB3SessionOperationParameterFacadeLogicImpl extends EJB3SessionOperationParameterFacadeLogic

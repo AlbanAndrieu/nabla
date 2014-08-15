@@ -21,11 +21,13 @@
         <!--<property reference="viewType"/>-->
         <property reference="strictDateTimeFormat"/>
         <property reference="portletContainer"/>
+        <property reference="servletVersion"/>
     </templateObject>
     <!-- cartridge-templateObject merge-point-->
 
     <!--<templatePostProcessor className="org.andromda.core.common.ImportBeautifierPostProcessorImpl"/>-->
 
+    <property reference="servletVersion"/>
     <property reference="xmlEncoding"/>
     <property reference="facesConfig"/>
     <property reference="jspIncludes"/>

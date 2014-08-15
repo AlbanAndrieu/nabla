@@ -37,7 +37,7 @@ import org.andromda.cartridges.ejb3.EJB3Profile;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3PersistenceContextFacade.
- *
+ * 
  * @see EJB3PersistenceContextFacade
  */
 public class EJB3PersistenceContextFacadeLogicImpl extends EJB3PersistenceContextFacadeLogic

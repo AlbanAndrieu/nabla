@@ -71,7 +71,7 @@ import org.apache.commons.lang.math.NumberUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3EntityFacade.
- *
+ * 
  * @see EJB3EntityFacade
  */
 public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
@@ -239,6 +239,7 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
     /**
      * This was meant to overrides the default implementation in EntityLogicImpl.java.
      * TODO: check - is it really required?
+     * 
      * @return identifiers
      * @see EJB3EntityFacade#getIdentifiers()
      */
@@ -274,17 +275,15 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
 
     /**
      * This overrides the default implementation in EntityLogicImpl.java.
-     *
      * This provides the means to check super classes, even those modeled
      * as mapped superclasses, as well as entities.
-     *
      * Gets all identifiers for this entity. If 'follow' is true, and if
      * no identifiers can be found on the entity, a search up the
      * inheritance chain will be performed, and the identifiers from
      * the first super class having them will be used.
-     *
+     * 
      * @param follow a flag indicating whether or not the inheritance hierarchy
-     *        should be followed
+     * should be followed
      * @return the collection of identifiers.
      */
     public Collection<ModelElementFacade> getIdentifiers(boolean follow)
@@ -355,7 +354,7 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
 
     /**
      * Gets the <code>jndiNamePrefix</code> for this EJB.
-     *
+     * 
      * @return the EJB Jndi name prefix.
      */
     protected String getJndiNamePrefix()
@@ -407,7 +406,6 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
     /**
      * @return dependencies
      * @see EJB3EntityFacade#getValueDependencies()
-     *
      * NOTE: This is not required since ValueObject no longer exist and replaced with POJOs
      */
     protected Collection handleGetValueDependencies()
@@ -577,7 +575,7 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
 
     /**
      * Gets a Mappings instance from a property registered under the given <code>propertyName</code>.
-     *
+     * 
      * @param propertyName the property name to register under.
      * @return the Mappings instance.
      */
@@ -593,8 +591,7 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
             {
                 mappings = TypeMappings.getInstance(uri);
                 this.setProperty(propertyName, mappings);
-            }
-            catch (Throwable th)
+            } catch (Throwable th)
             {
                 String errMsg = "Error getting '" + propertyName + "' --> '" + uri + "'";
                 // don't throw the exception
@@ -747,6 +744,7 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
 
     /**
      * Override the default table name definition to lookup the tagged value first.
+     * 
      * @return tableName
      */
     @Override
@@ -836,7 +834,7 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
 
     /**
      * Gets the default entity inhertance strategy from namespace.
-     *
+     * 
      * @return the default entity inheritance strategy.
      */
     private String getDefaultInheritanceStrategy()
@@ -846,7 +844,7 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
 
     /**
      * Return the inheritance tagged value for for given <code>entity</code>.
-     *
+     * 
      * @param entity EJB3EntityFacade from which to retrieve the inheritance tagged value.
      * @return String inheritance tagged value.
      */
@@ -868,7 +866,7 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
      * Returns the super entity for this entity, if one exists by generalization. If a
      * generalization does NOT exist OR if it's not an instance of EJB3EntityFacade
      * then returns null.
-     *
+     * 
      * @return the super entity or null if one doesn't exist.
      */
     private EJB3EntityFacade getSuperEntity()
@@ -929,7 +927,7 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
 
     /**
      * Returns true if this entity is a <code>root</code> entity and has no generalizations.
-     *
+     * 
      * @return
      */
     private boolean isRoot()
@@ -1265,7 +1263,7 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
 
     /**
      * Gets the value of the {@link EJB3Globals#DAO_PATTERN}
-     *
+     * 
      * @return the DAO name pattern.
      */
     private String getDaoNamePattern()
@@ -1293,7 +1291,7 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
 
     /**
      * Gets the value of the {@link #DAO_IMPLEMENTATION_PATTERN}
-     *
+     * 
      * @return the DAO implementation name pattern.
      */
     private String getDaoImplementationNamePattern()
@@ -1321,7 +1319,7 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
 
     /**
      * Gets the value of the {@link #DAO_BASE_PATTERN}
-     *
+     * 
      * @return the DAO base name pattern.
      */
     private String getDaoBaseNamePattern()
@@ -1461,7 +1459,7 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
 
     /**
      * Gets the value of the {@link #DAO_DEFAULT_EXCEPTION_NAME_PATTERN}
-     *
+     * 
      * @return the DAO default exception name pattern.
      */
     private String getDaoDefaultExceptionNamePattern()
@@ -1565,7 +1563,7 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
     /**
      * Constructs a comma separated list of attribute type names from the passed in collection of
      * <code>attributes</code>.
-     *
+     * 
      * @param attributes the attributes to construct the list from.
      * @return the comma separated list of attribute types.
      */
@@ -1606,7 +1604,7 @@ public class EJB3EntityFacadeLogicImpl extends EJB3EntityFacadeLogic
 
     /**
      * Constructs a comma separated list of attribute names from the passed in collection of <code>attributes</code>.
-     *
+     * 
      * @param properties the properties to construct the list from.
      * @return the comma separated list of attribute names.
      */

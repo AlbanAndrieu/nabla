@@ -7,13 +7,13 @@ import org.andromda.metafacades.uml.UseCaseFacade;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFPortletPreferences.
- *
+ * 
  * @see org.andromda.cartridges.jsf2.metafacades.JSFPortletPreferences
  */
-public class JSFPortletPreferencesLogicImpl
-    extends JSFPortletPreferencesLogic
+public class JSFPortletPreferencesLogicImpl extends JSFPortletPreferencesLogic
 {
     private static final long serialVersionUID = 34L;
+
     /**
      * @param metaObject
      * @param context
@@ -22,6 +22,7 @@ public class JSFPortletPreferencesLogicImpl
     {
         super(metaObject, context);
     }
+
     /**
      * @return useCase
      * @see org.andromda.cartridges.jsf.metafacades.JSFPortletPreferences#getUseCase()
@@ -37,7 +38,7 @@ public class JSFPortletPreferencesLogicImpl
                 final ModelElementFacade source = dependency.getSourceElement();
                 if (source instanceof UseCaseFacade)
                 {
-                    useCase = (UseCaseFacade)source;
+                    useCase = (UseCaseFacade) source;
                     break;
                 }
             }

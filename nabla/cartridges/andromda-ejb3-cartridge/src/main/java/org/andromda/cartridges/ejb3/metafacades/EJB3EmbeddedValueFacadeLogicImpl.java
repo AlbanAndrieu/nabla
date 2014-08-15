@@ -40,7 +40,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3EmbeddedValueFacade.
- *
+ * 
  * @see EJB3EmbeddedValueFacade
  */
 public class EJB3EmbeddedValueFacadeLogicImpl extends EJB3EmbeddedValueFacadeLogic
@@ -87,7 +87,7 @@ public class EJB3EmbeddedValueFacadeLogicImpl extends EJB3EmbeddedValueFacadeLog
 
     /**
      * Gets the value of the {@link #EMBEDDED_VALUE_IMPLEMENTATION_NAME_PATTERN}
-     *
+     * 
      * @return the embedded value name pattern.
      */
     private String getImplementationNamePattern()

@@ -22,7 +22,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFView.
- *
+ * 
  * @see org.andromda.cartridges.jsf2.metafacades.JSFView
  */
 public class JSFViewLogicImpl extends JSFViewLogic
@@ -73,7 +73,7 @@ public class JSFViewLogicImpl extends JSFViewLogic
 
     /**
      * Indicates whether or not we should normalize messages.
-     *
+     * 
      * @return true/false
      */
     private boolean isNormalizeMessages()

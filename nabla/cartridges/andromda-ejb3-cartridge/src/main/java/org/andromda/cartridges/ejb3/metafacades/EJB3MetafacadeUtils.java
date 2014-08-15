@@ -52,7 +52,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * Contains utilities for use with EJB metafacades.
- *
+ * 
  * @author Chad Brandon
  * @author Vance Karimi
  */
@@ -60,7 +60,7 @@ class EJB3MetafacadeUtils
 {
     /**
      * Gets all create methods for the given <code>classifier</code>.
-     *
+     * 
      * @param classifier The classifier from which to retries the create methods
      * @param follow if true, all super type create methods are also retrieved
      * @return collection of create methods found.
@@ -90,6 +90,7 @@ class EJB3MetafacadeUtils
     /**
      * Gets the interface name for the passed in <code>classifier</code>. Returns 'LocalHome' if the mode element has
      * the entity stereotype, returns 'Home' otherwise.
+     * 
      * @param classifier
      * @return the interface name.
      */
@@ -111,10 +112,9 @@ class EJB3MetafacadeUtils
      * Gets the view type for the passed in <code>classifier</code>. If no
      * view type can be retrieved from the <code>classifier</code>, then the
      * <code>defaultViewType</code> is returned.
-     *
      * If session ejb pojo then checks the ejb tagged value and if there is
      * no value defined, returns 'remote'.
-     *
+     * 
      * @param classifier The classifier to lookup the view type tagged value
      * @param defaultViewType The default view type if one is not found
      * @return String the view type name.
@@ -150,7 +150,7 @@ class EJB3MetafacadeUtils
     /**
      * Gets all the inherited instance attributes, excluding the instance attributes directory from this
      * <code>classifier</code>.
-     *
+     * 
      * @param classifier the ClassifierFacade from which to retrieve the inherited attributes.
      * @return a list of ordered attributes.
      */
@@ -174,7 +174,7 @@ class EJB3MetafacadeUtils
     /**
      * Gets all instance attributes including those instance attributes belonging to the
      * <code>classifier</code> and any inherited ones.
-     *
+     * 
      * @param classifier the ClassifierFacade from which to retrieve the instance attributes.
      * @return the list of all instance attributes.
      */
@@ -190,10 +190,10 @@ class EJB3MetafacadeUtils
      * Gets all environment entries for the specified <code>classifier</code>. If <code>follow</code> is true, then a
      * search up the inheritance hierarchy will be performed and all super type environment entries will also be
      * retrieved.
-     *
+     * 
      * @param classifier the classifier from which to retrieve the env-entries
-     * @param follow     true/false on whether or not to 'follow' the inheritance hierarchy when retrieving the
-     *                   env-entries.
+     * @param follow true/false on whether or not to 'follow' the inheritance hierarchy when retrieving the
+     * env-entries.
      * @return the collection of environment entries
      */
     static Collection<AttributeFacade> getEnvironmentEntries(ClassifierFacade classifier, boolean follow)
@@ -223,7 +223,7 @@ class EJB3MetafacadeUtils
 
     /**
      * Returns the transaction type for the specified <code>classifier</code>.
-     *
+     * 
      * @param classifier the classifier from which to retrieve the transaction type.
      * @param defaultTransactionType the default transaction type if no tagged value is specified.
      * @return the transaction type as a String.
@@ -247,7 +247,7 @@ class EJB3MetafacadeUtils
      * Convert the transaction type from lower casing to upper casing.
      * This maintains reusable tagged value enumeration from EJB
      * implementation.
-     *
+     * 
      * @param transType
      * @return transactionType
      */
@@ -283,10 +283,10 @@ class EJB3MetafacadeUtils
      * If <code>follow</code> is true, then a search up
      * the inheritance hierarchy will be performed and all super
      * type constants will also be retrieved.
-     *
+     * 
      * @param classifier the classifier from which to retrieve the constants
-     * @param follow     true/false on whether or not to 'follow' the inheritance hierarchy when retrieving the
-     *                   constants.
+     * @param follow true/false on whether or not to 'follow' the inheritance hierarchy when retrieving the
+     * constants.
      * @return the collection of environment entries
      */
     static Collection<AttributeFacade> getConstants(ClassifierFacade classifier, boolean follow)
@@ -316,7 +316,7 @@ class EJB3MetafacadeUtils
 
     /**
      * Returns true/false based on whether or not synthetic or auto generated create methods should be allowed.
-     *
+     * 
      * @param classifier The entity or session bean.
      * @return true/false
      */
@@ -329,7 +329,7 @@ class EJB3MetafacadeUtils
     /**
      * Creates a fully qualified name from the given <code>packageName</code>,
      * <code>name</code>, and <code>suffix</code>.
-     *
+     * 
      * @param packageName the name of the model element package.
      * @param name the name of the model element.
      * @param suffix the suffix to append.
@@ -349,7 +349,7 @@ class EJB3MetafacadeUtils
 
     /**
      * Returns true if the Seam stereotype is modeled on the class.
-     *
+     * 
      * @param classifier The classifier to lookup if the stereotype is modeled
      * @return True is stereotype exists, false otherwise
      */
@@ -366,9 +366,9 @@ class EJB3MetafacadeUtils
     /**
      * Gets the Seam component scope type for Entity and Session beans.
      * If no scope has been specified:
-     *     If the Classifier is a stateless session bean, then returns STATELESS
-     *     If the Classifier is an entity or stateful session bean, then returns CONVERSATION
-     *
+     * If the Classifier is a stateless session bean, then returns STATELESS
+     * If the Classifier is an entity or stateful session bean, then returns CONVERSATION
+     * 
      * @param classifier The classifier to lookup the scope type tagged value
      * @param stateless Whether the classifier is a stateless session bean
      * @return The scope type as a String
@@ -391,9 +391,9 @@ class EJB3MetafacadeUtils
     }
 
     /**
-     * Returns the Seam component name.  Can override using tagged value, otherwise just the
+     * Returns the Seam component name. Can override using tagged value, otherwise just the
      * class name.
-     *
+     * 
      * @param classifier The classifier to get the tagged value or the name from.
      * @return The Seam component name
      */
@@ -410,6 +410,7 @@ class EJB3MetafacadeUtils
 
     /**
      * Builds an annotation parameter line
+     * 
      * @param parameters The parameters
      * @return The parameter line
      */
@@ -439,6 +440,7 @@ class EJB3MetafacadeUtils
 
     /**
      * Builds a multi valued parameter string
+     * 
      * @param name The name of the parameter
      * @param values The values for the parameters
      * @return The parameter string
@@ -450,6 +452,7 @@ class EJB3MetafacadeUtils
 
     /**
      * Builds a multi valued parameter string
+     * 
      * @param name The name of the parameter
      * @param values The values for the parameters
      * @param areStrings If the values are strings then surround with " sign
@@ -463,6 +466,7 @@ class EJB3MetafacadeUtils
     /**
      * Builds a multi option string
      * Builds a multi valued parameter string
+     * 
      * @param name The name of the parameter
      * @param values The values for the parameters
      * @param areStrings If the values are strings then surround with " sign
@@ -510,15 +514,15 @@ class EJB3MetafacadeUtils
      * Gets the SQL name. (i.e. column name, table name, etc.). If it can't find
      * the corresponding tagged value with the specified <code>name</code>,
      * then it uses the element name by default and just returns that.
-     *
+     * 
      * @param prefix the optional prefix to add to the sql name (i.e. table name
-     *        prefix, etc.).
+     * prefix, etc.).
      * @param element from which to retrieve the SQL name.
      * @param name the name of the tagged value.
      * @param nameMaxLength if this is not null, then the name returned will be
-     *        trimmed to this length (if it happens to be longer).
+     * trimmed to this length (if it happens to be longer).
      * @param suffix the optional suffix to add to the sql name (i.e. foreign
-     *        key suffix, etc.)
+     * key suffix, etc.)
      * @param separator character used to separate words
      * @return the SQL name as a String.
      */

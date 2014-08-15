@@ -53,7 +53,7 @@ import java.util.Set;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiFinalState.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiFinalState
  */
 public class GuiFinalStateLogicImpl extends GuiFinalStateLogic
@@ -131,7 +131,7 @@ public class GuiFinalStateLogicImpl extends GuiFinalStateLogic
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     @Override
@@ -168,7 +168,7 @@ public class GuiFinalStateLogicImpl extends GuiFinalStateLogic
     /**
      * Overridden for now (@todo need to figure out why it doesn't work correctly when using
      * the one from the FrontEndFinalState).
-     *
+     * 
      * @see org.andromda.metafacades.uml.FrontEndFinalState#getTargetUseCase()
      */
     @Override

@@ -54,7 +54,7 @@ import java.util.List;
  * A Validable entity handles Validable stereotype. Its a particular Manageable entity in the way it
  * carries some of the Manageable use cases, overrides some others, and defines specific ones.
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiValidableEntity.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiValidableEntity
  */
 public class GuiValidableEntityLogicImpl extends GuiValidableEntityLogic
@@ -65,6 +65,7 @@ public class GuiValidableEntityLogicImpl extends GuiValidableEntityLogic
 
     /**
      * Public constructor for GuiValidableEntityLogicImpl
+     * 
      * @see org.andromda.cartridges.gui.metafacades.GuiValidableEntity
      */
     public GuiValidableEntityLogicImpl(final Object metaObject, final String context)
@@ -75,7 +76,7 @@ public class GuiValidableEntityLogicImpl extends GuiValidableEntityLogic
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     @Override
@@ -87,7 +88,6 @@ public class GuiValidableEntityLogicImpl extends GuiValidableEntityLogic
     }
 
     /**
-     *
      * @see org.andromda.cartridges.gui.metafacades.GuiValidableEntity#getValidationNameSuffix()
      */
     @Override
@@ -99,7 +99,6 @@ public class GuiValidableEntityLogicImpl extends GuiValidableEntityLogic
     }
 
     /**
-     *
      * @see org.andromda.cartridges.gui.metafacades.GuiValidableEntity#getValidableObjectReferences()
      */
     @Override
@@ -126,7 +125,6 @@ public class GuiValidableEntityLogicImpl extends GuiValidableEntityLogic
     }
 
     /**
-     *
      * @see org.andromda.cartridges.gui.metafacades.GuiValidableEntity#eachValidableObjectReferenceIsValid()
      */
     @Override
@@ -159,7 +157,6 @@ public class GuiValidableEntityLogicImpl extends GuiValidableEntityLogic
     }
 
     /**
-     *
      * @see org.andromda.cartridges.gui.metafacades.GuiValidableEntity#getIdentifierForValidableObjectReference(String)
      */
     @Override

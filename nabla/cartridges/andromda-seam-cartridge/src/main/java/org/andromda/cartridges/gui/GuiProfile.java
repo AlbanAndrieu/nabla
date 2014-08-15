@@ -37,7 +37,7 @@ import org.andromda.core.profile.Profile;
 
 /**
  * Contains the AndroMDA Gui profile.
- *
+ * 
  * @author Chad Brandon
  */
 public class GuiProfile

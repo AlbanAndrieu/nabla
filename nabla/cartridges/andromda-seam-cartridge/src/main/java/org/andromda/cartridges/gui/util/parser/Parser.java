@@ -59,7 +59,7 @@ import java.util.List;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author: albandri $
  * @version $Revision: 377 $
  * @since $Date: 2010-10-03 03:28:10 +0200 (dim., 03 oct. 2010) $
@@ -73,7 +73,7 @@ public class Parser
 
     /**
      * Creates a new Parser object.
-     *
+     * 
      * @param url DOCUMENT ME!
      * @param attributesAndAssociations DOCUMENT ME!
      */
@@ -87,8 +87,7 @@ public class Parser
             this.attributesAndAssociations = attributesAndAssociations;
             this.invalidAttributes = new ArrayList<String>();
 
-        }
-        catch (final DocumentException e)
+        } catch (final DocumentException e)
         {
 
             e.printStackTrace();
@@ -99,11 +98,9 @@ public class Parser
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param url DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
-     *
      * @throws DocumentException DOCUMENT ME!
      */
     public Document parse(final URL url) throws DocumentException
@@ -118,9 +115,8 @@ public class Parser
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
-     *
      * @throws DocumentException DOCUMENT ME!
      */
     public ViewContent parse() throws DocumentException
@@ -211,8 +207,7 @@ public class Parser
 
                 throw new ParsingException();
 
-            }
-            catch (final ParsingException e1)
+            } catch (final ParsingException e1)
             {
 
                 e1.printStackTrace();
@@ -495,7 +490,7 @@ public class Parser
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public List<String> getInvalidAttributes()
@@ -507,7 +502,7 @@ public class Parser
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param invalidAttributes DOCUMENT ME!
      */
     public void setInvalidAttributes(final List<String> invalidAttributes)

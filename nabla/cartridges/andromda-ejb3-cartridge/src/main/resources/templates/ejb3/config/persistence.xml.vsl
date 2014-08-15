@@ -9,20 +9,34 @@
 Modify as necessary for JPA unit testing
 <persistence xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd" version="2.0">
 -->
+#if($hibernateUtils.persistenceVersion2)
 <persistence
     xmlns="http://java.sun.com/xml/ns/persistence"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
                         http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
     version="2.0">
+#else
+<persistence
+    xmlns="http://java.sun.com/xml/ns/persistence"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/persistence
+                        http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
+    version="1.0">
+#end
 
     <persistence-unit name="${entityManagerName}" transaction-type="${entityManagerTransactionType}">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 #if ($stringUtils.isNotBlank(${dataSource}))
+#if ($entityManagerTransactionType.equalsIgnoreCase("JTA"))
+
         <!-- use jta-data-source only when transaction-type is JTA -->
         <jta-data-source>${dataSource}</jta-data-source>
+#end        
+#if ($entityManagerTransactionType.equalsIgnoreCase("RESOURCE_LOCAL"))
         <!-- use non-jta-data-source only when transaction-type is RESOURCE_LOCAL -->
         <non-jta-data-source>${dataSource}Unmanaged</non-jta-data-source>
+#end           
 #end
 #if ($stringUtils.isNotBlank($jarFiles))
 #**##set ($jars = $stringUtils.split($jarFiles,','))
@@ -105,6 +119,7 @@ Modify as necessary for JPA unit testing
             <!-- Encoding -->
             <property name="hibernate.connection.useUnicode" value="true" />
             <property name="hibernate.connection.characterEncoding" value="UTF-8" />
+#if ($stringUtils.isNotBlank($hibernateJpaProviderModule))
 
             <!-- Must add hibernate3 module: http://planet.jboss.org/post/using_a_different_persistence_provider_with_as_7_0_1
             <property name="hibernate.ejb.resource_scanner" value="org.jboss.as.jpa.hibernate3.HibernateAnnotationScanner"/>-->
@@ -112,11 +127,14 @@ Modify as necessary for JPA unit testing
             <!-- define JPA provider, check:
             https://docs.jboss.org/author/display/AS7/Developer+Guide#DeveloperGuide-PackagingtheHibernate3.5orgreater3.xJPApersistenceproviderwithyourapplication
       	    <property name="jboss.as.jpa.providerModule" value="hibernate3-bundled" /> -->
-            <property name="jboss.as.jpa.providerModule" value="${jpa.provider.module}" />
+            <property name="jboss.as.jpa.providerModule" value="${hibernateJpaProviderModule}" />
+#end            
 
             <property name="hibernate.transaction.manager_lookup_class" value="${pu.hibernate.transaction.manager_lookup_class}"/>
+#if($hibernateUtils.seamVersion22)
             <!--<property name="jboss.entity.manager.factory.jndi.name" value="${entityManagerFactoryJndiName}"/>-->
             <property name="jboss.entity.manager.factory.jndi.name" value="${pu.jboss.entity.manager.factory.jndi.name}"/>
+#end            
             <property name="hibernate.archive.autodetection" value="class, hbm" />
 
 #if ($hibernateEnableCache.equalsIgnoreCase("true"))

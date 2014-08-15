@@ -35,7 +35,7 @@ package org.andromda.cartridges.ejb3;
 
 /**
  * Stores Globals specific to the EJB3 cartridge.
- *
+ * 
  * @author Vance Karimi
  */
 public class EJB3Globals

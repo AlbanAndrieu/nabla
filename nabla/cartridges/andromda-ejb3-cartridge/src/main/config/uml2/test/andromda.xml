@@ -114,12 +114,16 @@
                 <property name="useDefaultCacheRegion">false</property>
                 <property name="hibernateCacheProvider">org.jboss.ejb3.entity.TreeCacheProviderHook</property>
                 <property name="hibernateTreecacheMbeanObject">jboss.cache:service=EJB3EntityTreeCache</property>
+                <!--<property name="hibernateJpaProviderModule">org.hibernate:3</property>-->
                 <!-- uncomment to enable default entity cache settings
                 <property name="hibernateEntityCache">TRANSACTIONAL</property>
                 -->
                 <!-- uncomment to enable default association caching configuration
                 <property name="hibernateAssociationCache">TRANSACTIONAL</property>
                 -->
+                <property name="hibernateVersion">3</property>
+                <property name="persistenceVersion">1.0</property>
+                <property name="seamVersion">2.3</property>
                 <property name="enableClustering">false</property>
                 <property name="webServiceEnabled">false</property>
                 <property name="webServiceContextRoot">/ejb3test-ws</property>

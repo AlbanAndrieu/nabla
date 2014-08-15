@@ -38,7 +38,7 @@ import java.util.List;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author$
  * @version $Revision$
  * @since $Date$
@@ -61,7 +61,7 @@ public class Fieldset extends Field
 
     /**
      * Creates a new Fieldset object.
-     *
+     * 
      * @param noborder DOCUMENT ME!
      * @param legend DOCUMENT ME!
      */
@@ -75,7 +75,7 @@ public class Fieldset extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getLegend()
@@ -87,7 +87,7 @@ public class Fieldset extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param legend DOCUMENT ME!
      */
     public void setLegend(final String legend)
@@ -99,7 +99,7 @@ public class Fieldset extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public List<Field> getFields()
@@ -111,7 +111,7 @@ public class Fieldset extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param fields DOCUMENT ME!
      */
     public void setFields(final List<Field> fields)

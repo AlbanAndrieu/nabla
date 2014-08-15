@@ -41,7 +41,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3OperationFacade.
- *
+ * 
  * @see EJB3OperationFacade
  */
 public class EJB3OperationFacadeLogicImpl extends EJB3OperationFacadeLogic
@@ -196,9 +196,8 @@ public class EJB3OperationFacadeLogicImpl extends EJB3OperationFacadeLogic
     }
 
     /**
-     * Retrieves the implementationOperatName by replacing the <code>replacement</code> in the {@link
-     * EJB3Globals#IMPLEMENTATION_OPERATION_NAME_PATTERN}
-     *
+     * Retrieves the implementationOperatName by replacing the <code>replacement</code> in the {@link EJB3Globals#IMPLEMENTATION_OPERATION_NAME_PATTERN}
+     * 
      * @param replacement the replacement string for the pattern.
      * @return the operation name
      */

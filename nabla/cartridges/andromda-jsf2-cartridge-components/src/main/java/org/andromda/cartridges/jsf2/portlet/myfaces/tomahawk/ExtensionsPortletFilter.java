@@ -25,37 +25,36 @@ import org.apache.portals.bridges.portletfilter.PortletFilterConfig;
 /**
  * This portlet filter supports Tomahawk's extended components, such as
  * inputHtml and fileUpload.
- *
+ * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * @author Chad Brandon
  */
-public class ExtensionsPortletFilter
-    implements PortletFilter
+public class ExtensionsPortletFilter implements PortletFilter
 {
-    private static final Log log = LogFactory.getLog(ExtensionsPortletFilter.class);
+    private static final Log    log                    = LogFactory.getLog(ExtensionsPortletFilter.class);
 
     private static final String UPLOAD_REPOSITORY_PATH = "uploadRepositoryPath";
 
-    private static final String UPLOAD_THRESHOLD_SIZE = "uploadThresholdSize";
+    private static final String UPLOAD_THRESHOLD_SIZE  = "uploadThresholdSize";
 
-    private static final String UPLOAD_MAX_FILE_SIZE = "uploadMaxFileSize";
+    private static final String UPLOAD_MAX_FILE_SIZE   = "uploadMaxFileSize";
 
-    private static final String MULTIPART_ENCODING = "multipartEncoding";
+    private static final String MULTIPART_ENCODING     = "multipartEncoding";
 
-    private int uploadMaxFileSize = 100 * 1024 * 1024; // 10 MB
+    private int                 uploadMaxFileSize      = 100 * 1024 * 1024;                               // 10 MB
 
-    private int uploadThresholdSize = 1 * 1024 * 1024; // 1 MB
+    private int                 uploadThresholdSize    = 1 * 1024 * 1024;                                 // 1 MB
 
-    private String uploadRepositoryPath = null; // standard temp directory
+    private String              uploadRepositoryPath   = null;                                            // standard temp directory
 
-    private String multipartEncoding = null;
+    private String              multipartEncoding      = null;
 
-    private PortletConfig portletConfig;
+    private PortletConfig       portletConfig;
 
     /**
      * Called by init method of MyFacesFilterPortlet to initialize this portlet
      * filter.
-     *
+     * 
      * @param filterConfig
      * @throws PortletException
      */
@@ -91,16 +90,13 @@ public class ExtensionsPortletFilter
     /**
      * Called by render method of MyFacesFilterPortlet to put tags, such as
      * &lt;style&gt;, into &lt;head&gt;.
-     *
+     * 
      * @param request
      * @param response
      * @param chain PortletFilterChain instance
      * @throws PortletException
      */
-    public void renderFilter(
-        RenderRequest request,
-        RenderResponse response,
-        PortletFilterChain chain) throws PortletException, IOException
+    public void renderFilter(RenderRequest request, RenderResponse response, PortletFilterChain chain) throws PortletException, IOException
     {
         if (log.isDebugEnabled())
         {
@@ -109,17 +105,14 @@ public class ExtensionsPortletFilter
             log.debug("RenderResponse=" + response.getClass().getName());
         }
 
-        final HttpServletRequestWrapper extendedRequest = new HttpServletRequestWrapper(
-            request,
-            getPortletConfig().getPortletContext());
+        final HttpServletRequestWrapper extendedRequest = new HttpServletRequestWrapper(request, getPortletConfig().getPortletContext());
 
         // Serve resources
         AddResource addResource = null;
         try
         {
             addResource = AddResourceFactory.getInstance(extendedRequest);
-        }
-        catch (Throwable throwable)
+        } catch (Throwable throwable)
         {
             log.error(throwable);
             throw new PortletException(throwable);
@@ -132,9 +125,7 @@ public class ExtensionsPortletFilter
             if (addResource.requiresBuffer())
             {
                 final HttpServletResponseWrapper servletResponse = new HttpServletResponseWrapper(response);
-                final ExtensionsResponseWrapper extendedResponse = new ExtensionsResponseWrapper(
-                    servletResponse,
-                    response);
+                final ExtensionsResponseWrapper extendedResponse = new ExtensionsResponseWrapper(servletResponse, response);
 
                 // call next rednerFilter
                 chain.renderFilter(request, extendedResponse);
@@ -142,17 +133,11 @@ public class ExtensionsPortletFilter
                 extendedResponse.finishResponse();
 
                 // only parse HTML responses
-                if (extendedResponse.getContentType() != null
-                    && isValidContentType(extendedResponse.getContentType()))
+                if (extendedResponse.getContentType() != null && isValidContentType(extendedResponse.getContentType()))
                 {
-                    addResource.parseResponse(
-                        extendedRequest,
-                        extendedResponse.toString(),
-                        servletResponse);
+                    addResource.parseResponse(extendedRequest, extendedResponse.toString(), servletResponse);
 
-                    addResource.writeMyFacesJavascriptBeforeBodyEnd(
-                        extendedRequest,
-                        servletResponse);
+                    addResource.writeMyFacesJavascriptBeforeBodyEnd(extendedRequest, servletResponse);
 
                     if (!addResource.hasHeaderBeginInfos())
                     {
@@ -166,8 +151,7 @@ public class ExtensionsPortletFilter
 
                     // writes the response
                     addResource.writeResponse(extendedRequest, servletResponse);
-                }
-                else
+                } else
                 {
 
                     byte[] responseArray = extendedResponse.getBytes();
@@ -176,18 +160,16 @@ public class ExtensionsPortletFilter
                     {
                         // When not filtering due to not valid content-type,
                         // deliver the byte-array instead of a charset-converted
-                        // string.  Otherwise a binary stream gets corrupted.
+                        // string. Otherwise a binary stream gets corrupted.
                         servletResponse.getOutputStream().write(responseArray);
                     }
                 }
 
-            }
-            else
+            } else
             {
                 chain.renderFilter(request, response);
             }
-        }
-        finally
+        } finally
         {
             addResource.responseFinished();
         }
@@ -196,16 +178,13 @@ public class ExtensionsPortletFilter
     /**
      * Called by render method of MyFacesFilterPortlet to wrap the request when
      * it has a multipart content.
-     *
+     * 
      * @param request
      * @param response
      * @param chain PortletFilterChain instance
      * @throws PortletException
      */
-    public void processActionFilter(
-        ActionRequest request,
-        ActionResponse response,
-        PortletFilterChain chain) throws PortletException, IOException
+    public void processActionFilter(ActionRequest request, ActionResponse response, PortletFilterChain chain) throws PortletException, IOException
     {
         if (log.isDebugEnabled())
             log.debug("called processActionFilter.");
@@ -221,11 +200,7 @@ public class ExtensionsPortletFilter
                     log.debug("Mutlipart encoding is " + multipartEncoding);
                 request.setCharacterEncoding(multipartEncoding);
             }
-            request = new MultipartPortletRequestWrapper(
-                request,
-                uploadMaxFileSize,
-                uploadThresholdSize,
-                uploadRepositoryPath);
+            request = new MultipartPortletRequestWrapper(request, uploadMaxFileSize, uploadThresholdSize, uploadRepositoryPath);
         }
 
         // call next processActionFilter
@@ -237,7 +212,8 @@ public class ExtensionsPortletFilter
      * filter.
      */
     public void destroy()
-    {}
+    {
+    }
 
     private int resolveSize(String param, int defaultValue)
     {
@@ -253,13 +229,11 @@ public class ExtensionsPortletFilter
             {
                 factor = 1024 * 1024 * 1024;
                 number = param.substring(0, param.length() - 1);
-            }
-            else if (param.endsWith("m"))
+            } else if (param.endsWith("m"))
             {
                 factor = 1024 * 1024;
                 number = param.substring(0, param.length() - 1);
-            }
-            else if (param.endsWith("k"))
+            } else if (param.endsWith("k"))
             {
                 factor = 1024;
                 number = param.substring(0, param.length() - 1);
@@ -288,9 +262,6 @@ public class ExtensionsPortletFilter
 
     public boolean isValidContentType(String contentType)
     {
-        return contentType != null
-            && (contentType.startsWith("text/html") || contentType.startsWith("text/xml")
-                || contentType.startsWith("application/xhtml+xml") || contentType
-                .startsWith("application/xml"));
+        return contentType != null && (contentType.startsWith("text/html") || contentType.startsWith("text/xml") || contentType.startsWith("application/xhtml+xml") || contentType.startsWith("application/xml"));
     }
 }

@@ -14,7 +14,9 @@
     <templateObject name="transform" className="org.andromda.cartridges.ejb3.EJB3ScriptHelper"/>
     <templateObject name="hibernateUtils" className="org.andromda.cartridges.ejb3.HibernateUtils">
         <property reference="hibernateVersion"/>
-    </templateObject>    
+        <property reference="persistenceVersion"/>
+        <property reference="seamVersion"/>
+    </templateObject>
     <templateObject name="converter" className="org.andromda.utils.JavaTypeConverter">
         <property reference="javaTypeConversionIgnoreList"/>
     </templateObject>
@@ -23,6 +25,8 @@
     <templatePostProcessor className="org.andromda.core.common.ImportBeautifierPostProcessorImpl"/>
 
     <property reference="hibernateVersion"/>
+    <property reference="persistenceVersion"/>
+    <property reference="seamVersion"/>
     <property reference="toDoTag"/>
     <property reference="driver"/>
     <property reference="username"/>
@@ -42,7 +46,7 @@
     <property reference="hibernateHbm2DDLAuto"/>
     <property reference="hibernateDialect"/>
     <property reference="hibernateShowSql"/>
-    <property reference="hibernateFormatSql"/>    
+    <property reference="hibernateFormatSql"/>
     <property reference="hibernateMaxFetchDepth"/>
     <property reference="hibernateJdbcFetchSize"/>
     <property reference="hibernateJdbcBatchSize"/>
@@ -51,11 +55,12 @@
     <property reference="hibernateJdbcUseStreamsForBinary"/>
     <property reference="hibernateCacheProvider"/>
     <property reference="hibernateTreecacheMbeanObject"/>
+    <property reference="hibernateJpaProviderModule"/>    
     <property reference="hibernateEnableCache"/>
     <property reference="hibernateEnableAssociationsCache"/>
     <property reference="hibernateUseQueryCache"/>
     <property reference="useDefaultCacheRegion"/>
-    <property reference="beanNamePrefix"/>    
+    <property reference="beanNamePrefix"/>
     <property reference="hibernateTransactionManagerLookupClass"/>
     <property reference="hibernateTransactionFlushBeforeCompletion"/>
     <property reference="hibernateTransactionAutoCloseSession"/>
@@ -226,7 +231,7 @@
             </modelElement>
         </modelElements>
     </template>
-    
+
     <!-- Hibernate reverse engineering configuration using name mappings from the model -->
     <template
         path="templates/ejb3/config/reveng.xml.vsl"
@@ -268,7 +273,7 @@
             </modelElement>
         </modelElements>
     </template>
-    
+
     <template
         path="templates/ejb3/test/persistence.xml.vsl"
         outputPattern="META-INF/persistence.xml.ref"
@@ -1221,8 +1226,8 @@
             </modelElement>
             <modelElement variable="persistenceContexts">
                 <type name="org.andromda.cartridges.ejb3.metafacades.EJB3PersistenceContextFacade"/>
-            </modelElement>    
-        </modelElements>      
+            </modelElement>
+        </modelElements>
     </template>
     -->
 

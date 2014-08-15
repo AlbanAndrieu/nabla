@@ -55,7 +55,7 @@ import java.util.List;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiAttribute.
- *
+ * 
  * @see GuiAttribute
  */
 public class GuiAttributeLogicImpl extends GuiAttributeLogic
@@ -112,7 +112,7 @@ public class GuiAttributeLogicImpl extends GuiAttributeLogic
 
     /**
      * Indicates whether or not we should normalize messages.
-     *
+     * 
      * @return true/false
      */
     private boolean isNormalizeMessages()
@@ -352,7 +352,7 @@ public class GuiAttributeLogicImpl extends GuiAttributeLogic
 
     /**
      * Constructs a string representing an array initialization in Java.
-     *
+     * 
      * @return A String representing Java code for the initialization of an array.
      */
     private String constructDummyArray()
@@ -736,7 +736,7 @@ public class GuiAttributeLogicImpl extends GuiAttributeLogic
     /**
      * Gets the current value of the specified input type (or an empty string
      * if one isn't specified).
-     *
+     * 
      * @return the input type name.
      */
     private String getInputType()
@@ -748,7 +748,7 @@ public class GuiAttributeLogicImpl extends GuiAttributeLogic
 
     /**
      * Indicates whether or not this parameter is of the given input type.
-     *
+     * 
      * @param inputType the name of the input type to check for.
      * @return true/false
      */
@@ -782,7 +782,7 @@ public class GuiAttributeLogicImpl extends GuiAttributeLogic
 
     /**
      * Overridden to provide consistent behavior with {@link GuiParameter#isReadOnly()}.
-     *
+     * 
      * @see org.andromda.metafacades.uml.AttributeFacade#isReadOnly()
      */
     public boolean isReadOnly()
@@ -856,7 +856,7 @@ public class GuiAttributeLogicImpl extends GuiAttributeLogic
 
     /**
      * Overridden to provide quotes around string types.
-     *
+     * 
      * @see org.andromda.metafacades.uml.AttributeFacade#getDefaultValue()
      */
     public String getDefaultValue()

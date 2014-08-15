@@ -60,7 +60,7 @@ import org.apache.commons.lang.StringUtils;
  * <p/>
  * Represents an EJB association end. </p>
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3AssociationEndFacade.
- *
+ * 
  * @see EJB3AssociationEndFacade
  */
 public class EJB3AssociationEndFacadeLogicImpl extends EJB3AssociationEndFacadeLogic
@@ -91,8 +91,7 @@ public class EJB3AssociationEndFacadeLogicImpl extends EJB3AssociationEndFacadeL
 
     /**
      * The property that defines the default collection interface, this is the
-     * interface used if the property defined by
-     * {@link #SPECIFIC_COLLECTION_INTERFACES} is false.
+     * interface used if the property defined by {@link #SPECIFIC_COLLECTION_INTERFACES} is false.
      */
     private static final String              DEFAULT_COLLECTION_INTERFACE       = "defaultCollectionInterface";
 
@@ -301,7 +300,7 @@ public class EJB3AssociationEndFacadeLogicImpl extends EJB3AssociationEndFacadeL
 
     /**
      * Overridden to provide handling of inheritance.
-     *
+     * 
      * @see AssociationEndFacade#isRequired()
      */
     @Override
@@ -501,10 +500,9 @@ public class EJB3AssociationEndFacadeLogicImpl extends EJB3AssociationEndFacadeL
 
     /**
      * Returns true if the tagged name exists for this association end.
-     *
+     * 
      * @param name The tagged name to lookup.
-     * @return boolean True if the tagged name exists.  False otherwise.
-     *
+     * @return boolean True if the tagged name exists. False otherwise.
      * @see EJB3AssociationEndFacadeLogic#handleHasTaggedValue(String)
      */
     @Override
@@ -534,7 +532,7 @@ public class EJB3AssociationEndFacadeLogicImpl extends EJB3AssociationEndFacadeL
 
     /**
      * Resolves a comma separated list of cascade types from andromda.xml
-
+     * 
      * @param cascadesString
      * @return fully qualified cascade type sequence
      */
@@ -752,7 +750,7 @@ public class EJB3AssociationEndFacadeLogicImpl extends EJB3AssociationEndFacadeL
 
     /**
      * Gets the collection type defined on this association end.
-     *
+     * 
      * @return the specific collection type.
      */
     private String getSpecificCollectionType()

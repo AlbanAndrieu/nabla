@@ -35,7 +35,7 @@ package org.andromda.cartridges.ejb3.metafacades;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3MappedSuperclassAttributeFacade.
- *
+ * 
  * @see EJB3MappedSuperclassAttributeFacade
  */
 public class EJB3MappedSuperclassAttributeFacadeLogicImpl extends EJB3MappedSuperclassAttributeFacadeLogic

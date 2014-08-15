@@ -53,7 +53,7 @@ import org.apache.commons.lang.math.NumberUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3MessageDrivenFacade.
- *
+ * 
  * @see EJB3MessageDrivenFacade
  */
 public class EJB3MessageDrivenFacadeLogicImpl extends EJB3MessageDrivenFacadeLogic

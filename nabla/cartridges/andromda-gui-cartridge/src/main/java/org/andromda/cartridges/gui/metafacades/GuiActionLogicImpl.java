@@ -79,7 +79,7 @@ import java.util.Map;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiAction.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiAction
  */
 public class GuiActionLogicImpl extends GuiActionLogic
@@ -116,7 +116,7 @@ public class GuiActionLogicImpl extends GuiActionLogic
 
     /**
      * Constructs the form bean name, with our without prefixing the use case name.
-     *
+     * 
      * @param withUseCaseName whether or not to prefix the use case name.
      * @return the constructed form bean name.
      */
@@ -598,7 +598,7 @@ public class GuiActionLogicImpl extends GuiActionLogic
 
     /**
      * Overridden to provide the owning use case's package name.
-     *
+     * 
      * @see org.andromda.metafacades.uml.ModelElementFacade#getPackageName()
      */
     @Override
@@ -910,6 +910,7 @@ public class GuiActionLogicImpl extends GuiActionLogic
     // TODO remove after 3.4 release
     /**
      * Hack to keep the compatibility with Andromda 3.4-SNAPSHOT
+     * 
      * @return getSource() instanceof FrontEndView
      */
     @Override
@@ -1009,8 +1010,7 @@ public class GuiActionLogicImpl extends GuiActionLogic
 
             serialVersionUID = String.valueOf(hash);
 
-        }
-        catch (final NoSuchAlgorithmException exception)
+        } catch (final NoSuchAlgorithmException exception)
         {
 
             final String message = "Error performing GuiAction.getFormSerialVersionUID";
@@ -1073,10 +1073,10 @@ public class GuiActionLogicImpl extends GuiActionLogic
 
     /**
      * Collects specific messages in a map.
-     *
+     * 
      * @param taggedValue the tagged value from which to read the message
      * @return maps message keys to message values, but only those that match the arguments
-     *         will have been recorded
+     * will have been recorded
      */
     private Map<String, String> getMessages(final String taggedValue)
     {

@@ -39,7 +39,7 @@ import java.util.Collection;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiActivityGraph.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiActivityGraph
  */
 public class GuiActivityGraphLogicImpl extends GuiActivityGraphLogic

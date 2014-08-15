@@ -38,7 +38,7 @@ import org.andromda.utils.StringUtilsHelper;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityAssociationEndFacade.
- *
+ * 
  * @see EJB3ManageableEntityAssociationEndFacade
  */
 public class EJB3ManageableEntityAssociationEndFacadeLogicImpl extends EJB3ManageableEntityAssociationEndFacadeLogic
@@ -47,6 +47,7 @@ public class EJB3ManageableEntityAssociationEndFacadeLogicImpl extends EJB3Manag
 
     /**
      * Public constructor for SpringManageableEntityAssociationEndLogicImpl
+     * 
      * @param metaObject
      * @param context
      * @see EJB3ManageableEntityAssociationEnd

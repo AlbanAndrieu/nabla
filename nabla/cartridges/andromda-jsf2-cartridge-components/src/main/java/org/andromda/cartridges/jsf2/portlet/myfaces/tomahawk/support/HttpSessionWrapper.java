@@ -11,20 +11,17 @@ import javax.servlet.http.HttpSessionContext;
 
 /**
  * This class is a dummy HttpSessionWrapper.
- *
+ * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  */
-public class HttpSessionWrapper
-    implements HttpSession
+public class HttpSessionWrapper implements HttpSession
 {
 
     private PortletSession portletSession;
 
     private PortletContext portletContext;
 
-    public HttpSessionWrapper(
-        PortletSession portletSession,
-        PortletContext portletContext)
+    public HttpSessionWrapper(PortletSession portletSession, PortletContext portletContext)
     {
         this.portletSession = portletSession;
         this.portletContext = portletContext;
@@ -86,13 +83,13 @@ public class HttpSessionWrapper
         ArrayList objs = new ArrayList();
         for (Enumeration e = portletSession.getAttributeNames(); e.hasMoreElements();)
         {
-            String key = (String)e.nextElement();
+            String key = (String) e.nextElement();
             objs.add(key);
         }
         String[] values = new String[objs.size()];
         for (int i = 0; i < objs.size(); i++)
         {
-            values[i] = (String)objs.get(i);
+            values[i] = (String) objs.get(i);
         }
         return values;
     }

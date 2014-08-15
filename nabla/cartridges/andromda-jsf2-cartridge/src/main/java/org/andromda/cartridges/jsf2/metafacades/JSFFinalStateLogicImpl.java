@@ -8,7 +8,7 @@ import org.apache.log4j.Logger;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFFinalState.
- *
+ * 
  * @see org.andromda.cartridges.jsf2.metafacades.JSFFinalState
  */
 public class JSFFinalStateLogicImpl extends JSFFinalStateLogic
@@ -89,7 +89,7 @@ public class JSFFinalStateLogicImpl extends JSFFinalStateLogic
     /**
      * Overridden for now (@todo need to figure out why it doesn't work correctly when using
      * the one from the FrontEndFinalState).
-     *
+     * 
      * @see org.andromda.metafacades.uml.FrontEndFinalState#getTargetUseCase()
      */
     @Override

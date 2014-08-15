@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFForward.
- *
+ * 
  * @see org.andromda.cartridges.jsf2.metafacades.JSFForward
  */
 public class JSFForwardLogicImpl extends JSFForwardLogic
@@ -92,10 +92,10 @@ public class JSFForwardLogicImpl extends JSFForwardLogic
 
     /**
      * Collects specific messages in a map.
-     *
+     * 
      * @param taggedValue the tagged value from which to read the message
      * @return maps message keys to message values, but only those that match the arguments
-     *         will have been recorded
+     * will have been recorded
      */
     @SuppressWarnings("unchecked")
     private Map<String, String> getMessages(final String taggedValue)

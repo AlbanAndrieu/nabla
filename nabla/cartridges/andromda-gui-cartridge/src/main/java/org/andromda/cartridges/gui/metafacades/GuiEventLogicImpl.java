@@ -39,7 +39,7 @@ import org.andromda.utils.StringUtilsHelper;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiEvent.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiEvent
  */
 public class GuiEventLogicImpl extends GuiEventLogic
@@ -130,6 +130,7 @@ public class GuiEventLogicImpl extends GuiEventLogic
 
     /**
      * Indicates whether or not we should normalize messages.
+     * 
      * @return normalizeMessages true/false
      */
     private boolean isNormalizeMessages()

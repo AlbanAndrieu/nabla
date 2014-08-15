@@ -37,7 +37,7 @@ import java.io.File;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author$
  * @version $Revision$
  * @since $Date$
@@ -49,7 +49,7 @@ public class FileNameFilter implements java.io.FilenameFilter
 
     /**
      * Creates a new FileNameFilter object.
-     *
+     * 
      * @param name DOCUMENT ME!
      */
     public FileNameFilter(final String name)
@@ -61,10 +61,9 @@ public class FileNameFilter implements java.io.FilenameFilter
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param dir DOCUMENT ME!
      * @param name DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     @Override
@@ -77,10 +76,9 @@ public class FileNameFilter implements java.io.FilenameFilter
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param file DOCUMENT ME!
      * @param repertoire DOCUMENT ME!
-     *
      * @return DOCUMENT ME!
      */
     public boolean isInFolder(final String file, final File repertoire)

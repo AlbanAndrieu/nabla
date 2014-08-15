@@ -13,6 +13,7 @@ import java.util.Set;
 import org.andromda.cartridges.jsf2.JSFGlobals;
 import org.andromda.cartridges.jsf2.JSFProfile;
 import org.andromda.cartridges.jsf2.JSFUtils;
+import org.andromda.metafacades.uml.AssociationEndFacade;
 import org.andromda.metafacades.uml.AttributeFacade;
 import org.andromda.metafacades.uml.ClassifierFacade;
 import org.andromda.metafacades.uml.EventFacade;
@@ -31,7 +32,7 @@ import org.apache.log4j.Logger;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf.metafacades.JSFParameter.
- *
+ * 
  * @see org.andromda.cartridges.jsf.metafacades.JSFParameter
  */
 public class JSFParameterLogicImpl extends JSFParameterLogic
@@ -51,7 +52,7 @@ public class JSFParameterLogicImpl extends JSFParameterLogic
 
     /**
      * Overridden to make sure it's not an inputTable.
-     *
+     * 
      * @see org.andromda.metafacades.uml.FrontEndParameter#isTable()
      */
     @Override
@@ -129,7 +130,7 @@ public class JSFParameterLogicImpl extends JSFParameterLogic
 
     /**
      * Overridden to provide quotes around string types.
-     *
+     * 
      * @see org.andromda.metafacades.uml.ParameterFacade#getDefaultValue()
      */
     @Override
@@ -150,7 +151,7 @@ public class JSFParameterLogicImpl extends JSFParameterLogic
 
     /**
      * Indicates whether or not we should normalize messages.
-     *
+     * 
      * @return true/false
      */
     private boolean isNormalizeMessages()
@@ -215,7 +216,7 @@ public class JSFParameterLogicImpl extends JSFParameterLogic
     /**
      * If this is a table this method returns all those actions that are declared to work
      * on this table.
-     *
+     * 
      * @param hyperlink denotes on which type of actions to filter
      */
     private List<JSFAction> getTableActions(final boolean hyperlink)
@@ -394,7 +395,7 @@ public class JSFParameterLogicImpl extends JSFParameterLogic
     /**
      * Gets the current value of the specified input type (or an empty string
      * if one isn't specified).
-     *
+     * 
      * @return the input type name.
      */
     private String getInputType()
@@ -404,7 +405,7 @@ public class JSFParameterLogicImpl extends JSFParameterLogic
 
     /**
      * Indicates whether or not this parameter is of the given input type.
-     *
+     * 
      * @param inputType the name of the input type to check for.
      * @return true/false
      */
@@ -724,7 +725,7 @@ public class JSFParameterLogicImpl extends JSFParameterLogic
 
     /**
      * Constructs a string representing an array initialization in Java.
-     *
+     * 
      * @return A String representing Java code for the initialization of an array.
      */
     private String constructDummyArray()
@@ -856,7 +857,7 @@ public class JSFParameterLogicImpl extends JSFParameterLogic
 
     /**
      * Overridden to have the same behavior as bpm4struts.
-     *
+     * 
      * @see org.andromda.metafacades.uml.ParameterFacade#isRequired()
      */
     @Override
@@ -975,9 +976,9 @@ public class JSFParameterLogicImpl extends JSFParameterLogic
      * @see org.andromda.cartridges.jsf.metafacades.JSFParameter#getNavigableAssociationEnds()
      */
     @Override
-    protected Collection<ClassifierFacade> handleGetNavigableAssociationEnds()
+    protected Collection<AssociationEndFacade> handleGetNavigableAssociationEnds()
     {
-        Collection<ClassifierFacade> associationEnds = null;
+        Collection<AssociationEndFacade> associationEnds = null;
         ClassifierFacade type = this.getType();
         if (type != null)
         {
@@ -990,7 +991,7 @@ public class JSFParameterLogicImpl extends JSFParameterLogic
                 associationEnds = type.getNavigableConnectingEnds();
             }
         }
-        return associationEnds == null ? new ArrayList<ClassifierFacade>() : associationEnds;
+        return associationEnds == null ? new ArrayList<AssociationEndFacade>() : associationEnds;
     }
 
     /**

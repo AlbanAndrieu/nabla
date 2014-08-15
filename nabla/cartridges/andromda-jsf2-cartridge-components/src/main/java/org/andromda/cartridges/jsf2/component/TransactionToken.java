@@ -4,18 +4,17 @@ import javax.faces.component.UIComponentBase;
 
 /**
  * The transaction token component, basically just registers its renderer.
- *
+ * 
  * @author Chad Brandon
  */
-public class TransactionToken
-    extends UIComponentBase
+public class TransactionToken extends UIComponentBase
 {
     /**
      * The name of the attribute that stores the action transaction token.
      */
-    public static final String TRANSACTION_TOKEN = "AndroMDA_Transaction_Token";
+    public static final String  TRANSACTION_TOKEN = "AndroMDA_Transaction_Token";
 
-    private static final String RENDERER_TYPE = "org.andromda.cartridges.jsf2.TransactionToken";
+    private static final String RENDERER_TYPE     = "org.andromda.cartridges.jsf2.TransactionToken";
 
     public TransactionToken()
     {

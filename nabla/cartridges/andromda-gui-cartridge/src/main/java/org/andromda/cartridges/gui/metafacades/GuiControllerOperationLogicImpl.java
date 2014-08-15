@@ -52,7 +52,7 @@ import java.util.Map;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiControllerOperation.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiControllerOperation
  */
 public class GuiControllerOperationLogicImpl extends GuiControllerOperationLogic
@@ -170,7 +170,7 @@ public class GuiControllerOperationLogicImpl extends GuiControllerOperationLogic
 
     /**
      * Constructs the signature that takes the form for this operation.
-     *
+     * 
      * @param isAbstract whether or not the signature is abstract.
      * @return the appropriate signature.
      */

@@ -53,7 +53,7 @@ import java.util.List;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiController.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiController
  */
 public class GuiControllerLogicImpl extends GuiControllerLogic

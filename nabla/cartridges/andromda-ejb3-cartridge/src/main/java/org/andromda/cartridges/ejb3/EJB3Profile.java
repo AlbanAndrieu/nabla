@@ -38,7 +38,7 @@ import org.andromda.metafacades.uml.UMLProfile;
 
 /**
  * The EJB3 profile. Contains the profile information (tagged values, and stereotypes) for the EJB3 cartridge.
- *
+ * 
  * @author Vance Karimi
  */
 public class EJB3Profile extends UMLProfile
@@ -232,8 +232,8 @@ public class EJB3Profile extends UMLProfile
     public static final String   STEREOTYPE_SEAM_BIJECTION_OUT                                     = profile.get("SEAM_BIJECTION_OUT");
 
     /**
-     *  'Unwrap' Specifies that the object returned by the annotated getter method
-     *  is the thing that is injected instead of the component instance itself.
+     * 'Unwrap' Specifies that the object returned by the annotated getter method
+     * is the thing that is injected instead of the component instance itself.
      */
     public static final String   STEREOTYPE_SEAM_BIJECTION_UNWRAP                                  = profile.get("SEAM_BIJECTION_UNWRAP");
 
@@ -241,15 +241,12 @@ public class EJB3Profile extends UMLProfile
      * 'Factory' When this stereotype is used on an operation which return void
      * that operation will be used to initialize the value of the named
      * context variable, when the context variable has no value.
-     *
      * When it is used on an operation that returns a value then Seam
      * should use that value to initialize the value of the named context
      * variable, when the context variable has no value.
-     *
      * The context variable is specified by tagged value
      * andromda.seam.bijection.factory.value. If the method is a getter
      * method, default to the JavaBeans property name.
-     *
      * If no scope is explicitly specified by tagged value
      * andromda.seam.bijection.factory.scope, the scope of the component
      * with the @Factory method is used (unless the component is stateless,
@@ -307,12 +304,10 @@ public class EJB3Profile extends UMLProfile
     /**
      * 'StartTask' "Starts" a jBPM task. Specifies that a long-running conversation
      * begins when this method returns a non-null outcome without exception.
-     *
      * This conversation is associated with the jBPM task specified in the
      * named request parameter. Within the context of this conversation, a
      * business process context is also defined, for the business process
      * instance of the task instance.
-     *
      * The jBPM TaskInstance will be available in a request context variable
      * named taskInstance. The jPBM ProcessInstance will be available in a
      * request context variable named processInstance. (Of course, these
@@ -386,7 +381,6 @@ public class EJB3Profile extends UMLProfile
 
     /**
      * 'Interceptor' This stereotype appear on Seam interceptor classes.
-     *
      * Please refer to the documentation for the EJB 3.0 specification
      * for information about the annotations required for EJB interceptor
      * definition.
@@ -464,7 +458,7 @@ public class EJB3Profile extends UMLProfile
 
     /**
      * 'andromda_ejb_transaction_management' The tagged value indicating the transaction demarcation
-     * strategy.  This only applies at the class level of a
+     * strategy. This only applies at the class level of a
      * session and message-driven bean.
      */
     public static final String   TAGGEDVALUE_EJB_TRANSACTION_MANAGEMENT                            = profile.get("TRANSACTION_MANAGEMENT");
@@ -602,7 +596,7 @@ public class EJB3Profile extends UMLProfile
 
     /**
      * 'andromda_persistence_optional' The tagged value indicating the underlying relationship may
-     * be NULL.  If set to false, non-null relationship must always
+     * be NULL. If set to false, non-null relationship must always
      * exist.
      */
     public static final String   TAGGEDVALUE_PERSISTENCE_OPTIONAL                                  = profile.get("ATTRIBUTE_PERSISTENCE_OPTIONAL");
@@ -618,7 +612,7 @@ public class EJB3Profile extends UMLProfile
 
     /**
      * 'andromda_persistence_discriminator_type' For the inheritance SINGLE_TABLE and JOINED strategies, the persistence
-     * provider will use a specified discriminator type column.  The supported
+     * provider will use a specified discriminator type column. The supported
      * discriminator types are:
      * <ul><li>STRING</li><li>CHAR</li><li>INTEGER</li></ul>
      * See the EJB 3.0 documentation for specific details.
@@ -880,7 +874,6 @@ public class EJB3Profile extends UMLProfile
      * Allows a Seam component to be bound to multiple contexts variables.
      * The @Name/@Scope annotations define a "default role". Each @Role
      * annotation defines an additional role.
-     *
      * This tagged value specifies the context variable name.
      */
     public static final String   TAGGEDVALUE_SEAM_COMPONENT_ROLE_NAME                              = profile.get("SEAM_COMPONENT_ROLE_NAME");
@@ -888,7 +881,6 @@ public class EJB3Profile extends UMLProfile
     /**
      * The context variable scope. When no scope is explicitly specified,
      * the default depends upon the component type, as above.
-     *
      * Note! If multiple roles are specified then the list of scopes must
      * be in the same order as the role names.
      */
@@ -970,7 +962,6 @@ public class EJB3Profile extends UMLProfile
      * Specifies that a component attribute that is not a Seam component
      * type is to be outjected to a specific scope at the end of the
      * invocation.
-     *
      * Alternatively, if no scope is explicitly specified, the scope of
      * the component with the @Out attribute is used (or the EVENT scope
      * if the component is stateless).
@@ -1016,7 +1007,6 @@ public class EJB3Profile extends UMLProfile
      * 'andromda_seam_conversation_begin_ifoutcome'
      * Specifies that a long-running conversation begins when this action
      * listener method returns with one of the given outcomes.
-     *
      * Example: @Begin(ifOutcome={"success", "continue"})
      */
     public static final String   TAGGEDVALUE_SEAM_CONVERSATION_BEGIN_IF_OUTCOME                    = profile.get("SEAM_CONVERSATION_BEGIN_IF_OUTCOME");
@@ -1032,7 +1022,7 @@ public class EJB3Profile extends UMLProfile
      * 'andromda_seam_conversation_begin_nested'
      * Specifies that if a long-running conversation is already in
      * progress, a new nested conversation context begins. The nested
-     * conversation will end when the next @End  is encountered, and the
+     * conversation will end when the next @End is encountered, and the
      * outer conversation will resume. It is perfectly legal for multiple
      * nested conversations to exist concurrently in the same outer
      * conversation.
@@ -1234,7 +1224,6 @@ public class EJB3Profile extends UMLProfile
      * This meta-annotation make it possible to implement similar
      * functionality to @DataModel and @DataModelSelection for other
      * data structures apart from lists.
-     *
      * The class name of the DataModelBinder class
      */
     public static final String   TAGGEDVALUE_SEAM_DATA_DATABINDER_CLASS                            = profile.get("SEAM_DATA_DATABINDER_CLASS");
@@ -1244,7 +1233,6 @@ public class EJB3Profile extends UMLProfile
      * This meta-annotation make it possible to implement similar
      * functionality to @DataModel and @DataModelSelection for other
      * datastructures apart from lists.
-     *
      * The DataModelSelector class.
      */
     public static final String   TAGGEDVALUE_SEAM_DATA_DATASELECTOR_CLASS                          = profile.get("SEAM_DATA_DATASELECTOR_CLASS");

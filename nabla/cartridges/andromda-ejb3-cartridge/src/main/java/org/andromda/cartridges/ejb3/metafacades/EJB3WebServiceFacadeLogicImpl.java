@@ -46,7 +46,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3WebServiceFacade.
- *
+ * 
  * @see EJB3WebServiceFacade
  */
 public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
@@ -118,7 +118,6 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
     private static final String NAMESPACE_PATTERN                  = "webServiceNamespacePattern";
 
     /**
-     *
      * @param metaObject
      * @param context
      */
@@ -292,7 +291,7 @@ public class EJB3WebServiceFacadeLogicImpl extends EJB3WebServiceFacadeLogic
 
     /**
      * Gets whether or not <code>reverseNamespace</code> is true/false for this type.
-     *
+     * 
      * @return boolean true/false
      */
     protected boolean isReverseNamespace()

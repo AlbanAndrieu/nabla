@@ -35,7 +35,7 @@ package org.andromda.cartridges.gui.util.screensLib;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author$
  * @version $Revision$
  * @since $Date$
@@ -61,7 +61,7 @@ public class Item extends Field
 
     /**
      * Creates a new Item object.
-     *
+     * 
      * @param legend DOCUMENT ME!
      * @param hidden DOCUMENT ME!
      * @param readonly DOCUMENT ME!
@@ -93,7 +93,7 @@ public class Item extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getLegend()
@@ -105,7 +105,7 @@ public class Item extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param legend DOCUMENT ME!
      */
     public void setLegend(final String legend)
@@ -117,7 +117,7 @@ public class Item extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public boolean isHidden()
@@ -129,7 +129,7 @@ public class Item extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param hidden DOCUMENT ME!
      */
     public void setHidden(final boolean hidden)
@@ -141,7 +141,7 @@ public class Item extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public boolean isReadonly()
@@ -153,7 +153,7 @@ public class Item extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param readonly DOCUMENT ME!
      */
     public void setReadonly(final boolean readonly)
@@ -165,7 +165,7 @@ public class Item extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public boolean isMandatory()
@@ -177,7 +177,7 @@ public class Item extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param mandatory DOCUMENT ME!
      */
     public void setMandatory(final boolean mandatory)
@@ -189,7 +189,7 @@ public class Item extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getLabel()
@@ -201,7 +201,7 @@ public class Item extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param label DOCUMENT ME!
      */
     public void setLabel(final String label)
@@ -225,7 +225,7 @@ public class Item extends Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public boolean getIsLabel()

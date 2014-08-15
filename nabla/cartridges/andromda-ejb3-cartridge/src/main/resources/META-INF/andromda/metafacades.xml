@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="ISO-8859-1" ?>
 <metafacades>
     <property reference="hibernateVersion"/>
+    <property reference="persistenceVersion"/>
+    <property reference="seamVersion"/>
     <property reference="transactionType"/>
     <property reference="entityViewType"/>
     <property reference="entityListenerNamePattern"/>
@@ -58,7 +60,7 @@
     <property reference="daoImplementationNamePattern"/>
     <property reference="daoDefaultExceptionNamePattern"/>
     <property reference="beanNamePrefix"/>
-    
+
     <!--  Manageable Entity Metafacades -->
     <metafacade class="org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacadeLogicImpl" contextRoot="true">
         <mapping>

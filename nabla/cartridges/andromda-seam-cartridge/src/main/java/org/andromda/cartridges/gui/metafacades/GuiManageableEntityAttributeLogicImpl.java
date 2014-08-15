@@ -57,7 +57,7 @@ import java.util.List;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiManageableEntityAttribute.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntityAttribute
  */
 public class GuiManageableEntityAttributeLogicImpl extends GuiManageableEntityAttributeLogic
@@ -791,7 +791,7 @@ public class GuiManageableEntityAttributeLogicImpl extends GuiManageableEntityAt
     /**
      * Gets the current value of the specified input type (or an empty string
      * if one isn't specified).
-     *
+     * 
      * @return the input type name.
      */
     private String getInputType()
@@ -803,7 +803,7 @@ public class GuiManageableEntityAttributeLogicImpl extends GuiManageableEntityAt
 
     /**
      * Indicates whether or not this parameter is of the given input type.
-     *
+     * 
      * @param inputType the name of the input type to check for.
      * @return true/false
      */
@@ -816,7 +816,7 @@ public class GuiManageableEntityAttributeLogicImpl extends GuiManageableEntityAt
 
     /**
      * Overridden to provide consistent behavior with {@link GuiParameter#isReadOnly()}.
-     *
+     * 
      * @see org.andromda.metafacades.uml.AttributeFacade#isReadOnly()
      */
     @Override
@@ -829,7 +829,7 @@ public class GuiManageableEntityAttributeLogicImpl extends GuiManageableEntityAt
 
     /**
      * Constructs a string representing an array initialization in Java.
-     *
+     * 
      * @return A String representing Java code for the initialization of an array.
      */
     private String constructDummyArray()
@@ -915,6 +915,7 @@ public class GuiManageableEntityAttributeLogicImpl extends GuiManageableEntityAt
     // TODO remove after 3.4 release
     /**
      * Hack to keep the compatibility with Andromda 3.4-SNAPSHOT
+     * 
      * @return defaultValue
      */
     @Override
@@ -1429,6 +1430,7 @@ public class GuiManageableEntityAttributeLogicImpl extends GuiManageableEntityAt
 
     /**
      * Extract from a list of dependencies those which are Value Coherencies
+     * 
      * @param coherencies, a list of dependencies of type DependencyFacade
      * @return a list of value coherencies
      */

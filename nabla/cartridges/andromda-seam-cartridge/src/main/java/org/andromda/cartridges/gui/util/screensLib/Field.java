@@ -35,7 +35,7 @@ package org.andromda.cartridges.gui.util.screensLib;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author$
  * @version $Revision$
  * @since $Date$
@@ -47,7 +47,7 @@ public class Field
 
     /**
      * Creates a new Field object.
-     *
+     * 
      * @param name DOCUMENT ME!
      */
     public Field(final String name)
@@ -59,7 +59,7 @@ public class Field
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     public String getName()

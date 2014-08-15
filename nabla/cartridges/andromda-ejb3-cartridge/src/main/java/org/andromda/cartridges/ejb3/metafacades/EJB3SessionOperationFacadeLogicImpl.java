@@ -55,7 +55,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3SessionOperationFacade.
- *
+ * 
  * @see EJB3SessionOperationFacade
  */
 public class EJB3SessionOperationFacadeLogicImpl extends EJB3SessionOperationFacadeLogic
@@ -235,7 +235,6 @@ public class EJB3SessionOperationFacadeLogicImpl extends EJB3SessionOperationFac
 
     /**
      * @see EJB3SessionOperationFacadeLogic#getSignature()
-     *
      * Override the default implementation to check for timer service and
      * replace all attributes with javax.ejb.Timer attribute.
      */
@@ -291,7 +290,6 @@ public class EJB3SessionOperationFacadeLogicImpl extends EJB3SessionOperationFac
 
     /**
      * @see EJB3SessionOperationFacadeLogic#getCall()
-     *
      * Override the default implementation to check for timer service and
      * add the javax.ejb.Timer attribute to the call.
      */
@@ -311,7 +309,6 @@ public class EJB3SessionOperationFacadeLogicImpl extends EJB3SessionOperationFac
 
     /**
      * @see EJB3SessionOperationFacadeLogic#handleGetTransactionType()
-     *
      * If no method level transaction type specified, take it from the class level if it exists there.
      */
     @Override
@@ -519,9 +516,8 @@ public class EJB3SessionOperationFacadeLogicImpl extends EJB3SessionOperationFac
     }
 
     /**
-     * Retrieves the implementationOperatName by replacing the <code>replacement</code> in the {@link
-     * EJB3Globals#IMPLEMENTATION_OPERATION_NAME_PATTERN}
-     *
+     * Retrieves the implementationOperatName by replacing the <code>replacement</code> in the {@link EJB3Globals#IMPLEMENTATION_OPERATION_NAME_PATTERN}
+     * 
      * @param replacement the replacement string for the pattern.
      * @return the operation name
      */

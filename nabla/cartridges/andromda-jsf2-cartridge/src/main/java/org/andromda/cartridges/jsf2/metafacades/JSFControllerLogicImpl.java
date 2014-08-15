@@ -14,13 +14,13 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFController.
- *
+ * 
  * @see org.andromda.cartridges.jsf2.metafacades.JSFController
  */
-public class JSFControllerLogicImpl
-    extends JSFControllerLogic
+public class JSFControllerLogicImpl extends JSFControllerLogic
 {
     private static final long serialVersionUID = 34L;
+
     /**
      * @param metaObject
      * @param context
@@ -36,8 +36,7 @@ public class JSFControllerLogicImpl
      */
     protected String handleGetImplementationName()
     {
-        final String pattern = ObjectUtils.toString(
-            this.getConfiguredProperty(JSFGlobals.CONTROLLER_IMPLEMENTATION_PATTERN));
+        final String pattern = ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.CONTROLLER_IMPLEMENTATION_PATTERN));
         return pattern.replaceFirst("\\{0\\}", StringUtils.capitalize(this.getName()));
     }
 
@@ -98,10 +97,10 @@ public class JSFControllerLogicImpl
      */
     protected String handleGetControllerSerialVersionUID()
     {
-       final StringBuilder buffer = new StringBuilder();
-       buffer.append(this.getFullyQualifiedImplementationName());
-       addSerialUIDData(buffer);
-       return JSFUtils.calcSerialVersionUID(buffer);
+        final StringBuilder buffer = new StringBuilder();
+        buffer.append(this.getFullyQualifiedImplementationName());
+        addSerialUIDData(buffer);
+        return JSFUtils.calcSerialVersionUID(buffer);
     }
 
     private void addSerialUIDData(StringBuilder buffer)

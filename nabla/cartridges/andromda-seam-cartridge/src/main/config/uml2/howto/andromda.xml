@@ -60,6 +60,8 @@
                 <property name="serviceAccessorPattern">{0}.ServiceLocator.instance().get{1}()</property>
                 <property name="servicePackageNamePattern">{0}.ws</property>
                 <property name="roleNameMask">uppercamelcase</property>
+                <property name="servletVersion">3</property>
+                <property name="seamVersion">2.3</property>
             </properties>            
         </namespace>        
     </namespaces>

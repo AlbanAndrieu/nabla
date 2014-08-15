@@ -42,7 +42,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiEnumeration.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiEnumeration
  */
 public class GuiEnumerationLogicImpl extends GuiEnumerationLogic

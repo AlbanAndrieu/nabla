@@ -69,7 +69,7 @@ import org.apache.log4j.Logger;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiParameter.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiParameter
  */
 public class GuiParameterLogicImpl extends GuiParameterLogic
@@ -90,7 +90,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
     /**
      * Overridden to make sure it's not an inputTable.
-     *
+     * 
      * @see org.andromda.metafacades.uml.FrontEndParameter#isTable()
      */
     @Override
@@ -194,7 +194,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
     /**
      * Indicates whether or not we should normalize messages.
-     *
+     * 
      * @return true/false
      */
     private boolean isNormalizeMessages()
@@ -279,7 +279,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     /**
      * If this is a table this method returns all those actions that are declared to work
      * on this table.
-     *
+     * 
      * @param hyperlink denotes on which type of actions to filter
      */
     private List<GuiAction> getTableActions(final boolean hyperlink)
@@ -526,7 +526,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
     /**
      * Gets the current value of the specified input type (or an empty string
      * if one isn't specified).
-     *
+     * 
      * @return the input type name.
      */
     private String getInputType()
@@ -538,7 +538,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
     /**
      * Indicates whether or not this parameter is of the given input type.
-     *
+     * 
      * @param inputType the name of the input type to check for.
      * @return true/false
      */
@@ -963,7 +963,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
     /**
      * Constructs a string representing an array initialization in Java.
-     *
+     * 
      * @return A String representing Java code for the initialization of an array.
      */
     private String constructDummyArray()
@@ -1145,7 +1145,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
     /**
      * Overridden to have the same behavior as gui.
-     *
+     * 
      * @see org.andromda.metafacades.uml.ParameterFacade#isRequired()
      */
     @Override
@@ -2232,8 +2232,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
             pageSize = Integer.parseInt(String.valueOf(taggedValue));
 
-        }
-        catch (final Exception e)
+        } catch (final Exception e)
         {
 
             pageSize = GuiProfile.TAGGEDVALUE_TABLE_MAXROWS_DEFAULT_COUNT;
@@ -2378,8 +2377,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
                 }
 
-            }
-            catch (final Exception exception)
+            } catch (final Exception exception)
             {
 
                 // this means the value wasn't a valid integer, we'll interpret it is a comma-separated
@@ -2967,8 +2965,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
                 rowCount = Integer.valueOf(rowCountObject.toString());
 
-            }
-            catch (final NumberFormatException e)
+            } catch (final NumberFormatException e)
             {
 
                 // do nothing, we want rowCount to be null in case of an invalid value
@@ -3003,8 +3000,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
                 columnCount = Integer.valueOf(columnCountObject.toString());
 
-            }
-            catch (final NumberFormatException e)
+            } catch (final NumberFormatException e)
             {
 
                 // do nothing, we want columnCount to be null in case of an invalid value
@@ -3645,7 +3641,7 @@ public class GuiParameterLogicImpl extends GuiParameterLogic
 
     /**
      * Overridden to provide quotes around string types.
-     *
+     * 
      * @see org.andromda.metafacades.uml.ParameterFacade#getDefaultValue()
      */
 

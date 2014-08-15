@@ -35,7 +35,7 @@ package org.andromda.cartridges.ejb3.metafacades;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3ValueObjectFacade.
- *
+ * 
  * @see EJB3ValueObjectFacade
  */
 public class EJB3ValueObjectFacadeLogicImpl extends EJB3ValueObjectFacadeLogic

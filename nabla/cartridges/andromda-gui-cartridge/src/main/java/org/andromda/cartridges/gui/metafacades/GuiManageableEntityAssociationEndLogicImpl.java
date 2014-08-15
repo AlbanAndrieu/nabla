@@ -54,7 +54,7 @@ import java.util.Collection;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiManageableEntityAssociationEnd
  */
 public class GuiManageableEntityAssociationEndLogicImpl extends GuiManageableEntityAssociationEndLogic

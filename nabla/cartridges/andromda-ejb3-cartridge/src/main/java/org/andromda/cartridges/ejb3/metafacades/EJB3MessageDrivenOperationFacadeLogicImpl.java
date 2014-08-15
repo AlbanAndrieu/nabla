@@ -37,7 +37,7 @@ import org.andromda.cartridges.ejb3.EJB3Profile;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3MessageDrivenOperationFacade.
- *
+ * 
  * @see EJB3MessageDrivenOperationFacade
  */
 public class EJB3MessageDrivenOperationFacadeLogicImpl extends EJB3MessageDrivenOperationFacadeLogic

@@ -35,7 +35,7 @@ package org.andromda.cartridges.gui.util.exception;
 
 /**
  * DOCUMENT ME!
- *
+ * 
  * @author $Author$
  * @version $Revision$
  * @since $Date$
@@ -47,7 +47,7 @@ public class ParsingException extends Exception
 
     /**
      * Creates a new ParsingException object.
-     *
+     * 
      * @param message DOCUMENT ME!
      */
     public ParsingException(final String message)

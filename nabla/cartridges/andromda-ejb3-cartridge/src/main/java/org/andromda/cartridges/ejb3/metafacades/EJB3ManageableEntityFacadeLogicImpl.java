@@ -48,7 +48,7 @@ import org.andromda.metafacades.uml.UMLMetafacadeProperties;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3ManageableEntityFacade.
- *
+ * 
  * @see EJB3ManageableEntityFacade
  */
 public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFacadeLogic
@@ -86,7 +86,7 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
 
     /**
      * Constructor
-     *
+     * 
      * @param metaObject
      * @param context
      */
@@ -305,7 +305,6 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
      * If session view type is remote, check for operations with view type local and return both.
      * If session view type is local, check for operations with view type remote and return both.
      * Otherwise session view type is both, return both.
-     *
      * NOTE: do not invoke viewType on EJB3SessionOperationFacade to avoid cyclic dependency and throwing
      * StackOverFlowError.
      */
@@ -634,7 +633,6 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
 
     /**
      * @see EJB3ManageableEntityFacadeLogic#getIdentifier()
-     *
      * Override the implementation in EJB3EntityFacade as UML2 models cannot retrieve the identifier via the
      * super EJB3EntityFacade.
      */
@@ -648,7 +646,6 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
 
     /**
      * @see EJB3ManageableEntityFacadeLogic#getAllInstanceAttributes()
-     *
      * Override the implementation in EJB3EntityFacade as UML2 models will not get an
      * EJB3ManageableEntityAttributeFacade when retrieving the attributes.
      */
@@ -660,7 +657,6 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
 
     /**
      * @see EJB3ManageableEntityFacadeLogic#getInheritedInstanceAttributes()
-     *
      * Override the implementation in EJB3EntityFacade as UML2 models will not get an
      * EJB3ManageableEntityAttributeFacade when retrieving the attributes.
      */
@@ -672,7 +668,6 @@ public class EJB3ManageableEntityFacadeLogicImpl extends EJB3ManageableEntityFac
 
     /**
      * @see EJB3ManageableEntityFacadeLogic#getInstanceAttributes(boolean, boolean)
-     *
      * Override the implementation in EJB3EntityFacade as UML2 models will not get an
      * EJB3ManageableEntityAttributeFacade when retrieving the attributes.
      */

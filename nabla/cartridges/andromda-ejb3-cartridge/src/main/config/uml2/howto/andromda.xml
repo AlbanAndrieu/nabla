@@ -109,6 +109,9 @@
                 <!-- uncomment to enable default association caching configuration
                 <property name="hibernateAssociationCache">TRANSACTIONAL</property>
                 -->
+                <property name="hibernateVersion">3</property>
+                <property name="persistenceVersion">1.0</property>
+                <property name="seamVersion">2.3</property>
                 <property name="enableClustering">false</property>
                 <property name="webServiceEnabled">true</property>
                 <property name="webServiceContextRoot">/howtomodel-ws</property>

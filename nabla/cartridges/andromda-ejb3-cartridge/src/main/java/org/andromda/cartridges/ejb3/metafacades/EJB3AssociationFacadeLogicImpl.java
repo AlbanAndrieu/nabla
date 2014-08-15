@@ -46,7 +46,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3AssociationFacade.
- *
+ * 
  * @see EJB3AssociationFacade
  */
 public class EJB3AssociationFacadeLogicImpl extends EJB3AssociationFacadeLogic
@@ -68,8 +68,8 @@ public class EJB3AssociationFacadeLogicImpl extends EJB3AssociationFacadeLogic
 
     /**
      * Override to provide support for One-2-Many unidirectional associations as well as Many-2-Many.
-     *
      * Returns the EJB3 cartridge specific table name for the association
+     * 
      * @return table name
      */
     @Override
@@ -108,6 +108,7 @@ public class EJB3AssociationFacadeLogicImpl extends EJB3AssociationFacadeLogic
 
     /**
      * Override the default implementation to use the current getRelationName implementation
+     * 
      * @return name
      */
     @Override
@@ -126,6 +127,7 @@ public class EJB3AssociationFacadeLogicImpl extends EJB3AssociationFacadeLogic
     /**
      * Override the default implementation to set the owning side name first followed by inverse side.
      * If there is no owning side defined, then adopt the default logic of using alphabetical ordering.
+     * 
      * @return relation name
      */
     @Override

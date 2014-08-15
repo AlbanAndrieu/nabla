@@ -48,7 +48,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3InterceptorFacade.
- *
+ * 
  * @see EJB3InterceptorFacade
  */
 public class EJB3InterceptorFacadeLogicImpl extends EJB3InterceptorFacadeLogic

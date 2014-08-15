@@ -14,13 +14,13 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute.
- *
+ * 
  * @see org.andromda.cartridges.jsf2.metafacades.JSFManageableEntityAttribute
  */
-public class JSFManageableEntityAttributeLogicImpl
-    extends JSFManageableEntityAttributeLogic
+public class JSFManageableEntityAttributeLogicImpl extends JSFManageableEntityAttributeLogic
 {
     private static final long serialVersionUID = 34L;
+
     /**
      * @param metaObject
      * @param context
@@ -144,11 +144,7 @@ public class JSFManageableEntityAttributeLogicImpl
      */
     protected String handleGetFormat()
     {
-        return JSFUtils.getFormat(
-            (ModelElementFacade)this.THIS(),
-            this.getType(),
-            this.getDefaultDateFormat(),
-            this.getDefaultTimeFormat());
+        return JSFUtils.getFormat((ModelElementFacade) this.THIS(), this.getType(), this.getDefaultDateFormat(), this.getDefaultTimeFormat());
     }
 
     /**
@@ -157,7 +153,7 @@ public class JSFManageableEntityAttributeLogicImpl
      */
     protected String handleGetDefaultDateFormat()
     {
-        return (String)this.getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_DATEFORMAT);
+        return (String) this.getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_DATEFORMAT);
     }
 
     /**
@@ -166,7 +162,7 @@ public class JSFManageableEntityAttributeLogicImpl
      */
     protected String handleGetDefaultTimeFormat()
     {
-        return (String)this.getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_TIMEFORMAT);
+        return (String) this.getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_TIMEFORMAT);
     }
 
     /**
@@ -195,11 +191,7 @@ public class JSFManageableEntityAttributeLogicImpl
      */
     protected String handleGetBackingListName()
     {
-        final String backingListName =
-            StringUtils.replace(
-                ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.BACKING_LIST_PATTERN)),
-                "{0}",
-                this.getName());
+        final String backingListName = StringUtils.replace(ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.BACKING_LIST_PATTERN)), "{0}", this.getName());
         return org.andromda.utils.StringUtilsHelper.lowerCamelCaseName(backingListName);
     }
 
@@ -209,9 +201,7 @@ public class JSFManageableEntityAttributeLogicImpl
      */
     protected String handleGetValueListName()
     {
-        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.VALUE_LIST_PATTERN)).replaceAll(
-            "\\{0\\}",
-            this.getName());
+        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.VALUE_LIST_PATTERN)).replaceAll("\\{0\\}", this.getName());
     }
 
     /**
@@ -220,9 +210,7 @@ public class JSFManageableEntityAttributeLogicImpl
      */
     protected String handleGetLabelListName()
     {
-        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.LABEL_LIST_PATTERN)).replaceAll(
-            "\\{0\\}",
-            this.getName());
+        return ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.LABEL_LIST_PATTERN)).replaceAll("\\{0\\}", this.getName());
     }
 
     /**
@@ -231,9 +219,7 @@ public class JSFManageableEntityAttributeLogicImpl
      */
     protected Collection handleGetValidatorTypes()
     {
-        return JSFUtils.getValidatorTypes(
-            (ModelElementFacade)this.THIS(),
-            this.getType());
+        return JSFUtils.getValidatorTypes((ModelElementFacade) this.THIS(), this.getType());
     }
 
     /**
@@ -251,10 +237,7 @@ public class JSFManageableEntityAttributeLogicImpl
      */
     protected Collection handleGetValidatorVars()
     {
-        return JSFUtils.getValidatorVars(
-            (ModelElementFacade)this.THIS(),
-            this.getType(),
-            null);
+        return JSFUtils.getValidatorVars((ModelElementFacade) this.THIS(), this.getType(), null);
     }
 
     /**
@@ -387,9 +370,7 @@ public class JSFManageableEntityAttributeLogicImpl
         final ClassifierFacade type = this.getType();
         if (type != null)
         {
-            present =
-                (StringUtils.isNotBlank(this.getInputType()) || type.isDateType() || type.isBooleanType()) &&
-                !this.isPlaintext();
+            present = (StringUtils.isNotBlank(this.getInputType()) || type.isDateType() || type.isBooleanType()) && !this.isPlaintext();
         }
         return present;
     }
@@ -491,7 +472,7 @@ public class JSFManageableEntityAttributeLogicImpl
                 return "new Byte((byte)" + name.hashCode() + ")";
             }
 
-            //if (type.isArrayType()) return constructDummyArray();
+            // if (type.isArrayType()) return constructDummyArray();
             if (type.isSetType())
             {
                 return "new java.util.HashSet(java.util.Arrays.asList(" + constructDummyArray() + "))";
@@ -512,7 +493,7 @@ public class JSFManageableEntityAttributeLogicImpl
      */
     protected boolean handleIsEqualValidator()
     {
-        final String equal = JSFUtils.getEqual((ModelElementFacade)this.THIS());
+        final String equal = JSFUtils.getEqual((ModelElementFacade) this.THIS());
         return equal != null && equal.trim().length() > 0;
     }
 
@@ -541,15 +522,13 @@ public class JSFManageableEntityAttributeLogicImpl
      */
     protected Collection handleGetValidatorArgs(String validatorType)
     {
-        return JSFUtils.getValidatorArgs(
-            (ModelElementFacade)this.THIS(),
-            validatorType);
+        return JSFUtils.getValidatorArgs((ModelElementFacade) this.THIS(), validatorType);
     }
 
     /**
      * Gets the current value of the specified input type (or an empty string
      * if one isn't specified).
-     *
+     * 
      * @return the input type name.
      */
     private String getInputType()
@@ -559,7 +538,7 @@ public class JSFManageableEntityAttributeLogicImpl
 
     /**
      * Indicates whether or not this parameter is of the given input type.
-     *
+     * 
      * @param inputType the name of the input type to check for.
      * @return true/false
      */
@@ -570,7 +549,7 @@ public class JSFManageableEntityAttributeLogicImpl
 
     /**
      * Overridden to provide consistent behavior with {@link JSFParameter#isReadOnly()}.
-     *
+     * 
      * @see org.andromda.metafacades.uml.AttributeFacade#isReadOnly()
      */
     public boolean isReadOnly()
@@ -580,14 +559,12 @@ public class JSFManageableEntityAttributeLogicImpl
 
     /**
      * Constructs a string representing an array initialization in Java.
-     *
+     * 
      * @return A String representing Java code for the initialization of an array.
      */
     private String constructDummyArray()
     {
-        return JSFUtils.constructDummyArrayDeclaration(
-            this.getName(),
-            JSFGlobals.DUMMY_ARRAY_COUNT);
+        return JSFUtils.constructDummyArrayDeclaration(this.getName(), JSFGlobals.DUMMY_ARRAY_COUNT);
     }
 
     private String internalGetDateFormat()
@@ -599,9 +576,8 @@ public class JSFManageableEntityAttributeLogicImpl
             final Object taggedValueObject = this.findTaggedValue(JSFProfile.TAGGEDVALUE_INPUT_FORMAT);
             if (taggedValueObject == null)
             {
-                dateFormat = (String)this.getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_DATEFORMAT);
-            }
-            else
+                dateFormat = (String) this.getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_DATEFORMAT);
+            } else
             {
                 dateFormat = taggedValueObject.toString();
             }
@@ -641,9 +617,10 @@ public class JSFManageableEntityAttributeLogicImpl
         return StringUtilsHelper.lowerCamelCaseName(this.getFormPropertyName(ownerParameter));
     }
 
-    //TODO remove after 3.4 release
+    // TODO remove after 3.4 release
     /**
      * Hack to keep the compatibility with Andromda 3.4-SNAPSHOT
+     * 
      * @return defaultValue
      */
     public String getDefaultValue()
@@ -651,22 +628,20 @@ public class JSFManageableEntityAttributeLogicImpl
         String defaultValue = super.getDefaultValue();
         // Put single or double quotes around default in case modeler forgot to do it. Most templates
         // declare Type attribute = $attribute.defaultValue, requiring quotes around the value
-        if (defaultValue!=null && defaultValue.length()>0 && !super.isMany())
+        if (defaultValue != null && defaultValue.length() > 0 && !super.isMany())
         {
             String typeName = getType().getName();
-            if ("String".equals(typeName) && defaultValue.indexOf('"')<0)
+            if ("String".equals(typeName) && defaultValue.indexOf('"') < 0)
             {
                 defaultValue = '"' + defaultValue + '"';
-            }
-            else if (("char".equals(typeName) || "Character".equals(typeName))
-                && !defaultValue.contains("'"))
+            } else if (("char".equals(typeName) || "Character".equals(typeName)) && !defaultValue.contains("'"))
             {
                 defaultValue = "'" + defaultValue.charAt(0) + "'";
             }
         }
-        if (defaultValue==null)
+        if (defaultValue == null)
         {
-            defaultValue="";
+            defaultValue = "";
         }
         return defaultValue;
     }
@@ -677,15 +652,15 @@ public class JSFManageableEntityAttributeLogicImpl
      */
     protected String handleGetMaxLength()
     {
-        final Collection vars=getValidatorVars();
-        if(vars == null)
+        final Collection vars = getValidatorVars();
+        if (vars == null)
         {
             return getColumnLength();
         }
-        for(Iterator<Collection> it=vars.iterator(); it.hasNext(); )
+        for (Iterator<Collection> it = vars.iterator(); it.hasNext();)
         {
-            final Object[] values=(it.next()).toArray();
-            if("maxlength".equals(values[0]))
+            final Object[] values = (it.next()).toArray();
+            if ("maxlength".equals(values[0]))
             {
                 return values[1].toString();
             }

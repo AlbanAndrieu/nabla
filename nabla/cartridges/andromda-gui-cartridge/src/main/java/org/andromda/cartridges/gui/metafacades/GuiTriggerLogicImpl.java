@@ -42,7 +42,7 @@ import org.andromda.utils.StringUtilsHelper;
 /**
  * A Gui trigger is represented by clicking a hyperlink or posting an action form.
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiTrigger.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiTrigger
  */
 public class GuiTriggerLogicImpl extends GuiTriggerLogic
@@ -52,6 +52,7 @@ public class GuiTriggerLogicImpl extends GuiTriggerLogic
 
     /**
      * Public constructor for GuiTriggerLogicImpl
+     * 
      * @see org.andromda.cartridges.gui.metafacades.GuiTrigger
      */
     public GuiTriggerLogicImpl(final Object metaObject, final String context)

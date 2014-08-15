@@ -22,19 +22,15 @@ import org.xml.sax.InputSource;
  * @author Sylvain Vieujot (latest modification by $Author: cwbrandon $)
  * @author Chad Brandon
  */
-public class ExtensionsResponseWrapper
-    extends HttpServletResponseWrapper
-    implements RenderResponse
+public class ExtensionsResponseWrapper extends HttpServletResponseWrapper implements RenderResponse
 {
-    private ByteArrayOutputStream stream = null;
-    private PrintWriter printWriter = null;
-    private String contentType;
+    private ByteArrayOutputStream stream      = null;
+    private PrintWriter           printWriter = null;
+    private String                contentType;
 
-    private RenderResponse response;
+    private RenderResponse        response;
 
-    public ExtensionsResponseWrapper(
-        HttpServletResponse servletResponse,
-        RenderResponse response)
+    public ExtensionsResponseWrapper(HttpServletResponse servletResponse, RenderResponse response)
     {
         super(servletResponse);
         this.response = response;
@@ -51,19 +47,17 @@ public class ExtensionsResponseWrapper
         try
         {
             return this.stream.toString(getCharacterEncoding());
-        }
-        catch (UnsupportedEncodingException e)
+        } catch (UnsupportedEncodingException e)
         {
             // an attempt to set an invalid character encoding would have caused
             // this exception before
-            throw new RuntimeException("Response accepted invalid character encoding "
-                + getCharacterEncoding());
+            throw new RuntimeException("Response accepted invalid character encoding " + getCharacterEncoding());
         }
     }
 
     /**
      * This method is used by Tomcat.
-     *
+     * 
      * @throws IOException
      */
     public PrintWriter getWriter()
@@ -78,7 +72,7 @@ public class ExtensionsResponseWrapper
 
     /**
      * This method is used by Jetty.
-     *
+     * 
      * @throws IOException
      */
     public ServletOutputStream getOutputStream() throws IOException
@@ -122,16 +116,14 @@ public class ExtensionsResponseWrapper
             if (printWriter != null)
             {
                 printWriter.close();
-            }
-            else
+            } else
             {
                 if (this.stream != null)
                 {
                     this.stream.close();
                 }
             }
-        }
-        catch (IOException e)
+        } catch (IOException e)
         {
         }
     }
@@ -139,13 +131,11 @@ public class ExtensionsResponseWrapper
     /**
      * Used in the <code>getOutputStream()</code> method.
      */
-    private class MyServletOutputStream
-        extends ServletOutputStream
+    private class MyServletOutputStream extends ServletOutputStream
     {
         private OutputStream outputStream;
 
-        public MyServletOutputStream(
-            OutputStream outputStream)
+        public MyServletOutputStream(OutputStream outputStream)
         {
             this.outputStream = outputStream;
         }

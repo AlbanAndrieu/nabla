@@ -447,6 +447,18 @@
             <documentation>
                 Other various properties that couldn't be classified into another category.
             </documentation>
+            <property name="servletVersion">
+                <default>2</default>
+                <documentation>
+                    The version of Servlet to use when generating.
+                    Allowable values are:
+                    <ul>
+                        <li>2 - Servlet 2.x (2.5)</li>
+                        <li>3 - Servlet 3.x</li>
+                        <li>4 - Servlet 4.x</li>
+                    </ul>
+                </documentation>
+            </property>               
             <property name="ejbJndiNamePrefix" required="false">
                 <documentation>
                     The JNDI name prefix used to construct the JNDI name pattern.

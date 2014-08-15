@@ -18,20 +18,18 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.jsf2.metafacades.JSFAttribute.
- *
+ * 
  * @see org.andromda.cartridges.jsf2.metafacades.JSFAttribute
  */
-public class JSFAttributeLogicImpl
-    extends JSFAttributeLogic
+public class JSFAttributeLogicImpl extends JSFAttributeLogic
 {
     private static final long serialVersionUID = 34L;
+
     /**
      * @param metaObject
      * @param context
      */
-    public JSFAttributeLogicImpl(
-        Object metaObject,
-        String context)
+    public JSFAttributeLogicImpl(Object metaObject, String context)
     {
         super(metaObject, context);
     }
@@ -62,13 +60,12 @@ public class JSFAttributeLogicImpl
 
     /**
      * Indicates whether or not we should normalize messages.
-     *
+     * 
      * @return true/false
      */
     private boolean isNormalizeMessages()
     {
-        final String normalizeMessages =
-            ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.NORMALIZE_MESSAGES));
+        final String normalizeMessages = ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.NORMALIZE_MESSAGES));
         return Boolean.valueOf(normalizeMessages).booleanValue();
     }
 
@@ -87,11 +84,7 @@ public class JSFAttributeLogicImpl
      */
     protected String handleGetFormat()
     {
-        return JSFUtils.getFormat(
-            (ModelElementFacade)this.THIS(),
-            this.getType(),
-            this.getDefaultDateFormat(),
-            this.getDefaultTimeFormat());
+        return JSFUtils.getFormat((ModelElementFacade) this.THIS(), this.getType(), this.getDefaultDateFormat(), this.getDefaultTimeFormat());
     }
 
     /**
@@ -99,7 +92,7 @@ public class JSFAttributeLogicImpl
      */
     private String getDefaultTimeFormat()
     {
-        return (String)this.getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_TIMEFORMAT);
+        return (String) this.getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_TIMEFORMAT);
     }
 
     /**
@@ -107,7 +100,7 @@ public class JSFAttributeLogicImpl
      */
     private String getDefaultDateFormat()
     {
-        return (String)this.getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_DATEFORMAT);
+        return (String) this.getConfiguredProperty(JSFGlobals.PROPERTY_DEFAULT_DATEFORMAT);
     }
 
     /**
@@ -206,7 +199,7 @@ public class JSFAttributeLogicImpl
                 return "new Byte((byte)" + name.hashCode() + ")";
             }
 
-            //if (type.isArrayType()) return constructDummyArray();
+            // if (type.isArrayType()) return constructDummyArray();
             if (type.isSetType())
             {
                 return "new java.util.HashSet(java.util.Arrays.asList(" + constructDummyArray() + "))";
@@ -223,14 +216,12 @@ public class JSFAttributeLogicImpl
 
     /**
      * Constructs a string representing an array initialization in Java.
-     *
+     * 
      * @return A String representing Java code for the initialization of an array.
      */
     private String constructDummyArray()
     {
-        return JSFUtils.constructDummyArrayDeclaration(
-            this.getName(),
-            JSFGlobals.DUMMY_ARRAY_COUNT);
+        return JSFUtils.constructDummyArrayDeclaration(this.getName(), JSFGlobals.DUMMY_ARRAY_COUNT);
     }
 
     /**
@@ -261,11 +252,7 @@ public class JSFAttributeLogicImpl
      */
     protected String handleGetBackingListName(final ParameterFacade ownerParameter)
     {
-        final String backingListName =
-            StringUtils.replace(
-                ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.BACKING_LIST_PATTERN)),
-                "{0}",
-                this.getFormPropertyId(ownerParameter));
+        final String backingListName = StringUtils.replace(ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.BACKING_LIST_PATTERN)), "{0}", this.getFormPropertyId(ownerParameter));
         return org.andromda.utils.StringUtilsHelper.lowerCamelCaseName(backingListName);
     }
 
@@ -276,11 +263,7 @@ public class JSFAttributeLogicImpl
      */
     protected String handleGetBackingValueName(final ParameterFacade ownerParameter)
     {
-        final String backingListName =
-            StringUtils.replace(
-                ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.BACKING_VALUE_PATTERN)),
-                "{0}",
-                this.getFormPropertyId(ownerParameter));
+        final String backingListName = StringUtils.replace(ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.BACKING_VALUE_PATTERN)), "{0}", this.getFormPropertyId(ownerParameter));
         return org.andromda.utils.StringUtilsHelper.lowerCamelCaseName(backingListName);
     }
 
@@ -291,10 +274,7 @@ public class JSFAttributeLogicImpl
      */
     protected String handleGetLabelListName(final ParameterFacade ownerParameter)
     {
-        return StringUtils.replace(
-            ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.LABEL_LIST_PATTERN)),
-            "{0}",
-            this.getFormPropertyId(ownerParameter));
+        return StringUtils.replace(ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.LABEL_LIST_PATTERN)), "{0}", this.getFormPropertyId(ownerParameter));
     }
 
     /**
@@ -304,10 +284,7 @@ public class JSFAttributeLogicImpl
      */
     protected String handleGetValueListName(final ParameterFacade ownerParameter)
     {
-        return StringUtils.replace(
-            ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.VALUE_LIST_PATTERN)),
-            "{0}",
-            this.getFormPropertyId(ownerParameter));
+        return StringUtils.replace(ObjectUtils.toString(this.getConfiguredProperty(JSFGlobals.VALUE_LIST_PATTERN)), "{0}", this.getFormPropertyId(ownerParameter));
     }
 
     /**
@@ -341,18 +318,17 @@ public class JSFAttributeLogicImpl
                     final String typeName = type.getFullyQualifiedName();
 
                     // - if the parameter is not selectable but on a targeting page it IS selectable we must
-                    //   allow the user to set the backing list too
+                    // allow the user to set the backing list too
                     final Collection<FrontEndView> views = ownerParameter.getAction().getTargetViews();
                     for (final Iterator<FrontEndView> iterator = views.iterator(); iterator.hasNext() && !selectable;)
                     {
                         final Collection<FrontEndParameter> parameters = iterator.next().getAllActionParameters();
-                        for (final Iterator<FrontEndParameter> parameterIterator = parameters.iterator();
-                            parameterIterator.hasNext() && !selectable;)
+                        for (final Iterator<FrontEndParameter> parameterIterator = parameters.iterator(); parameterIterator.hasNext() && !selectable;)
                         {
                             final FrontEndParameter object = parameterIterator.next();
                             if (object instanceof JSFParameter)
                             {
-                                final JSFParameter parameter = (JSFParameter)object;
+                                final JSFParameter parameter = (JSFParameter) object;
                                 final String parameterName = parameter.getName();
                                 final ClassifierFacade parameterType = parameter.getType();
                                 if (parameterType != null)
@@ -360,17 +336,14 @@ public class JSFAttributeLogicImpl
                                     final String parameterTypeName = parameterType.getFullyQualifiedName();
                                     if (name.equals(parameterName) && typeName.equals(parameterTypeName))
                                     {
-                                        selectable =
-                                            parameter.isInputMultibox() || parameter.isInputSelect() ||
-                                            parameter.isInputRadio();
+                                        selectable = parameter.isInputMultibox() || parameter.isInputSelect() || parameter.isInputRadio();
                                     }
                                 }
                             }
                         }
                     }
                 }
-            }
-            else if (ownerParameter.isControllerOperationArgument())
+            } else if (ownerParameter.isControllerOperationArgument())
             {
                 final String name = this.getName();
                 for (final FrontEndAction action : ownerParameter.getControllerOperation().getDeferringActions())
@@ -381,7 +354,7 @@ public class JSFAttributeLogicImpl
                         final FrontEndParameter object = fieldIterator.next();
                         if (object instanceof JSFParameter)
                         {
-                            final JSFParameter parameter = (JSFParameter)object;
+                            final JSFParameter parameter = (JSFParameter) object;
                             if (name.equals(parameter.getName()))
                             {
                                 selectable = parameter.isSelectable();
@@ -409,9 +382,7 @@ public class JSFAttributeLogicImpl
      */
     protected Collection<String> handleGetValidatorTypes()
     {
-        return JSFUtils.getValidatorTypes(
-            (ModelElementFacade)this.THIS(),
-            this.getType());
+        return JSFUtils.getValidatorTypes((ModelElementFacade) this.THIS(), this.getType());
     }
 
     /**
@@ -421,10 +392,7 @@ public class JSFAttributeLogicImpl
      */
     protected Collection<List<String>> handleGetValidatorVars(JSFParameter ownerParameter)
     {
-        return JSFUtils.getValidatorVars(
-            (ModelElementFacade)this.THIS(),
-            this.getType(),
-            ownerParameter);
+        return JSFUtils.getValidatorVars((ModelElementFacade) this.THIS(), this.getType(), ownerParameter);
     }
 
     /**
@@ -535,7 +503,7 @@ public class JSFAttributeLogicImpl
     /**
      * Gets the current value of the specified input type (or an empty string
      * if one isn't specified).
-     *
+     * 
      * @return the input type name.
      */
     private String getInputType()
@@ -545,7 +513,7 @@ public class JSFAttributeLogicImpl
 
     /**
      * Indicates whether or not this parameter is of the given input type.
-     *
+     * 
      * @param inputType the name of the input type to check for.
      * @return true/false
      */
@@ -571,7 +539,7 @@ public class JSFAttributeLogicImpl
 
     /**
      * Overridden to provide consistent behavior with {@link JSFParameter#isReadOnly()}.
-     *
+     * 
      * @see org.andromda.metafacades.uml.AttributeFacade#isReadOnly()
      */
     public boolean isReadOnly()
@@ -595,9 +563,7 @@ public class JSFAttributeLogicImpl
      */
     protected Collection handleGetValidatorArgs(final String validatorType)
     {
-        return JSFUtils.getValidatorArgs(
-            (ModelElementFacade)this.THIS(),
-            validatorType);
+        return JSFUtils.getValidatorArgs((ModelElementFacade) this.THIS(), validatorType);
     }
 
     /**
@@ -606,7 +572,7 @@ public class JSFAttributeLogicImpl
      */
     protected boolean handleIsStrictDateFormat()
     {
-        return JSFUtils.isStrictDateFormat((ModelElementFacade)this.THIS());
+        return JSFUtils.isStrictDateFormat((ModelElementFacade) this.THIS());
     }
 
     /**
@@ -633,7 +599,7 @@ public class JSFAttributeLogicImpl
 
     /**
      * Overridden to provide quotes around string types.
-     *
+     * 
      * @see org.andromda.metafacades.uml.AttributeFacade#getDefaultValue()
      */
     public String getDefaultValue()
@@ -656,7 +622,7 @@ public class JSFAttributeLogicImpl
      */
     protected boolean handleIsEqualValidator()
     {
-        final String equal = JSFUtils.getEqual((ModelElementFacade)this.THIS());
+        final String equal = JSFUtils.getEqual((ModelElementFacade) this.THIS());
         return equal != null && equal.trim().length() > 0;
     }
 
@@ -681,18 +647,17 @@ public class JSFAttributeLogicImpl
                     final String typeName = type.getFullyQualifiedName();
 
                     // - if the parameter is not selectable but on a targetting page it IS selectable we must
-                    //   allow the user to set the backing list too
+                    // allow the user to set the backing list too
                     final Collection<FrontEndView> views = ownerParameter.getAction().getTargetViews();
                     for (final Iterator<FrontEndView> iterator = views.iterator(); iterator.hasNext() && !required;)
                     {
                         final Collection<FrontEndParameter> parameters = iterator.next().getAllActionParameters();
-                        for (final Iterator<FrontEndParameter> parameterIterator = parameters.iterator();
-                            parameterIterator.hasNext() && !required;)
+                        for (final Iterator<FrontEndParameter> parameterIterator = parameters.iterator(); parameterIterator.hasNext() && !required;)
                         {
                             final FrontEndParameter object = parameterIterator.next();
                             if (object instanceof JSFParameter)
                             {
-                                final JSFParameter parameter = (JSFParameter)object;
+                                final JSFParameter parameter = (JSFParameter) object;
                                 final String parameterName = parameter.getName();
                                 final ClassifierFacade parameterType = parameter.getType();
                                 if (parameterType != null)
@@ -707,22 +672,20 @@ public class JSFAttributeLogicImpl
                         }
                     }
                 }
-            }
-            else if (ownerParameter.isControllerOperationArgument())
+            } else if (ownerParameter.isControllerOperationArgument())
             {
                 final String name = this.getName();
                 final Collection<FrontEndAction> actions = ownerParameter.getControllerOperation().getDeferringActions();
                 for (final Iterator<FrontEndAction> actionIterator = actions.iterator(); actionIterator.hasNext();)
                 {
-                    final JSFAction action = (JSFAction)actionIterator.next();
+                    final JSFAction action = (JSFAction) actionIterator.next();
                     final Collection<FrontEndParameter> formFields = action.getFormFields();
-                    for (final Iterator<FrontEndParameter> fieldIterator = formFields.iterator();
-                        fieldIterator.hasNext() && !required;)
+                    for (final Iterator<FrontEndParameter> fieldIterator = formFields.iterator(); fieldIterator.hasNext() && !required;)
                     {
                         final FrontEndParameter object = fieldIterator.next();
                         if (object instanceof JSFParameter)
                         {
-                            final JSFParameter parameter = (JSFParameter)object;
+                            final JSFParameter parameter = (JSFParameter) object;
                             if (name.equals(parameter.getName()))
                             {
                                 required = parameter.isBackingValueRequired();
@@ -745,9 +708,7 @@ public class JSFAttributeLogicImpl
         final ClassifierFacade type = this.getType();
         if (type != null)
         {
-            present =
-                (StringUtils.isNotBlank(this.getInputType()) || type.isDateType() || type.isBooleanType()) &&
-                !this.isPlaintext();
+            present = (StringUtils.isNotBlank(this.getInputType()) || type.isDateType() || type.isBooleanType()) && !this.isPlaintext();
         }
         return present;
     }
@@ -768,13 +729,13 @@ public class JSFAttributeLogicImpl
     protected String handleGetMaxLength()
     {
         final Collection<List<String>> vars = this.getValidatorVars(null);
-        if(vars == null)
+        if (vars == null)
         {
             return null;
         }
-        for(final List<String> values : vars)
+        for (final List<String> values : vars)
         {
-            if("maxlength".equals(values.get(0)))
+            if ("maxlength".equals(values.get(0)))
             {
                 return values.get(1);
             }

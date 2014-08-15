@@ -37,7 +37,7 @@ package org.andromda.cartridges.gui.metafacades;
  * A plain action state represents an operation on the server called by an action. Optionally an
  * action state may defer operations to the controller.
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiActionState.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiActionState
  */
 public class GuiActionStateLogicImpl extends GuiActionStateLogic
@@ -47,6 +47,7 @@ public class GuiActionStateLogicImpl extends GuiActionStateLogic
 
     /**
      * Public constructor for GuiActionStateLogicImpl
+     * 
      * @see org.andromda.cartridges.gui.metafacades.GuiActionState
      */
     public GuiActionStateLogicImpl(Object metaObject, String context)

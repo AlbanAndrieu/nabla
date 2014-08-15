@@ -83,7 +83,7 @@ import javax.swing.tree.TreeNode;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.gui.metafacades.GuiUseCase.
- *
+ * 
  * @see org.andromda.cartridges.gui.metafacades.GuiUseCase
  */
 public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
@@ -187,7 +187,7 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
 
     /**
      * Indicates whether or not we should normalize messages.
-     *
+     * 
      * @return true/false
      */
     private boolean isNormalizeMessages()
@@ -680,7 +680,7 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
 
     /**
      * Collects all attribute messages into the given Map.
-     *
+     * 
      * @param messages the Map in which messages are collected.
      * @param attributes the attributes to collect the messages from.
      * @param resolvingTypes used to prevent endless recursion.
@@ -708,7 +708,7 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
 
     /**
      * Collects all association end messages into the given Map.
-     *
+     * 
      * @param messages the Map in which messages are collected.
      * @param associationEnds the association ends to collect the messages from.
      * @param resolvingTypes used to prevent endless recursion.
@@ -952,7 +952,7 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
 
     /**
      * Gets the initial target when this use case is entered.
-     *
+     * 
      * @return the initial target.
      */
     private Object getInitialTarget()
@@ -1613,7 +1613,7 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @return DOCUMENT ME!
      */
     @Override
@@ -1695,7 +1695,7 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
 
     /**
      * Overriden because GuiEJBAction does not extend FrontEndAction.
-     *
+     * 
      * @see org.andromda.metafacades.uml.FrontEndUseCase#getActions()
      */
 
@@ -1894,7 +1894,7 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @author $Author$
      * @version $Revision$
      * @since $Date$
@@ -1904,7 +1904,7 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
 
         /**
          * Creates a new UseCaseNode object.
-         *
+         * 
          * @param useCase DOCUMENT ME!
          */
         public UseCaseNode(final GuiUseCase useCase)
@@ -1915,7 +1915,7 @@ public class GuiUseCaseLogicImpl extends GuiUseCaseLogic
 
         /**
          * DOCUMENT ME!
-         *
+         * 
          * @return DOCUMENT ME!
          */
         public GuiUseCase getUseCase()
