@@ -9,6 +9,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -23,9 +24,13 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-import org.hibernate.validator.Email;
-import org.hibernate.validator.Length;
-import org.hibernate.validator.NotEmpty;
+
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.NotEmpty;
+import org.jboss.seam.annotations.security.management.UserPassword;
+import org.jboss.seam.annotations.security.management.UserPrincipal;
+import org.jboss.seam.annotations.security.management.UserRoles;
 
 /**
  * TODO: Model Documentation for org.andromda.timetracker.domain.User
@@ -65,12 +70,13 @@ public abstract class UserEmbeddable implements Serializable{
      * @return String The value of username
      */
     @Column(name="USERNAME", unique=true, nullable=false, insertable=true, updatable=true, length=50)
-    @NotNull(message="username is required")
+    @NotNull(message = "username is required")
     @NotEmpty(message = "You should enter a value for username.")
 
     @Length(min = 5, max = 50)
-    @Size(max=50)
+    @Size(max = 50)
     @Pattern(regexp = "^\\w*$", message = "not a valid field")
+    @UserPrincipal
     public String getUsername()
     {
         return this.username;
@@ -92,10 +98,12 @@ public abstract class UserEmbeddable implements Serializable{
      * @return String The value of password
      */
     @Column(name="PASSWORD", nullable=false, insertable=true, updatable=true)
-    @NotNull(message="password is required")
+    @NotNull(message = "password is required")
     @NotEmpty(message = "You should enter a value for password.")
 
     @Length(min = 5)
+    @UserPassword
+    // (hash = "md5")
     public String getPassword()
     {
         return this.password;
@@ -117,7 +125,7 @@ public abstract class UserEmbeddable implements Serializable{
      * @return String The value of firstName
      */
     @Column(name="FIRST_NAME", nullable=false, insertable=true, updatable=true)
-    @NotNull(message="firstName is required")
+    @NotNull(message = "firstName is required")
     @NotEmpty(message = "You should enter a value for firstName.")
 
     public String getFirstName()
@@ -141,7 +149,7 @@ public abstract class UserEmbeddable implements Serializable{
      * @return String The value of lastName
      */
     @Column(name="LAST_NAME", nullable=false, insertable=true, updatable=true)
-    @NotNull(message="lastName is required")
+    @NotNull(message = "lastName is required")
     @NotEmpty(message = "You should enter a value for lastName.")
 
     public String getLastName()
@@ -165,7 +173,7 @@ public abstract class UserEmbeddable implements Serializable{
      * @return String The value of email
      */
     @Column(name="EMAIL", unique=true, nullable=false, insertable=true, updatable=true, length=50)
-    @NotNull(message="email is required")
+    @NotNull(message = "email is required")
     @NotEmpty(message = "You should enter a value for email.")
 
     @Length( min = 0, max = 50)
@@ -192,7 +200,7 @@ public abstract class UserEmbeddable implements Serializable{
      * @return boolean The value of isActive
      */
     @Column(name="IS_ACTIVE", nullable=false, insertable=true, updatable=true)
-    @NotNull(message="isActive is required")
+    @NotNull(message = "isActive is required")
 
     public boolean isIsActive()
     {
@@ -216,7 +224,7 @@ public abstract class UserEmbeddable implements Serializable{
      */
     @Column(name="CREATION_DATE", nullable=false, insertable=true, updatable=true)
     @Temporal(TemporalType.TIMESTAMP)
-    @NotNull(message="creationDate is required")
+    @NotNull(message = "creationDate is required")
 
     public Date getCreationDate()
     {
@@ -293,6 +301,7 @@ public abstract class UserEmbeddable implements Serializable{
         joinColumns={@JoinColumn(name="USERS_ID", referencedColumnName="ID")},
         inverseJoinColumns={@JoinColumn(name="ROLES_ID", referencedColumnName="ID")}
     )
+    @UserRoles
     public Set<UserRole> getRoles()
     {
         return this.roles;

@@ -18,7 +18,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.andromda.timetracker.vo.TimecardSearchCriteriaVO;
 import org.andromda.timetracker.vo.TimecardSummaryVO;
 import org.andromda.timetracker.vo.TimecardVO;
@@ -123,7 +123,7 @@ public abstract class TimecardDaoBase implements TimecardDao
     {
         try
         {
-            Query query = entityManager.createNamedQuery("Timecard.findAll");            
+            TypedQuery<Timecard> query = this.entityManager.createNamedQuery("Timecard.findAll", Timecard.class);
 
             List<Timecard> results = query.getResultList();
             this.transformEntities(transform, results);

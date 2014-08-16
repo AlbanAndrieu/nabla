@@ -20,8 +20,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  * TimeAllocation represents a time period for which the timecard submitter worked on the associated
@@ -37,7 +35,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  */
 @Entity
 @Table(name="TIME_ALLOCATION")
-@Cache(usage=CacheConcurrencyStrategy.TRANSACTIONAL)
 @NamedQuery(name="TimeAllocation.findAll", query="SELECT t FROM TimeAllocation AS t")
 public class TimeAllocation implements Serializable, Comparable<TimeAllocation>{
     private static final long serialVersionUID = 6048749692954952788L;

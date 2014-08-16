@@ -17,7 +17,7 @@ import javax.ejb.SessionContext;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserVO;
 import org.apache.commons.collections.CollectionUtils;
@@ -119,7 +119,7 @@ public abstract class UserDaoBase implements UserDao
     {
         try
         {
-            Query query = entityManager.createNamedQuery("User.findAll");            
+            TypedQuery<User> query = this.entityManager.createNamedQuery("User.findAll", User.class);
 
             List<User> results = query.getResultList();
             this.transformEntities(transform, results);
@@ -371,7 +371,7 @@ public abstract class UserDaoBase implements UserDao
     {
         try
         {
-            Query queryObject = entityManager.createNamedQuery("User.findByEmail");
+            TypedQuery<User> queryObject = this.entityManager.createNamedQuery("User.findByEmail", User.class);
             queryObject.setParameter("email", email);
             Object result = queryObject.getSingleResult();
             result = transformEntity(transform, (User)result);
@@ -391,7 +391,7 @@ public abstract class UserDaoBase implements UserDao
     {
         try
         {
-            Query queryObject = entityManager.createQuery(queryString);
+            TypedQuery<User> queryObject = this.entityManager.createQuery(queryString, User.class);
             queryObject.setParameter("email", email);
             Object result = queryObject.getSingleResult();
             result = transformEntity(transform, (User)result);

@@ -14,8 +14,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  * This class represents a task for which time allocations need to be tracked.
@@ -30,7 +28,6 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
  */
 @Entity
 @Table(name="TASK")
-@Cache(usage=CacheConcurrencyStrategy.TRANSACTIONAL)
 @NamedQuery(name="Task.findAll", query="SELECT t FROM Task AS t")
 public class Task implements Serializable, Comparable<Task>{
     private static final long serialVersionUID = -3879870166098131074L;

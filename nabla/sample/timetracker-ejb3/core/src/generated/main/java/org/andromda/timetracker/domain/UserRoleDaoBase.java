@@ -15,7 +15,7 @@ import javax.ejb.SessionContext;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.andromda.timetracker.vo.UserRoleVO;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Transformer;
@@ -99,7 +99,7 @@ public abstract class UserRoleDaoBase implements UserRoleDao
     {
         try
         {
-            Query query = entityManager.createNamedQuery("UserRole.findAll");            
+            TypedQuery<UserRole> query = this.entityManager.createNamedQuery("UserRole.findAll", UserRole.class);
 
             List<UserRole> results = query.getResultList();
             this.transformEntities(transform, results);

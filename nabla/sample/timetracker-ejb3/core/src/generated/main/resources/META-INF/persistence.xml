@@ -36,12 +36,6 @@ Modify as necessary for JPA unit testing
             <property name="hibernate.format_sql" value="true"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
             <property name="hibernate.id.new_generator_mappings" value="true"/>
-            <!-- does not work with jboss 7 : https://docs.jboss.org/author/display/AS7/Seam+2+Booking+EAR+Migration+of+Binaries+-+Step+by+Step
-            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider"/>
-            please set property hibernate.cache.provider to empty for hibernateCacheProvider in pom.xml in server for profile jboss7
-            -->
-            <property name="hibernate.cache.provider_class" value="org.hibernate.cache.HashtableCacheProvider"/>
-            <property name="hibernate.treecache.mbean.object_name" value="jboss.cache:service=EJB3EntityTreeCache"/>
             <!-- Encoding -->
             <property name="hibernate.connection.useUnicode" value="true" />
             <property name="hibernate.connection.characterEncoding" value="UTF-8" />
@@ -52,7 +46,7 @@ Modify as necessary for JPA unit testing
             <!-- define JPA provider, check:
             https://docs.jboss.org/author/display/AS7/Developer+Guide#DeveloperGuide-PackagingtheHibernate3.5orgreater3.xJPApersistenceproviderwithyourapplication
       	    <property name="jboss.as.jpa.providerModule" value="hibernate3-bundled" /> -->
-            <property name="jboss.as.jpa.providerModule" value="${jpa.provider.module}" />
+            <!-- <property name="jboss.as.jpa.providerModule" value="${jpa.provider.module}" />-->
 
             <property name="hibernate.transaction.manager_lookup_class" value="${pu.hibernate.transaction.manager_lookup_class}"/>
             <!--<property name="jboss.entity.manager.factory.jndi.name" value="java:/timetracker-ejb3EntityManagerFactory"/>-->

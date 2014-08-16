@@ -16,7 +16,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.andromda.timetracker.vo.TaskVO;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Transformer;
@@ -102,7 +102,7 @@ public abstract class TaskDaoBase implements TaskDao
     {
         try
         {
-            Query query = entityManager.createNamedQuery("Task.findAll");            
+            TypedQuery<Task> query = this.entityManager.createNamedQuery("Task.findAll", Task.class);
 
             List<Task> results = query.getResultList();
             this.transformEntities(transform, results);

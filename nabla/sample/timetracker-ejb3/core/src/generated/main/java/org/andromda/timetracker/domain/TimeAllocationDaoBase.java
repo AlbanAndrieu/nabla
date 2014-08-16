@@ -16,7 +16,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.andromda.timetracker.vo.TimeAllocationVO;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Transformer;
@@ -102,7 +102,7 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
     {
         try
         {
-            Query query = entityManager.createNamedQuery("TimeAllocation.findAll");            
+            TypedQuery<TimeAllocation> query = this.entityManager.createNamedQuery("TimeAllocation.findAll", TimeAllocation.class);
 
             List<TimeAllocation> results = query.getResultList();
             this.transformEntities(transform, results);

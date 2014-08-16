@@ -6,6 +6,7 @@
 package org.andromda.timetracker.domain;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -16,9 +17,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-import org.hibernate.validator.NotEmpty;
+
+import org.hibernate.validator.constraints.NotEmpty;
+import org.jboss.seam.annotations.security.management.RoleName;
 
 /**
  * TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
@@ -41,7 +42,6 @@ import org.hibernate.validator.NotEmpty;
  *
  */
 @Table(name="USER_ROLE")
-@Cache(usage=CacheConcurrencyStrategy.TRANSACTIONAL)
 @NamedQuery(name="UserRole.findAll", query="SELECT u FROM UserRole AS u")
 public class UserRole implements Serializable, Comparable<UserRole>{
     private static final long serialVersionUID = 7844086459073233566L;
@@ -58,9 +58,9 @@ public class UserRole implements Serializable, Comparable<UserRole>{
      */
     @Column(name="ROLE", nullable=false, insertable=true, updatable=true, columnDefinition="VARCHAR(20)")
     @Enumerated(EnumType.STRING)
-    @NotNull(message="role is required")
+    @NotNull(message = "role is required")
     @NotEmpty(message = "You should enter a value for role.")
-
+    @RoleName
     public Role getRole()
     {
         return this.role;
