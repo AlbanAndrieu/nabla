@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
     <parent>
-	<groupId>com.nabla.project.uml.timetracker</groupId>
-	<artifactId>sample</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+		<groupId>com.nabla.project.uml.timetracker</groupId>
+		<artifactId>sample</artifactId>
+		<version>1.0.1-SNAPSHOT</version>
     </parent>
              
     <modelVersion>4.0.0</modelVersion>
@@ -374,7 +374,7 @@
 		<hibernate.default_batch_fetch_size>16</hibernate.default_batch_fetch_size>
 
 		<!-- see components.properties or components.xml -->
-		<ejbJndiPattern>/#{ejbName}/Local</ejbJndiPattern>
+		<ejbJndiPattern>\#{ejbName}/Local</ejbJndiPattern>
 		<jndiPattern>${ejbJndiPattern}</jndiPattern>
 		<debug>true</debug>
 		<seamBootstrapsPu>true</seamBootstrapsPu>
@@ -387,7 +387,7 @@
 		<!--<pu.transaction-type>RESOURCE_LOCAL</pu.transaction-type>-->
 		<pu.transaction-type>JTA</pu.transaction-type>
 		<pu.name>${application.id}</pu.name>
-		<pu.jta.data.source>${dataSource}</pu.jta.data.source>
+		<pu.jta.data.source>${datasource}</pu.jta.data.source>
 		<pu.hibernate.transaction.manager_lookup_class>org.hibernate.transaction.JBossTransactionManagerLookup</pu.hibernate.transaction.manager_lookup_class> <!-- transactionManagerLookupClass -->
 		<pu.hibernate.transaction.manager_lookup_class.test>org.apache.openejb.hibernate.TransactionManagerLookup</pu.hibernate.transaction.manager_lookup_class.test>
 		<pu.jboss.entity.manager.factory.jndi.name>java:/myEntityManagerFactory</pu.jboss.entity.manager.factory.jndi.name> <!--java:/${application.id}EntityManagerFactory-->
@@ -397,50 +397,105 @@
     		<id>hibernate-3</id>
     		<activation>
     			<property>
-    				<name>!profile.activation</name>
+    				<name>profile.activation</name>
     			</property>
     		</activation>
     		<!-- compatibility https://hibernate.onjira.com/browse/HVAL-75 -->
     		<properties>
-        		<hibernate.core.version>3.3.2.GA</hibernate.core.version>
-        		<hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>
+        		<!--OK <hibernate.core.version>3.3.2.GA</hibernate.core.version>-->
+        		<!--OK <hibernate.annotations.version>3.4.0.GA</hibernate.annotations.version>-->
         		<!--<hibernate.commons.annotations.version>3.3.0.ga</hibernate.commons.annotations.version> instead 3.4.0.GA (add antlr)-->
-        		<hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>
-        		<hibernate.entitymanager.version>3.4.0.GA</hibernate.entitymanager.version>
-        		<hibernate.validator.version>3.1.0.GA</hibernate.validator.version>
+        		<!--OK <hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>-->
+        		<!--OK <hibernate.entitymanager.version>3.4.0.GA</hibernate.entitymanager.version>-->
+        		<!--OK <hibernate.validator.version>3.1.0.GA</hibernate.validator.version>-->
         		<!--<seam.version>2.3.0.Final</seam.version>-->
         		<!--<hibernate.validator.version>4.3.1.Final</hibernate.validator.version> -->  
         		<!--<hibernate.search.version>3.0.0.GA</hibernate.search.version> does not works-->
         		<hibernate.search.version>3.1.1.GA</hibernate.search.version>
-        		<hibernate.infinispan.version>3.6.8.Final</hibernate.infinispan.version>
+        		<hibernate.infinispan.version>3.6.8.Final</hibernate.infinispan.version>       
+        		
+        		<hibernate.core.version>${hibernate.legacy.core.version}</hibernate.core.version> 	
+        		<hibernate.legacy.entitymanager.version>3.4.0.GA</hibernate.legacy.entitymanager.version>
+        		<hibernate.entitymanager.version>${hibernate.legacy.entitymanager.version}</hibernate.entitymanager.version>
+        		<!--OK <hibernate.legacy.validator.version>3.1.0.GA</hibernate.legacy.validator.version>-->
+        		<!--OK <hibernate.legacy.validator.version>4.1.0.Final</hibernate.legacy.validator.version>-->
+        		<hibernate.validator.version>${hibernate.legacy.validator.version}</hibernate.validator.version>
+        		<hibernate.legacy.search.version>${hibernate.search.version}</hibernate.legacy.search.version>
+        		<!--NOK error in MovieTest <spring3.version>3.2.7.RELEASE</spring3.version>-->
+        		<spring3.version>3.2.3.RELEASE</spring3.version>
+        		<!--NOK error in MovieTest <spring3.version>3.2.4.RELEASE</spring3.version>-->
+        		<!--NOK error in MovieTest <spring3.version>3.2.9.RELEASE</spring3.version>-->
+        		
+        		<!-- ehcache -->
+        		<hibernate.cache.region.factory.class>net.sf.ehcache.hibernate.EhCacheRegionFactory</hibernate.cache.region.factory.class>
     		</properties>
     	</profile>
     	<profile>
+			<!-- https://spring.io/blog/2012/04/06/migrating-to-spring-3-1-and-hibernate-4-1 -->
     		<id>hibernate-3-6-NOK</id>
+    		<!--
     		<activation>
     			<property>
-    				<name>profile.activation</name>
+    				<name>!profile.activation</name>
     			</property>
     		</activation>
+    		-->
     		<properties>
+				
+                <!--<hibernate.validator.version>4.0.2.GA</hibernate.validator.version>--><!-- works with hibernate.core.version 3.6.8.GA -->
+                <!--
         		<hibernate.core.version>3.6.7.Final</hibernate.core.version>
-        		<!--<hibernate.annotations.version>3.5.6-Final</hibernate.annotations.version>-->
         		<hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>
         		<hibernate.entitymanager.version>3.6.7.Final</hibernate.entitymanager.version>
-                        <!--<hibernate.validator.version>4.0.2.GA</hibernate.validator.version>--><!-- works with hibernate.core.version 3.6.8.GA -->
         		<hibernate.search.version>4.2.0.Beta1</hibernate.search.version>
         		<hibernate.validator.version>4.3.1.Final</hibernate.validator.version>
+        		-->
+        		
+        		<!--<hibernate.core.version>4.3.5.Final</hibernate.core.version>-->
+        		<hibernate.core.version>4.1.9.Final</hibernate.core.version>
+        		
+        		<!--
+        		<hibernate.legacy.core.version>3.3.2.GA</hibernate.legacy.core.version>        		
+        		<hibernate.core.version>${hibernate.legacy.core.version}</hibernate.core.version> 
+        		-->	
+        		<hibernate.legacy.entitymanager.version>4.1.9.Final</hibernate.legacy.entitymanager.version>
+        		<hibernate.entitymanager.version>${hibernate.legacy.entitymanager.version}</hibernate.entitymanager.version>
+        		<hibernate.legacy.validator.version>4.1.0.Final</hibernate.legacy.validator.version>
+        		<!--<hibernate.validator.version>${hibernate.legacy.validator.version}</hibernate.validator.version>-->
+        		<hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
+        		<hibernate.legacy.search.version>${hibernate.search.version}</hibernate.legacy.search.version>
+        		
+        		<hibernate.search.version>3.1.1.GA</hibernate.search.version>
+        		<hibernate.infinispan.version>3.6.8.Final</hibernate.infinispan.version>  
+        		     
+        		<!--<hibernate.jpamodelgen.version>1.3.0.Final</hibernate.jpamodelgen.version>-->
+        		<hibernate.jpamodelgen.version>4.3.5.Final</hibernate.jpamodelgen.version>
+        		
+        		<openejb.core.version>4.6.0.2</openejb.core.version>
+        		<openejb.javaee.api.version>6.0-6</openejb.javaee.api.version>
+        		<!-- http://docs.jboss.org/seam/latest/reference/html/migration23.html -->
+        		<seam.version>2.3.1.Final</seam.version>
+        		<!--NOK error in MovieTest <spring3.version>3.2.7.RELEASE</spring3.version>-->
+        		<spring3.version>3.2.3.RELEASE</spring3.version>
+        		<!--NOK error in MovieTest <spring3.version>3.2.4.RELEASE</spring3.version>-->
+        		<!--NOK error in MovieTest <spring3.version>3.2.9.RELEASE</spring3.version>-->        		        		
+        						
         		<ehcache.version>2.6.2</ehcache.version>
-        		<javassist.version>3.17.1-GA</javassist.version>
+        		<!-- ehcache -->
+        		<hibernate.cache.region.factory.class>net.sf.ehcache.hibernate.EhCacheRegionFactory</hibernate.cache.region.factory.class>
+        		<!-- NOK <javassist.version>3.17.1-GA</javassist.version>-->
         		<org.javassist.version>3.15.0-GA</org.javassist.version>
         		<slf4j.version>1.6.2</slf4j.version>
+        		
+        		<servlet.api.version>3.0-alpha-1</servlet.api.version>
+        		<javax.servlet.api.version>3.1.0</javax.servlet.api.version>        		
     		</properties>
     	</profile>
     	<profile>
     		<id>hibernate-4</id>
     		<activation>
     			<property>
-    				<name>profile.activation</name>
+    				<name>!profile.activation</name>
     			</property>
     		</activation>
     		<dependencyManagement>
@@ -468,27 +523,40 @@
 			-->
     		<properties>
     			<!--<spring3.version>4.0.0.RELEASE</spring3.version>-->    			
-    			<spring3.version>3.2.3.RELEASE</spring3.version>
+    			<spring3.version>${spring4.version}</spring3.version>
     			<!--<validation.api.version>1.1.0.Beta2</validation.api.version>-->
     			<validation.api.version>1.0.0.GA</validation.api.version> <!-- OK see http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
     			<!--<cxf.version>2.7.1</cxf.version>-->
     			<cxf.version>2.7.8</cxf.version>
     		    <!--<jsf.version>1.2_15</jsf.version>-->
         		<!--<hibernate.core.version>4.3.0.Final</hibernate.core.version>-->
-        		<hibernate.core.version>4.2.0.Final</hibernate.core.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
-        		<hibernate.entitymanager.version>4.3.0.Final</hibernate.entitymanager.version>
-        		<hibernate.validator.version>5.1.0.Alpha1</hibernate.validator.version>
+        		<hibernate.core.version>4.0.1.Final</hibernate.core.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
+        		<!-- OK <hibernate.entitymanager.version>4.3.0.Final</hibernate.entitymanager.version>-->
+        		<hibernate.entitymanager.version>4.0.1.Final</hibernate.entitymanager.version>
+        		<!--<hibernate.validator.version>5.1.1.Final</hibernate.validator.version>-->
+        		<hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
         		<hibernate.search.version>4.5.0.Alpha2</hibernate.search.version>
         		<javax.persistence.version>1.0</javax.persistence.version>
         		<hibernate.jpa.api.version>1.0.1.Final</hibernate.jpa.api.version>
-				<hibernate.commons.annotations.version>3.2.0.Final</hibernate.commons.annotations.version>
+				<hibernate.common.commons.annotations.version>4.0.1.Final</hibernate.common.commons.annotations.version>
 				<org.apache.myfaces.trinidad.version>2.0.1</org.apache.myfaces.trinidad.version>
 				<richfaces.version>4.2.2.Final</richfaces.version>
-				<ehcache.version>2.6.2</ehcache.version>
-				<javassist.version>3.17.1-GA</javassist.version>
+				<ehcache.version>2.8.3</ehcache.version>
+				<!--<ehcache.version>${hibernate.core.version}</ehcache.version>-->
+				<!--<ehcache.core.version>2.6.9</ehcache.core.version>-->
+				<ehcache.core.version>${ehcache.version}</ehcache.core.version>	
+				<ehcache.jar.version>${ehcache.version}</ehcache.jar.version>
+				<!-- ehcache -->
+				<!-- For Hibernate 4, use org.hibernate.cache.ehcache.EhCacheRegionFactory instead of net.sf.ehcache.hibernate.EhCacheRegionFactory and org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory instead of net.sf.ehcache.hibernate.SingletonEhCacheRegionFactory -->
+				<hibernate.cache.region.factory.class>org.hibernate.cache.ehcache.EhCacheRegionFactory</hibernate.cache.region.factory.class>
+				<!-- TODO use <property name="hibernate.cache.region.factory_class">${hibernate.cache.region.factory.class}</property> in hibernate.cfg.xml -->
+				<!-- NOK <javassist.version>3.17.1-GA</javassist.version>-->
+        		<org.javassist.version>3.15.0-GA</org.javassist.version>
 				<!--<infinispan.version>5.1.3.FINAL</infinispan.version>-->
 				<hibernate.infinispan.version>${hibernate.core.version}</hibernate.infinispan.version>
-				<!--<seam.version>2.3.0.Final</seam.version>-->
+				<!--<seam.version>2.3.1.Final</seam.version>-->
+				<!--<seam.bom.version>3.2.0-SNAPSHOT</seam.bom.version>-->
+				<seam.bom.version>3.1.0.Final</seam.bom.version>
 				<!--<openejb.javaee.api.version>6.0-5</openejb.javaee.api.version>-->
 				<!--<openejb.core.version>4.6.0.2</openejb.core.version>-->
 				<!--<ejb3.persistence.version>3.3.2.Beta1</ejb3.persistence.version>-->
@@ -501,7 +569,20 @@
 				<hibernate.commons.annotations.version>${hibernate.core.version}</hibernate.commons.annotations.version>
 				<hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
 				-->
+        		<servlet.api.version>3.0-alpha-1</servlet.api.version>
+        		<javax.servlet.api.version>3.1.0</javax.servlet.api.version>
+        		<!--<el.api.version>1.0</el.api.version>-->
+        		<el.api.version>1.0</el.api.version>
+        		<jboss.logging.version>3.1.0.GA</jboss.logging.version>
+        		<antlr.version>2.7.6</antlr.version>
+        		<dom4j.version>1.6.1-brew</dom4j.version>
+        		<!--<org.jboss.arquillian.version>1.0.0.CR7</org.jboss.arquillian.version>-->
+        		<org.jboss.arquillian.version>1.1.0.Final</org.jboss.arquillian.version> <!--1.1.5.Final-->
+        		<org.jboss.arquillian.bom.version>1.1.0.Final</org.jboss.arquillian.bom.version>
+        		<!--<org.jboss.shrinkwrap.resolver.version>2.0.0-alpha-1</org.jboss.shrinkwrap.resolver.version>-->
+        		<!--<org.jboss.shrinkwrap.bom.version>2.1.1</org.jboss.shrinkwrap.bom.version>-->
         		
+        		<sun.jsf.version>2.1.7</sun.jsf.version> <!-- TODO http://www.mastertheboss.com/jsf/installing-jsf-22-on-jboss-as-7 -->
     		</properties>
     	</profile>
     </profiles> 
