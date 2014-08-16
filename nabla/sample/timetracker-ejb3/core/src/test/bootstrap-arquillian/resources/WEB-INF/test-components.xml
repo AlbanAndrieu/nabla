@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<components xmlns="http://jboss.org/schema/seam/components"
+	xmlns:core="http://jboss.org/schema/seam/core" xmlns:persistence="http://jboss.org/schema/seam/persistence"
+	xmlns:security="http://jboss.org/schema/seam/security" xmlns:theme="http://jboss.org/schema/seam/theme"
+	xmlns:cache="http://jboss.org/schema/seam/cache" xmlns:web="http://jboss.org/schema/seam/web"
+	xmlns:transaction="http://jboss.org/schema/seam/transaction"
+	xmlns:mail="http://jboss.org/schema/seam/mail" xmlns:drools="http://jboss.org/schema/seam/drools"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://jboss.org/schema/seam/core http://jboss.org/schema/seam/core-2.3.xsd
+                       http://jboss.org/schema/seam/persistence http://jboss.org/schema/seam/persistence-2.3.xsd
+                       http://jboss.org/schema/seam/security http://jboss.org/schema/seam/security-2.3.xsd
+                       http://jboss.org/schema/seam/theme http://jboss.org/schema/seam/theme-2.3.xsd
+                       http://jboss.org/schema/seam/cache http://jboss.org/schema/seam/cache-2.3.xsd
+                       http://jboss.org/schema/seam/web http://jboss.org/schema/seam/web-2.3.xsd
+                       http://jboss.org/schema/seam/transaction http://jboss.org/schema/seam/transaction-2.3.xsd
+                       http://jboss.org/schema/seam/mail http://jboss.org/schema/seam/mail-2.3.xsd
+                       http://jboss.org/schema/seam/drools http://jboss.org/schema/seam/drools-2.3.xsd
+                       http://jboss.org/schema/seam/components http://jboss.org/schema/seam/components-2.3.xsd">
+  
+	<!--  see https://access.redhat.com/site/documentation/en-US/Red_Hat_JBoss_Web_Framework_Kit/2.1/html/Seam_Reference_Guide/configuration.html -->
+	<!-- jndi-pattern="java:app${application.jndi.pattern.test}" -->
+	<core:init debug="true" jndi-pattern="java:app/core/#{ejbName}" security-enabled="true" transaction-management-enabled="true" distributable="false"/>
+	<!--<core:init debug="${application.debug}" jndi-pattern="${application.jndi.pattern.test}" transaction-management-enabled="true" distributable="${application.distributable}"/>-->
+
+	<!-- JPA -->
+	<transaction:ejb-transaction />
+
+	<core:manager concurrent-request-timeout="500"
+				  conversation-timeout="120000"
+				  conversation-id-parameter="cid"
+				  parent-conversation-id-parameter="pid"/>
+
+	<!-- Make sure this URL pattern is the same as that used by the Faces Servlet -->
+	<!--  <web:hot-deploy-filter url-pattern="*.seam"/>-->
+
+	<persistence:managed-persistence-context
+		name="entityManager" 
+		auto-create="true"
+		scope="conversation" 
+		entity-manager-factory="#{entityManagerFactory}" 
+		persistence-unit-jndi-name="java:/myEntityManagerFactory" />
+
+	<persistence:entity-manager-factory
+		name="entityManagerFactory" class="org.jboss.seam.persistence.EntityManagerFactory"
+		auto-create="true" persistence-unit-name="timetracker-ejb3" />
+
+	<factory name="hibernateSession" method="#{entityManager.getDelegate( )}"
+		scope="STATELESS" auto-create="true" /> 
+
+<!--  
+   	<event type="org.jboss.seam.security.notLoggedIn">
+   	   <action execute="#{redirect.captureCurrentView}"/>
+   	</event>
+   	<event type="org.jboss.seam.security.loginSuccessful">
+   	   <action execute="#{redirect.returnToCapturedView}"/>
+   	</event>
+   	
+   	<mail:mail-session host="localhost" port="25"/>
+   	-->
+   	<!-- For use with jBPM pageflow or process management -->
+   	<!--
+   	<bpm:jbpm>
+   	   <bpm:process-definitions></bpm:process-definitions>
+   	   <bpm:pageflow-definitions></bpm:pageflow-definitions>
+   	</bpm:jbpm>
+   	-->
+
+    <!--
+   	<drools:rule-base name="securityRules">
+   	  <drools:rule-files>
+   	    <value>/META-INF/security.drl</value>
+   	  </drools:rule-files>
+   	</drools:rule-base>
+
+	<security:rule-based-permission-resolver security-rules="#{securityRules}" />
+	-->
+
+   	 <!-- 
+   	<security:jpa-identity-store
+   	 entity-manager="#{entityManager}" user-class="org.andromda.timetracker.domain.User"
+   	 role-class="org.andromda.timetracker.domain.UserRole" />
+   	  -->
+
+   	<security:jpa-identity-store  user-class="org.andromda.timetracker.domain.User"
+   	 role-class="org.andromda.timetracker.domain.UserRole" />
+   	 
+   	<!-- <security:identity authenticate-method="#{authenticator.authenticate}"/>-->
+   	
+  	<security:identity authenticate-method="#{authenticator.authenticate}" remember-me="true" />
+
+	<component class="org.jboss.seam.transaction.EjbSynchronizations" jndi-name="java:app/jboss-seam/EjbSynchronizations" />
+	<component class="org.jboss.seam.async.TimerServiceDispatcher" jndi-name="java:app/jboss-seam/TimerServiceDispatcher" />
+	<!--
+        <component class="org.andromda.timetracker.action.AuthenticatorAction" jndi-name="AuthenticatorAction/Local" />
+        <component class="org.andromda.timetracker.action.ChangePasswordAction" jndi-name="ChangePasswordAction/Local" />
+        -->
+        	
+</components>
