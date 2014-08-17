@@ -135,7 +135,8 @@
                 <property name="testDriver">${jdbc.driver}</property>
                 <property name="testConnectionUrl">${jdbc.url}</property>
                 <property name="testDialect">${hibernate.dialect}</property>
-                <property name="hibernateVersion">3</property>
+                <property name="hibernateVersion">4</property>
+                <property name="persistenceVersion">2.0</property>
                 <property name="hibernateEntityAnnotations">false</property><!-- set to false for hibernateVersion 3 TODO must be used-->
                 <!--<property name="hibernateHbm2DDLAuto">update</property>-->
                 <property name="hibernateHbm2DDLAuto">${hibernate.hbm2ddl}</property> <!--does not work with unitest-->
@@ -158,12 +159,13 @@
         <!-- See http://www.andromda.org/docs/andromda-cartridges/andromda-spring-cartridge/namespace.html -->
         <namespace name="spring">
             <properties>
+				<!--
                 <property name="sessionFactory">org.springframework.orm.hibernate3.LocalSessionFactoryBean</property>
                 <property name="localTransactionManager">org.springframework.orm.hibernate3.HibernateTransactionManager</property>
-                <!--
+                -->
                 <property name="sessionFactory">org.springframework.orm.hibernate4.LocalSessionFactoryBean</property>
                 <property name="localTransactionManager">org.springframework.orm.hibernate4.HibernateTransactionManager</property>
-                -->
+                
                 <!--<property name="hibernateCacheProvider">net.sf.ehcache.hibernate.EhCacheProvider</property>-->
                 <!--<property name="mergeMappingsUri">file:${conf.dir}/mappings/SpringMergeMappings.xml</property>-->
                 <property name="mergeMappingsUri">${merge.mappings.spring}</property>
@@ -190,7 +192,7 @@
         <namespace name="hibernate">
             <properties>
                 <property name="hibernateTypeMappingsUri">Hibernate</property>
-                <property name="hibernateJdbcBatchSize">0</property>
+                <property name="hibernateJdbcBatchSize">${hibernate.default_batch_fetch_size}</property>
                 <property name="compositionDefinesEagerLoading">true</property>
                 <!--<property name="hibernateCacheProvider">net.sf.ehcache.hibernate.EhCacheProvider</property>-->
                 <property name="hibernateTransactionFactoryClass">org.hibernate.transaction.JTATransactionFactory</property>
@@ -210,9 +212,9 @@
         <!-- See http://www.andromda.org/docs/andromda-cartridges/andromda-ejb3-cartridge/namespace.html -->
         <namespace name="ejb3">
             <properties>
-		<property name="entityManagerFactoryJndiName">java:/${application.context}EntityManagerFactory</property>
-		<property name="jndiNamePrefix">${ejb.jndi.mappedname.pattern}</property>
-		<property name="transactionType">${pu.transaction-type}</property>
+				<property name="entityManagerFactoryJndiName">java:/${application.context}EntityManagerFactory</property>
+				<property name="jndiNamePrefix">${ejb.jndi.mappedname.pattern}</property>
+				<property name="transactionType">${pu.transaction-type}</property>
                 <property name="dataSourceName">${dataSource.name}</property>
                 <property name="entity-beans">${core.generated.dir}</property>
                 <property name="entity-impls">${core.manual.dir}</property>
@@ -245,15 +247,17 @@
                 -->
                 <!-- uncomment to enable EJB security -->
                 <!--<property name="securityRealm">${application.id}</property>-->
-                <property name="hibernateEnableCache">true</property>
+                <!--TODO <property name="hibernateEnableCache">true</property>-->
+                <property name="hibernateEnableCache">false</property>
                 <!--<property name="hibernateUseQueryCache">false</property>-->
                 <property name="useDefaultCacheRegion">false</property>
-                <property name="hibernateTreecacheMbeanObject">jboss.cache:service=EJB3EntityTreeCache</property>
+                <!--TODO<property name="hibernateTreecacheMbeanObject">jboss.cache:service=EJB3EntityTreeCache</property>-->
+                <!--<property name="hibernateJpaProviderModule">${jpa.provider.module}</property>-->
                 <property name="hibernateShowSql">${hibernate.showsql}</property>
-                <property name="hibernateFormatSql">true</property>
+                <property name="hibernateFormatSql">${hibernate.formatsql}</property>
                 <!--
                 <property name="hibernateJdbcFetchSize">0</property>
-                <property name="hibernateJdbcBatchSize">0</property>
+                <property name="hibernateJdbcBatchSize">${hibernate.default_batch_fetch_size}</property>
                 <property name="hibernateJdbcBatchFetchSize">0</property>
                 -->
                 <!-- uncomment to enable default entity cache settings
@@ -267,6 +271,7 @@
                 <property name="webServiceContextRoot">/${application.id}-ws</property>
                 <property name="webServiceUrlPattern">/services</property>
                 <property name="seamEnabled">true</property>
+                <property name="seamVersion">2.3</property>
             </properties>
         </namespace>
         <!-- See http://www.andromda.org/docs/andromda-cartridges/andromda-java-cartridge/namespace.html -->
@@ -329,6 +334,8 @@
                 <property name="enableOds">false</property>
                 <!--<property name="skin">none</property>-->
                 <!--<property name="useAutocompleteLookup">true</property>-->
+                <property name="servletVersion">3</property>
+                <property name="seamVersion">2.3</property>
             </properties>
         </namespace>
         <namespace name="deployment">
