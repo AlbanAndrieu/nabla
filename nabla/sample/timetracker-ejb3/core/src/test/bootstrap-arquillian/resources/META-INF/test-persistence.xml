@@ -30,6 +30,7 @@ Modify as necessary for JPA unit testing
         <class>org.andromda.timetracker.domain.Timecard</class>
         <class>org.andromda.timetracker.domain.TimeAllocation</class>
         <class>org.andromda.timetracker.domain.TimePeriod</class>
+        <class>org.andromda.timetracker.domain.Movie</class>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.show_sql" value="true"/>

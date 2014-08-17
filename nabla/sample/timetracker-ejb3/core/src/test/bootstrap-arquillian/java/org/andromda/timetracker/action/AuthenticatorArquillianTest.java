@@ -62,6 +62,7 @@ public class AuthenticatorArquillianTest extends JUnitSeamTest // SeamOpenEjbTes
                 // libraries resolved using ShrinkWrap Resolver
                 .addAsLibraries(libs)
         // libraries resolved using ShrinkWrap Resolver
+                // needed for FacesMessages
                 .addAsLibraries(resolver.resolve("org.jboss.seam:jboss-seam:2.3.1.Final").withTransitivity().asFile())
         // .addAsLibraries(resolver.resolve("commons-collections:commons-collections").withTransitivity().asFile())
         // .addAsLibraries(resolver.resolve("org.hibernate:hibernate-core").withTransitivity().asFile())

@@ -44,9 +44,10 @@
 		name="entityManagerFactory" class="org.jboss.seam.persistence.EntityManagerFactory"
 		auto-create="true" persistence-unit-name="timetracker-ejb3" />
 
+	<!-- 
 	<factory name="hibernateSession" method="#{entityManager.getDelegate( )}"
 		scope="STATELESS" auto-create="true" /> 
-
+	 -->
 <!--  
    	<event type="org.jboss.seam.security.notLoggedIn">
    	   <action execute="#{redirect.captureCurrentView}"/>
@@ -83,9 +84,7 @@
 
    	<security:jpa-identity-store  user-class="org.andromda.timetracker.domain.User"
    	 role-class="org.andromda.timetracker.domain.UserRole" />
-   	 
-   	<!-- <security:identity authenticate-method="#{authenticator.authenticate}"/>-->
-   	
+
   	<security:identity authenticate-method="#{authenticator.authenticate}" remember-me="true" />
 
 	<component class="org.jboss.seam.transaction.EjbSynchronizations" jndi-name="java:app/jboss-seam/EjbSynchronizations" />
