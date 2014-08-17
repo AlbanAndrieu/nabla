@@ -24,10 +24,10 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
         </dependency>
-            <dependency>
-                <groupId>javax.validation</groupId>
-                <artifactId>validation-api</artifactId>
-            </dependency>          
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+		</dependency>          
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
@@ -48,7 +48,6 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator-legacy</artifactId>
-            <!--<version>${hibernate.validator.legacy.version}</version>-->
             <exclusions>
                 <exclusion>
                     <groupId>org.hibernate</groupId>
@@ -64,14 +63,13 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-commons-annotations</artifactId>
-            <!--<version>${hibernate.commons.annotations.version}</version>-->
             <scope>provided</scope>
         </dependency>
-	<dependency>
-		<groupId>javax.persistence</groupId>
-		<artifactId>persistence-api</artifactId>
-		<scope>provided</scope>
-	</dependency>        
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>persistence-api</artifactId>
+			<scope>provided</scope>
+		</dependency>        
         <!--
         <dependency>
             <groupId>net.sf.ehcache</groupId>

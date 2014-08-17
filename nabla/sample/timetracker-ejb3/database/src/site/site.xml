@@ -11,7 +11,7 @@
     
     <custom>
       <fluidoSkin>
-	<topBarEnabled>true</topBarEnabled>
+		<topBarEnabled>true</topBarEnabled>
         <!--<sideBarEnabled>false</sideBarEnabled>-->     
         <googleSearch>
           <sitesearch/>
@@ -75,9 +75,13 @@
         <menu ref="reports" inherit="bottom" />
 -->
 
-    <footer>
-      <div class="row span16">All other marks mentioned (not @project.name@) may be trademarks or registered trademarks of their respective owners.</div>
-    </footer> 
+		<menu name="Additional Reports">
+		  <item name="Tattletale Report" href="tattletale/index.html"/>
+		</menu>      
+		
+		<footer>
+		  <div class="row span16">All other marks mentioned (not @project.name@) may be trademarks or registered trademarks of their respective owners.</div>
+		</footer> 
     
     </body>
 </project>

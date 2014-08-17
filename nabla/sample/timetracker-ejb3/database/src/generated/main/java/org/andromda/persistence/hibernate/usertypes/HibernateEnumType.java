@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.sql.Types;
 import java.util.Properties;
 import org.hibernate.HibernateException;
-import org.hibernate.engine.SessionImplementor;
+import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.usertype.EnhancedUserType;
 import org.hibernate.usertype.ParameterizedType;
 
@@ -96,7 +96,6 @@ public class HibernateEnumType implements EnhancedUserType, ParameterizedType
      * @see org.hibernate.usertype.UserType#nullSafeGet(java.sql.ResultSet, String[], Object)
      */
     @SuppressWarnings("unchecked")
-    @Override
     public Object nullSafeGet(ResultSet resultSet, String[] names, Object owner) throws HibernateException, SQLException
     {
         final String name = resultSet.getString(names[0]);
@@ -107,7 +106,6 @@ public class HibernateEnumType implements EnhancedUserType, ParameterizedType
      * @see org.hibernate.usertype.UserType#nullSafeSet(java.sql.PreparedStatement, Object, int)
      */
     @SuppressWarnings("unchecked")
-    @Override
     public void nullSafeSet(PreparedStatement statement, Object value, int index) throws HibernateException, SQLException
     {
         if (value == null)
@@ -130,6 +128,7 @@ public class HibernateEnumType implements EnhancedUserType, ParameterizedType
     /**
      * @see org.hibernate.usertype.UserType#nullSafeGet(java.sql.ResultSet, String[], Object)
      */
+    @Override
     public Object nullSafeGet(ResultSet resultSet, String[] names,
         SessionImplementor session, Object owner) throws HibernateException, SQLException
     {
@@ -139,6 +138,7 @@ public class HibernateEnumType implements EnhancedUserType, ParameterizedType
     /**
      * @see org.hibernate.usertype.UserType#nullSafeSet(java.sql.PreparedStatement, Object, int)
      */
+    @Override
     public void nullSafeSet(
         PreparedStatement preparedStatement,
         Object data,

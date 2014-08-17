@@ -14,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import org.hibernate.HibernateException;
-import org.hibernate.engine.SessionImplementor;
+import org.hibernate.engine.spi.SessionImplementor;
 import org.hibernate.usertype.UserType;
 
 /**
@@ -80,7 +80,6 @@ public class HibernateStringClobType
     /**
      * @see org.hibernate.usertype.UserType#nullSafeGet(java.sql.ResultSet, String[], Object)
      */
-    @Override
     public Object nullSafeGet(
         ResultSet resultSet,
         String[] names,
@@ -118,7 +117,6 @@ public class HibernateStringClobType
     /**
      * @see org.hibernate.usertype.UserType#nullSafeSet(java.sql.PreparedStatement, Object, int)
      */
-    @Override
     public void nullSafeSet(
         PreparedStatement preparedStatement,
         Object data,
@@ -144,6 +142,7 @@ public class HibernateStringClobType
     /**
      * @see org.hibernate.usertype.UserType#nullSafeGet(java.sql.ResultSet, String[], Object)
      */
+    @Override
     public Object nullSafeGet(ResultSet resultSet, String[] names,
         SessionImplementor session, Object owner) throws HibernateException, SQLException
     {
@@ -153,6 +152,7 @@ public class HibernateStringClobType
     /**
      * @see org.hibernate.usertype.UserType#nullSafeSet(java.sql.PreparedStatement, Object, int)
      */
+    @Override
     public void nullSafeSet(
         PreparedStatement preparedStatement,
         Object data,
