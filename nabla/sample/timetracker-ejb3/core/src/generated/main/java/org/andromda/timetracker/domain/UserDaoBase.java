@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.ejb.Local;
@@ -18,6 +19,7 @@ import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
+
 import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserVO;
 import org.apache.commons.collections.CollectionUtils;
@@ -227,7 +229,7 @@ public abstract class UserDaoBase implements UserDao
         entity.setFirstName(firstName);
         entity.setLastName(lastName);
         entity.setEmail(email);
-        entity.setIsActive(isActive);
+        entity.setIsEnabled(isActive);
         entity.setCreationDate(creationDate);
         entity.setComment(comment);
         return this.create(transform, entity);
@@ -545,7 +547,7 @@ public abstract class UserDaoBase implements UserDao
      * (which result in an array of objects) to {@link UserVO}
      * using the Jakarta Commons-Collections Transformation API.
      */
-    private Transformer USERVO_TRANSFORMER =
+    private final Transformer USERVO_TRANSFORMER =
         new Transformer()
         {
             @Override
@@ -681,7 +683,7 @@ public abstract class UserDaoBase implements UserDao
      * (which result in an array of objects) to {@link UserDetailsVO}
      * using the Jakarta Commons-Collections Transformation API.
      */
-    private Transformer USERDETAILSVO_TRANSFORMER =
+    private final Transformer USERDETAILSVO_TRANSFORMER =
         new Transformer()
         {
             @Override
@@ -742,7 +744,7 @@ public abstract class UserDaoBase implements UserDao
         target.setLastName(source.getLastName());
         target.setPassword(source.getPassword());
         target.setEmail(source.getEmail());
-        target.setIsActive(source.isIsActive());
+        target.setIsActive(source.isIsEnabled());
         target.setCreationDate(source.getCreationDate());
         target.setComment(source.getComment());
         // No conversion for target.roles (can't convert source.getRoles():org.andromda.timetracker.domain.UserRole to org.andromda.timetracker.vo.UserRoleVO[])
@@ -787,7 +789,7 @@ public abstract class UserDaoBase implements UserDao
         }
         if (copyIfNull || source.isIsActive() != false)
         {
-            target.setIsActive(source.isIsActive());
+            target.setIsEnabled(source.isIsActive());
         }
         if (copyIfNull || source.getCreationDate() != null)
         {

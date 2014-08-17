@@ -6,6 +6,7 @@
 package org.andromda.timetracker.domain;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,11 +15,16 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.jboss.seam.annotations.security.management.RoleConditional;
+import org.jboss.seam.annotations.security.management.RoleGroups;
 import org.jboss.seam.annotations.security.management.RoleName;
 
 /**
@@ -49,6 +55,8 @@ public class UserRole implements Serializable, Comparable<UserRole>{
     // ----------- 2 Attribute Definitions ------------
     private Role role;
     private Long id;
+    private Set<Role>         groups;
+    private boolean           conditional;
 
     // -------- 2 Attribute Accessors ----------
     /**
@@ -122,7 +130,30 @@ public class UserRole implements Serializable, Comparable<UserRole>{
         setRole(role);
     }
 
+    @RoleConditional
+    @Column(name = "IS_CONDITIONAL", nullable = false, insertable = true, updatable = true)
+    public boolean isConditional()
+    {
+        return conditional;
+    }
 
+    public void setConditional(boolean conditional)
+    {
+        this.conditional = conditional;
+    }
+
+    @RoleGroups
+    @ManyToMany(targetEntity = UserRole.class)
+    @JoinTable(name = "ROLE_GROUPS", joinColumns = @JoinColumn(name = "RoleId"), inverseJoinColumns = @JoinColumn(name = "GroupId"))
+    public Set<Role> getGroups()
+    {
+        return groups;
+    }
+
+    public void setGroups(Set<Role> groups)
+    {
+        this.groups = groups;
+    }
 
     // -------- Common Methods -----------
     /**

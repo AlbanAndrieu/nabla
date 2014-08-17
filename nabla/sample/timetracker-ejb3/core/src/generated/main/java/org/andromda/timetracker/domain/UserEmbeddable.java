@@ -17,8 +17,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -28,6 +28,7 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.jboss.seam.annotations.security.management.UserEnabled;
 import org.jboss.seam.annotations.security.management.UserPassword;
 import org.jboss.seam.annotations.security.management.UserPrincipal;
 import org.jboss.seam.annotations.security.management.UserRoles;
@@ -53,7 +54,7 @@ public abstract class UserEmbeddable implements Serializable{
     private String firstName;
     private String lastName;
     private String email;
-    private boolean isActive;
+    private boolean           isEnabled;
     private Date creationDate;
     private String comment;
     private Long id;
@@ -200,11 +201,11 @@ public abstract class UserEmbeddable implements Serializable{
      * @return boolean The value of isActive
      */
     @Column(name="IS_ACTIVE", nullable=false, insertable=true, updatable=true)
-    @NotNull(message = "isActive is required")
-
-    public boolean isIsActive()
+    @NotNull(message = "isEnabled is required")
+    @UserEnabled
+    public boolean isIsEnabled()
     {
-        return this.isActive;
+        return this.isEnabled;
     }
 
     /**
@@ -212,9 +213,9 @@ public abstract class UserEmbeddable implements Serializable{
      * Set the isActive property.
      * @param value the new value
      */
-    public void setIsActive(boolean value)
+    public void setIsEnabled(boolean value)
     {
-        this.isActive = value;
+        this.isEnabled = value;
     }
 
     /**
@@ -294,7 +295,8 @@ public abstract class UserEmbeddable implements Serializable{
      * Get the roles Collection
      * @return Set<UserRole>
      */
-    @OneToMany(cascade={CascadeType.ALL})
+    @ManyToMany(cascade =
+    { CascadeType.ALL })
     @JoinTable
     (
         name="USERS2ROLES",
@@ -346,7 +348,7 @@ public abstract class UserEmbeddable implements Serializable{
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
-        setIsActive(isActive);
+        setIsEnabled(isActive);
         setCreationDate(creationDate);
         setComment(comment);
     }
@@ -369,7 +371,7 @@ public abstract class UserEmbeddable implements Serializable{
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
-        setIsActive(isActive);
+        setIsEnabled(isActive);
         setCreationDate(creationDate);
     }
 
@@ -394,7 +396,7 @@ public abstract class UserEmbeddable implements Serializable{
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
-        setIsActive(isActive);
+        setIsEnabled(isActive);
         setCreationDate(creationDate);
         setComment(comment);
 
@@ -461,11 +463,11 @@ public abstract class UserEmbeddable implements Serializable{
         sb.append(" firstName=").append(getFirstName());
         sb.append(" lastName=").append(getLastName());
         sb.append(" email=").append(getEmail());
-        sb.append(" isActive=").append(isIsActive());
+        sb.append(" isActive=").append(isIsEnabled());
         sb.append(" creationDate=").append(getCreationDate());
         sb.append(" comment=").append(getComment());
         sb.append(" id=").append(getId());
-        sb.append(" roles=").append(getRoles());
+        // sb.append(" roles=").append(getRoles());
         sb.append(")");
         return sb.toString();
     }

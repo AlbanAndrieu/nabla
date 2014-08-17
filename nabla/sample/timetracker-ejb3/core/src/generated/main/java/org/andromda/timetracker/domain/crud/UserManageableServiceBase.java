@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
+
 import javax.annotation.Resource;
 import javax.ejb.Remote;
 import javax.ejb.SessionContext;
@@ -25,6 +26,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
 import org.andromda.timetracker.domain.Timecard;
 import org.andromda.timetracker.domain.User;
 import org.andromda.timetracker.domain.UserRole;
@@ -95,6 +97,7 @@ public final class UserManageableServiceBase
      * @return UserVO
      * @throws UserCreateManageableException
      */
+    @Override
     public UserVO create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
         throws UserCreateManageableException
     {
@@ -140,7 +143,7 @@ public final class UserManageableServiceBase
         entity.setFirstName(firstName);
         entity.setLastName(lastName);
         entity.setEmail(email);
-        entity.setIsActive(isActive);
+        entity.setIsEnabled(isActive);
         entity.setCreationDate(creationDate);
         entity.setComment(comment);
         entity.setId(id);
@@ -176,11 +179,12 @@ public final class UserManageableServiceBase
      * @return UserVO
      * @throws UserReadManageableException
      */
+    @Override
     public UserVO readById(Long id)
         throws UserReadManageableException
     {
         try{
-            return toValueObject((User)emanager.find(User.class, id));
+            return toValueObject(emanager.find(User.class, id));
         }
         catch (Exception ex)
         {
@@ -194,6 +198,7 @@ public final class UserManageableServiceBase
      * @return List
      * @throws UserReadManageableException
      */
+    @Override
     public List<UserVO> read(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
         throws UserReadManageableException
     {
@@ -301,6 +306,7 @@ public final class UserManageableServiceBase
      * @return List
      * @throws UserReadManageableException
      */
+    @Override
     public List<UserVO> readAll()
         throws UserReadManageableException
     {
@@ -323,6 +329,7 @@ public final class UserManageableServiceBase
      * @return Map
      * @throws UserReadManageableException
      */
+    @Override
     public Map readBackingLists()
         throws UserReadManageableException
     {
@@ -345,6 +352,7 @@ public final class UserManageableServiceBase
      * @return UserVO
      * @throws UserUpdateManageableException
      */
+    @Override
     public UserVO update(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
         throws UserUpdateManageableException
     {
@@ -384,13 +392,13 @@ public final class UserManageableServiceBase
                 "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles) - 'creationDate' can not be null");
         }
 
-        final User entity = (User)emanager.find(User.class, id);
+        final User entity = emanager.find(User.class, id);
         entity.setUsername(username);
         entity.setPassword(password);
         entity.setFirstName(firstName);
         entity.setLastName(lastName);
         entity.setEmail(email);
-        entity.setIsActive(isActive);
+        entity.setIsEnabled(isActive);
         entity.setCreationDate(creationDate);
         entity.setComment(comment);
 
@@ -422,6 +430,7 @@ public final class UserManageableServiceBase
      *
      * @throws UserDeleteManageableException
      */
+    @Override
     public void delete(Long[] ids)
         throws UserDeleteManageableException
     {
@@ -464,7 +473,7 @@ public final class UserManageableServiceBase
         valueObject.setFirstName(entity.getFirstName());
         valueObject.setLastName(entity.getLastName());
         valueObject.setEmail(entity.getEmail());
-        valueObject.setIsActive(entity.isIsActive());
+        valueObject.setIsActive(entity.isIsEnabled());
         valueObject.setCreationDate(entity.getCreationDate());
         valueObject.setComment(entity.getComment());
         valueObject.setId(entity.getId());
