@@ -7,19 +7,24 @@ insert into USERS (ID, USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, IS_ACTI
 insert into USERS (ID, USERNAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL, IS_ACTIVE, CREATION_DATE, COMMENT) values (4, 'rbrooke',  'cooldude', 'Rachael',  'Brooke',   'rachael.brooke@yahoo.com', 1, PARSEDATETIME('2011-01-01 09:00', 'yyyy-MM-dd hh:mm'), 'Rachael Brooke');
 commit;
 
-insert into USER_ROLE (ID, ROLE) values (1, 'STANDARD_USER');
-insert into USER_ROLE (ID, ROLE) values (2, 'ADMINISTRATOR');
-insert into USER_ROLE (ID, ROLE) values (3, 'STANDARD_USER');
-insert into USER_ROLE (ID, ROLE) values (4, 'STANDARD_USER');
-insert into USER_ROLE (ID, ROLE) values (5, 'STANDARD_USER');
+insert into USER_ROLE (ID, ROLE, IS_CONDITIONAL) values (1, 'STANDARD_USER', 1);
+insert into USER_ROLE (ID, ROLE, IS_CONDITIONAL) values (2, 'ADMINISTRATOR', 1);
+--insert into USER_ROLE (ID, ROLE, IS_CONDITIONAL) values (3, 'STANDARD_USER', 1);
+--insert into USER_ROLE (ID, ROLE, IS_CONDITIONAL) values (4, 'STANDARD_USER', 1);
+--insert into USER_ROLE (ID, ROLE, IS_CONDITIONAL) values (5, 'STANDARD_USER', 1);
 commit;
 
 insert into USERS2ROLES (USERS_ID, ROLES_ID) values (1, 1);
 insert into USERS2ROLES (USERS_ID, ROLES_ID) values (2, 2);
-insert into USERS2ROLES (USERS_ID, ROLES_ID) values (2, 3);
-insert into USERS2ROLES (USERS_ID, ROLES_ID) values (3, 4);
-insert into USERS2ROLES (USERS_ID, ROLES_ID) values (4, 5);
+--insert into USERS2ROLES (USERS_ID, ROLES_ID) values (2, 3);
+--insert into USERS2ROLES (USERS_ID, ROLES_ID) values (3, 4);
+--insert into USERS2ROLES (USERS_ID, ROLES_ID) values (4, 5);
+insert into USERS2ROLES (USERS_ID, ROLES_ID) values (2, 1);
+insert into USERS2ROLES (USERS_ID, ROLES_ID) values (3, 1);
+insert into USERS2ROLES (USERS_ID, ROLES_ID) values (4, 1);
 commit;
+
+--TODO ROLE_GROUPS
 
 insert into TASK (ID, NAME) values (1, 'Research');
 insert into TASK (ID, NAME) values (2, 'Development');
