@@ -1317,7 +1317,9 @@
 				<!-- NOK <org.jboss.arquillian.version>1.1.4.Final</org.jboss.arquillian.version> NOK with 1.1.4.Final java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
 				<!-- NOK with 1.1.0.Final <org.jboss.arquillian.bom.version>${org.jboss.arquillian.version}</org.jboss.arquillian.bom.version>-->
 				<org.jboss.arquillian.bom.version>${org.jboss.arquillian.version}</org.jboss.arquillian.bom.version>
-				<org.jboss.shrinkwrap.bom.version>2.0.0</org.jboss.shrinkwrap.bom.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
+				<!--<org.jboss.shrinkwrap.bom.version>2.0.0</org.jboss.shrinkwrap.bom.version>--> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
+				<org.jboss.shrinkwrap.bom.version>2.1.1</org.jboss.shrinkwrap.bom.version>
+				<org.jboss.shrinkwrap.resolver.version>${org.jboss.shrinkwrap.bom.version}</org.jboss.shrinkwrap.resolver.version>
 				<!--<org.jboss.arquillian.junit.version>1.0.0.Alpha5</org.jboss.arquillian.junit.version>-->
 				<!--<org.jboss.arquillian.junit.version>${org.jboss.arquillian.bom.version}</org.jboss.arquillian.junit.version>-->
 				<org.jboss.arquillian.junit.version>${org.jboss.arquillian.version}</org.jboss.arquillian.junit.version><!-- NOK with 1.1.4.Final java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
@@ -1332,6 +1334,7 @@
 				<org.jboss.weld.core.version>1.1.9.Final</org.jboss.weld.core.version>
 				<org.jboss.spec.javax.faces.jsf.api.2.1.version>2.1.28.Final</org.jboss.spec.javax.faces.jsf.api.2.1.version>
 				<org.jboss.spec.javax.faces.jsf.api.2.0.version>1.0.0.Final</org.jboss.spec.javax.faces.jsf.api.2.0.version>
+				<org.jboss.spec.javax.jboss.el.api.2.2.version>1.0.0.Final</org.jboss.spec.javax.jboss.el.api.2.2.version>
 				<glassfish.embedded.all.version>3.1.2</glassfish.embedded.all.version>
 				<httpunit.version>1.7</httpunit.version>
 				<xmlunit.version>1.5</xmlunit.version>
@@ -1440,9 +1443,8 @@
 				<geronimo.ws.metadata.spec.version>1.1.3</geronimo.ws.metadata.spec.version>
 				<geronimo.jsp.2.1.spec.version>1.0.1</geronimo.jsp.2.1.spec.version>
 
-				<seam.version>2.2.1.Final</seam.version>
+				<seam.version>2.3.1.Final</seam.version>
 				<!--<seam.bom.version>3.1.0.Final</seam.bom.version>-->
-				<!--<seam.version>2.3.0.CR1</seam.version>-->
 				<seam.international.version>3.0.0.Alpha1</seam.international.version>
 
 				<jaxb.api.version>2.1</jaxb.api.version>
@@ -1516,7 +1518,7 @@
 
 				<!-- Plugin version definitions -->
 				<maven.project.version>3.0-alpha-2</maven.project.version>
-				<plexus.util.version>3.0.10</plexus.util.version>
+				<plexus.util.version>3.0.15</plexus.util.version>
 				<plexus.container.default.version>1.5.5</plexus.container.default.version>
 				<plexus.archiver.version>2.4.1</plexus.archiver.version>
 
@@ -1584,8 +1586,7 @@
 				<maven.dependency.plugin.version>2.8</maven.dependency.plugin.version>
 				<maven.clover.plugin.version>${clover.version}</maven.clover.plugin.version>
 				<maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
-				<!--<maven.replacer.plugin.version>1.5.3</maven.replacer.plugin.version>-->
-				<maven.replacer.plugin.version>1.4.1</maven.replacer.plugin.version>
+				<maven.replacer.plugin.version>1.5.3</maven.replacer.plugin.version>
 				<maven.gpg.plugin.version>1.5</maven.gpg.plugin.version>
 				<maven.properties.maven.plugin.version>1.0-alpha-2</maven.properties.maven.plugin.version>
 				<maven.sonar.maven.plugin.version>2.4</maven.sonar.maven.plugin.version>
@@ -2439,6 +2440,9 @@
 												<skip>${maven.test.skip}</skip>
 												<linkXRef>true</linkXRef>
 												<argLine>-Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>
+												<!-- more log <argLine>-verbose:class</argLine>-->
+												<trimStackTrace>false</trimStackTrace>     
+                                                <!--<useFile>false</useFile> -->
 												<!-- Continue with other tests if a single method fails -->
 												<configFailurePolicy>continue</configFailurePolicy>
 												<!-- Enable or disable Stop maven -->
@@ -3920,6 +3924,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 										</execution>
 									</executions>
 								</plugin>
+								<!--
 								<plugin>
 									<groupId>com.google.code.maven-replacer-plugin</groupId>
 									<artifactId>replacer</artifactId>
@@ -3939,17 +3944,16 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 											<include>target/**/jetty-web.xml</include>
 											<include>target/**/urlrewrite.xml</include>
 											<include>target/**/index.html</include>
-										</includes>
-										<!--
+										</includes>										
 										<replacements>								  
 											<replacement>
 												<token>${jetty.context.path.to.replace}</token>
 												<value>${jetty.context.path}</value>
 											</replacement>							  
 										</replacements>
-										-->
 									</configuration>
-								</plugin>		   
+								</plugin>		  
+								--> 
 								<plugin>
 									<groupId>org.codehaus.mojo.jspc</groupId>
 									<artifactId>jspc-maven-plugin</artifactId>
@@ -4401,27 +4405,26 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<scope>import</scope>
 						</dependency>
 								
-						<!-- this included in jboss-javaee-6.0-with-tools -->
-						<!-- see http://central.maven.org/maven2/org/jboss/arquillian/arquillian-bom/1.1.4.Final/arquillian-bom-1.1.4.Final.pom -->
-						<!-- NOK with 1.1.4.Final arquillian junit java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
-						<dependency>
-						  <groupId>org.jboss.arquillian</groupId>
-						  <artifactId>arquillian-bom</artifactId>
-						  <version>${org.jboss.arquillian.bom.version}</version>
-						  <type>pom</type>
-						  <scope>import</scope>
-						</dependency>
-
-						<!--
+						 <!-- Override dependency resolver with latest version.
+						 This must go *BEFORE* the Arquillian BOM. -->
 						<dependency>
 							<groupId>org.jboss.shrinkwrap.resolver</groupId>
 							<artifactId>shrinkwrap-resolver-bom</artifactId>
 							<version>${org.jboss.shrinkwrap.bom.version}</version>
-							<scope>test</scope>
 							<type>pom</type>
+							<scope>import</scope>
+						</dependency>				
+						<!-- this included in jboss-javaee-6.0-with-tools -->
+						<!-- see http://central.maven.org/maven2/org/jboss/arquillian/arquillian-bom/1.1.4.Final/arquillian-bom-1.1.4.Final.pom -->
+						<!-- NOK with 1.1.4.Final arquillian junit java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
+						<dependency>
+						    <groupId>org.jboss.arquillian</groupId>
+						    <artifactId>arquillian-bom</artifactId>
+						    <version>${org.jboss.arquillian.bom.version}</version>
+					        <type>pom</type>
+						    <scope>import</scope>
 						</dependency>
-						-->
-											
+	
 						<!-- Similarly to the JBoss Java EE 6 BOM above, the RichFaces BOM specifies the
 							versions of artifacts required for using RichFaces in your project. -->
 						<dependency>
@@ -4800,27 +4803,48 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 
 						<!--
 						<dependency>
-							<groupId>org.jboss.shrinkwrap</groupId>
-							<artifactId>shrinkwrap-api</artifactId>
-							<version>1.0.0-cr-1</version>  
-							<scope>test</scope>
-						</dependency>	
-							
+							<groupId>org.jboss.shrinkwrap.resolver</groupId>
+							<artifactId>shrinkwrap-resolver-api</artifactId>
+							<version>${org.jboss.shrinkwrap.resolver.version}</version>
+						</dependency>
 						<dependency>
-							<groupId>org.jboss.shrinkwrap.descriptors</groupId>
-							<artifactId>shrinkwrap-descriptors-api-base</artifactId>
-							<version>2.0.0-alpha-5</version>  
+							<groupId>org.jboss.shrinkwrap.resolver</groupId>
+							<artifactId>shrinkwrap-resolver-spi</artifactId>
+							<version>${org.jboss.shrinkwrap.resolver.version}</version>
 							<scope>test</scope>
-						</dependency>		
-
+						</dependency>
 						<dependency>
-							<groupId>org.jboss.shrinkwrap.descriptors</groupId>
-							<artifactId>shrinkwrap-descriptors-api</artifactId>
-							<version>0.1.4</version>  
+							<groupId>org.jboss.shrinkwrap.resolver</groupId>
+							<artifactId>shrinkwrap-resolver-api-maven</artifactId>
+							<version>${org.jboss.shrinkwrap.resolver.version}</version>
 							<scope>test</scope>
-						</dependency>		
+						</dependency>
+						<dependency>
+							<groupId>org.jboss.shrinkwrap.resolver</groupId>
+							<artifactId>shrinkwrap-resolver-spi-maven</artifactId>
+							<version>${org.jboss.shrinkwrap.resolver.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.jboss.shrinkwrap.resolver</groupId>
+							<artifactId>shrinkwrap-resolver-api-maven-archive</artifactId>
+							<version>${org.jboss.shrinkwrap.resolver.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.jboss.shrinkwrap.resolver</groupId>
+							<artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+							<version>${org.jboss.shrinkwrap.resolver.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.jboss.shrinkwrap.resolver</groupId>
+							<artifactId>shrinkwrap-resolver-impl-maven-archive</artifactId>
+							<version>${org.jboss.shrinkwrap.resolver.version}</version>
+							<scope>test</scope>
+						</dependency>
 						-->
-	
+        
 						<dependency>
 							<groupId>org.jboss.arquillian.container</groupId>
 							<artifactId>arquillian-glassfish-embedded-3.1</artifactId>
@@ -4844,7 +4868,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<artifactId>jboss-jsf-api_2.0_spec</artifactId>
 							<version>${org.jboss.spec.javax.faces.jsf.api.2.0.version}</version>							
 							<scope>provided</scope>
-						</dependency>						
+						</dependency>				
+						<dependency>
+							<groupId>org.jboss.spec.javax.el</groupId>
+							<artifactId>jboss-el-api_2.2_spec</artifactId>
+							<version>${org.jboss.spec.javax.jboss.el.api.2.2.version}</version>
+							<scope>provided</scope>
+						</dependency>
 						<dependency>
 							<groupId>org.fitnesse</groupId>
 							<artifactId>fitnesse</artifactId>
