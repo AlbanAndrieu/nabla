@@ -822,7 +822,7 @@
 					<id>jacoco</id>
 					<activation>
 							<property>
-									<name>!profile.activation</name>
+									<name>profile.activation</name>
 							</property>
 					</activation>			
 					<properties>
@@ -1055,6 +1055,7 @@
 			    </profile>				
 				<profile>
 					<id>tattletale</id>
+					<!-- DO not activate by default as it is using too much heap
 					<activation>
 							<property>
 									<name>!profile.activation</name>
@@ -1066,7 +1067,6 @@
 								<groupId>org.apache.maven.plugins</groupId>
 								<artifactId>maven-dependency-plugin</artifactId>
 								<executions>					
-									<!-- tattletale is expecting a folder with jars in it, so I need to gather those together -->
 									<execution>
 									  <id>copy-dependency-jars-to-tattletale-source-directory</id>
 									  <phase>pre-site</phase>
@@ -1079,7 +1079,6 @@
 									</execution>					
 								</executions>
 							</plugin>		
-							<!-- ... gather up the last jars -->
 							<plugin>
 							  <groupId>org.apache.maven.plugins</groupId>
 							  <artifactId>maven-resources-plugin</artifactId>
@@ -1113,8 +1112,6 @@
 								</execution>
 							  </executions>
 							</plugin>
-							<!-- run the tattletale report, normally this would be in the reporting section of the pom, -->
-							<!-- but the mojo isn't a report mojo, also see src/site/site.xml -->
 							<plugin>
 							  <groupId>org.jboss.tattletale</groupId>
 							  <artifactId>tattletale-maven</artifactId>
@@ -1122,7 +1119,6 @@
 							  <executions>
 								<execution>
 								  <id>run-tattletale-report</id>
-								  <!-- it is bound by default to "package" phase, which isn't what we want for reporting -->
 								  <phase>site</phase>
 								  <goals>
 									<goal>report</goal>
@@ -1130,18 +1126,14 @@
 								  <configuration>
 									<source>${tattletale-source-directory}</source>                    
 									<destination>${tattletale-destination-directory}</destination>
-									<!--
-									<profiles>
-									  <profile>java5</profile>
-									</profiles>
-									-->
 								  </configuration>
 								</execution>
 							  </executions>
 							</plugin>		            
 						</plugins>
 					</build>
-				</profile>			    
+				</profile>	
+				-->		    
 				<profile>
 					<id>checkstyle.report</id>
 					<activation>
