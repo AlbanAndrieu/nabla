@@ -149,4 +149,23 @@ $operation.getDocumentation("     * ")
 #*  *##end
 #**##end
 #end
+##if (${service.type}.equalsIgnoreCase('javax.ejb.Stateful'))
+#if ($service.stateful)
+
+    // ------------ Destroy Method ------------
+
+    /**
+     * Remove lifecycle method
+     */
+    @Override
+#*  *##if ($service.seamComponent)
+    @org.jboss.seam.annotations.Destroy
+#*  *##end
+    @javax.ejb.Remove
+    public void destroy()
+    {
+        super.destroy();
+    }
+#end
+
 }

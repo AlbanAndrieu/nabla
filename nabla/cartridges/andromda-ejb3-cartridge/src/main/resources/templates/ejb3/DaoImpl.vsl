@@ -31,6 +31,12 @@ package ${entity.packageName};
 @org.jboss.seam.annotations.AutoCreate
 @javax.ejb.TransactionAttribute(javax.ejb.TransactionAttributeType.REQUIRED)
 @javax.ejb.Local({${rootDaoType}.class})
+  #if ($hibernateUtils.seamVersion23)
+    #set ($jndiNamePrefix = $entity.jndiNamePrefix)     
+    #if (!$jndiNamePrefix.empty)   
+@org.jboss.seam.annotations.JndiName("${jndiNamePrefix}/${entity.daoImplementationName}")
+    #end
+  #end
 #else
 @javax.ejb.Stateless
 #end

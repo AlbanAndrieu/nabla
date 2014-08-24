@@ -34,6 +34,7 @@ package ${entity.packageName};
  */
 ##if (!$entity.seamComponent)
 //@javax.ejb.TransactionAttribute(javax.ejb.TransactionAttributeType.REQUIRED)
+//@javax.ejb.Local({${rootDaoType}.class})
 ##end
 #if ($entity.securityEnabled)
 #**##if ($stringUtils.isBlank(${entity.rolesAllowed}))
@@ -66,7 +67,6 @@ public abstract class $entity.daoBaseName## no new line
      */    
     @javax.persistence.PersistenceContext#if ($entity.defaultPersistenceContextUnitName)(unitName = "${entity.defaultPersistenceContextUnitName}")#end
 #end
-
     protected javax.persistence.EntityManager entityManager;
 
 #if ($hibernateExtensionEnabled && !$entity.seamComponent)
@@ -74,7 +74,6 @@ public abstract class $entity.daoBaseName## no new line
      * Inject Hibernate Session
      */
     @javax.persistence.PersistenceContext#if ($entity.defaultPersistenceContextUnitName)(unitName = "${entity.defaultPersistenceContextUnitName}")#end
-
     protected org.hibernate.Session hibernateSession;
 
 #end

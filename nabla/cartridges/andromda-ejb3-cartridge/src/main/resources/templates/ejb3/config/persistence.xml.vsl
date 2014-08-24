@@ -132,7 +132,6 @@ Modify as necessary for JPA unit testing
 
             <property name="hibernate.transaction.manager_lookup_class" value="${pu.hibernate.transaction.manager_lookup_class}"/>
 #if($hibernateUtils.seamVersion22)
-            <!--<property name="jboss.entity.manager.factory.jndi.name" value="${entityManagerFactoryJndiName}"/>-->
             <property name="jboss.entity.manager.factory.jndi.name" value="${pu.jboss.entity.manager.factory.jndi.name}"/>
 #end            
             <property name="hibernate.archive.autodetection" value="class, hbm" />
