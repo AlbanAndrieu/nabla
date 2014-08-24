@@ -54,7 +54,7 @@ public class Messages
     /**
      * Gets the message given the <code>key</code> by substituting any
      * required <code>arguments</code>.
-     *
+     * 
      * @param key the message key.
      * @param arguments any message arguments to substitute.
      * @return the message (or key if the message isn't found).
@@ -81,8 +81,7 @@ public class Messages
 
             }
 
-        }
-        catch (final MissingResourceException exception)
+        } catch (final MissingResourceException exception)
         {
 
             resourceString = key;

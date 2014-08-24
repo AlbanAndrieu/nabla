@@ -35,7 +35,7 @@ package org.andromda.cartridges.jsf.validator;
 
 /**
  * An exception thrown when a validation configuration error occurs.
- *
+ * 
  * @author Chad Brandon
  */
 public class JSFValidatorException extends RuntimeException
@@ -48,7 +48,7 @@ public class JSFValidatorException extends RuntimeException
 
     /**
      * Constructor for JSFValidatorException.
-     *
+     * 
      * @param message
      */
     public JSFValidatorException(String message)
@@ -59,7 +59,7 @@ public class JSFValidatorException extends RuntimeException
 
     /**
      * Constructor for JSFValidatorException.
-     *
+     * 
      * @param message
      * @param parent
      */
@@ -71,7 +71,7 @@ public class JSFValidatorException extends RuntimeException
 
     /**
      * Constructor for JSFValidatorException.
-     *
+     * 
      * @param message
      */
     public JSFValidatorException(Throwable message)

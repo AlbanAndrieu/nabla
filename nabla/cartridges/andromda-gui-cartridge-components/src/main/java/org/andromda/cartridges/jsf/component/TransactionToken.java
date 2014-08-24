@@ -37,7 +37,7 @@ import javax.faces.component.UIComponentBase;
 
 /**
  * The transaction token component, basically just registers its renderer.
- *
+ * 
  * @author Chad Brandon
  */
 public class TransactionToken extends UIComponentBase

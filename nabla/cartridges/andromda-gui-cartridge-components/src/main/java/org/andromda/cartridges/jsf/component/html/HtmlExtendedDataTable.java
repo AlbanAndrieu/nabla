@@ -51,7 +51,7 @@ import javax.faces.el.ValueBinding;
 /**
  * Extends the datatable and provides the ability to have a backing value: this is
  * useful when submitting tables of information.
- *
+ * 
  * @author Chad Brandon
  */
 public class HtmlExtendedDataTable extends HtmlDataTable
@@ -60,7 +60,7 @@ public class HtmlExtendedDataTable extends HtmlDataTable
     /**
      * Overridden to provide population of the backingValue's items with the value's items (and
      * updating the model afterwards).
-     *
+     * 
      * @see javax.faces.component.UIData#getValue()
      */
     public Object getValue()
@@ -182,10 +182,11 @@ public class HtmlExtendedDataTable extends HtmlDataTable
     /**
      * Indicates whether or not this objects are equal, first by comparing them directly for
      * equality and if not equal in that sense compares the columns returned by {@link #getIdentifierColumns()}.
+     * 
      * @param object1 the first object.
      * @param object2 the second object.
      * @param properties if equality fails, then these properties are compared for equality (all of them must
-     *        be equal or else this operation will return false).
+     * be equal or else this operation will return false).
      * @return equal true/false
      */
     private boolean equal(final Object object1, final Object object2, final String[] properties)
@@ -233,7 +234,7 @@ public class HtmlExtendedDataTable extends HtmlDataTable
 
     /**
      * Updates the model (i.e. underlying managed bean's value).
-     *
+     * 
      * @param value the value from which to update the model.
      */
     public void updateModelValue(final Object value)
@@ -257,8 +258,9 @@ public class HtmlExtendedDataTable extends HtmlDataTable
 
     /**
      * Gets the type of the backing value attribute.
+     * 
      * @return Class The backing value's type or null if the backing value
-     *         isn't defined.
+     * isn't defined.
      */
     private Class getBackingValueBindingType()
     {
@@ -269,7 +271,7 @@ public class HtmlExtendedDataTable extends HtmlDataTable
 
     /**
      * Gets the value's type attribute or null if value was not defined.
-     *
+     * 
      * @return Class the value's type or null if undefined.
      */
     private Class getValueBindingType()
@@ -281,7 +283,7 @@ public class HtmlExtendedDataTable extends HtmlDataTable
 
     /**
      * Gets the binding type given the attribute name.
-     *
+     * 
      * @param name the name of the component's attribute.
      * @return type Class the binding type or null if the binding wasn't found.
      */
@@ -312,8 +314,7 @@ public class HtmlExtendedDataTable extends HtmlDataTable
 
             return PropertyUtils.getProperty(bean, property);
 
-        }
-        catch (final Throwable throwable)
+        } catch (final Throwable throwable)
         {
 
             throw new RuntimeException(throwable);
@@ -332,6 +333,7 @@ public class HtmlExtendedDataTable extends HtmlDataTable
     /**
      * Retrieves the backing value of this extended data table (the backing value contains
      * the values which the result of the value attribute are compared against).
+     * 
      * @return this.backingValue
      */
     protected Object getBackingValue()
@@ -362,7 +364,7 @@ public class HtmlExtendedDataTable extends HtmlDataTable
 
     /**
      * Retrieves the identifier columns component attribute.
-     *
+     * 
      * @return this.identifierColumns the identifier columns component attribute.
      */
     protected String getIdentifierColumns()

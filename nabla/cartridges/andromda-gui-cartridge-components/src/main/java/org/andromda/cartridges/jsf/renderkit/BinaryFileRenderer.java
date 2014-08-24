@@ -49,7 +49,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * A custom renderer for rendering a binary file.
- *
+ * 
  * @author Chad Brandon
  */
 public class BinaryFileRenderer extends Renderer
@@ -57,7 +57,7 @@ public class BinaryFileRenderer extends Renderer
 
     /**
      * Gets the current response instance.
-     *
+     * 
      * @return the current response.
      */
     private HttpServletResponse getResponse(final FacesContext context)
@@ -71,10 +71,9 @@ public class BinaryFileRenderer extends Renderer
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param context DOCUMENT ME!
      * @param component DOCUMENT ME!
-     *
      * @throws IOException DOCUMENT ME!
      */
     @Override
@@ -172,10 +171,9 @@ public class BinaryFileRenderer extends Renderer
 
     /**
      * DOCUMENT ME!
-     *
+     * 
      * @param context DOCUMENT ME!
      * @param component DOCUMENT ME!
-     *
      * @throws IOException DOCUMENT ME!
      */
     @Override

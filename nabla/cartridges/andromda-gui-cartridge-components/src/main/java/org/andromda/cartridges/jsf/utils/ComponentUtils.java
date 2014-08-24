@@ -49,7 +49,7 @@ import javax.faces.webapp.UIComponentTag;
 
 /**
  * Utilities for dealing with the JSF components.
- *
+ * 
  * @author Chad Brandon
  */
 public class ComponentUtils
@@ -57,7 +57,7 @@ public class ComponentUtils
 
     /**
      * Sets the value property of a component.
-     *
+     * 
      * @param context the current faces context.
      * @param component the component.
      * @param value the value to set.
@@ -108,6 +108,7 @@ public class ComponentUtils
 
     /**
      * Sets the property with the given <code>name</code> of a component.
+     * 
      * @param name the name of the component to set.
      * @param context the current faces context.
      * @param component the component.
@@ -139,6 +140,7 @@ public class ComponentUtils
 
     /**
      * Sets the boolean value of property with the given <code>name</code> of a component.
+     * 
      * @param name the name of the component to set.
      * @param context the current faces context.
      * @param component the component.
@@ -169,9 +171,9 @@ public class ComponentUtils
     }
 
     /**
-     * Gets the attribute from the given object.  The object can be either a context, request
+     * Gets the attribute from the given object. The object can be either a context, request
      * or response (HttpServletContext/PortletContext, HttpServletRequest/PortletRequest, etc).
-     *
+     * 
      * @param object the object from which to retrieve the attribute.
      * @param attributeName the attribute name.
      * @return the value of the attribute if one is present.
@@ -190,12 +192,12 @@ public class ComponentUtils
                 try
                 {
 
-                    final Method method = object.getClass().getMethod("getAttribute", new Class[] { String.class });
+                    final Method method = object.getClass().getMethod("getAttribute", new Class[]
+                    { String.class });
 
                     attribute = method.invoke(object, attributeName);
 
-                }
-                catch (NoSuchMethodException exception)
+                } catch (NoSuchMethodException exception)
                 {
 
                     // Swallow Exception
@@ -205,8 +207,7 @@ public class ComponentUtils
 
             return attribute;
 
-        }
-        catch (Exception exception)
+        } catch (Exception exception)
         {
 
             throw new RuntimeException(exception);
@@ -216,9 +217,9 @@ public class ComponentUtils
     }
 
     /**
-     * Sets the attribute on the given object.  The object can be either a context, request
+     * Sets the attribute on the given object. The object can be either a context, request
      * or response (HttpServletContext/PortletContext, HttpServletRequest/PortletRequest, etc).
-     *
+     * 
      * @param object the object on which to set the attribute.
      * @param attributeName the attribute name.
      * @param attributeValue the value of the attribute to set.
@@ -235,12 +236,12 @@ public class ComponentUtils
                 try
                 {
 
-                    final Method method = object.getClass().getMethod("setAttribute", new Class[] { String.class, Object.class });
+                    final Method method = object.getClass().getMethod("setAttribute", new Class[]
+                    { String.class, Object.class });
 
                     method.invoke(object, attributeName, attributeValue);
 
-                }
-                catch (NoSuchMethodException ignore)
+                } catch (NoSuchMethodException ignore)
                 {
 
                     // Swallow exception
@@ -248,8 +249,7 @@ public class ComponentUtils
 
             }
 
-        }
-        catch (Exception exception)
+        } catch (Exception exception)
         {
 
             throw new RuntimeException(exception);
@@ -260,7 +260,7 @@ public class ComponentUtils
 
     /**
      * Gets the context path from the given request object (PortletRequest/HttpServletRequest)
-     *
+     * 
      * @param request the request object from which to retrieve the context path.
      * @return the context path.
      */
@@ -281,8 +281,7 @@ public class ComponentUtils
 
             return contextPath;
 
-        }
-        catch (Exception exception)
+        } catch (Exception exception)
         {
 
             throw new RuntimeException(exception);

@@ -90,16 +90,16 @@ public class ParameterChecks implements Serializable
     /**
      * Checks if the field isn't null and length of the field is greater than
      * zero not including whitespace.
-     *
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateRequired(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -129,16 +129,16 @@ public class ParameterChecks implements Serializable
 
     /**
      * Checks if the parameter isn't null based on the values of other fields.
-     *
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateRequiredIf(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -274,16 +274,16 @@ public class ParameterChecks implements Serializable
     /**
      * Checks if the parameter matches the regular expression in the field's
      * mask attribute.
-     *
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateMask(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -302,16 +302,16 @@ public class ParameterChecks implements Serializable
 
     /**
      * Checks if the field can safely be converted to a byte primitive.
-     *
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateByte(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -337,16 +337,16 @@ public class ParameterChecks implements Serializable
 
     /**
      * Checks if the field can safely be converted to a short primitive.
-     *
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateShort(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -372,16 +372,16 @@ public class ParameterChecks implements Serializable
 
     /**
      * Checks if the field can safely be converted to an int primitive.
-     *
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateInteger(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -407,16 +407,16 @@ public class ParameterChecks implements Serializable
 
     /**
      * Checks if the field can safely be converted to a long primitive.
-     *
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateLong(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -442,16 +442,16 @@ public class ParameterChecks implements Serializable
 
     /**
      * Checks if the field can safely be converted to a float primitive.
-     *
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateFloat(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -477,16 +477,16 @@ public class ParameterChecks implements Serializable
 
     /**
      * Checks if the field can safely be converted to a double primitive.
-     *
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateDouble(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -520,17 +520,17 @@ public class ParameterChecks implements Serializable
      * because the month isn't two digits. If no datePattern variable is
      * specified, then the field gets the DateFormat.SHORT format for the
      * locale. The setLenient method is set to <code>false</code> for all
-     * variations.  If the <code>object</code> is a date instance, then validation is not performed.
-     *
+     * variations. If the <code>object</code> is a date instance, then validation is not performed.
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateDate(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -581,16 +581,16 @@ public class ParameterChecks implements Serializable
     /**
      * Checks if a fields value is within a range (min &amp; max specified in
      * the vars attribute).
-     *
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateLongRange(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -614,8 +614,7 @@ public class ParameterChecks implements Serializable
 
                 }
 
-            }
-            catch (Exception exception)
+            } catch (Exception exception)
             {
 
                 errors.add(ValidatorMessages.getMessage(action, field, context));
@@ -629,16 +628,16 @@ public class ParameterChecks implements Serializable
     /**
      * Checks if a fields value is within a range (min &amp; max specified in
      * the vars attribute).
-     *
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateDoubleRange(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -662,8 +661,7 @@ public class ParameterChecks implements Serializable
 
                 }
 
-            }
-            catch (Exception exception)
+            } catch (Exception exception)
             {
 
                 errors.add(ValidatorMessages.getMessage(action, field, context));
@@ -677,16 +675,16 @@ public class ParameterChecks implements Serializable
     /**
      * Checks if a fields value is within a range (min &amp; max specified in
      * the vars attribute).
-     *
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateFloatRange(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -710,8 +708,7 @@ public class ParameterChecks implements Serializable
 
                 }
 
-            }
-            catch (Exception exception)
+            } catch (Exception exception)
             {
 
                 errors.add(ValidatorMessages.getMessage(action, field, context));
@@ -724,16 +721,16 @@ public class ParameterChecks implements Serializable
 
     /**
      * Checks if the field is a valid credit card number.
-     *
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateCreditCard(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -759,16 +756,16 @@ public class ParameterChecks implements Serializable
 
     /**
      * Checks if a field has a valid exception-mail address.
-     *
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateEmail(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -787,16 +784,16 @@ public class ParameterChecks implements Serializable
     /**
      * Checks if the field's length is less than or equal to the maximum value.
      * A <code>Null</code> will be considered an error.
-     *
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateMaxLength(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -818,8 +815,7 @@ public class ParameterChecks implements Serializable
 
                 }
 
-            }
-            catch (Exception exception)
+            } catch (Exception exception)
             {
 
                 errors.add(ValidatorMessages.getMessage(action, field, context));
@@ -833,16 +829,16 @@ public class ParameterChecks implements Serializable
     /**
      * Checks if the field's length is greater than or equal to the minimum
      * value. A <code>Null</code> will be considered an error.
-     *
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateMinLength(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -864,8 +860,7 @@ public class ParameterChecks implements Serializable
 
                 }
 
-            }
-            catch (Exception exception)
+            } catch (Exception exception)
             {
 
                 errors.add(ValidatorMessages.getMessage(action, field, context));
@@ -882,16 +877,16 @@ public class ParameterChecks implements Serializable
      * this by attempting to construct a java.net.URL instance and checking
      * whether or not, it's valid.
      * </p>
-     *
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     @SuppressWarnings("unused")
     public static void validateUrl(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
@@ -905,8 +900,7 @@ public class ParameterChecks implements Serializable
 
             new URL(urlString);
 
-        }
-        catch (Exception exception)
+        } catch (Exception exception)
         {
 
             valid = false;
@@ -923,18 +917,18 @@ public class ParameterChecks implements Serializable
     }
 
     /**
-     *  Checks if the field is a valid time. If the field has a timePattern variable,
-     *  that will be used to format <code>java.text.SimpleDateFormat</code>.
-     *
+     * Checks if the field is a valid time. If the field has a timePattern variable,
+     * that will be used to format <code>java.text.SimpleDateFormat</code>.
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      */
     public static void validateTime(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field)
     {
@@ -966,8 +960,7 @@ public class ParameterChecks implements Serializable
 
                     }
 
-                }
-                catch (Exception exception)
+                } catch (Exception exception)
                 {
 
                     errors.add(ValidatorMessages.getMessage(action, field, context));
@@ -981,17 +974,17 @@ public class ParameterChecks implements Serializable
     }
 
     /**
-     *  Checks if the field's value is equal to another field's value on the same form.
-     *
+     * Checks if the field's value is equal to another field's value on the same form.
+     * 
      * @param context the faces context
      * @param object the value of the field being validated.
      * @param parameters Any field parameters from the validation.xml.
      * @param errors The <code>Map</code> object to add errors to if any
-     *        validation errors occur.
+     * validation errors occur.
      * @param action The <code>ValidatorAction</code> that is currently being
-     *        performed.
+     * performed.
      * @param field The <code>Field</code> object associated with the current
-     *        field being validated.
+     * field being validated.
      * @throws Exception
      */
     public static void validateEqual(FacesContext context, Object object, Map parameters, Collection errors, ValidatorAction action, Field field) throws Exception

@@ -95,6 +95,7 @@ public class JSFValidatorComponent extends UIComponentBase
 
     /**
      * The component renders itself; therefore, this method returns null.
+     * 
      * @return null
      */
     public String getRendererType()
@@ -107,6 +108,7 @@ public class JSFValidatorComponent extends UIComponentBase
     /**
      * Returns the component's family. In this case, the component is not
      * associated with a family, so this method returns null.
+     * 
      * @return null
      */
     public String getFamily()
@@ -118,7 +120,7 @@ public class JSFValidatorComponent extends UIComponentBase
 
     /**
      * Registers a validator according to type and id.
-     *
+     * 
      * @param type The type of the validator
      * @param id The validator's identifier
      * @param validator The JSF validator associated with the id and type
@@ -167,7 +169,7 @@ public class JSFValidatorComponent extends UIComponentBase
      * If a validator's type is required, this method sets the associated
      * component's required property to true. This is necessary because JSF does
      * not validate empty fields unless a component's required property is true.
-     *
+     * 
      * @param component The component at the root of the component tree
      * @param context The FacesContext for this request
      * @param form the id of the form.
@@ -278,7 +280,7 @@ public class JSFValidatorComponent extends UIComponentBase
 
     /**
      * Indicates whether or not this component can be validated.
-     *
+     * 
      * @param component the component to check.
      * @return canValidate true/false
      */
@@ -314,7 +316,7 @@ public class JSFValidatorComponent extends UIComponentBase
 
     /**
      * Indicates whether or not the JSFValidator instance is present and if so returns true.
-     *
+     * 
      * @param valueHolder the value holder on which to check if its present.
      * @param validator
      * @return true/false
@@ -365,7 +367,7 @@ public class JSFValidatorComponent extends UIComponentBase
 
     /**
      * Write the start of the script for client-side validation.
-     *
+     * 
      * @param writer A response writer
      */
     private final void writeScriptStart(final FacesContext context, UIComponent component) throws IOException
@@ -382,7 +384,7 @@ public class JSFValidatorComponent extends UIComponentBase
 
     /**
      * Write the end of the script for client-side validation.
-     *
+     * 
      * @param writer A response writer
      */
     private void writeScriptEnd(ResponseWriter writer) throws IOException
@@ -394,7 +396,7 @@ public class JSFValidatorComponent extends UIComponentBase
 
     /**
      * Returns the name of the JavaScript function, specified in the JSP page that validates this JSP page's form.
-     *
+     * 
      * @param action the validation action from which to retrieve the function name.
      */
     private String getJavaScriptFunctionName(final ValidatorAction action)
@@ -426,7 +428,7 @@ public class JSFValidatorComponent extends UIComponentBase
 
     /**
      * Sets whether or not client-side validation shall be performed.
-     *
+     * 
      * @param functionName String
      */
     public void setClient(final String functionName)
@@ -438,7 +440,7 @@ public class JSFValidatorComponent extends UIComponentBase
 
     /**
      * Gets whether or not client side validation shall be performed.
-     *
+     * 
      * @return true/false
      */
     private boolean isClient()
@@ -452,7 +454,7 @@ public class JSFValidatorComponent extends UIComponentBase
 
     /**
      * writes the javascript functions to the response.
-     *
+     * 
      * @param form UIComponent
      * @param writer A response writer
      * @param context The FacesContext for this request
@@ -559,7 +561,7 @@ public class JSFValidatorComponent extends UIComponentBase
 
     /**
      * Writes the JavaScript parameters for the client-side validation code.
-     *
+     * 
      * @param writer A response writer
      * @param context The FacesContext for this request
      * @param id String
@@ -644,8 +646,7 @@ public class JSFValidatorComponent extends UIComponentBase
 
             validator = this.findComponent(id);
 
-        }
-        catch (NullPointerException exception)
+        } catch (NullPointerException exception)
         {
 
             // ignore - means we couldn't find the component
@@ -679,7 +680,7 @@ public class JSFValidatorComponent extends UIComponentBase
      * Begin encoding for this component. This method finds all Commons
      * validators attached to components in the current component hierarchy and
      * writes out JavaScript code to invoke those validators, in turn.
-     *
+     * 
      * @param context The FacesContext for this request
      * @throws IOException
      */
@@ -727,8 +728,7 @@ public class JSFValidatorComponent extends UIComponentBase
 
                 }
 
-            }
-            catch (final JSFValidatorException exception)
+            } catch (final JSFValidatorException exception)
             {
 
                 logger.error(exception);

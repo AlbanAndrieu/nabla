@@ -48,7 +48,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * This class is a dummy HttpServletResponse.
- *
+ * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  */
 public class HttpServletResponseWrapper implements HttpServletResponse, RenderResponse
@@ -80,10 +80,10 @@ public class HttpServletResponseWrapper implements HttpServletResponse, RenderRe
 
     /**
      * Returns writer to which MyFaces' AddResource stores elements.
-     *
+     * 
      * @return writer which has elements, such as &lt;script&gt; and
-     *         &lt;link&gt; public StringWriter getStringWriter() { return
-     *         (StringWriter) writer; }
+     * &lt;link&gt; public StringWriter getStringWriter() { return
+     * (StringWriter) writer; }
      */
 
     /**
@@ -266,8 +266,7 @@ public class HttpServletResponseWrapper implements HttpServletResponse, RenderRe
     }
 
     /**
-     * @see javax.servlet.http.HttpServletResponse#addDateHeader(String,
-     *      long)
+     * @see javax.servlet.http.HttpServletResponse#addDateHeader(String, long)
      */
     public void addDateHeader(final String arg0, final long arg1)
     {
@@ -275,8 +274,7 @@ public class HttpServletResponseWrapper implements HttpServletResponse, RenderRe
     }
 
     /**
-     * @see javax.servlet.http.HttpServletResponse#addHeader(String,
-     *      String)
+     * @see javax.servlet.http.HttpServletResponse#addHeader(String, String)
      */
     public void addHeader(final String arg0, final String arg1)
     {
@@ -284,8 +282,7 @@ public class HttpServletResponseWrapper implements HttpServletResponse, RenderRe
     }
 
     /**
-     * @see javax.servlet.http.HttpServletResponse#addIntHeader(String,
-     *      int)
+     * @see javax.servlet.http.HttpServletResponse#addIntHeader(String, int)
      */
     public void addIntHeader(final String arg0, final int arg1)
     {
@@ -354,8 +351,7 @@ public class HttpServletResponseWrapper implements HttpServletResponse, RenderRe
     }
 
     /**
-     * @see javax.servlet.http.HttpServletResponse#sendError(int,
-     *      String)
+     * @see javax.servlet.http.HttpServletResponse#sendError(int, String)
      */
     public void sendError(final int arg0, final String arg1) throws IOException
     {
@@ -379,8 +375,7 @@ public class HttpServletResponseWrapper implements HttpServletResponse, RenderRe
     }
 
     /**
-     * @see javax.servlet.http.HttpServletResponse#setDateHeader(String,
-     *      long)
+     * @see javax.servlet.http.HttpServletResponse#setDateHeader(String, long)
      */
     public void setDateHeader(final String arg0, final long arg1)
     {
@@ -388,8 +383,7 @@ public class HttpServletResponseWrapper implements HttpServletResponse, RenderRe
     }
 
     /**
-     * @see javax.servlet.http.HttpServletResponse#setHeader(String,
-     *      String)
+     * @see javax.servlet.http.HttpServletResponse#setHeader(String, String)
      */
     public void setHeader(final String arg0, final String arg1)
     {
@@ -397,8 +391,7 @@ public class HttpServletResponseWrapper implements HttpServletResponse, RenderRe
     }
 
     /**
-     * @see javax.servlet.http.HttpServletResponse#setIntHeader(String,
-     *      int)
+     * @see javax.servlet.http.HttpServletResponse#setIntHeader(String, int)
      */
     public void setIntHeader(final String arg0, final int arg1)
     {
@@ -406,8 +399,7 @@ public class HttpServletResponseWrapper implements HttpServletResponse, RenderRe
     }
 
     /**
-     * @see javax.servlet.http.HttpServletResponse#setStatus(int,
-     *      String)
+     * @see javax.servlet.http.HttpServletResponse#setStatus(int, String)
      * @deprecated
      */
     @Deprecated
@@ -425,8 +417,7 @@ public class HttpServletResponseWrapper implements HttpServletResponse, RenderRe
     }
 
     /**
-     * @see javax.portlet.PortletResponse#addProperty(String,
-     *      String)
+     * @see javax.portlet.PortletResponse#addProperty(String, String)
      */
     public void addProperty(final String arg0, final String arg1)
     {
@@ -436,8 +427,7 @@ public class HttpServletResponseWrapper implements HttpServletResponse, RenderRe
     }
 
     /**
-     * @see javax.portlet.PortletResponse#setProperty(String,
-     *      String)
+     * @see javax.portlet.PortletResponse#setProperty(String, String)
      */
     public void setProperty(final String arg0, final String arg1)
     {

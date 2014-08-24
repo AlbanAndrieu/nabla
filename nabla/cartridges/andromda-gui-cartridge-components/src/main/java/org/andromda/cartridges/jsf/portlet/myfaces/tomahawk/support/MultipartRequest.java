@@ -39,7 +39,7 @@ import java.util.Map;
 
 /**
  * This interface handles the multipart request for inputFileUpload components.
- *
+ * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  */
 public interface MultipartRequest
@@ -55,6 +55,7 @@ public interface MultipartRequest
     /**
      * Not used internally by MyFaces, but provides a way to handle the uploaded
      * files out of MyFaces.
+     * 
      * @return fileItems
      */
     public abstract Map getFileItems();

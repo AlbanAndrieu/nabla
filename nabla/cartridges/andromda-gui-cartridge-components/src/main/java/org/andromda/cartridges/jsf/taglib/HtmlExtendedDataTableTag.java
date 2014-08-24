@@ -42,7 +42,7 @@ import javax.faces.component.UIComponent;
 /**
  * Extends dataTable to provide the ability to submit tables of data and render
  * the data back into the table using a backing value.
- *
+ * 
  * @author Chad Brandon
  */
 public class HtmlExtendedDataTableTag extends HtmlDataTableTag

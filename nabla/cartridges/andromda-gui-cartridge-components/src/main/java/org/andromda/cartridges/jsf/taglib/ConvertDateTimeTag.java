@@ -44,7 +44,7 @@ import javax.servlet.jsp.PageContext;
 /**
  * Extends the default myfaces convert date time tag in order to use
  * the custom date time converter {@link org.andromda.cartridges.jsf.converters.JSFDateTimeConverter}.
- *
+ * 
  * @author Chad Brandon
  */
 public class ConvertDateTimeTag extends org.apache.myfaces.taglib.core.ConvertDateTimeTag
@@ -58,7 +58,7 @@ public class ConvertDateTimeTag extends org.apache.myfaces.taglib.core.ConvertDa
     /**
      * Overridden to set the converter id using out custom date time
      * converter: {@link org.andromda.cartridges.jsf.converters.JSFDateTimeConverter}.
-     *
+     * 
      * @see javax.servlet.jsp.tagext.Tag#setPageContext(javax.servlet.jsp.PageContext)
      */
     @Override

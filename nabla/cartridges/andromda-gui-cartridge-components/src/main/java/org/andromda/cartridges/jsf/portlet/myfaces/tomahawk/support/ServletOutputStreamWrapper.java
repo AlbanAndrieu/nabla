@@ -43,9 +43,8 @@ import javax.servlet.ServletOutputStream;
 
 /**
  * This class is a dummy ServletOutputStream.
- *
+ * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
- *
  */
 public class ServletOutputStreamWrapper extends ServletOutputStream
 {
@@ -65,14 +64,11 @@ public class ServletOutputStreamWrapper extends ServletOutputStream
     /**
      * Writes a <code>String</code> to the client, without a carriage
      * return-line feed (CRLF) character at the end.
-     *
-     *
+     * 
      * @param s
-     *            the <code>String</code> to send to the client
-     *
+     * the <code>String</code> to send to the client
      * @exception IOException
-     *                if an input or output exception occurred
-     *
+     * if an input or output exception occurred
      */
     public void print(String s) throws IOException
     {
@@ -118,13 +114,11 @@ public class ServletOutputStreamWrapper extends ServletOutputStream
     /**
      * Writes a <code>boolean</code> value to the client, with no carriage
      * return-line feed (CRLF) character at the end.
-     *
+     * 
      * @param b
-     *            the <code>boolean</code> value to send to the client
-     *
+     * the <code>boolean</code> value to send to the client
      * @exception IOException
-     *                if an input or output exception occurred
-     *
+     * if an input or output exception occurred
      */
     public void print(boolean b) throws IOException
     {
@@ -150,13 +144,11 @@ public class ServletOutputStreamWrapper extends ServletOutputStream
     /**
      * Writes a character to the client, with no carriage return-line feed
      * (CRLF) at the end.
-     *
+     * 
      * @param c
-     *            the character to send to the client
-     *
+     * the character to send to the client
      * @exception IOException
-     *                if an input or output exception occurred
-     *
+     * if an input or output exception occurred
      */
     public void print(char c) throws IOException
     {
@@ -166,16 +158,13 @@ public class ServletOutputStreamWrapper extends ServletOutputStream
     }
 
     /**
-     *
      * Writes an int to the client, with no carriage return-line feed (CRLF) at
      * the end.
-     *
+     * 
      * @param i
-     *            the int to send to the client
-     *
+     * the int to send to the client
      * @exception IOException
-     *                if an input or output exception occurred
-     *
+     * if an input or output exception occurred
      */
     public void print(int i) throws IOException
     {
@@ -185,16 +174,13 @@ public class ServletOutputStreamWrapper extends ServletOutputStream
     }
 
     /**
-     *
      * Writes a <code>long</code> value to the client, with no carriage
      * return-line feed (CRLF) at the end.
-     *
+     * 
      * @param l
-     *            the <code>long</code> value to send to the client
-     *
+     * the <code>long</code> value to send to the client
      * @exception IOException
-     *                if an input or output exception occurred
-     *
+     * if an input or output exception occurred
      */
     public void print(long l) throws IOException
     {
@@ -204,15 +190,13 @@ public class ServletOutputStreamWrapper extends ServletOutputStream
     }
 
     /**
-     *
      * Writes a <code>float</code> value to the client, with no carriage
      * return-line feed (CRLF) at the end.
-     *
+     * 
      * @param f
-     *            the <code>float</code> value to send to the client
-     *
+     * the <code>float</code> value to send to the client
      * @exception IOException
-     *                if an input or output exception occurred
+     * if an input or output exception occurred
      */
     public void print(float f) throws IOException
     {
@@ -222,15 +206,13 @@ public class ServletOutputStreamWrapper extends ServletOutputStream
     }
 
     /**
-     *
      * Writes a <code>double</code> value to the client, with no carriage
      * return-line feed (CRLF) at the end.
-     *
+     * 
      * @param d
-     *            the <code>double</code> value to send to the client
-     *
+     * the <code>double</code> value to send to the client
      * @exception IOException
-     *                if an input or output exception occurred
+     * if an input or output exception occurred
      */
     public void print(double d) throws IOException
     {
@@ -241,7 +223,7 @@ public class ServletOutputStreamWrapper extends ServletOutputStream
 
     /**
      * Writes a carriage return-line feed (CRLF) to the client.
-     *
+     * 
      * @exception IOException if an input or output exception occurred
      */
     public void println() throws IOException
@@ -254,12 +236,9 @@ public class ServletOutputStreamWrapper extends ServletOutputStream
     /**
      * Writes a <code>String</code> to the client, followed by a carriage
      * return-line feed (CRLF).
-     *
-     *
+     * 
      * @param s the <code>String</code> to write to the client
-     *
      * @exception IOException if an input or output exception occurred
-     *
      */
     public void println(String s) throws IOException
     {
@@ -270,13 +249,11 @@ public class ServletOutputStreamWrapper extends ServletOutputStream
     }
 
     /**
-     *
      * Writes a <code>boolean</code> value to the client, followed by a
      * carriage return-line feed (CRLF).
-     *
+     * 
      * @param b the <code>boolean</code> value to write to the client
      * @exception IOException if an input or output exception occurred
-     *
      */
     public void println(boolean b) throws IOException
     {
@@ -287,16 +264,13 @@ public class ServletOutputStreamWrapper extends ServletOutputStream
     }
 
     /**
-     *
      * Writes a character to the client, followed by a carriage return-line feed
      * (CRLF).
-     *
+     * 
      * @param c
-     *            the character to write to the client
-     *
+     * the character to write to the client
      * @exception IOException
-     *                if an input or output exception occurred
-     *
+     * if an input or output exception occurred
      */
     public void println(char c) throws IOException
     {
@@ -307,17 +281,13 @@ public class ServletOutputStreamWrapper extends ServletOutputStream
     }
 
     /**
-     *
      * Writes an int to the client, followed by a carriage return-line feed
      * (CRLF) character.
-     *
-     *
+     * 
      * @param i
-     *            the int to write to the client
-     *
+     * the int to write to the client
      * @exception IOException
-     *                if an input or output exception occurred
-     *
+     * if an input or output exception occurred
      */
     public void println(int i) throws IOException
     {
@@ -328,17 +298,13 @@ public class ServletOutputStreamWrapper extends ServletOutputStream
     }
 
     /**
-     *
      * Writes a <code>long</code> value to the client, followed by a carriage
      * return-line feed (CRLF).
-     *
-     *
+     * 
      * @param l
-     *            the <code>long</code> value to write to the client
-     *
+     * the <code>long</code> value to write to the client
      * @exception IOException
-     *                if an input or output exception occurred
-     *
+     * if an input or output exception occurred
      */
     public void println(long l) throws IOException
     {
@@ -349,17 +315,13 @@ public class ServletOutputStreamWrapper extends ServletOutputStream
     }
 
     /**
-     *
      * Writes a <code>float</code> value to the client, followed by a carriage
      * return-line feed (CRLF).
-     *
+     * 
      * @param f
-     *            the <code>float</code> value to write to the client
-     *
-     *
+     * the <code>float</code> value to write to the client
      * @exception IOException
-     *                if an input or output exception occurred
-     *
+     * if an input or output exception occurred
      */
     public void println(float f) throws IOException
     {
@@ -370,17 +332,13 @@ public class ServletOutputStreamWrapper extends ServletOutputStream
     }
 
     /**
-     *
      * Writes a <code>double</code> value to the client, followed by a
      * carriage return-line feed (CRLF).
-     *
-     *
+     * 
      * @param d
-     *            the <code>double</code> value to write to the client
-     *
+     * the <code>double</code> value to write to the client
      * @exception IOException
-     *                if an input or output exception occurred
-     *
+     * if an input or output exception occurred
      */
     public void println(double d) throws IOException
     {

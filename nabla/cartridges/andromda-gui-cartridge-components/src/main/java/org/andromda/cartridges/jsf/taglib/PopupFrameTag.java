@@ -320,8 +320,7 @@ public class PopupFrameTag extends UIComponentBodyTag
 
             command = (HtmlPopupFrame) component;
 
-        }
-        catch (ClassCastException cce)
+        } catch (ClassCastException cce)
         {
 
             throw new IllegalStateException("Component " + component.toString() + " not expected type.  Expected: UICommand.  Perhaps you're missing a tag?");

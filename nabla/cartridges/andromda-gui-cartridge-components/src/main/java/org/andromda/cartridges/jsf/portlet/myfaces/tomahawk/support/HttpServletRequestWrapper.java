@@ -59,7 +59,7 @@ import javax.servlet.http.HttpSession;
 
 /**
  * This class is a dummy HttpServletRequest.
- *
+ * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * @author Chad Brandon
  */

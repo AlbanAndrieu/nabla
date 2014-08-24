@@ -54,7 +54,7 @@ public class JSFValidatorTag extends UIComponentTag
 
     /**
      * Sets whether or not client side validation shall be enabled.
-     *
+     * 
      * @param clientIn a true/false string.
      */
     public void setClient(final String clientIn)
@@ -66,7 +66,7 @@ public class JSFValidatorTag extends UIComponentTag
 
     /**
      * Sets properties for the component.
-     *
+     * 
      * @param component The component whose properties we're setting
      */
     @Override
@@ -112,7 +112,7 @@ public class JSFValidatorTag extends UIComponentTag
 
     /**
      * Sets the <code>client</code> property to null.
-     *
+     * 
      * @see javax.servlet.jsp.tagext.Tag#release()
      */
     @Override

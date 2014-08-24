@@ -94,7 +94,7 @@ public class BinaryFile extends UIComponentBase
 
     /**
      * Gets the current value of this binary file.
-     *
+     * 
      * @return the value of this binary file.
      */
     public Object getValue()
@@ -130,7 +130,7 @@ public class BinaryFile extends UIComponentBase
 
     /**
      * Sets the file name for this component.
-     *
+     * 
      * @param fileName the name of the binary file to be rendered.
      */
     public void setFileName(final String fileName)
@@ -142,6 +142,7 @@ public class BinaryFile extends UIComponentBase
 
     /**
      * Gets the file name for rending the binary file.
+     * 
      * @return the name of the file to render.
      */
     public String getFileName()
@@ -177,7 +178,7 @@ public class BinaryFile extends UIComponentBase
 
     /**
      * Gets the explicit content type to render the file in.
-     *
+     * 
      * @return Returns the contentType.
      */
     public String getContentType()
@@ -227,7 +228,7 @@ public class BinaryFile extends UIComponentBase
 
     /**
      * Sets the explicit content type in which to render the file.
-     *
+     * 
      * @param contentType The contentType to set.
      */
     public void setContentType(final String contentType)
@@ -249,7 +250,7 @@ public class BinaryFile extends UIComponentBase
 
     /**
      * Gets the encoding to render the file in.
-     *
+     * 
      * @return Returns the encoding.
      */
     public String getEncoding()
@@ -275,7 +276,7 @@ public class BinaryFile extends UIComponentBase
 
     /**
      * Sets the explicit encoding used to render the file.
-     *
+     * 
      * @param encoding The encoding to set.
      */
     public void setEncoding(final String encoding)
@@ -297,7 +298,7 @@ public class BinaryFile extends UIComponentBase
 
     /**
      * Gets whether or not the prompt should be rendered.
-     *
+     * 
      * @return Returns the prompt.
      */
     public boolean isPrompt()
@@ -323,7 +324,7 @@ public class BinaryFile extends UIComponentBase
 
     /**
      * Sets whether or not the prompt should be rendered.
-     *
+     * 
      * @param prompt The prompt to set.
      */
     public void setPrompt(final boolean prompt)
@@ -356,8 +357,7 @@ public class BinaryFile extends UIComponentBase
 
             contentTypes.load(stream);
 
-        }
-        catch (final Throwable throwable)
+        } catch (final Throwable throwable)
         {
 
             LOGGER.error(throwable);
@@ -374,8 +374,7 @@ public class BinaryFile extends UIComponentBase
 
             }
 
-        }
-        catch (final Throwable throwable)
+        } catch (final Throwable throwable)
         {
 
             // - ignore

@@ -48,7 +48,7 @@ public class BinaryFileTag extends UIComponentTag
 
     /**
      * Sets properties for the component.
-     *
+     * 
      * @param component The component whose properties we're setting
      */
     @Override
@@ -96,7 +96,7 @@ public class BinaryFileTag extends UIComponentTag
 
     /**
      * Sets the value.
-     *
+     * 
      * @return Returns the value.
      */
     public String getValue()
@@ -108,7 +108,7 @@ public class BinaryFileTag extends UIComponentTag
 
     /**
      * Gets the value.
-     *
+     * 
      * @param value The value to set.
      */
     public void setValue(String value)

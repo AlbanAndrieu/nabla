@@ -56,8 +56,7 @@ public class JSFServlet extends HttpServlet
     private final Logger      logger_          = Logger.getLogger(JSFServlet.class);
 
     /**
-     * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest,
-     *      javax.servlet.http.HttpServletResponse)
+     * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
      */
     @Override
     public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException

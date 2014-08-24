@@ -70,7 +70,7 @@ public class JSFValidator implements Validator, Serializable
     /**
      * Constructs a new instance of this class with the given <code>form</code> and
      * <code>validatorAction</code>.
-     *
+     * 
      * @param formIdIn
      * @param validatorActionIn
      */
@@ -101,7 +101,7 @@ public class JSFValidator implements Validator, Serializable
     /**
      * The setter method for the <code>type</code> property. This property is
      * passed through to the commons-validator.
-     *
+     * 
      * @param typeIn The new value for the <code>type</code> property.
      */
     public void setType(final String typeIn)
@@ -114,7 +114,8 @@ public class JSFValidator implements Validator, Serializable
     /**
      * The getter method for the <code>type</code> property. This property is
      * passed through to the commons-validator.
-     * @return  this.type
+     * 
+     * @return this.type
      */
     public String getType()
     {
@@ -132,7 +133,7 @@ public class JSFValidator implements Validator, Serializable
     /**
      * The setter method for the <code>args</code> property. This property is
      * passed through to the commons-validator..
-     *
+     * 
      * @param argsIn The new value for the <code>args</code> property.
      */
     public void setArgs(final String[] argsIn)
@@ -149,7 +150,7 @@ public class JSFValidator implements Validator, Serializable
 
     /**
      * Gets the parameters for this validator (keyed by name).
-     *
+     * 
      * @return a map containing all parameters.
      */
     public Map getParameters()
@@ -162,7 +163,7 @@ public class JSFValidator implements Validator, Serializable
     /**
      * Adds the parameter with the given <code>name</code> and the given
      * <code>value</code>.
-     *
+     * 
      * @param name the name of the parameter.
      * @param value the parameter's value
      */
@@ -178,7 +179,7 @@ public class JSFValidator implements Validator, Serializable
      * with the given <code>name</code>. This method lazily configures
      * validator resources by reading <code>/WEB-INF/validator-rules.xml</code>
      * and <code>/WEB-INF/validation.xml</code>.
-     *
+     * 
      * @param name The name of the validator
      * @return getValidatorResources().getValidatorAction(name)
      */
@@ -208,7 +209,7 @@ public class JSFValidator implements Validator, Serializable
      * Returns the commons-validator resources. This method lazily configures
      * validator resources by reading <code>/WEB-INF/validator-rules.xml</code>
      * and <code>/WEB-INF/validation.xml</code>.
-     *
+     * 
      * @return the commons-validator resources
      */
     public static ValidatorResources getValidatorResources()
@@ -238,7 +239,8 @@ public class JSFValidator implements Validator, Serializable
             if (validationInput != null)
             {
 
-                final InputStream[] inputs = new InputStream[] { rulesInput, validationInput };
+                final InputStream[] inputs = new InputStream[]
+                { rulesInput, validationInput };
 
                 try
                 {
@@ -246,8 +248,7 @@ public class JSFValidator implements Validator, Serializable
                     validatorResources = new ValidatorResources(inputs);
                     applicationMap.put(VALIDATOR_RESOURCES_KEY, validatorResources);
 
-                }
-                catch (final Throwable throwable)
+                } catch (final Throwable throwable)
                 {
 
                     throw new JSFValidatorException(throwable);
@@ -270,7 +271,7 @@ public class JSFValidator implements Validator, Serializable
     /**
      * This <code>validate</code> method is called by JSF to verify the
      * component to which the validator is attached.
-     *
+     * 
      * @see javax.faces.validator.Validator#validate(javax.faces.context.FacesContext, javax.faces.component.UIComponent, Object)
      */
     public void validate(final FacesContext context, final UIComponent component, final Object value)
@@ -317,14 +318,12 @@ public class JSFValidator implements Validator, Serializable
 
                 }
 
-            }
-            catch (final ValidatorException exception)
+            } catch (final ValidatorException exception)
             {
 
                 throw exception;
 
-            }
-            catch (final Exception exception)
+            } catch (final Exception exception)
             {
 
                 logger.error(exception.getMessage(), exception);
@@ -337,6 +336,7 @@ public class JSFValidator implements Validator, Serializable
 
     /**
      * Gets the validator class from the underlying <code>validatorAction</code>.
+     * 
      * @return the validator class
      * @throws ClassNotFoundException
      */
@@ -372,7 +372,7 @@ public class JSFValidator implements Validator, Serializable
 
     /**
      * Gets the validator method for the underlying <code>validatorAction</code>.
-     *
+     * 
      * @return the validator method.
      * @throws ClassNotFoundException
      * @throws NoSuchMethodException
@@ -380,8 +380,8 @@ public class JSFValidator implements Validator, Serializable
     private Method getValidatorMethod() throws ClassNotFoundException, NoSuchMethodException
     {
 
-        Class[] parameterTypes = new Class[] { javax.faces.context.FacesContext.class, Object.class, java.util.Map.class, java.util.Collection.class, org.apache.commons.validator.ValidatorAction.class,
-                org.apache.commons.validator.Field.class };
+        Class[] parameterTypes = new Class[]
+        { javax.faces.context.FacesContext.class, Object.class, java.util.Map.class, java.util.Collection.class, org.apache.commons.validator.ValidatorAction.class, org.apache.commons.validator.Field.class };
 
         return this.getValidatorClass().getMethod(this.validatorAction.getMethod(), parameterTypes);
 
@@ -389,8 +389,9 @@ public class JSFValidator implements Validator, Serializable
 
     /**
      * Attempts to retrieve the form field from the form with the given <code>formName</code>
-     * and the field with the given <code>fieldName</code>.  If it can't be retrieved, null
+     * and the field with the given <code>fieldName</code>. If it can't be retrieved, null
      * is returned.
+     * 
      * @param form the form to validate.
      * @param fieldName the name of the field.
      * @return the found field or null if it could not be found.
@@ -414,6 +415,7 @@ public class JSFValidator implements Validator, Serializable
     /**
      * Retrieves an error message, using the validator's message combined with
      * the errant value.
+     * 
      * @param context
      * @return ValidatorMessages.getMessage
      */

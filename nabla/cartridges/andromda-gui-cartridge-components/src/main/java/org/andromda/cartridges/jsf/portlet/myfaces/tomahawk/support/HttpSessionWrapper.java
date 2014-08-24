@@ -46,7 +46,7 @@ import javax.servlet.http.HttpSessionContext;
 
 /**
  * This class is a dummy HttpSessionWrapper.
- *
+ * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  */
 @SuppressWarnings("deprecation")
@@ -130,6 +130,7 @@ public class HttpSessionWrapper implements HttpSession
 
     /**
      * return null
+     * 
      * @see javax.servlet.http.HttpSession#getSessionContext()
      * @deprecated
      */

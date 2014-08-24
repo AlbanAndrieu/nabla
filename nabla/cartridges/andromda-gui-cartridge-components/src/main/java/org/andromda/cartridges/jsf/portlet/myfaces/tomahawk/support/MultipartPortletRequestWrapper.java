@@ -69,7 +69,7 @@ import javax.portlet.WindowState;
 /**
  * This class handles multipart/form-date request for Portlet. It will be called
  * if the request is multipart/form-data.
- *
+ * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * @author Sylvain Vieujot
  */
@@ -130,8 +130,7 @@ public class MultipartPortletRequestWrapper implements ActionRequest, MultipartR
 
             requestParameters = fileUpload.parseRequest(request);
 
-        }
-        catch (final FileUploadBase.SizeLimitExceededException e)
+        } catch (final FileUploadBase.SizeLimitExceededException e)
         {
 
             // TODO: find a way to notify the user about the fact that the
@@ -145,8 +144,7 @@ public class MultipartPortletRequestWrapper implements ActionRequest, MultipartR
 
             requestParameters = Collections.EMPTY_LIST;
 
-        }
-        catch (final FileUploadException fue)
+        } catch (final FileUploadException fue)
         {
 
             MultipartPortletRequestWrapper.log.error("Exception while uploading file.", fue);
@@ -187,8 +185,7 @@ public class MultipartPortletRequestWrapper implements ActionRequest, MultipartR
 
                         value = new String(fileItem.get(), charset);
 
-                    }
-                    catch (final UnsupportedEncodingException e)
+                    } catch (final UnsupportedEncodingException e)
                     {
 
                         value = fileItem.getString();
@@ -237,7 +234,8 @@ public class MultipartPortletRequestWrapper implements ActionRequest, MultipartR
         if (!parametersMap.containsKey(name))
         {
 
-            final String[] valuesArray = { value };
+            final String[] valuesArray =
+            { value };
 
             parametersMap.put(name, valuesArray);
 
@@ -354,6 +352,7 @@ public class MultipartPortletRequestWrapper implements ActionRequest, MultipartR
     /**
      * Not used internally by MyFaces, but provides a way to handle the uploaded
      * files out of MyFaces.
+     * 
      * @return fileItems
      */
     public Map getFileItems()
@@ -668,8 +667,7 @@ public class MultipartPortletRequestWrapper implements ActionRequest, MultipartR
     }
 
     /**
-     * @see javax.portlet.PortletRequest#setAttribute(String,
-     *      Object)
+     * @see javax.portlet.PortletRequest#setAttribute(String, Object)
      */
     public void setAttribute(final String arg0, final Object arg1)
     {

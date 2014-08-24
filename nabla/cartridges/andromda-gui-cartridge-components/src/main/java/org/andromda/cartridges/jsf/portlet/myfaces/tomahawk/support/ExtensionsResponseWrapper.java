@@ -100,8 +100,7 @@ public class ExtensionsResponseWrapper extends HttpServletResponseWrapper implem
 
             return stream.toString(getCharacterEncoding());
 
-        }
-        catch (final UnsupportedEncodingException e)
+        } catch (final UnsupportedEncodingException e)
         {
 
             // an attempt to set an invalid character encoding would have caused
@@ -134,7 +133,7 @@ public class ExtensionsResponseWrapper extends HttpServletResponseWrapper implem
 
     /**
      * This method is used by Jetty.
-     *
+     * 
      * @throws IOException
      */
     @Override
@@ -226,8 +225,7 @@ public class ExtensionsResponseWrapper extends HttpServletResponseWrapper implem
 
             }
 
-        }
-        catch (final IOException e)
+        } catch (final IOException e)
         {
 
             // Ignore
@@ -245,7 +243,7 @@ public class ExtensionsResponseWrapper extends HttpServletResponseWrapper implem
 
         /**
          * Creates a new MyServletOutputStream object.
-         *
+         * 
          * @param outputStream DOCUMENT ME!
          */
         public MyServletOutputStream(final OutputStream outputStream)
@@ -257,9 +255,8 @@ public class ExtensionsResponseWrapper extends HttpServletResponseWrapper implem
 
         /**
          * DOCUMENT ME!
-         *
+         * 
          * @param b DOCUMENT ME!
-         *
          * @throws IOException DOCUMENT ME!
          */
         @Override
@@ -272,9 +269,8 @@ public class ExtensionsResponseWrapper extends HttpServletResponseWrapper implem
 
         /**
          * DOCUMENT ME!
-         *
+         * 
          * @param bytes DOCUMENT ME!
-         *
          * @throws IOException DOCUMENT ME!
          */
         @Override
@@ -287,11 +283,10 @@ public class ExtensionsResponseWrapper extends HttpServletResponseWrapper implem
 
         /**
          * DOCUMENT ME!
-         *
+         * 
          * @param bytes DOCUMENT ME!
          * @param off DOCUMENT ME!
          * @param len DOCUMENT ME!
-         *
          * @throws IOException DOCUMENT ME!
          */
         @Override

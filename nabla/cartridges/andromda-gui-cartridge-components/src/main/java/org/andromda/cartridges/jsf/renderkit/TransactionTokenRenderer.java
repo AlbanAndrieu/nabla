@@ -46,7 +46,7 @@ import javax.faces.render.Renderer;
 /**
  * The transaction token renderer (just adds the transaction token value
  * as an attribute of the parent component so we can skip multi-submits of the same action).
- *
+ * 
  * @author Chad Brandon
  */
 public class TransactionTokenRenderer extends Renderer

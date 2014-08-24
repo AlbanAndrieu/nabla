@@ -61,7 +61,7 @@ import javax.portlet.RenderResponse;
 /**
  * This portlet filter supports Tomahawk's extended components, such as
  * inputHtml and fileUpload.
- *
+ * 
  * @author <a href="mailto:shinsuke@yahoo.co.jp">Shinsuke Sugaya</a>
  * @author Chad Brandon
  */
@@ -82,7 +82,7 @@ public class ExtensionsPortletFilter implements PortletFilter
     /**
      * Called by init method of MyFacesFilterPortlet to initialize this portlet
      * filter.
-     *
+     * 
      * @param filterConfig
      * @throws PortletException
      */
@@ -126,7 +126,7 @@ public class ExtensionsPortletFilter implements PortletFilter
     /**
      * Called by render method of MyFacesFilterPortlet to put tags, such as
      * &lt;style&gt;, into &lt;head&gt;.
-     *
+     * 
      * @param request
      * @param response
      * @param chain PortletFilterChain instance
@@ -156,8 +156,7 @@ public class ExtensionsPortletFilter implements PortletFilter
 
             addResource = AddResourceFactory.getInstance(extendedRequest);
 
-        }
-        catch (Throwable throwable)
+        } catch (Throwable throwable)
         {
 
             log.error(throwable);
@@ -229,8 +228,7 @@ public class ExtensionsPortletFilter implements PortletFilter
 
             }
 
-        }
-        finally
+        } finally
         {
 
             addResource.responseFinished();
@@ -242,7 +240,7 @@ public class ExtensionsPortletFilter implements PortletFilter
     /**
      * Called by render method of MyFacesFilterPortlet to wrap the request when
      * it has a multipart content.
-     *
+     * 
      * @param request
      * @param response
      * @param chain PortletFilterChain instance

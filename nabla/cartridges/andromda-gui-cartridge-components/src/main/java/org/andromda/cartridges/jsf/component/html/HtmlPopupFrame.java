@@ -116,6 +116,7 @@ public class HtmlPopupFrame extends UICommand
     /**
      * Returns the component's family. In this case, the component is not
      * associated with a family, so this method returns null.
+     * 
      * @return RENDERER_TYPE
      */
     public String getFamily()

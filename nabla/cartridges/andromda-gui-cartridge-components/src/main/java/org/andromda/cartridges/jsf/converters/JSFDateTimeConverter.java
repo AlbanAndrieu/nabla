@@ -50,12 +50,11 @@ import javax.faces.el.ValueBinding;
 /**
  * Overrides the default DateTimeConverter to include conversion of Calendar
  * instances as well as Date instances.
- *
  * <p>
  * Unfortunately because of poor design in myfaces's calendar component, we have to implement
  * DateConverter so that we can correctly convert to a date in the inputCalendar implementation.
  * </p>
- *
+ * 
  * @author Chad Brandon
  */
 public class JSFDateTimeConverter extends javax.faces.convert.DateTimeConverter implements DateConverter
@@ -136,6 +135,7 @@ public class JSFDateTimeConverter extends javax.faces.convert.DateTimeConverter 
 
     /**
      * Gets the component type for the given <code>component</code>.
+     * 
      * @param context the current faces context.
      * @param component the component from which to retrieve the type.
      * @return true/false
@@ -159,6 +159,7 @@ public class JSFDateTimeConverter extends javax.faces.convert.DateTimeConverter 
 
     /**
      * Gets the component Value for the given <code>component</code>.
+     * 
      * @param context the current faces context.
      * @param component the component from which to retrieve the value.
      * @return true/false
@@ -247,8 +248,7 @@ public class JSFDateTimeConverter extends javax.faces.convert.DateTimeConverter 
     public static final String CONVERTER_ID = "andromda.faces.DateTime";
 
     /**
-     * @see org.apache.myfaces.custom.calendar.HtmlCalendarRenderer.DateConverter
-     * #getAsDate(javax.faces.context.FacesContext, javax.faces.component.UIComponent)
+     * @see org.apache.myfaces.custom.calendar.HtmlCalendarRenderer.DateConverter #getAsDate(javax.faces.context.FacesContext, javax.faces.component.UIComponent)
      */
     @Override
     public Date getAsDate(FacesContext context, UIComponent component)

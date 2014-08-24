@@ -67,7 +67,7 @@ public class PopupRenderer extends Renderer
     /**
      * Retrieve the popup resource path (the path within the
      * deployed web application) given the relative <code>path</code>
-     *
+     * 
      * @param path the relative path.
      * @return the complete path including the context path of the application.
      */
@@ -444,7 +444,7 @@ public class PopupRenderer extends Renderer
     /**
      * Gets the form to which the <code>component</code> belongs
      * or null if the form can not be found.
-     *
+     * 
      * @param context the faces context.
      * @param component the component.
      * @return the form.

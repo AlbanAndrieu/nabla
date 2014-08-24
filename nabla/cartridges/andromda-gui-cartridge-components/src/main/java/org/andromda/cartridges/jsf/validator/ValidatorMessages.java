@@ -48,7 +48,7 @@ import javax.faces.context.FacesContext;
 
 /**
  * Retrieves and formats the validation messages.
- *
+ * 
  * @author Chad Brandon
  */
 public class ValidatorMessages
@@ -57,7 +57,7 @@ public class ValidatorMessages
     /**
      * Gets the <code>message</code> based on the <code>action</code>
      * message and the <code>field</code>'s arg objects.
-     *
+     * 
      * @param action Validator action
      * @param args any message arguments to be substituted.
      * @param context the faces context
@@ -78,8 +78,7 @@ public class ValidatorMessages
 
                 message = Messages.get(messageKey, args);
 
-            }
-            catch (final MissingResourceException exception)
+            } catch (final MissingResourceException exception)
             {
 
                 message = messageKey;
@@ -96,7 +95,7 @@ public class ValidatorMessages
 
     /**
      * Gets the message given the action, field and faces context.
-     *
+     * 
      * @param action the validator action instance.
      * @param field the field.
      * @param context the faces context.
@@ -112,6 +111,7 @@ public class ValidatorMessages
     /**
      * Gets the message arguments based on the given
      * validator <code>action</code> and <code>field</code>.
+     * 
      * @param action action name
      * @param field the validator field
      * @return message arguments
