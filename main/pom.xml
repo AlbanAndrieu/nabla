@@ -1060,7 +1060,8 @@
 							<property>
 									<name>!profile.activation</name>
 							</property>
-					</activation>		
+					</activation>	
+					-->	
 					<build>
 						<plugins>            
 							<plugin>
@@ -1133,7 +1134,6 @@
 						</plugins>
 					</build>
 				</profile>	
-				-->		    
 				<profile>
 					<id>checkstyle.report</id>
 					<activation>
