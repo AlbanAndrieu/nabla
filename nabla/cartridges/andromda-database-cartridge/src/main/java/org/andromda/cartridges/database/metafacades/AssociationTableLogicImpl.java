@@ -44,7 +44,7 @@ import java.util.Iterator;
 
 /**
  * MetafacadeLogic implementation for org.andromda.cartridges.database.metafacades.AssociationTable.
- *
+ * 
  * @see org.andromda.cartridges.database.metafacades.AssociationTable
  */
 public class AssociationTableLogicImpl extends AssociationTableLogic implements org.andromda.cartridges.database.metafacades.AssociationTable
@@ -53,7 +53,7 @@ public class AssociationTableLogicImpl extends AssociationTableLogic implements 
     // ---------------- constructor -------------------------------
     /**
      * Creates a new AssociationTableLogicImpl object.
-     *
+     * 
      * @param metaObject DOCUMENT ME!
      * @param context DOCUMENT ME!
      */

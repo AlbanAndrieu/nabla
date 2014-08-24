@@ -35,7 +35,7 @@ package org.andromda.cartridges.database;
 
 /**
  * Stores Globals specific to the Database cartridge.
- *
+ * 
  * @author Wouter Zoons
  * @author Chad Brandon
  */

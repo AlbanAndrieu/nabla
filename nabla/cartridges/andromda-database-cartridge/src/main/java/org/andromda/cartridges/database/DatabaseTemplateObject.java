@@ -49,7 +49,7 @@ import org.apache.log4j.Logger;
 
 /**
  * This template object helps with model to DDL transformation.
- *
+ * 
  * @author Chad Brandon
  */
 public class DatabaseTemplateObject
@@ -77,7 +77,7 @@ public class DatabaseTemplateObject
      * in the JdbcTypeMappings XML configuration.
      * </p>
      * If no maximum length has been set then this method does nothing.
-     *
+     * 
      * @param name the name length to check and trim if necessary
      * @return String the string to be used as SQL type
      */
@@ -106,7 +106,7 @@ public class DatabaseTemplateObject
      * Sets the generated DDL name maximum length. This is so names don't get to
      * long, for example, Oracle names can't be longer than 30 characters so the
      * maxSqlNameLength would be set to 30.
-     *
+     * 
      * @param maxSqlNameLength the maximum length an name can be.
      */
     public void setMaxSqlNameLength(String maxSqlNameLength)
@@ -123,7 +123,7 @@ public class DatabaseTemplateObject
 
     /**
      * Get the value of the current maximum length that a SQL name may be
-     *
+     * 
      * @return Integer - the current maximum length that a SQL name can be.
      */
     private Short getMaxSqlNameLength()
@@ -136,7 +136,7 @@ public class DatabaseTemplateObject
     /**
      * Instantiates an Object from the initial value of an attribute and returns
      * its value.
-     *
+     * 
      * @param attribute the attribute to retrieve the initial value from.
      * @return Object the initial value.
      */
@@ -178,8 +178,7 @@ public class DatabaseTemplateObject
 
                             }
 
-                        }
-                        catch (Exception ex)
+                        } catch (Exception ex)
                         {
 
                             String errMsg = "Error performing " + methodName;

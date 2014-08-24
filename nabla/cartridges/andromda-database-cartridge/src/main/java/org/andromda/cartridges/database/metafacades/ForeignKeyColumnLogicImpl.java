@@ -43,7 +43,7 @@ import java.util.Random;
 /**
  * MetafacadeLogic implementation for
  * org.andromda.cartridges.database.metafacades.ForeignKeyColumn.
- *
+ * 
  * @see org.andromda.cartridges.database.metafacades.ForeignKeyColumn
  */
 public class ForeignKeyColumnLogicImpl extends ForeignKeyColumnLogic implements org.andromda.cartridges.database.metafacades.ForeignKeyColumn
@@ -52,7 +52,7 @@ public class ForeignKeyColumnLogicImpl extends ForeignKeyColumnLogic implements 
     // ---------------- constructor -------------------------------
     /**
      * Creates a new ForeignKeyColumnLogicImpl object.
-     *
+     * 
      * @param metaObject DOCUMENT ME!
      * @param context DOCUMENT ME!
      */
@@ -157,7 +157,7 @@ public class ForeignKeyColumnLogicImpl extends ForeignKeyColumnLogic implements 
     /**
      * Returns the actual table (i.e. the table or association table depending
      * on what type of association this foreign key column represents.
-     *
+     * 
      * @return the table or association table.
      */
     private String getIdentifierName(String prefixProperty)
@@ -232,7 +232,7 @@ public class ForeignKeyColumnLogicImpl extends ForeignKeyColumnLogic implements 
 
     /**
      * Override to make many-to-many relations always required.
-     *
+     * 
      * @see org.andromda.metafacades.uml.AssociationEndFacade#isRequired()
      */
     public boolean isRequired()

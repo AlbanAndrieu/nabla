@@ -54,7 +54,7 @@ import java.util.Iterator;
 /**
  * MetafacadeLogic implementation for
  * org.andromda.cartridges.database.metafacades.Table.
- *
+ * 
  * @see org.andromda.cartridges.database.metafacades.Table
  */
 public class TableLogicImpl extends TableLogic implements org.andromda.cartridges.database.metafacades.Table
@@ -68,7 +68,7 @@ public class TableLogicImpl extends TableLogic implements org.andromda.cartridge
     // ---------------- constructor -------------------------------
     /**
      * Creates a new TableLogicImpl object.
-     *
+     * 
      * @param metaObject DOCUMENT ME!
      * @param context DOCUMENT ME!
      */
@@ -106,13 +106,11 @@ public class TableLogicImpl extends TableLogic implements org.andromda.cartridge
 
             }
 
-        }
-        catch (final Exception e)
+        } catch (final Exception e)
         {
 
             // do nothing, let the 'finally' clause handle it
-        }
-        finally
+        } finally
         {
 
             if (dummyLoadSize < 0)
@@ -139,16 +137,14 @@ public class TableLogicImpl extends TableLogic implements org.andromda.cartridge
 
                 }
 
-            }
-            catch (final MetafacadeFactoryException mfe)
+            } catch (final MetafacadeFactoryException mfe)
             {
 
                 // this means the namespace property has not been registered
                 this.logger_.info("Namespace property \'" + DatabaseGlobals.DUMMYLOAD_MULTIPLIER + "\' not specified, using default value " + DatabaseGlobals.DUMMYLOAD_MULTIPLIER_DEFAULT);
                 dummyLoadMultiplier = DatabaseGlobals.DUMMYLOAD_MULTIPLIER_DEFAULT;
 
-            }
-            catch (final Exception e)
+            } catch (final Exception e)
             {
 
                 // this means the property has been registered with an invalid value
