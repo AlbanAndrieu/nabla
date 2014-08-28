@@ -139,18 +139,26 @@
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
   tags: configure  
       
+- name: Configure resolv file
+  template: src=resolv.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/resolv.conf
+  tags: configure
+
+#needed for pidgin to work in file /etc/resolv.conf
+#domain france.effix.fr
+
+#TODO move 
+#search misys.global.ad misys.global.ad. nt.france.effix.fr. france.effix.fr. effix.fr.
+#inside
+#/etc/resolvconf/resolv.conf.d/base  
+      
 - name: Checks if resolver is working properly (issues with some VBox/Host OS combinations)
   command: host -t A ansible.cc
   register: ns
   ignore_errors: yes
 
-- name: Configure resolv file
-  template: src=resolv.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/resolv.conf
-  tags: configure
-
-#- name: Pushes new resolver configuration is resolver fails
-#  lineinfile: regexp="^nameserver " line="nameserver {{ nameserver }}" dest=/etc/resolv.conf
-#  when: ns|failed
+- name: Pushes new resolver configuration is resolver fails
+  lineinfile: regexp="^nameserver " line="nameserver {{ nameserver }}" dest=/etc/resolv.conf
+  when: ns|failed
 
 - name: Checks if resolver is working properly with new nameserver
   command: host -t A ansible.cc

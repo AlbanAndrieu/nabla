@@ -11,7 +11,8 @@
 \rm -Rf .mozilla/*
 \rm -Rf .config/*
 \rm -f *.db
-
+\rm -rf ~/.local/share/Trash/*
+ 
 #\rm -Rf workspace-cpp
 #\rm -Rf workspace-j2ee
 #\rm -Rf hudson

@@ -1,0 +1,61 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+- name: Add conky repo (apt)
+  apt_repository: repo="ppa:norsetto/ppa" update_cache=yes state={{ conky_repository_state }}
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( conky_enabled or conky_manager_enabled )
+  when: "ansible_distribution_version not in ['14.04']"
+
+- name: Add conky manager repo (apt)
+  apt_repository: repo="ppa:teejee2008/ppa" update_cache=yes state={{ conky_repository_state }}
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' ) and ( conky_manager_enabled )
+  
+- name: Install conky (apt)
+  apt: pkg={{ item }} update_cache=yes state={{ conky_pkg_state }}
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:   
+   - conky-all
+#   - unace 
+#   - unrar 
+#   - zip 
+#   - unzip 
+#   - p7zip-full 
+#   - p7zip-rar 
+#   - sharutils 
+#   - rar 
+#   - uudeview 
+#   - mpack 
+#   - lha 
+#   - arj 
+#   - cabextract 
+#   - file-roller
+ 
+- name: Install conky manager (apt)
+  apt: pkg={{ item }} update_cache=yes state={{ conky_pkg_state }}
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:   
+   - conky-manager
+   
+- name: Download themes if we don't have it
+  sudo: False
+  get_url: url={{ conky_themes_url }}  dest={{ conky_home }}/ force=no
+     
+#TODO automate import themes in conky manager
+
+- name: Copy the conky startup script
+  template: src=conky-startup.sh-{{ ansible_distribution }}.j2 dest={{ conky_home }}/conky-startup.sh mode=0755
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  tags: configure
+
+#TODO start ~/.conky/startconky.sh on startup for instance in .bashrc file
+
+- name: Copy the conky init script
+  template: src=conky.sh-{{ ansible_distribution }}.j2 dest=/etc/init.d/conky mode=0755
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  tags: configure
+  
+- name: Start the conky service
+  service: name=conky state=started enabled=true
+  tags: service  

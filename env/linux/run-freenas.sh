@@ -79,6 +79,7 @@ http://home.nabla.mobi:5050/wizard/
 
 #minidlna
 #TODO fix issue http://forums.freenas.org/index.php?threads/minidlna-automatic-scan-fix.9312/
+#http://www.durindel.fr/utilisation-avancee-de-freenas#etape3
 
 #sabnzbd_1
 https://home.nabla.mobi:9090/sabnzbd/

@@ -6,11 +6,14 @@ if [ -z "$1" ]; then
   exit
 fi
 
+CONKY_USER=albandri
+SU=/bin/su
+
 case "$1" in
 start)
-  /usr/bin/Xvfb :99 -ac -screen 0 1024x768x8 &
+  $SU -l $CONKY_USER --shell=/bin/bash -c "{{ conky_home }}/conky-startup.sh"
 ;;
 stop)
-  killall Xvfb
+  killall conky
 ;;
 esac

@@ -57,7 +57,7 @@ under the License.
   <!--<localRepository>~/.m2/repository</localRepository>-->
   <!--<localRepository>C:/repo</localRepository>-->
   <!--<localRepository>/scratch/jenkins/workspace/nabla-demo/.repository</localRepository>-->
-  <!--<localRepository>${env.WORKSPACE}/.repository</localRepository>-->
+  <!--<localRepository>${env.WORKSPACE}/.m2/.repository</localRepository>-->
   <localRepository>[[MAVEN_LOCAL_REPO_PATH]]</localRepository>
 
   <!-- interactiveMode

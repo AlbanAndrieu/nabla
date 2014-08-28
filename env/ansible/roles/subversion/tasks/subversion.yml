@@ -1,0 +1,74 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+#- name: Node.js | Add the node.js PPA
+#  action: command add-apt-repository -y ppa:chris-lea/node.js creates=/etc/apt/sources.list.d/custom-node_js-{{ ansible_lsb.codename }}.list
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+#  tags: nodejs
+  
+- name: main | uninstall subversion packages
+  apt: >
+    pkg={{ item }} 
+    state=absent
+    purge=yes
+    force=yes
+  with_items:
+    - libsvn1  
+    - subversion
+  
+- name: Checking if Sources are Available
+  action: shell echo a$(cat /etc/apt/sources.list | grep $(echo   'http://extras.ubuntu.com/ubuntu' | tr "[:upper:]" "[:lower:]"  ))
+  register: sources_subversion1
+  ignore_errors: True
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and subversion_previous_enabled
+    
+- debug: msg="sources_subversion1 value is {{ sources_subversion1.stdout }} "
+  when: subversion_previous_enabled
+  
+- name: Adding source.
+  action: shell echo "deb http://extras.ubuntu.com/ubuntu {{ subversion_previous_codename }} main" | tr "[:upper:]" "[:lower:]" >> /etc/apt/sources.list
+  when: ansible_distribution == 'Debian' and sources_subversion1.stdout == 'a' and subversion_previous_enabled
+  
+- name: Checking if Sources are Available
+  action: shell echo a$(cat /etc/apt/sources.list | grep $(echo   'http://us.archive.ubuntu.com/ubuntu/' | tr "[:upper:]" "[:lower:]"  ))
+  register: sources_subversion2
+  ignore_errors: True
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and subversion_previous_enabled
+  
+- debug: msg="sources_subversion2 value is {{ sources_subversion2.stdout }} "
+  when: subversion_previous_enabled
+  
+- name: Adding source.
+  action: shell echo "deb http://us.archive.ubuntu.com/ubuntu/ {{ subversion_previous_codename }} main universe restricted multiverse" | tr "[:upper:]" "[:lower:]" >> /etc/apt/sources.list
+  when: ansible_distribution == 'Debian' and sources_subversion2.stdout == 'a' and subversion_previous_enabled
+
+- name: Install subversion package (Debian based)
+  action: apt pkg='libsvn1={{subversion_ubuntu}}' state=installed
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
+      
+- name: Install subversion package (Debian based)
+  action: apt pkg='subversion={{subversion_ubuntu}}' state=installed
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
+
+- name: Install subversion package (RedHat based)
+  action: yum name='subversion' state=installed
+  when: (ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux')
+    
+- name: Install diff tools (apt)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:  
+   - xxdiff
+#   - xxdiff-scripts
+   - meld
+   
+- name: Copy the subversion configuration merge script
+  template: src={{ subversion_merge_tool_cmd }}.j2 dest={{ subversion_merge_tool_cmd_directory }}/{{ subversion_merge_tool_cmd }} mode=0644
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  tags: configure
+
+- name: Copy the subversion configuration script
+  template: src=config.j2 dest={{ subversion_merge_tool_cmd_directory }}/config mode=0644
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  tags: configure

@@ -156,17 +156,6 @@
   file: path=/opt/maven209.tar.gz state=absent
 
 ##
- # subversion
- #
-- name: Install subversion package (Debian based)
-  action: apt pkg='subversion={{subversion_ubuntu}}' state=installed
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-
-- name: Install subversion package (RedHat based)
-  action: yum name='subversion' state=installed
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
-
-##
  # git
  #
 - name: Install git package (Debian based)

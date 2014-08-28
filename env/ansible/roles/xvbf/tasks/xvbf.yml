@@ -9,7 +9,7 @@
    - xvfb
       
 - name: Copy the xvfb init script
-  copy: src=xvfb-{{ ansible_distribution }}-{{ ansible_architecture }}.sh dest=/etc/init.d/xvfb mode=0755
+  copy: src=xvfb-{{ ansible_distribution }}.sh dest=/etc/init.d/xvfb mode=0755
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
   tags: configure
   

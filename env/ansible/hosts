@@ -86,6 +86,9 @@ albandri-laptop-misys
 [sonar]
 albandri-laptop-misys
 
+[workstation]
+albandri-laptop-misys
+
 [test-boxes]
 #vagrant local box
 #192.168.33.10

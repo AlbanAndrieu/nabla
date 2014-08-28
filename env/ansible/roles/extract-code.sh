@@ -27,7 +27,8 @@ git clone https://github.com/knopki/ansible-locale locale
 #git clone https://github.com/kost/ansible-galaxy.ubuntu.virtualbox.git virtualbox
 git clone https://github.com/AlbanAndrieu/ansible-galaxy.ubuntu.virtualbox.git virtualbox
 
-git clone https://github.com/aw/ansible-galaxy-vagrant.git vagrant
+#git clone https://github.com/aw/ansible-galaxy-vagrant.git vagrant
+git clone https://github.com/AlbanAndrieu/ansible-galaxy-vagrant.git vagrant
 
 git clone https://github.com/angstwad/docker.ubuntu.git docker
 
@@ -59,6 +60,10 @@ git clone https://github.com/AlbanAndrieu/ansible-selenium.git selenium
 #TODO add to ansible
 
 git clone https://github.com/AlbanAndrieu/ansible-nodejs.git nodejs
+
+git clone https://github.com/AlbanAndrieu/ansible-conky.git conky
+
+git clone https://github.com/AlbanAndrieu/ansible-subversion.git subversion
 
 #SEE
 https://github.com/ansible/ansible-examples/tree/master/language_features

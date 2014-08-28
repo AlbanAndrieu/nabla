@@ -325,3 +325,19 @@
       sonar_jdbc_driver: "mysql"
       sonar_jdbc_port: 3306
       sonar_jdbc_pass: microsoft
+
+- name: Install conky
+  hosts: workstation
+  user: root
+#  connection: local
+  roles:
+    - role: conky
+
+# This playbook can be run using vagrant (on virtual box). 
+- name: Install subversion
+  hosts: workstation
+  user: root
+#  connection: local
+  roles:
+    - role: subversion     
+        

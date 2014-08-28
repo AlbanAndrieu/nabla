@@ -20,8 +20,6 @@
   with_items:   
    - geany
    - gedit
-   - xxdiff
-#   - xxdiff-scripts
    - meld
    - dos2unix
       
@@ -32,17 +30,6 @@
   with_items:   
    - ubuntu-restricted-extras
 #   - preload
-
-##
- # subversion
- #
-- name: Install subversion package (Debian based)
-  action: apt pkg='subversion={{subversion_ubuntu}}' state=installed
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-
-- name: Install subversion package (RedHat based)
-  action: yum name='subversion' state=installed
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
   
 - name: Install SCM (apt)
   apt: pkg={{ item }} state=present update_cache=yes

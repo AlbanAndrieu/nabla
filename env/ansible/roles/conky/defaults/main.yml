@@ -1,0 +1,11 @@
+---
+conky_enabled: yes                       # Enable module
+conky_manager_enabled: no                # Disbale module
+# Package states: present or installed or latest
+conky_pkg_state: present
+# Repository states: present or absent
+conky_repository_state: present
+
+home : '~' #overide me
+conky_home: '{{ home }}.conky' 
+conky_themes_url: http://download2041.mediafire.com/c9971ynuzcag/icvmpzhlk7vgejt/default-themes-extra-1.cmtp.7z

@@ -1,4 +1,12 @@
 
+#reinstall wine
+sudo add-apt-repository ppa:ubuntu-wine/ppa
+sudo apt-get update
+sudo apt-get upgrade # got me wine 1.3.32, but not working
+rm -rf ~/.wine # wipe out entire wine directory before downgrading
+sudo apt-get install wine1.2 # done :)
+sudo apt-get build-dep wine
+
 #install Bridgit client
 wine BridgitLoader.exe
 
