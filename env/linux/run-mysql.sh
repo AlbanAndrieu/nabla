@@ -21,12 +21,13 @@ GRANT SUPER ON *.* TO nabla@'localhost' IDENTIFIED BY 'nabla';
 #/etc/mysql/
 #/var/lib/mysql/
 
+#change password
+/etc/init.d/mysql stop
+#relaunch
+mysqld --skip-grant-tables --skip-networking &
+#database connection
+mysql mysql
+UPDATE user SET password=PASSWORD('Motdepasse12') WHERE User="root" AND Host="localhost";
+
+#test connection
 mysql -u root -p
-
-update mysql.user set password=PASSWORD(’jakarta’) where user=’root’;
-
-#mysqld_safe –user=mysql &
-#mysqld_safe –skip-grant-tables –user=root &
-
-#/usr/bin/mysqladmin -u root password 'new-password'
-#/usr/bin/mysqladmin -u root -h alban password 'new-password'

@@ -82,6 +82,10 @@ rm /etc/X11/xorg.conf
 rm .Xauthority
 sudo service lightdm start
 
+#X does not display
+xhost + #temporary fix
+/usr/bin/xhost +albandri
+
 #enter
 #nautilus
 #unity

@@ -12,6 +12,10 @@
   apt: pkg=google-chrome-stable state={{ google_agent_pkg_state }}
   when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' ) and google_chrome_stable_enabled
 
+- name: Add Google Talk repo (apt)
+  apt_repository: repo="deb http://dl.google.com/linux/talkplugin/deb/ stable main" update_cache=yes state={{ google_agent_repository_state }}
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( google_chrome_stable_enabled or google_talkplugin_enabled )
+
 - name: Install Google Talk Plugin (apt)
   apt: pkg=google-talkplugin state={{ google_agent_pkg_state }}
   when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' ) and google_talkplugin_enabled

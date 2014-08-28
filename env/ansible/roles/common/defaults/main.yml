@@ -14,14 +14,13 @@ apt_install_packages_list:    # List of packages which be installed
 # Who has sudo access - use %foo for groups
 sudo_users:
   - "%wheel"
+  - "%jenkins"
 
 # Do users need to enter a password?
 sudo_nopasswd: true
 
 #domain nabla.global.ad
-#defaultsearch: 
-defaultsearch:  misys.global.ad misys.global.ad. nt.france.effix.fr. france.effix.fr. effix.fr.
 #defaultsearch: nabla.global.ad nabla.global.ad. home.nabla.mobi. nabla.mobi.
-#nameserver1: 8.8.8.8
-#nameserver2: 
-
+nameserver1: 8.8.8.8
+#nameserver1: 10.25.200.3
+nameserver2: 10.21.200.3

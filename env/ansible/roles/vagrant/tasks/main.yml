@@ -8,14 +8,14 @@
     name=vagrant
     comment="Vagrant User"
     shell={{ vagrant_user_shell }}
-    home=/home/vagrant
+    home={{ vagrant_home }}
     createhome=yes
     password="$1$re6ft8gy$PweYoLIPFrEo/y0OeVQyA/"
 
 - name: Create vagrant/.ssh directory
   file: >
     state=directory
-    path=/home/vagrant/.ssh
+    path={{ vagrant_home }}/.ssh
     owner=vagrant
     group=vagrant
     mode=0700
@@ -23,7 +23,7 @@
 - name: Download the insecure public SSH key
   get_url: >
     url=https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub
-    dest=/home/vagrant/.ssh/authorized_keys
+    dest={{ vagrant_home }}/.ssh/authorized_keys
     owner=vagrant
     group=vagrant
     mode=0600

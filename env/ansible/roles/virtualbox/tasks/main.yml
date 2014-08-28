@@ -2,19 +2,23 @@
 - name: add virtualbox apt key
   sudo: yes
   action: apt_key url=http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc state=present 
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   tags: virtualbox
 
 - name: add virtualbox repository
   sudo: yes
   action: apt_repository repo="deb http://download.virtualbox.org/virtualbox/debian {{ansible_lsb.codename}} contrib" state=present update_cache=yes 
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  when: "ansible_distribution_version not in ['14.04']"  
+  tags: virtualbox
+
+- name: add virtualbox repository
+  sudo: yes
+  action: apt_repository repo="deb http://download.virtualbox.org/virtualbox/debian trusty contrib" state=present update_cache=yes 
+  when: "ansible_distribution_version in ['14.04']"  
   tags: virtualbox
 
 - name: install virtualbox
   sudo: yes
   action: apt pkg="{{item}}" state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   with_items:
       - "{{virtualbox_package_name}}"
   tags: virtualbox
