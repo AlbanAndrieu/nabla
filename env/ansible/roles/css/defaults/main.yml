@@ -1,2 +1,3 @@
 ---
 css_enabled: yes                       # Enable module
+ruby_version: 1.9.3                      

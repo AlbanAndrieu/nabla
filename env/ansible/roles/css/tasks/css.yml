@@ -5,9 +5,15 @@
  # CSS compiling tools.
  #
 - name: CSS | Install rubygems package
-  action: apt pkg=rubygems state=installed
+  action: apt pkg=rubygems state=installed  
+  when: "ansible_distribution_version in ['12.04', '13.04', '13.10', '14.04']"  
   tags: css
-
+  
+- name: CSS | Install ruby package (gem is included now in ruby)
+  action: apt pkg=ruby{{ ruby_version }} state=installed  
+  when: "ansible_distribution_version not in ['12.04', '13.04', '13.10']"  
+  tags: css
+  
 - name: CSS | Install SASS
   action: command gem install sass creates=/usr/local/bin/sass
   tags: css
