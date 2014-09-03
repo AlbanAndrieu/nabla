@@ -99,6 +99,20 @@ pkg_add -r -v http://ftp.urc.ac.ru/pub/OS/FreeBSD/packages-7/Latest/lame.tbz
 pkg_add -v -r flac
 pkg_add -v -r ffmpeg
 
+./usr/local/share/subsonic                                                      
+./usr/local/etc/subsonic                                                        
+./usr/local/etc/rc.d/subsonic 
+/usr/pbi/subsonic-amd64/etc/subsonic
+#user admin
+
+#Subsonic music stream license
+edit /etc/hosts
+#add 127.0.0.1 subsonic.org
+echo -n alban.andrieu@free.fr | md5sum
+
+#headphone
+#user admin
+
 #plexmedia
 #In the gui check disableRemoteSecurity
 #or

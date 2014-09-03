@@ -99,9 +99,18 @@
    - cowsay 
    - fortunes 
    - fortunes-fr   
-   
-#TODO sudo apt-get remove whoopsie   
 
+- name: main | uninstall whoopsie packages
+  apt: >
+    pkg={{ item }} 
+    state=absent
+    purge=yes
+    force=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package      
+  with_items:
+    - whoopsie  
+    
 - name: Install perl (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
@@ -132,12 +141,6 @@
 #  with_items:
 #  - libcap2-bin
 #  - libssl-dev   
-    
-#This script will override current /etc/sudoers (for security reason)
-- name: Sudoers file
-  template: src=sudoers.j2 dest=/etc/sudoers validate='/usr/sbin/visudo -cf %s'
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
-  tags: configure  
       
 - name: Configure resolv file
   template: src=resolv.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/resolv.conf

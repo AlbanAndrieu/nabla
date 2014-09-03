@@ -6,12 +6,12 @@ if [ -z "$1" ]; then
   exit
 fi
 
-CONKY_USER=albandri
-SU=/bin/su
-
 case "$1" in
 start)
-  $SU -l $CONKY_USER --shell=/bin/bash -c "{{ conky_home }}/conky-startup.sh"
+  CONKY_USER={{ user }}
+  SU=/bin/su
+  export DISPLAY=:0.0
+  $SU -l $CONKY_USER --shell=/bin/bash -c "{{ conky_home }}/conky-startup.sh" || return 2
 ;;
 stop)
   killall conky

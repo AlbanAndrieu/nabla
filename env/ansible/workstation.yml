@@ -43,6 +43,14 @@
   roles:
     - common
 
+- name: apply security configuration
+  hosts: security
+  user: root
+#  connection: local
+  
+  roles:
+    - security
+
 # This playbook can be run using vagrant (on virtual box). 
 - name: Install java
   hosts: java

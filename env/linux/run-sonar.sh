@@ -44,12 +44,12 @@ sudo gedit /workspace/sonar/conf/wrapper.conf
 wrapper.logfile.loglevel=DEBUG
 
 Copy the OLD_SONARQUBE_HOME/extensions/plugins directory into NEW_SONARQUBE_HOME/extensions/plugins (replace plugins with compatible versions if necessary)
-sudo cp sonarqube-4.3/extensions/plugins/* sonar/extensions/plugins/
-#sudo cp sonar/extensions/jdbc-driver/ sonar/extensions/jdbc-driver
+sudo cp sonarqube-4.2/extensions/plugins/* sonar/extensions/plugins/
+#sudo cp sonarqube-4.2/extensions/jdbc-driver/ sonar/extensions/jdbc-driver
 If a custom JDBC driver is used, copy it into NEW_SONARQUBE_HOME/extensions/jdbc-driver/<dialect>
 
 #if your are using embedded database
-sudo cp /workspace/sonarqube-4.3/data/*.db /workspace/sonar/data
+sudo cp /workspace/sonarqube-4.2/data/*.db /workspace/sonar/data
 
 /workspace/sonar/bin/linux-x86-32/sonar.sh start
 

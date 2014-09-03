@@ -9,53 +9,68 @@
 - name: Add conky manager repo (apt)
   apt_repository: repo="ppa:teejee2008/ppa" update_cache=yes state={{ conky_repository_state }}
   when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' ) and ( conky_manager_enabled )
-  
+
 - name: Install conky (apt)
   apt: pkg={{ item }} update_cache=yes state={{ conky_pkg_state }}
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package  
-  with_items:   
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package
+  with_items:
    - conky-all
-#   - unace 
-#   - unrar 
-#   - zip 
-#   - unzip 
-#   - p7zip-full 
-#   - p7zip-rar 
-#   - sharutils 
-#   - rar 
-#   - uudeview 
-#   - mpack 
-#   - lha 
-#   - arj 
-#   - cabextract 
+   - p7zip
+#   - unace
+#   - unrar
+#   - zip
+#   - unzip
+#   - p7zip-full
+#   - p7zip-rar
+#   - sharutils
+#   - rar
+#   - uudeview
+#   - mpack
+#   - lha
+#   - arj
+#   - cabextract
 #   - file-roller
- 
+
 - name: Install conky manager (apt)
   apt: pkg={{ item }} update_cache=yes state={{ conky_pkg_state }}
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package  
-  with_items:   
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package
+  with_items:
    - conky-manager
-   
-- name: Download themes if we don't have it
-  sudo: False
-  get_url: url={{ conky_themes_url }}  dest={{ conky_home }}/ force=no
-     
+
+#- name: Download themes if we don't have it
+#  sudo: False
+#  get_url: url={{ conky_themes_url }}  dest={{ conky_home }}/ force=no
+
 #TODO automate import themes in conky manager
 
+#cd ~/.conky
+#tar czvf default-themes-extra-1.tar.gz *
+
+- name: Copy the themes to be processed
+  copy: src=default-themes-extra-1.tar.gz dest={{ ansible_data_path }}/default-themes-extra-1.tar.gz mode=0755 owner=albandri
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: configure
+  
+- name: Unpack conky themes
+  action: command creates={{ conky_home }}/todo chdir={{ conky_home }} tar zxvf {{ ansible_data_path }}/default-themes-extra-1.tar.gz --owner=albandri
+#  ignore_errors: True
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: configure
+  
 - name: Copy the conky startup script
   template: src=conky-startup.sh-{{ ansible_distribution }}.j2 dest={{ conky_home }}/conky-startup.sh mode=0755
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: configure
 
 #TODO start ~/.conky/startconky.sh on startup for instance in .bashrc file
 
 - name: Copy the conky init script
   template: src=conky.sh-{{ ansible_distribution }}.j2 dest=/etc/init.d/conky mode=0755
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: configure
-  
+
 - name: Start the conky service
   service: name=conky state=started enabled=true
-  tags: service  
+  tags: service

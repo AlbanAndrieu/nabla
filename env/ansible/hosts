@@ -5,6 +5,9 @@ albandri-laptop-misys
 [administration]
 #127.0.0.1
 
+[security]
+albandri-laptop-misys
+
 [java]
 albandri-laptop-misys
 
@@ -84,6 +87,9 @@ albandri-laptop-misys
 albandri-laptop-misys
 
 [sonar]
+albandri-laptop-misys
+
+[zap]
 albandri-laptop-misys
 
 [workstation]

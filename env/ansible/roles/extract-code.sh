@@ -65,16 +65,23 @@ git clone https://github.com/AlbanAndrieu/ansible-conky.git conky
 
 git clone https://github.com/AlbanAndrieu/ansible-subversion.git subversion
 
+git clone https://github.com/AlbanAndrieu/ansible-css.git css
+
+git clone https://github.com/geerlingguy/ansible-role-security.git security
+
+git clone https://github.com/AlbanAndrieu/ansible-zap.git zap
+
 #SEE
 https://github.com/ansible/ansible-examples/tree/master/language_features
 https://github.com/sheldonh/dotfiles-ansible
 
 #TODO
 https://github.com/Ansibles/monit
-https://github.com/sheldonh/dotfiles-ansible
+https://github.com/sheldonh/dotfiles-ansible #bog
 https://github.com/sivel/ansible-newrelic
 https://github.com/fretscha-ansible/ansible-role-first-five-minutes
 https://github.com/bennojoy/memcached
+https://github.com/nickjj/ansible-security #for firewall
 
 https://github.com/AnsibleShipyard/ansible-nodejs
 https://github.com/Stouts/Stouts.backup

@@ -26,3 +26,5 @@ subversion_diff3_cmd: meld
 subversion_merge_tool_cmd_directory: ~/.subversion
 subversion_merge_tool_cmd: svn-merge-meld.sh
 #subversion_merge_tool_cmd: svn-merge-meld.py
+
+subversion_rabbitvcs_enabled: yes                       # Enable module
