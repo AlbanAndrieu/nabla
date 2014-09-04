@@ -83,7 +83,8 @@ sudo nmap -p 80,8080 192.168.0.0-255
 sudo nmap -sS -O -p80,8180,8080 192.168.0.0/24
 sudo nmap localhost
 
-
+To check one particular open port on a server
+telnet <IP> 3389
 
 --------- change apache to port 8080 -----------
 #http://www.cyberciti.biz/faq/linux-apache2-change-default-port-ipbinding/

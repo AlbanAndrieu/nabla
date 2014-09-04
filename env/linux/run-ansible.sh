@@ -1,6 +1,6 @@
 #http://blog.trifork.com/2013/03/26/ansible-next-generation-configuration-management/
 
-#install ansible
+#install ansible using apt (BUT instead use pip in order to have a more recent version of ansible)
 sudo add-apt-repository ppa:rquillo/ansible
 sudo apt-get install ansible
 #sudo apt-get --reinstall install ansible
@@ -26,6 +26,13 @@ sudo pip install paramiko PyYAML jinja2 httplib2
 #ANSIBLE_LIBRARY=/workspace/users/albandri10/ansible/library
 #MANPATH=/workspace/users/albandri10/ansible/docs/man:
 
+#install python version of ansible
+#it go inside /usr/local/bin
+sudo pip uninstall ansible
+sudo pip install ansible --upgrade
+#pip install https://pypi.python.org/packages/source/a/ansible/ansible-1.7.1.tar.gz
+
+which ansible
 ansible --version
 
 git clone https://github.com/ansible/ansible-examples.git
@@ -85,3 +92,20 @@ https://localhost/
 
 #see example
 #https://github.com/ansible/ansible-examples/tree/master/language_features
+
+#windows how to
+#http://docs.ansible.com/intro_windows.html#installing-on-the-control-machine
+#http://damonoverboe.org/post/ansible-and-windows-basic-set-up
+#http://docs.ansible.com/list_of_windows_modules.html
+
+#see run-xrdp.sh 
+#in order to fix error:
+#IndexError: tuple index out of range
+sudo pip install https://github.com/diyan/pywinrm/archive/df049454a9309280866e0156805ccda12d71c93a.zip --upgrade
+#NOK sudo pip install https://github.com/diyan/pywinrm/tree/7ab74a4b8fbeb2af707c5628703c485f8d14238d --upgrade
+#NOK sudo pip install -U http://github.com/diyan/pywinrm/archive/master.zip#egg=pywinrm
+sudo pip install pywinrm --upgrade
+
+ansible windows -i hosts -m win_ping --ask-vault-pass
+#list info
+ansible -i hosts GDNCSWMGRQA0015.misys.global.ad -m setup

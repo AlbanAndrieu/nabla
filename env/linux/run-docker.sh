@@ -1,3 +1,6 @@
+
+---------------
+
 #See http://philpep.org/blog/integration-continue-avec-jenkins-et-docker
 sudo docker info
 
@@ -39,3 +42,7 @@ ssh jenkins@localhost -p 2223
 #pass is jenkins
 
 docker kill $jenkins && docker rm $jenkins
+
+----------------------------------
+
+sudo docker ps
