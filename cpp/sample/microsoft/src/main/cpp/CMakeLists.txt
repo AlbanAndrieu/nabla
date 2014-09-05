@@ -21,6 +21,8 @@ SET(main_files_SRCS
 FILE(GLOB main_files_HDRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.h")
 MESSAGE("Found Header Files: ${main_files_HDRS}")
 
+LINK_LIBRARIES(boost_system)
+
 ADD_LIBRARY(main_library SHARED ${main_files_SRCS})
 
 SET_TARGET_PROPERTIES(main_library PROPERTIES
