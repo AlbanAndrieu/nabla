@@ -34,7 +34,7 @@
   vars_files:
     - [ "roles/hostname/defaults/main.yml" ]
   
-- name: apply common configuration to all nodes
+- name: Apply common configuration to all nodes
   hosts: Ubuntu-12*:Ubuntu-14*
   gather_facts: false
   user: root
@@ -42,8 +42,26 @@
   
   roles:
     - common
+    
+- name: Apply dns configuration to all nodes
+  hosts: Ubuntu-12*:Ubuntu-14*
+  gather_facts: false
+  user: root
+#  connection: local
+  
+  roles:
+    - dns
+        
+  vars:
+       nameserver: 8.8.8.8  
+#paris  
+#      nameserver1: 10.21.200.3
+#      nameserver2: 10.25.200.3
+#gdynia      
+#      nameserver1: 10.7.109.27
+#      nameserver2: 10.7.111.244
 
-- name: apply security configuration
+- name: Apply security configuration
   hosts: security
   user: root
 #  connection: local
@@ -129,7 +147,7 @@
 #    - zfs
     
 #Use below only if you want your servers to be part of MGR build farm
-#- name: apply administration configuration to all nodes
+#- name: Apply administration configuration to all nodes
 #  hosts: Ubuntu-12*:Ubuntu-14*
 #  gather_facts: false
 #  user: root
@@ -138,7 +156,10 @@
 #  roles:
 #    - administration
 
-- hosts: all
+- name: Apply configuration to jenkins master
+  hosts: jenkins-master
+  user: root
+#  connection: local
 
   roles:
     - role: jenkins-master
@@ -159,7 +180,7 @@
 #        - name: test
 #          action: delete
 
-- name: apply common configuration to all jenkins slaves
+- name: Apply common configuration to all jenkins slaves
   hosts: jenkins-slaves
   user: root
 #  connection: local
@@ -236,7 +257,7 @@
   roles:
     - dropbox
     
-#- name: apply swarm configuration to all jenkins slaves
+#- name: Apply swarm configuration to all jenkins slaves
 #  hosts: jenkins-swarm
 #  user: root
 ##  connection: local

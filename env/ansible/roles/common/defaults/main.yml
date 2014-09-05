@@ -18,9 +18,3 @@ sudo_users:
 
 # Do users need to enter a password?
 sudo_nopasswd: true
-
-#domain nabla.global.ad
-#defaultsearch: nabla.global.ad nabla.global.ad. home.nabla.mobi. nabla.mobi.
-nameserver: 8.8.8.8
-#nameserver1: 10.25.200.3
-#nameserver2: 10.21.200.3

@@ -1,0 +1,7 @@
+---
+dns_enabled: yes                       # Enable module
+
+defaultsearch:  misys.global.ad france.effix.fr
+nameserver: 8.8.8.8
+nameserver1:
+nameserver2:
