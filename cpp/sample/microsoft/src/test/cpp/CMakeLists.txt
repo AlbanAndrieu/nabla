@@ -30,7 +30,7 @@ SET(test_files_SRCS
 FILE(GLOB test_files_HDRS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} "*.h")
 MESSAGE("Found Header Files: ${test_files_HDRS}")
 
-LINK_LIBRARIES(main_library ${CPPUNIT_LIBRARY} boost_thread-mt boost_date_time-mt)
+LINK_LIBRARIES(main_library ${CPPUNIT_LIBRARY} boost_thread boost_date_time)
 #${Boost_LIBRARIES}  boost_thread-gcc34-mt-1_41 boost_date_time-gcc34-mt-1_41
 
 ADD_LIBRARY(test_library SHARED ${test_files_SRCS})
