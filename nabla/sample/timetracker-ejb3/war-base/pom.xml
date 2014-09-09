@@ -13,6 +13,34 @@
     <artifactId>war-base</artifactId>
     <packaging>war</packaging>
     <name>[${project.parent.artifactId} :: EJB3 Web Base] - ${project.artifactId} : ${project.version}</name>
+    
+    <dependencyManagement>
+        <dependencies>
+            <!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill
+                of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
+                of artifacts. We use this here so that we always get the correct versions
+                of artifacts. Here we use the jboss-javaee-6.0-with tools stack (you can read this as
+                the JBoss stack of the Java EE 6 APIs, with some extras tools for your project, such
+                as Arquillian for testing) -->
+            <dependency>
+                <groupId>org.jboss.bom</groupId>
+                <artifactId>jboss-javaee-6.0-with-tools</artifactId>
+                <version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <!-- Similarly to the JBoss Java EE 6 BOM above, the RichFaces BOM specifies the
+                versions of artifacts required for using RichFaces in your project. -->
+            <dependency>
+                <groupId>org.richfaces</groupId>
+                <artifactId>richfaces-bom</artifactId>
+                <version>${org.richfaces.bom.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+        
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
@@ -102,7 +130,6 @@
 	<dependency>
 		<groupId>org.hibernate</groupId>
 		<artifactId>hibernate-search</artifactId>
-		<version>${hibernate.legacy.search.version}</version>
 		<!--
 		<exclusions>
 			<exclusion>
@@ -117,8 +144,7 @@
           at compile time. -->
         <dependency>
           <groupId>org.hibernate</groupId>
-          <artifactId>hibernate-validator</artifactId>
-          <version>${hibernate.validator.version}</version>          
+          <artifactId>hibernate-validator</artifactId>      
           <scope>provided</scope>
           <classifier>sources</classifier>
           <exclusions>
@@ -144,7 +170,6 @@
         <dependency>
           <groupId>javax.validation</groupId>
           <artifactId>validation-api</artifactId>
-          <version>${validation.api.version}</version>
           <classifier>sources</classifier>
         </dependency>        
         
@@ -171,17 +196,51 @@
             <groupId>org.icefaces</groupId>
             <artifactId>icefaces</artifactId>
         </dependency>
-	<dependency>
-	    <groupId>org.icefaces</groupId>
-	    <artifactId>icefaces-comps</artifactId>
-	</dependency>
-	<dependency>
-	    <groupId>org.icefaces</groupId>
-	    <artifactId>icefaces-facelets</artifactId>
-	</dependency>
-	-->
+		<dependency>
+			<groupId>org.icefaces</groupId>
+			<artifactId>icefaces-comps</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.icefaces</groupId>
+			<artifactId>icefaces-facelets</artifactId>
+		</dependency>
+		-->
         
     	<!-- richfaces -->
+        <!-- Import the RichFaces core library -->
+        <dependency>
+            <groupId>org.richfaces.core</groupId>
+            <artifactId>richfaces-core-impl</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>cssparser</artifactId>
+                    <groupId>net.sourceforge.cssparser</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>guava</artifactId>
+                    <groupId>com.google.guava</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <!-- Import the RichFaces components -->
+        <dependency>
+            <groupId>org.richfaces.ui</groupId>
+            <artifactId>richfaces-components-ui</artifactId>
+        </dependency>
+
+        <!-- Import the Atmosphere framework for a4j:push -->
+        <dependency>
+            <groupId>org.atmosphere</groupId>
+            <artifactId>atmosphere-runtime</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.slf4j</groupId>
+                    <artifactId>slf4j-api</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+		<!--
         <dependency>
           <groupId>org.richfaces.framework</groupId>
           <artifactId>richfaces-api</artifactId>
@@ -207,13 +266,13 @@
     	  <groupId>org.richfaces.samples</groupId>
     	  <artifactId>darkX</artifactId>
     	</dependency>   
+    	-->    	
         
-	<dependency>
-		<groupId>org.testng</groupId>
-		<artifactId>testng</artifactId>
-		<version>${testng.version}</version>
-		<scope>test</scope>
-	</dependency>
+		<dependency>
+			<groupId>org.testng</groupId>
+			<artifactId>testng</artifactId>
+			<scope>test</scope>
+		</dependency>
 		        
         <!-- replace this by slf4j-api and slf4j-simple
         http://pwu-developer.blogspot.com/2010/08/caused-by-javalangerror-this-version-of.html
@@ -245,25 +304,23 @@
 		<dependency>
 			<groupId>javax.el</groupId>
 			<artifactId>el-api</artifactId>
-			<version>${el.api.version}</version>
 			<scope>provided</scope>
 		</dependency>	
     		    
-        	<dependency>
-        	  <groupId>javax.ejb</groupId>
-        	  <artifactId>ejb-api</artifactId>
-        	  <scope>provided</scope>
+		<dependency>
+		  <groupId>javax.ejb</groupId>
+		  <artifactId>ejb-api</artifactId>
+		  <scope>provided</scope>
 		  <optional>true</optional> 
-        	</dependency>
+		</dependency>
         	
         <!-- *************** Seam Dependencies *************** -->
-	<dependency>
-	  <groupId>org.jboss.seam</groupId>
-	  <artifactId>jboss-seam</artifactId>
-	  <version>${seam.version}</version>
-	  <scope>provided</scope> <!-- needed for tomcat but not for jboss -->
-	  <type>ejb</type>
-	</dependency>    
+		<dependency>
+		  <groupId>org.jboss.seam</groupId>
+		  <artifactId>jboss-seam</artifactId>
+		  <scope>provided</scope> <!-- needed for tomcat but not for jboss -->
+		  <type>ejb</type>
+		</dependency>    
         
         <dependency>
           <groupId>org.jboss.seam</groupId>
@@ -276,44 +333,40 @@
           <artifactId>jboss-seam-debug</artifactId>
         </dependency>
    
-	<dependency>
-		<groupId>org.jboss.seam</groupId>
-		<artifactId>jboss-seam-remoting</artifactId>
-		<version>${seam.version}</version>
-		<scope>provided</scope>
-		<exclusions>
-			<exclusion>
-				<groupId>dom4j</groupId>
-				<artifactId>dom4j</artifactId>
-			</exclusion>
-		</exclusions>
-	</dependency>
+		<dependency>
+			<groupId>org.jboss.seam</groupId>
+			<artifactId>jboss-seam-remoting</artifactId>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>dom4j</groupId>
+					<artifactId>dom4j</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
 		<dependency>
 			<groupId>org.javassist</groupId>
 			<artifactId>javassist</artifactId>
-			<version>${org.javassist.version}</version>
 			<scope>provided</scope>
 		</dependency>
-	<!-- javassist scope provided needed for tomcat but not for jboss -->
-	<!--
-	<dependency>
-		<groupId>javassist</groupId>
-		<artifactId>javassist</artifactId>
-		<version>${javassist.version}</version>
-		<scope>provided</scope>
-	</dependency>--> 
+		<!-- javassist scope provided needed for tomcat but not for jboss -->
+		<!--
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>${javassist.version}</version>
+			<scope>provided</scope>
+		</dependency>--> 
 		
         <dependency>
         	<groupId>asm</groupId>
         	<artifactId>asm</artifactId>
-        	<version>${asm.version}</version>
         </dependency>		
-       <dependency>
-		<groupId>cglib</groupId>
-		<artifactId>cglib</artifactId>
-		<version>${cglib.version}</version>
-	</dependency>		
+        <dependency>
+			<groupId>cglib</groupId>
+			<artifactId>cglib</artifactId>
+	    </dependency>		
 		
         <dependency>
           <groupId>javax.servlet</groupId>
@@ -351,45 +404,40 @@
             <artifactId>hibernate-core</artifactId>
         </dependency>              
 
-	<!-- *************** Drools / jBPM Dependency *************** -->
+		<!-- *************** Drools / jBPM Dependency *************** -->
 
-	<dependency>
-		<groupId>org.drools</groupId>
-		<artifactId>drools-core</artifactId>
-		<version>${drools.version}</version>
-		<scope>provided</scope>
-	</dependency>
-	<dependency>
-		<groupId>org.drools</groupId>
-		<artifactId>drools-compiler</artifactId>
-		<version>${drools.version}</version>
-		<scope>provided</scope>
-	</dependency>
-	<dependency>
-		<groupId>org.mvel</groupId>
-		<artifactId>mvel2</artifactId>
-		<version>${org.mvel.mvel2.version}</version>
-		<scope>provided</scope>
-	</dependency>
-	<dependency>
-		<groupId>org.jbpm</groupId>
-		<artifactId>jbpm-jpdl</artifactId>
-		<version>${jbpm.jpdl.version}</version>
-		<scope>provided</scope>
-		<exclusions>
-			<exclusion>
-				<groupId>commons-logging</groupId>
-				<artifactId>commons-logging</artifactId>
-			</exclusion>
-		</exclusions>
-	</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-core</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-compiler</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.mvel</groupId>
+			<artifactId>mvel2</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.jbpm</groupId>
+			<artifactId>jbpm-jpdl</artifactId>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
         <!-- gwt-user is required at runtime because we use some of the client/server 
         shared APIs such as RegExp, so scope is 'compile' rather than 'provided'. -->
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
-            <version>${gwt.version}</version>
             <!--<scope>compile</scope> error in deployment -->
             <scope>provided</scope> <!-- prevents from including this in war -->
         </dependency>
@@ -408,37 +456,33 @@
             <scope>compile</scope>
         </dependency>
         -->
-	<dependency>
-		<groupId>xerces</groupId>
-		<artifactId>xercesImpl</artifactId>
-		<version>${xerces.version}</version>
-		<scope>provided</scope>
-		<exclusions>
-			<exclusion>
-				<groupId>xml-apis</groupId>
-				<artifactId>xml-apis</artifactId>
-			</exclusion>
-		</exclusions>
-	</dependency>
- 
-	<dependency>
-		<groupId>org.jboss.el</groupId>
-		<artifactId>jboss-el</artifactId>
-		<version>${jboss.el.version}</version>
-		<scope>provided</scope>
-	</dependency>
+		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>xml-apis</groupId>
+					<artifactId>xml-apis</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+	 
+		<dependency>
+			<groupId>org.jboss.el</groupId>
+			<artifactId>jboss-el</artifactId>
+			<scope>provided</scope>
+		</dependency>
 	 
        <dependency>
-               <groupId>org.hibernate.javax.persistence</groupId>
-               <artifactId>hibernate-jpa-2.0-api</artifactId>
-               <version>${hibernate.jpa.api.version}</version>
-               <scope>provided</scope>
+		   <groupId>org.hibernate.javax.persistence</groupId>
+		   <artifactId>hibernate-jpa-2.0-api</artifactId>
+		   <scope>provided</scope>
        </dependency>	
          
         <dependency>
             <groupId>nekohtml</groupId>
             <artifactId>nekohtml</artifactId>
-            <version>${nekohtml.version}</version>
             <scope>provided</scope>
         </dependency>
        		
@@ -466,7 +510,7 @@
                   mode) to not start the default server (embedded jetty), but to download the 
                   HTML host page from the configured runTarget. -->
                 <noServer>true</noServer>
-                <runTarget>http://localhost:8180/timetracker-ejb3/HelloWorldGWT.html</runTarget>
+                <runTarget>http://localhost:${server.port}/timetracker-ejb3/HelloWorldGWT.html</runTarget>
              
               </configuration>
               <executions>
@@ -485,7 +529,31 @@
                 </execution>
               </executions>
             </plugin>
-
+			<plugin>
+			  <groupId>org.jboss.errai</groupId>
+			  <artifactId>jacoco-gwt-maven-plugin</artifactId>
+			  <version>${maven.jacoco.gwt.plugin.version}</version>
+			  <executions>
+				<execution>
+				  <id>jacoco-initialize</id>
+				  <phase>initialize</phase>
+				  <goals>
+					<goal>prepare-agent</goal>
+				  </goals>
+				  <configuration>
+					<propertyName>jacoco.agent.ut.arg</propertyName>
+				  </configuration>
+				</execution>
+				<execution>
+				  <id>jacoco-site</id>
+				  <phase>site</phase>
+				  <goals>
+					<goal>report</goal>
+				  </goals>
+				</execution>
+			  </executions>
+			</plugin>  
+			
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
@@ -560,8 +628,8 @@
             <!-- mvn jetty:run-war >jetty.log -->
             <plugin>            
             	<groupId>org.eclipse.jetty</groupId>
-		<artifactId>jetty-maven-plugin</artifactId>
-		<version>${maven.jetty.eclipse.plugin.version}</version>
+				<artifactId>jetty-maven-plugin</artifactId>
+				<version>${maven.jetty.eclipse.plugin.version}</version>
 		   
           		<!--            
             <plugin>
@@ -633,13 +701,13 @@
 		</dependencies>                
 		-->
             </plugin>
-	    <plugin>
-	    	<groupId>com.atlassian.maven.plugins</groupId>
-	    	<artifactId>maven-clover2-plugin</artifactId>
-	    	<configuration>
-	    		<skip>true</skip>
-	    	</configuration>
-	    </plugin>                     
+			<plugin>
+				<groupId>com.atlassian.maven.plugins</groupId>
+				<artifactId>maven-clover2-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
+			</plugin>                     
         </plugins>
     </build>
 </project>
