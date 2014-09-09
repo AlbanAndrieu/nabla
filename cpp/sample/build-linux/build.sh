@@ -18,8 +18,7 @@ cmake -G"Eclipse CDT4 - Unix Makefiles" -DCMAKE_BUILD_TYPE=debug -DCMAKE_ECLIPSE
 #-DCMAKE_INSTALL_PREFIX=${PROJECT_TARGET_PATH}/install/${MACHINE}/debug 
 #-DENABLE_TESTING=true
 
-make -B clean install test DoxygenDoc 
-#make package
+make -B clean install test DoxygenDoc package
 #make test_all
 #cd src
 #ctest -D Experimental
