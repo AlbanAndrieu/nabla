@@ -37,12 +37,18 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
+import javax.xml.bind.JAXBElement;
+import javax.xml.bind.annotation.XmlElementDecl;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.namespace.QName;
+
 import org.apache.log4j.Logger;
 
 import com.nabla.project.visma.api.ILoan;
 import com.nabla.project.visma.api.IPaymentMethod;
 import com.nabla.project.visma.api.IProduct;
 
+@XmlRootElement
 public class HouseLoan implements ILoan
 {
 
@@ -123,6 +129,20 @@ public class HouseLoan implements ILoan
         return str.toString();
 
     }
+
+    @XmlElementDecl(namespace = "http://nabla.mobi", name = "houseloan")
+    public JAXBElement<HouseLoan> toXml()
+    {
+        return new JAXBElement<HouseLoan>(new QName("houseloan"), HouseLoan.class, this);
+    }
+
+    /*
+     * TODO add Jackson
+     * public String toJson()
+     * {
+     * return new ObjectMapper().writeValueAsString(this);
+     * }
+     */
 
     @Override
     public Map<Integer, List<BigDecimal>> calcMonthlyPayment()

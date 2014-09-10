@@ -39,6 +39,7 @@ import java.math.BigDecimal;
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 import javax.annotation.concurrent.Immutable;
+import javax.xml.bind.annotation.XmlRootElement;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
@@ -46,6 +47,7 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import com.nabla.project.visma.api.IProduct;
 
 @Immutable
+@XmlRootElement
 public class House implements IProduct, Comparable<House>, Serializable
 {
 
