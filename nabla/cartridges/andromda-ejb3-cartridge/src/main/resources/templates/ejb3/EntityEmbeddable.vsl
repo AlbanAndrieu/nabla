@@ -473,6 +473,31 @@ $attribute.getDocumentation("     * ")
 #*      *##if (!$stringUtils.isBlank($attribute.columnPatternable))
     @javax.validation.constraints.Pattern(regexp = "$attribute.columnPatternable", message = "not a valid field")
 #*      *##end
+#*      *##if (!$stringUtils.isBlank($attribute.columnIndexable))
+	@org.hibernate.annotations.Index(name = "$attribute.columnIndexable")
+#*      *##end
+#*      *##if (!$stringUtils.isBlank($attribute.columnIdentityUserPrincipal))
+	@org.jboss.seam.annotations.security.management.UserPrincipal
+#*      *##end
+#*      *##if (!$stringUtils.isBlank($attribute.columnIdentityUserPassword))
+	@org.jboss.seam.annotations.security.management.UserPassword(hash = "$attribute.columnIdentityUserPassword")
+#*      *##end
+#*      *##if (!$stringUtils.isBlank($attribute.columnIdentityUserEnabled))
+	@org.jboss.seam.annotations.security.management.UserEnabled
+#*      *##end
+#*      *##if (!$stringUtils.isBlank($attribute.columnIdentityUserRoles))
+	@org.jboss.seam.annotations.security.management.UserRoles   
+#*      *##end
+#*      *##if (!$stringUtils.isBlank($attribute.columnIdentityRoleName))
+	@org.jboss.seam.annotations.security.management.RoleName
+#*      *##end
+#*      *##if (!$stringUtils.isBlank($attribute.columnIdentityRoleConditional))
+	@org.jboss.seam.annotations.security.management.RoleConditional
+#*      *##end
+#*      *##if (!$stringUtils.isBlank($attribute.columnIdentityRoleGroups))
+	@org.jboss.seam.annotations.security.management.RoleGroups
+#*      *##end
+
 #*    *##end
 #*    *##if ($attribute.version)
 ##

@@ -1101,6 +1101,247 @@ public abstract class EJB3EntityAttributeFacadeLogic
         return columnMinLength32a;
     }
 
+   /**
+    * @see org.andromda.cartridges.ejb3.metafacades.EJB3EntityAttributeFacade#getColumnIndexable()
+    * @return String
+    */
+    protected abstract String handleGetColumnIndexable();
+
+    private transient String columnIndexable33a;
+    private transient boolean columnIndexable33aSet = false;
+
+    /**
+     * Defines the column index DDL used when creating table schema - use to override default
+     * container DDL.
+     * @return (String)handleGetColumnIndexable()
+     */
+    public final String getColumnIndexable()
+    {
+        String columnIndexable33a = this.columnIndexable33a;
+        if (!this.columnIndexable33aSet)
+        {
+            // columnIndexable has no pre constraints
+            columnIndexable33a = handleGetColumnIndexable();
+            // columnIndexable has no post constraints
+            this.columnIndexable33a = columnIndexable33a;
+            if (isMetafacadePropertyCachingEnabled())
+            {
+                this.columnIndexable33aSet = true;
+            }
+        }
+        return columnIndexable33a;
+    }
+
+   /**
+    * @see org.andromda.cartridges.ejb3.metafacades.EJB3EntityAttributeFacade#isColumnIdentityUserPrincipal()
+    * @return boolean
+    */
+    protected abstract boolean handleIsColumnIdentityUserPrincipal();
+
+    private transient boolean columnIdentityUserPrincipal34a;
+    private transient boolean columnIdentityUserPrincipal34aSet = false;
+
+    /**
+     * Defines the seam identity UserPrincipal annotation.
+     * @return (boolean)handleIsColumnIdentityUserPrincipal()
+     */
+    public final boolean isColumnIdentityUserPrincipal()
+    {
+        boolean columnIdentityUserPrincipal34a = this.columnIdentityUserPrincipal34a;
+        if (!this.columnIdentityUserPrincipal34aSet)
+        {
+            // columnIdentityUserPrincipal has no pre constraints
+            columnIdentityUserPrincipal34a = handleIsColumnIdentityUserPrincipal();
+            // columnIdentityUserPrincipal has no post constraints
+            this.columnIdentityUserPrincipal34a = columnIdentityUserPrincipal34a;
+            if (isMetafacadePropertyCachingEnabled())
+            {
+                this.columnIdentityUserPrincipal34aSet = true;
+            }
+        }
+        return columnIdentityUserPrincipal34a;
+    }
+
+   /**
+    * @see org.andromda.cartridges.ejb3.metafacades.EJB3EntityAttributeFacade#getColumnIdentityUserPassword()
+    * @return String
+    */
+    protected abstract String handleGetColumnIdentityUserPassword();
+
+    private transient String columnIdentityUserPassword35a;
+    private transient boolean columnIdentityUserPassword35aSet = false;
+
+    /**
+     * Defines the seam identity UserPassword annotation.
+     * @return (String)handleGetColumnIdentityUserPassword()
+     */
+    public final String getColumnIdentityUserPassword()
+    {
+        String columnIdentityUserPassword35a = this.columnIdentityUserPassword35a;
+        if (!this.columnIdentityUserPassword35aSet)
+        {
+            // columnIdentityUserPassword has no pre constraints
+            columnIdentityUserPassword35a = handleGetColumnIdentityUserPassword();
+            // columnIdentityUserPassword has no post constraints
+            this.columnIdentityUserPassword35a = columnIdentityUserPassword35a;
+            if (isMetafacadePropertyCachingEnabled())
+            {
+                this.columnIdentityUserPassword35aSet = true;
+            }
+        }
+        return columnIdentityUserPassword35a;
+    }
+
+   /**
+    * @see org.andromda.cartridges.ejb3.metafacades.EJB3EntityAttributeFacade#isColumnIdentityUserEnabled()
+    * @return boolean
+    */
+    protected abstract boolean handleIsColumnIdentityUserEnabled();
+
+    private transient boolean columnIdentityUserEnabled36a;
+    private transient boolean columnIdentityUserEnabled36aSet = false;
+
+    /**
+     * Defines the seam identity UserEnabled annotation.
+     * @return (boolean)handleIsColumnIdentityUserEnabled()
+     */
+    public final boolean isColumnIdentityUserEnabled()
+    {
+        boolean columnIdentityUserEnabled36a = this.columnIdentityUserEnabled36a;
+        if (!this.columnIdentityUserEnabled36aSet)
+        {
+            // columnIdentityUserEnabled has no pre constraints
+            columnIdentityUserEnabled36a = handleIsColumnIdentityUserEnabled();
+            // columnIdentityUserEnabled has no post constraints
+            this.columnIdentityUserEnabled36a = columnIdentityUserEnabled36a;
+            if (isMetafacadePropertyCachingEnabled())
+            {
+                this.columnIdentityUserEnabled36aSet = true;
+            }
+        }
+        return columnIdentityUserEnabled36a;
+    }
+
+   /**
+    * @see org.andromda.cartridges.ejb3.metafacades.EJB3EntityAttributeFacade#isColumnIdentityUserRoles()
+    * @return boolean
+    */
+    protected abstract boolean handleIsColumnIdentityUserRoles();
+
+    private transient boolean columnIdentityUserRoles37a;
+    private transient boolean columnIdentityUserRoles37aSet = false;
+
+    /**
+     * Defines the seam identity UserRoles annotation.
+     * @return (boolean)handleIsColumnIdentityUserRoles()
+     */
+    public final boolean isColumnIdentityUserRoles()
+    {
+        boolean columnIdentityUserRoles37a = this.columnIdentityUserRoles37a;
+        if (!this.columnIdentityUserRoles37aSet)
+        {
+            // columnIdentityUserRoles has no pre constraints
+            columnIdentityUserRoles37a = handleIsColumnIdentityUserRoles();
+            // columnIdentityUserRoles has no post constraints
+            this.columnIdentityUserRoles37a = columnIdentityUserRoles37a;
+            if (isMetafacadePropertyCachingEnabled())
+            {
+                this.columnIdentityUserRoles37aSet = true;
+            }
+        }
+        return columnIdentityUserRoles37a;
+    }
+
+   /**
+    * @see org.andromda.cartridges.ejb3.metafacades.EJB3EntityAttributeFacade#isColumnIdentityRoleName()
+    * @return boolean
+    */
+    protected abstract boolean handleIsColumnIdentityRoleName();
+
+    private transient boolean columnIdentityRoleName38a;
+    private transient boolean columnIdentityRoleName38aSet = false;
+
+    /**
+     * Defines the seam identity RoleName annotation.
+     * @return (boolean)handleIsColumnIdentityRoleName()
+     */
+    public final boolean isColumnIdentityRoleName()
+    {
+        boolean columnIdentityRoleName38a = this.columnIdentityRoleName38a;
+        if (!this.columnIdentityRoleName38aSet)
+        {
+            // columnIdentityRoleName has no pre constraints
+            columnIdentityRoleName38a = handleIsColumnIdentityRoleName();
+            // columnIdentityRoleName has no post constraints
+            this.columnIdentityRoleName38a = columnIdentityRoleName38a;
+            if (isMetafacadePropertyCachingEnabled())
+            {
+                this.columnIdentityRoleName38aSet = true;
+            }
+        }
+        return columnIdentityRoleName38a;
+    }
+
+   /**
+    * @see org.andromda.cartridges.ejb3.metafacades.EJB3EntityAttributeFacade#isColumnIdentityRoleConditional()
+    * @return boolean
+    */
+    protected abstract boolean handleIsColumnIdentityRoleConditional();
+
+    private transient boolean columnIdentityRoleConditional39a;
+    private transient boolean columnIdentityRoleConditional39aSet = false;
+
+    /**
+     * Defines the seam identity RoleConditional annotation.
+     * @return (boolean)handleIsColumnIdentityRoleConditional()
+     */
+    public final boolean isColumnIdentityRoleConditional()
+    {
+        boolean columnIdentityRoleConditional39a = this.columnIdentityRoleConditional39a;
+        if (!this.columnIdentityRoleConditional39aSet)
+        {
+            // columnIdentityRoleConditional has no pre constraints
+            columnIdentityRoleConditional39a = handleIsColumnIdentityRoleConditional();
+            // columnIdentityRoleConditional has no post constraints
+            this.columnIdentityRoleConditional39a = columnIdentityRoleConditional39a;
+            if (isMetafacadePropertyCachingEnabled())
+            {
+                this.columnIdentityRoleConditional39aSet = true;
+            }
+        }
+        return columnIdentityRoleConditional39a;
+    }
+
+   /**
+    * @see org.andromda.cartridges.ejb3.metafacades.EJB3EntityAttributeFacade#isColumnIdentityRoleGroups()
+    * @return boolean
+    */
+    protected abstract boolean handleIsColumnIdentityRoleGroups();
+
+    private transient boolean columnIdentityRoleGroups40a;
+    private transient boolean columnIdentityRoleGroups40aSet = false;
+
+    /**
+     * Defines the seam identity RoleGroups annotation.
+     * @return (boolean)handleIsColumnIdentityRoleGroups()
+     */
+    public final boolean isColumnIdentityRoleGroups()
+    {
+        boolean columnIdentityRoleGroups40a = this.columnIdentityRoleGroups40a;
+        if (!this.columnIdentityRoleGroups40aSet)
+        {
+            // columnIdentityRoleGroups has no pre constraints
+            columnIdentityRoleGroups40a = handleIsColumnIdentityRoleGroups();
+            // columnIdentityRoleGroups has no post constraints
+            this.columnIdentityRoleGroups40a = columnIdentityRoleGroups40a;
+            if (isMetafacadePropertyCachingEnabled())
+            {
+                this.columnIdentityRoleGroups40aSet = true;
+            }
+        }
+        return columnIdentityRoleGroups40a;
+    }
+
     /**
      * @return true
      * @see EntityAttribute

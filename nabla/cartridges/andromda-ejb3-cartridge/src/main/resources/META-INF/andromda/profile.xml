@@ -1142,7 +1142,7 @@
 			        <value>false</value>
 			    </allowedValues>
 			</element>
-                        <element name="COLUMN_EMAILABLE">
+            <element name="COLUMN_EMAILABLE">
 			    <documentation>
 			        Specifies whether the underlying column
 			        for the entity attribute may be an email.
@@ -1158,7 +1158,7 @@
 			        <value>false</value>
 			    </allowedValues>
 			</element>
-                        <element name="COLUMN_PATTERNABLE">
+            <element name="COLUMN_PATTERNABLE">
 			    <documentation>
 			        Specifies whether the underlying column
 			        for the entity attribute may be validate by a specific pattern.
@@ -1169,18 +1169,115 @@
 			    <appliedOnElement>
 			        Entity Attribute
 			    </appliedOnElement>
-			</element>									
+			</element>
+	        <element name="COLUMN_INDEXABLE">
+                <documentation>
+                    Specifies the INDEX to create the DDL for the
+                    column or entity property.
+                </documentation>
+                <value>
+                    andromda_persistence_column_index
+                </value>
+                <appliedOnElement>
+                    Entity Attribute
+                </appliedOnElement>
+            </element>
+            aaa
+	        <element name="COLUMN_IDENTITY_USER_PRINCIPAL">
+                <documentation>
+                    Specifies the seam identity UserPrincipal for the
+                    column or entity property.
+                </documentation>
+                <value>
+                    andromda_seam_identity_user_principal
+                </value>
+                <appliedOnElement>
+                    Entity Attribute
+                </appliedOnElement>
+            </element>
+	        <element name="COLUMN_IDENTITY_USER_PASSWORD">
+                <documentation>
+                    Specifies the seam identity UserPassword for the
+                    column or entity property.
+                </documentation>
+                <value>
+                    andromda_seam_identity_user_password
+                </value>
+                <appliedOnElement>
+                    Entity Attribute
+                </appliedOnElement>
+            </element>
+	        <element name="COLUMN_IDENTITY_USER_ENABLED">
+                <documentation>
+                    Specifies the seam identity UserEnabled for the
+                    column or entity property.
+                </documentation>
+                <value>
+                    andromda_seam_identity_user_enabled
+                </value>
+                <appliedOnElement>
+                    Entity Attribute
+                </appliedOnElement>
+            </element>
+	        <element name="COLUMN_IDENTITY_USER_ROLES">
+                <documentation>
+                    Specifies the seam identity UserRoles for the
+                    column or entity property.
+                </documentation>
+                <value>
+                    andromda_seam_identity_user_roles
+                </value>
+                <appliedOnElement>
+                    Entity Attribute
+                </appliedOnElement>
+            </element>
+	        <element name="COLUMN_IDENTITY_ROLE_NAME">
+                <documentation>
+                    Specifies the seam identity RoleName for the
+                    column or entity property.
+                </documentation>
+                <value>
+                    andromda_seam_identity_user_role_name
+                </value>
+                <appliedOnElement>
+                    Entity Attribute
+                </appliedOnElement>
+            </element>
+	        <element name="COLUMN_IDENTITY_ROLE_CONDITIONAL">
+                <documentation>
+                    Specifies the seam identity RoleConditional for the
+                    column or entity property.
+                </documentation>
+                <value>
+                    andromda_seam_identity_user_role_conditional
+                </value>
+                <appliedOnElement>
+                    Entity Attribute
+                </appliedOnElement>
+            </element>
+	        <element name="COLUMN_IDENTITY_ROLE_GROUPS">
+                <documentation>
+                    Specifies the seam identity RoleGroups for the
+                    column or entity property.
+                </documentation>
+                <value>
+                    andromda_seam_identity_user_role_groups
+                </value>
+                <appliedOnElement>
+                    Entity Attribute
+                </appliedOnElement>
+            </element>
             <element name="COLUMN_MINLENGTH">
-                            <documentation>
-                                Specifies whether the underlying column
-                                for the entity attribute may be validate by a minimum length.
-                            </documentation>
-                            <value>
-                                andromda_validation_minLength
-                            </value>
-                            <appliedOnElement>
-                                Entity Attribute
-                            </appliedOnElement>
+				<documentation>
+					Specifies whether the underlying column
+					for the entity attribute may be validate by a minimum length.
+				</documentation>
+				<value>
+					andromda_validation_minLength
+				</value>
+				<appliedOnElement>
+					Entity Attribute
+				</appliedOnElement>
                         </element>
             <element name="COLUMN_INSERT">
                 <documentation>

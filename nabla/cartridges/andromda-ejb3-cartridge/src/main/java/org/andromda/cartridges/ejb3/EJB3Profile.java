@@ -542,6 +542,46 @@ public class EJB3Profile extends UMLProfile
     public static final String   TAGGEDVALUE_PERSISTENCE_COLUMN_DEFINITION                         = profile.get("COLUMN_DEFINITION");
 
     /**
+     * 'andromda_persistence_column_index' The tagged value indicating the INDEX for a column.
+     */
+    public static final String   TAGGEDVALUE_PERSISTENCE_COLUMN_INDEXABLE                          = profile.get("COLUMN_INDEXABLE");
+
+    /**
+     * 'andromda_seam_identity_user_principal' The tagged value indicating the USER_PRINCIPAL for a column.
+     */
+    public static final String   TAGGEDVALUE_PERSISTENCE_COLUMN_IDENTITY_USER_PRINCIPAL            = profile.get("COLUMN_IDENTITY_USER_PRINCIPAL");
+
+    /**
+     * 'andromda_seam_identity_user_password' The tagged value indicating the USER_PASSWORD for a column.
+     */
+    public static final String   TAGGEDVALUE_PERSISTENCE_COLUMN_IDENTITY_USER_PASSWORD             = profile.get("COLUMN_IDENTITY_USER_PASSWORD");
+
+    /**
+     * 'andromda_seam_identity_user_enabled' The tagged value indicating the USER_ENABLED for a column.
+     */
+    public static final String   TAGGEDVALUE_PERSISTENCE_COLUMN_IDENTITY_USER_ENABLED              = profile.get("COLUMN_IDENTITY_USER_ENABLED");
+
+    /**
+     * 'andromda_seam_identity_user_roles' The tagged value indicating the INDEX for a column.
+     */
+    public static final String   TAGGEDVALUE_PERSISTENCE_COLUMN_IDENTITY_USER_ROLES                = profile.get("COLUMN_IDENTITY_USER_ROLES");
+
+    /**
+     * 'andromda_seam_identity_user_role_name' The tagged value indicating the ROLE_NAME for a column.
+     */
+    public static final String   TAGGEDVALUE_PERSISTENCE_COLUMN_IDENTITY_ROLE_NAME                 = profile.get("COLUMN_IDENTITY_ROLE_NAME");
+
+    /**
+     * 'andromda_seam_identity_user_role_conditional' The tagged value indicating the ROLE_CONDITIONAL for a column.
+     */
+    public static final String   TAGGEDVALUE_PERSISTENCE_COLUMN_IDENTITY_ROLE_CONDITIONAL          = profile.get("COLUMN_IDENTITY_ROLE_CONDITIONAL");
+
+    /**
+     * 'andromda_seam_identity_user_role_groups' The tagged value indicating the ROLE_GROUPS for a column.
+     */
+    public static final String   TAGGEDVALUE_PERSISTENCE_COLUMN_IDENTITY_ROLE_GROUPS               = profile.get("COLUMN_IDENTITY_ROLE_GROUPS");
+
+    /**
      * 'andromda_persistence_column_precision' The tagged value for the precision in a float/double column.
      */
     public static final String   TAGGEDVALUE_PERSISTENCE_COLUMN_PRECISION                          = profile.get("COLUMN_PRECISION");

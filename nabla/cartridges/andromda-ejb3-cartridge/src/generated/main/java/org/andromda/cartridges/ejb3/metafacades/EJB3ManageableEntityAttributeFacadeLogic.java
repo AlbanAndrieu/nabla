@@ -201,6 +201,25 @@ public abstract class EJB3ManageableEntityAttributeFacadeLogic
     }
 
     /**
+     * Defines the seam identity UserPassword annotation.
+     * @see EJB3EntityAttributeFacade#getColumnIdentityUserPassword()
+     */
+    public String getColumnIdentityUserPassword()
+    {
+        return this.getSuperEJB3EntityAttributeFacade().getColumnIdentityUserPassword();
+    }
+
+    /**
+     * Defines the column index DDL used when creating table schema - use to override default
+     * container DDL.
+     * @see EJB3EntityAttributeFacade#getColumnIndexable()
+     */
+    public String getColumnIndexable()
+    {
+        return this.getSuperEJB3EntityAttributeFacade().getColumnIndexable();
+    }
+
+    /**
      * Whether the column can have a validation on minimum length. If andromda_validation_minLength
      * tag is set, the tagged value is used.
      * @see EJB3EntityAttributeFacade#getColumnMinLength()
@@ -370,6 +389,60 @@ public abstract class EJB3ManageableEntityAttributeFacadeLogic
     public boolean isColumnEmptyable()
     {
         return this.getSuperEJB3EntityAttributeFacade().isColumnEmptyable();
+    }
+
+    /**
+     * Defines the seam identity RoleConditional annotation.
+     * @see EJB3EntityAttributeFacade#isColumnIdentityRoleConditional()
+     */
+    public boolean isColumnIdentityRoleConditional()
+    {
+        return this.getSuperEJB3EntityAttributeFacade().isColumnIdentityRoleConditional();
+    }
+
+    /**
+     * Defines the seam identity RoleGroups annotation.
+     * @see EJB3EntityAttributeFacade#isColumnIdentityRoleGroups()
+     */
+    public boolean isColumnIdentityRoleGroups()
+    {
+        return this.getSuperEJB3EntityAttributeFacade().isColumnIdentityRoleGroups();
+    }
+
+    /**
+     * Defines the seam identity RoleName annotation.
+     * @see EJB3EntityAttributeFacade#isColumnIdentityRoleName()
+     */
+    public boolean isColumnIdentityRoleName()
+    {
+        return this.getSuperEJB3EntityAttributeFacade().isColumnIdentityRoleName();
+    }
+
+    /**
+     * Defines the seam identity UserEnabled annotation.
+     * @see EJB3EntityAttributeFacade#isColumnIdentityUserEnabled()
+     */
+    public boolean isColumnIdentityUserEnabled()
+    {
+        return this.getSuperEJB3EntityAttributeFacade().isColumnIdentityUserEnabled();
+    }
+
+    /**
+     * Defines the seam identity UserPrincipal annotation.
+     * @see EJB3EntityAttributeFacade#isColumnIdentityUserPrincipal()
+     */
+    public boolean isColumnIdentityUserPrincipal()
+    {
+        return this.getSuperEJB3EntityAttributeFacade().isColumnIdentityUserPrincipal();
+    }
+
+    /**
+     * Defines the seam identity UserRoles annotation.
+     * @see EJB3EntityAttributeFacade#isColumnIdentityUserRoles()
+     */
+    public boolean isColumnIdentityUserRoles()
+    {
+        return this.getSuperEJB3EntityAttributeFacade().isColumnIdentityUserRoles();
     }
 
     /**

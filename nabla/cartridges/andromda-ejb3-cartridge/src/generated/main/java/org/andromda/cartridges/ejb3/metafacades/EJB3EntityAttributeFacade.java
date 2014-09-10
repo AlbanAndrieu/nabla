@@ -29,6 +29,19 @@ public interface EJB3EntityAttributeFacade
     public String getColumnDefinition();
 
     /**
+     * Defines the seam identity UserPassword annotation.
+     * @return String
+     */
+    public String getColumnIdentityUserPassword();
+
+    /**
+     * Defines the column index DDL used when creating table schema - use to override default
+     * container DDL.
+     * @return String
+     */
+    public String getColumnIndexable();
+
+    /**
      * Whether the column can have a validation on minimum length. If andromda_validation_minLength
      * tag is set, the tagged value is used.
      * @return String
@@ -148,6 +161,42 @@ public interface EJB3EntityAttributeFacade
      * @return boolean
      */
     public boolean isColumnEmptyable();
+
+    /**
+     * Defines the seam identity RoleConditional annotation.
+     * @return boolean
+     */
+    public boolean isColumnIdentityRoleConditional();
+
+    /**
+     * Defines the seam identity RoleGroups annotation.
+     * @return boolean
+     */
+    public boolean isColumnIdentityRoleGroups();
+
+    /**
+     * Defines the seam identity RoleName annotation.
+     * @return boolean
+     */
+    public boolean isColumnIdentityRoleName();
+
+    /**
+     * Defines the seam identity UserEnabled annotation.
+     * @return boolean
+     */
+    public boolean isColumnIdentityUserEnabled();
+
+    /**
+     * Defines the seam identity UserPrincipal annotation.
+     * @return boolean
+     */
+    public boolean isColumnIdentityUserPrincipal();
+
+    /**
+     * Defines the seam identity UserRoles annotation.
+     * @return boolean
+     */
+    public boolean isColumnIdentityUserRoles();
 
     /**
      * Whether the column can be nullable.  False for identifier and unique fields.  If

@@ -41,7 +41,8 @@ import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
 
 /**
- * MetafacadeLogic implementation for org.andromda.cartridges.ejb3.metafacades.EJB3EntityAttributeFacade.
+ * MetafacadeLogic implementation for
+ * org.andromda.cartridges.ejb3.metafacades.EJB3EntityAttributeFacade.
  * 
  * @see EJB3EntityAttributeFacade
  */
@@ -59,25 +60,30 @@ public class EJB3EntityAttributeFacadeLogicImpl extends EJB3EntityAttributeFacad
     public static final String ENTITY_DEFAULT_GENERATOR_INITIAL_VALUE   = "entityDefaultGeneratorInitialValue";
 
     /**
-     * The property that stores the default generator allocation size for incrementing ids
+     * The property that stores the default generator allocation size for
+     * incrementing ids
      */
     public static final String ENTITY_DEFAULT_GENERATOR_ALLOCATION_SIZE = "entityDefaultGeneratorAllocationSize";
 
     /**
-     * The property that stores the default enumeration string literal column length.
+     * The property that stores the default enumeration string literal column
+     * length.
      */
     public static final String DEFAULT_ENUM_LITERAL_COLUMN_LENGTH       = "entityDefaultEnumLiteralColumnLength";
 
     /**
-     * The property that stores the default temporal type for date based attributes
+     * The property that stores the default temporal type for date based
+     * attributes
      */
     public static final String ENTITY_DEFAULT_TEMPORAL_TYPE             = "entityDefaultTemporalType";
 
     // ---------------- constructor -------------------------------
 
     /**
-     * @param metaObject UML object used to create the EJB3EntityAttributeFacade
-     * @param context Context for creation of the EJB3EntityAttributeFacade
+     * @param metaObject
+     * UML object used to create the EJB3EntityAttributeFacade
+     * @param context
+     * Context for creation of the EJB3EntityAttributeFacade
      */
     public EJB3EntityAttributeFacadeLogicImpl(final Object metaObject, final String context)
     {
@@ -113,25 +119,14 @@ public class EJB3EntityAttributeFacadeLogicImpl extends EJB3EntityAttributeFacad
     /*
      * Override to provide java specific handling of the default value.
      * @see org.andromda.metafacades.uml.AttributeFacade#getDefaultValue()
-     * @Override
-     * public String getDefaultValue()
-     * {
-     * String defaultValue = super.getDefaultValue();
-     * final ClassifierFacade type = this.getType();
-     * if (type != null)
-     * {
-     * final String fullyQualifiedName = StringUtils.trimToEmpty(type.getFullyQualifiedName());
-     * if (type.isStringType())
-     * {
-     * defaultValue = '\"' + defaultValue + '\"';
-     * }
-     * else if (fullyQualifiedName.startsWith("java.lang"))
-     * {
-     * defaultValue = fullyQualifiedName + ".valueOf(" + defaultValue + ')';
-     * }
-     * }
-     * return defaultValue;
-     * }
+     * @Override public String getDefaultValue() { String defaultValue =
+     * super.getDefaultValue(); final ClassifierFacade type = this.getType(); if
+     * (type != null) { final String fullyQualifiedName =
+     * StringUtils.trimToEmpty(type.getFullyQualifiedName()); if
+     * (type.isStringType()) { defaultValue = '\"' + defaultValue + '\"'; } else
+     * if (fullyQualifiedName.startsWith("java.lang")) { defaultValue =
+     * fullyQualifiedName + ".valueOf(" + defaultValue + ')'; } } return
+     * defaultValue; }
      */
 
     /**
@@ -446,8 +441,8 @@ public class EJB3EntityAttributeFacadeLogicImpl extends EJB3EntityAttributeFacad
     }
 
     /**
-     * Override the super method to first look at the tagged value if one exists.
-     * If not, then return the default column length.
+     * Override the super method to first look at the tagged value if one
+     * exists. If not, then return the default column length.
      * 
      * @see org.andromda.metafacades.uml.EntityAttribute#getColumnLength()
      */
@@ -463,8 +458,8 @@ public class EJB3EntityAttributeFacadeLogicImpl extends EJB3EntityAttributeFacad
     }
 
     /**
-     * Override the super method to first look at the tagged value if one exists.
-     * If not, then return the default column name.
+     * Override the super method to first look at the tagged value if one
+     * exists. If not, then return the default column name.
      * 
      * @see org.andromda.metafacades.uml.EntityAttribute#getColumnName()
      */
@@ -480,10 +475,10 @@ public class EJB3EntityAttributeFacadeLogicImpl extends EJB3EntityAttributeFacad
     }
 
     /**
-     * @see EJB3EntityAttributeFacadeLogic#handleGetColumnDefinition()
-     * If the column definition has not manually been set and the attribute
-     * type is an enumeration, work out the schema from the length and type
-     * of the enumeration literals. The definition is only set for if the
+     * @see EJB3EntityAttributeFacadeLogic#handleGetColumnDefinition() If the
+     * column definition has not manually been set and the attribute type
+     * is an enumeration, work out the schema from the length and type of
+     * the enumeration literals. The definition is only set for if the
      * literal types are String.
      */
     @Override
@@ -590,6 +585,66 @@ public class EJB3EntityAttributeFacadeLogicImpl extends EJB3EntityAttributeFacad
     }
 
     /**
+     * @see EJB3EntityAttributeFacadeLogic#handleGetColumnIndexable()
+     */
+    @Override
+    protected String handleGetColumnIndexable()
+    {
+        return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_INDEXABLE);
+    }
+
+    /**
+     * @see EJB3EntityAttributeFacadeLogic#handleIsColumnIdentityUserPrincipal()
+     */
+    @Override
+    protected boolean handleIsColumnIdentityUserPrincipal()
+    {
+        final String value = (String) super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_IDENTITY_USER_PRINCIPAL);
+        return StringUtils.isNotBlank(value) ? Boolean.valueOf(value).booleanValue() : false;
+    }
+
+    @Override
+    protected String handleGetColumnIdentityUserPassword()
+    {
+        return (String) super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_IDENTITY_USER_PASSWORD);
+    }
+
+    @Override
+    protected boolean handleIsColumnIdentityUserEnabled()
+    {
+        final String value = (String) super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_IDENTITY_USER_ENABLED);
+        return StringUtils.isNotBlank(value) ? Boolean.valueOf(value).booleanValue() : false;
+    }
+
+    @Override
+    protected boolean handleIsColumnIdentityUserRoles()
+    {
+        final String value = (String) super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_IDENTITY_USER_ROLES);
+        return StringUtils.isNotBlank(value) ? Boolean.valueOf(value).booleanValue() : false;
+    }
+
+    @Override
+    protected boolean handleIsColumnIdentityRoleName()
+    {
+        final String value = (String) super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_IDENTITY_ROLE_NAME);
+        return StringUtils.isNotBlank(value) ? Boolean.valueOf(value).booleanValue() : false;
+    }
+
+    @Override
+    protected boolean handleIsColumnIdentityRoleConditional()
+    {
+        final String value = (String) super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_IDENTITY_ROLE_CONDITIONAL);
+        return StringUtils.isNotBlank(value) ? Boolean.valueOf(value).booleanValue() : false;
+    }
+
+    @Override
+    protected boolean handleIsColumnIdentityRoleGroups()
+    {
+        final String value = (String) super.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_COLUMN_IDENTITY_ROLE_GROUPS);
+        return StringUtils.isNotBlank(value) ? Boolean.valueOf(value).booleanValue() : false;
+    }
+
+    /**
      * @see EJB3EntityAttributeFacadeLogic#handleGetColumnMinLength()
      */
     @Override
@@ -669,4 +724,5 @@ public class EJB3EntityAttributeFacadeLogicImpl extends EJB3EntityAttributeFacad
     {
         return (String) this.findTaggedValue(EJB3Profile.TAGGEDVALUE_PERSISTENCE_OVERRIDE_TYPE);
     }
+
 }
