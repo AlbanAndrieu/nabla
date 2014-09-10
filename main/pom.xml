@@ -911,10 +911,10 @@
 								<configuration>
 								  <!--<argLine>${jacoco.agent.ut.arg} -Xms256m -Xmx512m -XX:MaxPermSize=512m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>-->
 								  <argLine>${jacoco.agent.ut.arg} -Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>
-								  <skip>${maven.test.skip}</skip>
-								  <forkMode>once</forkMode>
+								  <skipTests>${maven.test.ut.skip}</skipTests>
 								  <!-- Enable or disable Stop maven -->
 								  <testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
+								  <forkMode>once</forkMode>								  
 								  <!-- Specific to generate mapping between tests and covered code -->
 								  <!-- 
 								  <properties>
@@ -950,6 +950,8 @@
 								<groupId>org.apache.maven.plugins</groupId>
 								<artifactId>maven-failsafe-plugin</artifactId>
 								<configuration>
+								  <skipTests>${maven.test.skip}</skipTests>
+								  <skipITs>${maven.test.it.skip}</skipITs>
 								  <argLine>${jacoco.agent.it.arg} -Xmx1024m -XX:MaxPermSize=256m</argLine>
 								  <!-- Specific to generate mapping between tests and covered code -->
 								  <!--
@@ -1179,7 +1181,7 @@
 								<artifactId>maven-surefire-plugin</artifactId>
 								<version>${maven.surefire.plugin.version}</version>
 								<configuration>
-									<skipTests>${maven.test.skip}</skipTests>
+									<skipTests>${maven.test.ut.skip}</skipTests>
 									<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
 								</configuration>
 							</plugin>
@@ -1310,6 +1312,8 @@
 						<artifactId>maven-failsafe-plugin</artifactId>
 						<version>${maven.failsafe.plugin.version}</version>
 						<configuration>
+							<skipTests>${maven.test.skip}</skipTests>
+							<skipITs>${maven.test.it.skip}</skipITs>
 							<includes>
 								<include>**/*ITest*</include>
 								<include>**/*STest*</include>
@@ -1342,7 +1346,7 @@
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-surefire-plugin</artifactId>
 							<configuration>
-								<skipTests>${maven.test.skip}</skipTests>
+								<skipTests>${maven.test.ut.skip}</skipTests>
 								<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
 								<redirectTestOutputToFile>true</redirectTestOutputToFile>
 								<trimStackTrace>false</trimStackTrace>
