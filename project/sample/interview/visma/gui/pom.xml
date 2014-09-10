@@ -734,26 +734,19 @@
 				<!--<groupId>io.gatling</groupId>-->
 				<artifactId>gatling-maven-plugin</artifactId>
 				<version>${gatling.version}</version>
-				<!--
 				<executions>
 					<execution>
-						<phase>test</phase>
+						<phase>integration-test</phase>
 						<goals>
 							<goal>execute</goal>
 						</goals>
 						<configuration>
-							<dataFolder>src/test/resources/data</dataFolder>
-							<resultsFolder>target/gatling/results</resultsFolder>
-							<requestBodiesFolder>src/test/resources/request-bodies</requestBodiesFolder>
-							<simulationsFolder>src/test/scala</simulationsFolder>
+							<includes>
+								<include>**/RecordedSimulation.scala</include>
+							</includes>
 						</configuration>
 					</execution>
-				</executions>-->
-				<configuration>
-					<includes>
-						<include>**/RecordedSimulation.scala</include>
-					</includes>
-				</configuration>
+				</executions>
 			</plugin>
 			<!--
 			<plugin>

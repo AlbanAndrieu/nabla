@@ -111,22 +111,6 @@
 				<groupId>com.excilys.ebi.gatling</groupId>
 				<artifactId>gatling-maven-plugin</artifactId>
 				<version>${gatling.version}</version>
-				<!--
-				<executions>
-					<execution>
-						<phase>test</phase>
-						<goals>
-							<goal>execute</goal>
-						</goals>
-						<configuration>
-							<dataFolder>src/test/resources/data</dataFolder>
-							<resultsFolder>target/gatling/results</resultsFolder>
-							<requestBodiesFolder>src/test/resources/request-bodies</requestBodiesFolder>
-							<simulationsFolder>src/test/scala</simulationsFolder>
-						</configuration>
-					</execution>
-				</executions>				
-				<version>${maven.gatling.maven.plugin.version}</version>-->
 				<configuration>
 					<includes>
 						<include>**/RecordedSimulation.scala</include>
