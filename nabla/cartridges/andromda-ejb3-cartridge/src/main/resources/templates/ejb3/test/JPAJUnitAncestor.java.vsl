@@ -15,7 +15,7 @@ import javax.persistence.Persistence;
 import javax.persistence.Query;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.testng.Assert;
+import org.junit.Assert;
 
 /**
  * Contains methods used by multiple JPA unit tests, to initialize and log

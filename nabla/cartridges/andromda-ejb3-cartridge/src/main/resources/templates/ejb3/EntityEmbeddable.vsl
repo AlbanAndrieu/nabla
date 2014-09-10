@@ -476,28 +476,27 @@ $attribute.getDocumentation("     * ")
 #*      *##if (!$stringUtils.isBlank($attribute.columnIndexable))
 	@org.hibernate.annotations.Index(name = "$attribute.columnIndexable")
 #*      *##end
-#*      *##if (!$stringUtils.isBlank($attribute.columnIdentityUserPrincipal))
+#*      *##if ($attribute.columnIdentityUserPrincipal)
 	@org.jboss.seam.annotations.security.management.UserPrincipal
 #*      *##end
 #*      *##if (!$stringUtils.isBlank($attribute.columnIdentityUserPassword))
 	@org.jboss.seam.annotations.security.management.UserPassword(hash = "$attribute.columnIdentityUserPassword")
 #*      *##end
-#*      *##if (!$stringUtils.isBlank($attribute.columnIdentityUserEnabled))
+#*      *##if ($attribute.columnIdentityUserEnabled)
 	@org.jboss.seam.annotations.security.management.UserEnabled
 #*      *##end
-#*      *##if (!$stringUtils.isBlank($attribute.columnIdentityUserRoles))
+#*      *##if ($attribute.columnIdentityUserRoles)
 	@org.jboss.seam.annotations.security.management.UserRoles   
 #*      *##end
-#*      *##if (!$stringUtils.isBlank($attribute.columnIdentityRoleName))
+#*      *##if ($attribute.columnIdentityRoleName)
 	@org.jboss.seam.annotations.security.management.RoleName
 #*      *##end
-#*      *##if (!$stringUtils.isBlank($attribute.columnIdentityRoleConditional))
+#*      *##if ($attribute.columnIdentityRoleConditional)
 	@org.jboss.seam.annotations.security.management.RoleConditional
 #*      *##end
-#*      *##if (!$stringUtils.isBlank($attribute.columnIdentityRoleGroups))
+#*      *##if ($attribute.columnIdentityRoleGroups)
 	@org.jboss.seam.annotations.security.management.RoleGroups
 #*      *##end
-
 #*    *##end
 #*    *##if ($attribute.version)
 ##
@@ -946,12 +945,12 @@ $target.getDocumentation("     * ")
     /**
 $target.getDocumentation("     * ")
      * Get the ${target.labelName}
-     * @return ${target.type.manageableDisplayAttribute.getterSetterTypeName}
+##     * @return ${target.type.manageableDisplayAttribute.getterSetterTypeName}
 ##     * @return #if ($target.many)java.util.Collection<${target.type.manageableDisplayAttribute.type.fullyQualifiedName}>#else${target.type.manageableDisplayAttribute.type.fullyQualifiedName}#end
-
+     * @return #if ($target.many)java.util.Collection<${target.type.manageableDisplayAttribute.type.fullyQualifiedName}>#else${target.type.manageableDisplayAttribute.getterSetterTypeName}#end
      */
     @javax.persistence.Transient
-    public ${target.type.manageableDisplayAttribute.getterSetterTypeName} ${target.getterLabelName}()
+    public #if ($target.many)java.util.Collection<${target.type.manageableDisplayAttribute.type.fullyQualifiedName}>#else${target.type.manageableDisplayAttribute.getterSetterTypeName}#end ${target.getterLabelName}()
     {
         return this.${target.labelName};
     }
@@ -961,7 +960,7 @@ $target.getDocumentation("     * ")
      * Set the ${target.labelName}
      * @param ${target.labelName}In
      */
-    public void ${target.setterLabelName} (${target.type.manageableDisplayAttribute.getterSetterTypeName} ${target.labelName}In)
+    public void ${target.setterLabelName} (#if ($target.many)java.util.Collection<${target.type.manageableDisplayAttribute.type.fullyQualifiedName}>#else${target.type.manageableDisplayAttribute.getterSetterTypeName}#end ${target.labelName}In)
     {
         this.${target.labelName} = ${target.labelName}In;
     }

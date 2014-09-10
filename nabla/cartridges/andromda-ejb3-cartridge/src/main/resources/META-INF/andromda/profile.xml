@@ -1182,7 +1182,6 @@
                     Entity Attribute
                 </appliedOnElement>
             </element>
-            aaa
 	        <element name="COLUMN_IDENTITY_USER_PRINCIPAL">
                 <documentation>
                     Specifies the seam identity UserPrincipal for the
