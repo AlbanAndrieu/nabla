@@ -61,15 +61,16 @@
   with_items:  
    - xxdiff
 #   - xxdiff-scripts
+#  - kdiff3
    - meld
    
 - name: Copy the subversion configuration merge script
-  template: src={{ subversion_merge_tool_cmd }}.j2 dest={{ subversion_merge_tool_cmd_directory }}/{{ subversion_merge_tool_cmd }} mode=0644
+  template: src={{ subversion_merge_tool_file }}.j2 dest={{ subversion_merge_tool_cmd }} mode=0644
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
   tags: configure
 
 - name: Copy the subversion configuration script
-  template: src=config.j2 dest={{ subversion_merge_tool_cmd_directory }}/config mode=0644
+  template: src=config.j2 dest={{ subversion_config_dir }}/config mode=0644
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
   tags: configure
 

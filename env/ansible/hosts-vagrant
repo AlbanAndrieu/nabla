@@ -10,7 +10,11 @@ albandri
 [dbservers]
 albandri
 
-[test-boxes]
+[jenkins-slave-create-image-docker]
 192.168.33.10
-192.168.33.11
-192.168.33.12
+
+[test-boxes]
+#jenkins-slave-create-image-docker
+#192.168.33.10
+#192.168.33.11
+#192.168.33.12

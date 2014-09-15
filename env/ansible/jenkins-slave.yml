@@ -6,7 +6,7 @@
 #ansible-playbook jenkins-slave.yml -i hosts -vvvv --ask-sudo-pass --sudo
 # --extra-vars "jenkins_username=aandrieu jenkins_password=tbd"
 
-- name: apply hostname configuration
+- name: Apply hostname configuration
   hosts: test-boxes
   user: root
 #  connection: local
@@ -25,7 +25,7 @@
   roles:
     - zfs
     
-- name: apply common configuration to all jenkins slaves
+- name: Apply common configuration to all jenkins slaves
   hosts: test-boxes
   sudo: yes
   user: vagrant
@@ -38,7 +38,7 @@
   roles:
     - jenkins-slave
 
-- name: apply swarm configuration to all jenkins slaves
+- name: Apply swarm configuration to all jenkins slaves
   hosts: test-boxes
   sudo: yes
   user: vagrant
@@ -64,3 +64,4 @@
   
   roles:
     - xvbf
+

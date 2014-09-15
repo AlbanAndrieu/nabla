@@ -29,3 +29,10 @@
 - name: CSS | Install Respond-to
   action: command gem install respond-to
   tags: css
+
+- name: Install cssed
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: css_editor_enabled  
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  with_items:
+   - cssed

@@ -203,4 +203,36 @@
 #
 ##- name: Ensure the webdriverjs npm dependencies are installed
 ##  command: chdir=/usr/bin npm install -g webdriverjs
-   
+
+- name: Mount | Disable mount points
+  mount: 
+    name : '{{ item }}'
+    src: '/mnt/dpool{{ item }]'
+    fstype: nfs
+    state:unmounted
+  tags: mount
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  with_items:
+    - /image
+    - /owncloud
+  
+- name: Mount | Setup mount points
+  mount: 
+    name : '{{ item }}'
+    src: '/mnt/dpool{{ item }]'
+    fstype: nfs
+#    opts: rw,nodev,nosuid,soft,bg,intr,-r16384,-w16384
+    state:mounted
+  tags: mount
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  with_items:
+    - /media/ftp
+    - /media/photo
+    - /media/music
+    - /media/video
+    - /archive
+    - /backup
+    
+# Mount up device by UUID
+#TODO iSCSI
+#- mount: name=/home src='UUID=b3e48f45-f933-4c8e-a700-22a159ec9077' fstype=xfs opts=noatime state=present

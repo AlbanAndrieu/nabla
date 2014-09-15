@@ -128,6 +128,14 @@
   roles:
     - webmin
         
+- name: Install nexus
+  hosts: nexus
+  user: root
+#  connection: local
+
+  roles:
+    - nexus
+        
 # This playbook can be run using vagrant (on virtual box). 
 - name: Install xvbf
   hosts: xvbf

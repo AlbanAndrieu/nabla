@@ -7,7 +7,9 @@ echo "WORKSPACE : $WORKSPACE"
 echo "Configure Jenkins slaves"
 
 ansible --version
+vagrant --version
 python --version
+docker --version
 
 cd ./Scripts/ansible
 
@@ -35,6 +37,7 @@ sshpass -f /jenkins/pass.txt ssh-copy-id vagrant@192.168.33.11
 sshpass -f /jenkins/pass.txt ssh-copy-id vagrant@192.168.33.12
 
 # test ansible
+ansible-playbook -i hosts jenkins-slave.yml --limit=albandri-laptop-misys --list-tasks
 ansible-playbook -i hosts jenkins-slave.yml -vvvv
 #--extra-vars "jenkins_username=${JENKINS_USERNAME} jenkins_password=${JENKINS_PASSWORD}"
 #ansible-playbook -i hosts jenkins-slave.yml -vvvv | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)

@@ -30,7 +30,11 @@ git clone https://github.com/AlbanAndrieu/ansible-galaxy.ubuntu.virtualbox.git v
 #git clone https://github.com/aw/ansible-galaxy-vagrant.git vagrant
 git clone https://github.com/AlbanAndrieu/ansible-galaxy-vagrant.git vagrant
 
+#TODO control vagrant with ansible https://github.com/robparrott/ansible-vagrant
+
 git clone https://github.com/angstwad/docker.ubuntu.git docker
+#TODO https://github.com/jamesdbloom/ansible-install-docker/blob/master/tasks/main.yml
+#git clone https://github.com/gorsuch/ansible-docker-role jenkins-docker
 
 #git clone https://github.com/silpion/ansible-maven maven
 git clone https://github.com/AlbanAndrieu/ansible-maven.git maven
@@ -70,6 +74,10 @@ git clone https://github.com/AlbanAndrieu/ansible-css.git css
 git clone https://github.com/geerlingguy/ansible-role-security.git security
 
 git clone https://github.com/AlbanAndrieu/ansible-zap.git zap
+
+git clone https://github.com/ahelal/ansible-sonatype_nexus.git nexus
+
+git clone https://github.com/AlbanAndrieu/ansible-cmake.git cmake
 
 #SEE
 https://github.com/ansible/ansible-examples/tree/master/language_features
