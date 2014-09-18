@@ -48,7 +48,22 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           v.customize ["modifyvm", :id, "--memory", 200]
           # v.customize ["modifyvm", :id, "--memory", "4096", "--cpus", "4"]
       end
-      
+	      
+	  #config.vm.provider :libvirt do |libvirt|
+		#libvirt.driver = "qemu"
+		#libvirt.host = "example.com"
+		#libvirt.connect_via_ssh = true
+		#libvirt.username = "root"
+		#libvirt.storage_pool_name = "default"
+	  #end	      
+	      
+	  #https://docs.vagrantup.com/v2/provisioning/basic_usage.html
+	  Vagrant::Config.run do |prov|
+	    #prov.vm.provision :shell, :path => "test.sh"
+	    prov.vm.provision_run :always  
+	    # :once or :always with :once being the default
+	  end
+	  	  
       config.vm.provision "ansible" do |ansible|
         #see https://docs.vagrantup.com/v2/provisioning/ansible.html
       	ansible.playbook = "jenkins-slave-create-image-docker.yml"
@@ -70,8 +85,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       
       #config.vm.provision "docker" do |docker|
       #  docker.build_image "/vagrant/app"
-      #end          
-    end
+      #end     
+      config.vm.provision "docker",
+		images: ["ubuntu"]     
+      end
   end
   
   #config.vm.box = 'thoughtbot/ubuntu-14-04-server'

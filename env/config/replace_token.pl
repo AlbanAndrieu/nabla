@@ -1,28 +1,31 @@
 #!/bin/perl
 
+#use strict;
+use warnings;
+
 use Getopt::Std;
 use File::Copy;
 
-$RECURSIVE_LIMIT=5;
+my $RECURSIVE_LIMIT=5;
 
 #LOG LEVELS
-$LL_ERROR = 1;
-$LL_WARNING = 2;
-$LL_INFO = 3;
-$LL_DEBUG = 4;
-$LOG_LEVEL = $LL_WARNING;
-%LOG_LEVELS = ( $LL_ERROR ,   "ERROR",
-                $LL_WARNING,  "WARN",
-                $LL_INFO,     "INFO",
-                $LL_DEBUG,    "DEBUG");
+my $LL_ERROR = 1;
+my $LL_WARNING = 2;
+my $LL_INFO = 3;
+my $LL_DEBUG = 4;
+my $LOG_LEVEL = $LL_WARNING;
+my %LOG_LEVELS = ( $LL_ERROR ,   "ERROR",
+                   $LL_WARNING,  "WARN",
+                   $LL_INFO,     "INFO",
+                  $LL_DEBUG,    "DEBUG");
 
 getopts('f:p:r:a:vdo',\%options);
 
-$REMOVED_EXTENSION = $options{r}?$options{r}:"";
-$ADDED_EXTENSION = $options{a}?$options{a}:"";
-$PROP_FILES = $options{p}?$options{p}:"";
-$OVERWRITE = $options{o}?1:0;
-$FILE_LIST = $options{f}?$options{f}:"";
+my $REMOVED_EXTENSION = $options{r}?$options{r}:"";
+my $ADDED_EXTENSION = $options{a}?$options{a}:"";
+my $PROP_FILES = $options{p}?$options{p}:"";
+my $OVERWRITE = $options{o}?1:0;
+my $FILE_LIST = $options{f}?$options{f}:"";
 
 if($options{v}) {
   $LOG_LEVEL = $LL_INFO;
@@ -31,20 +34,19 @@ if($options{d}) {
   $LOG_LEVEL = $LL_DEBUG;
 }
 
-
-
 sub logger {
-  $level = $_[0];
-  $message = $_[1];
+  my $level = $_[0];
+  my $message = $_[1];
   if($level <= $LOG_LEVEL) {
-    printf "$LOG_LEVELS{$level}: $message\n";
+    print "$LOG_LEVELS{$level}: $message\n";
   }
 }
 
-sub loadTokens($token_file) {
+sub loadTokens() {
 
-  $token_file = $_[0];
-  open(TOKEN_FILE, $token_file);
+  $tokenfile = $_[0];
+  logger($LL_DEBUG, "Working one file: $tokenfile");
+  open(TOKEN_FILE, $tokenfile);
   
   while(<TOKEN_FILE>) {
     $_ =~ s/\n$//;
@@ -65,7 +67,7 @@ sub loadTokens($token_file) {
       $tokens{$key} = $value;
       next;
     }
-    logger($LL_WARNING, "LoadTokens from $token_file: Canot parse $_");
+    logger($LL_WARNING, "LoadTokens from $tokenfile: Canot parse $_");
   }
   
   close(TOKEN_FILE);

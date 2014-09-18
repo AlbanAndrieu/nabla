@@ -29,7 +29,7 @@ set ANT_HOME=C:\apache-ant-1.8.0
 set ANT=%ANT_HOME%\bin
 set M2_HOME=C:\apache-maven-3.0.4
 set M2=%M2_HOME%\bin
-set M2_REPO=${env.WORKSPACE}/.repository
+set M2_REPO=${env.WORKSPACE}/.m2/repository
 
 #set MAVEN_OPTS=-Xms512m -Xmx1024m -XX:MaxPermSize=256m
 rm Add MaxPermSize for andromda

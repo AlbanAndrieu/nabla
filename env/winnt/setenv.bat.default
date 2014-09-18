@@ -7,9 +7,9 @@ rem proxycfg -d
 # Flush DNS cache
 rem ipconfig /flushdns
 
-set VERSION=[[DEV_VERSION]]
+set VERSION={{DEV_VERSION}}
 
-set UNIX_USERNAME=[[UNIX_USERNAME]]
+set UNIX_USERNAME={{UNIX_USERNAME}}
 set HOME=C:\workspace\users\%UNIX_USERNAME%%VERSION%
 set WORKSPACE=%HOME%
 set HOMEPATH=%HOME%
@@ -25,11 +25,11 @@ set PROJECT_USER_PROFILE=%PROJECT_DEV%\config\config\profiles\%UNIX_USERNAME%.de
 set JAVA_HOME=C:\Sun\SDK\jdk
 set JAVA=%JAVA_HOME%\bin
 set JAVA_OPTS=-Xms256m -Xmx1024m
-set ANT_HOME=C:\apache-ant-[[ANT_MAJOR_VERSION]]
+set ANT_HOME=C:\apache-ant-{{ANT_MAJOR_VERSION}}
 set ANT=%ANT_HOME%\bin
-set M2_HOME=C:\apache-maven-[[MAVEN_MAJOR_VERSION]]
+set M2_HOME=C:\apache-maven-{{MAVEN_MAJOR_VERSION}}
 set M2=%M2_HOME%\bin
-set M2_REPO=[[MAVEN_LOCAL_REPO_PATH]]
+set M2_REPO={{MAVEN_LOCAL_REPO_PATH}}
 
 #set MAVEN_OPTS=-Xms512m -Xmx1024m -XX:MaxPermSize=256m
 rm Add MaxPermSize for andromda
@@ -38,17 +38,17 @@ set MAVEN_OPTS=-Xms256m -Xmx512m -XX:PermSize=40M -XX:MaxPermSize=128M
 set MD_HOME=C:\MagicDraw UML 16.5
 set ANDROMDA_HOME=C:\repo\org\andromda
 
-set JBOSS_HOME=C:\jboss-[[JBOSS_VERSION]]
+set JBOSS_HOME=C:\jboss-{{JBOSS_VERSION}}
 set JBOSS=%JBOSS_HOME%\bin
 
-set BEES_HOME=C:\cloudbees-sdk-[[BEES_VERSION]]
+set BEES_HOME=C:\cloudbees-sdk-{{BEES_VERSION}}
 set BEES=%BEES_HOME%
 
-set CMAKE_HOME=C:\CMake-[[CMAKE_MAJOR_VERSION]]
+set CMAKE_HOME=C:\CMake-{{CMAKE_MAJOR_VERSION}}
 set CMAKE=%CMAKE_HOME%\bin
-set GRAPHVIZ_HOME=C:\Graphviz[[GRAPHVIZ_MAJOR_VERSION]]
+set GRAPHVIZ_HOME=C:\Graphviz{{GRAPHVIZ_MAJOR_VERSION}}
 set GRAPHVIZ=%GRAPHVIZ_HOME%\bin
-set LUMBERMILL_HOME=C:\lumbermill-[[LUMBERMILL_MAJOR_VERSION]]
+set LUMBERMILL_HOME=C:\lumbermill-{{LUMBERMILL_MAJOR_VERSION}}
 set LUMBERMILL=%LUMBERMILL_HOME%\bin
 set CYGWIN_HOME=C:\cygwin
 set MINGW_HOME=C:\MinGW
@@ -69,8 +69,8 @@ set TAO_ROOT=%PROJECT_THIRDPARTY_PATH%\tao\ACE_wrappers\TAO
 set QTDIR=C:\cygwin\lib\qt3
 
 set MACHINE=x86Linux
-set TIBCO_HOME=[[TIBCO_HOME]]
-set CHROME_BIN=[[CHROME_BIN]]
+set TIBCO_HOME={{TIBCO_HOME}}
+set CHROME_BIN={{CHROME_BIN}}
 
 rem set DISPLAY=localhost:0.0
 

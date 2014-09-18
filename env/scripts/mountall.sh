@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#TODO see ansible script NOW
 umount -f /owncloud
 
 mount -t nfs 192.168.0.46:/mnt/dpool/media/ftp /media/ftp 

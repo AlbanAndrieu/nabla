@@ -38,7 +38,6 @@ TARGET_LIST="\
 ../cygwin/ \
 ../linux/ \
 ../winnt/ \
-../../cpp/config \
 "
 
 if [ ! -r setEnvFiles.list.txt ]; then

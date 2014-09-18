@@ -11,6 +11,9 @@ Add this to your playbook:
       gather_facts: true
       roles:
         - vagrant
+        
+      vars:
+        vagrant_libvirt_enabled: true #In order to enable libvirt plugin          
 
 If running on FreeBSD:
 

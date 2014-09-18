@@ -46,3 +46,7 @@ docker kill $jenkins && docker rm $jenkins
 ----------------------------------
 
 sudo docker ps
+
+#since vagrant
+vagrant up
+vagrant ssh

@@ -30,6 +30,7 @@ vagrant destroy --force
 
 # rebuild vagrant
 vagrant up
+vagrant provision
 vagrant status
 
 sshpass -f /jenkins/pass.txt ssh-copy-id vagrant@192.168.33.10

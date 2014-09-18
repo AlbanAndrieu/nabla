@@ -205,9 +205,9 @@ export ARCH=cygwin
 
 echo ARCH : ${ARCH} - MACHINE : ${MACHINE}
 
-export PROJECT_USER=[[UNIX_USERNAME]]
-export PROJECT_VERSION=[[DEFAULT_ENV_LOADED]]
-export DRIVE_PATH=[[DRIVE_PATH]]
+export PROJECT_USER={{UNIX_USERNAME}}
+export PROJECT_VERSION={{DEFAULT_ENV_LOADED}}
+export DRIVE_PATH={{DRIVE_PATH}}
 export PROJECT_HOME=${DRIVE_PATH}/workspace/users
 # Do not use hudson workspace
 #export WORKSPACE=${PROJECT_HOME}/${PROJECT_USER}${PROJECT_VERSION}
@@ -263,11 +263,11 @@ echo SHELL : ${SHELL}
 
 alias 00='source ${PROJECT_HOME}/${PROJECT_USER}00/env/home/dev.env.sh'
 #alias 30='source ${PROJECT_HOME}/${PROJECT_USER}30/env/home/dev.env.sh'
-alias [[DEFAULT_ENV_LOADED]]='source ${WORKSPACE_ENV}/home/dev.env.sh'
+alias {{DEFAULT_ENV_LOADED}}='source ${WORKSPACE_ENV}/home/dev.env.sh'
 
 if [ -f ${WORKSPACE_ENV}/home/dev.env.sh ]; then
     echo ${WORKSPACE_ENV}/home/dev.env.sh
     . ${WORKSPACE_ENV}/home/dev.env.sh
 fi
 
-#echo "Set your environment with [[DEFAULT_ENV_LOADED]] alias."
+#echo "Set your environment with {{DEFAULT_ENV_LOADED}} alias."

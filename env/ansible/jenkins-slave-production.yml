@@ -6,7 +6,7 @@
 
 - name: apply common configuration to all jenkins slaves
   hosts: jenkins-slaves
-  user: root
+  remote_user: root
 #  hosts: albandri  
 #  connection: local  
 #  hosts: test-boxes

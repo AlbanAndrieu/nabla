@@ -24,7 +24,7 @@
 # This playbook can be run using vagrant (on virtual box). 
 - name: Install conky
   hosts: workstation
-  user: root
+  remote_user: root
 #  connection: local
   roles:
     - role: conky

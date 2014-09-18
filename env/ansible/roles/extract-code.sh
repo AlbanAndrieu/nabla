@@ -32,9 +32,8 @@ git clone https://github.com/AlbanAndrieu/ansible-galaxy-vagrant.git vagrant
 
 #TODO control vagrant with ansible https://github.com/robparrott/ansible-vagrant
 
-git clone https://github.com/angstwad/docker.ubuntu.git docker
-#TODO https://github.com/jamesdbloom/ansible-install-docker/blob/master/tasks/main.yml
-#git clone https://github.com/gorsuch/ansible-docker-role jenkins-docker
+#git clone https://github.com/angstwad/docker.ubuntu.git docker
+git clone https://github.com/AlbanAndrieu/docker.ubuntu.git docker
 
 #git clone https://github.com/silpion/ansible-maven maven
 git clone https://github.com/AlbanAndrieu/ansible-maven.git maven
@@ -50,6 +49,7 @@ git clone https://github.com/AlbanAndrieu/devbox.chrome.git chrome
 #git clone https://github.com/Stouts/Stouts.jenkins.git jenkins-master
 git clone https://github.com/AlbanAndrieu/Stouts.jenkins.git jenkins-master
 #pull request issue
+#See likewise docker image
 
 git clone https://github.com/AlbanAndrieu/ansible-swarm.git jenkins-swarm
 
@@ -84,6 +84,7 @@ https://github.com/ansible/ansible-examples/tree/master/language_features
 https://github.com/sheldonh/dotfiles-ansible
 
 #TODO
+https://github.com/wouterd/docker-maven-plugin
 https://github.com/Ansibles/monit
 https://github.com/sheldonh/dotfiles-ansible #bog
 https://github.com/sivel/ansible-newrelic

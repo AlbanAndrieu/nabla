@@ -10,7 +10,7 @@
     shell={{ vagrant_user_shell }}
     home={{ vagrant_home }}
     createhome=yes
-    password="$1$re6ft8gy$PweYoLIPFrEo/y0OeVQyA/"
+    password={{ vagrant_user_vagrant_password }}
 
 - name: Create vagrant/.ssh directory
   file: >
@@ -53,4 +53,25 @@
 - name: Change root password
   user: >
     name=root
-    password="$1$re6ft8gy$PweYoLIPFrEo/y0OeVQyA/"
+    password={{ vagrant_user_root_password }}
+  when: vagrant_root_password_enabled   
+      
+- name: Install libvirt requirements (Debian only)
+  apt: pkg={{ item }} state=present
+  when: ansible_distribution == 'Debian' and vagrant_libvirt_enabled   
+  with_items:
+    - libxslt-dev 
+    - libxml2-dev 
+    - libvirt-dev
+    
+- name: Install libvirt requirements (CentOS only)
+  yum: pkg={{ item }} state=present
+  when: ansible_distribution == 'CentOS' and vagrant_libvirt_enabled   
+  with_items:
+    - libxslt-devel 
+    - libxml2-devel 
+    - libvirt-devel   
+    
+- name: Install libvirt plugin
+  command: vagrant plugin install vagrant-libvirt
+  when: vagrant_libvirt_enabled   

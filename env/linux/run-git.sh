@@ -20,6 +20,8 @@ git config --global help.autocorrect 1
 git config --global color.ui auto
 git config --global branch.master.rebase true
 git config --global branch.autosetuprebase always
+#git config --global merge.tool kdiff3
+git config --global merge.tool meld
 git config --list
 
 git config --local user.email "alban.andrieu@free.fr"

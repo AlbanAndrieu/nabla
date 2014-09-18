@@ -1,23 +1,23 @@
 # Root logger option
-log4j.rootLogger=[[LOG4J_ROOT_CATEGORY]]
+log4j.rootLogger={{LOG4J_ROOT_CATEGORY}}
 
 # Direct log messages to stdout
 log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
 log4j.appender.CONSOLE.Target=System.out
 log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
-log4j.appender.CONSOLE.layout.ConversionPattern=[[LOG4J_SERVER_PATTERN]]
+log4j.appender.CONSOLE.layout.ConversionPattern={{LOG4J_SERVER_PATTERN}}
 
 log4j.appender.FILE=org.apache.log4j.RollingFileAppender
-log4j.appender.FILE.File=[[LOG4J_SERVER_FILE]]
+log4j.appender.FILE.File={{LOG4J_SERVER_FILE}}
 log4j.appender.FILE.MaxFileSize=500KB
 log4j.appender.FILE.MaxBackupIndex=10
 log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
-log4j.appender.FILE.layout.ConversionPattern=[[LOG4J_SERVER_PATTERN]]
+log4j.appender.FILE.layout.ConversionPattern={{LOG4J_SERVER_PATTERN}}
 
 # LUMBERMILL CHAINSAW
 log4j.appender.SOCKETSERV=org.apache.log4j.net.SocketAppender
-log4j.appender.SOCKETSERV.Port=[[LOG4J_SERVER_PORT]]
-log4j.appender.SOCKETSERV.RemoteHost=[[LOG4J_SERVER_HOST]]
+log4j.appender.SOCKETSERV.Port={{LOG4J_SERVER_PORT}}
+log4j.appender.SOCKETSERV.RemoteHost={{LOG4J_SERVER_HOST}}
 log4j.appender.SOCKETSERV.ReconnectionDelay=10000
 
 # Hibernate logging options (INFO only shows startup messages)

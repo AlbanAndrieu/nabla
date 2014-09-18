@@ -58,7 +58,7 @@ under the License.
   <!--<localRepository>C:/repo</localRepository>-->
   <!--<localRepository>/scratch/jenkins/workspace/nabla-demo/.repository</localRepository>-->
   <!--<localRepository>${env.WORKSPACE}/.m2/.repository</localRepository>-->
-  <localRepository>[[MAVEN_LOCAL_REPO_PATH]]</localRepository>
+  <localRepository>{{MAVEN_LOCAL_REPO_PATH}}</localRepository>
 
   <!-- interactiveMode
    | This will determine whether maven prompts you when it needs input. If set to false,
@@ -188,7 +188,7 @@ under the License.
     -->
 
     <server>
-      <id>[[WORKSTATION]]</id>
+      <id>{{WORKSTATION}}</id>
       <username>albandri</username>
       <password>XXX</password>
       <passphrase>some_passphrase</passphrase>
@@ -246,7 +246,7 @@ under the License.
     <mirror>
       <id>nexus-central</id>
       <name>Nexus mirror of Maven central repository</name>
-      <url>http://[[NABLA_HOST]]:8081/nexus/content/groups/public/</url>
+      <url>http://{{NABLA_HOST}}:8081/nexus/content/groups/public/</url>
       <!-- Set to 'central' for non dev installations, and to 'nothing' for dev installations -->
       <mirrorOf>central</mirrorOf>
     </mirror>
@@ -255,13 +255,13 @@ under the License.
     <mirror>
       <id>nexus</id>
       <mirrorOf>*</mirrorOf>
-      <url>http://[[NABLA_HOST]]:8081/nexus/content/groups/public/</url>
+      <url>http://{{NABLA_HOST}}:8081/nexus/content/groups/public/</url>
     </mirror>
     -->
     <mirror>
       <id>nexus</id>
       <name>Nabla repository - all Nabla dependencies</name>
-      <url>http://[[NABLA_HOST]]:8081/nexus/content/groups/public/</url>
+      <url>http://{{NABLA_HOST}}:8081/nexus/content/groups/public/</url>
       <!-- Set to '*,!central' for non dev installations, and to 'nothing' for dev installations -->
       <mirrorOf>*,!central,!thirdparty</mirrorOf>
     </mirror>
@@ -269,7 +269,7 @@ under the License.
     <mirror>
       <id>nexus-thirdparty</id>
       <name>Nexus thirdparty repository - all non-central dependencies</name>
-      <url>http://[[NABLA_HOST]]:8081/nexus/content/repositories/thirdparty/</url>
+      <url>http://{{NABLA_HOST}}:8081/nexus/content/repositories/thirdparty/</url>
       <!-- Set to '*,!central' for non dev installations, and to 'nothing' for dev installations -->
       <mirrorOf>*,!central</mirrorOf>
     </mirror>
@@ -455,13 +455,13 @@ under the License.
         </pluginRepositories>
     </profile>
     <profile>
-      <id>[[PROJECT_USER]]</id>      
+      <id>{{PROJECT_USER}}</id>      
       <!-- http://mvnrepository.com/search.html -->
       <repositories>
         <repository>
             <id>nexus-releases</id>
             <name>Nexus Staging Repository</name>
-            <url>http://[[NABLA_HOST]]:8081/nexus/content/repositories/releases</url>
+            <url>http://{{NABLA_HOST}}:8081/nexus/content/repositories/releases</url>
             <layout>default</layout>
             <snapshots>
                 <enabled>false</enabled>
@@ -473,7 +473,7 @@ under the License.
         <repository>
             <id>nexus-snapshots</id>
             <name>Nexus Snapshot Repository</name>
-            <url>http://[[NABLA_HOST]]:8081/nexus/content/repositories/snapshots</url>
+            <url>http://{{NABLA_HOST}}:8081/nexus/content/repositories/snapshots</url>
             <layout>default</layout>
             <snapshots>
                 <enabled>true</enabled>
@@ -654,7 +654,7 @@ under the License.
             <id>nexus-releases</id>
             <name>Nexus Staging Repository</name>
             <!--<url>dav:https://repository-nabla.forge.cloudbees.com/release</url>-->
-			<url>http://[[NABLA_HOST]]:8081/nexus/content/repositories/releases</url>
+			<url>http://{{NABLA_HOST}}:8081/nexus/content/repositories/releases</url>
             <snapshots>
                 <enabled>false</enabled>
             </snapshots>
@@ -665,7 +665,7 @@ under the License.
         <pluginRepository>
 			<id>nexus-snapshots</id>
 			<name>Nexus Staging Repository</name>
-			<url>http://[[NABLA_HOST]]:8081/nexus/content/repositories/snapshots</url>
+			<url>http://{{NABLA_HOST}}:8081/nexus/content/repositories/snapshots</url>
 			<snapshots>
 					<enabled>true</enabled>
 			</snapshots>
@@ -816,20 +816,20 @@ under the License.
             <repositories>
                 <repository>
                     <id>nexus-releases</id>
-                    <url>http://[[NABLA_HOST]]:8081/nexus/content/repositories/server-forge-release</url>
+                    <url>http://{{NABLA_HOST}}:8081/nexus/content/repositories/server-forge-release</url>
                     <releases><enabled>true</enabled></releases>
                     <snapshots><enabled>false</enabled></snapshots>
                 </repository>
                 <repository>
                     <id>nexus-snapshots</id>
-                    <url>http://[[NABLA_HOST]]:8081/nexus/content/repositories/server-forge-snapshot</url>
+                    <url>http://{{NABLA_HOST}}:8081/nexus/content/repositories/server-forge-snapshot</url>
                     <releases><enabled>false</enabled></releases>
                     <snapshots><enabled>true</enabled></snapshots>
                 </repository>
 				<repository>
 					<id>thirdparty</id>
 					<name>Nexus 3rd Party Repository</name>
-					<url>http://[[NABLA_HOST]]:8081/nexus/content/repositories/thirdparty/</url>
+					<url>http://{{NABLA_HOST}}:8081/nexus/content/repositories/thirdparty/</url>
 					<releases>
 						<enabled>true</enabled>
 						<!-- See comment in same element in previous repository -->
@@ -843,13 +843,13 @@ under the License.
             <pluginRepositories>
                 <pluginRepository>
                     <id>nexus-releases</id>
-                    <url>http://[[NABLA_HOST]]:8081/nexus/content/repositories/server-forge-release</url>
+                    <url>http://{{NABLA_HOST}}:8081/nexus/content/repositories/server-forge-release</url>
                     <releases><enabled>true</enabled></releases>
                     <snapshots><enabled>false</enabled></snapshots>
                 </pluginRepository>
                 <pluginRepository>
                     <id>nexus-snapshots</id>
-                    <url>http://[[NABLA_HOST]]:8081/nexus/content/repositories/server-forge-snapshot</url>
+                    <url>http://{{NABLA_HOST}}:8081/nexus/content/repositories/server-forge-snapshot</url>
                     <releases><enabled>false</enabled></releases>
                     <snapshots><enabled>true</enabled></snapshots>
                 </pluginRepository>
@@ -874,7 +874,7 @@ under the License.
   <activeProfiles>
     <!--<activeProfile>cloudbees</activeProfile>-->
     <activeProfile>nexus</activeProfile>
-    <!--<activeProfile>[[PROJECT_USER]]</activeProfile>-->
+    <!--<activeProfile>{{PROJECT_USER}}</activeProfile>-->
     <activeProfile>unittest</activeProfile>
   </activeProfiles>
 </settings>

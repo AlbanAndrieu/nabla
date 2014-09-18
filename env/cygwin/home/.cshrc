@@ -60,7 +60,7 @@ echo SHELL : ${SHELL}
 
 alias 00 'source ${PROJECT_HOME}/${PROJECT_USER}00/env/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
 #alias 30 'source ${PROJECT_HOME}/${PROJECT_USER}30/env/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
-alias [[DEFAULT_ENV_LOADED] 'source ${WORKSPACE_ENV}/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+alias 10 'source ${WORKSPACE_ENV}/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
 
 #echo $PATH wrong after
 if ( -f ${WORKSPACE_ENV}/home/dev.env.csh ) then

@@ -385,6 +385,7 @@ setenv LD_LIBRARY_PATH ${PROJECT_TARGET_PATH}/lib/${ARCH}/opt:${PROJECT_TARGET_P
 ##
 # Alias
 ##
+#rm ~/.gitconfig.lock
 git config --global alias.co checkout
 git config --global alias.br branch
 git config --global alias.ci commit
@@ -504,6 +505,11 @@ setenv DISPLAY :0.0
 setenv LC_CTYPE en_US.UTF-8
     
 /usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`/usr/games/fortune -s`"
+if ( -d "~/.conky") then
+  ~/.conky/conky-startup.sh &
+else
+  echo "Conky is not installed"  
+endif
     
 echo "PATH is ${PATH}"
 

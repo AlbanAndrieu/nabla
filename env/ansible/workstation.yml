@@ -26,7 +26,7 @@
 
 - name: apply hostname configuration
   hosts: all
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -37,7 +37,7 @@
 - name: Apply common configuration to all nodes
   hosts: Ubuntu-12*:Ubuntu-14*
   gather_facts: false
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -46,7 +46,7 @@
 - name: Apply dns configuration to all nodes
   hosts: Ubuntu-12*:Ubuntu-14*
   gather_facts: false
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -63,7 +63,7 @@
 
 - name: Apply security configuration
   hosts: security
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -72,7 +72,7 @@
 # This playbook can be run using vagrant (on virtual box). 
 - name: Install java
   hosts: java
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -80,7 +80,7 @@
     
 - name: Install virtualbox
   hosts: virtualbox
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -88,15 +88,19 @@
       
 - name: Install vagrant
   hosts: vagrant
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
     - vagrant
    
-- name: Install Docker
+  vars:
+      vagrant_libvirt_enabled: true   
+      vagrant_root_password_enabled: false
+      
+- name: Install docker
   hosts: docker
-  user: root
+  remote_user: root
 #  connection: local  
   roles:
     - docker
@@ -104,7 +108,7 @@
 # This playbook can be run using vagrant (on virtual box). 
 - name: Install locale
   hosts: locale
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -113,7 +117,7 @@
 # This playbook can be run using vagrant (on virtual box). 
 - name: Install zabbix-agent
   hosts: zabbix-agent
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -122,7 +126,7 @@
 # This playbook can be run using vagrant (on virtual box). 
 - name: Install webmin
   hosts: webmin
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -130,7 +134,7 @@
         
 - name: Install nexus
   hosts: nexus
-  user: root
+  remote_user: root
 #  connection: local
 
   roles:
@@ -139,7 +143,7 @@
 # This playbook can be run using vagrant (on virtual box). 
 - name: Install xvbf
   hosts: xvbf
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -148,7 +152,7 @@
 ## This playbook can be run using vagrant (on virtual box). 
 #- name: Install zfs
 #  hosts: zfs
-#  user: root
+#  remote_user: root
 ##  connection: local
 #  
 #  roles:
@@ -158,7 +162,7 @@
 #- name: Apply administration configuration to all nodes
 #  hosts: Ubuntu-12*:Ubuntu-14*
 #  gather_facts: false
-#  user: root
+#  remote_user: root
 ##  connection: local
 #  
 #  roles:
@@ -166,7 +170,7 @@
 
 - name: Apply configuration to jenkins master
   hosts: jenkins-master
-  user: root
+  remote_user: root
 #  connection: local
 
   roles:
@@ -190,7 +194,7 @@
 
 - name: Apply common configuration to all jenkins slaves
   hosts: jenkins-slaves
-  user: root
+  remote_user: root
 #  connection: local
 
   vars_files:
@@ -211,7 +215,7 @@
 # This playbook can be run using vagrant (on virtual box). 
 - name: Install maven
   hosts: maven
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -220,7 +224,7 @@
 # This playbook can be run using vagrant (on virtual box). 
 - name: Install css
   hosts: css
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -229,7 +233,7 @@
 # This playbook can be run using vagrant (on virtual box). 
 - name: Install chrome
   hosts: chrome
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -241,7 +245,7 @@
 
 - name: Install nodejs
   hosts: nodejs
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -249,7 +253,7 @@
 
 - name: Install workstation add-on
   hosts: workstation
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -257,7 +261,7 @@
 
 - name: Install dropbox
   hosts: workstation
-  user: root  
+  remote_user: root  
 #  sudo: yes
 #  sudo_user: "{{ user }}"
 #  connection: local
@@ -267,7 +271,7 @@
     
 #- name: Apply swarm configuration to all jenkins slaves
 #  hosts: jenkins-swarm
-#  user: root
+#  remote_user: root
 ##  connection: local
 #
 #  vars_prompt:
@@ -284,7 +288,7 @@
 # This playbook deploys a simple standalone Tomcat 7 server. 
 - name: deploy Tomcat 
   hosts: tomcat-servers 
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -294,7 +298,7 @@
 
 - name: deploy Jboss 
   hosts: jboss-servers 
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -304,7 +308,7 @@
 
 - name: deploy MySQL and configure the databases
   hosts: dbservers
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -314,7 +318,7 @@
 
 - name: configure and deploy the webservers and application code
   hosts: webservers
-  user: root
+  remote_user: root
 #  connection: local
   
   roles:
@@ -322,7 +326,7 @@
 
 - name: configure supervisor
   hosts: supervisors
-  user: root
+  remote_user: root
 #  connection: local
   roles:
     - role: supervisor
@@ -336,7 +340,7 @@
 
 #- name: configure supervisor
 #  hosts: supervisors
-#  user: root
+#  remote_user: root
 ##  connection: local
 #  roles:
 #    - role: supervisor
@@ -348,7 +352,7 @@
 
 - name: Install sonar
   hosts: sonar
-  user: root
+  remote_user: root
 #  connection: local
   roles:
     - role: sonar
@@ -365,7 +369,7 @@
 
 - name: Install conky
   hosts: workstation
-  user: root
+  remote_user: root
 #  connection: local
   roles:
     - role: conky
@@ -373,7 +377,7 @@
 # This playbook can be run using vagrant (on virtual box). 
 - name: Install subversion
   hosts: workstation
-  user: root
+  remote_user: root
 #  connection: local
   roles:
     - role: subversion     

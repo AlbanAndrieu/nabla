@@ -2,10 +2,10 @@
 
 TMP_VAR=`pwd`
 
-export M2_REPO=[[MAVEN_LOCAL_REPO_PATH]]
+export M2_REPO={{MAVEN_LOCAL_REPO_PATH}}
 export JAVACMD=${JAVA_HOME}/bin/java
 export PROJECT_DEV=${PROJECT_DEV}/xml
-export PROJECT_DEV=[[DRIVE_PATH]]/workspace/users/albandri33/kgr/trunk/src/java/kgr-war/xml
-export SAXONPATH=${M2_REPO}/net/sf/saxon/saxon/[[SAXON_VERSION]]/saxon-[[SAXON_VERSION]].jar
+export PROJECT_DEV=${PROJECT_HOME}/${PROJECT_USER}${PROJECT_MAJOR_VERSION}
+export SAXONPATH=${M2_REPO}/net/sf/saxon/saxon/{{SAXON_VERSION}}/saxon-{{SAXON_VERSION}}.jar
 
 ${JAVACMD} -cp ${SAXONPATH} net.sf.saxon.Transform -w1 ${PROJECT_DEV}/navigation.xml ./filesGenerator-unix.xsl generationDirectory="$TMP_VAR"

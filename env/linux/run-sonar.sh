@@ -124,3 +124,20 @@ mvn -Dsonargraph.prepareForSonar=true -Dsonargraph.license=<license-path> (or -D
 
 #DEBUG add parameters
 -Dsonar.showProfiling=true -Dsonar.showSql=true -Dsonar.showSqlResults=true -Dsonar.verbose=true
+
+#c++
+#https://github.com/wenns/sonar-cxx
+cd /workspace/sonar/extensions/plugins/
+sudo wget https://github.com/wenns/sonar-cxx/releases/download/cxx-0.9.1/sonar-cxx-plugin-0.9.1.jar
+sudo wget https://github.com/wenns/sonar-cxx/releases/download/cxx-0.9.1/sslr-cxx-toolkit-0.9.1.jar
+
+#security
+#http://www.excentia.es/plugins/owasp/instalacion_en.html
+#in /workspace/sonar/conf/sonar.properties
+sonar.updatecenter.activate=true
+sonar.updatecenter.url=http://www.qalitax.com/update-center/excentia-update-center.properties
+
+#Server ID
+#1d332b453ccc369
+#Organisation Nabla
+#Fixed IP Address 192.168.0.29

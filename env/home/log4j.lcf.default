@@ -1,5 +1,5 @@
-log4j.rootLogger = [[LOG4J_ROOT_CATEGORY]]
-#log4j.rootCategory = [[LOG4J_ROOT_CATEGORY]]
+log4j.rootLogger = {{LOG4J_ROOT_CATEGORY}}
+#log4j.rootCategory = {{LOG4J_ROOT_CATEGORY}}
 
 log4j.debug=TRUE
 
@@ -15,23 +15,23 @@ log4j.appender.CONSOLE=org.apache.log4j.ConsoleAppender
 
 # CONSOLE uses PatternLayout.
 log4j.appender.CONSOLE.layout=org.apache.log4j.PatternLayout
-log4j.appender.CONSOLE.layout.ConversionPattern=[[LOG4J_SERVER_PATTERN]]
+log4j.appender.CONSOLE.layout.ConversionPattern={{LOG4J_SERVER_PATTERN}}
 
 log4j.appender.FILE=org.apache.log4j.RollingFileAppender
-log4j.appender.FILE.File=[[LOG4J_SERVER_FILE]]
+log4j.appender.FILE.File={{LOG4J_SERVER_FILE}}
 log4j.appender.FILE.MaxFileSize=500KB
 log4j.appender.FILE.MaxBackupIndex=10
 log4j.appender.FILE.layout=org.apache.log4j.PatternLayout
-log4j.appender.FILE.layout.ConversionPattern=[[LOG4J_SERVER_PATTERN]]
+log4j.appender.FILE.layout.ConversionPattern={{LOG4J_SERVER_PATTERN}}
 
 # LUMBERMILL CHAINSAW
 log4j.appender.SOCKETSERV=org.apache.log4j.net.SocketAppender
-log4j.appender.SOCKETSERV.Port=[[LOG4J_SERVER_PORT]]
-log4j.appender.SOCKETSERV.RemoteHost=[[LOG4J_SERVER_HOST]]
+log4j.appender.SOCKETSERV.Port={{LOG4J_SERVER_PORT}}
+log4j.appender.SOCKETSERV.RemoteHost={{LOG4J_SERVER_HOST}}
 log4j.appender.SOCKETSERV.ReconnectionDelay=10000
 
-log4j.logger.org.springframework=WARN, [[LOG4J_ACTIVE_APPENDER]]
-log4j.logger.org.hibernate=WARN, [[LOG4J_ACTIVE_APPENDER]]
+log4j.logger.org.springframework=WARN, {{LOG4J_ACTIVE_APPENDER}}
+log4j.logger.org.hibernate=WARN, {{LOG4J_ACTIVE_APPENDER}}
 
 log4j.logger.org.apache.catalina.core.ContainerBase.[Catalina].[localhost]=DEBUG
 log4j.logger.org.apache.catalina.core=DEBUG

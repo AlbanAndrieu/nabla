@@ -46,9 +46,9 @@ setenv ARCH cygwin
 
 echo ARCH : ${ARCH} - MACHINE : ${MACHINE}
 
-setenv PROJECT_USER [[UNIX_USERNAME]]
-setenv PROJECT_VERSION [[DEFAULT_ENV_LOADED]]
-setenv DRIVE_PATH [[DRIVE_PATH]]
+setenv PROJECT_USER {{UNIX_USERNAME}}
+setenv PROJECT_VERSION {{DEFAULT_ENV_LOADED}}
+setenv DRIVE_PATH {{DRIVE_PATH}}
 setenv PROJECT_HOME ${DRIVE_PATH}/workspace/users
 
 setenv WORKSPACE_ENV ${PROJECT_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env
@@ -60,7 +60,7 @@ echo SHELL : ${SHELL}
 
 alias 00 'source ${PROJECT_HOME}/${PROJECT_USER}00/env/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
 #alias 30 'source ${PROJECT_HOME}/${PROJECT_USER}30/env/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
-alias [[DEFAULT_ENV_LOADED] 'source ${WORKSPACE_ENV}/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
+alias {{DEFAULT_ENV_LOADED}} 'source ${WORKSPACE_ENV}/home/dev.env.csh \!*; test ! -f ~/.cshrc.local || source ~/.cshrc.local \!*'
 
 #echo $PATH wrong after
 if ( -f ${WORKSPACE_ENV}/home/dev.env.csh ) then
@@ -68,4 +68,4 @@ if ( -f ${WORKSPACE_ENV}/home/dev.env.csh ) then
     source ${WORKSPACE_ENV}/home/dev.env.csh
 endif
 
-#echo "Set your environment with [[DEFAULT_ENV_LOADED]] alias."
+#echo "Set your environment with {{DEFAULT_ENV_LOADED}} alias."
