@@ -1,0 +1,58 @@
+#see https://blog.trifork.com/2013/04/02/ansible-example-playbook-to-setup-jenkins-slave/
+
+#as root 
+#ansible-playbook jenkins-slave.yml -i hosts -vvvv
+#as albandri 
+#ansible-playbook jenkins-slave.yml -i hosts -vvvv --ask-sudo-pass --sudo
+# --extra-vars "jenkins_username=aandrieu jenkins_password=tbd"
+
+- name: Apply hostname configuration
+  hosts: jenkins-slave-create-image-docker
+  remote_user: root
+#  connection: local
+  
+  roles:
+    - hostname
+  vars_files:
+    - [ "roles/hostname/defaults/main.yml" ]
+
+- name: Install Docker
+  hosts: jenkins-slave-create-image-docker
+  remote_user: root
+#  connection: local  
+  roles:
+    - docker
+    
+  vars:    
+      docker_host_ip: 127.0.0.1
+      docker_host_port: 4243
+      docker_opts: "-H unix:// -H tcp://{{ docker_host_ip }}:{{ docker_host_port }}"  
+
+- name: Copy Dockerfile to build image
+  hosts: jenkins-slave-create-image-docker
+  sudo: yes
+  tasks:
+  - name: copy Dockerfile
+    template: src=roles/jenkins-slave/templates/Dockerfile.j2 dest=/etc/init.d/jenkins-swarm-client mode=0700
+    
+- name: Build docker image if required. Path should contains Dockerfile to build image
+  hosts: jenkins-slave-create-image-docker
+  sudo: yes
+  tasks:
+  - name: check or build image
+    docker_image: path="/path/to/build/dir" name="my/app" state=present
+
+#- name: Build new version of image
+#  hosts: jenkins-slave-create-image-docker
+#  sudo: yes
+#  tasks:
+#  - name: check or build image
+#    docker_image: path="/path/to/build/dir" name="my/app" state=build
+#
+#- name: Remove image from local docker storage:
+#  hosts: jenkins-slave-create-image-docker
+#  sudo: yes
+#  tasks:
+#  - name: remove image
+#    docker_image: name="my/app" state=absent
+    

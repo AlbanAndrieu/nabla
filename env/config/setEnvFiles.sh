@@ -39,7 +39,7 @@ else
 fi
 PATH_P=`pwd`
 
-REPLACE_REMOVE_OPT="-r .default"
+REPLACE_REMOVE_OPT="-r .j2"
 USER_COMMON_PROPERTIES=""
 TARGET_FILE=""
 
@@ -86,9 +86,8 @@ else
     perl ${REPLACE_EXE} -d -o ${REPLACE_REMOVE_OPT} -p ${THIRDPARTY_PROPERTIES},${USER_COMMON_PROPERTIES},${USER_PROP_FILE},${USER_PROP_FILE_WIN} ${PATH_P}/${ONE_FILE}
   else
     DEFAULT_LIST_TMP="setEnvFiles.list.`hostname`.$$.tmp"
-    find $PATH_P -type f -name "*.default" -o -name ".*.default" > ${DEFAULT_LIST_TMP}
+    find $PATH_P -type f -name "*.j2" -o -name ".*.j2" > ${DEFAULT_LIST_TMP}
     perl ${REPLACE_EXE} -v -f ${DEFAULT_LIST_TMP} -o ${REPLACE_REMOVE_OPT} -p ${THIRDPARTY_PROPERTIES},${USER_COMMON_PROPERTIES},${USER_PROP_FILE},${USER_PROP_FILE_WIN}
     \rm -f ${DEFAULT_LIST_TMP}
   fi
 fi
-

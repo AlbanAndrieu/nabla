@@ -31,7 +31,7 @@ if [ ! -x ./setEnvFiles.sh ]; then
   exit 1
 fi
 
-####### Create files from .default files and property file
+####### Create files from .j2 files and property file
 
 TARGET_LIST="\
 ../home/ \
@@ -45,13 +45,13 @@ if [ ! -r setEnvFiles.list.txt ]; then
   # Create list
   #############
 
-  echo "Generate .default list in `pwd`/setEnvFiles.list.txt..."
+  echo "Generate .j2 list in `pwd`/setEnvFiles.list.txt..."
   touch setEnvFiles.list.txt
 
   for target in $TARGET_LIST; do
     echo $target
     if [ -d $target ]; then
-      find $target -type f -name "*.default" -o -name ".*.default" >> setEnvFiles.list.txt
+      find $target -type f -name "*.j2" -o -name ".*.j2" >> setEnvFiles.list.txt
     else
       if [ -r $target ]; then
         echo $target >> setEnvFiles.list.txt
@@ -66,7 +66,7 @@ if [ ! -r setEnvFiles.list.txt ]; then
 
 else
   
-  echo "Use .default list in `pwd`/setEnvFiles.list.txt"
+  echo "Use .j2 list in `pwd`/setEnvFiles.list.txt"
 
 fi
 

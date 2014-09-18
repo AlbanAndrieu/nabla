@@ -50,14 +50,14 @@ sub loadTokens() {
   
   while(<TOKEN_FILE>) {
     $_ =~ s/\n$//;
-    if($_ =~ /^#/ || $_ =~ /^\s*$/) {
+    if($_ =~ /^#/ || $_ =~ /^\s*$/ || $_ =~ /^---/) {
       next;
     }
-    if($_=~/.+=/) {
+    if($_=~/.+:/) {
       $key = $_;
-      $key =~ s/=.*//;
+      $key =~ s/:.*//;
       $value = $_;
-      $value =~ s/[^=]+=//;
+      $value =~ s/[^:]+://;
       if($tokens{$key}) {
         logger($LL_DEBUG, "Updated: set \"$key\" as $value");
       }

@@ -107,10 +107,10 @@ setenv PROJECT_MAJOR_VERSION ${PROJECT_VERSION}
 setenv PROJECT_BUILD_TYPE target
 setenv CLIENT_SERVER_TYPE jboss
 
-setenv PROJECT_DEV ${PROJECT_HOME}/albandri
-setenv PROJECT_SRC ${PROJECT_HOME}/albandri/cpp
+setenv PROJECT_DEV ${PROJECT_HOME}/albandri10
+setenv PROJECT_SRC ${PROJECT_HOME}/albandri10/cpp
 setenv PROJECT_TARGET_PATH ${DRIVE_PATH}/${PROJECT_BUILD_TYPE}
-setenv PROJECT_USER_PROFILE ${PROJECT_HOME}/albandri/env/config/profiles/${PROJECT_USER}${PROJECT_VERSION}.${ARCH}.properties
+setenv PROJECT_USER_PROFILE ${PROJECT_HOME}/albandri10/env/config/profiles/${PROJECT_USER}${PROJECT_VERSION}.${ARCH}.properties
 
 setenv PROJECT_THIRDPARTY_PATH ${DRIVE_PATH}/thirdparty
 setenv PROJECT_RELEASE ${PROJECT_TARGET_PATH}/deploy/${PROJECT_MAJOR_VERSION}
@@ -505,7 +505,8 @@ setenv DISPLAY :0.0
 setenv LC_CTYPE en_US.UTF-8
     
 /usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`/usr/games/fortune -s`"
-if ( -d "~/.conky") then
+setenv CONKY_HOME "${PROJECT_HOME}/albandri10/.conky"
+if ( -d $CONKY_HOME ) then
   ~/.conky/conky-startup.sh &
 else
   echo "Conky is not installed"  

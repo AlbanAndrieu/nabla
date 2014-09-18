@@ -14,7 +14,9 @@
 \rm -rf ~/.local/share/Trash/*
 #google chrome
 #\rm -rf ~/.config/google-chrome/Default/Web\ Data
-\rm ~/.config/google-chrome/History*
+\rm -Rf ~/.config/google-chrome/History*
+#nabla
+\rm -Rf ~/env/config/setEnvFiles.list.txt
  
 #\rm -Rf workspace-cpp
 #\rm -Rf workspace-j2ee

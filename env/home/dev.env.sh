@@ -582,7 +582,9 @@ export DISPLAY=:0.0
 export LC_CTYPE=en_US.UTF-8
 
 /usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`/usr/games/fortune -s`"
-if [ -d "~/.conky" ] then
+export CONKY_HOME="${PROJECT_HOME}/albandri10/.conky"
+if [ -d $CONKY_HOME ]
+then
   ~/.conky/conky-startup.sh &
 else
   echo "Conky is not installed"  
