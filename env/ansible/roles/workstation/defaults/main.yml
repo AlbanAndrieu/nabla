@@ -1,2 +1,4 @@
 ---
 workstation_enabled: yes                       # Enable module
+
+stats_enabled: true # Turn it to false in order to be uninstall in security role

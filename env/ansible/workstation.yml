@@ -53,7 +53,13 @@
     - dns
         
   vars:
-       nameserver: 8.8.8.8  
+       defaultdomain: france.effix.fr
+       search: misys.global.ad misys.global.ad. nt.france.effix.fr. france.effix.fr. effix.fr.
+       dns_nameservers:
+         - "10.25.200.3" # work dns
+         - "10.21.200.3" # work dns 
+         - "8.8.8.8" # google dns
+         - "8.8.4.4" # google dns       
 #paris  
 #      nameserver1: 10.21.200.3
 #      nameserver2: 10.25.200.3
@@ -69,7 +75,7 @@
   roles:
     - security
 
-# This playbook can be run using vagrant (on virtual box). 
+
 - name: Install java
   hosts: java
   remote_user: root
@@ -97,6 +103,7 @@
   vars:
       vagrant_libvirt_enabled: true   
       vagrant_root_password_enabled: false
+      vagrant_user_shell: "/bin/false"
       
 - name: Install docker
   hosts: docker
@@ -105,7 +112,7 @@
   roles:
     - docker
 
-# This playbook can be run using vagrant (on virtual box). 
+
 - name: Install locale
   hosts: locale
   remote_user: root
@@ -114,7 +121,7 @@
   roles:
     - locale
     
-# This playbook can be run using vagrant (on virtual box). 
+
 - name: Install zabbix-agent
   hosts: zabbix-agent
   remote_user: root
@@ -123,7 +130,7 @@
   roles:
     - zabbix-agent
     
-# This playbook can be run using vagrant (on virtual box). 
+
 - name: Install webmin
   hosts: webmin
   remote_user: root
@@ -140,7 +147,7 @@
   roles:
     - nexus
         
-# This playbook can be run using vagrant (on virtual box). 
+
 - name: Install xvbf
   hosts: xvbf
   remote_user: root
@@ -149,7 +156,7 @@
   roles:
     - xvbf
 
-## This playbook can be run using vagrant (on virtual box). 
+#
 #- name: Install zfs
 #  hosts: zfs
 #  remote_user: root
@@ -201,18 +208,10 @@
   - [ "roles/jenkins-slave/defaults/main.yml" ]
   - [ "roles/jenkins-slave/vars/{{ ansible_distribution }}-{{ ansible_architecture }}.yml", "roles/jenkins-slave/vars/{{ ansible_distribution }}.yml" ]
 
-#  vars_prompt:
-#  - name: jenkins_username
-#    prompt: "What is your jenkins user?"
-#    private: no
-#  - name: jenkins_password
-#    prompt: "What is your jenkins password?"
-#    private: yes
-
   roles:
     - jenkins-slave
 
-# This playbook can be run using vagrant (on virtual box). 
+
 - name: Install maven
   hosts: maven
   remote_user: root
@@ -221,7 +220,7 @@
   roles:
     - maven
 
-# This playbook can be run using vagrant (on virtual box). 
+
 - name: Install css
   hosts: css
   remote_user: root
@@ -230,7 +229,7 @@
   roles:
     - css
     
-# This playbook can be run using vagrant (on virtual box). 
+
 - name: Install chrome
   hosts: chrome
   remote_user: root
@@ -302,7 +301,7 @@
 #  connection: local
   
   roles:
-    - jboss-standalone
+    - jboss
 
 # This playbook deploys a MySQL databse.  
 
@@ -366,6 +365,7 @@
       sonar_jdbc_driver: "mysql"
       sonar_jdbc_port: 3306
       sonar_jdbc_pass: microsoft
+      sonar_shell: "/bin/false"
 
 - name: Install conky
   hosts: workstation
@@ -374,7 +374,6 @@
   roles:
     - role: conky
 
-# This playbook can be run using vagrant (on virtual box). 
 - name: Install subversion
   hosts: workstation
   remote_user: root
@@ -382,3 +381,36 @@
   roles:
     - role: subversion     
         
+- name: Apply user shell configuration
+  connection: local  
+  hosts: workstation
+  #sudo: yes
+  remote_user: root  
+  vars_files:
+  - [ "roles/shell/defaults/main.yml" ]  
+  - [ "roles/shell/vars/defaults.yml" ]
+  - [ "roles/shell/vars/common.yml" ]  
+  - [ "roles/shell/vars/version.yml" ]  
+  - [ "roles/shell/vars/custom-{{ ansible_distribution }}-{{ ansible_architecture }}.yml", "roles/shell/vars/custom-{{ ansible_distribution }}.yml" ]  
+  
+  roles:
+    - role: shell
+      name: shell
+      shell_enabled: yes
+      shell_env_directory: "{{ home }}/env/tmp"
+      shell_env_owner: "{{ user }}"
+              
+- name: Install eclipse
+  connection: local  
+  hosts: workstation
+  remote_user: root
+#  connection: local
+  roles:
+    - role: eclipse     
+    
+  vars:    
+      eclipse_base_dir: /workspace/eclipse     
+      eclipse_owner: "{{ user }}"
+      eclipse_group: "{{ eclipse_owner }}"
+      eclipse_owner_home: "{{ home }}"
+      

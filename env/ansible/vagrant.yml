@@ -32,3 +32,4 @@
   vars:
       vagrant_libvirt_enabled: true   
       vagrant_root_password_enabled: false
+      vagrant_user_shell: "/bin/false"

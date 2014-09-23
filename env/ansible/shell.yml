@@ -1,0 +1,22 @@
+#as root 
+#ansible-playbook shell.yml -i hosts -vvvv
+#as albandri 
+#ansible-playbook shell.yml -i hosts -vvvv --ask-sudo-pass --sudo
+
+- name: Apply common shell configuration 
+  connection: local  
+  hosts: workstation
+  sudo: yes
+  vars_files:
+  - [ "roles/shell/defaults/main.yml" ]  
+  - [ "roles/shell/vars/defaults.yml" ]
+  - [ "roles/shell/vars/common.yml" ]  
+  - [ "roles/shell/vars/version.yml" ]  
+  - [ "roles/shell/vars/custom-{{ ansible_distribution }}-{{ ansible_architecture }}.yml", "roles/shell/vars/custom-{{ ansible_distribution }}.yml" ]  
+
+  roles:
+    - role: shell
+      name: shell
+      shell_enabled: yes
+      shell_env_directory: {{ home }}/env/tmp
+      shell_env_owner: albandri   

@@ -3,9 +3,9 @@
 #as albandri 
 #ansible-playbook hostname.yml -i hosts -vvvv --ask-sudo-pass --sudo
 
-- name: apply common configuration to all jenkins slaves
+- name: Apply common hostname configuration to all jenkins slaves
   connection: local  
-  hosts: todo
+  hosts: workstation
   sudo: yes
   vars_files:
   - [ "roles/hostname/vars/defaults.yml" ]

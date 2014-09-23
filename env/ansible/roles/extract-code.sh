@@ -51,6 +51,8 @@ git clone https://github.com/AlbanAndrieu/Stouts.jenkins.git jenkins-master
 #pull request issue
 #See likewise docker image
 
+git clone https://github.com/AlbanAndrieu/ansible-jenkins-slave.git jenkins-slave
+
 git clone https://github.com/AlbanAndrieu/ansible-swarm.git jenkins-swarm
 
 git clone https://github.com/AlbanAndrieu/ansible-dropbox.git dropbox
@@ -71,7 +73,13 @@ git clone https://github.com/AlbanAndrieu/ansible-subversion.git subversion
 
 git clone https://github.com/AlbanAndrieu/ansible-css.git css
 
-git clone https://github.com/geerlingguy/ansible-role-security.git security
+#http://www.funix.org/fr/linux/intrusions.htm
+#git clone https://github.com/geerlingguy/ansible-role-security.git security
+git clone https://github.com/AlbanAndrieu/ansible-role-security.git security
+#TODO pull request
+
+#TODO See and check
+git clone https://github.com/major/ansible-role-cis.git security-cis
 
 git clone https://github.com/AlbanAndrieu/ansible-zap.git zap
 
@@ -79,11 +87,20 @@ git clone https://github.com/ahelal/ansible-sonatype_nexus.git nexus
 
 git clone https://github.com/AlbanAndrieu/ansible-cmake.git cmake
 
+git clone https://github.com/AlbanAndrieu/ansible-shell.git shell
+
+git clone https://github.com/AlbanAndrieu/ansible-eclipse.git eclipse
+
+git clone https://github.com/AlbanAndrieu/ansible-jboss.git jboss
+
 #SEE
 https://github.com/ansible/ansible-examples/tree/master/language_features
 https://github.com/sheldonh/dotfiles-ansible
 
 #TODO
+https://github.com/weareinteractive/ansible-users-git
+https://github.com/goozbach-ansible/role-jenkins-git/blob/master/tasks/main.yml get plugins in jenkins
+
 https://github.com/wouterd/docker-maven-plugin
 https://github.com/Ansibles/monit
 https://github.com/sheldonh/dotfiles-ansible #bog

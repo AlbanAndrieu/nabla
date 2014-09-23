@@ -85,7 +85,19 @@
   tags: package    
   with_items:   
    - vnc4server   
-   
+
+#Warning might be in conflict with security profile   
+- name: Install stats basic tools (apt)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' and stats_enabled
+  tags: package     
+  with_items:
+    - finger
+    - sysstat
+    - net-tools # for netstat
+    - rusersd
+    - rwhod   
+       
 ##
  # node.js installation (latest stable instead of Ubuntu's out-of-date one)
  #
@@ -204,35 +216,53 @@
 ##- name: Ensure the webdriverjs npm dependencies are installed
 ##  command: chdir=/usr/bin npm install -g webdriverjs
 
-- name: Mount | Disable mount points
-  mount: 
-    name : '{{ item }}'
-    src: '/mnt/dpool{{ item }]'
-    fstype: nfs
-    state:unmounted
-  tags: mount
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  with_items:
-    - /image
-    - /owncloud
+#- name: Mount | Disable mount points
+#  mount: 
+#    name : '{{ item }}'
+#    src: '/mnt/dpool{{ item }]'
+#    fstype: nfs
+#    state:unmounted
+#  tags: mount
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+#  with_items:
+#    - /image
+#    - /owncloud
   
-- name: Mount | Setup mount points
-  mount: 
-    name : '{{ item }}'
-    src: '/mnt/dpool{{ item }]'
-    fstype: nfs
-#    opts: rw,nodev,nosuid,soft,bg,intr,-r16384,-w16384
-    state:mounted
-  tags: mount
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  with_items:
-    - /media/ftp
-    - /media/photo
-    - /media/music
-    - /media/video
-    - /archive
-    - /backup
+#- name: Mount | Setup mount points
+#  mount: 
+#    name : '{{ item }}'
+#    src: '/mnt/dpool{{ item }]'
+#    fstype: nfs
+##    opts: rw,nodev,nosuid,soft,bg,intr,-r16384,-w16384
+#    state:mounted
+#  tags: mount
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+#  with_items:
+#    - /media/ftp
+#    - /media/photo
+#    - /media/music
+#    - /media/video
+#    - /archive
+#    - /backup
     
 # Mount up device by UUID
 #TODO iSCSI
 #- mount: name=/home src='UUID=b3e48f45-f933-4c8e-a700-22a159ec9077' fstype=xfs opts=noatime state=present
+
+- name: Check user  
+  user: name={{user}} state=present
+  
+#- name: Force no login for user jboss 
+#  user: name=jboss shell=/bin/false state=present
+#
+#- name: Force no login for user sonar 
+#  user: name=sonar shell=/bin/false state=present
+#
+#- name: Force no login for user vagrant 
+#  user: name=vagrant shell=/bin/false state=present
+#
+#- name: Force no login for user zap 
+#  user: name=zap shell=/bin/false state=present
+
+- name: Force no login for user jenkins 
+  user: name=jenkins shell=/bin/false state=present

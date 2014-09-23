@@ -1,20 +1,40 @@
 ---
 # This playbook contains common plays that will be run on all nodes.
 
+- name: Check user  
+  user: name={{conky_owner}} state=present
+  
+- name: Check user home directory
+  stat: path={{conky_owner_home}}
+  register: home_present
+
+- debug: msg="Path exists and is a directory"
+  when: home_present.stat.isdir is defined and home_present.stat.isdir == true
+  
 - name: Add conky repo (apt)
   apt_repository: repo="ppa:norsetto/ppa" update_cache=yes state={{ conky_repository_state }}
   when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( conky_enabled or conky_manager_enabled )
-  when: "ansible_distribution_version not in ['14.04']"
+  when: "ansible_distribution_version not in ['12.04','14.04']"
+
+- name: Add conky repo (apt)
+  apt_repository: repo="deb http://ppa.launchpad.net/noobslab/noobslab-conky/ubuntu {{ansible_lsb.codename}} main" update_cache=yes state={{ conky_repository_state }}
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( conky_enabled or conky_manager_enabled )
+  when: "ansible_distribution_version in ['12.04','14.04']"
+  
+#- name: Add conky techno repo (apt)
+#  apt_repository: repo="deb http://ppa.launchpad.net/noobslab/noobslab-conky/ubuntu {{ansible_lsb.codename}} main" update_cache=yes state={{ conky_repository_state }}
+#  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( conky_enabled or conky_techno_enabled )
 
 - name: Add conky manager repo (apt)
   apt_repository: repo="ppa:teejee2008/ppa" update_cache=yes state={{ conky_repository_state }}
-  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' ) and ( conky_manager_enabled )
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' ) and conky_manager_enabled
 
 - name: Install conky (apt)
   apt: pkg={{ item }} update_cache=yes state={{ conky_pkg_state }}
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: package
   with_items:
+#   - conky
    - conky-all
    - p7zip
 #   - unace
@@ -31,14 +51,24 @@
 #   - arj
 #   - cabextract
 #   - file-roller
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' ) and conky_enabled
 
+- name: Install conky techno (apt)
+  apt: pkg={{ item }} update_cache=yes state={{ conky_pkg_state }}
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package
+  with_items:
+   - techno-conky
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' ) and conky_techno_enabled
+    
 - name: Install conky manager (apt)
   apt: pkg={{ item }} update_cache=yes state={{ conky_pkg_state }}
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: package
   with_items:
    - conky-manager
-
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' ) and conky_manager_enabled
+  
 #- name: Download themes if we don't have it
 #  sudo: False
 #  get_url: url={{ conky_themes_url }}  dest={{ conky_home }}/ force=no
@@ -49,12 +79,20 @@
 #tar czvf default-themes-extra-1.tar.gz *
 
 - name: Copy the themes to be processed
-  copy: src=default-themes-extra-1.tar.gz dest={{ ansible_data_path }}/default-themes-extra-1.tar.gz mode=0755 owner=albandri
+  copy: src=default-themes-extra-1.tar.gz dest={{ ansible_data_path }}/default-themes-extra-1.tar.gz mode=0755 owner={{ conky_owner }} group={{ conky_group }}
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: configure
-  
+
+- name: Create base directory
+  file: 
+    dest="{{conky_home}}"
+    state=directory
+    owner="{{conky_owner}}"
+    group="{{conky_group}}"
+  tags: configure
+    
 - name: Unpack conky themes
-  action: command creates={{ conky_home }}/todo chdir={{ conky_home }} tar zxvf {{ ansible_data_path }}/default-themes-extra-1.tar.gz --owner=albandri
+  action: command creates={{ conky_home }}/todo chdir={{ conky_home }} tar zxvf {{ ansible_data_path }}/default-themes-extra-1.tar.gz --owner={{ conky_owner }}
 #  ignore_errors: True
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: configure

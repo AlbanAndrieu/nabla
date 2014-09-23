@@ -1,4 +1,0 @@
-# Here are variables related to the standalone JBoss installation
-
-jboss_http_port: 8180
-jboss_https_port: 8443

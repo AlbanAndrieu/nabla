@@ -73,7 +73,6 @@
    - htop
    - iftop
    - monit   
-   - sysstat
    - upstart
    - gksu
    
@@ -100,7 +99,7 @@
    - fortunes 
    - fortunes-fr   
 
-- name: main | uninstall whoopsie packages
+- name: Uninstall whoopsie packages
   apt: >
     pkg={{ item }} 
     state=absent
