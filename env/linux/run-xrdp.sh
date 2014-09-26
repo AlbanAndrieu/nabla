@@ -32,20 +32,6 @@ Domain : MISYSROOT
 Advanced -> Security : RDP
 Advanced -> Disable clipboard sync
 
-#On windows enable ping 
-#cmd
-netsh advfirewall firewall add rule name="All ICMP V4" protocol=icmpv4:any,any dir=in action=allow
-netsh advfirewall firewall add rule Profile=public name="Allow WinRM HTTPS" dir=in localport=5986 protocol=TCP action=allow
-NetSH ADVFirewall Set AllProfiles Settings remotemanagement Enable
-
-#see https://github.com/diyan/pywinrm
-winrm set winrm/config/client/auth @{Basic="true"}
-winrm set winrm/config/service/auth @{Basic="true"}
-winrm set winrm/config/service @{AllowUnencrypted="true"}
-#powershell
-Get-ExecutionPolicy -Scope CurrentUser
-Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
-
 #remmina is a client to connect with RDP or VNC
 #
 rm -Rf ~/.freerdp

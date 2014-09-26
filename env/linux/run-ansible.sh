@@ -31,6 +31,8 @@ sudo pip install paramiko PyYAML jinja2 httplib2
 sudo pip uninstall ansible
 sudo pip install ansible --upgrade
 #pip install https://pypi.python.org/packages/source/a/ansible/ansible-1.7.1.tar.gz
+#install ansible devel version
+sudo pip install https://github.com/ansible/ansible/archive/devel.zip
 
 which ansible
 ansible --version
@@ -109,3 +111,18 @@ sudo pip install pywinrm --upgrade
 ansible windows -i hosts -m win_ping --ask-vault-pass
 #list info
 ansible -i hosts GDNCSWMGRQA0015.misys.global.ad -m setup
+
+#On windows enable ping 
+#cmd
+netsh advfirewall firewall add rule name="All ICMP V4" protocol=icmpv4:any,any dir=in action=allow
+netsh advfirewall firewall add rule Profile=public name="Allow WinRM HTTPS" dir=in localport=5986 protocol=TCP action=allow
+NetSH ADVFirewall Set AllProfiles Settings remotemanagement Enable
+
+#see https://github.com/diyan/pywinrm
+winrm set winrm/config/client/auth @{Basic="true"}
+winrm set winrm/config/service/auth @{Basic="true"}
+winrm set winrm/config/service @{AllowUnencrypted="true"}
+#powershell
+Get-ExecutionPolicy -Scope CurrentUser
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+

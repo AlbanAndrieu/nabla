@@ -1,13 +1,21 @@
 ---
 # This playbook contains common plays that will be run on all nodes.
 
+- name: Create temporary directory
+  shell: mktemp -d
+  register: tempdir
+  sudo: true
+  tags: selenium_setup
+  
 - name: Download selenium on 'master' if we don't have it
   sudo: False
-  get_url: url={{ selenium_download_url }}  dest={{ ansible_data_path }}/{{ selenium_jar_file }} force=no
-
+  get_url: url={{ selenium_download_url }}  dest={{ tempdir.stdout }}/{{ selenium_jar_file }} force=no
+  tags: selenium_setup
+  
 - name: Copy selenium into place
   copy: src={{ selenium_jar_file }}  dest={{ selenium_server_path }}/{{ selenium_jar_file }} owner=root group=root mode=644
-
+  tags: selenium_setup
+  
 - name: Install Config
   template: src=defaults.j2 dest=/etc/default/selenium_{{ selenium_sel_role }} owner=root group=root mode=644
   tags: ['config']
@@ -56,3 +64,6 @@
 #unzip chromedriver_linux64.zip   
 #unzip chromedriver_linux32.zip   
 
+- name: Cleanup temporary directory
+  file: name={{ tempdir.stdout }} state=absent
+  tags: selenium_setup

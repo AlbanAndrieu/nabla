@@ -1,5 +1,8 @@
 #see https://blog.trifork.com/2013/04/02/ansible-example-playbook-to-setup-jenkins-slave/
 
+#for testing purpose
+#sudo ansible-playbook -i hosts -c local -v jenkins-slave.yml -vvvv
+
 #as root 
 #ansible-playbook jenkins-slave.yml -i hosts -vvvv
 #as albandri 
@@ -7,7 +10,8 @@
 # --extra-vars "jenkins_username=aandrieu jenkins_password=tbd"
 
 - name: Apply hostname configuration
-  hosts: test-boxes
+#  hosts: test-boxes
+  hosts: all  
   user: root
 #  connection: local
   
@@ -16,19 +20,21 @@
   vars_files:
     - [ "roles/hostname/defaults/main.yml" ]
     
-# This playbook can be run using vagrant (on virtual box). 
-- name: Install zfs
-  hosts: test-boxes
-  user: root
-#  connection: local
-  
-  roles:
-    - zfs
+#- name: Install zfs
+##  hosts: test-boxes
+#  hosts: zfs
+#  user: root
+##  connection: local
+#  
+#  roles:
+#    - zfs
     
 - name: Apply common configuration to all jenkins slaves
-  hosts: test-boxes
-  sudo: yes
-  user: vagrant
+#  hosts: test-boxes
+  hosts: jenkins-slaves
+#  sudo: yes
+#  user: vagrant
+  remote_user: root  
   connection: local    
 #  remote_user: vagrant
   vars_files:
@@ -38,27 +44,36 @@
   roles:
     - jenkins-slave
 
-- name: Apply swarm configuration to all jenkins slaves
-  hosts: test-boxes
-  sudo: yes
-  user: vagrant
-  connection: local    
-#  remote_user: vagrant
+  vars:    
+    jenkins_jdk7_enable: no
+    jenkins_home: "/jenkins"
+    jenkins_slave_home: "/kgr-mvn"
 
-  vars_prompt:
-  - name: jenkins_username
-    prompt: "What is your jenkins user?"
-    private: no
-  - name: jenkins_password
-    prompt: "What is your jenkins password?"
-    private: yes
-
-  roles:
-    - jenkins-swarm
-
+#- name: Apply swarm configuration to all jenkins slaves
+#  hosts: test-boxes
+#  sudo: yes
+#  user: vagrant
+#  connection: local    
+##  remote_user: vagrant
+#
+#  vars_prompt:
+#  - name: jenkins_username
+#    prompt: "What is your jenkins user?"
+#    private: no
+#  - name: jenkins_password
+#    prompt: "What is your jenkins password?"
+#    private: yes
+#
+#  roles:
+#    - jenkins-swarm
+#
+#  vars:    
+#    jenkins_home: "/jenkins"
+    
 # This playbook can be run using vagrant (on virtual box). 
 - name: Install xvbf
-  hosts: test-boxes
+#  hosts: test-boxes
+  hosts: xvbf 
   user: root
 #  connection: local
   

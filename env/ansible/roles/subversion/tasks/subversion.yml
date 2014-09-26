@@ -1,12 +1,7 @@
 ---
 # This playbook contains common plays that will be run on all nodes.
 
-#- name: Node.js | Add the node.js PPA
-#  action: command add-apt-repository -y ppa:chris-lea/node.js creates=/etc/apt/sources.list.d/custom-node_js-{{ ansible_lsb.codename }}.list
-#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-#  tags: nodejs
-  
-- name: main | uninstall subversion packages
+- name:  Uninstall subversion packages
   apt: >
     pkg={{ item }} 
     state=absent
@@ -68,7 +63,15 @@
   template: src={{ subversion_merge_tool_file }}.j2 dest={{ subversion_merge_tool_cmd }} mode=0644
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
   tags: configure
-
+   
+- name: Create base directory
+  file: 
+    dest="{{subversion_config_dir}}"
+    state=directory
+    owner="{{subversion_owner}}"
+    group="{{subversion_group}}"
+  tags: configure
+    
 - name: Copy the subversion configuration script
   template: src=config.j2 dest={{ subversion_config_dir }}/config mode=0644
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    

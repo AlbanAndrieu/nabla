@@ -28,7 +28,7 @@
     state=absent
     purge=yes
     force=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' and rlogin_enabled == false
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and rlogin_enabled == false
   tags: package      
   with_items:
     - xinetd  
@@ -40,7 +40,7 @@
     state=absent
     purge=yes
     force=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' and telnet_enabled == false
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and telnet_enabled == false
   tags: package   
 
 #Uninstall ftp 
@@ -50,7 +50,7 @@
     state=absent
     purge=yes
     force=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' and ftp_enabled == false
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and ftp_enabled == false
   tags: package      
     
 #Uninstall stats tools
@@ -60,7 +60,7 @@
     state=absent
     purge=yes
     force=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' and stats_enabled == false
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and stats_enabled == false
   tags: package      
   with_items:
     - finger

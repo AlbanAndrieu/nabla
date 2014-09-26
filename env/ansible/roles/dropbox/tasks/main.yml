@@ -4,4 +4,9 @@
 - include: dropbox.yml
   when: dropbox_enabled 
   tags: [dropbox]
+    
+- name: Copy Dockerfile
+  template: src=Dockerfile.j2 dest={{ docker_files_generated_directory }}/Dockerfile mode=0777
   
+- name: Copy build.sh
+  template: src=build.sh.j2 dest={{ docker_files_generated_directory }}/build.sh mode=0777

@@ -1,0 +1,13 @@
+---
+
+#
+# Test Playbook
+#
+
+- hosts: localhost
+  sudo: true
+  roles:
+    - role: ./
+
+#TODO
+#- include: tests/integration-tests.yml

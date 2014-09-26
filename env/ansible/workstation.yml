@@ -24,7 +24,7 @@
                  OSes include Red Hat Enterprise Linux 6/7, CentOS 6, or
                  Ubuntu 12.04/14.04."
 
-- name: apply hostname configuration
+- name: Apply hostname configuration
   hosts: all
   remote_user: root
 #  connection: local
@@ -91,20 +91,32 @@
   
   roles:
     - virtualbox
-      
+
 - name: Install vagrant
   hosts: vagrant
   remote_user: root
 #  connection: local
   
   roles:
-    - vagrant
+    - vagrant    
+  
+  vars:    
+       vagrant_libvirt_enabled: true
+       vagrant_windows_enabled: false       
+#      vagrant_url: https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.deb    
+            
+- name: Install vagrant user
+  hosts: vagrant
+  remote_user: root
+#  connection: local
+  
+  roles:
+    - vagrant-user
    
-  vars:
-      vagrant_libvirt_enabled: true   
+  vars: 
       vagrant_root_password_enabled: false
       vagrant_user_shell: "/bin/false"
-      
+            
 - name: Install docker
   hosts: docker
   remote_user: root
@@ -211,7 +223,10 @@
   roles:
     - jenkins-slave
 
-
+  vars:    
+    jenkins_home: "/jenkins"
+    jenkins_slave_home: "/kgr-mvn"
+    
 - name: Install maven
   hosts: maven
   remote_user: root
@@ -229,7 +244,6 @@
   roles:
     - css
     
-
 - name: Install chrome
   hosts: chrome
   remote_user: root
@@ -395,10 +409,12 @@
   
   roles:
     - role: shell
-      name: shell
-      shell_enabled: yes
-      shell_env_directory: "{{ home }}/env/tmp"
-      shell_env_owner: "{{ user }}"
+
+  vars:    
+#      shell_enabled: yes
+#      shell_owner: "{{ user }}"
+#      shell_owner_home: "{{ home }}"
+#      shell_env_directory: "{{ home }}/env/tmp"
               
 - name: Install eclipse
   connection: local  

@@ -1,4 +1,4 @@
-#sudo ansible-playbook -i hosts -c local -v subversion.yml | tee setup.log
+#sudo ansible-playbook -i hosts -c local -v vagrant.yml | tee setup.log
 
 - hosts: all
   gather_facts: true
@@ -28,8 +28,20 @@
   
   roles:
     - vagrant
+  
+  vars:    
+      vagrant_libvirt_enabled: true  
+      vagrant_windows_enabled: false      
+#      vagrant_url: https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.deb    
+    
+- name: Install vagrant user
+  hosts: vagrant
+  remote_user: root
+#  connection: local
+  
+  roles:
+    - vagrant-user
    
   vars:
-      vagrant_libvirt_enabled: true   
       vagrant_root_password_enabled: false
       vagrant_user_shell: "/bin/false"

@@ -1,0 +1,62 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+- name: Add group "zap"
+  group:
+    name="{{zap_group}}"
+  tags: zap_setup
+
+- name: Add user "zap"
+  user:
+    name="{{zap_owner}}"
+    group="{{zap_group}}"
+    home="{{zap_base_dir}}"
+    shell="{{zap_shell}}"
+    comment="Zap User"
+    createhome=yes
+  tags: zap_setup
+
+- name: Create temporary directory
+  shell: mktemp -d
+  register: tempdir
+  sudo: true
+  tags: zap_setup
+
+- name: Download zap
+  get_url:
+    url="{{zap_url}}"
+    dest="{{ tempdir.stdout }}/{{zap_archive}}"
+  tags: zap_setup
+
+- name: Extract archive zap
+  unarchive:
+    src="{{ tempdir.stdout }}/{{zap_archive}}"  
+    dest="{{zap_base_dir}}/"
+    owner="{{zap_owner}}"
+    group="{{zap_group}}"
+    copy=no
+  sudo_user: "{{zap_owner}}"
+  tags: zap_setup
+
+- name: Create base directory
+  file:
+    dest="{{zap_base_dir}}"
+    state=directory
+    owner="{{zap_owner}}"
+    group="{{zap_group}}"
+  tags: zap_setup
+
+- name: create a link to zap
+  file:
+    src="{{zap_base_dir}}/{{zap_archive_extracted}}"
+    dest="{{zap_base_dir}}/zap{{zap_major}}"
+    state=link
+    owner="{{zap_owner}}"
+    group="{{zap_group}}"
+  tags: zap_setup
+
+- name: Cleanup temporary directory
+  file: name={{ tempdir.stdout }} state=absent
+  tags: zap_setup
+
+- debug: msg="Start zap {{zap_base_dir}}/zap{{zap_major}}/zap.sh"

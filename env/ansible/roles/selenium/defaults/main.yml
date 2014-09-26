@@ -19,6 +19,7 @@ selenium_java_opts: ''
 selenium_extra_args: ''
 selenium_port: ''
 
-# path for ansible to store downloaded or templated data
-ansible_data_path: '/usr/local/src/ansible/data'
-#ansible_data_path: {{ cur_dir }}
+docker_files_generated_directory: "roles/selenium"
+docker_volume_directory: "{{ selenium_server_path }}"
+docker_working_directory: "/home/vagrant"
+docker_image_name: "nabla/ansible-selenium"

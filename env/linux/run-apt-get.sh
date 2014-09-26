@@ -385,3 +385,8 @@ sudo rm -Rf /usr/share/doc/texlive-doc/
 sudo rm -Rf /var/lib/jenkins/tmp
 sudo find /var/log -name '*.gz' | xargs sudo rm -r $1
 sudo apt-get clean
+
+# What package is the netstat executable in?
+sudo apt-file search /usr/bin/netstat
+# Now download the source of that package
+sudo apt-get source net-tools

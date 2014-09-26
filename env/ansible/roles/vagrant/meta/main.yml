@@ -1,20 +1,17 @@
 ---
 galaxy_info:
-  author: "Alex Williams"
-  description: "Vagrant role for adding vagrant user credentials"
-  company: "Unscramble (jidoteki.com)"
-  license: "license (MIT)"
-  min_ansible_version: 1.3
+  author: "Kevin Lynch"
+  description: vagrant
+  license: MIT
+  min_ansible_version: 1.4
+  version: 0.1
+
   platforms:
-  - name: FreeBSD
-    versions:
-      - all
-  - name: Ubuntu
-    versions:
-      - all
-  - name: Debian
-    versions:
-      - all
+    - name: Ubuntu
+      versions:
+        - precise
   categories:
-  - development
+    - development
+    - system
+
 dependencies: []

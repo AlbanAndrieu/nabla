@@ -98,6 +98,10 @@ albandri-laptop-misys
 [workstation]
 albandri-laptop-misys
 
+[windows]
+#10.0.2.15
+albandri-laptop-misys
+
 [test-boxes]
 #vagrant local box
 #192.168.33.10

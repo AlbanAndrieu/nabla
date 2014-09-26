@@ -5,3 +5,8 @@ user                                       : 'albandri' #please override me
 dropbox_owner                              : "{{ user }}"
 home                                       : '~' #please override me
 dropbox_owner_home                         : "{{ home }}"
+
+docker_files_generated_directory         : "roles/dropbox"
+docker_volume_directory                  : "{{ dropbox_owner_home }}"
+docker_working_directory                 : "/home/vagrant"
+docker_image_name                        : "nabla/ansible-dropbox"

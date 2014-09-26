@@ -1,7 +1,4 @@
-sudoers_path: /etc/sudoers.d/vagrant
-vagrant_user_shell: /bin/bash
-vagrant_user_vagrant_password: "$1$re6ft8gy$PweYoLIPFrEo/y0OeVQyA/"
-vagrant_root_password_enabled : true
-vagrant_user_root_password: "$1$re6ft8gy$PweYoLIPFrEo/y0OeVQyA/"
-vagrant_home: /home/vagrant
-vagrant_libvirt_enabled: false                      
+---
+vagrant_url: https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.deb
+vagrant_libvirt_enabled: false   
+vagrant_windows_enabled: false       #Needed for under vagrant (< 1.6)         

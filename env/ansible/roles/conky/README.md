@@ -1,38 +1,53 @@
-# ansible-vagrant
+ansible-conky
+====================
 
 A role for installing conky.
 
+[![Build Status](https://api.travis-ci.org/AlbanAndrieu/ansible-conky.png?branch=master)](https://travis-ci.org/AlbanAndrieu/ansible-conky)
 
 ## Actions
 
 - Ensures that conky is installed (using `apt`)
 
+Usage example
+------------
 
-## Usage:
-```
-  - name: Install conky
-    hosts: workstation
-    user: root
-  #  connection: local
+    - name: Install conky
+      hosts: workstation
+      user: root
     
-    roles:
-      - conky      
+      roles:
+        - conky      
       
-  vars:      
-      conky_home: '/workspace/users/albandri10/.conky'      
-```
+    vars:      
+        conky_home: '/workspace/users/albandri10/.conky'      
 
-## Sample hosts:
-``` 
-[workstation]
-albandri-laptop-misys
+Hosts example
+------------
 
-[workstation:vars]
-user=albandri
-version=10
-home=/workspace/users/{{ user }}{{ version }}/
-```
+    [workstation]
+    albandri-laptop-misys
 
-## License
+    [workstation:vars]
+    user=albandri
+    version=10
+    home=/workspace/users/{{ user }}{{ version }}/
+
+Requirements
+------------
+
+none
+
+Dependencies
+------------
+
+none
+
+License
+-------
 
 MIT
+
+#### Feedback, bug-reports, requests, ...
+
+Are [welcome](https://github.com/AlbanAndrieu/ansible-webmin/issues)!

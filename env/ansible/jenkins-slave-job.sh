@@ -6,10 +6,17 @@ echo "WORKSPACE : $WORKSPACE"
 
 echo "Configure Jenkins slaves"
 
+sudo apt-get update -qq
+sudo apt-get install -qq python-apt python-pycurl
+sudo pip install https://github.com/ansible/ansible/archive/devel.zip
+#todo use virtualenv
+sudo pip install https://github.com/diyan/pywinrm/archive/df049454a9309280866e0156805ccda12d71c93a.zip --upgrade
+
 ansible --version
 vagrant --version
-python --version
 docker --version
+python --version
+pip --version
 
 cd ./Scripts/ansible
 

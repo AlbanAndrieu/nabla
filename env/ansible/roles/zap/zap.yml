@@ -1,0 +1,8 @@
+---
+- hosts: all
+  sudo: True
+  roles:
+    - ansible-zap
+
+  vars:     
+       docker_files_generated_directory: ""

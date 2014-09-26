@@ -9,3 +9,10 @@ apt_install_packages_list:    # List of packages which be installed
   - mosh
   - pciutils
   - screen
+
+stats_enabled           : true
+utilities_enabled       : true
+editors_enabled         : true
+cowsay_enabled          : true
+perl_enabled            : true
+python_enabled          : true

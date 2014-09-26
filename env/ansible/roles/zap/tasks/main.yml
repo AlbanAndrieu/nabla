@@ -1,0 +1,12 @@
+---
+# This playbook contains common plays that will be run on all nodes.
+
+- include: zap.yml
+  when: zap_enabled 
+  tags: [zap]
+  
+- name: Copy Dockerfile
+  template: src=Dockerfile.j2 dest={{ docker_files_generated_directory }}/Dockerfile mode=0777
+  
+- name: Copy build.sh
+  template: src=build.sh.j2 dest={{ docker_files_generated_directory }}/build.sh mode=0777

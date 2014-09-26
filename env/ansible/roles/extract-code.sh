@@ -7,6 +7,9 @@
 #git remote add origin https://github.com/AlbanAndrieu/ansible-swarm.git
 #git push -u origin master
 
+#git clone https://github.com/debops/ansible-role-ansible.git ansible
+#TO SEE : https://github.com/ginas/ginas
+
 #git clone https://github.com/EDITD/ansible-supervisor_task.git supervisor
 git clone https://github.com/AlbanAndrieu/ansible-supervisor_task.git supervisor
 #pull request pending
@@ -27,8 +30,12 @@ git clone https://github.com/knopki/ansible-locale locale
 #git clone https://github.com/kost/ansible-galaxy.ubuntu.virtualbox.git virtualbox
 git clone https://github.com/AlbanAndrieu/ansible-galaxy.ubuntu.virtualbox.git virtualbox
 
-#git clone https://github.com/aw/ansible-galaxy-vagrant.git vagrant
-git clone https://github.com/AlbanAndrieu/ansible-galaxy-vagrant.git vagrant
+#git clone https://github.com/aw/ansible-galaxy-vagrant.git vagrant-user
+git clone https://github.com/AlbanAndrieu/ansible-galaxy-vagrant.git vagrant-user
+
+#git clone https://github.com/klynch/ansible-vagrant-role.git vagrant
+#TODO switch
+git clone https://github.com/AlbanAndrieu/ansible-vagrant-role.git vagrant
 
 #TODO control vagrant with ansible https://github.com/robparrott/ansible-vagrant
 
@@ -53,7 +60,7 @@ git clone https://github.com/AlbanAndrieu/Stouts.jenkins.git jenkins-master
 
 git clone https://github.com/AlbanAndrieu/ansible-jenkins-slave.git jenkins-slave
 
-git clone https://github.com/AlbanAndrieu/ansible-swarm.git jenkins-swarm
+git clone https://github.com/AlbanAndrieu/ansible-jenkins-swarm.git jenkins-swarm
 
 git clone https://github.com/AlbanAndrieu/ansible-dropbox.git dropbox
 #TODO add dropbox to github and ansible
@@ -92,6 +99,8 @@ git clone https://github.com/AlbanAndrieu/ansible-shell.git shell
 git clone https://github.com/AlbanAndrieu/ansible-eclipse.git eclipse
 
 git clone https://github.com/AlbanAndrieu/ansible-jboss.git jboss
+
+git clone https://github.com/AlbanAndrieu/ansible-windows.git windows
 
 #SEE
 https://github.com/ansible/ansible-examples/tree/master/language_features

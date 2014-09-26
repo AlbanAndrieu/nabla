@@ -6,4 +6,4 @@
      
   vars:     
        user: root
-       home: /root
+       home: "/root"

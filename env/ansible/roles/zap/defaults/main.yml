@@ -1,0 +1,28 @@
+---
+zap_enabled: yes                       # Enable module
+
+#zap_listen_ip                          : "127.0.0.1"
+#zap_port                               : "8090"
+
+## Where to install zap and Unix user/group
+zap_owner                              : "zap" 
+zap_group                              : "zap"
+zap_shell                              : "/bin/false" #/bin/bash
+zap_base_dir                           : "/usr/local/zap"
+
+## Most likely you dont need to edit 
+#todo zap_service_enabled   : 'yes'
+zap_major             : "2"
+zap_minor             : "3.1"
+zap_version           : "{{zap_major}}.{{zap_minor}}"
+zap_name              : "zap-{{zap_version}}"
+zap_archive_extracted : "ZAP_{{zap_version}}"
+zap_archive           : "{{zap_archive_extracted}}_Linux.tar.gz"
+#zap_url               : "http://sourceforge.net/projects/zaproxy/files/{{zap_version}}/{{zap_archive}}/download"
+zap_url               : "http://downloads.sourceforge.net/project/zaproxy/{{zap_version}}/{{zap_archive}}?r=&ts=1411599584&use_mirror=skylink"
+zap_home_dir          : "{{zap_base_dir}}/{{zap_name}}"
+
+docker_files_generated_directory         : "roles/zap"
+docker_volume_directory                  : "{{ zap_base_dir }}"
+docker_working_directory                 : "/home/vagrant"
+docker_image_name                        : "nabla/ansible-zap"

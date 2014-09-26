@@ -4,3 +4,9 @@
 - include: selenium.yml
   when: selenium_enabled 
   tags: [selenium]
+  
+- name: Copy Dockerfile
+  template: src=Dockerfile.j2 dest={{ docker_files_generated_directory }}/Dockerfile mode=0777
+  
+- name: Copy build.sh
+  template: src=build.sh.j2 dest={{ docker_files_generated_directory }}/build.sh mode=0777

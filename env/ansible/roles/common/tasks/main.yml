@@ -16,7 +16,7 @@
   
 - name: Make sure the required packages are installed
   apt: pkg={{ item }} state=present
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and python_enabled == true
   with_items:
     - python-apt
     - python-pycurl
@@ -60,25 +60,31 @@
 - name: Test ansible is installed
   shell: ansible --version
 
-- name: Install basic tools (apt)
+- name: Install utility tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and utilities_enabled == true
   tags: package  
   with_items:
    - wget
    - curl
-   - nmap
    - ssh  
+   
+- name: Install monitoring tools (apt)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and stats_enabled == true
+  tags: package  
+  with_items:   
+   - nmap  
    - iotop
    - htop
    - iftop
    - monit   
    - upstart
    - gksu
-   
+  
 - name: Install editor tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and editors_enabled == true
   tags: package  
   with_items:   
    - apt-show-versions
@@ -90,7 +96,7 @@
 
 - name: Install cowsay (apt)
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and cowsay_enabled == true
   tags: package  
   with_items:   
    - aptitude
@@ -112,7 +118,7 @@
     
 - name: Install perl (apt)
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and perl_enabled == true
   tags: package  
   with_items:
    - perl       
@@ -124,7 +130,7 @@
 
 - name: Install python (apt)
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' 
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and python_enabled == true
   tags: package   
   with_items:
    - python
@@ -134,6 +140,11 @@
    - python-setuptools
    - python-software-properties   
    - build-essential
+
+- name: Install winrm python module for ansible to work on windows
+  command: sudo pip install https://github.com/diyan/pywinrm/archive/df049454a9309280866e0156805ccda12d71c93a.zip --upgrade
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and python_enabled == true
+  tags: package   
 
 #- name: Installing common packages.
 #  apt: state=present pkg={{ item }}

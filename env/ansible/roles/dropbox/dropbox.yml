@@ -1,0 +1,11 @@
+---
+- hosts: all
+  sudo: True
+  roles:
+    - ansible-dropbox
+     
+  vars:     
+       user: root
+       home: "/root"
+       docker_files_generated_directory: ""  
+      

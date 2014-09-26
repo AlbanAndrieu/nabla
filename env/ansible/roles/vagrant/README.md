@@ -1,8 +1,15 @@
-# Ansible role for Vagrant
+ansible-vagrant-role
+====================
 
-This role will configure your server with the standard default vagrant credentials.
+An ansible role for installing vagrant on Ubuntu
 
-# Usage example
+This is necessary because the vagrant package is outdated in Ubuntu, and the
+vagrant authors do not provide a PPA.
+
+[![Build Status](https://travis-ci.org/klynch/ansible-vagrant-role.png?branch=master)](https://travis-ci.org/klynch/ansible-vagrant-role)
+
+Usage example
+------------
 
 Add this to your playbook:
 
@@ -10,26 +17,33 @@ Add this to your playbook:
       hosts: all
       gather_facts: true
       roles:
-        - vagrant
+        - ansible-vagrant-role   
+      
+      vars:
+        vagrant_libvirt_enabled: true #In order to enable libvirt plugin    
         
-      vars:
-        vagrant_libvirt_enabled: true #In order to enable libvirt plugin          
+Requirements
+------------
 
-If running on FreeBSD:
+none
 
-    - name: Setup for vagrant boxes
-      hosts: all
-      gather_facts: true
-      vars:
-        sudoers_path: /usr/local/etc/sudoers.d/vagrant
-        vagrant_user_shell: /bin/sh
-      roles:
-        - vagrant
+Role Variables
+--------------
 
-# License
+Defaults is:
 
-MIT License
+    vagrant_url: https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.deb
 
-# Author
+Description:
 
-Alex Williams (Unscramble) - http://jidoteki.com
+- ` vagrant_url` - A URL to the vagrant DEB package 
+
+Dependencies
+------------
+
+none
+
+License
+-------
+
+MIT
