@@ -20,8 +20,32 @@
   with_items:   
    - geany
    - gedit
+   - gedit-plugins
    - meld
-   - dos2unix
+   - dos2unix     
+      
+- name: Install desktop tools (apt)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:         
+   - synapse
+   - nautilus-open-terminal
+      
+- name: Install disk tools (apt)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:         
+   - testdisk
+   - gparted         
+      
+- name: Install database tools (apt)
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  tags: package  
+  with_items:         
+   - phpmyadmin         
       
 - name: Install extra (apt)
   apt: pkg={{ item }} state=present update_cache=yes
