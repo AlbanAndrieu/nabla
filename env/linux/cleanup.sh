@@ -26,3 +26,6 @@
 find . -type f -name '*\.log' | xargs rm -r $1
 find . -type d -name '.svn' | xargs rm -r $1
 find /jenkins -type d -name 'workspace' | grep -v 'builds' | xargs rm -r $1
+
+sudo apt-get autoclean
+sudo apt-get autoremove
