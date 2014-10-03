@@ -1,6 +1,8 @@
 #ubuntu
-ntpserver1: ntp.ubuntu.com
-ntpserver2: timehost
+ntpservers:
+  - "ntp.ubuntu.com" 
+  - "timehost"
+
 nisserver: albandri
 mailserver: smtp.gmail.com
 

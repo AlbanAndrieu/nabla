@@ -1,4 +1,5 @@
 #!/bin/bash
+# Ansible managed: /workspace/users/albandri10/env/ansible/roles/zap/templates/build.sh.j2 modified on 2014-09-25 11:57:15 by albandri on albandri-laptop-misys
 
 DOCKERNAME="nabla/ansible-zap"
 

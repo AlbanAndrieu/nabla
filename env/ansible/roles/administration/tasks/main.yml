@@ -73,7 +73,7 @@
   tags: package  
 
 - name: Configure ntp file
-  template: src=ntp.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/ntp.conf
+  template: src=ntp.conf-{{ ansible_distribution }}.j2 dest=/etc/ntp.conf
   tags: configure
   notify: restart ntp
 

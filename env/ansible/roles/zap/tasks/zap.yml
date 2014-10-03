@@ -30,7 +30,7 @@
 
 - name: Extract archive zap
   unarchive:
-    src="{{ tempdir.stdout }}/{{zap_archive}}"  
+    src="{{ tempdir.stdout }}/{{zap_archive}}"
     dest="{{zap_base_dir}}/"
     owner="{{zap_owner}}"
     group="{{zap_group}}"

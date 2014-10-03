@@ -91,6 +91,10 @@
   
   roles:
     - virtualbox
+  
+  vars:    
+      virtualbox_package_name: virtualbox
+      virtualbox_dkms_enable: yes
 
 - name: Install vagrant
   hosts: vagrant

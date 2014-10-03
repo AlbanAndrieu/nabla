@@ -53,7 +53,8 @@
   sudo: yes
   tasks:
   - name: copy build.sh
-    copy: src=roles/jenkins-slave/ dest=./ mode=0777
+    copy: src=roles/jenkins-slave/ dest=./ 
+    #mode=0777
 
 #- name: Copy Dockerfile to build image
 #  hosts: jenkins-slave-create-image-docker

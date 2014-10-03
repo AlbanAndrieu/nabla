@@ -8,15 +8,20 @@ echo "Configure Jenkins slaves"
 
 sudo apt-get update -qq
 sudo apt-get install -qq python-apt python-pycurl
+sudo apt-get install -qq wget
+sudo apt-get install -qq virtualbox
+wget https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.deb
+sudo dpkg -i vagrant_1.6.3_x86_64.deb
 sudo pip install https://github.com/ansible/ansible/archive/devel.zip
-#todo use virtualenv
 sudo pip install https://github.com/diyan/pywinrm/archive/df049454a9309280866e0156805ccda12d71c93a.zip --upgrade
+#todo use virtualenv
 
 ansible --version
 vagrant --version
 docker --version
 python --version
 pip --version
+VBoxManage --version
 
 cd ./Scripts/ansible
 
