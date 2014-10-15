@@ -2,7 +2,12 @@
 - hosts: all
   sudo: true
   roles:
-    - ansible-zap
+    - role: ./
+#    - ansible-zap
 
   vars:     
-       docker_files_generated_directory: ""
+    docker_files_generated_directory: ""
+    docker_files_enable: no       
+       
+#TODO
+#- include: docker/integration-tests.yml

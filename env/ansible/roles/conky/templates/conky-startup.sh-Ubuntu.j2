@@ -1,6 +1,9 @@
 sleep 20s
 killall conky
-cd "{{ conky_home }}/Gotham"
-conky -c "{{ conky_home }}/Gotham/Gotham" &
-cd "{{ conky_home }}/Green Apple Desktop"
-conky -c "{{ conky_home }}/Green Apple Desktop/conky_seamod" &
+#cd "{{ conky_home }}/Gotham"
+#conky -c "{{ conky_home }}/Gotham/Gotham" &
+#cd "{{ conky_home }}/Green Apple Desktop"
+#conky -c "{{ conky_home }}/Green Apple Desktop/conky_seamod" &
+
+cd "{{ conky_home }}/4 & 2 core blue"
+conky -c "{{ conky_home }}/4 & 2 core blue/conkyrc2core" &

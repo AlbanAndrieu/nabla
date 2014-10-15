@@ -45,7 +45,7 @@
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   tags: package  
   with_items:         
-   - phpmyadmin         
+   - phpmyadmin                   
       
 - name: Install extra (apt)
   apt: pkg={{ item }} state=present update_cache=yes

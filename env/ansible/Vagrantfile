@@ -42,6 +42,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       #machine.vm.box_url = "ubuntu/trusty64"
 
       machine.vm.hostname = "%s.example.org" % name
+      machine.vm.synced_folder "./app", "/var/www/", create:true
       machine.vm.network :private_network, ip: ip
       # Create a forwarded port mapping which allows access to a specific port
       # within the machine from a port on the host machine.

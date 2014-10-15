@@ -112,6 +112,23 @@
 
 #TODO start ~/.conky/startconky.sh on startup for instance in .bashrc file
 
+- name: Install conky sensor (apt)
+  apt: pkg={{ item }} update_cache=yes state={{ conky_pkg_state }}
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: conky_setup
+  with_items:
+   - lm-sensors
+   - fancontrol
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' ) and conky_sensor_enabled
+  
+#sudo apt-get install lm-sensors   
+#sudo sensors-detect
+#sudo service kmod start
+#NOK sudo apt-get install fancontrol
+#sudo apt-get install psensor
+#launch gui with
+#sudo psensor
+
 - name: Copy the conky init script
   template: src=conky.sh-{{ ansible_distribution }}.j2 dest=/etc/init.d/conky mode=0755
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'

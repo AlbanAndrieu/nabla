@@ -1,4 +1,4 @@
-# Ansible managed: /workspace/users/albandri10/env/ansible/roles/zap/templates/Dockerfile.j2 modified on 2014-09-30 23:50:06 by albandri on albandri-laptop-misys
+# Ansible managed: /workspace/users/albandri10/env/ansible/roles/zap/templates/Dockerfile.j2 modified on 2014-10-10 17:47:33 by albandri on albandri-laptop-misys
 #FROM        debian:jessie
 #FROM        stackbrew/ubuntu:14.04
 FROM        jasongiedymin/ansible-base-ubuntu
@@ -9,7 +9,8 @@ VOLUME      [/usr/local/zap]
 MAINTAINER  Alban Andrieu "https://github.com/AlbanAndrieu"
 
 ENV			DEBIAN_FRONTEND noninteractive
-ENV         JENKINS_HOME /usr/local/zap/zap-2.3.1
+ENV         ZAP_HOME /usr/local/zap/zap-2.3.1
+ENV         WORKDIR /home/vagrant
 
 # Working dir
 WORKDIR /home/vagrant
@@ -17,23 +18,28 @@ WORKDIR /home/vagrant
 # COPY
 #COPY
 
+RUN         pwd
+RUN         ls -lrta
+
 # ADD
-ADD defaults $WORKDIR/defaults
-ADD meta $WORKDIR/meta
-#ADD files $WORKDIR/files
-ADD handlers $WORKDIR/handlers
-ADD tasks $WORKDIR/tasks
-ADD templates $WORKDIR/templates
-#ADD vars $WORKDIR/vars
+ADD defaults $WORKDIR/ansible-zap/defaults
+ADD meta $WORKDIR/ansible-zap/meta
+#ADD files $WORKDIR/ansible-zap/files
+ADD handlers $WORKDIR/ansible-zap/handlers
+ADD tasks $WORKDIR/ansible-zap/tasks
+ADD templates $WORKDIR/ansible-zap/templates
+#ADD vars $WORKDIR/ansible-zap/vars
 
 # Here we continue to use add because
 # there are a limited number of RUNs
 # allowed.
 ADD hosts /etc/ansible/hosts
-ADD playbook.yml $WORKDIR/playbook.yml -vvvv
+ADD zap.yml $WORKDIR/ansible-zap/zap.yml
 
 # Execute
-RUN         ansible-playbook $WORKDIR/playbook.yml -i $WORKDIR/hosts -c local
+RUN         pwd
+RUN         ls -lrta
+RUN         ansible-playbook $WORKDIR/ansible-zap/zap.yml -c local -vvvv
 
 #RUN         apt-get update && \
 #            apt-get install -y openssh-server openjdk-7-jre-headless

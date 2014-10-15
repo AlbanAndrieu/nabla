@@ -29,3 +29,6 @@
   roles:
     - role: conky
      
+  vars:     
+       conky_sensor_enabled: yes
+       conky_manager_enabled: yes
