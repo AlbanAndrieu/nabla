@@ -2,3 +2,4 @@
 vagrant_url: https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.deb
 vagrant_libvirt_enabled: false   
 vagrant_windows_enabled: false       #Needed for under vagrant (< 1.6)         
+vagrant_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"

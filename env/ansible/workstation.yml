@@ -1,7 +1,7 @@
----     
+---
 #This script is used to configure your workstation (for developer)
 
-#sudo ansible-playbook -i hosts -c local -v workstation.yml | tee setup.log
+#sudo ansible-playbook -i hosts -c local -v workstation.yml -vvvv | tee setup.log
 
 - hosts: all
   gather_facts: true
@@ -24,75 +24,166 @@
                  OSes include Red Hat Enterprise Linux 6/7, CentOS 6, or
                  Ubuntu 12.04/14.04."
 
+- name: Add repo configuration to all nodes
+  hosts: RedHat-7*:RedHat-6*:CentOS-6*
+  gather_facts: false
+  remote_user: root
+#  connection: local
+
+  roles:
+    - geerlingguy.repo-epel
+    - geerlingguy.repo-remi
+
 - name: Apply hostname configuration
   hosts: all
   remote_user: root
 #  connection: local
-  
+
   roles:
     - hostname
   vars_files:
     - [ "roles/hostname/defaults/main.yml" ]
-  
+
+- name: Apply ntp configuration to all nodes
+  hosts: all
+  gather_facts: false
+  remote_user: root
+#  connection: local
+
+  roles:
+    - geerlingguy.ntp
+  vars:
+       ntp_timezone: Europe/Paris
+#       ntp_enabled: true
+
+#Warning below has a ntp configuration
 - name: Apply common configuration to all nodes
   hosts: Ubuntu-12*:Ubuntu-14*
   gather_facts: false
   remote_user: root
 #  connection: local
-  
+
   roles:
     - common
-    
+
 - name: Apply dns configuration to all nodes
   hosts: Ubuntu-12*:Ubuntu-14*
   gather_facts: false
   remote_user: root
 #  connection: local
-  
+
   roles:
     - dns
-        
+
   vars:
        defaultdomain: france.effix.fr
        search: misys.global.ad misys.global.ad. nt.france.effix.fr. france.effix.fr. effix.fr.
        dns_nameservers:
          - "10.25.200.3" # work dns
-         - "10.21.200.3" # work dns 
+         - "10.21.200.3" # work dns
          - "8.8.8.8" # google dns
-         - "8.8.4.4" # google dns       
-#paris  
+         - "8.8.4.4" # google dns
+#paris
 #      nameserver1: 10.21.200.3
 #      nameserver2: 10.25.200.3
-#gdynia      
+#gdynia
 #      nameserver1: 10.7.109.27
 #      nameserver2: 10.7.111.244
+
+#- name: Apply firewall configuration to all nodes
+#  hosts: Ubuntu-12*:Ubuntu-14*
+#  gather_facts: false
+#  remote_user: root
+##  connection: local
+#
+#  roles:
+#    - geerlingguy.firewall
+#
+#  vars:
+#       firewall_allowed_tcp_ports:
+#       - "22"
+#       - "25"
+#       - "80"
+#       - "443"
+#       - "6082"
+#       - "8080"
+#       - "8280"
+#       - "8380"
+#       - "9000"
+#       - "8081"
+#       - "8085"
+#       - "3306"
+#       - "9090"
+#       - "8180"
+#       - "7070"
+#       - "8480"
+##   21: FTP
+##   22: SSH
+##   25: SMTP
+##   80: HTTP
+##   123: DNS
+##   443: HTTPS
+##   2222: SSH alternate
+##   4949: Munin
+##   6082: Varnish admin
+##   8080: HTTP alternate (often used with Tomcat)
+##   8280: Tomcat HTTP
+##   8983: Tomcat HTTP TODO???????
+##   8443: Tomcat HTTPS TODO???????
+##   8380: Jenkins
+##   9000: SonarQube
+##   8081: Nexus
+##   8085: Fitness
+##   3306: Mysql
+##   9090: Jetty
+##   8180: JBoss
+##   8787: JBoss remote debug port
+##   8181: JBoss http debug port
+##   7070: Apache
+##   8480: NGinx
+##   4445: Lumbermill
 
 - name: Apply security configuration
   hosts: security
   remote_user: root
 #  connection: local
-  
+
   roles:
     - security
 
+- name: Install cmake
+  hosts: cmake
+  remote_user: root
+#  connection: local
 
+  roles:
+    - cmake
+
+- name: Install cpp
+  hosts: cpp
+  remote_user: root
+#  connection: local
+
+  roles:
+    - cpp
+        
 - name: Install java
   hosts: java
   remote_user: root
 #  connection: local
-  
+
   roles:
     - java
-    
+
 - name: Install virtualbox
   hosts: virtualbox
   remote_user: root
 #  connection: local
-  
+
   roles:
     - virtualbox
-  
-  vars:    
+
+  vars:
       virtualbox_package_name: virtualbox
       virtualbox_dkms_enable: yes
 
@@ -100,31 +191,31 @@
   hosts: vagrant
   remote_user: root
 #  connection: local
-  
+
   roles:
-    - vagrant    
-  
-  vars:    
+    - vagrant
+
+  vars:
        vagrant_libvirt_enabled: true
-       vagrant_windows_enabled: false       
-#      vagrant_url: https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.deb    
-            
+       vagrant_windows_enabled: false
+#      vagrant_url: https://dl.bintray.com/mitchellh/vagrant/vagrant_1.6.3_x86_64.deb
+
 - name: Install vagrant user
   hosts: vagrant
   remote_user: root
 #  connection: local
-  
+
   roles:
     - vagrant-user
-   
-  vars: 
+
+  vars:
       vagrant_root_password_enabled: false
       vagrant_user_shell: "/bin/false"
-            
+
 - name: Install docker
   hosts: docker
   remote_user: root
-#  connection: local  
+#  connection: local
   roles:
     - docker
 
@@ -133,28 +224,32 @@
   hosts: locale
   remote_user: root
 #  connection: local
-  
+
   roles:
     - locale
-    
 
 - name: Install zabbix-agent
   hosts: zabbix-agent
   remote_user: root
 #  connection: local
-  
+
   roles:
     - zabbix-agent
-    
+
+  vars:
+      zabbix_agent_major: '2'
+      zabbix_agent_minor: '2'
+      zabbix_agent_revision: '6'
+      zabbix_agent_ubuntu: "1:{{zabbix_agent_version}}-1+trusty"
 
 - name: Install webmin
   hosts: webmin
   remote_user: root
 #  connection: local
-  
+
   roles:
     - webmin
-        
+
 - name: Install nexus
   hosts: nexus
   remote_user: root
@@ -162,32 +257,39 @@
 
   roles:
     - nexus
-        
 
 - name: Install xvbf
   hosts: xvbf
   remote_user: root
 #  connection: local
-  
+
   roles:
     - xvbf
+    
+- name: Install selenium
+  hosts: selenium
+  remote_user: root
+#  connection: local
 
+  roles:
+     - role: selenium
+     
 #
 #- name: Install zfs
 #  hosts: zfs
 #  remote_user: root
 ##  connection: local
-#  
+#
 #  roles:
 #    - zfs
-    
+
 #Use below only if you want your servers to be part of MGR build farm
 #- name: Apply administration configuration to all nodes
 #  hosts: Ubuntu-12*:Ubuntu-14*
 #  gather_facts: false
 #  remote_user: root
 ##  connection: local
-#  
+#
 #  roles:
 #    - administration
 
@@ -207,9 +309,9 @@
       jenkins_http_port: 8380
       jenkins_home: /jenkins
       jenkins_java_args:
-        - "-Xmx1024m"   
-        - "-XX:MaxPermSize=512m"   
-        - "-Djava.awt.headless=true"      
+        - "-Xmx1024m"
+        - "-XX:MaxPermSize=512m"
+        - "-Djava.awt.headless=true"
       jenkins_prefix: "/jenkins"
 #      jenkins_jobs:
 #        - name: test
@@ -227,36 +329,36 @@
   roles:
     - jenkins-slave
 
-  vars:    
+  vars:
     jenkins_home: "/jenkins"
     jenkins_slave_home: "/kgr-mvn"
-    
+    jenkins_jdk7_enable: yes
+
 - name: Install maven
   hosts: maven
   remote_user: root
 #  connection: local
-  
+
   roles:
     - maven
-
 
 - name: Install css
   hosts: css
   remote_user: root
 #  connection: local
-  
+
   roles:
     - css
-    
+
 - name: Install chrome
   hosts: chrome
   remote_user: root
 #  connection: local
-  
+
   roles:
      - role: chrome
-     
-  vars:     
+
+  vars:
        google_talkplugin_enabled: yes                       # Enable module
        google_agent_pkg_state: installed # Package states: present or installed or latest
 
@@ -264,28 +366,28 @@
   hosts: nodejs
   remote_user: root
 #  connection: local
-  
+
   roles:
     - nodejs
-
+     
 - name: Install workstation add-on
   hosts: workstation
   remote_user: root
 #  connection: local
-  
+
   roles:
     - workstation
 
 - name: Install dropbox
   hosts: workstation
-  remote_user: root  
+  remote_user: root
 #  sudo: yes
 #  sudo_user: "{{ user }}"
 #  connection: local
-  
+
   roles:
     - dropbox
-    
+
 #- name: Apply swarm configuration to all jenkins slaves
 #  hosts: jenkins-swarm
 #  remote_user: root
@@ -302,42 +404,81 @@
 #  roles:
 #    - jenkins-swarm
 
-# This playbook deploys a simple standalone Tomcat 7 server. 
-- name: deploy Tomcat 
-  hosts: tomcat-servers 
+# This playbook deploys a simple standalone Tomcat 7 server.
+- name: Deploy Tomcat
+  hosts: tomcat-servers
   remote_user: root
 #  connection: local
-  
+
   roles:
     - tomcat
 
-# This playbook deploys a simple standalone JBoss server. 
+# This playbook deploys a simple standalone JBoss server.
 
-- name: deploy Jboss 
-  hosts: jboss-servers 
+- name: Deploy Jboss
+  hosts: jboss-servers
   remote_user: root
 #  connection: local
-  
+
   roles:
     - jboss
 
-# This playbook deploys a MySQL databse.  
-
-- name: deploy MySQL and configure the databases
-  hosts: dbservers
+# This playbook deploys a MySQL database.
+- name: Deploy MySQL and configure the databases
+  hosts: mysql-servers
   remote_user: root
 #  connection: local
-  
+
   roles:
-    - db
-    
-# This playbook deploys the whole application stack in this site.  
+    - geerlingguy.mysql
 
-- name: configure and deploy the webservers and application code
-  hosts: webservers
+  vars:
+       mysql_innodb_log_file_size: "5M"
+
+# This playbook deploys an Apache database.
+- name: Deploy Apache and configure the server
+  hosts: apache-servers
   remote_user: root
 #  connection: local
-  
+
+  roles:
+    - geerlingguy.apache
+
+  vars:
+       apache_listen_port: 7070
+
+- name: Add dependencies for Apache like PHP
+  hosts: apache-servers
+  remote_user: root
+#  connection: local
+
+  roles:
+    - geerlingguy.php
+    - geerlingguy.php-mysql
+
+  vars:
+       php_date_timezone: "Europe/Paris"
+
+- name: Add admin tool for Apache like PHPmyAdmin
+  hosts: apache-servers
+  remote_user: root
+#  connection: local
+
+  roles:
+    - geerlingguy.phpmyadmin
+
+  vars:
+       phpmyadmin_mysql_user: root
+       phpmyadmin_mysql_password: microsoft
+       phpmyadmin_mysql_port: 7070
+
+# This playbook deploys the whole application stack in this site.
+
+- name: configure and deploy the nabla php sample application code to apache
+  hosts: nabla-servers
+  remote_user: root
+#  connection: local
+
   roles:
     - web
 
@@ -347,12 +488,12 @@
 #  connection: local
   roles:
     - role: supervisor
-    
-  vars:    
+
+  vars:
       name: webserver
       command: python -m SimpleHTTPServer
       directory: /opt/web
-# user is the same as base_admin_username      
+# user is the same as base_admin_username
       user: ubuntu
 
 #- name: configure supervisor
@@ -364,7 +505,7 @@
 #      name: fitness
 #      command: /workspace/xebium/run.sh
 #      directory: /workspace/xebium
-## user is the same as base_admin_username      
+## user is the same as base_admin_username
 #      user: ubuntu
 
 - name: Install sonar
@@ -373,13 +514,13 @@
 #  connection: local
   roles:
     - role: sonar
-    
-  vars:    
-#TODO merge sonar-runner.properties.j2 file from jenkins_slave role  
-      sonar_analyzer_runner_install: false 
-#Handle by jenkins_slave role, Warning it will override settings.xml.j2 from jenkins_slave role      
+
+  vars:
+#TODO merge sonar-runner.properties.j2 file from jenkins_slave role
+      sonar_analyzer_runner_install: false
+#Handle by jenkins_slave role, Warning it will override settings.xml.j2 from jenkins_slave role
       maven_install: false
-      sonar_mysql_install: true      
+      sonar_mysql_install: true
       sonar_jdbc_driver: "mysql"
       sonar_jdbc_port: 3306
       sonar_jdbc_pass: microsoft
@@ -397,40 +538,39 @@
   remote_user: root
 #  connection: local
   roles:
-    - role: subversion     
-        
+    - role: subversion
+
 - name: Apply user shell configuration
-  connection: local  
+  connection: local
   hosts: workstation
   #sudo: yes
-  remote_user: root  
+  remote_user: root
   vars_files:
-  - [ "roles/shell/defaults/main.yml" ]  
+  - [ "roles/shell/defaults/main.yml" ]
   - [ "roles/shell/vars/defaults.yml" ]
-  - [ "roles/shell/vars/common.yml" ]  
-  - [ "roles/shell/vars/version.yml" ]  
-  - [ "roles/shell/vars/custom-{{ ansible_distribution }}-{{ ansible_architecture }}.yml", "roles/shell/vars/custom-{{ ansible_distribution }}.yml" ]  
-  
+  - [ "roles/shell/vars/common.yml" ]
+  - [ "roles/shell/vars/version.yml" ]
+  - [ "roles/shell/vars/custom-{{ ansible_distribution }}-{{ ansible_architecture }}.yml", "roles/shell/vars/custom-{{ ansible_distribution }}.yml" ]
+
   roles:
     - role: shell
 
-  vars:    
+  vars:
 #      shell_enabled: yes
 #      shell_owner: "{{ user }}"
 #      shell_owner_home: "{{ home }}"
 #      shell_env_directory: "{{ home }}/env/tmp"
-              
+
 - name: Install eclipse
-  connection: local  
+  connection: local
   hosts: workstation
   remote_user: root
 #  connection: local
   roles:
-    - role: eclipse     
-    
-  vars:    
-      eclipse_base_dir: /workspace/eclipse     
+    - role: eclipse
+
+  vars:
+      eclipse_base_dir: /workspace/eclipse
       eclipse_owner: "{{ user }}"
       eclipse_group: "{{ eclipse_owner }}"
       eclipse_owner_home: "{{ home }}"
-      

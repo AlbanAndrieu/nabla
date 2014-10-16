@@ -90,7 +90,8 @@ git clone https://github.com/major/ansible-role-cis.git security-cis
 
 git clone https://github.com/AlbanAndrieu/ansible-zap.git zap
 
-git clone https://github.com/ahelal/ansible-sonatype_nexus.git nexus
+#git clone https://github.com/ahelal/ansible-sonatype_nexus.git nexus
+git clone https://github.com/AlbanAndrieu/ansible-sonatype_nexus.git nexus
 
 git clone https://github.com/AlbanAndrieu/ansible-cmake.git cmake
 
@@ -101,6 +102,28 @@ git clone https://github.com/AlbanAndrieu/ansible-eclipse.git eclipse
 git clone https://github.com/AlbanAndrieu/ansible-jboss.git jboss
 
 git clone https://github.com/AlbanAndrieu/ansible-windows.git windows
+
+git clone https://github.com/AlbanAndrieu/ansible-cpp.git cpp
+
+#git clone https://github.com/valentinogagliardi/logstash-role.git logstash
+git clone https://github.com/geerlingguy/ansible-role-logstash logstash
+
+#TOCHECK
+#LAMP
+git clone https://github.com/geerlingguy/ansible-role-firewall.git geerlingguy.firewall
+git clone https://github.com/geerlingguy/ansible-role-ntp.git geerlingguy.ntp
+git clone https://github.com/geerlingguy/ansible-role-repo-epel.git geerlingguy.repo-epel
+git clone https://github.com/geerlingguy/ansible-role-repo-remi.git geerlingguy.repo-remi
+git clone https://github.com/geerlingguy/ansible-role-apache.git geerlingguy.apache
+#see fork below git clone https://github.com/geerlingguy/ansible-role-mysql.git mysql
+#see fork of fork below git clone https://github.com/augustohp/ansible-role-mysql.git mysql
+git clone https://github.com/AlbanAndrieu/ansible-role-mysql.git geerlingguy.mysql
+git clone https://github.com/geerlingguy/ansible-role-php.git geerlingguy.php
+git clone https://github.com/geerlingguy/ansible-role-php-mysql.git geerlingguy.php-mysql
+git clone https://github.com/geerlingguy/ansible-role-phpmyadmin.git geerlingguy.phpmyadmin
+#git clone https://github.com/geerlingguy/ansible-role-varnish.git varnish
+
+git clone https://github.com/geerlingguy/ansible-role-samba.git geerlingguy.samba
 
 #SEE
 https://github.com/ansible/ansible-examples/tree/master/language_features

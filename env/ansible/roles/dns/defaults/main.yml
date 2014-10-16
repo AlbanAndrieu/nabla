@@ -7,3 +7,4 @@ dns_nameservers:
   - "10.21.200.3" # work dns 
   - "8.8.8.8" # google dns
   - "8.8.4.4" # google dns
+nameserver: "8.8.8.8"

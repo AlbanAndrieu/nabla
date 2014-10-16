@@ -17,3 +17,4 @@ home: "{{ lookup('env','HOME') }}"
 conky_owner_home: "{{ home }}"
 conky_home: "{{ conky_owner_home }}/.conky"
 conky_themes_url: http://download2041.mediafire.com/c9971ynuzcag/icvmpzhlk7vgejt/default-themes-extra-1.cmtp.7z
+conky_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"

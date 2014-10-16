@@ -1,8 +1,8 @@
 ---
 - hosts: all
-  sudo: True
+  sudo: true
   roles:
-    - ansible-subversion
+    - role: ./  
     
   vars:
       user: root

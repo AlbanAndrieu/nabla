@@ -1,32 +1,32 @@
 ---
 # This playbook contains common plays that will be run on all nodes.
 
-- name: Create temporary directory
+- name: selenium | Create temporary directory
   shell: mktemp -d
   register: tempdir
   sudo: true
   tags: selenium_setup
   
-- name: Download selenium on 'master' if we don't have it
+- name: selenium | Download selenium on 'master' if we don't have it
   sudo: False
-  get_url: url={{ selenium_download_url }}  dest={{ tempdir.stdout }}/{{ selenium_jar_file }} force=no
+  get_url: url={{ selenium_download_url }}  dest={{ selenium_dir_tmp }}/{{ selenium_jar_file }} force=no
   tags: selenium_setup
   
-- name: Copy selenium into place
-  copy: src={{ selenium_jar_file }}  dest={{ selenium_server_path }}/{{ selenium_jar_file }} owner=root group=root mode=644
+- name: selenium | Copy selenium into place
+  copy: src={{ selenium_dir_tmp }}/{{ selenium_jar_file }}  dest={{ selenium_server_path }}/{{ selenium_jar_file }} owner=root group=root mode=644
   tags: selenium_setup
   
-- name: Install Config
+- name: selenium | Install Configuration
   template: src=defaults.j2 dest=/etc/default/selenium_{{ selenium_sel_role }} owner=root group=root mode=644
   tags: ['config']
   notify: selenium_reload
 
-- name: Install init script
-  template: src=selenium-server-{{ ansible_distribution }}-{{ ansible_architecture }} dest=/etc/init.d/selenium_{{ selenium_sel_role }} owner=root group=root mode=755
+- name: selenium | Install init script
+  template: src=selenium-server.sh.j2 dest=/etc/init.d/selenium_{{ selenium_sel_role }} owner=root group=root mode=755
   tags: ['config']
   notify: selenium_started
  
-- name: Install selenium tools (Debian based)
+- name: selenium | Install selenium tools (Debian based)
   apt: pkg={{ item }} state={{ selenium_pkg_state }} update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   when: selenium_sel_role != 'hub'
@@ -39,7 +39,7 @@
    - x11-apps
    - imagemagick
 
-- name: Install browser tools specific (Debian based)
+- name: selenium | Install browser tools specific (Debian based)
   apt: pkg={{ item }} state={{ selenium_pkg_state }} update_cache=yes
 #specific for ubuntu 13.04 and 13.10
   when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release == 'saucy' )
@@ -47,7 +47,7 @@
   with_items:
    - chromium-chromedriver
    
-- name: Install browser tools (Debian based)
+- name: selenium | Install browser tools (Debian based)
   apt: pkg={{ item }} state={{ selenium_pkg_state }} update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   when: selenium_sel_role != 'hub'
@@ -64,6 +64,6 @@
 #unzip chromedriver_linux64.zip   
 #unzip chromedriver_linux32.zip   
 
-- name: Cleanup temporary directory
+- name: selenium | Cleanup temporary directory
   file: name={{ tempdir.stdout }} state=absent
   tags: selenium_setup

@@ -2,24 +2,37 @@
 
 A role for installing xvbf.
 
+[![Build Status](https://api.travis-ci.org/AlbanAndrieu/ansible-xvbf.png?branch=master)](https://travis-ci.org/AlbanAndrieu/ansible-xvbf)
 
 ## Actions
 
 - Ensures that xvbf is installed (using `apt`)
 
+Usage example
+------------
 
-## Usage:
-```
-  # This playbook can be run using vagrant (on virtual box). 
-  - name: Install xvbf
-    hosts: xvbf
-    user: root
-  #  connection: local
+    - name: Install xvbf
+      hosts: xvbf
+      remote_user: root
     
-    roles:
-      - xvbf
-```
+      roles:
+        - xvbf      
 
-## License
+Requirements
+------------
+
+none
+
+Dependencies
+------------
+
+none
+
+License
+-------
 
 MIT
+
+#### Feedback, bug-reports, requests, ...
+
+Are [welcome](https://github.com/AlbanAndrieu/ansible-xvbf/issues)!

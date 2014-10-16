@@ -15,7 +15,7 @@ Usage example
 
     - name: Install zap
       hosts: zap
-      user: root
+      remote_user: root
     
       roles:
         - zap      

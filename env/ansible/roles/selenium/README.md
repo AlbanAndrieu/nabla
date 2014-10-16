@@ -16,6 +16,7 @@ Usage example
       connection: local  
       hosts: workstation
       remote_user: albandri
+      
       roles:
         - role: selenium           
         

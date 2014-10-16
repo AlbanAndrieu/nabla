@@ -1,0 +1,46 @@
+# {{ ansible_managed }}
+#FROM        debian:jessie
+#FROM        stackbrew/ubuntu:14.04
+FROM        jasongiedymin/ansible-base-ubuntu
+
+# Volume can be accessed outside of container
+VOLUME      [{{ docker_volume_directory }}]
+
+MAINTAINER  Alban Andrieu "https://github.com/AlbanAndrieu"
+
+ENV			DEBIAN_FRONTEND noninteractive
+ENV         SELENIUM_HOME {{ selenium_server_path }}
+ENV         WORKDIR /home/vagrant
+
+# Working dir
+WORKDIR {{ docker_working_directory }}
+
+# COPY
+#COPY
+
+RUN         pwd
+RUN         ls -lrta
+
+# ADD
+ADD defaults $WORKDIR/ansible-selenium/defaults
+ADD meta $WORKDIR/ansible-selenium/meta
+ADD files $WORKDIR/ansible-selenium/files
+ADD handlers $WORKDIR/ansible-selenium/handlers
+ADD tasks $WORKDIR/ansible-selenium/tasks
+ADD templates $WORKDIR/ansible-selenium/templates
+ADD vars $WORKDIR/ansible-selenium/vars
+
+# Here we continue to use add because
+# there are a limited number of RUNs
+# allowed.
+ADD hosts /etc/ansible/hosts
+ADD selenium.yml $WORKDIR/ansible-selenium/selenium.yml
+
+# Execute
+RUN         pwd
+RUN         ls -lrta
+RUN         ansible-playbook $WORKDIR/ansible-selenium/selenium.yml -c local -vvvv
+
+EXPOSE 21:9999
+ENTRYPOINT  ["/etc/init.d/jboss", "start"]
+CMD ["-g", "deamon off;"]

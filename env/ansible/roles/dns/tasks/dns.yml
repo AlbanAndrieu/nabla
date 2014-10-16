@@ -24,7 +24,16 @@
 
 - name: Checks if resolver is working properly with new nameserver
   command: host -t A ansible.cc
-
+  register: ns
+  ignore_errors: yes
+  
+- name: Restart dhclient
+  command: dhclient
+  when: ns|failed
+    
+- name: Checks if resolver is working properly with new nameserver
+  command: host -t A ansible.cc
+    
 #- name: Final greeting
 #  pause: prompt="Don't worry about all the red above; if you made it here, your Vagrant VMs are probably fine !
 #    Please press [Enter]"

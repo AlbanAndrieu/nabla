@@ -1,22 +1,22 @@
 ---
-- name: create temporary directory
+- name: vagrant | Create temporary directory
   shell: mktemp -d
   register: tempdir
   sudo: true
   tags:
     - vagrant
 
-- name: download vagrant
-  get_url: url={{ vagrant_url }} dest={{ tempdir.stdout }}/vagrant.deb
+- name: vagrant | Download vagrant
+  get_url: url={{ vagrant_url }} dest={{ vagrant_dir_tmp }}/vagrant.deb
   tags:
     - vagrant
 
-- name: install vagrant
-  command: dpkg -i {{ tempdir.stdout }}/vagrant.deb
+- name: vagrant | Install vagrant
+  command: dpkg -i {{ vagrant_dir_tmp }}/vagrant.deb
   tags:
     - vagrant
 
-- name: Install libvirt requirements (Debian only)
+- name: vagrant | Install libvirt requirements (Debian only)
   apt: pkg={{ item }} state=present
   when: ansible_distribution == 'Debian' and vagrant_libvirt_enabled   
   with_items:
@@ -24,7 +24,7 @@
     - libxml2-dev 
     - libvirt-dev
     
-- name: Install libvirt requirements (CentOS only)
+- name: vagrant | Install libvirt requirements (CentOS only)
   yum: pkg={{ item }} state=present
   when: ansible_distribution == 'CentOS' and vagrant_libvirt_enabled   
   with_items:
@@ -32,19 +32,19 @@
     - libxml2-devel 
     - libvirt-devel   
     
-- name: Install libvirt plugin
+- name: vagrant | Install libvirt plugin
   command: vagrant plugin install vagrant-libvirt
   when: vagrant_libvirt_enabled   
 
-- name: Installgyoku
+- name: vagrant | Install gyoku
   command: gem install gyoku -v '1.2.2'
   when: vagrant_windows_enabled   
   
-- name: Install windows plugin
+- name: vagrant | Install windows plugin
   command: vagrant plugin install vagrant-windows
   when: vagrant_windows_enabled   
 
-- name: cleanup temporary directory
+- name: vagrant | Cleanup temporary directory
   file: name={{ tempdir.stdout }} state=absent
   tags:
     - vagrant

@@ -47,7 +47,7 @@ RUN         ansible-playbook $WORKDIR/ansible-zap/zap.yml -c local -vvvv
 #RUN         echo jenkins:jenkins | chpasswd
 #RUN         mkdir -p /var/run/sshd
             
-EXPOSE      22
+EXPOSE 21:9999
 ENTRYPOINT  ["{{zap_base_dir}}/zap{{zap_major}}/zap.sh"]
 CMD /usr/sbin/sshd -D
 #CMD ["-g", "deamon off;"]

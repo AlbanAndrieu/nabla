@@ -51,6 +51,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
           v.name = name
           v.customize ["modifyvm", :id, "--memory", 1024]
           # v.customize ["modifyvm", :id, "--memory", "4096", "--cpus", "4"]
+          #v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+          #v.customize ["modifyvm", :id, "--cpus", 2]
+		  #v.customize ["modifyvm", :id, "--ioapic", "on"]
       end
 
       #config.vm.provider :libvirt do |libvirt|

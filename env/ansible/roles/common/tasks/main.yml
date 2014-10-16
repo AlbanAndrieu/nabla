@@ -1,11 +1,11 @@
 ---
 # This playbook contains common plays that will be run on all nodes.
 
-- name: Update APT caches.
+- name: common | Update APT caches.
   apt: update_cache=yes cache_valid_time={{ apt_cache_valid_time }}
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   
-- name: Update the configuration
+- name: common | Update the configuration
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   template:
     src: etc_apt_apt.conf.d_10general.j2
@@ -14,7 +14,7 @@
     group: root
     mode: 0644
   
-- name: Make sure the required packages are installed
+- name: common | Make sure the required packages are installed
   apt: pkg={{ item }} state=present
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and python_enabled == true
   with_items:
@@ -22,45 +22,45 @@
     - python-pycurl
     - unattended-upgrades
 
-- name: Upgrade system
+- name: common | Upgrade system
   apt: upgrade={{ apt_upgrade }}
   when: apt_upgrade == "safe" or apt_upgrade == "full" or apt_upgrade == "dist"  
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 #  ignore_errors: yes
   
-- name: Checking if Sources are Available
+- name: common | Checking if Sources are Available
   action: shell echo a$(cat /etc/apt/sources.list | grep $(echo   'http://url/{{ ansible_distribution }}/stable' | tr "[:upper:]" "[:lower:]"  ))
   register: sources
   ignore_errors: True
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   
-- debug: msg="sources value is {{ sources.stdout }} "
+- debug: msg=" common | sources value is {{ sources.stdout }} "
 
-- name: Adding source.
+- name: common | Adding source.
   action: shell echo "deb http://url/{{ ansible_distribution }}/stable      {{ ansible_lsb.codename }} main" | tr "[:upper:]" "[:lower:]" >> /etc/apt/sources.list
   when: "ansible_distribution == 'Debian' and sources.stdout == 'a'"  
 #      when: "ansible_os_family == 'RedHat' and sources.stdout == 'a'"
 
 # ansible
-- name: Test ansible is installed
+- name: common | Test ansible is installed
   shell: ansible --version
   register: ansible_is_installed
   ignore_errors: yes
 
-- name: Run install script as sudo
+- name: common | Run install script as sudo
   script: setup-ansible.sh
   sudo: yes
   when: "ansible_is_installed|failed and (ansible_distribution == 'Ubuntu' or ansible_distribution == 'CentOS')"
   register: ansible_init_used_sudo
 
-- name: Run install script without sudo
+- name: common | Run install script without sudo
   script: setup-ansible.sh
   when: ansible_is_installed|failed and ansible_init_used_sudo|skipped
 
-- name: Test ansible is installed
+- name: common | Test ansible is installed
   shell: ansible --version
 
-- name: Install utility tools (apt)
+- name: common | Install utility tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and utilities_enabled == true
   tags: package  
@@ -69,7 +69,7 @@
    - curl
    - ssh  
    
-- name: Install monitoring tools (apt)
+- name: common | Install monitoring tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and stats_enabled == true
   tags: package  
@@ -82,7 +82,7 @@
    - upstart
    - gksu
   
-- name: Install editor tools (apt)
+- name: common | Install editor tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and editors_enabled == true
   tags: package  
@@ -94,7 +94,7 @@
    
 #TO CHECK sudo aptitude install cowsay fortunes fortunes-fr
 
-- name: Install cowsay (apt)
+- name: common | Install cowsay (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and cowsay_enabled == true
   tags: package  
@@ -105,7 +105,7 @@
    - fortunes 
    - fortunes-fr   
 
-- name: Uninstall whoopsie packages
+- name: common | Uninstall whoopsie packages
   apt: >
     pkg={{ item }} 
     state=absent
@@ -116,7 +116,7 @@
   with_items:
     - whoopsie  
     
-- name: Install perl (apt)
+- name: common | Install perl (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and perl_enabled == true
   tags: package  
@@ -128,7 +128,7 @@
    - libpam-runtime
    - libio-pty-perl
 
-- name: Install python (apt)
+- name: common | Install python (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and python_enabled == true
   tags: package   
@@ -141,7 +141,7 @@
    - python-software-properties   
    - build-essential
 
-- name: Install winrm python module for ansible to work on windows
+- name: common | Install winrm python module for ansible to work on windows
   command: sudo pip install https://github.com/diyan/pywinrm/archive/df049454a9309280866e0156805ccda12d71c93a.zip --upgrade
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and python_enabled == true
   tags: package   
@@ -153,12 +153,12 @@
 #  - libssl-dev   
     
 #below it can be customized
-- name: Append additional sources (apt)
+- name: common | Append additional sources (apt)
   apt_repository: repo={{ item }} update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
   with_items: apt_repositories
 
-- name: Install additional packages (apt)
+- name: common | Install additional packages (apt)
   apt: pkg={{item}}
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'       
   when: apt_install_packages 

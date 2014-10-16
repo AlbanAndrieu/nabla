@@ -2,24 +2,37 @@
 
 A role for installing dns.
 
+[![Build Status](https://api.travis-ci.org/AlbanAndrieu/ansible-dns.png?branch=master)](https://travis-ci.org/AlbanAndrieu/ansible-dns)
 
 ## Actions
 
 - Ensures that dns is installed (using `apt`)
 
+Usage example
+------------
 
-## Usage:
-```
-  # This playbook can be run using vagrant (on virtual box). 
-  - name: Install dns
-    hosts: dns
-    user: root
-  #  connection: local
+    - name: Install dns
+      hosts: dns
+      remote_user: root
     
-    roles:
-      - dns      
-```
+      roles:
+        - dns      
 
-## License
+Requirements
+------------
+
+none
+
+Dependencies
+------------
+
+none
+
+License
+-------
 
 MIT
+
+#### Feedback, bug-reports, requests, ...
+
+Are [welcome](https://github.com/AlbanAndrieu/ansible-dns/issues)!

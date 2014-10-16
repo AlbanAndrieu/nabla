@@ -2,25 +2,25 @@
 # This playbook contains common plays that will be run on all nodes.
 
 # ansible
-- name: Test ansible is installed
+- name: administration | Test ansible is installed
   shell: ansible --version
   register: ansible_is_installed
   ignore_errors: yes
 
-- name: Run install script as sudo
+- name: administration | Run install script as sudo
   script: setup-ansible.sh
   sudo: yes
   when: "ansible_is_installed|failed and (ansible_distribution == 'Ubuntu' or ansible_distribution == 'CentOS')"
   register: ansible_init_used_sudo
 
-- name: Run install script without sudo
+- name: administration | Run install script without sudo
   script: setup-ansible.sh
   when: ansible_is_installed|failed and ansible_init_used_sudo|skipped
 
-- name: Test ansible is installed
+- name: administration | Test ansible is installed
   shell: ansible --version
 
-- name: Install monitoring tools (apt)
+- name: administration | Install monitoring tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   tags: package  
@@ -31,7 +31,7 @@
    - snmp #for cacti
    - snmpd #for cacti
 
-- name: Install AWS tools (apt)
+- name: administration | Install AWS tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   tags: package  
@@ -39,7 +39,7 @@
    - ec2-api-tools    
    - s3cmd
          
-- name: Install other tools (apt)
+- name: administration | Install other tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   tags: package  
@@ -47,13 +47,12 @@
    - daemon
    - mailutils
 
-- name: Install connection tools (apt)
+- name: administration | Install connection tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   tags: package
   with_items:   
 #   - nis  
-   - ntp
 #   - autofs
    - ufw
 
@@ -62,74 +61,75 @@
 #  template: src=defaultdomain-{{ ansible_distribution }}-{{ ansible_architecture}}.j2 dest=/etc/defaultdomain
 #  tags: configure
 
-- name: Install ntp (yum)
-  yum: name=ntp state=present
-  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
-  tags: package
+# NTP below is installed by the ntp ansible role
+#- name: Install ntp (yum)
+#  yum: name=ntp state=present
+#  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+#  tags: package
+#
+#- name: Install ntp (apt)
+#  apt: pkg=ntp state=present update_cache=yes
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+#  tags: package
 
-- name: Install ntp (apt)
-  apt: pkg=ntp state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  tags: package  
-
-- name: Configure ntp file
-  template: src=ntp.conf-{{ ansible_distribution }}.j2 dest=/etc/ntp.conf
+- name: administration | Configure ntp file
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf
   tags: configure
   notify: restart ntp
 
-- name: Start the ntp service
+- name: administration | Start the ntp service
   service: name=ntp state=started enabled=true
   tags: service  
  
-#- name: Install nis (apt)
+#- name: administration | Install nis (apt)
 #  apt: pkg=nis state=present update_cache=yes
 #  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 #  tags: package  
   
-#- name: Configure yellow page file
+#- name: administration | Configure yellow page file
 #  template: src=yp.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/yp.conf
 #  tags: configure
 #  notify: restart nis
 
-#- name: Configure nis file
+#- name: administration | Configure nis file
 #  template: src=nsswitch.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/nsswitch.conf
 #  tags: configure
 #  notify: restart nis
 
-#- name: Copy the nis init script
+#- name: administration | Copy the nis init script
 #  copy: src=nis-{{ ansible_distribution }}-{{ ansible_architecture }}.sh dest=/etc/init.d/nis mode=0755
 #  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release == 'precise' )
 #  tags: configure
   
-#- name: Start the nis service
+#- name: administration | Start the nis service
 #  service: name=nis state=started enabled=true
 #  tags: service  
   
-#- name: Install autofs (apt)
+#- name: administration | Install autofs (apt)
 #  apt: pkg=autofs state=present update_cache=yes
 #  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 #  tags: package  
  
-#- name: Configure autofs file
+#- name: administration | Configure autofs file
 #  template: src=rc.local-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/rc.local
 #  tags: configure
 #  notify: restart autofs
   
-#- name: Configure autofs file
+#- name: administration | Configure autofs file
 #  template: src=auto.master-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/auto.master
 #  tags: autofs
 #  notify: restart autofs
    
-#- name: Configure autofs file
+#- name: administration | Configure autofs file
 #  template: src=autofs_ldap_auth.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/autofs_ldap_auth.conf
 #  tags: configure
 #  notify: restart autofs
 
-#- name: Start the autofs service
+#- name: administration | Start the autofs service
 #  service: name=autofs state=started enabled=true
 #  tags: service
 
-- name: Install sendmail tools (apt)
+- name: administration | Install sendmail tools (apt)
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: package
@@ -141,7 +141,7 @@
   
 #TODO use authorized_key instead of copy-keys.yml
 #See http://brokenbad.com/better-handling-of-public-ssh-keys-using-ansible/
-#- name: Checking public keys list
+#- name: administration | Checking public keys list
 #  authorized_key:
 #    user: "{{ base_admin_username }}"
 #    key: "{{ item }}"

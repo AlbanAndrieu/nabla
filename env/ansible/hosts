@@ -2,10 +2,26 @@
 #127.0.0.1
 albandri-laptop-misys
 
+#below is used only git lamp.yml
+[lamp]
+albandri-laptop-misys
+
+[ntp]
+#Same as all
+
+[dns]
+#Same as all
+
 [administration]
-#127.0.0.1
+albandri-laptop-misys
 
 [security]
+albandri-laptop-misys
+
+[cmake]
+albandri-laptop-misys
+
+[cpp]
 albandri-laptop-misys
 
 [java]
@@ -21,19 +37,18 @@ albandri-laptop-misys
 albandri-laptop-misys
 
 [tomcat-servers]
-#webserver1
 albandri-laptop-misys
 
 [jboss-servers]
-#webserver1
 albandri-laptop-misys
 
-[webservers]
-#web3
+[nabla-servers]
 albandri-laptop-misys
 
-[dbservers]
-#web2
+[apache-servers]
+albandri-laptop-misys
+
+[mysql-servers]
 albandri-laptop-misys
 
 [mongodbservers]
@@ -55,6 +70,9 @@ albandri-laptop-misys
 albandri-laptop-misys
 
 [xvbf]
+albandri-laptop-misys
+
+[selenium]
 albandri-laptop-misys
 
 [jenkins-master]
