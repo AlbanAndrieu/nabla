@@ -20,7 +20,7 @@
 - name: administration | Test ansible is installed
   shell: ansible --version
 
-- name: administration | Install monitoring tools (apt)
+- name: administration | Install monitoring tools
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   tags: package  
@@ -31,7 +31,7 @@
    - snmp #for cacti
    - snmpd #for cacti
 
-- name: administration | Install AWS tools (apt)
+- name: administration | Install AWS tools
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   tags: package  
@@ -39,7 +39,7 @@
    - ec2-api-tools    
    - s3cmd
          
-- name: administration | Install other tools (apt)
+- name: administration | Install other tools
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   tags: package  
@@ -47,7 +47,7 @@
    - daemon
    - mailutils
 
-- name: administration | Install connection tools (apt)
+- name: administration | Install connection tools
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   tags: package
@@ -62,12 +62,12 @@
 #  tags: configure
 
 # NTP below is installed by the ntp ansible role
-#- name: Install ntp (yum)
+#- name: Install ntp
 #  yum: name=ntp state=present
 #  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 #  tags: package
 #
-#- name: Install ntp (apt)
+#- name: Install ntp
 #  apt: pkg=ntp state=present update_cache=yes
 #  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 #  tags: package
@@ -81,7 +81,7 @@
   service: name=ntp state=started enabled=true
   tags: service  
  
-#- name: administration | Install nis (apt)
+#- name: administration | Install nis
 #  apt: pkg=nis state=present update_cache=yes
 #  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 #  tags: package  
@@ -105,7 +105,7 @@
 #  service: name=nis state=started enabled=true
 #  tags: service  
   
-#- name: administration | Install autofs (apt)
+#- name: administration | Install autofs
 #  apt: pkg=autofs state=present update_cache=yes
 #  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 #  tags: package  
@@ -129,7 +129,7 @@
 #  service: name=autofs state=started enabled=true
 #  tags: service
 
-- name: administration | Install sendmail tools (apt)
+- name: administration | Install sendmail tools
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: package

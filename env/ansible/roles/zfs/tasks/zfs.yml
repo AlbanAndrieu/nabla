@@ -1,14 +1,14 @@
 ---
 # This playbook contains common plays that will be run on all nodes.
 
-- name: Install ZFS repo (apt)
+- name: Install ZFS repo
   apt_repository: repo={{ item }} update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
   with_items: 
      - ppa:zfs-native/stable
      - ppa:zfs-native/grub
      
-- name: Install ZFS (apt)
+- name: Install ZFS
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
   with_items:

@@ -26,10 +26,9 @@
   tags: ['config']
   notify: selenium_started
  
-- name: selenium | Install selenium tools (Debian based)
+- name: selenium | Install selenium tools
   apt: pkg={{ item }} state={{ selenium_pkg_state }} update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  when: selenium_sel_role != 'hub'
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' ) and ( selenium_sel_role != 'hub' )
   with_items:
    - xfonts-100dpi
    - xfonts-75dpi
@@ -39,18 +38,16 @@
    - x11-apps
    - imagemagick
 
-- name: selenium | Install browser tools specific (Debian based)
+- name: selenium | Install browser tools specific
   apt: pkg={{ item }} state={{ selenium_pkg_state }} update_cache=yes
 #specific for ubuntu 13.04 and 13.10
-  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release == 'saucy' )
-  when: selenium_sel_role != 'hub'
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release == 'saucy' ) and ( selenium_sel_role != 'hub' )
   with_items:
    - chromium-chromedriver
    
-- name: selenium | Install browser tools (Debian based)
+- name: selenium | Install browser tools
   apt: pkg={{ item }} state={{ selenium_pkg_state }} update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-  when: selenium_sel_role != 'hub'
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' ) and ( selenium_sel_role != 'hub' )
   with_items:
    - firefox
 #   - chromium-browser 

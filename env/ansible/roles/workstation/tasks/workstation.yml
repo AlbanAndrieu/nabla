@@ -6,122 +6,125 @@
 #  with_items:
 #    - vim-enhanced
 #    - vim-command-t
-#    
+#
 #- name: Clone dotvim repo
 #  git: dest={{home}}/.vim repo=git@github.com:sheldonh/dotvim.git update=no
 #
 #- name: Link dotvim config to vimrc
 #  file: path={{home}}/.vimrc src={{home}}/.vim/vimrc state=link
-  
-- name: Install editor tools (apt)
+
+- name: Install editor tools
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package  
-  with_items:   
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package
+  with_items:
    - geany
    - gedit
    - gedit-plugins
    - meld
-   - dos2unix     
-      
-- name: Install desktop tools (apt)
+   - dos2unix
+
+- name: Install desktop tools
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package  
-  with_items:         
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package
+  with_items:
    - synapse
    - nautilus-open-terminal
-      
-- name: Install disk tools (apt)
+
+- name: Install disk tools
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package  
-  with_items:         
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package
+  with_items:
    - testdisk
-   - gparted         
-      
-- name: Install database tools (apt)
+   - gparted
+
+#BELOW has been moved to a role
+#- name: Install database tools
+#  apt: pkg={{ item }} state=present update_cache=yes
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+#  tags: package
+#  with_items:
+#   - phpmyadmin
+
+- name: Install extra
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package  
-  with_items:         
-   - phpmyadmin                   
-      
-- name: Install extra (apt)
-  apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package  
-  with_items:   
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package
+  with_items:
    - ubuntu-restricted-extras
 #   - preload
-  
-- name: Install SCM (apt)
+
+#TODO move git to a role
+- name: Install SCM
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package  
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package
   with_items:
    - cvs
    - git
 #   - gitg
-#   - gitk   
-#   - mercurial   
- 
-- name: Install SCM (RedHat based)
+#   - gitk
+#   - mercurial
+
+- name: Install SCM
   action: yum name={{ item }} state=installed
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
-  tags: package  
+  tags: package
   with_items:
    - cvs
    - git
 #   - gitg
-#   - gitk   
-#   - mercurial  
+#   - gitk
+#   - mercurial
 
-- name: Install CPP build tools (apt)
+#TODO create a role for scons
+- name: Install CPP build tools
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package  
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package
   with_items:
-   - cmake
+#   - cmake
    - scons
-      
-- name: Install AWS tools (apt)
+
+- name: Install AWS tools
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package  
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package
   with_items:
-   - ec2-api-tools    
+   - ec2-api-tools
    - s3cmd
 
-- name: Install messagingg (apt)
+- name: Install messagingg
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package    
-  with_items:   
-   - pidgin 
-   - pidgin-sipe 
-   - pidgin-skype  
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package
+  with_items:
+   - pidgin
+   - pidgin-sipe
+   - pidgin-skype
 #   - teamviewer
 
-- name: Install VNC (apt)
+- name: Install VNC
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package    
-  with_items:   
-   - vnc4server   
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package
+  with_items:
+   - vnc4server
 
-#Warning might be in conflict with security profile   
-- name: Install stats basic tools (apt)
+#Warning might be in conflict with security profile
+- name: Install stats basic tools
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' and stats_enabled
-  tags: package     
+  tags: package
   with_items:
     - finger
     - sysstat
     - net-tools # for netstat
     - rusersd
-    - rwhod   
-       
+    - rwhod
+
 ##
  # node.js installation (latest stable instead of Ubuntu's out-of-date one)
  #
@@ -148,9 +151,9 @@
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   with_items:
     - nodejs
-#WARNING DO NOT INSTALL    - node    
+#WARNING DO NOT INSTALL    - node
 
-- name: Install karma tools (Debian based)
+- name: Install karma tools
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   with_items:
@@ -188,7 +191,7 @@
 #- name: Create karma binaries link (legacy required)
 #  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
 #  file: path=/usr/local/bin/karma src=/usr/local/lib/node_modules/karma/bin/karma state=link
- 
+
 #TODO below does not works
 #- name: Update karma rights
 #  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
@@ -202,7 +205,7 @@
 #chown -R nobody:jenkins *
 
 #- name: Ensure the karma-junit-reporter npm dependencies are installed
-#  command: chdir=/usr/bin npm install -g karma-junit-reporter@0.2.2 
+#  command: chdir=/usr/bin npm install -g karma-junit-reporter@0.2.2
 #
 #- name: Ensure the karma-ng-scenario npm dependencies are installed
 #  command: chdir=/usr/bin npm install -g karma-ng-scenario@0.1.0
@@ -224,16 +227,16 @@
 #
 #- name: Ensure the karma-requirejs npm dependencies are installed
 #  command: chdir=/usr/bin npm install -g karma-requirejs@0.2.1
-#  
+#
 ##- name: Ensure the karma-phantomjs-launcher npm dependencies are installed
 ##  command: chdir=/usr/bin npm install -g karma-phantomjs-launcher@0.1.4
-#  
+#
 #- name: Ensure the karma-chrome-launcher npm dependencies are installed
 #  command: chdir=/usr/bin npm install -g karma-chrome-launcher@0.1.3
-#  
+#
 #- name: Ensure the karma-firefox-launcher npm dependencies are installed
 #  command: chdir=/usr/bin npm install -g karma-firefox-launcher@0.1.3
-#  
+#
 #- name: Ensure the karma-ie-launcher npm dependencies are installed
 #  command: chdir=/usr/bin npm install -g karma-ie-launcher
 #
@@ -241,7 +244,7 @@
 ##  command: chdir=/usr/bin npm install -g webdriverjs
 
 #- name: Mount | Disable mount points
-#  mount: 
+#  mount:
 #    name : '{{ item }}'
 #    src: '/mnt/dpool{{ item }]'
 #    fstype: nfs
@@ -251,9 +254,9 @@
 #  with_items:
 #    - /image
 #    - /owncloud
-  
+
 #- name: Mount | Setup mount points
-#  mount: 
+#  mount:
 #    name : '{{ item }}'
 #    src: '/mnt/dpool{{ item }]'
 #    fstype: nfs
@@ -268,25 +271,25 @@
 #    - /media/video
 #    - /archive
 #    - /backup
-    
+
 # Mount up device by UUID
 #TODO iSCSI
 #- mount: name=/home src='UUID=b3e48f45-f933-4c8e-a700-22a159ec9077' fstype=xfs opts=noatime state=present
 
-- name: Check user  
+- name: Check user
   user: name={{user}} state=present
-  
-#- name: Force no login for user jboss 
+
+#- name: Force no login for user jboss
 #  user: name=jboss shell=/bin/false state=present
 #
-#- name: Force no login for user sonar 
+#- name: Force no login for user sonar
 #  user: name=sonar shell=/bin/false state=present
 #
-#- name: Force no login for user vagrant 
+#- name: Force no login for user vagrant
 #  user: name=vagrant shell=/bin/false state=present
 #
-#- name: Force no login for user zap 
+#- name: Force no login for user zap
 #  user: name=zap shell=/bin/false state=present
 
-- name: Force no login for user jenkins 
+- name: Force no login for user jenkins
   user: name=jenkins shell=/bin/false state=present

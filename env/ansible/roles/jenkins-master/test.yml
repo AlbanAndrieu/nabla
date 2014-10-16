@@ -4,5 +4,5 @@
   handlers:
     - include: handlers/main.yml
   vars_files:
-    - defaults/main.yml
+#    - defaults/main.yml
     - .travis.yml

@@ -60,7 +60,7 @@
 - name: common | Test ansible is installed
   shell: ansible --version
 
-- name: common | Install utility tools (apt)
+- name: common | Install utility tools
   apt: pkg={{ item }} state=present update_cache=yes
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and utilities_enabled == true
   tags: package  
@@ -69,7 +69,7 @@
    - curl
    - ssh  
    
-- name: common | Install monitoring tools (apt)
+- name: common | Install monitoring tools
   apt: pkg={{ item }} state=present update_cache=yes
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and stats_enabled == true
   tags: package  
@@ -82,7 +82,7 @@
    - upstart
    - gksu
   
-- name: common | Install editor tools (apt)
+- name: common | Install editor tools
   apt: pkg={{ item }} state=present update_cache=yes
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and editors_enabled == true
   tags: package  
@@ -94,7 +94,7 @@
    
 #TO CHECK sudo aptitude install cowsay fortunes fortunes-fr
 
-- name: common | Install cowsay (apt)
+- name: common | Install cowsay
   apt: pkg={{ item }} state=present update_cache=yes
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and cowsay_enabled == true
   tags: package  
@@ -116,7 +116,7 @@
   with_items:
     - whoopsie  
     
-- name: common | Install perl (apt)
+- name: common | Install perl
   apt: pkg={{ item }} state=present update_cache=yes
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and perl_enabled == true
   tags: package  
@@ -128,7 +128,7 @@
    - libpam-runtime
    - libio-pty-perl
 
-- name: common | Install python (apt)
+- name: common | Install python
   apt: pkg={{ item }} state=present update_cache=yes
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and python_enabled == true
   tags: package   
@@ -153,12 +153,12 @@
 #  - libssl-dev   
     
 #below it can be customized
-- name: common | Append additional sources (apt)
+- name: common | Append additional sources
   apt_repository: repo={{ item }} update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
   with_items: apt_repositories
 
-- name: common | Install additional packages (apt)
+- name: common | Install additional packages
   apt: pkg={{item}}
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'       
   when: apt_install_packages 

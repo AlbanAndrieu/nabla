@@ -37,19 +37,19 @@
   action: shell echo "deb http://us.archive.ubuntu.com/ubuntu/ {{ subversion_previous_codename }} main universe restricted multiverse" | tr "[:upper:]" "[:lower:]" >> /etc/apt/sources.list
   when: ansible_distribution == 'Debian' and sources_subversion2.stdout == 'a' and subversion_previous_enabled
 
-- name: Install subversion package (Debian based)
+- name: Install subversion package
   action: apt pkg='libsvn1={{subversion_ubuntu}}' state=installed
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
       
-- name: Install subversion package (Debian based)
+- name: Install subversion package
   action: apt pkg='subversion={{subversion_ubuntu}}' state=installed
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu')
 
-- name: Install subversion package (RedHat based)
+- name: Install subversion package
   action: yum name='subversion' state=installed
   when: (ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux')
     
-- name: Install diff tools (apt)
+- name: Install diff tools
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   tags: package  
@@ -77,7 +77,7 @@
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
   tags: configure
 
-- name: Install rabbitvcs tools (apt)
+- name: Install rabbitvcs tools
   apt: pkg={{ item }} state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' and subversion_rabbitvcs_enabled
   tags: package  

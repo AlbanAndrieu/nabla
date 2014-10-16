@@ -2,6 +2,10 @@
   apt: pkg=supervisor state=present update_cache=true
   sudo: yes
 
+- name: Create {{ directory }} directory
+  file: path={{ directory }} state=directory
+  sudo: yes
+  
 - name: installing task {{ name }}
   template: src=task.conf.j2 dest={{ supervisor_config_dir }}/{{ name }}.conf
   notify:

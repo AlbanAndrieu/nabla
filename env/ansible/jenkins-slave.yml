@@ -46,8 +46,8 @@
 
   vars:    
     jenkins_jdk7_enable: no
-    jenkins_home: "/jenkins"
-    jenkins_slave_home: "/kgr-mvn"
+#    jenkins_home_dir: "/jenkins"
+#    jenkins_slave_home: "/kgr-mvn"
 
 #- name: Apply swarm configuration to all jenkins slaves
 #  hosts: test-boxes

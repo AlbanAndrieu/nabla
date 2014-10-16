@@ -4,7 +4,7 @@
 FROM        jasongiedymin/ansible-base-ubuntu
 
 # Volume can be accessed outside of container
-VOLUME      [/jenkins]
+VOLUME      [/var/lib/jenkins]
 
 MAINTAINER  Alban Andrieu "https://github.com/AlbanAndrieu"
 

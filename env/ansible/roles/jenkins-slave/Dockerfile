@@ -1,4 +1,4 @@
-# Ansible managed: /workspace/users/albandri10/env/ansible/roles/jenkins-slave/templates/Dockerfile.j2 modified on 2014-09-25 16:29:35 by albandri on albandri-laptop-misys
+# Ansible managed: /workspace/users/albandri10/env/ansible/roles/jenkins-slave/templates/Dockerfile.j2 modified on 2014-10-16 03:05:37 by albandri on albandri-laptop-misys
 #FROM        debian:jessie
 #FROM        stackbrew/ubuntu:14.04
 FROM        jasongiedymin/ansible-base-ubuntu
@@ -18,10 +18,6 @@ WORKDIR /home/vagrant
 # COPY
 #COPY /workspace/users/albandri10/env/ansible/roles/jenkins-slave $WORKDIR
 
-RUN         pwd
-#RUN         mkdir $WORKDIR/ansible-jenkins-slave
-RUN         ls -lrta
-
 # ADD
 ADD defaults $WORKDIR/ansible-jenkins-slave/defaults
 ADD meta $WORKDIR/ansible-jenkins-slave/meta
@@ -30,7 +26,6 @@ ADD files $WORKDIR/ansible-jenkins-slave/files
 ADD tasks $WORKDIR/ansible-jenkins-slave/tasks
 ADD templates $WORKDIR/ansible-jenkins-slave/templates
 ADD vars $WORKDIR/ansible-jenkins-slave/vars
-#ADD docker $WORKDIR/ansible-jenkins-slave/docker
 
 # Here we continue to use add because
 # there are a limited number of RUNs
@@ -40,9 +35,8 @@ ADD jenkins-slave.yml $WORKDIR/ansible-jenkins-slave/jenkins-slave.yml
 
 # Execute
 RUN         pwd
-RUN         ls -lrta $WORKDIR
-RUN         ls -lrta $WORKDIR/ansible-jenkins-slave
-RUN         ansible-playbook $WORKDIR/ansible-jenkins-slave/jenkins-slave.yml -c local -vvvv
+RUN         ls -lrta
+RUN         ansible-playbook $WORKDIR/ansible-jenkins-slave/jenkins-slave.yml -c local
 
 #RUN         apt-get update && \
 #            apt-get install -y openssh-server openjdk-7-jre-headless

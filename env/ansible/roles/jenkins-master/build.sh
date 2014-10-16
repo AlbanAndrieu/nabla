@@ -1,7 +1,7 @@
 #!/bin/bash
 # Ansible managed: /workspace/users/albandri10/env/ansible/roles/jenkins-master/templates/build.sh.j2 modified on 2014-10-16 01:06:01 by albandri on albandri-laptop-misys
 
-DOCKERNAME="nabla/ansible-jenkins-slave"
+DOCKERNAME="nabla/ansible-jenkins-master"
 
 time docker build -t $DOCKERNAME .
 

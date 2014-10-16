@@ -1,2 +1,4 @@
 httpd_port: 8081
 repository: http://github.com/bennojoy/mywebapp.git
+mysql_root_username: root
+mysql_root_password: microsoft      

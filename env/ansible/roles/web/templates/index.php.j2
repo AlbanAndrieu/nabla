@@ -12,8 +12,8 @@
  echo exec('hostname');
  Print  "</BR>";
 echo  "List of Databases: </BR>";
-        {% for host in groups['dbservers'] %}
-                $link = mysql_connect('{{ hostvars[host].ansible_default_ipv4.address }}', '{{ hostvars[host].dbuser }}', '{{ hostvars[host].upassword }}') or die(mysql_error());
+        {% for host in groups['nabla-servers'] %}
+                $link = mysql_connect('{{ hostvars[host].ansible_default_ipv4.address }}', '{{ mysql_root_username }}', '{{ mysql_root_password }}') or die(mysql_error());
         {% endfor %}
         $res = mysql_query("SHOW DATABASES");
         while ($row = mysql_fetch_assoc($res)) {

@@ -1,6 +1,6 @@
 ---
-dependencies:
-  - { role: jenkins-slave } #ansible-jenkins-slave
+#dependencies:
+#  - { role: jenkins-slave } #ansible-jenkins-slave
   
 galaxy_info:
   author: Alban Andrieu

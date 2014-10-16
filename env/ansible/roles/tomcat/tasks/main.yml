@@ -1,15 +1,15 @@
 ---
 
 #see jenkins-slave for a better java install
-- name: Install Java 1.7 (yum)
+- name: Install Java 1.7
   yum: name=java-1.7.0-openjdk state=present
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'  
 
-- name: Install Java 1.7 (apt)
+- name: Install Java 1.7
   apt: pkg=openjdk-7-jdk state=present update_cache=yes
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
    
-#- name: Install Tomcat (yum)
+#- name: Install Tomcat
 #  yum: name={{ item }} state=present
 #  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'  
 #  with_items:
@@ -18,7 +18,7 @@
 #   - tomcat7-examples
 #   - tomcat7-admin
         
-- name: Install Tomcat (apt)
+- name: Install Tomcat
   apt: pkg={{ item }} state=present update_cache=yes  
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   with_items:
