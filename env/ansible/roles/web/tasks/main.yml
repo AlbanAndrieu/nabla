@@ -5,5 +5,5 @@
 
 - include: copy_code.yml
 
-- name: copy Dockerfile
-  template: src=Dockerfile.j2 dest=roles/web/Dockerfile mode=0700
+#- name: copy Dockerfile
+#  template: src=Dockerfile.j2 dest=roles/web/Dockerfile mode=0700

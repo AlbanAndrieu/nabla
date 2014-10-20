@@ -1,4 +1,4 @@
-- name: install supervisor
+- name: Install supervisor
   apt: pkg=supervisor state=present update_cache=true
   sudo: yes
 
@@ -6,17 +6,17 @@
   file: path={{ directory }} state=directory
   sudo: yes
   
-- name: installing task {{ name }}
+- name: Installing task {{ name }}
   template: src=task.conf.j2 dest={{ supervisor_config_dir }}/{{ name }}.conf
-  notify:
-    - update supervisord
+#  notify:
+#    - update supervisord
   sudo: yes
 
-- name: restart task {{ name }}
-  command: "{{ supervisorctl_command }} restart {{ name }}:*"
-  sudo: yes
+#- name: Restart task {{ name }}
+#  command: "{{ supervisorctl_command }} restart {{ name }}:*"
+#  sudo: yes
 
-- name: configure main supervisor
+- name: Configure main supervisor
   template: src=supervisord.conf.j2 dest={{ supervisor_dir }}/supervisord.conf
   tags: supervisor
   sudo: yes    
