@@ -1056,7 +1056,7 @@
 				<jfreechart-demo.version>1.0.13</jfreechart-demo.version>
 				<junitperf.version>1.9.1</junitperf.version>
 				<!-- Test Coverage/Sonar - Clover - Do not change this version without checking if everything is working well -->
-				<clover.version>4.0.2</clover.version>
+				<clover.version>3.3.0</clover.version>
 				<dbunit.version>2.4.9</dbunit.version>
 				<!--<testng.version>6.8.7</testng.version>-->
 				<testng.version>6.8.8</testng.version>
@@ -1550,7 +1550,7 @@
 				<maven.tomcat.plugin.version>1.2-SNAPSHOT</maven.tomcat.plugin.version>
 				<maven.apache.rat.plugin.version>0.11</maven.apache.rat.plugin.version>
 				<maven.rat.plugin.version>1.0-alpha-3</maven.rat.plugin.version>
-				<maven.cobertura.plugin.version>2.5.6</maven.cobertura.plugin.version>
+				<maven.cobertura.plugin.version>2.5.2</maven.cobertura.plugin.version>
 				<maven.release.plugin.version>2.5</maven.release.plugin.version>
 				<!-- maybe needed to be downgraded <maven.release.plugin.version>2.3.2</maven.release.plugin.version>-->
 				<maven.antrun.plugin.version>1.7</maven.antrun.plugin.version>
