@@ -107,6 +107,7 @@
                 <fitness.port>9090</fitness.port>
                 <bugzilla.mysql.port>${mysql.port}</bugzilla.mysql.port>
 				<crowd.port>8095</crowd.port><!-- http://localhost:8095/crowd/ -->
+				<chronon.port>8032</chronon.port>
 
                 <apache-continuum.version>1.2.3</apache-continuum.version>
 
@@ -833,6 +834,7 @@
 						because we want to be to able to execute mvn sonar:sonar without passing a profile -->
 						<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 						<sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>	
+						<sonar.jacoco.reportMissing.force.zero>true</sonar.jacoco.reportMissing.force.zero>
 						<!-- Tells Sonar to use jacoco for coverage results -->
 						<!-- Don't let Sonar execute tests. We will ask it to Maven -->
 						<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>		
@@ -871,14 +873,12 @@
 							<version>${jacoco.version}</version> 
 							<scope>provided</scope>
 						</dependency>
-						<!--
 						<dependency>
 						  <groupId>org.codehaus.sonar-plugins.java</groupId>
 						  <artifactId>sonar-jacoco-listeners</artifactId>
 						  <version>${sonar.jacoco.listeners.version}</version>
 						  <scope>test</scope>					  
-						</dependency>			
-						-->			
+						</dependency>	
 					</dependencies>
 
 					<build>
