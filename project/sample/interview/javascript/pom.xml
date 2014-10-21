@@ -21,7 +21,9 @@
 			<!-- does not work with maven 3 <plugin> <groupId>gr.abiss.mvn.plugins</groupId>
 				<artifactId>maven-jstools-plugin</artifactId> <version>0.7</version> </plugin> -->
 			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-antrun-plugin</artifactId>
+				<version>${maven.antrun.plugin.version}</version>
 				<executions>
 					<execution>
 						<id>antrun-copy-js-to-site</id>
@@ -134,6 +136,7 @@
 			<plugin>
 				<groupId>gr.abiss.mvn.plugins</groupId>
 				<artifactId>maven-jstools-plugin</artifactId>
+				<version>${maven.jstools.plugin.version}</version>	
 				<!--<inherited>false</inherited> -->
 				<configuration>
 					<!-- the default is src/main/js -->
