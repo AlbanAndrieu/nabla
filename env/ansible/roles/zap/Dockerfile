@@ -1,4 +1,4 @@
-# Ansible managed: /workspace/users/albandri10/env/ansible/roles/zap/templates/Dockerfile.j2 modified on 2014-10-10 17:47:33 by albandri on albandri-laptop-misys
+# Ansible managed: /workspace/users/albandri10/env/ansible/roles/zap/templates/Dockerfile.j2 modified on 2014-10-16 01:03:55 by albandri on albandri-laptop-misys
 #FROM        debian:jessie
 #FROM        stackbrew/ubuntu:14.04
 FROM        jasongiedymin/ansible-base-ubuntu
@@ -47,7 +47,7 @@ RUN         ansible-playbook $WORKDIR/ansible-zap/zap.yml -c local -vvvv
 #RUN         echo jenkins:jenkins | chpasswd
 #RUN         mkdir -p /var/run/sshd
             
-EXPOSE      22
+EXPOSE 21:9999
 ENTRYPOINT  ["/usr/local/zap/zap2/zap.sh"]
 CMD /usr/sbin/sshd -D
 #CMD ["-g", "deamon off;"]

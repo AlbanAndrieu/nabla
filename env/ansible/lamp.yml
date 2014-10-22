@@ -1,7 +1,7 @@
----     
+---
 #This script is used to configure your workstation (for developer)
 
-#sudo ansible-playbook -i hosts -c local -v workstation.yml | tee setup.log
+#sudo ansible-playbook -i hosts -c local -v lamp.yml | tee setup.log
 
 - hosts: all
   gather_facts: true
@@ -31,29 +31,29 @@
   gather_facts: false
   remote_user: root
 #  connection: local
-  
+
   roles:
     - geerlingguy.ntp
-    
+
   vars:
        ntp_timezone: Europe/Paris
 #       ntp_enabled: true
 
-- name: Apply firewall configuration to all nodes
-  hosts: lamp
-  gather_facts: false
-  remote_user: root
-#  connection: local
-
-  roles:
-    - geerlingguy.firewall
-
-  vars:
-       firewall_allowed_tcp_ports:
-       - "22"
-       - "25"
-       - "80"
-       - "443"
+#- name: Apply firewall configuration to all nodes
+#  hosts: lamp
+#  gather_facts: false
+#  remote_user: root
+##  connection: local
+#
+#  roles:
+#    - geerlingguy.firewall
+#
+#  vars:
+#       firewall_allowed_tcp_ports:
+#       - "22"
+#       - "25"
+#       - "80"
+#       - "443"
 
 - name: Add repo configuration to all nodes
   hosts: RedHat-7*:RedHat-6*:CentOS-6*
@@ -73,10 +73,12 @@
 
   roles:
     - geerlingguy.mysql
-    
+
   vars:
-       mysql_innodb_log_file_size: "5M"    
-    
+       mysql_innodb_log_file_size: "5M"
+       mysql_root_username: root
+       mysql_root_password: microsoft
+
 # This playbook deploys an Apache database.
 - name: Deploy Apache and configure the server
   hosts: apache-servers
@@ -85,22 +87,22 @@
 
   roles:
     - geerlingguy.apache
-    
+
   vars:
        apache_listen_port: 7070
-           
+
 - name: Add dependencies for Apache like PHP
   hosts: apache-servers
   remote_user: root
 #  connection: local
 
   roles:
-    - geerlingguy.php  
+    - geerlingguy.php
     - geerlingguy.php-mysql
-    
+
   vars:
        php_date_timezone: "Europe/Paris"
-              
+
 - name: Add admin tool for Apache like PHPmyAdmin
   hosts: apache-servers
   remote_user: root
@@ -108,7 +110,7 @@
 
   roles:
     - geerlingguy.phpmyadmin
-    
+
   vars:
        phpmyadmin_mysql_user: root
        phpmyadmin_mysql_password: microsoft

@@ -113,6 +113,9 @@ albandri-laptop-misys
 [zap]
 albandri-laptop-misys
 
+[logstash]
+albandri-laptop-misys
+
 [workstation]
 albandri-laptop-misys
 

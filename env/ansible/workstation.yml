@@ -119,9 +119,10 @@
 #       - "7070"
 #       - "8480"
 ##   21: FTP
+##   8021: FTP FreeNas
 ##   22: SSH
 ##   25: SMTP
-##   80: HTTP
+##   80: HTTP / Nginx
 ##   123: DNS
 ##   443: HTTPS
 ##   2222: SSH alternate
@@ -140,9 +141,39 @@
 ##   8180: JBoss
 ##   8787: JBoss remote debug port
 ##   8181: JBoss http debug port
+##   9990 : Jboss console
 ##   7070: Apache
 ##   8480: NGinx
 ##   4445: Lumbermill
+##   4243: Docker
+##   137, 138, 139, 445: Samba
+##   10000: Webmin
+##   20000: Usermin
+##   5050: CouchPatato
+##   8095 : Atlassion Crowd
+##   8060 : Atlassion Fisheye
+##   8082 : Atlassian JIRA
+##   7000: FreeNas
+##   5001 : xrdp 
+##   5000 : xrdp / Openstack
+##   3689: FireFly
+##   8091 : Transmission
+##   9091 : Transmission
+##   8200 : MiniDLNA
+##   8083 : SickBeard
+##   32400 : Plex
+##   4040 : Subsonic
+##   8381 : jenkins FreeNas
+##   9090 : SABznbd
+##   8181 : HeadPhone
+##   8084 : OwnCloud
+##   82 : Varnish or Google +
+##   7070 : Gearman
+##   4445: Selenium
+##   4444: Selenium
+##   9042: Supervisor
+##   6000: Logstash
+##   9200: Kibana
 
 - name: Apply security configuration
   hosts: security
@@ -477,10 +508,15 @@
        phpmyadmin_mysql_password: microsoft
        phpmyadmin_mysql_port: 7070
 
-# This playbook deploys the whole application stack in this site.
+- name: Install pagespeed
+  hosts: apache-servers
+  remote_user: root
+#  connection: local
+  roles:
+    - role: pagespeed     
 
 #WARNING jenkins-master role has disabled a2dissite 000-default
-- name: configure and deploy the nabla php sample application code to apache
+- name: Configure and deploy the nabla php sample application code to apache
   hosts: nabla-servers
   remote_user: root
 #  connection: local

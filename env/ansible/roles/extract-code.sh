@@ -105,10 +105,8 @@ git clone https://github.com/AlbanAndrieu/ansible-windows.git windows
 
 git clone https://github.com/AlbanAndrieu/ansible-cpp.git cpp
 
-#git clone https://github.com/valentinogagliardi/logstash-role.git logstash
-git clone https://github.com/geerlingguy/ansible-role-logstash logstash
+git clone https://github.com/AlbanAndrieu/ansible-pagespeed.git pagespeed
 
-#TOCHECK
 #LAMP
 git clone https://github.com/geerlingguy/ansible-role-firewall.git geerlingguy.firewall
 git clone https://github.com/geerlingguy/ansible-role-ntp.git geerlingguy.ntp
@@ -121,9 +119,14 @@ git clone https://github.com/AlbanAndrieu/ansible-role-mysql.git geerlingguy.mys
 git clone https://github.com/geerlingguy/ansible-role-php.git geerlingguy.php
 git clone https://github.com/geerlingguy/ansible-role-php-mysql.git geerlingguy.php-mysql
 git clone https://github.com/geerlingguy/ansible-role-phpmyadmin.git geerlingguy.phpmyadmin
-#git clone https://github.com/geerlingguy/ansible-role-varnish.git varnish
-
+#TODO git clone https://github.com/geerlingguy/ansible-role-varnish.git varnish
 git clone https://github.com/geerlingguy/ansible-role-samba.git geerlingguy.samba
+
+#git clone https://github.com/valentinogagliardi/logstash-role.git logstash
+git clone https://github.com/geerlingguy/ansible-role-elasticsearch.git geerlingguy.elasticsearch
+git clone https://github.com/geerlingguy/ansible-role-logstash geerlingguy.logstash
+git clone https://github.com/geerlingguy/ansible-role-nginx.git geerlingguy.nginx
+git clone https://github.com/geerlingguy/ansible-role-kibana.git geerlingguy.kibana
 
 #SEE
 https://github.com/ansible/ansible-examples/tree/master/language_features
