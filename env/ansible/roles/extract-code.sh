@@ -107,6 +107,8 @@ git clone https://github.com/AlbanAndrieu/ansible-cpp.git cpp
 
 git clone https://github.com/AlbanAndrieu/ansible-pagespeed.git pagespeed
 
+git clone https://github.com/AlbanAndrieu/ansible-jmeter.git jmeter
+
 #LAMP
 git clone https://github.com/geerlingguy/ansible-role-firewall.git geerlingguy.firewall
 git clone https://github.com/geerlingguy/ansible-role-ntp.git geerlingguy.ntp
@@ -123,6 +125,8 @@ git clone https://github.com/geerlingguy/ansible-role-phpmyadmin.git geerlingguy
 git clone https://github.com/geerlingguy/ansible-role-samba.git geerlingguy.samba
 
 #git clone https://github.com/valentinogagliardi/logstash-role.git logstash
+#TODO merge below geerlingguy.java with other java role
+git clone https://github.com/geerlingguy/ansible-role-java geerlingguy.java
 git clone https://github.com/geerlingguy/ansible-role-elasticsearch.git geerlingguy.elasticsearch
 git clone https://github.com/geerlingguy/ansible-role-logstash geerlingguy.logstash
 git clone https://github.com/geerlingguy/ansible-role-nginx.git geerlingguy.nginx

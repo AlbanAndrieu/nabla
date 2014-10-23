@@ -3,6 +3,8 @@
 A role for installing xvbf.
 
 [![Build Status](https://api.travis-ci.org/AlbanAndrieu/ansible-xvbf.png?branch=master)](https://travis-ci.org/AlbanAndrieu/ansible-xvbf)
+[![Galaxy](http://img.shields.io/badge/galaxy-xvbf-blue.svg?style=flat-square)](https://galaxy.ansible.com/list#/roles/1174)
+[![Tag](http://img.shields.io/github/tag/AlbanAndrieu/ansible-xvbf.svg?style=flat-square)]()
 
 ## Actions
 

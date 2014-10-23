@@ -4,6 +4,8 @@ ansible-subversion
 A role for installing subversion.
 
 [![Build Status](https://api.travis-ci.org/AlbanAndrieu/ansible-subversion.png?branch=master)](https://travis-ci.org/AlbanAndrieu/ansible-subversion)
+[![Galaxy](http://img.shields.io/badge/galaxy-subversion-blue.svg?style=flat-square)](https://galaxy.ansible.com/list#/roles/1511)
+[![Tag](http://img.shields.io/github/tag/AlbanAndrieu/ansible-subversion.svg?style=flat-square)]()
 
 ## Actions
 

@@ -4,6 +4,8 @@ ansible-zap
 A role for installing zap.
 
 [![Build Status](https://api.travis-ci.org/AlbanAndrieu/ansible-zap.png?branch=master)](https://travis-ci.org/AlbanAndrieu/ansible-zap)
+[![Galaxy](http://img.shields.io/badge/galaxy-zap-blue.svg?style=flat-square)](https://galaxy.ansible.com/list#/roles/1614)
+[![Tag](http://img.shields.io/github/tag/AlbanAndrieu/ansible-zap.svg?style=flat-square)]()
 
 ## Actions
 

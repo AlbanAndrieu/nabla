@@ -4,6 +4,8 @@ ansible-dropbox
 A role for installing dropbox.
 
 [![Build Status](https://api.travis-ci.org/AlbanAndrieu/ansible-dropbox.png?branch=master)](https://travis-ci.org/AlbanAndrieu/ansible-dropbox)
+[![Galaxy](http://img.shields.io/badge/galaxy-dropbox-blue.svg?style=flat-square)](https://galaxy.ansible.com/list#/roles/1999)
+[![Tag](http://img.shields.io/github/tag/AlbanAndrieu/ansible-dropbox.svg?style=flat-square)]()
 
 ## Actions
 

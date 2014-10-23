@@ -1,0 +1,8 @@
+#sudo ansible-playbook -i hosts -c local -v jmeter.yml | tee setup.log
+
+- name: Install jmeter
+  hosts: workstation
+  remote_user: root
+#  connection: local
+  roles:
+    - role: jmeter     

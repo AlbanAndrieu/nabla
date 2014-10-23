@@ -627,3 +627,10 @@
       eclipse_owner: "{{ user }}"
       eclipse_group: "{{ eclipse_owner }}"
       eclipse_owner_home: "{{ home }}"
+
+- name: Install jmeter
+  hosts: workstation
+  remote_user: root
+#  connection: local
+  roles:
+    - role: jmeter     
