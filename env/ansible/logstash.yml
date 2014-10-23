@@ -71,6 +71,6 @@
        kibana_username: kibana
        kibana_password: microsoft
        nginx_user: root
-       kibana_domain: albandri-laptop-misys
-       es_address: http://albandri-laptop-misys/es/
+       kibana_domain: home.nabla.mobi
+       es_address: http://{{ kibana_domain}}/es/
 
