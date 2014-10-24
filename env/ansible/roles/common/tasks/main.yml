@@ -91,9 +91,9 @@
    - vim
    - geany
    - gedit
-   
-#TO CHECK sudo aptitude install cowsay fortunes fortunes-fr
+   - dos2unix
 
+#TO CHECK sudo aptitude install cowsay fortunes fortunes-fr
 - name: common | Install cowsay
   apt: pkg={{ item }} state=present update_cache=yes
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and cowsay_enabled == true
