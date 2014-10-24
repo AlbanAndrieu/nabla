@@ -290,6 +290,25 @@
 #TODO iSCSI
 #- mount: name=/home src='UUID=b3e48f45-f933-4c8e-a700-22a159ec9077' fstype=xfs opts=noatime state=present
 
+- name: Install mon perl tools
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package
+  with_items:
+   - libfilesys-diskspace-perl
+   - libnet-telnet-perl
+   - fping
+    
+#- name: Install mon perl package
+#  command: sudo cpan install {{ item }}
+#  with_items:
+#    - Filesys::DiskSpace
+#    - Net::Telnet
+#    - Net::LDAPapi    
+#    - DBD::mysql 
+#    - Convert::BER
+#    - SNMP::Session
+
 #TODO get the right mon.cf.j2
 #- name: Copy mon configuration
 #  template: src=mon.cf.j2 dest=/etc/mon/mon.cf mode=0777

@@ -41,3 +41,6 @@ Enter LDAP Search Base (ex. o=Org, c=US):
 #Sample at https://wb.is.depaul.edu/is/_downloads/SampleMONConfigFile.txt 
  
 sudo service mon restart
+
+#test
+monshow --full'
