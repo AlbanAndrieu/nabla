@@ -6,7 +6,8 @@ sudo service varnish status
 #https://www.digitalocean.com/community/articles/how-to-install-and-configure-varnish-with-apache-on-ubuntu-12-04--3
 sudo nano /etc/default/varnish
 
-DAEMON_OPTS="-a :80,:443 \
+#DAEMON_OPTS="-a :80,:443
+DAEMON_OPTS="-a :82,:443 \
              -T localhost:6082 \
              -f /etc/varnish/default.vcl \
              -S /etc/varnish/secret \

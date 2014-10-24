@@ -50,6 +50,7 @@ sshpass -f /jenkins/pass.txt ssh-copy-id vagrant@192.168.33.11
 sshpass -f /jenkins/pass.txt ssh-copy-id vagrant@192.168.33.12
 
 # test ansible
+ansible-playbook -i hosts jenkins-slave.yml --list-hosts
 ansible-playbook -i hosts jenkins-slave.yml --limit=albandri-laptop-misys --list-tasks
 ansible-playbook -i hosts jenkins-slave.yml -vvvv
 #--extra-vars "jenkins_username=${JENKINS_USERNAME} jenkins_password=${JENKINS_PASSWORD}"

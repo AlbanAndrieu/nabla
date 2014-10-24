@@ -18,11 +18,15 @@
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: package
   with_items:
+   - apt-show-versions
+   - vim  
    - geany
    - gedit
-   - gedit-plugins
+   - gedit-plugins  
    - meld
    - dos2unix
+   - xclip
+#xclip -selection clipboard < ~/.ssh/id_rsa.pub
 
 - name: Install desktop tools
   apt: pkg={{ item }} state=present update_cache=yes
@@ -286,6 +290,12 @@
 #TODO iSCSI
 #- mount: name=/home src='UUID=b3e48f45-f933-4c8e-a700-22a159ec9077' fstype=xfs opts=noatime state=present
 
+#TODO get the right mon.cf.j2
+#- name: Copy mon configuration
+#  template: src=mon.cf.j2 dest=/etc/mon/mon.cf mode=0777
+#  tags: mon
+#  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  
 - name: Check user
   user: name={{user}} state=present
 
