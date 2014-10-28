@@ -1,0 +1,12 @@
+<VirtualHost *:7070>
+  ServerName localhost
+  
+  ProxyPass /elasticsearch http://localhost:9200
+  ProxyPassReverse /elasticsearch http://localhost:9200
+  alias /kibana /var/www/kibana3
+
+  <Location /elasticsearch>
+      Order allow,deny
+      Allow from all
+  </Location>
+</VirtualHost>

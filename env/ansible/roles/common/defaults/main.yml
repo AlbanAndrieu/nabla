@@ -16,3 +16,5 @@ editors_enabled         : true
 cowsay_enabled          : true
 perl_enabled            : true
 python_enabled          : true
+
+apt_notification_email: "root"

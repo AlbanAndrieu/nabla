@@ -9,6 +9,7 @@ zap_owner: "zap"
 zap_group: "zap"
 zap_shell: "/bin/false" #/bin/bash
 zap_base_dir: "/usr/local/zap"
+zap_link_base_dir: "/opt"
 zap_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"
 
 ## Most likely you dont need to edit 

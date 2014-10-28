@@ -109,6 +109,14 @@ git clone https://github.com/AlbanAndrieu/ansible-pagespeed.git pagespeed
 
 git clone https://github.com/AlbanAndrieu/ansible-jmeter.git jmeter
 
+git clone https://github.com/AlbanAndrieu/ansible-mon.git mon
+
+#TODO TOSEE
+git clone https://github.com/debops/ansible-monit.git monit
+
+#TO SEE
+git clone https://github.com/debops/ansible-monit monit
+
 #LAMP
 git clone https://github.com/geerlingguy/ansible-role-firewall.git geerlingguy.firewall
 git clone https://github.com/geerlingguy/ansible-role-ntp.git geerlingguy.ntp

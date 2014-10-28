@@ -21,8 +21,8 @@ Usage example
       roles:
         - conky      
       
-    vars:      
-        conky_home: '/workspace/users/albandri10/.conky'      
+      vars:      
+          conky_home: '/workspace/users/albandri10/.conky'      
 
 Hosts example
 ------------

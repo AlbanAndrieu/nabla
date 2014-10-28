@@ -1,4 +1,5 @@
 #!/bin/bash
+# Ansible managed: /workspace/users/albandri10/env/ansible/roles/shell/templates/dev.env.sh.j2 modified on 2014-10-28 14:33:18 by albandri on albandri-laptop-misys.misys.global.ad
 
 ####################
 ### READ ARGUMENTS
@@ -12,6 +13,7 @@ then
   case "$1" in
     purify)
       TOOLS_OPTION_PURIFY="purify"
+      
       export PERLGEN_OPTION="-p"
     ;;
 
@@ -29,7 +31,7 @@ echo "ARCH : ${ARCH} must be sun4sol sun4 rs6000 hprisc solaris linux cygwin win
 if [ -z "$PROJECT_USER" ]
 then
   echo "ERROR: Set PROJECT_USER environment variable!"
-  export PROJECT_USER=albandri
+  export PROJECT_USER=root
 fi
 
 if [ -z "$PROJECT_VERSION" ]
@@ -68,7 +70,7 @@ fi
 
 if [ -z "$EDITOR" ]
 then
-  export EDITOR=geany
+  export EDITOR=gedit
 fi
 export SVN_EDITOR=${EDITOR}
 
@@ -367,6 +369,11 @@ export PATH=${LUMBERMILL_HOME}/bin:${PATH}
 alias lumbermill='java -jar ${LUMBERMILL_HOME}/dist/lib/lumbermill.jar'
 echo "Lumbermill port is 4445"
 
+export EC2_KEYPAIR=albandri # name only, not the file name
+export EC2_URL=https://ec2.us-west-2.amazonaws.com
+export EC2_PRIVATE_KEY=$HOME/.ec2/pk-FMQ27HNLF2PVMPVL7MPWHEY5GWDKDOT2.pem
+export EC2_CERT=$HOME/.ec2/cert-FMQ27HNLF2PVMPVL7MPWHEY5GWDKDOT2.pem
+
 #export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
 export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/usr/local/lib/node_modules
 
@@ -487,8 +494,6 @@ alias cdcore="cd ${PROJECT_TARGET_PATH}/corefiles"
 alias ..="cd .."
 alias cls="clear"
 
-alias ls='/bin/ls -F'
-
 if [ "${ARCH}" = sun4sol -o "${ARCH}" = solaris ]
 then
   alias l='/bin/ls -Fl'
@@ -521,6 +526,7 @@ else
   fi
 fi
 
+alias ls='/bin/ls -F --color=auto'
 alias lt='l -t'
 alias lrt='l -rt'
 alias l~='l ~'
@@ -529,6 +535,9 @@ alias la='l -al'
 alias llt='ll -t'
 alias llrt='ll -rt'
 alias ll~='ll ~'
+#to get man in french
+#alias man='man -L en'
+alias man='man -L fr'
 
 alias psg="pp | egrep -i \!* |& grep -v 'egrep -i \!*'"
 alias psuser="pp | cut -d' ' -f1 | sort | grep -v USER | uniq -c | sort -r"
@@ -546,7 +555,11 @@ alias setWorkspace="source ${WORKSPACE_ENV}/scripts/setWorkspace.sh"
 #source ${WORKSPACE_ENV}/java/dev.env.sh
 #source ${WORKSPACE_ENV}/cpp/dev.env.sh
 #GIT
+#git config --global http.sslVerify false
+export GIT_SSL_NO_VERIFY=true
+
 source ${WORKSPACE_ENV}/home/.git-completion.bash
+
 #see source ~/.git-prompt.sh in .bashrc
 source ${WORKSPACE_ENV}/home/.novarc
 
@@ -579,10 +592,21 @@ case ${ARCH} in
 esac
 
 export DISPLAY=:0.0
-export LC_CTYPE=en_US.UTF-8
+#instead us ansible local role
+#export LC_CTYPE=en_US.UTF-8
+export LANG=en_US.UTF-8
+#to get man in color
+export PAGER=most
 
-/usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`/usr/games/fortune -s`"
-#export CONKY_HOME="${PROJECT_HOME}/albandri10/.conky"
+export COWSAY="/usr/games/cowsay"
+if [ -f $COWSAY ]
+then
+  /usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`/usr/games/fortune -s`"
+else
+  echo "Cowsay is not installed"  
+fi
+
+#export CONKY_HOME="${PROJECT_HOME}/root10/.conky"
 #if [ -d $CONKY_HOME ]
 #then
 #  ~/.conky/conky-startup.sh &

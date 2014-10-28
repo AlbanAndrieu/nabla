@@ -377,6 +377,7 @@ cat /proc/sys/vm/swappiness
 sudo apt-get install ubuntu-restricted-extras
 
 #remove incinga
+sudo apt-get remove --auto-remove icinga
 sudo apt-get remove icinga-web
 
 #remove doc in order to spare disk space
@@ -390,3 +391,27 @@ sudo apt-get clean
 sudo apt-file search /usr/bin/netstat
 # Now download the source of that package
 sudo apt-get source net-tools
+
+#boot repair
+#http://doc.ubuntu-fr.org/boot-repair
+#http://doc.ubuntu-fr.org/unetbootin
+sudo apt-get install unetbootin
+
+#ugrade
+aptitude safe-upgrade
+aptitude forbid-version my_packet=X.Y
+#aptitude full-upgrade
+
+#install notification
+sudo apt-get apticron
+
+#identify process using file
+#fuser -v /dev/sdb
+fuser -v /bin/bash
+
+#system info
+lsb_release -a
+sudo apt-get  install lsb-core
+lsb_release -a
+lsmod 
+sudo modinfo btrfs

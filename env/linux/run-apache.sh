@@ -107,13 +107,14 @@ cd /etc/apache2/sites-available
 sudo vim 000-default.conf
 or
 sudo vim /etc/apache2/sites-available/nabla.conf
+sudo a2dissite 000-default
 sudo a2ensite nabla
 sudo a2ensite jenkins
 sudo a2enmod rewrite
 sudo a2enmod proxy
 sudo a2enmod ssl
 sudo a2enmod proxy_http
-
+ 
 #check site that are enable at
 cd /etc/apache2/sites-enabled
 

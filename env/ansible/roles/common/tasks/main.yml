@@ -60,6 +60,22 @@
 - name: common | Test ansible is installed
   shell: ansible --version
 
+- name: common | Install update notification tools
+  apt: pkg={{ item }} state=present update_cache=yes
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and utilities_enabled == true
+  tags: package  
+  with_items:
+   - apticron
+
+- name: common | Update the update notification configuration
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  template:
+    src: apticron.conf.j2
+    dest: /etc/apticron/apticron.conf
+    owner: root
+    group: root
+    mode: 0644
+
 - name: common | Install utility tools
   apt: pkg={{ item }} state=present update_cache=yes
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and utilities_enabled == true
@@ -78,7 +94,7 @@
    - iotop
    - htop
    - iftop
-   - monit   
+#   - monit   see https://galaxy.ansible.com/list#/roles/1575
    - upstart
    - gksu
 

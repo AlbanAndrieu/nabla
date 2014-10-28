@@ -78,15 +78,6 @@
   when: zap_archive_extracted_present.stat.pw_name != '{{zap_owner}}'
   tags: zap_setup
 
-#- name: zap | create a link to zap
-#  file:
-#    src="{{zap_base_dir}}/{{zap_archive_extracted}}"
-#    dest="{{zap_base_dir}}/zap-{{zap_major}}"
-#    state=link
-#    owner="{{zap_owner}}"
-#    group="{{zap_group}}"
-#  tags: zap_setup
-
 - name: zap | Create a link to zap
   file:
     src="{{zap_base_dir}}/{{zap_name}}"
@@ -96,8 +87,17 @@
     group="{{zap_group}}"
   tags: zap_setup
 
+- name: zap | Create a link to zap
+  file:
+    src="{{zap_link_base_dir}}/{{zap_name}}"
+    dest="{{zap_base_dir}}/zap-{{zap_major}}"
+    state=link
+    owner="{{zap_owner}}"
+    group="{{zap_group}}"
+  tags: zap_setup
+  
 - name: zap | Cleanup temporary directory
   file: name={{ tempdir.stdout }} state=absent
   tags: zap_setup
 
-- debug: msg=" zap | Start zap {{zap_base_dir}}/zap-{{zap_major}}/zap.sh"
+- debug: msg=" zap | Start zap {{zap_base_dir}}/{{zap_name}}/zap.sh"

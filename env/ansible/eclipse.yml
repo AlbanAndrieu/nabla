@@ -10,7 +10,7 @@
     
   vars:    
       home: "/workspace/users/albandri10"  
-      eclipse_base_dir: "/workspace/eclipse"
+      #eclipse_base_dir: "/workspace/eclipse"
       eclipse_owner: "{{ user }}"
       eclipse_group: "{{ eclipse_owner }}"
       eclipse_owner_home: "{{ home }}"

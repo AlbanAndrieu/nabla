@@ -26,7 +26,6 @@
   tags: package  
   with_items:   
    - smartmontools
-   - mon
    - ssmtp
    - snmp #for cacti
    - snmpd #for cacti

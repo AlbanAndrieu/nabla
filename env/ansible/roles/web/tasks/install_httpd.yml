@@ -40,7 +40,7 @@
   action: command a2ensite 000-default
   ignore_errors: yes  
   tags: apache
-  
+
 #- name: Web | Configure SELinux to allow httpd to connect to remote database
 #  seboolean: name=httpd_can_network_connect_db state=true persistent=yes 
 

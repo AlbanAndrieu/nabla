@@ -53,6 +53,7 @@
 
   roles:
     - geerlingguy.ntp
+    
   vars:
        ntp_timezone: Europe/Paris
 #       ntp_enabled: true
@@ -66,6 +67,9 @@
 
   roles:
     - common
+
+  vars:
+       apt_notification_email: "alban.andrieu@free.fr"
 
 - name: Apply dns configuration to all nodes
   hosts: Ubuntu-12*:Ubuntu-14*
@@ -515,6 +519,9 @@
   roles:
     - role: pagespeed     
 
+  vars:
+       pagespeed_package_arch: "amd64"
+
 #WARNING jenkins-master role has disabled a2dissite 000-default
 - name: Configure and deploy the nabla php sample application code to apache
   hosts: nabla-servers
@@ -623,7 +630,7 @@
     - role: eclipse
 
   vars:
-      eclipse_base_dir: /workspace/eclipse
+      #eclipse_base_dir: /workspace/eclipse
       eclipse_owner: "{{ user }}"
       eclipse_group: "{{ eclipse_owner }}"
       eclipse_owner_home: "{{ home }}"
@@ -634,3 +641,19 @@
 #  connection: local
   roles:
     - role: jmeter     
+    
+#- name: Install mon
+#  hosts: workstation
+#  remote_user: root
+##  connection: local
+#
+#  roles:
+#    - mon      
+#    
+#  vars:      
+#      mon_localhost : "albandri"
+#      mon_custom_group: "nabla"        
+#      mon_admin_email: "alban.andrieu@free.fr"
+#      mon_weekly_email: "team@free.fr"
+#      user: root
+#      home: "/root"
