@@ -1,5 +1,7 @@
 ---
 - hosts: all
-  sudo: True
+  sudo: true
   roles:
-    - ansible-css
+    - { role: ./ }
+
+#- include: docker/integration-tests.yml

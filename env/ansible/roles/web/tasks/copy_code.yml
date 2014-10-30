@@ -3,9 +3,9 @@
 # the version control system. 
 
 - name: Web | Copy the code from repository
-  git: repo={{ repository }} dest=/var/www/html/
+  git: repo={{ repository }} dest={{ web_base_dir }}/
 
 - name: Web | Creates the index.php file 
-  template: src=index.php.j2 dest=/var/www/html/index.php
+  template: src=index.php.j2 dest={{ web_base_dir }}/index.php
   
 #See result at http://localhost/html/index.html

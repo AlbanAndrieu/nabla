@@ -20,7 +20,8 @@ selenium_extra_args: ''
 selenium_port: ''
 selenium_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"
 
-docker_files_generated_directory: "roles/selenium"
+docker_files_generated_directory: "./"
+docker_files_enable: no
 docker_volume_directory: "{{ selenium_server_path }}"
 docker_working_directory: "/home/vagrant"
 docker_image_name: "nabla/ansible-selenium"

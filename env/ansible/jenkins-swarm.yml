@@ -25,7 +25,8 @@
 #    private: yes
 
   roles:
-    - jenkins-swarm
-     
-  vars:     
-    jenkins_home: "/jenkins"
+    - { role: jenkins-swarm,
+        docker_files_enable: yes,
+        docker_files_generated_directory: "roles/jenkins-swarm",
+        jenkins_home: "/jenkins"   
+      }    

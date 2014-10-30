@@ -45,6 +45,8 @@
     - jenkins-slave
 
   vars:    
+    docker_files_enable: yes
+    docker_files_generated_directory: "roles/jenkins-slave"
     jenkins_jdk7_enable: no
 #    jenkins_home_dir: "/jenkins"
 #    jenkins_slave_home: "/kgr-mvn"

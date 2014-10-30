@@ -2,12 +2,8 @@
 - hosts: all
   sudo: true
   roles:
-    - role: ./
-#    - ansible-selenium
+    - { role: ./,
+        docker_files_enable: yes      
+      }
 
-  vars:     
-    docker_files_generated_directory: ""
-    docker_files_enable: no       
-       
-#TODO
 #- include: docker/integration-tests.yml

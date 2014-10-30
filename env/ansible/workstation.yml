@@ -203,6 +203,11 @@
   roles:
     - cpp
 
+  vars:
+      gcc_version: "4:4.8.2-1ubuntu6"
+      cppunit_version: "1.13-0"
+      boost_version: "1.54"
+
 - name: Install java
   hosts: java
   remote_user: root
@@ -275,9 +280,10 @@
   vars:
       zabbix_agent_major: '2'
       zabbix_agent_minor: '2'
-      zabbix_agent_revision: '6'
+      zabbix_agent_revision: '7'
       zabbix_agent_ubuntu: "1:{{zabbix_agent_version}}-1+trusty"
-
+      #zabbix_agent_Server: 127.0.0.1
+      
 - name: Install webmin
   hosts: webmin
   remote_user: root
@@ -286,6 +292,10 @@
   roles:
     - webmin
 
+  vars:
+      docker_files_enable: yes
+      docker_files_generated_directory: "roles/webmin"
+        
 - name: Install nexus
   hosts: nexus
   remote_user: root
@@ -338,6 +348,8 @@
     - role: jenkins-master
 
   vars:
+      docker_files_generated_directory: "roles/jenkins-master"
+      docker_files_enable: yes
       jenkins_proxy: apache
       jenkins_proxy_hostname: jenkins.myhost.com
 #      jenkins_ssh_key_file: "{{resources_to}}/resources/jenkins/ssh_key"    # (you can manage remote files with Stouts.resources role)
@@ -368,6 +380,8 @@
     - jenkins-slave
 
   vars:
+    docker_files_enable: yes
+    docker_files_generated_directory: "roles/jenkins-slave"
 #    jenkins_home_dir: "/jenkins"
 #    jenkins_slave_home: "/kgr-mvn"
     jenkins_jdk7_enable: yes
@@ -415,7 +429,10 @@
 
   roles:
     - workstation
-
+    
+  vars:
+       apt_notification_email: "/workspace/Dropbox"
+       
 - name: Install dropbox
   hosts: workstation
   remote_user: root
@@ -426,6 +443,10 @@
   roles:
     - dropbox
 
+  vars:   
+       docker_files_enable: yes
+       docker_files_generated_directory: "roles/dropbox"
+       
 #- name: Apply swarm configuration to all jenkins slaves
 #  hosts: jenkins-swarm
 #  remote_user: root
@@ -441,6 +462,10 @@
 #
 #  roles:
 #    - jenkins-swarm
+#
+#  vars:
+#       docker_files_enable: yes,
+#       docker_files_generated_directory: "roles/jenkins-swarm",
 
 # This playbook deploys a simple standalone Tomcat 7 server.
 - name: Deploy Tomcat
@@ -534,7 +559,9 @@
   vars:
        mysql_root_username: root
        mysql_root_password: microsoft       
-       
+       docker_files_enable: yes
+       docker_files_generated_directory: "roles/web"
+      
 - name: configure supervisor
   hosts: supervisors
   remote_user: root
@@ -616,7 +643,8 @@
     - role: shell
 
   vars:
-      shell_enabled: yes
+      docker_files_generated_directory: "roles/shell"
+      docker_files_enable: yes  
 #      shell_owner: "{{ user }}"
 #      shell_owner_home: "{{ home }}"
 #      shell_env_directory: "{{ home }}/env/tmp"
@@ -630,11 +658,24 @@
     - role: eclipse
 
   vars:
+      docker_files_generated_directory: "roles/eclipse"
+      docker_files_enable: yes
       #eclipse_base_dir: /workspace/eclipse
-      eclipse_owner: "{{ user }}"
-      eclipse_group: "{{ eclipse_owner }}"
-      eclipse_owner_home: "{{ home }}"
+      #user: "albandri"
+      #home: "/workspace/users/albandri10"
 
+- name: Install zap
+  connection: local
+  hosts: workstation
+  remote_user: root
+#  connection: local
+  roles:
+    - role: zap
+
+  vars:
+      docker_files_generated_directory: "roles/zap"
+      docker_files_enable: yes
+      
 - name: Install jmeter
   hosts: workstation
   remote_user: root

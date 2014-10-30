@@ -1,7 +1,9 @@
 ---
-# This playbook play all post common installation for all servers
-
 - hosts: all
-  sudo: True
+  sudo: true
   roles:
-    - ansible-zabbix_agent
+    - { role: ./,
+        docker_files_enable: yes
+      }
+
+#- include: ./integration-tests.yml

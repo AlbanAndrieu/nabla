@@ -32,7 +32,6 @@
 
 - name: Install cssed
   apt: pkg={{ item }} state=present update_cache=yes
-  when: css_editor_enabled  
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and css_editor_enabled
   with_items:
    - cssed

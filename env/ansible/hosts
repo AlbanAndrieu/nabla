@@ -110,8 +110,20 @@ albandri-laptop-misys.misys.global.ad
 [sonar]
 albandri-laptop-misys.misys.global.ad
 
+[shell]
+#see workstation
+
 [zap]
-albandri-laptop-misys.misys.global.ad
+#see workstation
+
+[dropbox]
+#see workstation
+
+[jmeter]
+#see workstation
+
+[eclipse]
+#see workstation
 
 [logstash]
 albandri-laptop-misys.misys.global.ad

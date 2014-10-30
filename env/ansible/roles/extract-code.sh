@@ -136,9 +136,12 @@ git clone https://github.com/geerlingguy/ansible-role-samba.git geerlingguy.samb
 #TODO merge below geerlingguy.java with other java role
 git clone https://github.com/geerlingguy/ansible-role-java geerlingguy.java
 git clone https://github.com/geerlingguy/ansible-role-elasticsearch.git geerlingguy.elasticsearch
-git clone https://github.com/geerlingguy/ansible-role-logstash geerlingguy.logstash
+#git clone https://github.com/geerlingguy/ansible-role-logstash geerlingguy.logstash
+git clone https://github.com/AlbanAndrieu/ansible-role-logstash.git geerlingguy.logstash
+
 git clone https://github.com/geerlingguy/ansible-role-nginx.git geerlingguy.nginx
-git clone https://github.com/geerlingguy/ansible-role-kibana.git geerlingguy.kibana
+#git clone https://github.com/geerlingguy/ansible-role-kibana.git geerlingguy.kibana
+git clone https://github.com/AlbanAndrieu/ansible-role-kibana.git geerlingguy.kibana
 
 #SEE
 https://github.com/ansible/ansible-examples/tree/master/language_features

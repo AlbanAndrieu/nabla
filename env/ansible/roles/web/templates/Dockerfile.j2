@@ -1,16 +1,48 @@
 # {{ ansible_managed }}
-#Docker image with java7 (oracle) based on debian:jessie
-FROM        wouterd/java7
+#FROM        debian:jessie
+#FROM        stackbrew/ubuntu:14.04
+FROM        jasongiedymin/ansible-base-ubuntu
 
-VOLUME      ["/var/log/tomcat6"]
+# Volume can be accessed outside of container
+VOLUME      [{{ docker_volume_directory }}]
 
-MAINTAINER  Alban Andrieu "https://github.com/AlbanAndrieu/nabla"
+MAINTAINER  Alban Andrieu "https://github.com/AlbanAndrieu"
 
-ENV         CATALINA_BASE /var/lib/tomcat6
-ENV         CATALINA_HOME /usr/share/tomcat6
+ENV			DEBIAN_FRONTEND noninteractive
+ENV         WEB_HOME {{ web_base_dir }}
 
-RUN         apt-get update && \
-            apt-get install -y tomcat6
+# Working dir
+WORKDIR {{ docker_working_directory }}
 
-EXPOSE      8080
-ENTRYPOINT  ["/usr/share/tomcat6/bin/catalina.sh", "run"]
+# COPY
+#COPY /workspace/users/albandri10/env/ansible/roles/jenkins-slave $WORKDIR
+
+# ADD
+ADD defaults $WORKDIR/defaults
+ADD meta $WORKDIR/meta
+ADD files $WORKDIR/files
+#ADD handlers $WORKDIR/handlers
+ADD tasks $WORKDIR/tasks
+ADD templates $WORKDIR/templates
+ADD vars $WORKDIR/vars
+
+# Here we continue to use add because
+# there are a limited number of RUNs
+# allowed.
+ADD hosts /etc/ansible/hosts
+ADD playbook.yml $WORKDIR/playbook.yml -vvvv
+
+# Execute
+RUN         ansible-playbook $WORKDIR/playbook.yml -i $WORKDIR/hosts -c local
+
+#RUN         apt-get update && \
+#            apt-get install -y openssh-server openjdk-7-jre-headless
+#RUN         useradd -m -s /bin/bash jenkins
+#RUN         echo jenkins:jenkins | chpasswd
+#RUN         mkdir -p /var/run/sshd
+            
+EXPOSE      22
+ENTRYPOINT  ["/etc/init.d/apache2"]
+#ENTRYPOINT ["java", "-jar", "{{ jenkins_home_dir }}/swarm-client-1.9-jar-with-dependencies.jar"]
+CMD /usr/sbin/sshd -D
+#CMD ["-g", "deamon off;"]

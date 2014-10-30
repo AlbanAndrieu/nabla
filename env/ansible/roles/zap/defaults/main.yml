@@ -5,12 +5,19 @@ zap_enabled: yes                       # Enable module
 #zap_port: "8090"
 
 ## Where to install zap and Unix user/group
+#user: "{{ lookup('env','USER') }}"
 zap_owner: "zap" 
-zap_group: "zap"
+#zap_owner: "{{ user }}" 
+zap_group: "{{ zap_owner }}"
 zap_shell: "/bin/false" #/bin/bash
 zap_base_dir: "/usr/local/zap"
+#home: "{{ lookup('env','HOME') }}"
+#zap_owner_home: "{{ home }}"
+zap_owner_home: "{{ zap_base_dir }}"
 zap_link_base_dir: "/opt"
 zap_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"
+zap_user_state: present
+#zap_pkg_state: present
 
 ## Most likely you dont need to edit 
 #todo zap_service_enabled   : 'yes'
@@ -24,7 +31,8 @@ zap_url: "http://sourceforge.net/projects/zaproxy/files/{{zap_version}}/{{zap_ar
 #zap_url: "http://downloads.sourceforge.net/project/zaproxy/{{zap_version}}/{{zap_archive}}?r=&ts=1411599584&use_mirror=skylink"
 zap_home_dir: "{{zap_base_dir}}/{{zap_name}}"
 
-docker_files_generated_directory: "roles/zap"
+docker_files_generated_directory: "./"
+docker_files_enable: no
 docker_volume_directory: "{{ zap_base_dir }}"
 docker_working_directory: "/home/vagrant"
 docker_image_name: "nabla/ansible-zap"

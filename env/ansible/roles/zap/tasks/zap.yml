@@ -10,12 +10,22 @@
   user:
     name="{{zap_owner}}"
     group="{{zap_group}}"
-    home="{{zap_base_dir}}"
+    home="{{zap_owner_home}}"
     shell="{{zap_shell}}"
     comment="Zap User"
     createhome=yes
   tags: zap_setup
 
+- name: shell | Check user
+  user: name={{ zap_owner }} state={{ zap_user_state }}
+
+- name: shell | Check user home directory
+  stat: path={{ zap_owner_home }}
+  register: home_present
+
+- debug: msg=" shell | Path exists and is a directory"
+  when: home_present.stat.isdir is defined and home_present.stat.isdir == true
+  
 - name: zap | Create temporary directory
   shell: mktemp -d
   register: tempdir
@@ -78,7 +88,7 @@
   when: zap_archive_extracted_present.stat.pw_name != '{{zap_owner}}'
   tags: zap_setup
 
-- name: zap | Create a link to zap
+- name: zap | Create a link to zap (1)
   file:
     src="{{zap_base_dir}}/{{zap_name}}"
     dest="{{zap_base_dir}}/zap-{{zap_major}}"
@@ -87,10 +97,10 @@
     group="{{zap_group}}"
   tags: zap_setup
 
-- name: zap | Create a link to zap
+- name: zap | Create a link to zap (2)
   file:
-    src="{{zap_link_base_dir}}/{{zap_name}}"
-    dest="{{zap_base_dir}}/zap-{{zap_major}}"
+    src="{{zap_base_dir}}/{{zap_name}}"
+    dest="{{zap_link_base_dir}}/zap-{{zap_major}}"
     state=link
     owner="{{zap_owner}}"
     group="{{zap_group}}"

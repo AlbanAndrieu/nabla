@@ -13,11 +13,16 @@
 #  connection: local
 
   roles:
-    - role: jenkins-master
-
+    - { role: jenkins-master,
+        docker_files_enable: yes,
+        docker_files_generated_directory: "roles/jenkins-master",
+        #user: "albandri",
+        #home: "/workspace/users/albandri10",      
+      }
+      
   vars:
       jenkins_proxy: apache
-      jenkins_proxy_hostname: jenkins.myhost.com
+      jenkins_proxy_hostname: localhost
 #      jenkins_ssh_key_file: "{{resources_to}}/resources/jenkins/ssh_key"    # (you can manage remote files with Stouts.resources role)
       jenkins_ssh_key_file: "~/.ssh/id_rsa.pub"
       jenkins_http_port: 8380
@@ -28,7 +33,7 @@
         - "-Djava.awt.headless=true"
       jenkins_prefix: "/jenkins"
       jenkins_plugins:
-        - "toto"
+        - "todo"
 #      jenkins_jobs:
 #        - name: test
 #          action: delete

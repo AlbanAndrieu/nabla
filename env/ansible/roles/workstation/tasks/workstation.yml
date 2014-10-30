@@ -328,8 +328,60 @@
   ignore_errors: yes  
   tags: apache
   
-- name: workstation | Check user
-  user: name={{user}} state=present
+- name: Check user  
+  user: name={{ variety_owner }} state=present
+  
+- name: Check user home directory
+  stat: path={{ variety_owner_home }}
+  register: home_present
+
+- debug: msg="Path exists and is a directory"
+  when: home_present.stat.isdir is defined and home_present.stat.isdir == true
+    
+- name: variety | Create base directory
+  file:
+    dest="{{ variety_directory }}"
+    state=directory
+    owner="{{ variety_owner }}"
+    group="{{ variety_group }}"
+  tags: variety_setup
+      
+- name: variety | Add variety configuration.
+  template:
+    src: "variety.conf.j2"
+    dest: "{{ variety_directory }}/variety.conf"
+    owner: "{{ variety_owner }}"
+    group: "{{ variety_group }}"
+    mode: 0644
+#  notify: restart variety
+
+- name: dropbox | Create user directory
+  file:
+    dest="{{ dropbox_user_directory }}"
+    state=directory
+    owner="{{ dropbox_owner }}"
+    group="{{ dropbox_group }}"
+  tags: dropbox_setup
+
+- name: dropbox | Create base directory
+  file:
+    dest="{{ dropbox_directory }}"
+    state=directory
+    owner="{{ dropbox_owner }}"
+    group="{{ dropbox_group }}"
+  tags: dropbox_setup
+      
+- name: dropbox | Add dropbox configuration.
+  template:
+    src: "info.json.j2"
+    dest: "{{ dropbox_directory }}/info.json"
+    owner: "{{ dropbox_owner }}"
+    group: "{{ dropbox_group }}"
+    mode: 0644
+#  notify: restart dropbox
+
+#- name: workstation | Check user
+#  user: name={{user}} state=present
 
 - name: workstation | Force no login for user jboss
   user: name=jboss shell=/bin/false state=present

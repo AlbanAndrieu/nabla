@@ -1,4 +1,4 @@
-#sudo ansible-playbook -i hosts -c local -v zap.yml | tee setup.log
+#sudo ansible-playbook -i hosts -c local -v webmin.yml | tee setup.log
 
 - name: Install subversion
   connection: local
@@ -7,9 +7,9 @@
 #  accelerate: true
 
   roles:
-    - { role: zap,
+    - { role: webmin,
         docker_files_enable: yes,
-        docker_files_generated_directory: "roles/zap"
+        docker_files_generated_directory: "roles/webmin",
         #user: "albandri",
         #home: "/workspace/users/albandri10"     
       }    
