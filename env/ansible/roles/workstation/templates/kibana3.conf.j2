@@ -1,15 +1,24 @@
+{# Set up VirtualHosts - servername and documentroot are required. #}
+{% for vhost in apache_vhosts_kibana %}
 <VirtualHost *:7070>
-  ServerName localhost
+  ServerName {{ vhost.servername }}
+{% if vhost.serveradmin is defined %}
+  ServerAdmin {{ vhost.serveradmin }}
+{% endif %}
 
-  DocumentRoot /var/www/kibana3
-  <Directory /var/www/kibana3>
+  DocumentRoot {{ vhost.documentroot }}
+  <Directory {{ vhost.documentroot }}>
     Allow from all
     Options -Multiviews
   </Directory>
 
+{% if vhost.extra_parameters is defined %}
+  {{ vhost.extra_parameters }}
+{% endif %}
+
   LogLevel debug
-  ErrorLog /var/log/{{ apache_directory }}/error_log
-  CustomLog /var/log/{{ apache_directory }}/access_log combined
+  ErrorLog /var/log/{{ apache_directory }}/kibana_error.log
+  CustomLog /var/log/{{ apache_directory }}/kibana_access.log combined
 
   # Set global proxy timeouts
   <Proxy http://127.0.0.1:9200>
@@ -36,3 +45,5 @@
 #    Require valid-user
 #  </Location>
 </VirtualHost>
+
+{% endfor %}

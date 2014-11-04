@@ -109,17 +109,6 @@
    - cowsay 
    - fortunes 
    - fortunes-fr   
-
-- name: common | Uninstall whoopsie packages
-  apt: >
-    pkg={{ item }} 
-    state=absent
-    purge=yes
-    force=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package      
-  with_items:
-    - whoopsie  
     
 - name: common | Install perl
   apt: pkg={{ item }} state=present update_cache=yes

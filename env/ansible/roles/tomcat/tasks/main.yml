@@ -46,22 +46,22 @@
 #  file: path=/usr/share/tomcat/ owner=tomcat group=tomcat state=directory recurse=yes
 
 - name: Configure Tomcat server
-  template: src=server-{{ ansible_distribution }}-{{ ansible_architecture }}.xml dest=/usr/share/tomcat/conf/server.xml
+  template: src=server.xml.j2 dest=/usr/share/tomcat/conf/server.xml
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
   notify: restart tomcat
 
 - name: Configure Tomcat server
-  template: src=server-{{ ansible_distribution }}-{{ ansible_architecture }}.xml dest=/var/lib/tomcat7/conf/server.xml
+  template: src=server.xml.j2 dest=/var/lib/tomcat7/conf/server.xml
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   notify: restart tomcat
 
 - name: Configure Tomcat users
-  template: src=tomcat-users.xml dest=/usr/share/tomcat/conf/
+  template: src=tomcat-users.xml.j2 dest=/usr/share/tomcat/conf/tomcat-users.xml
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'  
   notify: restart tomcat
 
 - name: Configure Tomcat users
-  template: src=tomcat-users.xml dest=/etc/tomcat7/
+  template: src=tomcat-users.xml.j2 dest=/etc/tomcat7/tomcat-users.xml
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
   notify: restart tomcat
 
@@ -69,7 +69,7 @@
 #  copy: src=tomcat-initscript.sh dest=/etc/init.d/tomcat mode=0755
 
 - name: Tomcat can run any command with no password
-  lineinfile: "line='tomcat ALL=NOPASSWD: ALL' dest=/etc/sudoers regexp='^tomcat'"
+  lineinfile: "line='tomcat ALL=NOPASSWD: ALL' dest=/etc/sudoers regexp='^tomcat' validate='visudo -cf %s'"
 
 - name: Start Tomcat
   service: name=tomcat state=started enabled=yes
@@ -80,7 +80,7 @@
   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'    
   
 #- name: deploy iptables rules
-#  template: src=iptables-save dest=/etc/sysconfig/iptables
+#  template: src=iptables.j2 dest=/etc/sysconfig/iptables
 #  notify: restart iptables
 
 - name: wait for tomcat to start

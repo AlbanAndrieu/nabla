@@ -22,9 +22,9 @@
 
 - name: administration | Install monitoring tools
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package  
-  with_items:   
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package
+  with_items:
    - smartmontools
    - ssmtp
    - snmp #for cacti
@@ -32,26 +32,26 @@
 
 - name: administration | Install AWS tools
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package  
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package
   with_items:
-   - ec2-api-tools    
+   - ec2-api-tools
    - s3cmd
-         
+
 - name: administration | Install other tools
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
-  tags: package  
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  tags: package
   with_items:
    - daemon
    - mailutils
 
 - name: administration | Install connection tools
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'  
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
   tags: package
-  with_items:   
-#   - nis  
+  with_items:
+#   - nis
 #   - autofs
    - ufw
 
@@ -78,13 +78,13 @@
 
 - name: administration | Start the ntp service
   service: name=ntp state=started enabled=true
-  tags: service  
- 
+  tags: service
+
 #- name: administration | Install nis
 #  apt: pkg=nis state=present update_cache=yes
 #  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-#  tags: package  
-  
+#  tags: package
+
 #- name: administration | Configure yellow page file
 #  template: src=yp.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/yp.conf
 #  tags: configure
@@ -99,26 +99,26 @@
 #  copy: src=nis-{{ ansible_distribution }}-{{ ansible_architecture }}.sh dest=/etc/init.d/nis mode=0755
 #  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )  and ( ansible_distribution_release == 'precise' )
 #  tags: configure
-  
+
 #- name: administration | Start the nis service
 #  service: name=nis state=started enabled=true
-#  tags: service  
-  
+#  tags: service
+
 #- name: administration | Install autofs
 #  apt: pkg=autofs state=present update_cache=yes
 #  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
-#  tags: package  
- 
+#  tags: package
+
 #- name: administration | Configure autofs file
 #  template: src=rc.local-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/rc.local
 #  tags: configure
 #  notify: restart autofs
-  
+
 #- name: administration | Configure autofs file
 #  template: src=auto.master-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/auto.master
 #  tags: autofs
 #  notify: restart autofs
-   
+
 #- name: administration | Configure autofs file
 #  template: src=autofs_ldap_auth.conf-{{ ansible_distribution }}-{{ ansible_architecture }}.j2 dest=/etc/autofs_ldap_auth.conf
 #  tags: configure
@@ -130,14 +130,19 @@
 
 - name: administration | Install sendmail tools
   apt: pkg={{ item }} state=present update_cache=yes
-  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )
   tags: package
   with_items:
    - sendmail
 
+- name: administration | Copy the sendmail configuration file
+  copy: src=sendmail.cf.j2 dest=/etc/mail/sendmail.conf mode=0755
+  when: ( ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu' )
+  tags: configure
+
 #copy current user key
 - include: copy-keys.yml
-  
+
 #TODO use authorized_key instead of copy-keys.yml
 #See http://brokenbad.com/better-handling-of-public-ssh-keys-using-ansible/
 #- name: administration | Checking public keys list

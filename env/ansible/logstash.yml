@@ -52,7 +52,11 @@
        #logstash_elasticsearch_host: "albandri-laptop-misys"
        #logstash_local_syslog_path: "/var/log/*.log"
        logstash_monitor_jenkins_enabled: yes
+       logstash_monitor_nexus_enabled: yes
        logstash_monitor_apache_enabled: yes
+       logstash_monitor_nginx_enabled: yes
+       logstash_monitor_elasticsearch_enabled: yes
+       logstash_monitor_miscellaneous_enabled: yes
        logstash_heap: "50m"
        
 #- name: Add nginx configuration
