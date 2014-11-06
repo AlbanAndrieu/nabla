@@ -29,7 +29,8 @@ ansigenome_info:
   travis: False
 
   synopsis: |
-    Describe your role in a few paragraphs....
+    A role to install basic tools on every workstations, like basic editors, diff tools, scm, pidgin, nodejs and basic performance tools....
+    This role must be splitted into seperate one that will be customizable
 
   usage: |
     Describe how to use in more detail...

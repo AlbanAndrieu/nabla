@@ -1,4 +1,7 @@
 ---
+dependencies:
+  - { role: geerlingguy.ntp }
+#  - { role: geerlingguy.firewall }
 
 galaxy_info:
   author: Alban Andrieu
@@ -21,10 +24,6 @@ galaxy_info:
     - trusty
   categories:
   - development
-dependencies:
-  - { role: geerlingguy.ntp }
-#  - { role: geerlingguy.firewall }
-
 
 ansigenome_info:
   galaxy_id: ''
@@ -32,7 +31,8 @@ ansigenome_info:
   travis: False
 
   synopsis: |
-    Describe your role in a few paragraphs....
+    A role to install tools for system administrator, like autofs, nis, yellow page and sendmail....
+    This role must be splitted into seperate one that will be customizable
 
   usage: |
     Describe how to use in more detail...

@@ -115,6 +115,14 @@ git clone https://github.com/AlbanAndrieu/ansible-grive.git grive
 
 git clone https://github.com/Stouts/Stouts.python.git python
 
+git clone https://github.com/AlbanAndrieu/ansible-web.git web
+
+git clone https://github.com/AlbanAndrieu/ansible-common.git common
+
+git clone https://github.com/AlbanAndrieu/ansible-administration.git administration
+
+git clone https://github.com/AlbanAndrieu/ansible-workstation.git workstation
+
 #TODO TOSEE
 git clone https://github.com/debops/ansible-monit.git monit
 

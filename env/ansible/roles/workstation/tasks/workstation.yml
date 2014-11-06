@@ -495,13 +495,6 @@
     mode: 0644
 #  notify: restart dropbox
 
-#TODO
-#sudo pip install ansigenome
-#easy_install ansigenome
-#sudo ansigenome config
-#cd ~/env/ansible/roles 
-#ansigenome scan
-
 #- name: workstation | Check user
 #  user: name={{user}} state=present
 

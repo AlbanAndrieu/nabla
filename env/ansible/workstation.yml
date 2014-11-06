@@ -45,18 +45,17 @@
 #  vars_files:
 #    - [ "roles/hostname/defaults/main.yml" ]
 
-- name: Apply ntp configuration to all nodes
-  hosts: all
-  gather_facts: false
-  remote_user: root
-#  connection: local
-
-  roles:
-    - geerlingguy.ntp
-    
-  vars:
-       ntp_timezone: Europe/Paris
-#       ntp_enabled: true
+#- name: Apply ntp configuration to all nodes
+#  hosts: all
+#  gather_facts: false
+#  remote_user: root
+##  connection: local
+#
+#  roles:
+#    - geerlingguy.ntp
+#    
+#  vars:
+#       ntp_timezone: Europe/Paris
 
 #Warning below has a ntp configuration
 - name: Apply common configuration to all nodes
@@ -70,6 +69,7 @@
 
   vars:
        apt_notification_email: "alban.andrieu@free.fr"
+       ntp_timezone: Europe/Paris
 
 - name: Apply dns configuration to all nodes
   hosts: Ubuntu-12*:Ubuntu-14*
@@ -646,9 +646,8 @@
   remote_user: root
   
   vars_files:
-#  - [ "roles/shell/defaults/main.yml" ]
-  - [ "roles/shell/vars/defaults.yml" ]
-  - [ "roles/shell/vars/common.yml" ]
+  - [ "roles/shell/defaults/main.yml" ]
+  - [ "roles/shell/vars/default.yml" ]
   - [ "roles/shell/vars/version.yml" ]
   - [ "roles/shell/vars/custom-{{ ansible_distribution }}-{{ ansible_architecture }}.yml", "roles/shell/vars/custom-{{ ansible_distribution }}.yml" ]
 

@@ -60,6 +60,18 @@
 - name: common | Test ansible is installed
   shell: ansible --version
 
+- name: common | Install ansigenome
+  command: sudo pip install ansigenome
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and ansigenome_enabled == true
+  tags: package  
+
+#TODO
+#sudo pip install ansigenome
+#easy_install ansigenome
+#sudo ansigenome config
+#cd ~/env/ansible/roles 
+#ansigenome scan
+  
 - name: common | Install update notification tools
   apt: pkg={{ item }} state=present update_cache=yes
   when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and utilities_enabled == true
