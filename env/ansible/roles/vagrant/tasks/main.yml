@@ -18,8 +18,8 @@
 
 - name: vagrant | Install libvirt requirements (Debian only)
   apt: pkg={{ item }} state=present
-  when: ansible_distribution == 'Debian' and vagrant_libvirt_enabled   
-  with_items:
+  when: (ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu') and vagrant_libvirt_enabled
+  with_items:  
     - libxslt-dev 
     - libxml2-dev 
     - libvirt-dev

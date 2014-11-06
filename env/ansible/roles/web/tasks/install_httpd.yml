@@ -38,7 +38,7 @@
 
 - name: Web | Enable the default site
   action: command a2ensite 000-default
-  ignore_errors: yes  
+#  ignore_errors: yes
   tags: apache
 
 #- name: Web | Configure SELinux to allow httpd to connect to remote database

@@ -1,8 +1,9 @@
 ---
+
 galaxy_info:
-  author: "Alex Lourie <djay.il@gmail.com>"
+  author: Alban Andrieu
   description: Install Chrome stable on Ubuntu system
-  license: LGPL
+  license: GPLv3
   min_ansible_version: 1.4
   platforms:
   - name: Debian
@@ -13,3 +14,18 @@ galaxy_info:
   categories:
     - system
 dependencies: []
+
+
+ansigenome_info:
+  galaxy_id: ''
+
+  travis: True
+
+  synopsis: |
+    Describe your role in a few paragraphs....
+
+  usage: |
+    Describe how to use in more detail...
+
+  #custom: |
+  #  Any custom output you want after the usage section..

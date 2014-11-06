@@ -1,8 +1,10 @@
 ---
+dependencies: []
+  
 galaxy_info:
-  author: "Benno Joy"
-  company: Ansible
-  license: BSD
+  author: Alban Andrieu
+  company: Nabla
+  license: GPLv3
   min_ansible_version: 1.4 
   platforms:
    - name: EL
@@ -15,5 +17,17 @@ galaxy_info:
       - raring
   categories:
    - database:nosql
-dependencies: []
-  
+
+ansigenome_info:
+  galaxy_id: ''
+
+  travis: False
+
+  synopsis: |
+    Describe your role in a few paragraphs....
+
+  usage: |
+    Describe how to use in more detail...
+
+  #custom: |
+  #  Any custom output you want after the usage section..

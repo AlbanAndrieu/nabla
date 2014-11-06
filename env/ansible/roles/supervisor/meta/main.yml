@@ -1,10 +1,11 @@
 ---
+dependencies: []
 
 galaxy_info:
-  author: EDITD devs
+  author: Alban Andrieu
   description: A role for creating supervisor tasks
-  company: EDITD
-  license: MIT
+  company: Nabla
+  license: GPLv3
   min_ansible_version: 1.2
   platforms:
   - name: Ubuntu
@@ -25,5 +26,17 @@ galaxy_info:
   - packaging
   - system
   - web
-dependencies: []
 
+ansigenome_info:
+  galaxy_id: ''
+
+  travis: True
+
+  synopsis: |
+    Describe your role in a few paragraphs....
+
+  usage: |
+    Describe how to use in more detail...
+
+  #custom: |
+  #  Any custom output you want after the usage section..

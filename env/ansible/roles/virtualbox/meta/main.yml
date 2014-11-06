@@ -1,9 +1,11 @@
 ---
+dependencies: []
+
 galaxy_info:
-  author: Vlatko Kosturjak
+  author: Alban Andrieu
   description: Installs virtualbox on ubuntu
-  company: kost
-  license: BSD
+  company: Nabla
+  license: GPLv3
   min_ansible_version: 1.5
   platforms:
   - name: Ubuntu
@@ -13,4 +15,17 @@ galaxy_info:
   categories:
   - system
   - packaging
-dependencies: []
+
+ansigenome_info:
+  galaxy_id: ''
+
+  travis: True
+
+  synopsis: |
+    Describe your role in a few paragraphs....
+
+  usage: |
+    Describe how to use in more detail...
+
+  #custom: |
+  #  Any custom output you want after the usage section..

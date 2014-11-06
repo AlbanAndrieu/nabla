@@ -43,6 +43,5 @@ RUN         ansible-playbook $WORKDIR/playbook.yml -i $WORKDIR/hosts -c local
             
 EXPOSE      22
 ENTRYPOINT  ["/etc/init.d/apache2"]
-#ENTRYPOINT ["java", "-jar", "{{ jenkins_home_dir }}/swarm-client-1.9-jar-with-dependencies.jar"]
 CMD /usr/sbin/sshd -D
 #CMD ["-g", "deamon off;"]

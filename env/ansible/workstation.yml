@@ -355,6 +355,7 @@
 #      jenkins_ssh_key_file: "{{resources_to}}/resources/jenkins/ssh_key"    # (you can manage remote files with Stouts.resources role)
       jenkins_ssh_key_file: "~/.ssh/id_rsa.pub"
       jenkins_http_port: 8380
+      jenkins_proxy_port: 7070
 #      jenkins_home_dir: /jenkins
       jenkins_java_args:
         - "-Xmx1024m"
@@ -362,7 +363,7 @@
         - "-Djava.awt.headless=true"
       jenkins_prefix: "/jenkins"
       jenkins_plugins:
-        - "toto"
+        - "subversion"
 #      jenkins_jobs:
 #        - name: test
 #          action: delete
@@ -523,14 +524,34 @@
 #
 #  vars:
 #       php_date_timezone: "Europe/Paris"
+#
+#- name: Add admin tool for Apache like PHPmyAdmin
+#  hosts: apache-servers
+#  remote_user: root
+##  connection: local
+#
+#  roles:
+#    - geerlingguy.phpmyadmin
+#
+#  vars:
+#       phpmyadmin_mysql_user: root
+#       phpmyadmin_mysql_password: microsoft
+#       phpmyadmin_mysql_port: 7070
+#       apache_listen_port: 7070
+#       php_date_timezone: "Europe/Paris"
+#       mysql_innodb_log_file_size: "5M"
+#       mysql_root_username: root
+#       mysql_root_password: microsoft
 
-- name: Add admin tool for Apache like PHPmyAdmin
-  hosts: apache-servers
+#WARNING jenkins-master role has disabled a2dissite 000-default
+- name: Configure and deploy the nabla php sample application code to apache
+  hosts: nabla-servers
+#  hosts: apache-servers
   remote_user: root
 #  connection: local
 
   roles:
-    - geerlingguy.phpmyadmin
+    - web
 
   vars:
        phpmyadmin_mysql_user: root
@@ -540,8 +561,10 @@
        php_date_timezone: "Europe/Paris"
        mysql_innodb_log_file_size: "5M"
        mysql_root_username: root
-       mysql_root_password: microsoft
-       
+       mysql_root_password: microsoft          
+       docker_files_enable: yes
+       docker_files_generated_directory: "roles/web"
+
 - name: Install pagespeed
   hosts: apache-servers
   remote_user: root
@@ -551,22 +574,7 @@
 
   vars:
        pagespeed_package_arch: "amd64"
-
-#WARNING jenkins-master role has disabled a2dissite 000-default
-- name: Configure and deploy the nabla php sample application code to apache
-  hosts: nabla-servers
-  remote_user: root
-#  connection: local
-
-  roles:
-    - web
-
-  vars:
-       mysql_root_username: root
-       mysql_root_password: microsoft       
-       docker_files_enable: yes
-       docker_files_generated_directory: "roles/web"
-      
+        
 - name: configure supervisor
   hosts: supervisors
   remote_user: root

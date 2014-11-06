@@ -113,6 +113,8 @@ git clone https://github.com/AlbanAndrieu/ansible-mon.git mon
 
 git clone https://github.com/AlbanAndrieu/ansible-grive.git grive
 
+git clone https://github.com/Stouts/Stouts.python.git python
+
 #TODO TOSEE
 git clone https://github.com/debops/ansible-monit.git monit
 

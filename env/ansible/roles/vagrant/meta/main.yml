@@ -1,8 +1,10 @@
 ---
+dependencies: []
+
 galaxy_info:
-  author: "Kevin Lynch"
+  author: Alban Andrieu
   description: vagrant
-  license: MIT
+  license: GPLv3
   min_ansible_version: 1.4
   version: 0.1
 
@@ -14,4 +16,16 @@ galaxy_info:
     - development
     - system
 
-dependencies: []
+ansigenome_info:
+  galaxy_id: ''
+
+  travis: True
+
+  synopsis: |
+    Describe your role in a few paragraphs....
+
+  usage: |
+    Describe how to use in more detail...
+
+  #custom: |
+  #  Any custom output you want after the usage section..

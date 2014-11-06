@@ -1,5 +1,8 @@
+---
+dependencies: []
+
 galaxy_info:
-  author: Adham Helal
+  author: Alban Andrieu
   description: "Deploy Zabbix agents for Ubuntu 12.04"
   min_ansible_version: 1.4
   platforms:
@@ -8,3 +11,17 @@ galaxy_info:
     - precise
   categories:
   - monitoring
+
+ansigenome_info:
+  galaxy_id: ''
+
+  travis: True
+
+  synopsis: |
+    Describe your role in a few paragraphs....
+
+  usage: |
+    Describe how to use in more detail...
+
+  #custom: |
+  #  Any custom output you want after the usage section..

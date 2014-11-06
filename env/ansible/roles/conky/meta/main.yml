@@ -4,7 +4,7 @@ galaxy_info:
   author: Alban Andrieu
   description: A role for installing conky
   company: Nabla
-  license: MIT
+  license: GPLv3
   min_ansible_version: 1.6.3
   platforms:
   - name: Ubuntu
@@ -22,3 +22,18 @@ galaxy_info:
   categories:
   - development
 dependencies: []
+
+
+ansigenome_info:
+  galaxy_id: ''
+
+  travis: True
+
+  synopsis: |
+    Describe your role in a few paragraphs....
+
+  usage: |
+    Describe how to use in more detail...
+
+  #custom: |
+  #  Any custom output you want after the usage section..

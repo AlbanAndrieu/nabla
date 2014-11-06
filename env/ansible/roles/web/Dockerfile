@@ -1,16 +1,47 @@
-# Ansible managed: /workspace/users/albandri10/env/ansible/roles/web/templates/Dockerfile.j2 modified on 2014-09-16 00:56:12 by albandri on albandri-laptop-misys
-#Docker image with java7 (oracle) based on debian:jessie
-FROM        wouterd/java7
+# Ansible managed: /workspace/users/albandri10/env/ansible/roles/web/templates/Dockerfile.j2 modified on 2014-11-06 00:54:50 by albandri on albandri-laptop-misys.misys.global.ad
+#FROM        debian:jessie
+#FROM        stackbrew/ubuntu:14.04
+FROM        jasongiedymin/ansible-base-ubuntu
 
-VOLUME      ["/var/log/tomcat6"]
+# Volume can be accessed outside of container
+VOLUME      [/var/www/html]
 
-MAINTAINER  Alban Andrieu "https://github.com/AlbanAndrieu/nabla"
+MAINTAINER  Alban Andrieu "https://github.com/AlbanAndrieu"
 
-ENV         CATALINA_BASE /var/lib/tomcat6
-ENV         CATALINA_HOME /usr/share/tomcat6
+ENV			DEBIAN_FRONTEND noninteractive
+ENV         WEB_HOME /var/www/html
 
-RUN         apt-get update && \
-            apt-get install -y tomcat6
+# Working dir
+WORKDIR /home/vagrant
 
-EXPOSE      8080
-ENTRYPOINT  ["/usr/share/tomcat6/bin/catalina.sh", "run"]
+# COPY
+#COPY /workspace/users/albandri10/env/ansible/roles/jenkins-slave $WORKDIR
+
+# ADD
+ADD defaults $WORKDIR/defaults
+ADD meta $WORKDIR/meta
+ADD files $WORKDIR/files
+#ADD handlers $WORKDIR/handlers
+ADD tasks $WORKDIR/tasks
+ADD templates $WORKDIR/templates
+ADD vars $WORKDIR/vars
+
+# Here we continue to use add because
+# there are a limited number of RUNs
+# allowed.
+ADD hosts /etc/ansible/hosts
+ADD playbook.yml $WORKDIR/playbook.yml -vvvv
+
+# Execute
+RUN         ansible-playbook $WORKDIR/playbook.yml -i $WORKDIR/hosts -c local
+
+#RUN         apt-get update && \
+#            apt-get install -y openssh-server openjdk-7-jre-headless
+#RUN         useradd -m -s /bin/bash jenkins
+#RUN         echo jenkins:jenkins | chpasswd
+#RUN         mkdir -p /var/run/sshd
+            
+EXPOSE      22
+ENTRYPOINT  ["/etc/init.d/apache2"]
+CMD /usr/sbin/sshd -D
+#CMD ["-g", "deamon off;"]

@@ -3,10 +3,10 @@
 dependencies: []
 
 galaxy_info:
-  author: klen
-  company: Stouts
+  author: Alban Andrieu
+  company: Nabla
   description: Ansible role for manage Jenkins CI (installation, plugins, roles)
-  license: MIT
+  license: GPLv3
   platforms:
   - name: Ubuntu
     versions:
@@ -15,3 +15,17 @@ galaxy_info:
   - development
   - jenkins
   - system
+
+ansigenome_info:
+  galaxy_id: ''
+
+  travis: True
+
+  synopsis: |
+    Describe your role in a few paragraphs....
+
+  usage: |
+    Describe how to use in more detail...
+
+  #custom: |
+  #  Any custom output you want after the usage section..
