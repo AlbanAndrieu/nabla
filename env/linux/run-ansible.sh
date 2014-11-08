@@ -126,3 +126,14 @@ winrm set winrm/config/service @{AllowUnencrypted="true"}
 Get-ExecutionPolicy -Scope CurrentUser
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 
+sudo pip install ansigenome
+easy_install ansigenome
+git clone https://github.com/nickjj/ansigenome
+
+#sudo ansigenome config
+cd ~/env/ansible/roles 
+ansigenome scan
+less ~/.ansigenome.conf
+ansigenome gendoc -f md
+
+

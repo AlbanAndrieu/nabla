@@ -56,11 +56,11 @@ tail -f /var/log/apache2/error.log
 -----------------------------------------------------------------------
 
 sudo ufw status
-sudo iptables -A INPUT -p tcp -m tcp --dport 8080 -j ACCEPT
-netstat -an | grep 8080
-netstat -tlnp | grep 8080
+sudo iptables -A INPUT -p tcp -m tcp --dport 7070 -j ACCEPT
+netstat -an | grep 7070
+netstat -tlnp | grep 7070
 nmap -v -sV -PN albandri
-sudo lsof -i :8080
+sudo lsof -i :7070
 sudo lsof -i tcp:443
 
 From the machine 192.168.0.29 run the following and post back here.
@@ -79,23 +79,23 @@ sudo lsof -i -P -n
 
 To check for open ports on the network
 sudo nmap -sV 192.168.0.29
-sudo nmap -p 80,8080 192.168.0.0-255
-sudo nmap -sS -O -p80,8180,8080 192.168.0.0/24
+sudo nmap -p 80,7070 192.168.0.0-255
+sudo nmap -sS -O -p80,8180,7070 192.168.0.0/24
 sudo nmap localhost
 
 To check one particular open port on a server
 telnet <IP> 3389
 
---------- change apache to port 8080 -----------
+--------- change apache to port 7070 -----------
 #http://www.cyberciti.biz/faq/linux-apache2-change-default-port-ipbinding/
 sudo nano /etc/apache2/ports.conf
 #change
 #NameVirtualHost *:80
 #Listen 80
-Listen 127.0.0.1:8080
-#Use below to allow everybody to access apache on port 8080
-#Listen 8080
-#Listen *:8080
+Listen 127.0.0.1:7070
+#Use below to allow everybody to access apache on port 7070
+#Listen 7070
+#Listen *:7070
 
 -----------------------------------------------------------------------
 
@@ -118,7 +118,7 @@ sudo a2enmod proxy_http
 #check site that are enable at
 cd /etc/apache2/sites-enabled
 
-<VirtualHost *:8080>
+<VirtualHost *:7070>
         # The ServerName directive sets the request scheme, hostname and port that
         # the server uses to identify itself. This is used when creating
         # redirection URLs. In the context of virtual hosts, the ServerName
@@ -147,8 +147,8 @@ cd /etc/apache2/sites-enabled
         # after it has been globally disabled with "a2disconf".
         #Include conf-available/serve-cgi-bin.conf
 
-        ProxyPass / http://localhost:8080/
-        ProxyPassReverse / http://localhost:8080/
+        ProxyPass / http://localhost:7070/
+        ProxyPassReverse / http://localhost:7070/
         ProxyPreserveHost On
         #ProxyRequests off
 </VirtualHost>
@@ -188,8 +188,8 @@ NameVirtualHost *
         Allow from all
     </Proxy>
  
-    ProxyPass / http://jira-app-server.internal.example.com:8080/
-    ProxyPassReverse / http://jira-app-server.internal.example.com:8080/
+    ProxyPass / http://jira-app-server.internal.example.com:7070/
+    ProxyPassReverse / http://jira-app-server.internal.example.com:7070/
     <Location />
         Order allow,deny
         Allow from all
@@ -227,5 +227,9 @@ sudo nano /etc/hosts
 127.0.0.1	localhost.localdomain localhost ubuntu
 #or change /etc/apache2/httpd.conf
 #add line ServerName localhost
+
+#remove mpm package
+#sudo apt-get purge apache2
+sudo apt-get remove apache2-mpm-prefork
 
 sudo service apache2 restart

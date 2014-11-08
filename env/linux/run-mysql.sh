@@ -31,3 +31,11 @@ UPDATE user SET password=PASSWORD('Motdepasse12') WHERE User="root" AND Host="lo
 
 #test connection
 mysql -u root -p
+
+#pid bug    
+cd /var/run/mysqld/
+sudo chmod 664 mysqld.pid
+#inside /etc/init.d/mysql
+    #pidfile=`mysqld_get_param pid-file`
+    pidfile="/var/run/mysqld/mysqld.pid"
+    echo "pidfile = $pidfile"

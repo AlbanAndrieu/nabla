@@ -39,3 +39,7 @@ vagrant destroy
 #ln -s /devel/albandri/home/VirtualBox\ VMs/ 'VirtualBox VMs'
 
 #https://wiki.jenkins-ci.org/display/JENKINS/Vagrant+Plugin
+
+#add vagrant plugin
+sudo apt-get install libxslt-dev libxml2-dev libvirt-dev
+sudo vagrant plugin install vagrant-libvirt
