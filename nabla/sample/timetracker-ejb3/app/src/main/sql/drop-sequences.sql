@@ -6,5 +6,6 @@ drop sequence TASK_SEQ ;
 drop sequence TIME_ALLOCATION_SEQ ;
 drop sequence TIMECARD_SEQ ;
 drop sequence USER_ROLE_SEQ ;
+drop sequence MOVIE_SEQ ;
 
 exit;

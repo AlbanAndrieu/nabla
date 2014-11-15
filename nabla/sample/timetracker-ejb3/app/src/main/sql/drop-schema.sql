@@ -12,6 +12,9 @@ drop table TASK cascade constraints ;
 drop table TIME_ALLOCATION cascade constraints ;
 drop table TIMECARD cascade constraints ;
 drop table USER_ROLE cascade constraints ;
+drop table MOVIE cascade constraints ;
+drop table ROLES2USERS cascade constraints ;
+drop table GROUPS2ROLES cascade constraints ;
 
 @drop-sequences.sql
 

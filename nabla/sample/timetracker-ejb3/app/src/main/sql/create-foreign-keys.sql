@@ -24,11 +24,30 @@ ALTER TABLE TIMECARD
             REFERENCES USERS
                 ) ;
 
-/* ------------- UserRole foreign key contraints ------------------ */
-ALTER TABLE USER_ROLE
-    ADD  ( CONSTRAINT FKUSERUSERROLE
+/* ------------- roles2users foreign key contraints ------------------ */
+ALTER TABLE ROLES2USERS
+    ADD  ( CONSTRAINT FKUSERROLES2USERS
         FOREIGN KEY (USERS)
             REFERENCES USERS
-                ) ;
+                 ON DELETE CASCADE ) ;
+
+ALTER TABLE ROLES2USERS
+    ADD  ( CONSTRAINT FKUSERROLEROLES2USERS
+        FOREIGN KEY (ROLES)
+            REFERENCES USER_ROLE
+                 ON DELETE CASCADE ) ;
+
+/* ------------- groups2roles foreign key contraints ------------------ */
+ALTER TABLE GROUPS2ROLES
+    ADD  ( CONSTRAINT FKUSERROLEGROUPS2ROLES
+        FOREIGN KEY (GROUPS)
+            REFERENCES USER_ROLE
+                 ON DELETE CASCADE ) ;
+
+ALTER TABLE GROUPS2ROLES
+    ADD  ( CONSTRAINT FKUSERROLEGROUPS2ROLES
+        FOREIGN KEY (ROLES)
+            REFERENCES USER_ROLE
+                 ON DELETE CASCADE ) ;
 
 
