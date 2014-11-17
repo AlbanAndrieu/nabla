@@ -8,8 +8,10 @@ less /var/log/upstart/docker.log
 cat /etc/default/docker
 #NOK DOCKER_OPTS="-H 127.0.0.1:4243 -H unix:///var/run/docker.sock"
 #NOK DOCKER_OPTS="-H albandri.misys.global.ad:4243 -H unix:///var/run/docker.sock"
-DOCKER_OPTS="-H tcp://10.25.40.139:4243 -H unix:///var/run/docker.sock"
-DOCKER_OPTS="-H tcp://10.25.40.139:4243 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.25.200.3"
+#DOCKER_OPTS="-H tcp://82.231.208.223:4243 -H unix:///var/run/docker.sock"
+DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock"
+#DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.25.200.3"
+DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 8.8.8.8 --dns 8.8.8.4"
 
 if curl http://localhost:8380/jenkins 2>/dev/null | grep -iq jenkins; then echo "FAIL"; else echo "OK"; fi
 

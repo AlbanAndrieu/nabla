@@ -4,11 +4,11 @@
 #http://docs.codehaus.org/display/SONAR/Running+SonarQube+as+a+Service+on+Linux
 
 #sudo wget http://dist.sonar.codehaus.org/sonarqube-4.0.zip
-sudo wget http://dist.sonar.codehaus.org/sonarqube-4.3.zip
+sudo wget http://dist.sonar.codehaus.org/sonarqube-4.5.1.zip
 #unzip sonarqube-4.0.zip -d sonar-4.0
-unzip sonarqube-4.3.1.zip
+unzip sonarqube-4.5.1.zip
 
-ln -s sonarqube-4.3.1 sonar
+ln -s sonarqube-4.5.1 sonar
 sudo ln -s /workspace/sonar/bin/linux-x86-32/sonar.sh /usr/bin/sonar
 cd /etc/init.d
 sudo nano  /etc/init.d/sonar
@@ -35,17 +35,17 @@ sudo nano  /etc/init.d/sonar
 sudo chmod 755 /etc/init.d/sonar
 sudo update-rc.d sonar defaults
 
-sudo gedit /workspace/sonar/conf/sonar.properties
+sudo nano /workspace/sonar/conf/sonar.properties
 sonar.jdbc.url=jdbc:mysql://localhost:3306/sonar?useUnicode=true&characterEncoding=utf8&rewriteBatchedStatements=true
-sudo gedit /workspace/sonar/conf/wrapper.conf
+sudo nano /workspace/sonar/conf/wrapper.conf
 #uncomment
 #wrapper.java.additional.7=-server
 #change
 wrapper.logfile.loglevel=DEBUG
 
 Copy the OLD_SONARQUBE_HOME/extensions/plugins directory into NEW_SONARQUBE_HOME/extensions/plugins (replace plugins with compatible versions if necessary)
-sudo cp sonarqube-4.2/extensions/plugins/* sonar/extensions/plugins/
-#sudo cp sonarqube-4.2/extensions/jdbc-driver/ sonar/extensions/jdbc-driver
+sudo cp sonarqube-4.4/extensions/plugins/* sonar/extensions/plugins/
+#sudo cp sonarqube-4.4/extensions/jdbc-driver/ sonar/extensions/jdbc-driver
 If a custom JDBC driver is used, copy it into NEW_SONARQUBE_HOME/extensions/jdbc-driver/<dialect>
 
 #if your are using embedded database

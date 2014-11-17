@@ -134,7 +134,6 @@ selenium available browser
     
 #PATH=${PATH}:/usr/lib/chromium-browser/libs  
 
-
  -Dwebdriver.chrome.driver=/var/lib/chromedriver
  -Dwebdriver.chrome.driver="chromedriver"
  -Dwebdriver.chrome.driver=/opt/google/chrome/chrome

@@ -1,4 +1,4 @@
 cd /etc/nginx/sites-enabled
  
-sudo nano /etc/nginx/sites-enabled/default 
+sudo nano /etc/nginx/sites-enabled/default
 8480

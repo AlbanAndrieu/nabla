@@ -92,7 +92,20 @@ sudo nano /etc/apache2/ports.conf
 #change
 #NameVirtualHost *:80
 #Listen 80
-Listen 127.0.0.1:7070
+#Listen 127.0.0.1:7070
+Listen 7070
+#Gearman
+Listen 7071
+#Jenkins
+Listen 7072
+#Nabla
+Listen 7073
+#Sample
+Listen 7074
+#Use below to allow everybody to access apache on port 8080
+#Listen 8080
+#Listen 80
+
 #Use below to allow everybody to access apache on port 7070
 #Listen 7070
 #Listen *:7070
@@ -103,6 +116,8 @@ Listen 127.0.0.1:7070
 
 /etc/init.d/apache2 reload        
 
+ls -lrta /etc/apache2/conf-enabled
+
 cd /etc/apache2/sites-available
 sudo vim 000-default.conf
 or
@@ -110,6 +125,8 @@ sudo vim /etc/apache2/sites-available/nabla.conf
 sudo a2dissite 000-default
 sudo a2ensite nabla
 sudo a2ensite jenkins
+sudo a2ensite gearman
+sudo a2ensite sample
 sudo a2enmod rewrite
 sudo a2enmod proxy
 sudo a2enmod ssl

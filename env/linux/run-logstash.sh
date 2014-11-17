@@ -32,7 +32,7 @@ id logstash
 find /var/log -user root -perm 0600
 
 #add --groups adm
-#in /etc/init/logstash.conf
+#in sudo nano logstash
 #nice -n ${LS_NICE} chroot --userspec $LS_USER:$LS_GROUP --groups adm / sh -c "
 
 #dpkg -s logstash
