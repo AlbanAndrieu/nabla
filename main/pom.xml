@@ -916,14 +916,12 @@
 								  <testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
 								  <forkMode>once</forkMode>								  
 								  <!-- Specific to generate mapping between tests and covered code -->
-								  <!-- 
 								  <properties>
 									<property>
 									  <name>listener</name>
 									  <value>org.sonar.java.jacoco.JUnitListener</value>
 									</property>
 								  </properties>
-								  -->
 								  <!-- NOT needed instead remove jmock-junit4 because it does not work with jacoco
 								  <excludes>
 									 <exclude>**/*DaoTest.java</exclude>
@@ -971,8 +969,8 @@
 								<artifactId>jacoco-maven-plugin</artifactId>
 								<version>${maven.jacoco.plugin.version}</version>
 								<executions>
-								  <!-- Prepares a variable, jacoco.agent.ut.arg, that contains the info to be passed to the JVM hosting the code
-						being tested. -->
+								  <!-- Prepares a variable, jacoco.agent.ut.arg, that contains the info to be passed to the JVM hosting the code being tested. -->
+								  <!--
 								  <execution>
 									<id>prepare-ut-agent</id>
 									<phase>process-test-classes</phase>
@@ -985,8 +983,9 @@
 									  <append>true</append>
 									</configuration>
 								  </execution>
-								  <!-- Prepares a variable, jacoco.agent.it.arg, that contains the info to be passed to the JVM hosting the code
-						being tested. -->
+								  -->
+								  <!-- Prepares a variable, jacoco.agent.it.arg, that contains the info to be passed to the JVM hosting the code being tested. -->
+								  <!--
 								  <execution>
 									<id>prepare-it-agent</id>
 									<phase>pre-integration-test</phase>
@@ -999,8 +998,26 @@
 									  <append>true</append>
 									</configuration>
 								  </execution>
+								  -->
+								  <execution>
+								 	 <id>pre-test</id>
+								 	 <goals>
+								 	 <goal>prepare-agent</goal>
+								 	 </goals>
+								  </execution>
+								  <execution>
+								 	 <id>post-test</id>
+								 	 <phase>test</phase>
+								 	 <goals>
+								 	 <goal>report</goal>
+								 	 </goals>
+								  </execution>								  
 								</executions>
 								<configuration>
+								  <!-- The destination file for the code coverage report has to be set to the same value
+                                     in the parent pom and in each module pom. Then JaCoCo will add up information in
+                                     the same report, so that, it will give the cross-module code coverage. -->
+                                  <destFile>${project.basedir}/../target/jacoco-it.exec</destFile>
 								  <excludes>
 									<exclude>jsp/**/*.class</exclude>
 									<exclude>**/*STest*</exclude>
