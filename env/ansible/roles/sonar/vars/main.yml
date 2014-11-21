@@ -1,3 +1,0 @@
----
-# You can override default vars defined in defaults/main.yml here
-# But i would advice to use host or group vars instead 

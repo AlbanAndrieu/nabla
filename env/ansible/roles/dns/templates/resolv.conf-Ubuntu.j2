@@ -1,6 +1,0 @@
-domain {{ defaultdomain }}
-{% if defaultsearch is defined %}search {{ defaultsearch }}{% endif %}
-
-{% for i in dns_nameservers %}
-{{i}}
-{% endfor %}

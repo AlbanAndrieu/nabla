@@ -1,9 +1,0 @@
----
-- hosts: all
-  sudo: true
-  roles:
-    - ansible-conky
-     
-#  vars:     
-#       user: root
-#       home: "/root"

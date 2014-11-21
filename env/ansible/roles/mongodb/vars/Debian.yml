@@ -1,8 +1,0 @@
----
-
-mongod_pkgs:
-  - python-selinux
-  - mongodb-10gen
-  - python-pymongo
-mongo_user: mongodb
-mongo_group: mongodb

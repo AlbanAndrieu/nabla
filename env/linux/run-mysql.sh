@@ -24,10 +24,10 @@ GRANT SUPER ON *.* TO nabla@'localhost' IDENTIFIED BY 'nabla';
 #change password
 /etc/init.d/mysql stop
 #relaunch
-mysqld --skip-grant-tables --skip-networking &
+sudo mysqld --skip-grant-tables --skip-networking &
 #database connection
 mysql mysql
-UPDATE user SET password=PASSWORD('Motdepasse12') WHERE User="root" AND Host="localhost";
+UPDATE user SET password=PASSWORD('microsoft') WHERE User="root" AND Host="localhost";
 
 #test connection
 mysql -u root -p
@@ -39,3 +39,6 @@ sudo chmod 664 mysqld.pid
     #pidfile=`mysqld_get_param pid-file`
     pidfile="/var/run/mysqld/mysqld.pid"
     echo "pidfile = $pidfile"
+    
+#remove mysql
+sudo apt-get remove --purge mysql\*

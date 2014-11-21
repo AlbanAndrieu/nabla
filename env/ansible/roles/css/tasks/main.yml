@@ -1,7 +1,0 @@
----
-# This playbook contains common plays that will be run on all nodes.
-
-- include: css.yml
-  when: css_enabled 
-  tags: [css]
-  

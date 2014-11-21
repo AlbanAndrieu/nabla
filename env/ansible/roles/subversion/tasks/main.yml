@@ -1,7 +1,0 @@
----
-# This playbook contains common plays that will be run on all nodes.
-
-- include: subversion.yml
-  when: subversion_enabled 
-  tags: [subversion]
-  
