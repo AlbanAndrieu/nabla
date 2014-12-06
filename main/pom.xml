@@ -909,7 +909,7 @@
 								<artifactId>maven-surefire-plugin</artifactId>
 								<inherited>true</inherited>
 								<configuration>
-								  <argLine>${jacoco.agent.ut.arg} -Xms256m -Xmx512m -XX:MaxPermSize=512m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>
+								  <!--<argLine>${jacoco.agent.ut.arg} -Xms256m -Xmx512m -XX:MaxPermSize=512m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>-->
 								  <!--<argLine>${jacoco.agent.ut.arg} -Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>-->
 								  <runOrder>random</runOrder>
 								  <skipTests>${maven.test.ut.skip}</skipTests>
