@@ -850,7 +850,7 @@
 						-->						
 						<jacoco.outputDir>${project.build.directory}</jacoco.outputDir>
 						<!-- Jacoco output file for UTs -->
-						<jacoco.out.ut.file>jacoco-ut.exec</jacoco.out.ut.file>
+						<jacoco.out.ut.file>jacoco.exec</jacoco.out.ut.file>
 						<!-- Tells Sonar where the Jacoco coverage result file is located for Unit Tests -->
 						<sonar.jacoco.reportPath>${jacoco.outputDir}/${jacoco.out.ut.file}</sonar.jacoco.reportPath>
 						<!-- Jacoco output file for ITs -->
@@ -910,7 +910,7 @@
 								<inherited>true</inherited>
 								<configuration>
 								  <!--<argLine>${jacoco.agent.ut.arg} -Xms256m -Xmx512m -XX:MaxPermSize=512m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>-->
-								  <!--<argLine>${jacoco.agent.ut.arg} -Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>-->
+								  <argLine>${jacoco.agent.ut.arg} -Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>
 								  <runOrder>random</runOrder>
 								  <skipTests>${maven.test.ut.skip}</skipTests>
 								  <!-- Enable or disable Stop maven -->
