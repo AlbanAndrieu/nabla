@@ -1589,7 +1589,7 @@
                 <maven.native2ascii.maven.plugin.version>1.0-beta-1</maven.native2ascii.maven.plugin.version>
                 <maven.archetype.plugin.version>2.2</maven.archetype.plugin.version>
                 <maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
-                <maven.assembly.plugin.version>2.5.1</maven.assembly.plugin.version>
+                <maven.assembly.plugin.version>2.5.2</maven.assembly.plugin.version>
                 <maven.changelog.plugin.version>2.3</maven.changelog.plugin.version>
                 <maven.scm.plugin.version>1.9.2</maven.scm.plugin.version>
                 <maven.checkstyle.plugin.version>2.13</maven.checkstyle.plugin.version>
@@ -1607,7 +1607,7 @@
                 <maven.scala.maven.plugin.version>3.2.0</maven.scala.maven.plugin.version>
                 <maven.hotdeploy.plugin.version>0.3.3</maven.hotdeploy.plugin.version>
                 <maven.cli.plugin.version>1.0.11</maven.cli.plugin.version>
-                <maven.frontend.plugin.version>0.0.16</maven.frontend.plugin.version>
+                <maven.frontend.plugin.version>0.0.19</maven.frontend.plugin.version>
                 <maven.shade.plugin.version>2.3</maven.shade.plugin.version>
                 <maven.rar.plugin.version>2.4</maven.rar.plugin.version>
                 <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
@@ -1662,7 +1662,7 @@
                 <maven.remote.resources.plugin.version>1.5</maven.remote.resources.plugin.version>
                 <maven.default.skin.version>1.0</maven.default.skin.version>
                 <maven.jaxb.plugin.version>1.1.1</maven.jaxb.plugin.version>
-                <maven.jaxb2.plugin.version>0.9.0</maven.jaxb2.plugin.version>
+                <maven.jaxb2.plugin.version>0.11.0</maven.jaxb2.plugin.version>
                 <maven.aspectj.plugin.version>1.7</maven.aspectj.plugin.version>
                 <maven.sql.plugin.version>1.5</maven.sql.plugin.version>
                 <maven.org.liquibase.plugin.version>3.3.0</maven.org.liquibase.plugin.version>
@@ -1670,14 +1670,14 @@
                 <maven.exec.plugin.version>1.3.2</maven.exec.plugin.version>
                 <maven.gwt.plugin.version>${gwt.version}</maven.gwt.plugin.version>
                 <maven.jacoco.gwt.plugin.version>0.5.4.201202141554</maven.jacoco.gwt.plugin.version>
-                <maven.vaadin.plugin.version>7.4.0.alpha11</maven.vaadin.plugin.version>
+                <maven.vaadin.plugin.version>7.4.0.alpha14</maven.vaadin.plugin.version>
                 <maven.java.formatter.plugin.version>0.4</maven.java.formatter.plugin.version>
                 <maven.failsafe.plugin.version>2.18</maven.failsafe.plugin.version>
                 <maven.dbunit.plugin.version>1.0-beta-3</maven.dbunit.plugin.version>
                 <maven.benerator.plugin.version>0.7.7</maven.benerator.plugin.version>
                 <maven.zap.plugin.version>1.2-SNAPSHOT</maven.zap.plugin.version>
                 <maven.flex.pmd.plugin.version>1.2</maven.flex.pmd.plugin.version>
-                <maven.bundle.plugin.version>2.5.0</maven.bundle.plugin.version>
+                <maven.bundle.plugin.version>2.5.3</maven.bundle.plugin.version>
                 <maven.flexmojos.plugin.version>4.2-beta</maven.flexmojos.plugin.version>
                 <maven.pitest.plugin.version>1.1.2</maven.pitest.plugin.version>
                 <maven.pax.plugin.version>1.5</maven.pax.plugin.version>
@@ -1786,6 +1786,20 @@
                                                                                 <ignore />
                                                                         </action>
                                                                 </pluginExecution>
+                                                                <pluginExecution>
+                                                                        <pluginExecutionFilter>
+                                                                                <groupId>net.alchim31.maven</groupId>
+                                                                                <artifactId>scala-maven-plugin</artifactId>
+                                                                                <versionRange>[${maven.scala.maven.plugin.version},)</versionRange>
+                                                                                <goals>
+                                                                                        <goal>compile</goal>
+                                                                                        <goal>testCompile</goal>                                                                                        
+                                                                                </goals>
+                                                                        </pluginExecutionFilter>
+                                                                        <action>
+                                                                                <ignore />
+                                                                        </action>
+                                                                </pluginExecution>                                                                
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.apache.maven.plugins</groupId>
@@ -2469,7 +2483,8 @@
                                                 <!-- Enable or disable JUnit tests -->
                                                 <skipTests>${maven.test.ut.skip}</skipTests>
                                                 <linkXRef>true</linkXRef>
-                                                <argLine>-Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>
+                                                <!--<argLine>-Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>-->
+                                                <runOrder>random</runOrder>
                                                 <!-- more log <argLine>-verbose:class</argLine>-->
                                                 <trimStackTrace>false</trimStackTrace>
                                                 <!--<useFile>false</useFile> -->
