@@ -33,6 +33,8 @@
  */
 package com.nabla.project.visma.selenium.tests;
 
+import java.io.File;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -40,7 +42,10 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxBinary;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxProfile;
+import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.os.WindowsUtils;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -62,7 +67,12 @@ public class GoogleSearchSTest
     public void setUp()
     {
         WindowsUtils.tryToKillByName("firefox.exe");
-        this.driver = new FirefoxDriver();
+        ProfilesIni allProfiles = new ProfilesIni();
+        FirefoxProfile profile = allProfiles.getProfile("/workspace/users/albandri10/.mozilla/firefox/xhvt8rwp.selenium/");
+        // FirefoxProfile profile = new FirefoxProfile();
+        //FirefoxBinary binary = new FirefoxBinary(new File(firefoxBin));
+        //driver = new FirefoxDriver(binary, profile);
+        this.driver = new FirefoxDriver(profile);
         this.driver.manage().window().maximize();
         this.driver.get("http://www.google.com");
     }
