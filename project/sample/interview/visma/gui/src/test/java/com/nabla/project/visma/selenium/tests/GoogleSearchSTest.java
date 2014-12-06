@@ -108,8 +108,11 @@ public class GoogleSearchSTest
     @After
     public void tearDown() throws Exception
     {
-        // Close the browser
-        this.driver.quit();
+        if (null != this.driver)
+        {
+            // Close the browser
+            this.driver.quit();
+        }
 
         final String verificationErrorString = this.verificationErrors.toString();
         if (!"".equals(verificationErrorString))

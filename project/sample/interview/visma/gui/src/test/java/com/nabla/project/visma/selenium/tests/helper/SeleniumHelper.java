@@ -210,7 +210,10 @@ public class SeleniumHelper
     {
         try
         {
-            SeleniumHelper.getCurrentDriver().quit();
+            if (null != SeleniumHelper.driver)
+            {
+                SeleniumHelper.driver.quit();
+            }
             SeleniumHelper.driver = null;
             SeleniumHelper.LOGGER.info("closing the browser");
         } catch (final UnreachableBrowserException e)
