@@ -329,7 +329,7 @@ public interface UserDao
      * @param firstName TODO: Model Documentation for User.firstName
      * @param lastName TODO: Model Documentation for User.lastName
      * @param email TODO: Model Documentation for User.email
-     * @param isActive TODO: Model Documentation for User.isActive
+     * @param isEnable TODO: Model Documentation for User.isEnable
      * @param creationDate TODO: Model Documentation for User.creationDate
      * @param comment TODO: Model Documentation for User.comment
      * @return User
@@ -340,7 +340,7 @@ public interface UserDao
         String firstName,
         String lastName,
         String email,
-        boolean isActive,
+        boolean isEnable,
         Date creationDate,
         String comment);
 
@@ -359,7 +359,7 @@ public interface UserDao
      * @param firstName TODO: Model Documentation for User.firstName
      * @param lastName TODO: Model Documentation for User.lastName
      * @param email TODO: Model Documentation for User.email
-     * @param isActive TODO: Model Documentation for User.isActive
+     * @param isEnable TODO: Model Documentation for User.isEnable
      * @param creationDate TODO: Model Documentation for User.creationDate
      * @param comment TODO: Model Documentation for User.comment
      * @return User
@@ -371,7 +371,7 @@ public interface UserDao
         String firstName,
         String lastName,
         String email,
-        boolean isActive,
+        boolean isEnable,
         Date creationDate,
         String comment);
 

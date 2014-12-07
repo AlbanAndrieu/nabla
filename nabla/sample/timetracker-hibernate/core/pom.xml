@@ -2,14 +2,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-         
+
     <parent>
         <groupId>org.andromda.timetracker.hibernate</groupId>
         <artifactId>timetracker-hibernate</artifactId>
         <version>1.0.1-SNAPSHOT</version>
     </parent>
-    
-    <modelVersion>4.0.0</modelVersion>    
+
+    <modelVersion>4.0.0</modelVersion>
     <artifactId>core</artifactId>
     <packaging>jar</packaging>
     <name>TimeTracker Hibernate Core Business Tier</name>
@@ -72,7 +72,7 @@
         <dependency>
                 <groupId>javax.validation</groupId>
                 <artifactId>validation-api</artifactId>
-        </dependency>         
+        </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
@@ -80,7 +80,7 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-        </dependency>            
+        </dependency>
         <!-- Do not use 3.3.0.ga See https://jira.springsource.org/browse/SPR-7701, http://forum.springsource.org/showthread.php?89693-AnnotationSessionFactoryBean-needs-MetadataProvider -->
         <!-- validator-legacy forces an earlier version of annotations. Change scope if < JBoss6>
         <dependency>
@@ -111,12 +111,13 @@
             <scope>provided</scope>
         </dependency>
 
+		<!-- must be use with hibernate.cache.provider_class org.hibernate.cache.EhCacheProvider in persistence.xml -->
         <dependency>
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache</artifactId>
             <type>pom</type>
         </dependency>
-     
+
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib-nodep</artifactId>
@@ -186,7 +187,7 @@
             <artifactId>${jdbc.client.artifactId}</artifactId>
             <version>${jdbc.version}</version>
             <scope>test</scope>
-        </dependency>              
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -251,7 +252,7 @@
                       <groupId>javax.validation</groupId>
                       <artifactId>validation-api</artifactId>
                       <version>${validation.api.version}</version>
-                  </dependency>    
+                  </dependency>
                   <dependency>
                       <groupId>org.slf4j</groupId>
                       <artifactId>slf4j-api</artifactId>
@@ -261,7 +262,7 @@
                       <groupId>org.slf4j</groupId>
                       <artifactId>slf4j-simple</artifactId>
                       <version>${slf4j.version}</version>
-                  </dependency>                         
+                  </dependency>
                 </dependencies>
             </plugin>
             <plugin>
@@ -345,7 +346,7 @@
                       <groupId>javax.validation</groupId>
                       <artifactId>validation-api</artifactId>
                       <version>${validation.api.version}</version>
-                  </dependency>    
+                  </dependency>
                   <dependency>
                       <groupId>org.slf4j</groupId>
                       <artifactId>slf4j-api</artifactId>
@@ -355,7 +356,7 @@
                       <groupId>org.slf4j</groupId>
                       <artifactId>slf4j-simple</artifactId>
                       <version>${slf4j.version}</version>
-                  </dependency>                       
+                  </dependency>
                   <!--dependency>
                     <groupId>org.hibernate</groupId>
                     <artifactId>hibernate-annotations</artifactId>
@@ -373,18 +374,18 @@
 	          	<groupId>javassist</groupId>
 	          	<artifactId>javassist</artifactId>
 	          	<version>${javassist.version}</version>
-	          </dependency>			
+	          </dependency>
                   <dependency>
                   	<groupId>asm</groupId>
                   	<artifactId>asm</artifactId>
                   	<version>${asm.version}</version>
-                  </dependency>		
+                  </dependency>
                   <dependency>
 	          	<groupId>cglib</groupId>
 	          	<artifactId>cglib</artifactId>
 	          	<version>${cglib.version}</version>
 	          </dependency>
-	          
+
 		  <dependency>
 		  	<groupId>xerces</groupId>
 		  	<artifactId>xercesImpl</artifactId>
@@ -517,21 +518,21 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <!--
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>${maven.surefire.plugin.version}</version>
                 <inherited>true</inherited>
                 <configuration>
-				<!-- Enable or disable JUnit tests -->
-				<skip>${maven.test.skip}</skip>
-				<!-- Enable or disable Stop maven -->
-				<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>                
-                        <suiteXmlFiles>
-                                <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
-                        </suiteXmlFiles>
+					<skip>${maven.test.skip}</skip>
+					<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
+					<suiteXmlFiles>
+							<suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
                 </configuration>
-            </plugin>              
+            </plugin>
+            -->
         </plugins>
         <!-- comment resources for mvn eclipse:eclipse -->
         <resources>

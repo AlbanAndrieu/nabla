@@ -17,7 +17,7 @@ public interface UserManageableService
      * @param firstName TODO: Model Documentation for org.andromda.timetracker.domain.User.firstName
      * @param lastName TODO: Model Documentation for org.andromda.timetracker.domain.User.lastName
      * @param email TODO: Model Documentation for org.andromda.timetracker.domain.User.email
-     * @param isActive TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
+     * @param isEnable TODO: Model Documentation for org.andromda.timetracker.domain.User.isEnable
      * @param creationDate TODO: Model Documentation for org.andromda.timetracker.domain.User.creationDate
      * @param comment TODO: Model Documentation for org.andromda.timetracker.domain.User.comment
      * @param id TODO: Model Documentation for org.andromda.timetracker.domain.User.id
@@ -25,7 +25,7 @@ public interface UserManageableService
      * @return create
      * @throws Exception
      */
-    public UserValueObject create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public UserValueObject create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles)
         throws Exception;
 
     /**
@@ -42,7 +42,7 @@ public interface UserManageableService
      * @param firstName TODO: Model Documentation for org.andromda.timetracker.domain.User.firstName
      * @param lastName TODO: Model Documentation for org.andromda.timetracker.domain.User.lastName
      * @param email TODO: Model Documentation for org.andromda.timetracker.domain.User.email
-     * @param isActive TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
+     * @param isEnable TODO: Model Documentation for org.andromda.timetracker.domain.User.isEnable
      * @param creationDate TODO: Model Documentation for org.andromda.timetracker.domain.User.creationDate
      * @param comment TODO: Model Documentation for org.andromda.timetracker.domain.User.comment
      * @param id TODO: Model Documentation for org.andromda.timetracker.domain.User.id
@@ -50,7 +50,7 @@ public interface UserManageableService
      * @return manageable
      * @throws Exception
      */
-    public List<UserValueObject> read(String username, String password, String firstName, String lastName, String email, Boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public List<UserValueObject> read(String username, String password, String firstName, String lastName, String email, Boolean isEnable, Date creationDate, String comment, Long id, Long[] roles)
         throws Exception;
 
     /**
@@ -73,7 +73,7 @@ public interface UserManageableService
      * @param firstName TODO: Model Documentation for org.andromda.timetracker.domain.User.firstName
      * @param lastName TODO: Model Documentation for org.andromda.timetracker.domain.User.lastName
      * @param email TODO: Model Documentation for org.andromda.timetracker.domain.User.email
-     * @param isActive TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
+     * @param isEnable TODO: Model Documentation for org.andromda.timetracker.domain.User.isEnable
      * @param creationDate TODO: Model Documentation for org.andromda.timetracker.domain.User.creationDate
      * @param comment TODO: Model Documentation for org.andromda.timetracker.domain.User.comment
      * @param id TODO: Model Documentation for org.andromda.timetracker.domain.User.id
@@ -81,7 +81,7 @@ public interface UserManageableService
      * @return update
      * @throws Exception
      */
-    public UserValueObject update(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public UserValueObject update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles)
         throws Exception;
 
     /**

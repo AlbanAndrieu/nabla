@@ -108,7 +108,7 @@ public final class UserManageableDaoBase
      * @param firstName TODO: Model Documentation for User.firstName
      * @param lastName TODO: Model Documentation for User.lastName
      * @param email TODO: Model Documentation for User.email
-     * @param isActive TODO: Model Documentation for User.isActive
+     * @param isEnable TODO: Model Documentation for User.isEnable
      * @param creationDate TODO: Model Documentation for User.creationDate
      * @param comment TODO: Model Documentation for User.comment
      * @param id TODO: Model Documentation for User.id
@@ -117,7 +117,7 @@ public final class UserManageableDaoBase
      * @see UserDao#create(User)
      */
     @SuppressWarnings("cast")
-    public User create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public User create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles)
     {
         final User entity = new UserImpl();
         entity.setUsername(username);
@@ -125,7 +125,7 @@ public final class UserManageableDaoBase
         entity.setFirstName(firstName);
         entity.setLastName(lastName);
         entity.setEmail(email);
-        entity.setIsActive(isActive);
+        entity.setIsEnable(isEnable);
         entity.setCreationDate(creationDate);
         entity.setComment(comment);
         entity.setId(id);
@@ -156,7 +156,7 @@ public final class UserManageableDaoBase
      * @param firstName TODO: Model Documentation for User.firstName
      * @param lastName TODO: Model Documentation for User.lastName
      * @param email TODO: Model Documentation for User.email
-     * @param isActive TODO: Model Documentation for User.isActive
+     * @param isEnable TODO: Model Documentation for User.isEnable
      * @param creationDate TODO: Model Documentation for User.creationDate
      * @param comment TODO: Model Documentation for User.comment
      * @param id TODO: Model Documentation for User.id
@@ -164,7 +164,7 @@ public final class UserManageableDaoBase
      * @return List<User>
      */
     @SuppressWarnings("unchecked")
-    public List<User> read(String username, String password, String firstName, String lastName, String email, Boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public List<User> read(String username, String password, String firstName, String lastName, String email, Boolean isEnable, Date creationDate, String comment, Long id, Long[] roles)
     {
         final Session session = getSession(false);
 
@@ -192,9 +192,9 @@ public final class UserManageableDaoBase
             {
                 criteria.add(Restrictions.ilike("email", email, MatchMode.START));
             }
-            if (isActive != null)
+            if (isEnable != null)
             {
-                criteria.add(Restrictions.eq("isActive", isActive.booleanValue()));
+                criteria.add(Restrictions.eq("isEnable", isEnable.booleanValue()));
             }
             if (creationDate != null)
             {
@@ -270,6 +270,7 @@ public final class UserManageableDaoBase
         try
         {
             // Put the manageableAssociationEnds in the session query
+            lists.put("roles", session.createQuery("select item.id, item.conditional from UserRoleImpl item order by item.conditional").list());
         }
         catch (HibernateException ex)
         {
@@ -284,7 +285,7 @@ public final class UserManageableDaoBase
      * @param firstName TODO: Model Documentation for User.firstName
      * @param lastName TODO: Model Documentation for User.lastName
      * @param email TODO: Model Documentation for User.email
-     * @param isActive TODO: Model Documentation for User.isActive
+     * @param isEnable TODO: Model Documentation for User.isEnable
      * @param creationDate TODO: Model Documentation for User.creationDate
      * @param comment TODO: Model Documentation for User.comment
      * @param id TODO: Model Documentation for User.id
@@ -292,7 +293,7 @@ public final class UserManageableDaoBase
      * @return getDao().update(entity)
      * @see UserDao#update(User)
      */
-    public User update(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public User update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles)
     {
         final User entity = this.getDao().load(id);
 
@@ -301,7 +302,7 @@ public final class UserManageableDaoBase
         entity.setFirstName(firstName);
         entity.setLastName(lastName);
         entity.setEmail(email);
-        entity.setIsActive(isActive);
+        entity.setIsEnable(isEnable);
         entity.setCreationDate(creationDate);
         entity.setComment(comment);
         @SuppressWarnings("unchecked")

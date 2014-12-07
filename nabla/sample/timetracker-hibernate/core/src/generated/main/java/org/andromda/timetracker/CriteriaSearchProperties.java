@@ -9,6 +9,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import org.andromda.timetracker.domain.MovieImpl;
 import org.andromda.timetracker.domain.TaskImpl;
 import org.andromda.timetracker.domain.TimeAllocationImpl;
 import org.andromda.timetracker.domain.TimePeriodImpl;
@@ -39,6 +40,7 @@ public class CriteriaSearchProperties
         initializeTimeAllocation3();
         initializeTimecard4();
         initializeUserRole5();
+        initializeMovie6();
     }
 
     private static final void initializeUser1()
@@ -131,6 +133,25 @@ public class CriteriaSearchProperties
             null);
         navigableAssociationEndsByType.put(
             UserRoleImpl.class,
+            Arrays.asList(
+                new PropertyType[]
+                {
+                    new PropertyType("groups", UserRoleImpl.class)
+                }
+            )
+        );
+    }
+
+    private static final void initializeMovie6()
+    {
+        embeddedValueNamesByType.put(
+            MovieImpl.class,
+            null);
+        embeddedValuesByType.put(
+            MovieImpl.class,
+            null);
+        navigableAssociationEndsByType.put(
+            MovieImpl.class,
             null);
     }
 

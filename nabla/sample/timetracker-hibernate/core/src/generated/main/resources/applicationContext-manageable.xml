@@ -19,6 +19,17 @@
                 org.andromda.timetracker.domain.crud.TaskManageableService.readAll=PROPAGATION_REQUIRED
                 org.andromda.timetracker.domain.crud.TaskManageableService.update=PROPAGATION_REQUIRED
                 org.andromda.timetracker.domain.crud.TaskManageableService.delete=PROPAGATION_REQUIRED
+                org.andromda.timetracker.domain.crud.UserRoleManageableService.create=PROPAGATION_REQUIRED
+                org.andromda.timetracker.domain.crud.UserRoleManageableService.read=PROPAGATION_REQUIRED
+                org.andromda.timetracker.domain.crud.UserRoleManageableService.readAll=PROPAGATION_REQUIRED
+                org.andromda.timetracker.domain.crud.UserRoleManageableService.readBackingLists=PROPAGATION_REQUIRED
+                org.andromda.timetracker.domain.crud.UserRoleManageableService.update=PROPAGATION_REQUIRED
+                org.andromda.timetracker.domain.crud.UserRoleManageableService.delete=PROPAGATION_REQUIRED
+                org.andromda.timetracker.domain.crud.MovieManageableService.create=PROPAGATION_REQUIRED
+                org.andromda.timetracker.domain.crud.MovieManageableService.read=PROPAGATION_REQUIRED
+                org.andromda.timetracker.domain.crud.MovieManageableService.readAll=PROPAGATION_REQUIRED
+                org.andromda.timetracker.domain.crud.MovieManageableService.update=PROPAGATION_REQUIRED
+                org.andromda.timetracker.domain.crud.MovieManageableService.delete=PROPAGATION_REQUIRED
             </value>
         </property>
     </bean>
@@ -91,6 +102,83 @@
          <property name="target"><ref local="TaskManageableServiceBase"/></property>
          <property name="proxyInterfaces">
              <value>org.andromda.timetracker.domain.crud.TaskManageableService</value>
+         </property>
+         <property name="interceptorNames">
+             <list>
+                 <value>manageableServiceTransactionInterceptor</value>
+                 <value>hibernateInterceptor</value>
+             </list>
+         </property>
+     </bean>
+
+     <!-- UserRoleManageableDao Entity Proxy -->
+     <bean id="UserRoleManageableDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+         <property name="target"><ref local="UserRoleManageableDaoBase"/></property>
+         <property name="proxyInterfaces">
+             <value>org.andromda.timetracker.domain.crud.UserRoleManageableDao</value>
+         </property>
+         <property name="interceptorNames">
+             <list>
+                 <value>hibernateInterceptor</value>
+             </list>
+         </property>
+     </bean>
+
+    <!-- UserRoleManageableDao Implementation  -->
+    <bean id="UserRoleManageableDaoBase" class="org.andromda.timetracker.domain.crud.UserRoleManageableDaoBase">
+        <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+        <property name="dao"><ref bean="userRoleDao"/></property>
+        <property name="groupsDao"><ref bean="userRoleDao"/></property>
+    </bean>
+
+    <!-- UserRoleManageableService Service Implementation  -->
+    <bean id="UserRoleManageableServiceBase" class="org.andromda.timetracker.domain.crud.UserRoleManageableServiceBase">
+        <property name="dao"><ref local="UserRoleManageableDao"/></property>
+    </bean>
+
+    <!-- UserRoleManageableService Service Proxy  -->
+    <bean id="UserRoleManageableService" class="org.springframework.aop.framework.ProxyFactoryBean">
+         <property name="target"><ref local="UserRoleManageableServiceBase"/></property>
+         <property name="proxyInterfaces">
+             <value>org.andromda.timetracker.domain.crud.UserRoleManageableService</value>
+         </property>
+         <property name="interceptorNames">
+             <list>
+                 <value>manageableServiceTransactionInterceptor</value>
+                 <value>hibernateInterceptor</value>
+             </list>
+         </property>
+     </bean>
+
+     <!-- MovieManageableDao Entity Proxy -->
+     <bean id="MovieManageableDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+         <property name="target"><ref local="MovieManageableDaoBase"/></property>
+         <property name="proxyInterfaces">
+             <value>org.andromda.timetracker.domain.crud.MovieManageableDao</value>
+         </property>
+         <property name="interceptorNames">
+             <list>
+                 <value>hibernateInterceptor</value>
+             </list>
+         </property>
+     </bean>
+
+    <!-- MovieManageableDao Implementation  -->
+    <bean id="MovieManageableDaoBase" class="org.andromda.timetracker.domain.crud.MovieManageableDaoBase">
+        <property name="sessionFactory"><ref bean="sessionFactory"/></property>
+        <property name="dao"><ref bean="movieDao"/></property>
+    </bean>
+
+    <!-- MovieManageableService Service Implementation  -->
+    <bean id="MovieManageableServiceBase" class="org.andromda.timetracker.domain.crud.MovieManageableServiceBase">
+        <property name="dao"><ref local="MovieManageableDao"/></property>
+    </bean>
+
+    <!-- MovieManageableService Service Proxy  -->
+    <bean id="MovieManageableService" class="org.springframework.aop.framework.ProxyFactoryBean">
+         <property name="target"><ref local="MovieManageableServiceBase"/></property>
+         <property name="proxyInterfaces">
+             <value>org.andromda.timetracker.domain.crud.MovieManageableService</value>
          </property>
          <property name="interceptorNames">
              <list>
