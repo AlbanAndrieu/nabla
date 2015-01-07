@@ -88,6 +88,7 @@ deb http://extras.ubuntu.com/ubuntu precise main
 #deb http://us.archive.ubuntu.com/ubuntu/ precise main universe
 deb http://us.archive.ubuntu.com/ubuntu/ precise main universe restricted multiverse
 
+sudo apt-get autoclean
 sudo apt-get update
 sudo apt-get install subversion
 

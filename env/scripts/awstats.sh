@@ -1,5 +1,7 @@
 #!/bin/bash
 
+/usr/share/awstats/tools/update.sh
+
 cd /var/lib/awstats
 rm *
 cd /var/log/apache*

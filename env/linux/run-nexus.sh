@@ -45,7 +45,7 @@ sudo chown -R nexus.data nexus-crowd-plugin-*/
 
 #cd /usr/local/nexus
 #./bin/nexus start
-#microsoft
+#admin123
 
 sudo update-rc.d -f nexus remove
 sudo update-rc.d nexus defaults 10 90

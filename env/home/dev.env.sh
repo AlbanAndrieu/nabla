@@ -1,5 +1,5 @@
 #!/bin/bash
-# Ansible managed: /workspace/users/albandri10/env/ansible/roles/shell/templates/dev.env.sh.j2 modified on 2014-11-08 19:51:40 by albandri on albandri-laptop-misys.misys.global.ad
+# This file is managed by Ansible, all changes will be lost
 
 ####################
 ### READ ARGUMENTS

@@ -156,3 +156,13 @@ java -jar /workspace/selenium-server-standalone-2.40.0.jar -role node -hub http:
 See : http://home.nabla.mobi:4444/grid/console
 See : http://home.nabla.mobi:6666/grid/console
 
+#In order to fic issue:
+#error while loading shared libraries: libui_base.so: cannot open shared object file
+#http://stackoverflow.com/questions/25695299/chromedriver-on-ubuntu-14-04-error-while-loading-shared-libraries-libui-base
+sudo nano /etc/ld.so.conf.d/chrome_lib.conf
+/usr/lib/chromium-browser/libs
+sudo ldconfig
+
+#In order to fic issue:
+#ubuntu firefox is already running error
+find . -name '.parentlock' -exec rm {} ;

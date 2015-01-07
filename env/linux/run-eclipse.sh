@@ -2,28 +2,38 @@
 sudo chown -R albandri:albandri /eclipse-j2ee/
 
 ##http://www.comoke.com/index.php/2012/06/install-eclipse-in-launcher-ubuntu-12-04-unity/
-gedit ~/.local/share/applications/opt_eclipse.desktop
+gedit ~/.local/share/applications/eclipse.desktop
 #Add
 [Desktop Entry]
-Version=3.7
-Name=Eclipse
+Encoding=UTF-8
+Version=4
+Name=Eclipse 4
 GenericName=Text Editor
 
-Exec=eclipse
+Exec=/usr/local/eclipse/eclipse-4/eclipse
 Terminal=false
 #Icon=/usr/lib/eclipse/icon.xpm
 #** something like /opt/eclipse/icon.xpm **
-Icon=/eclipse-j2ee/icon.xpm
+Icon=/usr/local/eclipse/eclipse-4/icon.xpm
 Type=Application
 Categories=IDE;Development
+Comment=Integrated Development Environment
+NoDisplay=false
+StartupNotify=false
+StartupWMClass=Eclipse
+OnlyShowIn=Unity;
+X-UnityGenerated=true
+
 X-Ayatana-Desktop-Shortcuts=NewWindow
 
 [NewWindow Shortcut Group]
 Name=New Window
 #Exec=eclipse -n
 # ** something like /opt/eclipse/eclipse **
-Exec=/eclipse-j2ee/eclipse
+Exec=/usr/local/eclipse/eclipse-4/eclipse
 TargetEnvironment=Unity
+
+sudo update-desktop-database
 
 #Or
 gnome-desktop-item-edit --create-new ~/Desktop

@@ -141,3 +141,8 @@ sonar.updatecenter.url=http://www.qalitax.com/update-center/excentia-update-cent
 #1d332b453ccc369
 #Organisation Nabla
 #Fixed IP Address 192.168.0.29
+
+#Security
+#Grant sonar access from outside (for docker and other servers)
+grant all on sonar.* to sonar@'%' identified by 'microsoft';
+#Use sonar instead of root inside Jenkins
