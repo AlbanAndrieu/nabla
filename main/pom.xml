@@ -910,19 +910,21 @@
 								<inherited>true</inherited>
 								<configuration>
 								  <!--<argLine>${jacoco.agent.ut.arg} -Xms256m -Xmx512m -XX:MaxPermSize=512m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>-->
-								  <argLine>${jacoco.agent.ut.arg} -Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>
+								  <argLine>${jacoco.agent.ut.arg} -Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>								  
 								  <runOrder>random</runOrder>
 								  <skipTests>${maven.test.ut.skip}</skipTests>
 								  <!-- Enable or disable Stop maven -->
 								  <testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
-								  <forkMode>once</forkMode>								  
+								  <forkMode>once</forkMode>							  
 								  <!-- Specific to generate mapping between tests and covered code -->
+								  <!--
 								  <properties>
 									<property>
 									  <name>listener</name>
 									  <value>org.sonar.java.jacoco.JUnitListener</value>
 									</property>
 								  </properties>
+								  -->
 								  <!-- NOT needed instead remove jmock-junit4 because it does not work with jacoco
 								  <excludes>
 									 <exclude>**/*DaoTest.java</exclude>
