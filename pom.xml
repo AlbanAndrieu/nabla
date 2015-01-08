@@ -400,6 +400,17 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
+		<repository>
+			<id>gridgain</id>
+			<name>GridGain Repository</name>
+			<url>hhttp://www.gridgainsystems.com/nexus/content/repositories/external</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+		</repository>		
 	</repositories>
 
 	<pluginRepositories>
