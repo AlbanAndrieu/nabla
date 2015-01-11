@@ -14,14 +14,14 @@ import java.util.Map;
  */
 public interface UserManageableService
 {
-    public UserVO create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public UserVO create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles)
         throws UserCreateManageableException;
 
 
     public UserVO readById(Long id)
         throws UserReadManageableException;    
         
-    public List read(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public List read(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles)
         throws UserReadManageableException;
 
     public List readAll()
@@ -30,7 +30,7 @@ public interface UserManageableService
     public Map readBackingLists()
         throws UserReadManageableException;
 
-    public UserVO update(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public UserVO update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles)
         throws UserUpdateManageableException;
 
     public void delete(Long[] ids)

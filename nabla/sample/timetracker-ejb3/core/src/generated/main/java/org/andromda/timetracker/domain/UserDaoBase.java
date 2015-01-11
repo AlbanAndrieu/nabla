@@ -10,16 +10,12 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
-
 import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.ejb.Local;
 import javax.ejb.SessionContext;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-
 import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserVO;
 import org.apache.commons.collections.CollectionUtils;
@@ -27,7 +23,6 @@ import org.apache.commons.collections.Transformer;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.ejb.HibernateEntityManager;
-import org.jboss.seam.annotations.In;
 
 /**
  * <p>
@@ -37,8 +32,8 @@ import org.jboss.seam.annotations.In;
  *
  * @see UserDao
  */
-@TransactionAttribute(TransactionAttributeType.REQUIRED)
-@Local({UserDao.class})
+//@javax.ejb.TransactionAttribute(javax.ejb.TransactionAttributeType.REQUIRED)
+//@javax.ejb.Local({UserDao.class})
 public abstract class UserDaoBase implements UserDao
 {
 
@@ -49,11 +44,8 @@ public abstract class UserDaoBase implements UserDao
     protected SessionContext context;
 
     /**
-     * Inject persistence seam context
-     */    
-    @In
-
-    protected EntityManager entityManager;
+     * Inject persistence context timetracker-ejb3     */    
+    @PersistenceContext(unitName = "timetracker-ejb3")    protected EntityManager entityManager;
 
     // ------ DAO Injections ------
 
@@ -210,9 +202,9 @@ public abstract class UserDaoBase implements UserDao
      * @see UserDao#create(String, String, String, String, String, boolean, Date, String)
      */
     @Override
-    public User create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment) throws UserDaoException
+    public User create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment) throws UserDaoException
     {
-        return (User)this.create(TRANSFORM_NONE, username, password, firstName, lastName, email, isActive, creationDate, comment);
+        return (User)this.create(TRANSFORM_NONE, username, password, firstName, lastName, email, isEnable, creationDate, comment);
     }
 
     /**
@@ -221,7 +213,7 @@ public abstract class UserDaoBase implements UserDao
      * composite=false identifiers=1
      */
     @Override
-    public Object create(final int transform, String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment) throws UserDaoException
+    public Object create(final int transform, String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment) throws UserDaoException
     {
         User entity = new User();
         entity.setUsername(username);
@@ -229,7 +221,7 @@ public abstract class UserDaoBase implements UserDao
         entity.setFirstName(firstName);
         entity.setLastName(lastName);
         entity.setEmail(email);
-        entity.setIsEnabled(isActive);
+        entity.setIsEnable(isEnable);
         entity.setCreationDate(creationDate);
         entity.setComment(comment);
         return this.create(transform, entity);
@@ -547,7 +539,7 @@ public abstract class UserDaoBase implements UserDao
      * (which result in an array of objects) to {@link UserVO}
      * using the Jakarta Commons-Collections Transformation API.
      */
-    private final Transformer USERVO_TRANSFORMER =
+    private Transformer USERVO_TRANSFORMER =
         new Transformer()
         {
             @Override
@@ -683,7 +675,7 @@ public abstract class UserDaoBase implements UserDao
      * (which result in an array of objects) to {@link UserDetailsVO}
      * using the Jakarta Commons-Collections Transformation API.
      */
-    private final Transformer USERDETAILSVO_TRANSFORMER =
+    private Transformer USERDETAILSVO_TRANSFORMER =
         new Transformer()
         {
             @Override
@@ -744,7 +736,6 @@ public abstract class UserDaoBase implements UserDao
         target.setLastName(source.getLastName());
         target.setPassword(source.getPassword());
         target.setEmail(source.getEmail());
-        target.setIsActive(source.isIsEnabled());
         target.setCreationDate(source.getCreationDate());
         target.setComment(source.getComment());
         // No conversion for target.roles (can't convert source.getRoles():org.andromda.timetracker.domain.UserRole to org.andromda.timetracker.vo.UserRoleVO[])
@@ -786,10 +777,6 @@ public abstract class UserDaoBase implements UserDao
         if (copyIfNull || source.getEmail() != null)
         {
             target.setEmail(source.getEmail());
-        }
-        if (copyIfNull || source.isIsActive() != false)
-        {
-            target.setIsEnabled(source.isIsActive());
         }
         if (copyIfNull || source.getCreationDate() != null)
         {

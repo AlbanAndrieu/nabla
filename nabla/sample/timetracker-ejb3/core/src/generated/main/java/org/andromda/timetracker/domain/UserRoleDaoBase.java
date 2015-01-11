@@ -10,11 +10,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import javax.annotation.Resource;
-import javax.ejb.Local;
 import javax.ejb.SessionContext;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import org.andromda.timetracker.vo.UserRoleVO;
 import org.apache.commons.collections.CollectionUtils;
@@ -22,7 +20,6 @@ import org.apache.commons.collections.Transformer;
 import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.ejb.HibernateEntityManager;
-import org.jboss.seam.annotations.In;
 
 /**
  * <p>
@@ -32,8 +29,8 @@ import org.jboss.seam.annotations.In;
  *
  * @see UserRoleDao
  */
-@TransactionAttribute(TransactionAttributeType.REQUIRED)
-@Local({UserRoleDao.class})
+//@javax.ejb.TransactionAttribute(javax.ejb.TransactionAttributeType.REQUIRED)
+//@javax.ejb.Local({UserRoleDao.class})
 public abstract class UserRoleDaoBase implements UserRoleDao
 {
 
@@ -44,11 +41,8 @@ public abstract class UserRoleDaoBase implements UserRoleDao
     protected SessionContext context;
 
     /**
-     * Inject persistence seam context
-     */    
-    @In
-
-    protected EntityManager entityManager;
+     * Inject persistence context timetracker-ejb3     */    
+    @PersistenceContext(unitName = "timetracker-ejb3")    protected EntityManager entityManager;
 
     /**
      * @see UserRoleDao#load
@@ -185,24 +179,25 @@ public abstract class UserRoleDaoBase implements UserRoleDao
 
     /**
      * Create Entity UserRole using instance attributes with no VO transformation
-     * @see UserRoleDao#create(Role)
+     * @see UserRoleDao#create(Role, Boolean)
      */
     @Override
-    public UserRole create(Role role) throws UserRoleDaoException
+    public UserRole create(Role role, Boolean conditional) throws UserRoleDaoException
     {
-        return (UserRole)this.create(TRANSFORM_NONE, role);
+        return (UserRole)this.create(TRANSFORM_NONE, role, conditional);
     }
 
     /**
      * Create Entity UserRole using instance attributes with VO transformation
-     * @see UserRoleDao#create(int, Role)
+     * @see UserRoleDao#create(int, Role, Boolean)
      * composite=false identifiers=1
      */
     @Override
-    public Object create(final int transform, Role role) throws UserRoleDaoException
+    public Object create(final int transform, Role role, Boolean conditional) throws UserRoleDaoException
     {
         UserRole entity = new UserRole();
         entity.setRole(role);
+        entity.setConditional(conditional);
         return this.create(transform, entity);
     }
 

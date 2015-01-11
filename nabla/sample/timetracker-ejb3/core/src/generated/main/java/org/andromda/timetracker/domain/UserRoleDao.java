@@ -187,15 +187,17 @@ public interface UserRoleDao
      *   instance from <strong>all</strong> attributes and adds it to
      *   the persistent store.
      * @param role
+     * @param conditional
      * @return the created instances. UserRole
      * @throws UserRoleDaoException
      */
     public UserRole create(
-        Role role)
+        Role role,
+        Boolean conditional)
         throws UserRoleDaoException;
 
     /**
-     *   Does the same thing as {@link #create(Role)} with an
+     *   Does the same thing as {@link #create(Role, Boolean)} with an
      *   additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
      *   the returned entity will <strong>NOT</strong> be transformed.  If this flag is any of the other constants
      *   defined here then the result <strong>WILL BE</strong> passed through an operation which can optionally
@@ -204,12 +206,14 @@ public interface UserRoleDao
      *
      * @param transform
      * @param role
+     * @param conditional
      * @return the created instances. Object
      * @throws UserRoleDaoException
      */
     public Object create(
         int transform,
-        Role role)
+        Role role,
+        Boolean conditional)
         throws UserRoleDaoException;
 
 

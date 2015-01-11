@@ -6,10 +6,10 @@
 package org.andromda.timetracker.domain;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
@@ -21,17 +21,17 @@ import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
-
+import org.hibernate.annotations.Index;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.jboss.seam.annotations.security.management.UserEnabled;
 import org.jboss.seam.annotations.security.management.UserPassword;
 import org.jboss.seam.annotations.security.management.UserPrincipal;
-import org.jboss.seam.annotations.security.management.UserRoles;
 
 /**
  * TODO: Model Documentation for org.andromda.timetracker.domain.User
@@ -46,7 +46,7 @@ import org.jboss.seam.annotations.security.management.UserRoles;
  */
 @MappedSuperclass
 public abstract class UserEmbeddable implements Serializable{
-    private static final long serialVersionUID = -6177852626226267723L;
+    private static final long serialVersionUID = 280161844106669459L;
 
     // ----------- 9 Attribute Definitions ------------
     private String username;
@@ -54,7 +54,7 @@ public abstract class UserEmbeddable implements Serializable{
     private String firstName;
     private String lastName;
     private String email;
-    private boolean           isEnabled;
+    private boolean isEnable;
     private Date creationDate;
     private String comment;
     private Long id;
@@ -63,6 +63,7 @@ public abstract class UserEmbeddable implements Serializable{
     private Set<UserRole> roles = new HashSet<UserRole>();
 
     // ---- Manageable Display Attributes (Transient) -----
+    private Collection<Boolean> rolesLabels;    // Manageable display attribute
 
     // -------- 9 Attribute Accessors ----------
     /**
@@ -71,13 +72,14 @@ public abstract class UserEmbeddable implements Serializable{
      * @return String The value of username
      */
     @Column(name="USERNAME", unique=true, nullable=false, insertable=true, updatable=true, length=50)
-    @NotNull(message = "username is required")
+    @NotNull(message="username is required")
     @NotEmpty(message = "You should enter a value for username.")
 
     @Length(min = 5, max = 50)
-    @Size(max = 50)
+    @Size(max=50)
     @Pattern(regexp = "^\\w*$", message = "not a valid field")
-    @UserPrincipal
+	@Index(name = "USERNAME_INDEX")
+	@UserPrincipal
     public String getUsername()
     {
         return this.username;
@@ -99,12 +101,11 @@ public abstract class UserEmbeddable implements Serializable{
      * @return String The value of password
      */
     @Column(name="PASSWORD", nullable=false, insertable=true, updatable=true)
-    @NotNull(message = "password is required")
+    @NotNull(message="password is required")
     @NotEmpty(message = "You should enter a value for password.")
 
     @Length(min = 5)
-    @UserPassword
-    // (hash = "md5")
+	@UserPassword(hash = "md5")
     public String getPassword()
     {
         return this.password;
@@ -126,7 +127,7 @@ public abstract class UserEmbeddable implements Serializable{
      * @return String The value of firstName
      */
     @Column(name="FIRST_NAME", nullable=false, insertable=true, updatable=true)
-    @NotNull(message = "firstName is required")
+    @NotNull(message="firstName is required")
     @NotEmpty(message = "You should enter a value for firstName.")
 
     public String getFirstName()
@@ -150,7 +151,7 @@ public abstract class UserEmbeddable implements Serializable{
      * @return String The value of lastName
      */
     @Column(name="LAST_NAME", nullable=false, insertable=true, updatable=true)
-    @NotNull(message = "lastName is required")
+    @NotNull(message="lastName is required")
     @NotEmpty(message = "You should enter a value for lastName.")
 
     public String getLastName()
@@ -174,7 +175,7 @@ public abstract class UserEmbeddable implements Serializable{
      * @return String The value of email
      */
     @Column(name="EMAIL", unique=true, nullable=false, insertable=true, updatable=true, length=50)
-    @NotNull(message = "email is required")
+    @NotNull(message="email is required")
     @NotEmpty(message = "You should enter a value for email.")
 
     @Length( min = 0, max = 50)
@@ -196,26 +197,27 @@ public abstract class UserEmbeddable implements Serializable{
     }
 
     /**
-     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
-     * Get the isActive property.
-     * @return boolean The value of isActive
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isEnable
+     * Get the isEnable property.
+     * @return boolean The value of isEnable
      */
-    @Column(name="IS_ACTIVE", nullable=false, insertable=true, updatable=true)
-    @NotNull(message = "isEnabled is required")
-    @UserEnabled
-    public boolean isIsEnabled()
+    @Column(name="IS_ENABLE", nullable=false, insertable=true, updatable=true)
+    @NotNull(message="isEnable is required")
+
+	@UserEnabled
+    public boolean isIsEnable()
     {
-        return this.isEnabled;
+        return this.isEnable;
     }
 
     /**
-     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
-     * Set the isActive property.
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isEnable
+     * Set the isEnable property.
      * @param value the new value
      */
-    public void setIsEnabled(boolean value)
+    public void setIsEnable(boolean value)
     {
-        this.isEnabled = value;
+        this.isEnable = value;
     }
 
     /**
@@ -225,7 +227,7 @@ public abstract class UserEmbeddable implements Serializable{
      */
     @Column(name="CREATION_DATE", nullable=false, insertable=true, updatable=true)
     @Temporal(TemporalType.TIMESTAMP)
-    @NotNull(message = "creationDate is required")
+    @NotNull(message="creationDate is required")
 
     public Date getCreationDate()
     {
@@ -295,15 +297,13 @@ public abstract class UserEmbeddable implements Serializable{
      * Get the roles Collection
      * @return Set<UserRole>
      */
-    @ManyToMany(cascade =
-    { CascadeType.ALL })
+    @ManyToMany(cascade={CascadeType.ALL})
     @JoinTable
     (
         name="USERS2ROLES",
         joinColumns={@JoinColumn(name="USERS_ID", referencedColumnName="ID")},
         inverseJoinColumns={@JoinColumn(name="ROLES_ID", referencedColumnName="ID")}
     )
-    @UserRoles
     public Set<UserRole> getRoles()
     {
         return this.roles;
@@ -317,6 +317,27 @@ public abstract class UserEmbeddable implements Serializable{
     public void setRoles (Set<UserRole> rolesIn)
     {
         this.roles = rolesIn;
+    }
+
+    // -------- Manageable Attribute Display -----------
+    /**
+     * TODO: Model Documentation for UserRole
+     * Get the rolesLabels
+     * @return Collection<Boolean>     */
+    @Transient
+    public Collection<Boolean> getRolesLabels()
+    {
+        return this.rolesLabels;
+    }
+
+    /**
+     * TODO: Model Documentation for UserRole
+     * Set the rolesLabels
+     * @param rolesLabelsIn
+     */
+    public void setRolesLabels (Collection<Boolean> rolesLabelsIn)
+    {
+        this.rolesLabels = rolesLabelsIn;
     }
 
     // --------------- Constructors -----------------
@@ -337,18 +358,18 @@ public abstract class UserEmbeddable implements Serializable{
      * @param firstName String value for the firstName property true  1
      * @param lastName String value for the lastName property true  1
      * @param email String value for the email property true  1
-     * @param isActive boolean value for the isActive property true  1
+     * @param isEnable boolean value for the isEnable property true  1
      * @param creationDate Date value for the creationDate property true  1
      * @param comment String value for the comment property false  0
      */
-    public UserEmbeddable(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment)
+    public UserEmbeddable(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment)
     {
         setUsername(username);
         setPassword(password);
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
-        setIsEnabled(isActive);
+        setIsEnable(isEnable);
         setCreationDate(creationDate);
         setComment(comment);
     }
@@ -361,17 +382,17 @@ public abstract class UserEmbeddable implements Serializable{
      * @param firstName Value for the firstName property
      * @param lastName Value for the lastName property
      * @param email Value for the email property
-     * @param isActive Value for the isActive property
+     * @param isEnable Value for the isEnable property
      * @param creationDate Value for the creationDate property
      */
-    public UserEmbeddable(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate)
+    public UserEmbeddable(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate)
     {
         setUsername(username);
         setPassword(password);
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
-        setIsEnabled(isActive);
+        setIsEnable(isEnable);
         setCreationDate(creationDate);
     }
 
@@ -383,12 +404,12 @@ public abstract class UserEmbeddable implements Serializable{
      * @param firstName String value for the firstName property
      * @param lastName String value for the lastName property
      * @param email String value for the email property
-     * @param isActive boolean value for the isActive property
+     * @param isEnable boolean value for the isEnable property
      * @param creationDate Date value for the creationDate property
      * @param comment String value for the comment property
      * @param roles Set<UserRole> value for the roles relation
      */
-    public UserEmbeddable(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Set<UserRole> roles)
+    public UserEmbeddable(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Set<UserRole> roles)
     {
         // 8 updatableAttributes
         setUsername(username);
@@ -396,7 +417,7 @@ public abstract class UserEmbeddable implements Serializable{
         setFirstName(firstName);
         setLastName(lastName);
         setEmail(email);
-        setIsEnabled(isActive);
+        setIsEnable(isEnable);
         setCreationDate(creationDate);
         setComment(comment);
 
@@ -463,11 +484,11 @@ public abstract class UserEmbeddable implements Serializable{
         sb.append(" firstName=").append(getFirstName());
         sb.append(" lastName=").append(getLastName());
         sb.append(" email=").append(getEmail());
-        sb.append(" isActive=").append(isIsEnabled());
+        sb.append(" isEnable=").append(isIsEnable());
         sb.append(" creationDate=").append(getCreationDate());
         sb.append(" comment=").append(getComment());
         sb.append(" id=").append(getId());
-        // sb.append(" roles=").append(getRoles());
+        sb.append(" roles=").append(getRoles());
         sb.append(")");
         return sb.toString();
     }

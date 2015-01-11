@@ -10,10 +10,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import javax.annotation.Resource;
-import javax.ejb.Local;
 import javax.ejb.SessionContext;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -31,8 +28,8 @@ import org.hibernate.Session;
  *
  * @see TimeAllocationDao
  */
-@TransactionAttribute(TransactionAttributeType.REQUIRED)
-@Local({TimeAllocationDao.class})
+//@javax.ejb.TransactionAttribute(javax.ejb.TransactionAttributeType.REQUIRED)
+//@javax.ejb.Local({TimeAllocationDao.class})
 public abstract class TimeAllocationDaoBase implements TimeAllocationDao
 {
 
@@ -44,14 +41,12 @@ public abstract class TimeAllocationDaoBase implements TimeAllocationDao
 
     /**
      * Inject persistence context timetracker-ejb3     */    
-    @PersistenceContext(unitName = "timetracker-ejb3")
-    protected EntityManager entityManager;
+    @PersistenceContext(unitName = "timetracker-ejb3")    protected EntityManager entityManager;
 
     /**
      * Inject Hibernate Session
      */
-    @PersistenceContext(unitName = "timetracker-ejb3")
-    protected Session hibernateSession;
+    @PersistenceContext(unitName = "timetracker-ejb3")    protected Session hibernateSession;
 
     /**
      * @see TimeAllocationDao#load

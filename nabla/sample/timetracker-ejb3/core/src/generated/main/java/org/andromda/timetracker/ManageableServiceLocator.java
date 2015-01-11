@@ -5,8 +5,10 @@ package org.andromda.timetracker;
 import java.util.Properties;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import org.andromda.timetracker.domain.crud.MovieManageableService;
 import org.andromda.timetracker.domain.crud.TaskManageableService;
 import org.andromda.timetracker.domain.crud.UserManageableService;
+import org.andromda.timetracker.domain.crud.UserRoleManageableService;
 
 /**
  * Locates and provides all available application services.
@@ -158,6 +160,68 @@ public class ManageableServiceLocator
     public final TaskManageableService getTaskManageableServiceLocal(Properties env) throws NamingException
     {
         return (TaskManageableService) getContext(env).lookup("TaskManageableService/local");
+    }
+    /**
+     * Gets an instance of {@link UserRoleManageableService}.
+     *
+     * @throws NamingException failure to lookup remote manageable service interface.
+     */
+    public final UserRoleManageableService getUserRoleManageableService() throws NamingException
+    {
+        return this.getUserRoleManageableServiceRemote(null);
+    }
+
+    /**
+     * Get the remote interface for {@link UserRoleManageableService}.
+     *
+     * @param env the Context environment properties.  Null represents no properties.
+     * @throws NamingException failure to lookup remote manageable service interface.
+     */
+    public final UserRoleManageableService getUserRoleManageableServiceRemote(Properties env) throws NamingException
+    {
+        return (UserRoleManageableService) getContext(env).lookup("UserRoleManageableService/remote");
+    }
+
+    /**
+     * Get the local interface for {@link UserRoleManageableService}.
+     *
+     * @param env the Context environment properties.  Null represents no properties.
+     * @throws NamingException failure to lookup remote manageable service interface.
+     */
+    public final UserRoleManageableService getUserRoleManageableServiceLocal(Properties env) throws NamingException
+    {
+        return (UserRoleManageableService) getContext(env).lookup("UserRoleManageableService/local");
+    }
+    /**
+     * Gets an instance of {@link MovieManageableService}.
+     *
+     * @throws NamingException failure to lookup remote manageable service interface.
+     */
+    public final MovieManageableService getMovieManageableService() throws NamingException
+    {
+        return this.getMovieManageableServiceRemote(null);
+    }
+
+    /**
+     * Get the remote interface for {@link MovieManageableService}.
+     *
+     * @param env the Context environment properties.  Null represents no properties.
+     * @throws NamingException failure to lookup remote manageable service interface.
+     */
+    public final MovieManageableService getMovieManageableServiceRemote(Properties env) throws NamingException
+    {
+        return (MovieManageableService) getContext(env).lookup("MovieManageableService/remote");
+    }
+
+    /**
+     * Get the local interface for {@link MovieManageableService}.
+     *
+     * @param env the Context environment properties.  Null represents no properties.
+     * @throws NamingException failure to lookup remote manageable service interface.
+     */
+    public final MovieManageableService getMovieManageableServiceLocal(Properties env) throws NamingException
+    {
+        return (MovieManageableService) getContext(env).lookup("MovieManageableService/local");
     }
 
     /**

@@ -151,9 +151,7 @@ public class TimeAllocation implements Serializable, Comparable<TimeAllocation>{
     /**
      * This class represents a task for which time allocations need to be tracked.
      * Get the taskLabel
-     * @return String
-
-     */
+     * @return String     */
     @Transient
     public String getTaskLabel()
     {

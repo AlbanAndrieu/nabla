@@ -253,7 +253,7 @@ public interface UserDao
      * @param firstName
      * @param lastName
      * @param email
-     * @param isActive
+     * @param isEnable
      * @param creationDate
      * @param comment
      * @return the created instances. User
@@ -265,7 +265,7 @@ public interface UserDao
         String firstName,
         String lastName,
         String email,
-        boolean isActive,
+        boolean isEnable,
         Date creationDate,
         String comment)
         throws UserDaoException;
@@ -284,7 +284,7 @@ public interface UserDao
      * @param firstName
      * @param lastName
      * @param email
-     * @param isActive
+     * @param isEnable
      * @param creationDate
      * @param comment
      * @return the created instances. Object
@@ -297,7 +297,7 @@ public interface UserDao
         String firstName,
         String lastName,
         String email,
-        boolean isActive,
+        boolean isEnable,
         Date creationDate,
         String comment)
         throws UserDaoException;

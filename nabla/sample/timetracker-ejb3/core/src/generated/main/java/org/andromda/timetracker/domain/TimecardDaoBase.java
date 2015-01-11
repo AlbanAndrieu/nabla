@@ -12,10 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
-import javax.ejb.Local;
 import javax.ejb.SessionContext;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -35,8 +32,8 @@ import org.hibernate.Session;
  *
  * @see TimecardDao
  */
-@TransactionAttribute(TransactionAttributeType.REQUIRED)
-@Local({TimecardDao.class})
+//@javax.ejb.TransactionAttribute(javax.ejb.TransactionAttributeType.REQUIRED)
+//@javax.ejb.Local({TimecardDao.class})
 public abstract class TimecardDaoBase implements TimecardDao
 {
 
@@ -48,14 +45,12 @@ public abstract class TimecardDaoBase implements TimecardDao
 
     /**
      * Inject persistence context timetracker-ejb3     */    
-    @PersistenceContext(unitName = "timetracker-ejb3")
-    protected EntityManager entityManager;
+    @PersistenceContext(unitName = "timetracker-ejb3")    protected EntityManager entityManager;
 
     /**
      * Inject Hibernate Session
      */
-    @PersistenceContext(unitName = "timetracker-ejb3")
-    protected Session hibernateSession;
+    @PersistenceContext(unitName = "timetracker-ejb3")    protected Session hibernateSession;
 
     // ------ DAO Injections ------
 

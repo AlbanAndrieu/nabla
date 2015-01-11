@@ -10,10 +10,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import javax.annotation.Resource;
-import javax.ejb.Local;
 import javax.ejb.SessionContext;
-import javax.ejb.TransactionAttribute;
-import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -31,8 +28,8 @@ import org.hibernate.Session;
  *
  * @see TaskDao
  */
-@TransactionAttribute(TransactionAttributeType.REQUIRED)
-@Local({TaskDao.class})
+//@javax.ejb.TransactionAttribute(javax.ejb.TransactionAttributeType.REQUIRED)
+//@javax.ejb.Local({TaskDao.class})
 public abstract class TaskDaoBase implements TaskDao
 {
 
@@ -44,14 +41,12 @@ public abstract class TaskDaoBase implements TaskDao
 
     /**
      * Inject persistence context timetracker-ejb3     */    
-    @PersistenceContext(unitName = "timetracker-ejb3")
-    protected EntityManager entityManager;
+    @PersistenceContext(unitName = "timetracker-ejb3")    protected EntityManager entityManager;
 
     /**
      * Inject Hibernate Session
      */
-    @PersistenceContext(unitName = "timetracker-ejb3")
-    protected Session hibernateSession;
+    @PersistenceContext(unitName = "timetracker-ejb3")    protected Session hibernateSession;
 
     /**
      * @see TaskDao#load

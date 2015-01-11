@@ -222,9 +222,7 @@ public abstract class TimecardEmbeddable implements Serializable{
     /**
      * TODO: Model Documentation for User
      * Get the approverLabel
-     * @return String
-
-     */
+     * @return String     */
     @Transient
     public String getApproverLabel()
     {
@@ -244,9 +242,7 @@ public abstract class TimecardEmbeddable implements Serializable{
     /**
      * TODO: Model Documentation for User
      * Get the submitterLabel
-     * @return String
-
-     */
+     * @return String     */
     @Transient
     public String getSubmitterLabel()
     {
