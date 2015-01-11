@@ -16,7 +16,7 @@ public class UserRoleDaoException
     /**
      * The serial version UID of this class. Needed for serialization.
      */
-    private static final long serialVersionUID = 7844086459073233566L;
+    private static final long serialVersionUID = -3424123090539852512L;
 
     /**
      * The default constructor.

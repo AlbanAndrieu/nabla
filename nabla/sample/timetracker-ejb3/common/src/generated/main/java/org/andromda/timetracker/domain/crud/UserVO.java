@@ -12,7 +12,7 @@ public class UserVO
     implements Serializable
 {
     /** The serial version UID of this class. Needed for serialization. */
-    private static final long serialVersionUID = -6177852626226267723L;
+    private static final long serialVersionUID = 280161844106669459L;
 
     private String username;
 
@@ -114,24 +114,24 @@ public class UserVO
         this.email = emailIn;
     }
 
-    private boolean isActive;
+    private boolean isEnable;
 
     /**
-     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
-     * @return isActive
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isEnable
+     * @return isEnable
      */
-    public boolean isIsActive()
+    public boolean isIsEnable()
     {
-        return this.isActive;
+        return this.isEnable;
     }
 
     /**
-     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
-     * @param isActiveIn
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isEnable
+     * @param isEnableIn
      */
-    public void setIsActive(boolean isActiveIn)
+    public void setIsEnable(boolean isEnableIn)
     {
-        this.isActive = isActiveIn;
+        this.isEnable = isEnableIn;
     }
 
     private Date creationDate;
@@ -215,13 +215,13 @@ public class UserVO
         this.roles = rolesIn;
     }
 
-    private Long[][] rolesLabels;
+    private Boolean[] rolesLabels;
 
     /**
      * TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
      * @return roles
      */
-    public Long[][] getRolesLabels()
+    public Boolean[] getRolesLabels()
     {
         return this.rolesLabels;
     }
@@ -230,7 +230,7 @@ public class UserVO
      * TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
      * @param rolesLabelsIn
      */
-    public void setRolesLabels(Long[][] rolesLabelsIn)
+    public void setRolesLabels(Boolean[] rolesLabelsIn)
     {
         this.rolesLabels = rolesLabelsIn;
     }

@@ -16,7 +16,7 @@ public class UserDaoException
     /**
      * The serial version UID of this class. Needed for serialization.
      */
-    private static final long serialVersionUID = -6177852626226267723L;
+    private static final long serialVersionUID = 280161844106669459L;
 
     /**
      * The default constructor.
