@@ -66,7 +66,10 @@ sudo update-rc.d sonar defaults 35 65
 ls -l /etc/rc?.d/*sonar
 
 #http://docs.codehaus.org/display/SONAR/Pitest
-wget http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-pitest-plugin/0.2/sonar-pitest-plugin-0.2.jar
+#rebuild the latest source
+#wget http://repository.codehaus.org/org/codehaus/sonar-plugins/sonar-pitest-plugin/0.2/sonar-pitest-plugin-0.2.jar
+git clone https://github.com/gvsmirnov/sonar-pitest.git
+mvn clean install
 cd /workspace/sonar/extensions/plugins
 sudo mv /workspace/sonar-pitest-plugin-0.2.jar /workspace/sonar/extensions/plugins
 
@@ -144,5 +147,7 @@ sonar.updatecenter.url=http://www.qalitax.com/update-center/excentia-update-cent
 
 #Security
 #Grant sonar access from outside (for docker and other servers)
-grant all on sonar.* to sonar@'%' identified by 'microsoft';
+GRANT ALL ON sonar.* TO 'sonar'@'localhost' IDENTIFIED BY 'sonar';
+GRANT ALL ON sonar.* TO 'sonar'@'albandri' IDENTIFIED BY 'sonar';
+FLUSH PRIVILEGES;
 #Use sonar instead of root inside Jenkins

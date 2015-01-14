@@ -84,3 +84,7 @@ sudo docker run -i -t fec8ae404140 /usr/sbin/sshd -D
 sudo docker kill stupefied_albattani
 
 #http://repo.jenkins-ci.org/releases/com/nirima/docker-plugin/0.6.1/
+
+#docker registry http://150.151.160.25:5000
+docker login 150.151.160.25:5000
+docker push 150.151.160.25:5000/jenkins-2
