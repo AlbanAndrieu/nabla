@@ -25,11 +25,11 @@
 			<jboss.el.version>1.0_02.CR6</jboss.el.version>
 		</properties>
 	-->
-	<properties>	
+	<properties>
 		<gatling.version>1.5.6</gatling.version>
-		<scala.version>2.9.3</scala.version>		
+		<scala.version>2.9.3</scala.version>
 	</properties>
-		
+
 	<!--
 	<dependencyManagement>
 		<dependencies>
@@ -402,30 +402,12 @@
 		</dependency>
 
 		<dependency>
-			<groupId>com.excilys.ebi.gatling.highcharts</groupId>
-			<!--<groupId>io.gatling.highcharts</groupId>-->
-			<artifactId>gatling-charts-highcharts</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.excilys.ebi.gatling</groupId>
-			<artifactId>gatling-app</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.excilys.ebi.gatling</groupId>
-			<artifactId>gatling-recorder</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.scala-lang</groupId>
-			<artifactId>scala-library</artifactId>
-		</dependency>
-		
-		<dependency>
 		  <groupId>com.newrelic.agent.java</groupId>
 		  <artifactId>newrelic-agent</artifactId>
 		  <version>${newrelic.version}</version>
 		  <scope>runtime</scope>
-		</dependency>		
-		
+		</dependency>
+
 	    <!-- The newrelic-java.zip dependency. -->
 	    <!--
 	    <dependency>
@@ -434,7 +416,7 @@
 		  <version>${newrelic.version}</version>
 		  <scope>provided</scope>
 		  <type>zip</type>
-	    </dependency>		
+	    </dependency>
 	    -->
 	</dependencies>
 
@@ -526,7 +508,7 @@
 				<configuration>
 					<skipTests>${maven.test.skip}</skipTests>
 					<testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
-					<testSourceDirectory>${basedir}/src/test/groovy</testSourceDirectory>								
+					<testSourceDirectory>${basedir}/src/test/groovy</testSourceDirectory>
 					<excludes>
 						<exclude>**/*ITest*</exclude>
 						<exclude>**/*STest*</exclude>
@@ -584,6 +566,12 @@
 							<cargo.remote.password>${cargo.remote.password}</cargo.remote.password>
 							<cargo.logging>high</cargo.logging>
 							<cargo.jvmargs>${newrelic.agent}
+							-Dcom.sun.management.jmxremote
+                            -Dcom.sun.management.jmxremote.ssl=false
+                            -Dcom.sun.management.jmxremote.authenticate=false
+                            -Dcom.sun.management.jmxremote.port=1099
+                            -Djetty.jmxrmihost=localhost
+                            -Djetty.jmxrmiport=1099
 							<!-- <cargo.jvmargs> -Dnabla.config=${basedir}/src/main/resources
 								-Dnabla.data=${basedir}/src/test/resources/data -->
 							<!-- -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -->
@@ -644,6 +632,10 @@
 						<connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
 							<port>${jetty.port}</port>
 							<maxIdleTime>600000</maxIdleTime>
+							<!-- TODO activate JMX 
+							<scanintervalseconds>10</scanintervalseconds>
+							<jettyXml>src/etc/jetty-jmx.xml</jettyXml>			
+							-->				
 						</connector>
 					</connectors>
 			<!--
@@ -703,8 +695,8 @@
 						</artifactItems>
 						<outputDirectory>target/newrelic</outputDirectory>
 					  </configuration>
-					</execution>		
-					-->			
+					</execution>
+					-->
 				</executions>
 			</plugin>
 
@@ -757,38 +749,6 @@
 				</configuration>
 			</plugin>
 
-			<plugin>
-				<groupId>net.alchim31.maven</groupId>
-				<artifactId>scala-maven-plugin</artifactId>
-				<version>${maven.scala.maven.plugin.version}</version>
-				<executions>
-					<execution>
-						<goals>
-							<goal>compile</goal>
-							<goal>testCompile</goal>
-						</goals>
-					</execution>
-				</executions>				
-			</plugin>
-			<plugin>
-				<groupId>com.excilys.ebi.gatling</groupId>
-				<!--<groupId>io.gatling</groupId>-->
-				<artifactId>gatling-maven-plugin</artifactId>
-				<version>${gatling.version}</version>
-				<executions>
-					<execution>
-						<phase>integration-test</phase>
-						<goals>
-							<goal>execute</goal>
-						</goals>
-						<configuration>
-							<includes>
-								<include>**/RecordedSimulation.scala</include>
-							</includes>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
 			<!--
 			<plugin>
 				<groupId>org.codehaus.mojo</groupId>
@@ -805,13 +765,77 @@
 					</goals>
 				  </execution>
 				</executions>
-		    </plugin>		
+		    </plugin>
 		    -->
 		</plugins>
 	</build>
 
-<!--
-  <profiles>
+  <profiles>	  
+		<profile>
+            <id>gatling</id>
+		    <activation>
+		    		<property>
+		    				<name>!profile.activation</name>
+		    		</property>
+		    </activation>		            
+            <dependencies>
+		        <dependency>
+		        	<groupId>com.excilys.ebi.gatling.highcharts</groupId>
+		        	<artifactId>gatling-charts-highcharts</artifactId>
+		        	<scope>test</scope>
+		        </dependency>
+		        <dependency>
+		        	<groupId>com.excilys.ebi.gatling</groupId>
+		        	<artifactId>gatling-app</artifactId>
+		        	<scope>test</scope>
+		        </dependency>
+		        <dependency>
+		        	<groupId>com.excilys.ebi.gatling</groupId>
+		        	<artifactId>gatling-recorder</artifactId>
+		        	<scope>test</scope>
+		        </dependency>	  
+				<dependency>
+					<groupId>org.scala-lang</groupId>
+					<artifactId>scala-library</artifactId>
+				</dependency>		        
+            </dependencies>
+
+            <build>
+                <plugins>
+					<plugin>
+						<groupId>net.alchim31.maven</groupId>
+						<artifactId>scala-maven-plugin</artifactId>
+						<version>${maven.scala.maven.plugin.version}</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>compile</goal>
+									<goal>testCompile</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>com.excilys.ebi.gatling</groupId>
+						<artifactId>gatling-maven-plugin</artifactId>
+						<version>${gatling.version}</version>
+						<executions>
+							<execution>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>execute</goal>
+								</goals>
+								<configuration>
+									<includes>
+										<include>**/RecordedSimulation.scala</include>
+									</includes>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>					
+                </plugins>
+            </build>					
+	    <!--
 		<profile>
             <id>jacoco</id>
             <dependencies>
@@ -893,7 +917,7 @@
                     </plugin>
                 </plugins>
             </build>
+       -->            
         </profile>
     </profiles>
-       -->
 </project>

@@ -70,8 +70,8 @@ public class GoogleSearchSTest
         ProfilesIni allProfiles = new ProfilesIni();
         FirefoxProfile profile = allProfiles.getProfile("/workspace/users/albandri10/.mozilla/firefox/xhvt8rwp.selenium/");
         // FirefoxProfile profile = new FirefoxProfile();
-        //FirefoxBinary binary = new FirefoxBinary(new File(firefoxBin));
-        //driver = new FirefoxDriver(binary, profile);
+        // FirefoxBinary binary = new FirefoxBinary(new File(firefoxBin));
+        // driver = new FirefoxDriver(binary, profile);
         this.driver = new FirefoxDriver(profile);
         this.driver.manage().window().maximize();
         this.driver.get("http://www.google.com");
