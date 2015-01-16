@@ -247,7 +247,7 @@
                   <properties>
                         <env.GRIDGAIN_HOME>${project.build.directory}/gridgain</env.GRIDGAIN_HOME>
                   </properties>
-                </profile>                
+                </profile>
                 <profile>
                   <!-- e.g: mvn initialize -Pshow-properties -->
                   <id>show-properties</id>
@@ -939,8 +939,7 @@
                 <maven.test.failure.skip>true</maven.test.failure.skip>
                 <maven.test.it.skip>${maven.test.skip}</maven.test.it.skip>
                 <maven.test.ut.skip>${maven.test.skip}</maven.test.ut.skip>
-                <maven.javadoc.skip>false</maven.javadoc.skip>
-                <!--<maven.clover.licenseLocation>${home.dir}/build-tools/src/main/resources/project/clover.license</maven.clover.licenseLocation>-->
+                <maven.javadoc.skip>false</maven.javadoc.skip>                
                 <!-- TODO overrided in filter -->
 
                 <copyright.year>2012</copyright.year>
@@ -988,11 +987,9 @@
                 <!--<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>-->
 
                 <!--<sonar.jacoco.excludes>com/nabla/project/application/model/dao/person/**:com/nabla/pack2/**:</sonar.jacoco.excludes>-->
-                <clover.enabled>true</clover.enabled>
-                <clover.jdkLevel>1.6</clover.jdkLevel>
+                
 
                 <sonar.clover.version>${clover.version}</sonar.clover.version>
-                <sonar.clover.reportPath>${project.build.directory}/site/clover/clover.xml</sonar.clover.reportPath>
 
                 <!--<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath> -->
 
@@ -1201,7 +1198,7 @@
 
                 <hessian.version>4.0.38</hessian.version>
                 <inject.version>1</inject.version>
-                <guice.version>4.0-beta</guice.version>
+                <guice.version>4.0-beta5</guice.version>
                 <jsr305.version>2.0.2</jsr305.version>
                 <joda.time.version>2.3</joda.time.version>
                 <!--<guava.version>14.0.1</guava.version>--> <!-- WARNING 16.0-rc1 does not work with selenium -->
@@ -1216,7 +1213,7 @@
                 <ajax4jsf.version>1.0.6</ajax4jsf.version>
                 <aspectj.version>1.7.1</aspectj.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
                 <aspectj.weaver.version>1.6.4</aspectj.weaver.version>
-		
+
 				<camel.version>2.13.0</camel.version>
 				<esper.version>4.11.0</esper.version>
 				<ejml.version>0.24</ejml.version>
@@ -1325,11 +1322,12 @@
                 -->
                 <easymock.version>3.2</easymock.version>
                 <mockito.version>1.10.19</mockito.version>
-                <jmockit.version>1.7</jmockit.version>
+                <googlecode.jmockit.version>1.7</googlecode.jmockit.version> <!-- googlecode.jmockit moved to org.jmockit -->
+                <jmockit.version>1.14</jmockit.version> <!-- WARNING jmockit does not work wit jacoco coverage -->
                 <mockrunner.version>1.0.0</mockrunner.version>
-                <hamcrest.core.version>1.3.RC2</hamcrest.core.version>
                 <hamcrest.all.version>1.3</hamcrest.all.version>
                 <hamcrest.version>${hamcrest.all.version}</hamcrest.version>
+                <hamcrest.core.version>${hamcrest.all.version}</hamcrest.core.version>
                 <jsp.version>2.0</jsp.version>
                 <jsp-api.version>2.2.1-b03</jsp-api.version>
                 <junit.version>4.12</junit.version>
@@ -1404,6 +1402,7 @@
                 <saucelabs.junit.version>2.1.10</saucelabs.junit.version>
                 <fitnesse.version>20140418</fitnesse.version>
                 <gatling.version>1.5.6</gatling.version>
+                <newrelic.version>3.12.1</newrelic.version>
                 <!--<webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
                 <!--<webdriver.firefox.bin>/usr/lib/firefox/firefox</webdriver.firefox.bin>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
                 <!--<arquillian>arq-jbossas-managed</arquillian>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
@@ -1511,7 +1510,8 @@
                 <flexunit.version>4.0-rc-1</flexunit.version>
                 <spark.version>4.6.b.23201</spark.version>
                 <ilog-elixir.version>3.0.21588</ilog-elixir.version>
-                <jackson.version>1.9.9</jackson.version>
+                <jackson.version>1.9.13</jackson.version>
+                <fasterxml.jackson.version>2.5.0</fasterxml.jackson.version>
                 <jersey.version>1.17.1</jersey.version>
                 <jetty6.version>6.1.25</jetty6.version>
                 <jetty7.version>7.6.5.v20120716</jetty7.version> <!-- 7.6.3.v20120416 TODO remove jetty 6 -->
@@ -1641,7 +1641,8 @@
                 <maven.jxr.plugin.version>2.5</maven.jxr.plugin.version>
                 <maven.pmd.plugin.version>3.3</maven.pmd.plugin.version>
                 <maven.project.info.reports.plugin.version>2.7</maven.project.info.reports.plugin.version>
-                <maven.resources.plugin.version>2.7</maven.resources.plugin.version>
+                <!--<maven.resources.plugin.version>2.7</maven.resources.plugin.version> Mark invalid -->
+                <maven.resources.plugin.version>2.6</maven.resources.plugin.version>
                 <maven.site.old.plugin.version>2.3</maven.site.old.plugin.version>
                 <!--<maven.site.plugin.version>${maven.site.old.plugin.version}</maven.site.plugin.version>-->
                 <maven.site.plugin.version>3.4</maven.site.plugin.version>
@@ -1812,13 +1813,13 @@
                                                                                 <versionRange>[${maven.scala.maven.plugin.version},)</versionRange>
                                                                                 <goals>
                                                                                         <goal>compile</goal>
-                                                                                        <goal>testCompile</goal>                                                                                        
+                                                                                        <goal>testCompile</goal>
                                                                                 </goals>
                                                                         </pluginExecutionFilter>
                                                                         <action>
                                                                                 <ignore />
                                                                         </action>
-                                                                </pluginExecution>                                                                
+                                                                </pluginExecution>
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.apache.maven.plugins</groupId>
@@ -3423,57 +3424,6 @@
                                         <output>file</output>
                                         <!--classDumpDir>${project.build.directory}/jacoco-instrumented</classDumpDir-->
                                     </configuration>
-                                    <!--
-                                        <executions>
-                                              <execution>
-                                                <id>prepare-ut-agent</id>
-                                                <phase>process-test-classes</phase>
-                                                <goals>
-                                                  <goal>prepare-agent</goal>
-                                                </goals>
-                                                <configuration>
-                                                  <destFile>${sonar.jacoco.reportPath}</destFile>
-                                                  <propertyName>jacoco.agent.ut.arg</propertyName>
-                                                  <append>true</append>
-                                                </configuration>
-                                              </execution>
-                                              <execution>
-                                                <id>prepare-it-agent</id>
-                                                <phase>pre-integration-test</phase>
-                                                <goals>
-                                                  <goal>prepare-agent</goal>
-                                                </goals>
-                                                <configuration>
-                                                  <destFile>${sonar.jacoco.itReportPath}</destFile>
-                                                  <propertyName>jacoco.agent.it.arg</propertyName>
-                                                  <append>true</append>
-                                                </configuration>
-                                              </execution>
-                                            <execution>
-                                                <id>report</id>
-                                                <phase>prepare-package</phase>
-                                                <goals>
-                                                    <goal>report</goal>
-                                                </goals>
-                                                <configuration>
-                                                    <outputDirectory>${project.reporting.outputDirectory}/coverage-ut</outputDirectory>
-                                                    <dataFile>${sonar.jacoco.reportPath}</dataFile>
-                                                </configuration>
-                                            </execution>
-                                            
-                                            <execution>
-                                                <id>default-report-integration</id>
-                                                <phase>post-integration-test</phase>
-                                                <goals>
-                                                    <goal>report-integration</goal>
-                                                </goals>
-                                                <configuration>
-                                                    <outputDirectory>${project.reporting.outputDirectory}/coverage-it</outputDirectory>
-                                                    <dataFile>${sonar.jacoco.itReportPath}</dataFile>
-                                                </configuration>
-                                            </execution>
-                                        </executions>
-                                         -->
                                 </plugin>
                                 <plugin>
                                         <groupId>org.codehaus.mojo</groupId>
@@ -3631,8 +3581,8 @@
 													</artifactitems>
 												</configuration>
 											</execution>
-										</executions>           
-										-->                             
+										</executions>
+										-->
                                 </plugin>
                                 <plugin>
                                     <groupId>org.databene</groupId>
@@ -4717,7 +4667,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<artifactId>gridgain</artifactId>
 							<version>${gridgain.version}</version>
 							<scope>test</scope>
-						</dependency>                        
+						</dependency>
                         <dependency>
                             <groupId>org.databene</groupId>
                             <artifactId>feed4junit</artifactId>
@@ -4765,18 +4715,36 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <scope>test</scope>
                         </dependency>
                         -->
+                        <!--
+                        Please use jmockit instead
+                        http://jmockit.github.io/MockingToolkitComparisonMatrix.html
+                        -->
                         <dependency>
                                 <groupId>org.mockito</groupId>
                                 <artifactId>mockito-all</artifactId>
                                 <version>${mockito.version}</version>
                                 <scope>test</scope>
                         </dependency>
+                        <!-- googlecode.jmockit moved to org.jmockit
                         <dependency>
                                 <groupId>com.googlecode.jmockit</groupId>
                                 <artifactId>jmockit</artifactId>
-                                <version>${jmockit.version}</version>
+                                <version>${googlecode.jmockit.version}</version>
                                 <scope>test</scope>
                         </dependency>
+                        -->
+                        <dependency>
+		                	    <groupId>org.jmockit</groupId>
+		                	    <artifactId>jmockit</artifactId>
+		                	    <version>${jmockit.version}</version>
+		                	    <scope>test</scope>
+		                </dependency>	                        
+			            <dependency>
+			            	    <groupId>org.mockito</groupId>
+			            	    <artifactId>mockito-all</artifactId>
+			            	    <version>${mockito.version}</version>
+			            	    <scope>test</scope>
+			            </dependency>
                         <dependency>
                                 <groupId>org.hamcrest</groupId>
                                 <artifactId>hamcrest-library</artifactId>
@@ -4861,7 +4829,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                     <artifactId>mockito-core</artifactId>
                                 </exclusion>
                             </exclusions>
-                        </dependency>                      
+                        </dependency>
                         <dependency>
                             <groupId>com.google.code.protoj</groupId>
                             <artifactId>protoj-nodep</artifactId>
@@ -5003,6 +4971,22 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <scope>test</scope>
                         </dependency>
 
+						<dependency>
+						  <groupId>com.newrelic.agent.java</groupId>
+						  <artifactId>newrelic-agent</artifactId>
+						  <version>${newrelic.version}</version>
+						  <scope>runtime</scope>
+						</dependency>
+
+						<!-- The newrelic-java.zip dependency. -->
+						<dependency>
+						  <groupId>com.newrelic.agent.java</groupId>
+						  <artifactId>newrelic-java</artifactId>
+						  <version>${newrelic.version}</version>
+						  <scope>provided</scope>
+						  <type>zip</type>
+						</dependency>		
+	    
                         <dependency>
                             <groupId>com.excilys.ebi.gatling.highcharts</groupId>
                             <artifactId>gatling-charts-highcharts</artifactId>
@@ -5066,7 +5050,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<groupId>org.jvnet.mimepull</groupId>
 							<artifactId>mimepull</artifactId>
 							<version>${mimepull.version}</version>
-						</dependency>  
+						</dependency>
                         <dependency>
 							<groupId>org.beanshell</groupId>
 							<artifactId>bsh</artifactId>
@@ -7228,7 +7212,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 								<version>${embed.mongo.version}</version>
 								<scope>test</scope>
 						</dependency>
-						
+
                         <!-- akka-->
                         <dependency>
                                 <groupId>com.typesafe.akka</groupId>
@@ -8070,6 +8054,21 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <artifactId>jackson-xc</artifactId>
                             <version>${jackson.version}</version>
                         </dependency>
+                         <dependency>
+			            	<groupId>com.fasterxml.jackson.core</groupId>
+			            	<artifactId>jackson-core</artifactId>
+			            	<version>${fasterxml.jackson.version}</version>
+			            </dependency>
+			            <dependency>
+			            	<groupId>com.fasterxml.jackson.core</groupId>
+			            	<artifactId>jackson-databind</artifactId>
+			            	<version>${fasterxml.jackson.version}</version>
+			            </dependency>
+			            <dependency>
+			            	<groupId>com.fasterxml.jackson.core</groupId>
+			            	<artifactId>jackson-annotations</artifactId>
+			            	<version>${fasterxml.jackson.version}</version>
+			            </dependency>
                         <!-- // Jackson -->
 
                         <!-- Jersey -->
@@ -8307,13 +8306,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						<version>${gridgain.version}</version>
 						<type>pom</type>
 					</dependency>
-					
+
 					<dependency>
 						<groupId>org.aspectj</groupId>
 						<artifactId>aspectjweaver</artifactId>
 						<version>${aspectj.weaver.version}</version>
 					</dependency>
-						
+
                     <dependency>
                         <groupId>org.aspectj</groupId>
                         <artifactId>aspectjrt</artifactId>
