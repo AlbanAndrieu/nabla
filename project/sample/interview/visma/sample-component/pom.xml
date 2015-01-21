@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>sample-component</artifactId>
+    <name>Visma sample component</name>
+    <packaging>jar</packaging>
+    <description>Visma sample component</description>
+
+    <parent>
+        <groupId>com.nabla.project.sample.interview.visma</groupId>
+        <artifactId>visma</artifactId>
+        <version>1.0.1-SNAPSHOT</version>
+    </parent>
+	
+    <build>
+        <sourceDirectory>src</sourceDirectory>
+        <testSourceDirectory>test</testSourceDirectory>
+        		
+        <plugins>
+            <plugin>
+                <groupId>com.github.eirslett</groupId>
+                <artifactId>frontend-maven-plugin</artifactId>
+                <version>${maven.frontend.plugin.version}</version>
+        
+                <configuration>
+                    <nodeVersion>v0.10.18</nodeVersion>
+                    <npmVersion>1.3.8</npmVersion>
+                    <!--<workingDirectory>src/main/webapp</workingDirectory>-->
+                </configuration>
+        
+                <executions>
+        
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                    </execution>
+        
+                    <execution>
+                        <id>npm install</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>install</arguments>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>grunt build</id>
+                        <goals>
+                            <goal>grunt</goal>
+                        </goals>
+                        <configuration>
+                            <arguments>build</arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>${maven.antrun.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>copyLCOVfile</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+								<echo message="Copying LCOV file -> lcof.info for Sonar purpose to target directory" />
+                                <copy todir="${basedir}/target" flatten="true">
+                                    <fileset dir="${basedir}/target">
+                                        <include name="karma-coverage/PhantomJS*/lcov.info" />
+                                    </fileset>
+                                </copy>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>              
+        </plugins>
+    </build>            
+    
+    <profiles>
+        <profile>
+            <id>sonar</id>
+            <activation>
+			    <property>
+				     <name>!profile.activation</name>
+				 </property>
+		    </activation>	
+            <properties>
+                <sonar.language>js</sonar.language>
+                <!--<sonar.exclusions>${basedir}/src/main/webapp/lib/**</sonar.exclusions>-->
+                <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+                <sonar.javascript.lcov.reportPath>${basedir}/target/lcov.info</sonar.javascript.lcov.reportPath>
+	        </properties>
+	     </profile>
+    </profiles>
+</project>

@@ -25,8 +25,8 @@ REM OK mvn -U -B clean install -Dsurefire.useFile=false -Psample,jacoco,integrat
 
 REM OK TO RUN GATLING TEST mvn clean install gatling:execute -Pgatling
 REM OK TO RUN SERVER mvn clean install org.codehaus.cargo:cargo-maven2-plugin:run -Dserver=jetty9x > deploy.log 2>&1
-REM inside Jconsole --> Remote connection to : service:jmx:rmi://localhost:1099/jndi/rmi://localhost:1099/jmxrmi
-REM inside VisualVM --> Add jmx connection : service:jmx:rmi://127.0.0.1:1099/jndi/rmi://127.0.0.1:1099/jmxrmi
+REM Inside Jconsole --> Remote connection to : service:jmx:rmi://localhost:1099/jndi/rmi://localhost:1099/jmxrmi
+REM Inside VisualVM --> Add jmx connection : service:jmx:rmi://127.0.0.1:1099/jndi/rmi://127.0.0.1:1099/jmxrmi
 REM do not forget to replace localhost by 127.0.0.1 and to deactivate proxy
 
 pause

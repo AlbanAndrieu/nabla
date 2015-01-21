@@ -1,0 +1,8 @@
+node_modules/
+bower_components/
+.DS_Store
+npm-debug.log
+.bower-cache/
+.bower-registry/
+.bower-tmp/
+build/

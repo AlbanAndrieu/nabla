@@ -1,0 +1,35 @@
+{
+  "name": "sample-component",
+  "description": "Sample UI component",
+  "version": "0.0.1",
+  "author": "NABLA",
+  "dependencies": {    
+    "grunt": "0.4.5",
+    "grunt-cli": "0.1.13",
+    "bower": "~1.3.8",
+    "grunt-bower-task": "*",
+    "grunt-concurrent": "0.4.3",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-copy": "*",
+    "load-grunt-tasks": "0.2.1",
+    "grunt-contrib-watch": "0.6.1",
+    "karma": "0.12.17",
+    "grunt-karma": "~0.8.2",
+    "karma-jasmine": "~0.2.2",
+    "karma-phantomjs-launcher": "~0.1.2",
+    "karma-chrome-launcher": "*",
+    "karma-coverage": "*",
+    "karma-firefox-launcher": "*",
+    "karma-junit-reporter": "*",
+    "karma-ng-html2js-preprocessor": "*",
+    "karma-ng-scenario": "*",
+    "karma-script-launcher": "*",
+    "grunt-contrib-clean": "^0.6.0"
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "devDependencies": {
+    "grunt-bower-task": "^0.4.0"
+  }
+}

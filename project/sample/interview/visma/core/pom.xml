@@ -25,7 +25,7 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 		</dependency>
-		<!-- <dependency> <groupId>org.mockito</groupId> <artifactId>mockito-all</artifactId> 
+		<!-- <dependency> <groupId>org.mockito</groupId> <artifactId>mockito-all</artifactId>
 			<scope>test</scope> </dependency> -->
 		<dependency>
 			<groupId>commons-lang</groupId>
@@ -41,6 +41,13 @@
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 		</dependency>
+		<!--
+		<dependency>
+			<groupId>org.gridgain</groupId>
+			<artifactId>gridgain</artifactId>
+			<scope>test</scope>
+		</dependency>
+		-->
 	</dependencies>
 
 	<build>
@@ -57,6 +64,45 @@
 					</archive>
 				</configuration>
 			</plugin>
+		<!-- for gridgain		
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<includes>
+						<include>**/*BasicPaymentMethodTest.java</include>
+					</includes>
+
+					<argline>-javaagent:${project.build.directory}/libs/aspectjweaver-${aspect.jweaver.version}.jar</argline>
+					<workingdirectory>${project.build.directory}/libs/</workingdirectory>
+				</configuration>
+			</plugin>
+-->
+		<!-- for gridgain		
+			<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-dependency-plugin</artifactId>
+					<executions>
+						<execution>
+							<id>copy</id>
+							<phase>process-resources</phase>
+							<goals>
+								<goal>copy</goal>
+							</goals>
+							<configuration>
+								<artifactitems>
+									<artifactitem>
+										<groupId>org.aspectj</groupId>
+										<artifactId>aspectjweaver</artifactId>
+										<version>${aspectj.weaver.version}</version>
+										<outputdirectory>${project.build.directory}/libs/</outputdirectory>
+									</artifactitem>
+								</artifactitems>
+							</configuration>
+						</execution>
+					</executions>
+			</plugin>
+-->			
 		</plugins>
 	</build>
 
