@@ -6,3 +6,4 @@ npm-debug.log
 .bower-registry/
 .bower-tmp/
 build/
+target/

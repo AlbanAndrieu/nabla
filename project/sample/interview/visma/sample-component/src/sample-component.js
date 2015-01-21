@@ -3,8 +3,12 @@
 
   angular.module('sample-component', []).filter('truncate', function() {
     return function(input, chars, breakOnWord) {
-      if (isNaN(chars)) return input;
-      if (chars <= 0) return '';
+       if (isNaN(chars)) {
+        return input;
+      }
+      if (chars <= 0) {
+        return '';
+      }
       if (input && input.length > chars) {
         input = input.substring(0, chars);
         if (!breakOnWord) {

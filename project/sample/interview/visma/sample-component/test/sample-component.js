@@ -16,8 +16,18 @@ describe('Filter: filters', function() {
   describe("truncate", function() {
 
     it('should do nothing if NaN provided', function() {
-      var truncate = filters('truncate')(2005/12/12);
-      expect(truncate).toBe(2005/12/12);
+      var truncate = filters('truncate')(2005 / 12 / 12);
+      expect(truncate).toBe(2005 / 12 / 12);
+    });
+
+    it('should return empty string if length of the string is 0', function() {
+      var truncate = filters('truncate')(' ', 0, false);
+      expect(truncate.length).toBe(0);
+    });
+
+    it('should return empty string if length of the string is negative number', function() {
+      var truncate = filters('truncate')(' ', -100, false);
+      expect(truncate.length).toBe(0);
     });
 
     it('should return empty string if empty string is provided', function() {

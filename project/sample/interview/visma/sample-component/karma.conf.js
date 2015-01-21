@@ -31,8 +31,7 @@ module.exports = function(config) {
       'karma-ie-launcher',
       'karma-junit-reporter',
       'karma-coverage',
-      'karma-jasmine',
-      'karma-requirejs'
+      'karma-jasmine'
     ],
     
     // test results reporter to use

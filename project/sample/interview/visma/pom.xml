@@ -56,6 +56,7 @@
 
     <modules>
         <module>core</module>
+        <module>sample-component</module>
         <module>gui</module>
     </modules>
 
