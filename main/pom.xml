@@ -903,7 +903,8 @@
 						<!--<jacoco.skip>true</jacoco.skip>-->
 						<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>	
 						
-						<!--<jacoco.agent.jar>${project.build.directory}/org.jacoco.agent-${jacoco.version}-runtime.jar</jacoco.agent.jar>-->
+						<!--<jacoco.agent>${project.build.directory}/org.jacoco.agent-${jacoco.version}-runtime.jar</jacoco.agent>-->
+						<jacoco.agent>-javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${jacoco.agent.version}/org.jacoco.agent-${jacoco.agent.version}-runtime.jar=destfile=${sonar.jacoco.itReportPath}</jacoco.agent>
 					</properties>										
 					<dependencies>
 						<dependency>
