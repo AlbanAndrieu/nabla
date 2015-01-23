@@ -401,6 +401,14 @@
 			<scope>compile</scope>
 		</dependency>
 
+	    <dependency>
+	        <groupId>org.jacoco</groupId>
+	        <artifactId>org.jacoco.agent</artifactId>
+	        <version>${jacoco.agent.version}</version>
+	        <type>jar</type>
+	        <classifier>runtime</classifier>
+	        <scope>test</scope>
+	    </dependency>
 		<dependency>
 		  <groupId>com.newrelic.agent.java</groupId>
 		  <artifactId>newrelic-agent</artifactId>
@@ -566,6 +574,7 @@
 							<cargo.remote.password>${cargo.remote.password}</cargo.remote.password>
 							<cargo.logging>high</cargo.logging>
 							<cargo.jvmargs>${newrelic.agent}
+							${jacoco.agent}
 							-Dcom.sun.management.jmxremote
                             -Dcom.sun.management.jmxremote.ssl=false
                             -Dcom.sun.management.jmxremote.authenticate=false
