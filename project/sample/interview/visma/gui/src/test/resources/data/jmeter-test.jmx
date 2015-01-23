@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testResults version="1.2">
+<httpSample t="23" lt="23" ts="1422026320370" s="true" lb="/visma/" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" by="982"/>
+<sample t="82" lt="23" ts="1422026320312" s="true" lb="Transaction Controller - Accueil" rc="200" rm="Number of samples in transaction : 1, number of failing samples : 0" tn="Thread Group 1-1" dt="" by="982"/>
+<httpSample t="12" lt="12" ts="1422026320849" s="true" lb="/visma/" rc="200" rm="OK" tn="Thread Group 1-2" dt="text" by="982"/>
+<sample t="49" lt="12" ts="1422026320813" s="true" lb="Transaction Controller - Accueil" rc="200" rm="Number of samples in transaction : 1, number of failing samples : 0" tn="Thread Group 1-2" dt="" by="982"/>
+<httpSample t="455" lt="455" ts="1422026337739" s="true" lb="/visma/loan.xhtml" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" by="2050"/>
+<httpSample t="32" lt="32" ts="1422026338177" s="true" lb="/visma/loan.xhtml" rc="200" rm="OK" tn="Thread Group 1-2" dt="text" by="2047"/>
+<httpSample t="70" lt="67" ts="1422026358907" s="false" lb="/visma/loan.xhtml" rc="500" rm="Server Error" tn="Thread Group 1-1" dt="text" by="26171"/>
+<httpSample t="39" lt="37" ts="1422026358938" s="false" lb="/visma/loan.xhtml" rc="500" rm="Server Error" tn="Thread Group 1-2" dt="text" by="26172"/>
+<httpSample t="130" lt="128" ts="1422026358983" s="false" lb="/visma/payment.xhtml" rc="500" rm="Server Error" tn="Thread Group 1-1" dt="text" by="22017"/>
+<sample t="38719" lt="650" ts="1422026320395" s="false" lb="Transaction Controller - Research" rc="" rm="Number of samples in transaction : 3, number of failing samples : 2" tn="Thread Group 1-1" dt="" by="50238"/>
+<httpSample t="76" lt="73" ts="1422026359038" s="false" lb="/visma/payment.xhtml" rc="500" rm="Server Error" tn="Thread Group 1-2" dt="text" by="22017"/>
+<sample t="38252" lt="142" ts="1422026320863" s="false" lb="Transaction Controller - Research" rc="" rm="Number of samples in transaction : 3, number of failing samples : 2" tn="Thread Group 1-2" dt="" by="50236"/>
+<httpSample t="27" lt="27" ts="1422026443113" s="true" lb="/visma/loan.xhtml" rc="200" rm="OK" tn="Thread Group 1-2" dt="text" by="2050"/>
+<sample t="84024" lt="27" ts="1422026359117" s="true" lb="Transaction Controller - Result check" rc="200" rm="Number of samples in transaction : 1, number of failing samples : 0" tn="Thread Group 1-2" dt="" by="2050"/>
+<httpSample t="35" lt="35" ts="1422026443148" s="true" lb="/visma/loan.xhtml" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" by="2049"/>
+<sample t="84070" lt="35" ts="1422026359114" s="true" lb="Transaction Controller - Result check" rc="200" rm="Number of samples in transaction : 1, number of failing samples : 0" tn="Thread Group 1-1" dt="" by="2049"/>
+<httpSample t="8" lt="8" ts="1422026443183" s="true" lb="/visma/" rc="200" rm="OK" tn="Thread Group 1-2" dt="text" by="982"/>
+<sample t="50" lt="8" ts="1422026443142" s="true" lb="Transaction Controller - Accueil" rc="200" rm="Number of samples in transaction : 1, number of failing samples : 0" tn="Thread Group 1-2" dt="" by="982"/>
+<httpSample t="13" lt="13" ts="1422026443236" s="true" lb="/visma/" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" by="982"/>
+<sample t="64" lt="13" ts="1422026443185" s="true" lb="Transaction Controller - Accueil" rc="200" rm="Number of samples in transaction : 1, number of failing samples : 0" tn="Thread Group 1-1" dt="" by="982"/>
+<httpSample t="29" lt="29" ts="1422026460499" s="true" lb="/visma/loan.xhtml" rc="200" rm="OK" tn="Thread Group 1-2" dt="text" by="2051"/>
+<httpSample t="28" lt="28" ts="1422026460549" s="true" lb="/visma/loan.xhtml" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" by="2050"/>
+<httpSample t="30" lt="29" ts="1422026481251" s="false" lb="/visma/loan.xhtml" rc="500" rm="Server Error" tn="Thread Group 1-1" dt="text" by="26172"/>
+<httpSample t="60" lt="59" ts="1422026481285" s="false" lb="/visma/loan.xhtml" rc="500" rm="Server Error" tn="Thread Group 1-2" dt="text" by="26172"/>
+<httpSample t="40" lt="38" ts="1422026481372" s="false" lb="/visma/payment.xhtml" rc="500" rm="Server Error" tn="Thread Group 1-1" dt="text" by="22017"/>
+<sample t="38161" lt="95" ts="1422026443251" s="false" lb="Transaction Controller - Research" rc="" rm="Number of samples in transaction : 3, number of failing samples : 2" tn="Thread Group 1-1" dt="" by="50239"/>
+<httpSample t="39" lt="37" ts="1422026481425" s="false" lb="/visma/payment.xhtml" rc="500" rm="Server Error" tn="Thread Group 1-2" dt="text" by="22016"/>
+<sample t="38272" lt="125" ts="1422026443192" s="false" lb="Transaction Controller - Research" rc="" rm="Number of samples in transaction : 3, number of failing samples : 2" tn="Thread Group 1-2" dt="" by="50239"/>
+<httpSample t="26" lt="25" ts="1422026565546" s="true" lb="/visma/loan.xhtml" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" by="2052"/>
+<sample t="84158" lt="25" ts="1422026481414" s="true" lb="Transaction Controller - Result check" rc="200" rm="Number of samples in transaction : 1, number of failing samples : 0" tn="Thread Group 1-1" dt="" by="2052"/>
+<httpSample t="25" lt="25" ts="1422026565572" s="true" lb="/visma/loan.xhtml" rc="200" rm="OK" tn="Thread Group 1-2" dt="text" by="2048"/>
+<sample t="84132" lt="25" ts="1422026481466" s="true" lb="Transaction Controller - Result check" rc="200" rm="Number of samples in transaction : 1, number of failing samples : 0" tn="Thread Group 1-2" dt="" by="2048"/>
+<httpSample t="13" lt="13" ts="1422026565594" s="true" lb="/visma/" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" by="982"/>
+<sample t="31" lt="13" ts="1422026565576" s="true" lb="Transaction Controller - Accueil" rc="200" rm="Number of samples in transaction : 1, number of failing samples : 0" tn="Thread Group 1-1" dt="" by="982"/>
+<httpSample t="14" lt="14" ts="1422026565643" s="true" lb="/visma/" rc="200" rm="OK" tn="Thread Group 1-2" dt="text" by="982"/>
+<sample t="60" lt="14" ts="1422026565598" s="true" lb="Transaction Controller - Accueil" rc="200" rm="Number of samples in transaction : 1, number of failing samples : 0" tn="Thread Group 1-2" dt="" by="982"/>
+<httpSample t="26" lt="26" ts="1422026582885" s="true" lb="/visma/loan.xhtml" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" by="2048"/>
+<httpSample t="24" lt="24" ts="1422026582936" s="true" lb="/visma/loan.xhtml" rc="200" rm="OK" tn="Thread Group 1-2" dt="text" by="2049"/>
+<httpSample t="34" lt="32" ts="1422026603692" s="false" lb="/visma/loan.xhtml" rc="500" rm="Server Error" tn="Thread Group 1-2" dt="text" by="26173"/>
+<httpSample t="58" lt="56" ts="1422026603692" s="false" lb="/visma/loan.xhtml" rc="500" rm="Server Error" tn="Thread Group 1-1" dt="text" by="26172"/>
+<httpSample t="30" lt="29" ts="1422026603732" s="false" lb="/visma/payment.xhtml" rc="500" rm="Server Error" tn="Thread Group 1-2" dt="text" by="22017"/>
+<sample t="38103" lt="85" ts="1422026565660" s="false" lb="Transaction Controller - Research" rc="" rm="Number of samples in transaction : 3, number of failing samples : 2" tn="Thread Group 1-2" dt="" by="50239"/>
+<httpSample t="41" lt="39" ts="1422026603798" s="false" lb="/visma/payment.xhtml" rc="500" rm="Server Error" tn="Thread Group 1-1" dt="text" by="22017"/>
+<sample t="38231" lt="121" ts="1422026565608" s="false" lb="Transaction Controller - Research" rc="" rm="Number of samples in transaction : 3, number of failing samples : 2" tn="Thread Group 1-1" dt="" by="50237"/>
+<httpSample t="30" lt="30" ts="1422026687834" s="true" lb="/visma/loan.xhtml" rc="200" rm="OK" tn="Thread Group 1-2" dt="text" by="2049"/>
+<sample t="84101" lt="30" ts="1422026603764" s="true" lb="Transaction Controller - Result check" rc="200" rm="Number of samples in transaction : 1, number of failing samples : 0" tn="Thread Group 1-2" dt="" by="2049"/>
+<httpSample t="30" lt="30" ts="1422026687941" s="true" lb="/visma/loan.xhtml" rc="200" rm="OK" tn="Thread Group 1-1" dt="text" by="2052"/>
+<sample t="84132" lt="30" ts="1422026603840" s="true" lb="Transaction Controller - Result check" rc="200" rm="Number of samples in transaction : 1, number of failing samples : 0" tn="Thread Group 1-1" dt="" by="2052"/>
+
+</testResults>
