@@ -1130,7 +1130,8 @@
                 <ant.contrib.version>20020829</ant.contrib.version>
                 <c3p0.version>0.8.5.2</c3p0.version>
                 <jacoco.version>0.7.2.201409121644</jacoco.version>
-
+                <jacoco.agent.version>${jacoco.version}</jacoco.agent.version>
+                
                 <jdbc.derby.version>10.10.1.1</jdbc.derby.version>
                 <jdbc.org.hsqldb.version>2.3.1</jdbc.org.hsqldb.version>
                 <jdbc.hsqldb.version>1.8.0.10</jdbc.hsqldb.version>
@@ -4654,6 +4655,14 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <version>${jacoco.version}</version>
                             <scope>provided</scope>
                         </dependency>
+						<dependency>
+						    <groupId>org.jacoco</groupId>
+						    <artifactId>org.jacoco.agent</artifactId>
+						    <version>${jacoco.agent.version}</version>
+						    <type>jar</type>
+						    <classifier>runtime</classifier>
+						    <scope>test</scope>
+						</dependency>
 
                         <dependency>
                             <groupId>junit</groupId>
