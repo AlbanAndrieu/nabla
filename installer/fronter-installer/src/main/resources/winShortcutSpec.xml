@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<shortcuts>
+  <skipIfNotSupported/>
+
+  <programGroup defaultName="$appGroup"
+                location="applications"/>
+
+<!--
+  <shortcut
+    name="Groovy Console"
+    target="$INSTALL_PATH\bin\groovyConsole.exe"
+    commandLine=""
+    workingDirectory="$INSTALL_PATH\bin"
+    description="Start Groovy Console"
+    initialState="normal"
+    programGroup="yes"
+    desktop="yes"
+    applications="no"
+    startMenu="no"
+    startup="no">
+  </shortcut>
+-->
+  <shortcut
+    name="Uninstall"
+    target="$INSTALL_PATH\\Uninstaller\uninstaller.jar"
+    commandLine=""
+    workingDirectory="$INSTALL_PATH"
+    description="Uninstall Visma"
+    initialState="normal"
+    programGroup="yes"
+    desktop="no"
+    applications="no"
+    startMenu="no"
+    startup="no">
+  </shortcut>
+
+  <shortcut
+    name="API Documentation"
+    target="$INSTALL_PATH\html\api\index.html"
+    commandLine=""
+    workingDirectory="$INSTALL_PATH"
+    description="$appTitle"
+    initialState="normal"
+    programGroup="yes"
+    desktop="no"
+    applications="no"
+    startMenu="no"
+    startup="no">
+    <createForPack name="Documentation" />
+  </shortcut>
+
+</shortcuts>
+

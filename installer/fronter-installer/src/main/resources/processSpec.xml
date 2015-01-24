@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
+<processing>
+
+  <!--
+  <job name="Copy base native launchers">
+    <os family="windows" />
+    <executefile name="cmd.exe">
+      <arg>/c</arg>
+      <arg>cd /d $INSTALL_PATH\bin &amp; for %i in (groovyc groovysh java2groovy) do copy groovy.exe %i.exe</arg>
+    </executefile>
+  </job>
+
+  <job name="Copy groovyConsole native launcher">
+    <os family="windows" />
+    <executefile name="cmd.exe">
+      <arg>/c</arg>
+      <arg>cd /d $INSTALL_PATH\bin &amp; copy groovyw.exe groovyConsole.exe</arg>
+    </executefile>
+  </job>
+
+  <job name="Copy message">
+    <os family="windows" />
+    <executeForPack name="Message" />
+    <executefile name="cmd.exe">
+      <arg>/c</arg>
+      <arg>cd /d $INSTALL_PATH\bin &amp; copy groovyw.exe graphicsPad.exe &amp; copy groovy.exe svg2groovy.exe</arg>
+    </executefile>
+  </job>
+  
+  <job name="Add file associations">
+    <os family="windows" />
+    <executeForPack name="File associations" />
+    <executefile name="cmd.exe">
+      <arg>/c</arg>
+      <arg>assoc .groovy=Groovy &amp; ftype Groovy="$INSTALL_PATH\bin\groovy.exe" "%1" %*</arg>
+    </executefile>
+  </job>
+  -->
+  
+  <!-- ProcessPanel is not needed in Unix, but it's difficult to hide it.
+       So print a message. rather than leaving a blank panel. -->
+  <job name="Export path">
+    <os family="unix" />
+    <executefile name="/bin/echo">
+      <arg>You should add Visma to your PATH environment variable: export PATH="$INSTALL_PATH/bin:$PATH"</arg>
+    </executefile>
+  </job>
+
+</processing>
+
