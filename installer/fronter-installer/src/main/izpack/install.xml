@@ -42,10 +42,11 @@
     <modifier key="headingPanelCounterPos" value="inHeading"/>
   </guiprefs>
 
+  
   <locale>
     <langpack iso3="eng"/>
-    <langpack iso3="fra"/>
-  </locale>
+    <!--<langpack iso3="fra"/>-->
+  </locale>  
 
   <resources>
     <!-- groovy.png is the wrong shape for Installer.image, which is
