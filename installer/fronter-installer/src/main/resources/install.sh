@@ -21,4 +21,4 @@ do
 
 done
 export JVHOME
-$JVHOME/bin/java -jar VISMAInstaller.jar $*
+$JVHOME/bin/java -jar FRONTERInstaller.jar $*
