@@ -1525,7 +1525,8 @@
                 <gmaven.runtime.version>${maven.gmaven.plugin.version}</gmaven.runtime.version>
                 <maven.groovy.plugin.version>1.5</maven.groovy.plugin.version>
                 <jspc.compiler.tomcat6.version>2.0-alpha-3</jspc.compiler.tomcat6.version>
-                <izpack.version>5.0.0-rc4</izpack.version>
+                <!--<izpack.version>5.0.0-rc4</izpack.version> buggy version-->
+                <izpack.version>5.0.0-beta11</izpack.version>                
                 <izpack.compiler.version>${izpack.version}</izpack.compiler.version>
                 <izpack.standalone.compiler.version>4.3.5</izpack.standalone.compiler.version>
                 <node.version>0.10.29</node.version>
@@ -4747,13 +4748,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 		                	    <artifactId>jmockit</artifactId>
 		                	    <version>${jmockit.version}</version>
 		                	    <scope>test</scope>
-		                </dependency>	                        
-			            <dependency>
-			            	    <groupId>org.mockito</groupId>
-			            	    <artifactId>mockito-all</artifactId>
-			            	    <version>${mockito.version}</version>
-			            	    <scope>test</scope>
-			            </dependency>
+		                </dependency>	    
                         <dependency>
                                 <groupId>org.hamcrest</groupId>
                                 <artifactId>hamcrest-library</artifactId>
