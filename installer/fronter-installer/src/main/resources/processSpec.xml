@@ -42,7 +42,7 @@
   <job name="Export path">
     <os family="unix" />
     <executefile name="/bin/echo">
-      <arg>You should add Visma to your PATH environment variable: export PATH="$INSTALL_PATH/bin:$PATH"</arg>
+      <arg>You should add Fronter to your PATH environment variable: export PATH="$INSTALL_PATH/bin:$PATH"</arg>
     </executefile>
   </job>
 

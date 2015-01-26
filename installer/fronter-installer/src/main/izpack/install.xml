@@ -118,8 +118,8 @@
   </listeners>
       -->
   <packs>
-    <pack name="fronter software" required="yes">
-      <description>fronter software files installation.</description>
+    <pack name="Fronter software" required="yes">
+      <description>Fronter software files installation.</description>
 
       <!--
       <fileset dir="binary/groovy-${groovy.version}"
