@@ -60,17 +60,21 @@ Enjoy!!!
 
 ------------------
 
+### My resources
+
 Other resources can be found on my [googlecode](https://code.google.com/p/alban/w/list) wiki:
+
+Below resources are available from outside my network :
 
 - Set up your workstation : [workstation](https://github.com/AlbanAndrieu/ansible-workstation) 
 
-- Set up your build environement : [servers](https://github.com/AlbanAndrieu/ansible-nabla) 
+- Set up your build environment : [servers](https://github.com/AlbanAndrieu/ansible-nabla) 
 
 - Nexus : [nexus](http://home.nabla.mobi:8081/nexus/index.html#welcome)
 
 - Phpmyadmin : [phpmyadmin](http://home.nabla.mobi:7070/phpmyadmin)
 
-Only for local user to the network :
+Only for local users to the network :
 
 - Elasticsearch / Logstash / Kibana: [logstash](http://192.168.0.29:80/)
 
@@ -88,44 +92,69 @@ Only for local user to the network :
 
 ### My opensource projects
 
-On GitHub I have mostly Ansible roles. 
+On [GitHub](https://github.com/AlbanAndrieu) I have mostly [Ansible](http://www.ansible.com/home) roles. 
 
-I am trying to contribute as much as possible (instead of creating new project).
+I am trying to contribute as much as possible (instead of creating new projects). The projects I have created are shared on the Ansible repository [ansible-galaxy](https://galaxy.ansible.com/list#/users/1487)
 
-All the roles I am using are gathered inside this one https://github.com/AlbanAndrieu/ansible-nabla which is using them as git submodule.
+All the roles I am using are gathered inside a main role [ansible-nabla](https://github.com/AlbanAndrieu/ansible-nabla).
 
-This role is creating an Continuous Delivery build farm and everything needed for a dev, sysadmin, qa, ui, release manager guy to work.
+The main project provides a continuous delivery build farm and everything needed for a dev, systems admin, QA, UI, or a release manager.
 
-Jenkins, Sonar, Nexus, Docker, Eclipse, Logstash. 
+You will also have stuff like :
 
-You will even have stuff like Eclipse (with basic plugins), ZaProxy, Jmeter, VisualVM tools, and a FrontEnd Apache with mod pagespeed, fail2ban, DeniedOfService, AWStats, a Varnish load balancer, Zabbix, Mon, Monit, Supervisor, Jboss, Tomcat, Selenium and Xvfb ready and more.
+ - [jenkins](http://jenkins-ci.org/) (scheduler)
+ - [sonar](http://www.sonarqube.org/) (metrics)
+ - [nexus](http://www.sonatype.org/nexus/) (repository)
+ - [docker](https://www.docker.com/) (provisioning)
+ - [vagrant](https://www.vagrantup.com/) (provisioning)
+ - [virtualbox](https://www.virtualbox.org/) (provisioning)
+ - [logstash](http://logstash.net/) (monitoring)
+ - [eclipse](https://eclipse.org/home/index.php) (with basic plugins), 
+ - [za-proxy](https://code.google.com/p/zaproxy/) (security)
+ - [jmeter](http://jmeter.apache.org/) (performance)
+ - [visualVM](http://visualvm.java.net/) (performance)
+ - [selenium](http://www.seleniumhq.org/) and Xvfb (End2End test)
+ 
+There is also a FrontEnd [apache](http://httpd.apache.org/) with mod [pagespeed](https://developers.google.com/speed/pagespeed/), [fail2ban](http://www.fail2ban.org/wiki/index.php/Main_Page), DeniedOfService, [AWStats](http://www.awstats.org/), a [Varnish](https://www.varnish-cache.org/) load balancer, [Zabbix](http://www.zabbix.com/), Mon, [Monit](http://mmonit.com/monit/), [Supervisor](http://supervisord.org/), [Jboss](http://www.jboss.org/), [Tomcat](http://tomcat.apache.org/) ready and more.
 
-Mostly, there is a bit more than the basic tools for a production, staging, dev environment all setted to work together with as much security as possible.
+Essentially, there is a bit more than the basic tools for a production, staging, dev environment all configured to work together with as much security as possible.
 
+My "old" project [nabla](https://code.google.com/p/alban/) which is using [andromda](http://www.andromda.org/index.html) as an UML code generator. 
+I am now using this project more because it generates a lot of code and it is resource-demanding for my devops environment. 
+This project is using JBoss, Seam, Hibernate, Spring,GWT, JSF, Arquillian, ... So it was quite hard to get Jacoco with mutation testing to work with it.
+In this repo there's also some sample projects used as ProofOfConcept
 
-My "old" project https://code.google.com/p/alban/ which is using http://www.andromda.org/index.html is an UML code generator. 
-I am now more using this project because it generate a lot of code and it is resource demanding for my devops environment. 
-This project is using JBoss, Seam, Hibernate, Spring,GWT, JSF, Arquillian, ... So it was is quite hard to get Jacoco with mutation testing working with it.
+ - Database best pratices [nabla-databases-integration](http://home.nabla.mobi:8380/jenkins/job/nabla-databases-integration/)
+ 
+ - Server integration best pratices [nabla-uml-integration](http://home.nabla.mobi:8380/jenkins/job/nabla-servers-integration/)
+ 
+ - UML best pratices [nabla-uml-integration](http://home.nabla.mobi:8380/jenkins/job/nabla-uml-integration/)
+ 
+The goal is mostly to ensure that any of my code will be able to work with any [database](http://home.nabla.mobi:8380/jenkins/job/nabla-databases-matrix/) on any [servers/browsers](http://home.nabla.mobi:8380/jenkins/job/nabla-browsers-matrix/) using [selenium](http://home.nabla.mobi:8380/jenkins/job/nabla-servers-jsf-simple-selenium/).
+ 
+------------------
 
-Have a quick look at the below project (it has some of the quality metric that I am using at work, like unit test, integration test, mutation test, perf test, load testing, end2end test, functional testing)
-Jenkins -> http://home.nabla.mobi:8380/jenkins/job/nabla-project-interview-visma/
-Sonar -> http://home.nabla.mobi:9000/dashboard/index/418
+### VISMA : An opensource project to showcase best pratices
 
-Visma is a very basic code done for an interview that you can easilly install using IZPack at http://home.nabla.mobi:8380/jenkins/job/nabla-installer-visma/lastSuccessfulBuild/artifact/visma-installer/target/ 
-Goal is to provide an easy maven starter with basic integration and metric for any code interview working.
-Goal is also to have as much testing tools ready to work altogether (like junit, mock, selenium, cucumber). Because there is always one incompatiblity between them...
-GUI is working on jetty! It is basic, but it has coverage, debug mode, monitoring (JMX and NewRelic) and even some perf testing.
-Code is not yet using the best tool like REST, and AngularJS and has no database. 
-It is just not realistic to have the cutting edge technology for an interview whithin a few hours.
-So at least a dev can mesure quality of his work.
-It takes 1 hour to build for 1000 line of code on an old laptop...
+You're invited to have a quick look at the project below (it has some of the quality metrics that I am using at work, like unit tests, integration tests, mutation tests, performance tests, load tests, end2end tests, functional tests)
+ - [Jenkins](http://home.nabla.mobi:8380/jenkins/job/nabla-project-interview-visma/)
+ - [Sonar](http://home.nabla.mobi:9000/dashboard/index/418)
 
-Because writing code is just one step among the others : building, testing, releasing, packaging, deploying, monitoring
-But I keep thinking that a developer who his not using great tools cannot be a great developer.
+Visma is a very basic code done for an interview that you can easily install using [IZPack](http://izpack.org/) at [installer](http://home.nabla.mobi:8380/jenkins/job/nabla-installer-visma/lastSuccessfulBuild/artifact/visma-installer/target/)
+The goal is to provide an easy Maven starter with basic integration and metrics for any code interview working.
+The goal is also to have as many testing tools ready to work altogether (like junit, mock, selenium, cucumber). 
+because there is always some form of incompatiblity between them...
+The GUI is working on jetty! It is basic, but it has coverage, debug mode, monitoring (JMX and NewRelic) and even some perf testing.
+The code is not yet using the best tool like REST, and AngularJS and has no database. 
+So like this, a dev can mesure the quality of his work.
+It takes 1 hour to build for 1000 lines of code on an old laptop...
 
-Thanks for reading
+Writing code is just one step among many others: building, testing, documenting, releasing, packaging, deploying, monitoring
+
+Thanks for reading!
 
 ***
 
 Alban Andrieu
-fr.linkedin.com/in/nabla/
+
+[linkedin](fr.linkedin.com/in/nabla/)
