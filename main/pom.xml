@@ -1366,10 +1366,11 @@
 								<include>**/*ITest*</include>
 								<include>**/*STest*</include>
 							</includes>
-							<!-- exclude cucumber tests as it does not work with jacoco -->	
+							<!-- exclude cucumber tests as it does not work with jacoco 
 							<excludes>
 								<exclude>**/RunCukesSTest.java</exclude> 										
 							</excludes>										
+							-->	
 						</configuration>						
 						<!--
 						<executions>
