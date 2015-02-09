@@ -936,7 +936,8 @@
 								<artifactId>maven-surefire-plugin</artifactId>
 								<inherited>true</inherited>
 								<configuration>
-								  <argLine>${jacoco.agent.ut.arg} -Xms256m -Xmx512m -XX:MaxPermSize=512m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>
+								  <argLine>${jacoco.agent.ut.arg} -javaagent:${settings.localRepository}/com/googlecode/jmockit/jmockit/${jmockit.version}/jmockit-${googlecode.jmockit.version}.jar -Xms256m -Xmx512m -XX:MaxPermSize=512m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>
+								  <!-- -javaagent:${settings.localRepository}/org/mockito/mockito-all/${mockito.version}/mockito-all-${mockito.version}.jar -->
 								  <!--<argLine>-Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>-->
 								  <runOrder>random</runOrder>
 								  <skipTests>${maven.test.ut.skip}</skipTests>
@@ -1049,6 +1050,8 @@
 								  <excludes>
 									<exclude>jsp/**/*.class</exclude>
 									<exclude>**/*STest*</exclude>
+									<!-- Exclude JMockit classes https://github.com/jmockit/jmockit1/issues/125 -->                     
+									<!--<exclude>*$Impl_*</exclude>-->
 								  </excludes>
 								</configuration>						  
 							  </plugin>							
@@ -1414,8 +1417,9 @@
 									<arquillian>${arquillian}</arquillian>
 									<cucumber.options>
 										  <![CDATA[--tags ${cucumber.tags} ${cucumber.features.dir}/${cucumber.feature}]]>
-									</cucumber.options>									
+									</cucumber.options>					
 								</systemPropertyVariables>
+								<argLine>-javaagent:${settings.localRepository}/com/googlecode/jmockit/jmockit/${jmockit.version}/jmockit-${googlecode.jmockit.version}.jar</argLine>
 							</configuration>
 							<!--
 							<executions>
@@ -2133,9 +2137,9 @@
                                                                 </plugin>                                                                  
                                                                 
 																<plugin>
-																  <groupId>de.smartics.maven.plugin</groupId>
-																  <artifactId>maven-buildmetadata-plugin</artifactId>
-																  <version>${maven.buildmetadata.plugin.version}</version>
+																	<groupId>de.smartics.maven.plugin</groupId>
+																	<artifactId>maven-buildmetadata-plugin</artifactId>
+																	<version>${maven.buildmetadata.plugin.version}</version>
 																</plugin>
 																<!--
 																<plugin>
@@ -2144,6 +2148,16 @@
 																  <version>${maven.sonar.report.plugin.version}</version>
 																</plugin>
 																-->
+                                                                <plugin>
+																	<groupId>org.codehaus.mojo</groupId>
+																	<artifactId>codenarc-maven-plugin</artifactId>
+																	<version>${maven.codenarc.plugin.version}</version>
+                                                                </plugin>			
+																<plugin>
+																	<groupId>org.owasp</groupId>
+																	<artifactId>dependency-check-maven</artifactId>
+																	<version>${maven.dependency.check.plugin.version}</version>
+																</plugin>
                                                         </reportPlugins>
                                                 </configuration>
                                                 <dependencies>
