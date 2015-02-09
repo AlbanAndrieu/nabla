@@ -936,7 +936,8 @@
 								<artifactId>maven-surefire-plugin</artifactId>
 								<inherited>true</inherited>
 								<configuration>
-								  <argLine>${jacoco.agent.ut.arg} -javaagent:${settings.localRepository}/com/googlecode/jmockit/jmockit/${jmockit.version}/jmockit-${googlecode.jmockit.version}.jar -Xms256m -Xmx512m -XX:MaxPermSize=512m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>
+								  <argLine>${jacoco.agent.ut.arg} -Xms256m -Xmx512m -XX:MaxPermSize=512m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>
+								  <!-- -javaagent:${settings.localRepository}/com/googlecode/jmockit/jmockit/${googlecode.jmockit.version}/jmockit-${googlecode.jmockit.version}.jar -->
 								  <!-- -javaagent:${settings.localRepository}/org/mockito/mockito-all/${mockito.version}/mockito-all-${mockito.version}.jar -->
 								  <!--<argLine>-Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>-->
 								  <runOrder>random</runOrder>
@@ -1051,7 +1052,7 @@
 									<exclude>jsp/**/*.class</exclude>
 									<exclude>**/*STest*</exclude>
 									<!-- Exclude JMockit classes https://github.com/jmockit/jmockit1/issues/125 -->                     
-									<!--<exclude>*$Impl_*</exclude>-->
+									<!--<exclude>*$Impl_*</exclude>--> <!-- WARNING might not work with guice -->
 								  </excludes>
 								</configuration>						  
 							  </plugin>							
@@ -1419,7 +1420,9 @@
 										  <![CDATA[--tags ${cucumber.tags} ${cucumber.features.dir}/${cucumber.feature}]]>
 									</cucumber.options>					
 								</systemPropertyVariables>
-								<argLine>-javaagent:${settings.localRepository}/com/googlecode/jmockit/jmockit/${jmockit.version}/jmockit-${googlecode.jmockit.version}.jar</argLine>
+								<!-- workaround for jacoco and jmockit to work altogether 
+								<argLine>-javaagent:${settings.localRepository}/com/googlecode/jmockit/jmockit/${googlecode.jmockit.version}/jmockit-${googlecode.jmockit.version}.jar</argLine>
+								-->
 							</configuration>
 							<!--
 							<executions>
