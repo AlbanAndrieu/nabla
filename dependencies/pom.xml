@@ -4975,6 +4975,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         </dependency>
                         <dependency>
                             <groupId>info.cukes</groupId>
+                            <artifactId>cucumber-groovy</artifactId>
+                            <version>${cucumber.version}</version>
+                            <scope>test</scope>
+                        </dependency>                        
+                        <dependency>
+                            <groupId>info.cukes</groupId>
                             <artifactId>cucumber-junit</artifactId>
                             <version>${cucumber.version}</version>
                              <scope>test</scope>
@@ -4995,8 +5001,20 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <groupId>info.cukes</groupId>
                             <artifactId>cucumber-guice</artifactId>
                             <version>${cucumber.version}</version>
-                             <scope>test</scope>
+                            <scope>test</scope>
                         </dependency>
+                        <dependency>
+                            <groupId>info.cukes</groupId>
+                            <artifactId>cucumber-weld</artifactId>
+                            <version>${cucumber.version}</version>
+                            <scope>test</scope>
+                        </dependency>      
+                        <dependency>
+                            <groupId>info.cukes</groupId>
+                            <artifactId>cucumber-picocontainer</artifactId>
+                            <version>${cucumber.version}</version>
+                            <scope>test</scope>
+                        </dependency>                                                                   
                         <dependency>
                             <groupId>org.codehaus.groovy.modules.http-builder</groupId>
                             <artifactId>http-builder</artifactId>
