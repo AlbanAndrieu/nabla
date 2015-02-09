@@ -995,6 +995,7 @@
 
                 <sonar.pitest.mode>reuseReport</sonar.pitest.mode>
                 <sonar.pitest.reportsDirectory>target/pit-reports</sonar.pitest.reportsDirectory>
+                <sonar.groovy.codenarc.reportPath>target/CodeNarcReport.xml</sonar.groovy.codenarc.reportPath>
                 <sonar.java.target>1.7</sonar.java.target>
                 <!--<sonar.language>java</sonar.language>-->
                 <!--
@@ -1517,10 +1518,11 @@
                 <jetty6.version>6.1.25</jetty6.version>
                 <jetty7.version>7.6.5.v20120716</jetty7.version> <!-- 7.6.3.v20120416 TODO remove jetty 6 -->
                 <jetty8.version>8.1.14.v20131031</jetty8.version>
-                <jetty9.version>9.0.2.v20130417</jetty9.version>
-                <jetty.version>${jetty8.version}</jetty.version>
-                <jetty.websocket.version>${jetty8.version}</jetty.websocket.version>
+                <jetty9.version>9.2.2.v20140723</jetty9.version>
+                <jetty.version>${jetty9.version}</jetty.version>
+                <jetty.websocket.version>${jetty9.version}</jetty.websocket.version>
                 <jetty.runner.version>8.1.15.v20140411</jetty.runner.version>
+                <javax.websocket.api>1.0</javax.websocket.api>
 
                 <gmaven.runtime.version>${maven.gmaven.plugin.version}</gmaven.runtime.version>
                 <maven.groovy.plugin.version>1.5</maven.groovy.plugin.version>
@@ -1705,6 +1707,8 @@
                 <maven.pax.plugin.version>1.5</maven.pax.plugin.version>
                 <maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
                 <maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
+                <maven.codenarc.plugin.version>0.18-1</maven.codenarc.plugin.version>
+                <maven.dependency.check.plugin.version>1.2.8</maven.dependency.check.plugin.version>
                 <maven.selenium.plugin.version>2.3</maven.selenium.plugin.version>
                 <maven.wro4j.plugin.version>1.7.7</maven.wro4j.plugin.version>
                 <maven.classpath.fitnesse.version>1.7</maven.classpath.fitnesse.version>
@@ -1831,9 +1835,16 @@
                                                                                         <goal>run</goal>
                                                                                 </goals>
                                                                         </pluginExecutionFilter>
+                                                                        <!--
                                                                         <action>
                                                                                 <ignore />
                                                                         </action>
+                                                                        -->
+                                                                        <action>
+																			<execute>
+																				<runOnIncremental>false</runOnIncremental>
+																			</execute>
+																		</action>
                                                                 </pluginExecution>
                                                                 <pluginExecution>
                                                                     <pluginExecutionFilter>
@@ -1917,6 +1928,25 @@
                                                                                 <ignore />
                                                                         </action>
                                                                 </pluginExecution>
+                                                                <!-- 
+																<pluginExecution>
+																	<pluginExecutionFilter>
+																		<groupId>org.apache.maven.plugins</groupId>
+																		<artifactId>maven-compiler-plugin</artifactId>
+																		<versionRange>
+																			[${maven.compiler.plugin.version},)
+																		</versionRange>
+																		<goals>
+																			<goal>testCompile</goal>
+																			<goal>compile</goal>
+																		</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																		<ignore></ignore>
+																	</action>
+																</pluginExecution>	                                                                
+																-->
+                                                                <!-- eclipse has now a m2e connector
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.apache.maven.plugins</groupId>
@@ -1924,12 +1954,14 @@
                                                                                 <versionRange>[${maven.dependency.plugin.version},)</versionRange>
                                                                                 <goals>
                                                                                         <goal>copy</goal>
+                                                                                        <goal>unpack</goal>
                                                                                 </goals>
                                                                         </pluginExecutionFilter>
                                                                         <action>
                                                                                 <ignore />
                                                                         </action>
                                                                 </pluginExecution>
+                                                                -->
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.andromda.maven.plugins</groupId>
@@ -2025,6 +2057,74 @@
                                                                                 <ignore></ignore>
                                                                         </action>
                                                                 </pluginExecution>
+																<pluginExecution>
+																	<pluginExecutionFilter>
+																		<groupId>org.sonatype.flexmojos</groupId>
+																		<artifactId>flexmojos-maven-plugin</artifactId>
+																		<versionRange>[${maven.flexmojos.plugin.version},)</versionRange>
+																		<goals>
+																			<goal>compile-swf</goal>
+																			<goal>test-compile</goal>
+																		</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																		<ignore />
+																	</action>
+																</pluginExecution>     
+																<pluginExecution>
+																	<pluginExecutionFilter>
+																		<groupId>org.codehaus.mojo</groupId>
+																		<artifactId>apt-maven-plugin</artifactId>
+																		<versionRange>[${maven.apt.plugin.version},)</versionRange>
+																		<goals>
+																			<goal>process</goal>
+																			<goal>test-process</goal>
+																		</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																		<ignore />
+																	</action>
+																</pluginExecution>
+																<pluginExecution>
+																	<pluginExecutionFilter>
+																		<groupId>org.apache.maven.plugins</groupId>
+																		<artifactId>maven-javadoc-plugin</artifactId>
+																		<versionRange>[${maven.javadoc.plugin.version},)</versionRange>
+																		<goals>
+																			<goal>javadoc</goal>
+																		</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																		<ignore />
+																	</action>
+																</pluginExecution>
+																<pluginExecution>
+																	<pluginExecutionFilter>
+																		<groupId>org.apache.maven.plugins</groupId>
+																		<artifactId>maven-enforcer-plugin</artifactId>
+																		<versionRange>[${maven.enforcer.plugin.version},)</versionRange>
+																		<goals>
+																			<goal>enforce</goal>
+																		</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																		<ignore />
+																	</action>
+																</pluginExecution>																
+																<pluginExecution>
+																	<pluginExecutionFilter>
+																		<groupId>org.codehaus.mojo.jspc</groupId>
+																		<artifactId>jspc-maven-plugin</artifactId>
+																		<versionRange>[${maven.jspc.plugin.version},)</versionRange>
+																		<goals>
+																			<goal>compile</goal>
+																			<goal>process-sources</goal>
+																		</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																		<ignore />
+																	</action>
+																</pluginExecution>
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>com.ctp.seam.maven</groupId>
@@ -2038,6 +2138,7 @@
                                                                                 <ignore></ignore>
                                                                         </action>
                                                                 </pluginExecution>
+                                                                <!-- eclipse has now a m2e connector
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.codehaus.mojo</groupId>
@@ -2051,12 +2152,27 @@
                                                                                 <ignore></ignore>
                                                                         </action>
                                                                 </pluginExecution>
+                                                                -->
+																<pluginExecution>
+																	<pluginExecutionFilter>
+																			<groupId>org.apache.cxf</groupId>
+																			<artifactId>cxf-java2ws-plugin</artifactId>
+																			<versionRange>[${cxf.version},)</versionRange>
+																			<goals>
+																				<goal>java2ws</goal>
+																			</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																		<ignore />
+																	</action>
+																</pluginExecution>
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.codehaus.mojo</groupId>
                                                                                 <artifactId>build-helper-maven-plugin</artifactId>
                                                                                 <versionRange>[${maven.build.helper.plugin.version},)</versionRange>
                                                                                 <goals>
+																					    <goal>add-source</goal>
                                                                                         <goal>add-test-source</goal>
                                                                                 </goals>
                                                                         </pluginExecutionFilter>
@@ -2131,6 +2247,19 @@
                                                                     <execute />
                                                                   </action>
                                                                 </pluginExecution>
+																<pluginExecution>
+																	<pluginExecutionFilter>
+																		<groupId>org.antlr</groupId>
+																		<artifactId>antlr3-maven-plugin</artifactId>
+																		<versionRange>[${maven.antlr3.plugin.version},)</versionRange>
+																		<goals>
+																			<goal>antlr</goal>
+																		</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																		<ignore />
+																	</action>
+																</pluginExecution>
                                                                 <pluginExecution>
                                                                     <pluginExecutionFilter>
                                                                             <groupId>org.codehaus.mojo</groupId>
@@ -2183,6 +2312,19 @@
                                                                         <ignore></ignore>
                                                                     </action>
                                                                 </pluginExecution>
+																<pluginExecution>
+																	<pluginExecutionFilter>
+																		<groupId>org.apache.cxf</groupId>
+																		<artifactId>cxf-codegen-plugin</artifactId>
+																		<versionRange>[${cxf.version},)</versionRange>
+																		<goals>
+																			<goal>wsdl2java</goal>
+																		</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																		<ignore />
+																	</action>
+																</pluginExecution>	
                                                         </pluginExecutions>
                                                 </lifecycleMappingMetadata>
                                         </configuration>
@@ -3427,6 +3569,45 @@
                                         <!--classDumpDir>${project.build.directory}/jacoco-instrumented</classDumpDir-->
                                     </configuration>
                                 </plugin>
+								<plugin>
+									<groupId>org.codehaus.mojo</groupId>
+									<artifactId>codenarc-maven-plugin</artifactId>
+									<version>${maven.codenarc.plugin.version}</version>
+									<configuration>
+										<sourceDirectory>${project.basedir}/src/main/groovy</sourceDirectory>
+										<!--
+										<maxPriority1Violations>0</maxPriority1Violations>
+										<maxPriority2Violations>0</maxPriority2Violations>
+										<maxPriority3Violations>0</maxPriority3Violations>
+										-->
+									</configuration>
+									<executions>
+										<execution>
+										<phase>prepare-package</phase>
+										<goals>
+											<goal>codenarc</goal>
+										</goals>
+										</execution>
+									</executions>
+								</plugin>             
+								<plugin>
+									<groupId>org.owasp</groupId>
+									<artifactId>dependency-check-maven</artifactId>
+									<version>${maven.dependency.check.plugin.version}</version>
+									<!--
+									<configuration>
+										<failBuildOnCVSS>8</failBuildOnCVSS>
+									</configuration>
+									-->
+									<executions>
+										<execution>
+											<goals>
+												<goal>check</goal>
+												<!--<report>aggregate</report>-->
+											</goals>
+										</execution>
+									</executions>									
+								</plugin>
                                 <plugin>
                                         <groupId>org.codehaus.mojo</groupId>
                                         <artifactId>dashboard-maven-plugin</artifactId>
@@ -8172,6 +8353,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         <!-- // Jetty7 -->
 
                     <!-- // Jetty8 -->
+                    <!--
                     <dependency>
                         <groupId>org.eclipse.jetty</groupId>
                         <artifactId>jetty-server</artifactId>
@@ -8232,8 +8414,65 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         <artifactId>jetty-io</artifactId>
                         <version>${jetty.version}</version>
                     </dependency>
+                    -->
                     <!-- // Jetty8 -->
+		
+					<!-- Jetty 9 -->
+					<dependency>
+						<groupId>javax.websocket</groupId>
+						<artifactId>javax.websocket-api</artifactId>
+						<version>${javax.websocket.api}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty.websocket</groupId>
+						<artifactId>websocket-api</artifactId>
+						<version>${jetty9.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty.websocket</groupId>
+						<artifactId>websocket-api-client</artifactId>
+						<version>${jetty9.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty.websocket</groupId>
+						<artifactId>websocket-api-client-impl</artifactId>
+						<version>${jetty9.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty.websocket</groupId>
+						<artifactId>websocket-api-server-impl</artifactId>
+						<version>${jetty9.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty.websocket</groupId>
+						<artifactId>websocket-common</artifactId>
+						<version>${jetty9.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty.websocket</groupId>
+						<artifactId>websocket-parent</artifactId>
+						<version>${jetty9.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty.websocket</groupId>
+						<artifactId>websocket-server</artifactId>
+						<version>${jetty9.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.eclipse.jetty.websocket</groupId>
+						<artifactId>websocket-servlet</artifactId>
+						<version>${jetty9.version}</version>
+					</dependency>
+					<!-- // Jetty9 -->
 
+					<!-- Jetty for test	-->
+					<dependency>
+						<groupId>org.eclipse.jetty.websocket</groupId>
+						<artifactId>javax-websocket-server-impl</artifactId>
+						<version>${jetty9.version}</version>
+						<scope>test</scope>
+					</dependency>
+								
                     <!-- Logging -->
                     <dependency>
                         <groupId>log4j</groupId>
