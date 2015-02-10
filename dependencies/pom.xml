@@ -1075,6 +1075,7 @@
                 <org.beanshell.bsh.version>2.0b5</org.beanshell.bsh.version>
                 <oro.version>2.0.8</oro.version>
                 <mimepull.version>1.9.1</mimepull.version>
+                <unitils.core.version>3.4.2</unitils.core.version>
 
                 <javax.j2ee.version>1.3.1</javax.j2ee.version>
                 <saxon.version>8.7</saxon.version>
@@ -1094,6 +1095,7 @@
                 <backport.util.concurrent.version>3.1</backport.util.concurrent.version>
                 <!-- common parties versions -->
                 <commons.lang.version>2.6</commons.lang.version>
+                <commons.lang3.version>3.0</commons.lang3.version>
                 <commons.beanutils.version>1.8.3</commons.beanutils.version>
                 <commons.dbcp.version>1.4</commons.dbcp.version>
                 <commons.pool.version>1.4</commons.pool.version>
@@ -1324,6 +1326,7 @@
                 -->
                 <easymock.version>3.2</easymock.version>
                 <mockito.version>1.10.19</mockito.version>
+                <powermock.mockito.version>1.4.9</powermock.mockito.version>
                 <googlecode.jmockit.version>1.7</googlecode.jmockit.version> <!-- googlecode.jmockit moved to org.jmockit -->
                 <jmockit.version>1.14</jmockit.version> <!-- WARNING jmockit does not work wit jacoco coverage -->
                 <mockrunner.version>1.0.0</mockrunner.version>
@@ -1333,6 +1336,7 @@
                 <jsp.version>2.0</jsp.version>
                 <jsp-api.version>2.2.1-b03</jsp-api.version>
                 <junit.version>4.12</junit.version>
+                <jcip.annotations.version>1.0-1</jcip.annotations.version>
                 <gridgain.version>6.5.6</gridgain.version>
                 <gridgain.platform.version>${gridgain.version}test</gridgain.platform.version>
                 <feed4junit.version>1.2.0</feed4junit.version>
@@ -1499,6 +1503,7 @@
                 <xstream.version>1.4.2</xstream.version>
                 <yourkit.version>9.0.8</yourkit.version>
                 <xmlsec.version>1.4.3</xmlsec.version>
+                <xmlsec.santuario.version>1.5.6</xmlsec.santuario.version>
                 <wss4j.version>1.5.8</wss4j.version>
                 <wsdl4j.version>1.6.2</wsdl4j.version>
                 <groovy.version>2.3.3</groovy.version>
@@ -1520,7 +1525,7 @@
                 <jetty8.version>8.1.14.v20131031</jetty8.version>
                 <jetty9.version>9.2.2.v20140723</jetty9.version>
                 <jetty.version>${jetty9.version}</jetty.version>
-                <jetty.websocket.version>${jetty9.version}</jetty.websocket.version>
+                <jetty.websocket.version>${jetty8.version}</jetty.websocket.version>
                 <jetty.runner.version>8.1.15.v20140411</jetty.runner.version>
                 <javax.websocket.api>1.0</javax.websocket.api>
 
@@ -1659,7 +1664,7 @@
                 <maven.verifier.plugin.version>1.0</maven.verifier.plugin.version>
                 <maven.tattletale.plugin.version>1.2.0.Beta2</maven.tattletale.plugin.version>
                 <maven.h2.plugin.version>1.0</maven.h2.plugin.version>
-                <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
+                <maven.surefire.plugin.version>2.18</maven.surefire.plugin.version>
                 <maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
                 <maven.sablecc.plugin.version>2.2</maven.sablecc.plugin.version>
                 <maven.taglist.plugin.version>2.4</maven.taglist.plugin.version>
@@ -1676,6 +1681,7 @@
                 <maven.jalopy.plugin.version>1.0-alpha-1</maven.jalopy.plugin.version>
                 <maven.axistools.plugin.version>1.4</maven.axistools.plugin.version>
                 <maven.enforcer.plugin.version>1.3.1</maven.enforcer.plugin.version>
+                <maven.enforcer.no.package.cycles.plugin.version>1.0.5</maven.enforcer.no.package.cycles.plugin.version>
                 <maven.bees.plugin.version>1.3.2</maven.bees.plugin.version>
                 <maven.doap.plugin.version>1.1</maven.doap.plugin.version>
                 <!--<maven.antlr3.plugin.version>3.1.1.2</maven.antlr3.plugin.version>-->
@@ -1696,7 +1702,7 @@
                 <maven.jacoco.gwt.plugin.version>0.5.4.201202141554</maven.jacoco.gwt.plugin.version>
                 <maven.vaadin.plugin.version>7.4.0.alpha14</maven.vaadin.plugin.version>
                 <maven.java.formatter.plugin.version>0.4</maven.java.formatter.plugin.version>
-                <maven.failsafe.plugin.version>2.18</maven.failsafe.plugin.version>
+                <maven.failsafe.plugin.version>${maven.surefire.plugin.version}</maven.failsafe.plugin.version>
                 <maven.dbunit.plugin.version>1.0-beta-3</maven.dbunit.plugin.version>
                 <maven.benerator.plugin.version>0.7.7</maven.benerator.plugin.version>
                 <maven.zap.plugin.version>1.2-SNAPSHOT</maven.zap.plugin.version>
@@ -2560,11 +2566,19 @@
                                                                           <!-- 'uniqueVersions' (default:false) can be set to true if you want to compare the timestamped SNAPSHOTs  -->
                                                                           <!-- <uniqueVersions>true</uniqueVersions> -->
                                                                         </requireUpperBoundDeps>
+                                                                        <NoPackageCyclesRule implementation="de.andrena.tools.nopackagecycles.NoPackageCyclesRule"></NoPackageCyclesRule>
                                                                 </rules>
                                                                 <fail>true</fail>
                                                         </configuration>
                                                 </execution>
                                         </executions>
+										<dependencies>
+											<dependency>
+												<groupId>de.andrena.tools.nopackagecycles</groupId>
+												<artifactId>no-package-cycles-enforcer-rule</artifactId>
+												<version>${maven.enforcer.no.package.cycles.plugin.version}</version>
+											</dependency>
+										</dependencies>                                        
                                 </plugin>
                                 <!-- allow to create a single jar with all dependencies -->
                                 <!-- only use for tests and not in production -->
@@ -2656,11 +2670,6 @@
                                                 <configFailurePolicy>continue</configFailurePolicy>
                                                 <!-- Enable or disable Stop maven -->
                                                 <testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
-                                                <!-- when forked, debugging in Eclipse won't work -->
-                                                <!--<forkMode>never</forkMode>-->
-                                                <forkMode>once</forkMode>
-                                                <!--<forkMode>pertest</forkMode>-->
-                                                <!--<forkMode>always</forkMode>-->
                                                 <useSystemClassLoader>true</useSystemClassLoader>
                                                 <useManifestOnlyJar>false</useManifestOnlyJar>
                                                 <!-- shows total/fail/error summaries on stdout: -->
@@ -2670,6 +2679,14 @@
                                                 <reportFormat>xml</reportFormat>
                                                 <!--<classesDirectory>${project.build.directory}/generated-classes/emma/classes</classesDirectory>-->
                                                 <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                                                <!-- when forked, debugging in Eclipse won't work -->
+                                                <!--<forkMode>never</forkMode>-->
+                                                <forkMode>once</forkMode> <!-- DEPRECATED since version 2.14 -->
+                                                <!--<forkMode>pertest</forkMode>-->
+                                                <!--<forkMode>always</forkMode>-->                                                
+                                                <!-- for parallel test -->
+                                                <parallel>methods</parallel>
+												<threadCount>10</threadCount>
                                                 <systemPropertyVariables>
                                                         <!--
                                                         <property>
@@ -3950,6 +3967,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                     </configuration>
                                 </plugin>
                                 <!-- TODO already using jetty-maven-plugin -->
+                                <!-- please use instead org.eclipse.jetty -->
                                 <plugin>
                                         <groupId>org.mortbay.jetty</groupId>
                                         <artifactId>maven-jetty-plugin</artifactId>
@@ -4440,6 +4458,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                         </outputFormats>
                                         <verbose>true</verbose>
                                         <failWhenNoMutations>false</failWhenNoMutations>
+                                        <timestampedReports>false</timestampedReports>
+                                        <!--
+										<mutationThreshold>26</mutationThreshold>
+										<coverageThreshold>80</coverageThreshold>             
+										<historyInputFile>${project.basedir}/pitest-history.xml</historyInputFile>
+										<historyOutputFile>${project.build.directory}/pitest-history.xml</historyOutputFile>			
+										-->					                           
                                         <!--<threads>4</threads>-->
                                         <excludedClasses>
                                             <param>com.nabla.todo.*</param>
@@ -4465,14 +4490,18 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                         </jvmArgs>
                                         <detectInlinedCode>true</detectInlinedCode>
                                         <targetClasses>
-                                            <param>com.*</param>
+                                            <param>com.nabla*</param>
                                         </targetClasses>
                                         <targetTests>
-                                            <param>com.*</param>
+                                            <param>com.nabla*</param>
                                         </targetTests>
                                         <mutators>
-                                             <mutator>DEFAULTS</mutator>
-                                             <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                                            <mutator>DEFAULTS</mutator>
+                                            <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
+                                            <mutator>REMOVE_CONDITIONALS</mutator>
+											<mutator>INLINE_CONSTS</mutator>
+											<mutator>NON_VOID_METHOD_CALLS</mutator>
+											<mutator>CONSTRUCTOR_CALLS</mutator>
                                         </mutators>
                                     </configuration>
                                 </plugin>
@@ -4853,6 +4882,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <type>jar</type>
                             <scope>test</scope>
                         </dependency>
+						<!-- in order to use @net.jcip.annotations.NotThreadSafe in junit test -->
+						<dependency>
+							<groupId>com.github.stephenc.jcip</groupId>
+							<artifactId>jcip-annotations</artifactId>
+							<version>${jcip.annotations.version}</version>
+							<scope>test</scope>
+						</dependency>		                        
 						<dependency>
 							<groupId>org.gridgain</groupId>
 							<artifactId>gridgain</artifactId>
@@ -4877,6 +4913,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <version>${junitperf.version}</version>
                             <scope>test</scope>
                         </dependency>
+						<dependency>
+							<groupId>org.unitils</groupId>
+							<artifactId>unitils-core</artifactId>
+							<version>${unitils.core.version}</version>
+							<scope>test</scope>
+						</dependency>                        
                         <dependency>
                             <groupId>org.skyscreamer</groupId>
                             <artifactId>jsonassert</artifactId>
@@ -4916,6 +4958,18 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <version>${mockito.version}</version>
                                 <scope>test</scope>
                         </dependency>
+						<dependency>
+							<groupId>org.powermock</groupId>
+							<artifactId>powermock-mockito-release-full</artifactId>
+							<version>${powermock.mockito.version}</version>
+							<classifier>full</classifier>
+							<exclusions>
+								<exclusion>
+								<artifactId>powermock-module-testng</artifactId>
+								<groupId>org.powermock</groupId>
+								</exclusion>
+							</exclusions>
+						</dependency>                        
                         <!-- googlecode.jmockit moved to org.jmockit
                         <dependency>
                                 <groupId>com.googlecode.jmockit</groupId>
@@ -6211,6 +6265,11 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<version>${commons.lang.version}</version>
 							<scope>compile</scope>
 						</dependency>
+						<dependency>
+							<groupId>org.apache.commons</groupId>
+							<artifactId>commons-lang3</artifactId>
+							<version>${commons.lang3.version}</version> 
+						</dependency>	 						
 						<dependency>
 							<groupId>commons-cli</groupId>
 							<artifactId>commons-cli</artifactId>
@@ -7838,6 +7897,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                 <scope>compile</scope>
             </dependency>
             <dependency>
+                <groupId>org.apache.santuario</groupId>
+                <artifactId>xmlsec</artifactId>
+                <version>${xmlsec.santuario.version}</version>
+                <scope>compile</scope>
+            </dependency>            
+            <dependency>
                 <groupId>org.apache.ws.security</groupId>
                 <artifactId>wss4j</artifactId>
                 <version>${wss4j.version}</version>
@@ -8370,8 +8435,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         -->
                         <!-- // Jetty7 -->
 
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-websocket</artifactId>
+                        <version>${jetty.websocket.version}</version>
+                    </dependency>
+                    
                     <!-- // Jetty8 -->
-                    <!--
                     <dependency>
                         <groupId>org.eclipse.jetty</groupId>
                         <artifactId>jetty-server</artifactId>
@@ -8409,11 +8479,6 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                     </dependency>
                     <dependency>
                         <groupId>org.eclipse.jetty</groupId>
-                        <artifactId>jetty-websocket</artifactId>
-                        <version>${jetty.websocket.version}</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.eclipse.jetty</groupId>
                         <artifactId>jetty-xml</artifactId>
                         <version>${jetty.version}</version>
                     </dependency>
@@ -8432,7 +8497,6 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         <artifactId>jetty-io</artifactId>
                         <version>${jetty.version}</version>
                     </dependency>
-                    -->
                     <!-- // Jetty8 -->
 		
 					<!-- Jetty 9 -->
@@ -8444,50 +8508,55 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 					<dependency>
 						<groupId>org.eclipse.jetty.websocket</groupId>
 						<artifactId>websocket-api</artifactId>
-						<version>${jetty9.version}</version>
+						<version>${jetty.version}</version>
 					</dependency>
 					<dependency>
 						<groupId>org.eclipse.jetty.websocket</groupId>
 						<artifactId>websocket-api-client</artifactId>
-						<version>${jetty9.version}</version>
+						<version>${jetty.version}</version>
 					</dependency>
 					<dependency>
 						<groupId>org.eclipse.jetty.websocket</groupId>
 						<artifactId>websocket-api-client-impl</artifactId>
-						<version>${jetty9.version}</version>
+						<version>${jetty.version}</version>
 					</dependency>
 					<dependency>
 						<groupId>org.eclipse.jetty.websocket</groupId>
 						<artifactId>websocket-api-server-impl</artifactId>
-						<version>${jetty9.version}</version>
+						<version>${jetty.version}</version>
 					</dependency>
 					<dependency>
 						<groupId>org.eclipse.jetty.websocket</groupId>
 						<artifactId>websocket-common</artifactId>
-						<version>${jetty9.version}</version>
+						<version>${jetty.version}</version>
 					</dependency>
 					<dependency>
 						<groupId>org.eclipse.jetty.websocket</groupId>
 						<artifactId>websocket-parent</artifactId>
-						<version>${jetty9.version}</version>
+						<version>${jetty.version}</version>
 					</dependency>
 					<dependency>
 						<groupId>org.eclipse.jetty.websocket</groupId>
 						<artifactId>websocket-server</artifactId>
-						<version>${jetty9.version}</version>
+						<version>${jetty.version}</version>
 					</dependency>
 					<dependency>
 						<groupId>org.eclipse.jetty.websocket</groupId>
 						<artifactId>websocket-servlet</artifactId>
-						<version>${jetty9.version}</version>
+						<version>${jetty.version}</version>
 					</dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-proxy</artifactId>
+                        <version>${jetty.version}</version>
+                    </dependency>					
 					<!-- // Jetty9 -->
 
 					<!-- Jetty for test	-->
 					<dependency>
 						<groupId>org.eclipse.jetty.websocket</groupId>
 						<artifactId>javax-websocket-server-impl</artifactId>
-						<version>${jetty9.version}</version>
+						<version>${jetty.version}</version>
 						<scope>test</scope>
 					</dependency>
 								
