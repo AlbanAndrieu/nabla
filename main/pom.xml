@@ -678,7 +678,6 @@
                         -->
 
                 </plugins>
-
         </build>
 
         <profiles>
@@ -1059,6 +1058,28 @@
 						</plugins>
 					</build>
 				</profile>
+				<!-- see https://github.com/jmxtrans/jmxtrans/blob/master/pom.xml for rpm -->
+				<!-- TODO add rpm profile -->				
+				<profile>
+					<id>mutation</id>
+					<build>
+						<plugins>
+							<plugin>
+								<groupId>org.pitest</groupId>
+								<artifactId>pitest-maven</artifactId>
+								<executions>
+									<execution>
+										<id>pitest</id>
+										<goals>
+											<goal>mutationCoverage</goal>
+										</goals>
+										<phase>verify</phase>
+									</execution>
+								</executions>
+							</plugin>
+						</plugins>
+					</build>
+				</profile>				
 				<profile>
 					<id>fitnesse</id>
 					<build>
