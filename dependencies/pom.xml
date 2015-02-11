@@ -1042,7 +1042,7 @@
                 <castor.version>1.3.1</castor.version>
                 <jtidy.version>4aug2000r7-dev-hudson-1</jtidy.version>
 
-                <neethi.version>3.0.2</neethi.version>
+                <neethi.version>3.0.3</neethi.version> <!-- upgrade needed for jetty 8 -->
                 <ws.commons.neethi.version>2.0</ws.commons.neethi.version>
                 <javax.stax.api.version>1.0-2</javax.stax.api.version>
                 <stax.api.version>1.0.1</stax.api.version>
@@ -1444,6 +1444,8 @@
                 <appfuse.version>2.1.0-M1</appfuse.version>
                 <javax.persistence.version>1.0.2</javax.persistence.version>
 
+				<!--<cxf.version>2.7.14</cxf.version> version of cxf that is working with jetty 8 -->
+				<!--<cxf.jetty.version>8.1.15.v20140411</cxf.jetty.version>  version of jetty used by cxf 2.7.14 -->				
                 <cxf.version>3.0.2</cxf.version>
                 <cxf.common.schemas.version>2.3.11</cxf.common.schemas.version>
                 <cxf.common.utilities.version>2.5.11</cxf.common.utilities.version>
@@ -2710,8 +2712,11 @@
                                                 <!--<forkMode>pertest</forkMode>-->
                                                 <!--<forkMode>always</forkMode>-->                                                
                                                 <!-- for parallel test -->
-                                                <parallel>methods</parallel>
+                                                <!--<parallel>methods</parallel>-->
+                                                <parallel>classes</parallel>
 												<threadCount>10</threadCount>
+												<forkCount>1</forkCount>
+												<reuseForks>false</reuseForks>
                                                 <systemPropertyVariables>
                                                         <!--
                                                         <property>
@@ -7726,6 +7731,17 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-rt-transports-http-jetty</artifactId>
                 <version>${cxf.version}</version>
+				<!-- exclude jetty 6 or upgrade cxf -->
+				<exclusions>
+					<exclusion>
+						<groupId>org.mortbay.jetty</groupId>
+						<artifactId>jetty</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.mortbay.jetty</groupId>
+						<artifactId>jetty-util</artifactId>
+					</exclusion>							
+				</exclusions>        
             </dependency>
             <dependency>
                 <groupId>org.apache.cxf</groupId>
