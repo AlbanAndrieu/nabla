@@ -1005,7 +1005,7 @@
                 <!--<sonar.exclusions>file:/generated/,**/generated/**</sonar.exclusions>-->
                 <!-- see http://docs.codehaus.org/display/SONAR/Narrowing+the+Focus
                 http://docs.codehaus.org/display/SONAR/Switch+Off+Violations+Plugin -->
-                <sonar.exclusions>**/generated/**</sonar.exclusions>
+                <sonar.exclusions>**/generated/**, **/pom.xml, **/web.xml, **/*.xhtml</sonar.exclusions>
                 <!--<sonar.sources>src/main/java,src/main/js,src/main/webapp,src/generated/java,src/generated/js</sonar.sources>-->
 
                 <!--
@@ -2331,6 +2331,19 @@
 																		<ignore />
 																	</action>
 																</pluginExecution>	
+																<pluginExecution>
+																	<pluginExecutionFilter>
+																		<groupId>org.owasp</groupId>
+																		<artifactId>dependency-check-maven</artifactId>
+																		<versionRange>[${maven.dependency.check.plugin.version},)</versionRange>
+																		<goals>
+																			<goal>check</goal>
+																		</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																		<ignore></ignore>
+																	</action>
+																</pluginExecution>																
                                                         </pluginExecutions>
                                                 </lifecycleMappingMetadata>
                                         </configuration>
