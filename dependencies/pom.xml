@@ -1005,7 +1005,7 @@
                 <!--<sonar.exclusions>file:/generated/,**/generated/**</sonar.exclusions>-->
                 <!-- see http://docs.codehaus.org/display/SONAR/Narrowing+the+Focus
                 http://docs.codehaus.org/display/SONAR/Switch+Off+Violations+Plugin -->
-                <sonar.exclusions>**/generated/**, **/pom.xml, **/bower_components/**, , **/node_modules/** </sonar.exclusions>
+                <sonar.exclusions>**/generated/**, **/pom.xml, **/bower_components/**, **/node_modules/**, **/node/**, **/libs/**, **/lib/**</sonar.exclusions>
                 <!--<sonar.sources>src/main/java,src/main/js,src/main/webapp,src/generated/java,src/generated/js, **/web.xml, **/*.xhtml</sonar.sources>-->
 
                 <!--
@@ -1710,7 +1710,8 @@
                 <maven.jacoco.gwt.plugin.version>0.5.4.201202141554</maven.jacoco.gwt.plugin.version>
                 <maven.vaadin.plugin.version>7.4.0.alpha14</maven.vaadin.plugin.version>
                 <maven.java.formatter.plugin.version>0.4</maven.java.formatter.plugin.version>
-                <maven.failsafe.plugin.version>${maven.surefire.plugin.version}</maven.failsafe.plugin.version>
+                <!--<maven.failsafe.plugin.version>${maven.surefire.plugin.version}</maven.failsafe.plugin.version>-->
+                <maven.failsafe.plugin.version>2.17</maven.failsafe.plugin.version>
                 <maven.dbunit.plugin.version>1.0-beta-3</maven.dbunit.plugin.version>
                 <maven.benerator.plugin.version>0.7.7</maven.benerator.plugin.version>
                 <maven.zap.plugin.version>1.2-SNAPSHOT</maven.zap.plugin.version>
