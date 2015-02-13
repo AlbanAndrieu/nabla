@@ -1372,11 +1372,9 @@
                 <xmlunit.version>1.5</xmlunit.version>
                 <jsonassert.version>1.2.3</jsonassert.version>
                 <wiser.version>1.2</wiser.version>
-                <!--<scala.version>2.10.4</scala.version>-->
-                <scala.version>2.9.3</scala.version>
-                <!--<scala.suffix>_2.10</scala.suffix>-->
-                <scala.suffix>_2.9</scala.suffix>
-                <akka.version>2.3.6</akka.version>
+                <scala.version>2.11.4</scala.version>
+                <scala.suffix>_2.11</scala.suffix>
+                <akka.version>2.3.7</akka.version>
 
                 <google.api.client.version>1.0.10-alpha</google.api.client.version>
                 <gwt.version>2.5.1</gwt.version> <!-- OK see http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
@@ -1446,9 +1444,9 @@
                 <appfuse.version>2.1.0-M1</appfuse.version>
                 <javax.persistence.version>1.0.2</javax.persistence.version>
 
-				<!--<cxf.version>2.7.14</cxf.version> version of cxf that is working with jetty 8 -->
+				<cxf.version>2.7.14</cxf.version><!-- version of cxf that is working with jetty 8 -->
 				<!--<cxf.jetty.version>8.1.15.v20140411</cxf.jetty.version>  version of jetty used by cxf 2.7.14 -->				
-                <cxf.version>3.0.2</cxf.version>
+                <!--<cxf.version>3.0.2</cxf.version> TODO TEST upgrade -->
                 <cxf.common.schemas.version>2.3.11</cxf.common.schemas.version>
                 <cxf.common.utilities.version>2.5.11</cxf.common.utilities.version>
                 <shiro.version>1.2.1</shiro.version>
@@ -4108,7 +4106,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                           </goals>
                                         </execution>
                                       </executions>
-                                </plugin>
+                                </plugin>  
                                 <plugin>
                                         <groupId>com.vaadin</groupId>
                                         <artifactId>vaadin-maven-plugin</artifactId>
@@ -4925,13 +4923,15 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<artifactId>jcip-annotations</artifactId>
 							<version>${jcip.annotations.version}</version>
 							<scope>test</scope>
-						</dependency>		                        
+						</dependency>		        
+						<!-- TODO activate it if needed                
 						<dependency>
 							<groupId>org.gridgain</groupId>
 							<artifactId>gridgain</artifactId>
 							<version>${gridgain.version}</version>
 							<scope>test</scope>
 						</dependency>
+						-->
                         <dependency>
                             <groupId>org.databene</groupId>
                             <artifactId>feed4junit</artifactId>
@@ -6032,12 +6032,14 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <artifactId>ant</artifactId>
                                 <version>${ant.version}</version>
                         </dependency>
+                        <!--
                         <dependency>
                                 <groupId>ant</groupId>
                                 <artifactId>ant</artifactId>
                                 <version>${ant.version}</version>
                                 <scope>compile</scope>
                         </dependency>
+                        -->
                         <dependency>
                                 <groupId>org.antlr</groupId>
                                 <artifactId>antlr</artifactId>
@@ -6811,6 +6813,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                           <version>${errai.version}</version>
                         </dependency>
 
+						<!-- TODO activate it if needed      
                         <dependency>
                             <groupId>com.vaadin</groupId>
                             <artifactId>vaadin</artifactId>
@@ -6819,7 +6822,6 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <scope>compile</scope>
                         </dependency>
                         <dependency>
-                            <!-- vaadin add-on -->
                             <groupId>com.github.wolfie</groupId>
                             <artifactId>refresher</artifactId>
                             <version>${refresher.version}</version>
@@ -6827,7 +6829,6 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <scope>compile</scope>
                         </dependency>
                         <dependency>
-                            <!-- vaadin add-on -->
                             <groupId>org.vaadin.addons</groupId>
                             <artifactId>invient-charts</artifactId>
                             <version>${vaadin.invient.charts.version}</version>
@@ -6835,19 +6836,18 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <scope>compile</scope>
                         </dependency>
                         <dependency>
-                            <!-- vaadin add-on -->
                             <groupId>org.vaadin.addons.lazyquerycontainer</groupId>
                             <artifactId>vaadin-lazyquerycontainer</artifactId>
                             <version>${vaadin.lazyquerycontainer.version}</version>
                             <type>jar</type>
                             <scope>compile</scope>
                         </dependency>
-                        <!-- vaadin add-on -->
                         <dependency>
                             <groupId>org.vaadin.addons</groupId>
                             <artifactId>serverpush</artifactId>
                             <version>${vaadin.serverpush.version}</version>
                         </dependency>
+                        -->
 
                         <!-- Atmosphere - for ServerPush -->
                         <dependency>
@@ -8694,6 +8694,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                     </dependency>
                     <!-- // Logging -->
 
+					<!-- TODO activate it if needed      
 					<dependency>
 						<groupId>org.gridgain</groupId>
 						<artifactId>gridgain-platform</artifactId>
@@ -8705,6 +8706,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						<version>${gridgain.version}</version>
 						<type>pom</type>
 					</dependency>
+					-->
 
 					<dependency>
 						<groupId>org.aspectj</groupId>
