@@ -1207,8 +1207,9 @@
                 <guice.version>4.0-beta5</guice.version>
                 <jsr305.version>2.0.2</jsr305.version>
                 <joda.time.version>2.3</joda.time.version>
-                <!--<guava.version>14.0.1</guava.version>--> <!-- WARNING 16.0-rc1 does not work with selenium -->
-                <guava.version>17.0</guava.version>
+                <guava.version>14.0.1</guava.version>
+                <!-- WARNING 16.0-rc1 does not work with selenium -->
+                <!--<guava.version>17.0</guava.version> does not work in visma -->
                 <jarjar.version>0.6</jarjar.version>
                 <acegi.version>1.0.5</acegi.version>
                 <acegijsf.version>1.1.2</acegijsf.version>
@@ -1337,7 +1338,8 @@
                 <hamcrest.core.version>${hamcrest.all.version}</hamcrest.core.version>
                 <jsp.version>2.0</jsp.version>
                 <jsp-api.version>2.2.1-b03</jsp-api.version>
-                <junit.version>4.12</junit.version>
+                <!--<junit.version>4.12</junit.version> does not work in visma -->
+                <junit.version>4.11</junit.version>
                 <jcip.annotations.version>1.0-1</jcip.annotations.version>
                 <gridgain.version>6.5.6</gridgain.version>
                 <gridgain.platform.version>${gridgain.version}test</gridgain.platform.version>
@@ -1670,7 +1672,7 @@
                 <maven.verifier.plugin.version>1.0</maven.verifier.plugin.version>
                 <maven.tattletale.plugin.version>1.2.0.Beta2</maven.tattletale.plugin.version>
                 <maven.h2.plugin.version>1.0</maven.h2.plugin.version>
-                <maven.surefire.plugin.version>2.18</maven.surefire.plugin.version>
+                <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
                 <maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
                 <maven.sablecc.plugin.version>2.2</maven.sablecc.plugin.version>
                 <maven.taglist.plugin.version>2.4</maven.taglist.plugin.version>
@@ -1708,8 +1710,8 @@
                 <maven.jacoco.gwt.plugin.version>0.5.4.201202141554</maven.jacoco.gwt.plugin.version>
                 <maven.vaadin.plugin.version>7.4.0.alpha14</maven.vaadin.plugin.version>
                 <maven.java.formatter.plugin.version>0.4</maven.java.formatter.plugin.version>
-                <!--<maven.failsafe.plugin.version>${maven.surefire.plugin.version}</maven.failsafe.plugin.version>-->
-                <maven.failsafe.plugin.version>2.17</maven.failsafe.plugin.version>
+                <maven.failsafe.plugin.version>${maven.surefire.plugin.version}</maven.failsafe.plugin.version>
+                <!--<maven.failsafe.plugin.version>2.17</maven.failsafe.plugin.version>-->
                 <maven.dbunit.plugin.version>1.0-beta-3</maven.dbunit.plugin.version>
                 <maven.benerator.plugin.version>0.7.7</maven.benerator.plugin.version>
                 <maven.zap.plugin.version>1.2-SNAPSHOT</maven.zap.plugin.version>
@@ -2713,13 +2715,13 @@
                                                 <redirectTestOutputToFile>true</redirectTestOutputToFile>
                                                 <!-- when forked, debugging in Eclipse won't work -->
                                                 <!--<forkMode>never</forkMode>-->
-                                                <forkMode>once</forkMode> <!-- DEPRECATED since version 2.14 -->
+                                                <!--<forkMode>once</forkMode>  DEPRECATED since version 2.14 -->
                                                 <!--<forkMode>pertest</forkMode>-->
                                                 <!--<forkMode>always</forkMode>-->                                                
                                                 <!-- for parallel test -->
                                                 <!--<parallel>methods</parallel>-->
                                                 <parallel>classes</parallel>
-												<threadCount>10</threadCount>
+												<threadCount>1</threadCount>
 												<forkCount>1</forkCount>
 												<reuseForks>false</reuseForks>
                                                 <systemPropertyVariables>
@@ -4372,6 +4374,10 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                         <!--<argLine>${failsafe.argLine}</argLine>-->
                                         <skipTests>${maven.test.skip}</skipTests>
                                         <skipITs>${maven.test.it.skip}</skipITs>
+                                        <parallel>classes</parallel>
+										<threadCount>1</threadCount>
+										<forkCount>1</forkCount>
+										<reuseForks>false</reuseForks>                                        
                                         <systemPropertyVariables>
                                           <cucumber.options>
                                             <![CDATA[--tags ${cucumber.tags} ${cucumber.features.dir}/${cucumber.feature}]]>
@@ -8577,11 +8583,6 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 					</dependency>
 										
 					<!-- Jetty 9 -->
-					<dependency>
-						<groupId>javax.websocket</groupId>
-						<artifactId>javax.websocket-api</artifactId>
-						<version>${javax.websocket.api}</version>
-					</dependency>
 					<dependency>
 						<groupId>org.eclipse.jetty.websocket</groupId>
 						<artifactId>websocket-api</artifactId>
