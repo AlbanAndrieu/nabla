@@ -847,6 +847,8 @@
                 <inplace>true</inplace>
                 <logLevel>INFO</logLevel>
                 <extraJvmArgs>-Xmx512m</extraJvmArgs>
+                <!-- below fix drools issue : java.lang.NoSuchFieldError: warningThreshold -->
+                <gwtSdkFirstInClasspath>true</gwtSdkFirstInClasspath><!-- The GWT compiler must the correct JDT version -->
                 <!-- Configure GWT's development mode (formerly known as hosted
                   mode) to not start the default server (embedded jetty), but to download the
                   HTML host page from the configured runTarget. -->
@@ -870,6 +872,7 @@
                 </execution>
               </executions>
             </plugin>
+            <!--
 			<plugin>
 			  <groupId>org.jboss.errai</groupId>
 			  <artifactId>jacoco-gwt-maven-plugin</artifactId>
@@ -894,6 +897,7 @@
 				</execution>
 			  </executions>
 			</plugin>            
+			-->
 <!--
 	    <plugin>
 	    	<groupId>com.ctp.seam.maven</groupId>

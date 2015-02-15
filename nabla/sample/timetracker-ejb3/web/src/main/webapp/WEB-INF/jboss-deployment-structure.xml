@@ -21,11 +21,11 @@ Hibernate4 conflicts with Spring 3.0, need v3.1 -->
           <module name="org.apache.commons.logging"/>
           <module name="org.apache.commons.collections"/>
           <module name="org.apache.log4j"/>
-	  <module name="org.dom4j"/>
-	  <module name="org.slf4j"/>
-	  <module name="org.antlr"/>
-	  <module name="asm.asm"/>
-	  <module name="org.javassist"/>          
+		  <module name="org.dom4j"/>
+		  <module name="org.slf4j"/>
+		  <module name="org.antlr"/>
+		  <module name="asm.asm"/>
+		  <module name="org.javassist"/>          
           <!-- Load JSF 1.2 dependencies from AS7 -->
           <!-- do not need it with myfaces 
           <module name="javax.faces.api" slot="1.2"/>

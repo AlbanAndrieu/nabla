@@ -67,6 +67,16 @@
         <managed-bean-class>org.andromda.timetracker.domain.crud.ManageTaskForm</managed-bean-class>
         <managed-bean-scope>#{useCaseScope}</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>manageUserRoleForm</managed-bean-name>
+        <managed-bean-class>org.andromda.timetracker.domain.crud.ManageUserRoleForm</managed-bean-class>
+        <managed-bean-scope>#{useCaseScope}</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>manageMovieForm</managed-bean-name>
+        <managed-bean-class>org.andromda.timetracker.domain.crud.ManageMovieForm</managed-bean-class>
+        <managed-bean-scope>#{useCaseScope}</managed-bean-scope>
+    </managed-bean>
     -->
     <!-- controllers -->
     <!--
@@ -96,6 +106,16 @@
     <managed-bean>
         <managed-bean-name>taskController</managed-bean-name>
         <managed-bean-class>org.andromda.timetracker.domain.crud.TaskControllerImpl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>userRoleController</managed-bean-name>
+        <managed-bean-class>org.andromda.timetracker.domain.crud.UserRoleControllerImpl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>movieController</managed-bean-name>
+        <managed-bean-class>org.andromda.timetracker.domain.crud.MovieControllerImpl</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     -->
@@ -207,6 +227,24 @@
         </navigation-case>
     </navigation-rule>
     -->
+    <!-- manageable org.andromda.cartridges.gui.metafacades.GuiManageableEntityLogicImpl[org.andromda.timetracker.domain.UserRole] navigation-rule
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>/org/andromda/timetracker/domain/crud/userrole-crud</from-outcome>
+            <to-view-id>/org/andromda/timetracker/domain/crud/userrole-crud.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    -->
+    <!-- manageable org.andromda.cartridges.gui.metafacades.GuiManageableEntityLogicImpl[org.andromda.timetracker.domain.Movie] navigation-rule
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>/org/andromda/timetracker/domain/crud/movie-crud</from-outcome>
+            <to-view-id>/org/andromda/timetracker/domain/crud/movie-crud.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    -->
 
     <!--
     <converter>
@@ -225,6 +263,14 @@
     <converter>
         <converter-id>org.andromda.timetracker.domain.crud.TaskJsfConverter</converter-id>
         <converter-class>org.andromda.timetracker.domain.crud.TaskJsfConverter</converter-class>
+    </converter>
+    <converter>
+        <converter-id>org.andromda.timetracker.domain.crud.UserRoleJsfConverter</converter-id>
+        <converter-class>org.andromda.timetracker.domain.crud.UserRoleJsfConverter</converter-class>
+    </converter>
+    <converter>
+        <converter-id>org.andromda.timetracker.domain.crud.MovieJsfConverter</converter-id>
+        <converter-class>org.andromda.timetracker.domain.crud.MovieJsfConverter</converter-class>
     </converter>
     -->
     <!-- faces-config merge-point -->
