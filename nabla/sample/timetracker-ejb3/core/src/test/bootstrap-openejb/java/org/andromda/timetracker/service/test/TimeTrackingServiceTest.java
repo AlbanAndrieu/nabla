@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 /**
  * Service test class TimeTrackingServiceTest for testing with TestNG
- * Check the testng.xml for initialisation of the EJB3Container before running any tests.
+ * Check the testng.xml for initialization of the EJB3Container before running any tests.
  */
 public class TimeTrackingServiceTest
 {

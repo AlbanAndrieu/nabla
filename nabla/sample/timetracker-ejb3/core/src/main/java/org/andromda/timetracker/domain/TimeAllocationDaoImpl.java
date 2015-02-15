@@ -11,6 +11,12 @@ import org.andromda.timetracker.vo.TimeAllocationVO;
 /**
  * @see TimeAllocation
  */
+// @Stateless
+// @Stateful if stateful uncomment the destroy method
+// @Name("timeAllocationDao")
+// @Scope(ScopeType.EVENT)
+// @AutoCreate
+// @JndiName("java:app/core/TimeAllocationDaoImpl")
 public class TimeAllocationDaoImpl extends TimeAllocationDaoBase
 {
     /**

@@ -18,6 +18,13 @@ import org.andromda.timetracker.vo.TimecardSummaryVO;
  */
 // Uncomment to enable webservices for TimeTrackingServiceBean
 // @javax.jws.WebService(endpointInterface = "org.andromda.timetracker.service.TimeTrackingServiceWSInterface", serviceName = "TimeTrackingService")
+/*
+ * @Stateless
+ * @Scope(ScopeType.CONVERSATION)
+ * @Name("timeTrackingService")
+ * @Interceptors(SeamInterceptor.class)
+ * @JndiName("java:app/core/TimeTrackingServiceBean")
+ */
 public class TimeTrackingServiceBean extends TimeTrackingServiceBase implements TimeTrackingServiceRemote
 {
 

@@ -11,6 +11,14 @@ import org.andromda.timetracker.vo.TaskVO;
 /**
  * @see Task
  */
+/*
+ * @Stateless
+ * // @Stateful if stateful uncomment the destroy method
+ * @Name("taskDao")
+ * @Scope(ScopeType.EVENT)
+ * @AutoCreate
+ * @JndiName("java:app/core/TaskDaoImpl")
+ */
 public class TaskDaoImpl extends TaskDaoBase
 {
     /**

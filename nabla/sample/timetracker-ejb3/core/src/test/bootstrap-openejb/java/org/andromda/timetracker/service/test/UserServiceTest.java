@@ -9,8 +9,6 @@ import java.util.Date;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
-import no.knowit.seam.openejb.mock.SeamOpenEjbTest;
-
 import org.andromda.timetracker.ServiceLocator;
 import org.andromda.timetracker.domain.Role;
 import org.andromda.timetracker.security.PasswordEncoder;
@@ -23,15 +21,19 @@ import org.andromda.timetracker.vo.UserRoleVO;
 import org.andromda.timetracker.vo.UserVO;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.Component;
+import org.jboss.seam.mock.JUnitSeamTest;
+import org.junit.runner.RunWith;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 /**
  * Service test class UserServiceTest for testing with TestNG
- * Check the testng.xml for initialisation of the EJB3Container before running any tests.
+ * Check the testng.xml for initialization of the EJB3Container before running any tests.
  */
-public class UserServiceTest extends SeamOpenEjbTest
+@RunWith(Arquillian.class)
+public class UserServiceTest extends JUnitSeamTest //SeamOpenEjbTest
 {
     private static final Log    logger           = LogFactory.getLog(UserServiceTest.class);
 

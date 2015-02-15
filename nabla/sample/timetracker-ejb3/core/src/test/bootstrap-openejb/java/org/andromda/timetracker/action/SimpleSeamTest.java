@@ -7,20 +7,22 @@ import javax.naming.InitialContext;
 import javax.persistence.EntityManager;
 import javax.transaction.TransactionManager;
 
-import no.knowit.seam.openejb.mock.SeamOpenEjbTest;
-
 import org.andromda.timetracker.domain.User;
 import org.andromda.timetracker.service.UserService;
 import org.andromda.timetracker.service.UserServiceBean;
 import org.andromda.timetracker.service.UserServiceLocal;
 import org.apache.log4j.Logger;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.Component;
 import org.jboss.seam.contexts.Contexts;
+import org.jboss.seam.mock.JUnitSeamTest;
 import org.jboss.seam.security.Identity;
+import org.junit.runner.RunWith;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-public class SimpleSeamTest extends SeamOpenEjbTest
+@RunWith(Arquillian.class)
+public class SimpleSeamTest extends JUnitSeamTest //SeamOpenEjbTest
 {
     private static final Logger logger           = Logger.getLogger(SimpleSeamTest.class);
     //public static final String  JNDI_PREFIX_NAME = "";                                    //"global/timetracker-ejb3-ear/core-3.4/";

@@ -19,6 +19,14 @@ import org.hibernate.criterion.Restrictions;
 /**
  * @see Timecard
  */
+/*
+ * @Stateless
+ * // @Stateful if stateful uncomment the destroy method
+ * @Name("timecardDao")
+ * @Scope(ScopeType.EVENT)
+ * @AutoCreate
+ * @JndiName("java:app/core/TimecardDaoImpl")
+ */
 public class TimecardDaoImpl extends TimecardDaoBase
 {
     private final Logger logger = Logger.getLogger(TimecardDaoImpl.class);

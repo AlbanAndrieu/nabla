@@ -67,6 +67,8 @@ be tracked.
         </session>
         -->
 
+        <!-- session manageable UserRoleManageableService seam true -->
+        <!-- session manageable MovieManageableService seam true -->
         <!-- session dao UserDao seam true -->
         <!-- session dao TaskDao seam false -->
         <!--
@@ -119,6 +121,7 @@ submitter worked on the associated task.
         -->
         
         <!-- session dao UserRoleDao seam true -->
+        <!-- session dao MovieDao seam true -->
     <!--
     </enterprise-beans>
     -->

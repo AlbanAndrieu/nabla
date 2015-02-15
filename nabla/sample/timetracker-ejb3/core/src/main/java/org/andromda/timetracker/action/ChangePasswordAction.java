@@ -6,10 +6,12 @@ import javax.ejb.Remove;
 import javax.ejb.Stateful;
 import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import org.andromda.timetracker.domain.User;
 import org.jboss.seam.annotations.Destroy;
 import org.jboss.seam.annotations.In;
+import org.jboss.seam.annotations.JndiName;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Out;
 import org.jboss.seam.annotations.Scope;
@@ -23,6 +25,7 @@ import org.jboss.seam.security.Identity;
 @Name("changePassword")
 @Restrict("#{identity.loggedIn}")
 @Interceptors(SeamInterceptor.class)
+@JndiName("java:app/core/ChangePasswordAction")
 public class ChangePasswordAction implements ChangePassword
 {
 
@@ -30,14 +33,14 @@ public class ChangePasswordAction implements ChangePassword
 
     @In
     /* (create = true) */
-    @Out
+    // @Out
     // @Valid
-    // @Out(required = false, scope = org.jboss.seam.ScopeType.SESSION)
+    @Out(required = false, scope = org.jboss.seam.ScopeType.SESSION)
     private User                                 user;
 
     // @PersistenceContext(unitName = "timetracker-ejb3")
-    // @PersistenceContext(unitName = "core-test")
-    @In
+    // @In
+    @PersistenceContext
     private EntityManager                        entityManager;
 
     private String                               verify;

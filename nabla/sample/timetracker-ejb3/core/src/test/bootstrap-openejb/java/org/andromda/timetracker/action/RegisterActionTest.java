@@ -6,10 +6,6 @@ import java.util.Date;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
-import no.knowit.seam.openejb.mock.AbstractSeamOpenEjbTest;
-import no.knowit.seam.openejb.mock.SeamManagedEntityManagerFactoryBean;
-import no.knowit.seam.openejb.mock.SeamOpenEjbTest;
-
 import org.andromda.timetracker.domain.User;
 import org.andromda.timetracker.security.PasswordEncoder;
 import org.andromda.timetracker.service.UserDoesNotExistException;
@@ -17,222 +13,217 @@ import org.andromda.timetracker.service.UserServiceBean;
 import org.andromda.timetracker.service.UserServiceLocal;
 import org.andromda.timetracker.vo.UserVO;
 import org.apache.log4j.Logger;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.Component;
 import org.jboss.seam.contexts.Contexts;
+import org.jboss.seam.mock.JUnitSeamTest;
+import org.junit.runner.RunWith;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
-public class RegisterActionTest extends SeamOpenEjbTest
+@RunWith(Arquillian.class)
+public class RegisterActionTest extends JUnitSeamTest // SeamOpenEjbTest
 {
 
-    private static final Logger logger = Logger.getLogger(RegisterActionTest.class);
+	private static final Logger logger = Logger
+			.getLogger(RegisterActionTest.class);
 
-    @Override
-    @BeforeSuite
-    public void beforeSuite() throws Exception
-    {
+    /*
+     * @Override
+     * @BeforeSuite
+     * public void beforeSuite() throws Exception {
+     * // System.out.println("**** AuthenticatorTest.beforeSuite()");
+     * // Change some logging, INFO|DEBUG|WARN|ERROR|FATAL
+     * // contextProperties.put("log4j.category.org.jboss.seam.Component",
+     * // "DEBUG");
+     * //AbstractSeamOpenEjbTest.contextProperties.put("log4j.category.org.jboss.seam.transaction", "DEBUG");
+     * //AbstractSeamOpenEjbTest.contextProperties.put("log4j.category.org.jboss.seam.mock", "DEBUG");
+     * //AbstractSeamOpenEjbTest.contextProperties.put("log4j.category.no.knowit.seam.openejb.mock", "DEBUG");
+     * //AbstractSeamOpenEjbTest.contextProperties.put("log4j.category.no.knowit.seam.example", "debug");
+     * super.beforeSuite();
+     * }
+     */
 
-        // System.out.println("**** AuthenticatorTest.beforeSuite()");
+	@Override
+	@BeforeMethod
+	public void begin() {
 
-        // Change some logging, INFO|DEBUG|WARN|ERROR|FATAL contextProperties.put("log4j.category.org.jboss.seam.Component", "DEBUG");
-        AbstractSeamOpenEjbTest.contextProperties.put("log4j.category.org.jboss.seam.transaction", "DEBUG");
-        AbstractSeamOpenEjbTest.contextProperties.put("log4j.category.org.jboss.seam.mock", "DEBUG");
-        AbstractSeamOpenEjbTest.contextProperties.put("log4j.category.no.knowit.seam.openejb.mock", "DEBUG");
-        AbstractSeamOpenEjbTest.contextProperties.put("log4j.category.no.knowit.seam.example", "debug");
-        super.beforeSuite();
-    }
+		super.begin();
 
-    @Override
-    @BeforeMethod
-    public void begin()
-    {
+		try {
+			new ComponentTest() {
 
-        super.begin();
+				@Override
+				protected void testComponents() throws Exception {
 
-        try
-        {
-            new ComponentTest()
-            {
+					final UserServiceLocal userService = (UserServiceLocal) Component
+							.getInstance(UserServiceBean.class, true);
+					// Remote testuser if it already exists
+					UserVO userVO = null;
+					try {
+						userVO = userService.getUser("testusertmp");
+						if ((userVO != null)
+								&& (userVO.getId().longValue() > 0)) {
+							userService.removeUser(userVO);
+						}
+					} catch (final UserDoesNotExistException e) {
+						RegisterActionTest.logger
+								.debug("UserDoesNotExistException : " + e);
+					} catch (final Exception e) {
+						RegisterActionTest.logger.debug("Exception : " + e);
+						Assert.fail();
+					}
 
-                @Override
-                protected void testComponents() throws Exception
-                {
+				}
 
-                    final UserServiceLocal userService = (UserServiceLocal) Component.getInstance(UserServiceBean.class, true);
-                    // Remote testuser if it already exists
-                    UserVO userVO = null;
-                    try
-                    {
-                        userVO = userService.getUser("testusertmp");
-                        if ((userVO != null) && (userVO.getId().longValue() > 0))
-                        {
-                            userService.removeUser(userVO);
-                        }
-                    }
-                    catch (final UserDoesNotExistException e)
-                    {
-                        RegisterActionTest.logger.debug("UserDoesNotExistException : " + e);
-                    }
-                    catch (final Exception e)
-                    {
-                        RegisterActionTest.logger.debug("Exception : " + e);
-                        Assert.fail();
-                    }
+			}.run();
+		} catch (final Exception e) {
+			RegisterActionTest.logger.debug("Exception : " + e);
+		}
+	}
 
-                }
+	@Test(groups = "a")
+	public void testRegisterComponent() throws Exception {
 
-            }.run();
-        }
-        catch (final Exception e)
-        {
-            RegisterActionTest.logger.debug("Exception : " + e);
-        }
-    }
+		new ComponentTest() {
 
-    @Test(groups = "a")
-    public void testRegisterComponent() throws Exception
-    {
+			@Override
+			protected void testComponents() throws Exception {
+				this.setValue("#{user.username}", "testusertmp");
+				this.setValue("#{user.firstName}", "John");
+				this.setValue("#{user.lastName}", "Smith");
+				this.setValue("#{user.email}", "john.smith@unknown.no");
+				this.setValue("#{user.creationDate}", new Date());
+				this.setValue("#{user.password}", "secret");
+				this.setValue("#{register.verify}", "secret");
+				assert this.invokeMethod("#{register.register}").equals(
+						"success");
+				assert this.getValue("#{user.username}").equals("testusertmp");
+				assert this.getValue("#{user.firstName}").equals("John");
+				assert this.getValue("#{user.lastName}").equals("Smith");
+				assert this.getValue("#{user.email}").equals(
+						"john.smith@unknown.no");
+				assert this.getValue("#{user.password}").equals("secret");
+			}
 
-        new ComponentTest()
-        {
+		}.run();
 
-            @Override
-            protected void testComponents() throws Exception
-            {
-                this.setValue("#{user.username}", "testusertmp");
-                this.setValue("#{user.firstName}", "John");
-                this.setValue("#{user.lastName}", "Smith");
-                this.setValue("#{user.email}", "john.smith@unknown.no");
-                this.setValue("#{user.creationDate}", new Date());
-                this.setValue("#{user.password}", "secret");
-                this.setValue("#{register.verify}", "secret");
-                assert this.invokeMethod("#{register.register}").equals("success");
-                assert this.getValue("#{user.username}").equals("testusertmp");
-                assert this.getValue("#{user.firstName}").equals("John");
-                assert this.getValue("#{user.lastName}").equals("Smith");
-                assert this.getValue("#{user.email}").equals("john.smith@unknown.no");
-                assert this.getValue("#{user.password}").equals("secret");
-            }
+	}
 
-        }.run();
+	@Test(dependsOnGroups = "a")
+	public void testRegister() throws Exception {
 
-    }
+		new FacesRequest() {
 
-    @Test(dependsOnGroups = "a")
-    public void testRegister() throws Exception
-    {
+			@Override
+			protected void processValidations() throws Exception {
+				this.validateValue("#{user.username}", "testusertmp");
+				this.validateValue("#{user.firstName}", "John");
+				this.validateValue("#{user.lastName}", "Smith");
+				this.validateValue("#{user.email}", "john.smith@unknown.no");
+				this.validateValue("#{user.creationDate}", new Date());
+				this.validateValue("#{user.password}", "secret");
+				assert !this.isValidationFailure();
+			}
 
-        new FacesRequest()
-        {
+			@Override
+			protected void updateModelValues() throws Exception {
+				this.setValue("#{user.username}", "testusertmp");
+				this.setValue("#{user.firstName}", "John");
+				this.setValue("#{user.lastName}", "Smith");
+				this.setValue("#{user.email}", "john.smith@unknown.no");
+				this.setValue("#{user.creationDate}", new Date());
+				this.setValue("#{user.password}", "secret");
+				this.setValue("#{register.verify}", "secret");
+			}
 
-            @Override
-            protected void processValidations() throws Exception
-            {
-                this.validateValue("#{user.username}", "testusertmp");
-                this.validateValue("#{user.firstName}", "John");
-                this.validateValue("#{user.lastName}", "Smith");
-                this.validateValue("#{user.email}", "john.smith@unknown.no");
-                this.validateValue("#{user.creationDate}", new Date());
-                this.validateValue("#{user.password}", "secret");
-                assert !this.isValidationFailure();
-            }
+			@Override
+			protected void invokeApplication() {
+				assert this.invokeMethod("#{register.register}").equals(
+						"success");
+			}
 
-            @Override
-            protected void updateModelValues() throws Exception
-            {
-                this.setValue("#{user.username}", "testusertmp");
-                this.setValue("#{user.firstName}", "John");
-                this.setValue("#{user.lastName}", "Smith");
-                this.setValue("#{user.email}", "john.smith@unknown.no");
-                this.setValue("#{user.creationDate}", new Date());
-                this.setValue("#{user.password}", "secret");
-                this.setValue("#{register.verify}", "secret");
-            }
+			@Override
+			protected void renderResponse() {
+				assert this.getValue("#{user.username}").equals("testusertmp");
+				assert this.getValue("#{user.firstName}").equals("John");
+				assert this.getValue("#{user.lastName}").equals("Smith");
+				assert this.getValue("#{user.email}").equals(
+						"john.smith@unknown.no");
+				assert this.getValue("#{user.password}").equals("secret");
+			}
 
-            @Override
-            protected void invokeApplication()
-            {
-                assert this.invokeMethod("#{register.register}").equals("success");
-            }
+		}.run();
+	}
 
-            @Override
-            protected void renderResponse()
-            {
-                assert this.getValue("#{user.username}").equals("testusertmp");
-                assert this.getValue("#{user.firstName}").equals("John");
-                assert this.getValue("#{user.lastName}").equals("Smith");
-                assert this.getValue("#{user.email}").equals("john.smith@unknown.no");
-                assert this.getValue("#{user.password}").equals("secret");
-            }
+	// @Test
+	// Does not work with transaction type to JTA in persistence.xml
+	public void testRegisterAction() throws Exception {
 
-        }.run();
-    }
+		new ComponentTest() {
+			private EntityManagerFactory emf;
 
-    // @Test
-    // Does not work with transaction type to JTA in persistence.xml
-    public void testRegisterAction() throws Exception
-    {
+			public EntityManagerFactory getEntityManagerFactory() {
+				return emf;
+			}
 
-        new ComponentTest()
-        {
-            private EntityManagerFactory emf;
+			@Override
+			protected void testComponents() {
+				try {
+					// this.emf =
+					// Persistence.createEntityManagerFactory("timetracker-ejb3");
+					emf = (EntityManagerFactory) Component.getInstance(
+							SeamManagedEntityManagerFactoryBean.class, true);
+					Assert.assertNotNull(emf);
+					RegisterActionTest.logger
+							.debug("SeamManagedEntityManagerFactory bean : "
+									+ emf);
 
-            public EntityManagerFactory getEntityManagerFactory()
-            {
-                return emf;
-            }
+					Date date;
 
-            @Override
-            protected void testComponents()
-            {
-                try
-                {
-                    // this.emf = Persistence.createEntityManagerFactory("timetracker-ejb3");
-                    emf = (EntityManagerFactory) Component.getInstance(SeamManagedEntityManagerFactoryBean.class, true);
-                    Assert.assertNotNull(emf);
-                    RegisterActionTest.logger.debug("SeamManagedEntityManagerFactory bean : " + emf);
+					date = (new SimpleDateFormat("yyyy-MM-dd hh:mm"))
+							.parse("2011-01-01 09:00");
 
-                    Date date;
+					final User user = new User("admin",
+							PasswordEncoder
+									.getMD5Base64EncodedPassword("cooldude"),
+							"Alban", "Andrieu", "alban.andrieu@free.fr", true,
+							date, "Alban Andrieu");
+					Contexts.getSessionContext().set("user", user);
 
-                    date = (new SimpleDateFormat("yyyy-MM-dd hh:mm")).parse("2011-01-01 09:00");
+					// this.setValue("#{identity.username}", "admin");
+					// this.setValue("#{identity.password}",
+					// PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
+					// this.invokeMethod("#{identity.login}");
+					// assert
+					// this.getValue("#{identity.loggedIn}").equals(true);
 
-                    final User user = new User("admin", PasswordEncoder.getMD5Base64EncodedPassword("cooldude"), "Alban", "Andrieu", "alban.andrieu@free.fr", true, date, "Alban Andrieu");
-                    Contexts.getSessionContext().set("user", user);
+					final EntityManager em = this.getEntityManagerFactory()
+							.createEntityManager();
+					em.getTransaction().begin();
 
-                    // this.setValue("#{identity.username}", "admin");
-                    // this.setValue("#{identity.password}", PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
-                    // this.invokeMethod("#{identity.login}");
-                    // assert this.getValue("#{identity.loggedIn}").equals(true);
+					final RegisterAction action = new RegisterAction();
+					action.setUser(user);
+					action.setEntityManager(em);
+					action.setVerify(PasswordEncoder
+							.getMD5Base64EncodedPassword("cooldude"));
 
-                    final EntityManager em = this.getEntityManagerFactory().createEntityManager();
-                    em.getTransaction().begin();
+					// assert "success".equals(action.register());
+					Assert.assertNull(action.register()); // Already exist
 
-                    final RegisterAction action = new RegisterAction();
-                    action.setUser(user);
-                    action.setEntityManager(em);
-                    action.setVerify(PasswordEncoder.getMD5Base64EncodedPassword("cooldude"));
+					em.getTransaction().commit();
+					em.close();
 
-                    // assert "success".equals(action.register());
-                    Assert.assertNull(action.register()); // Already exist
+				} catch (final Exception e) {
+					RegisterActionTest.logger.info("error : " + e);
+					Assert.fail();
+				} finally {
+					emf.close();
+				}
+			}
+		}.run();
 
-                    em.getTransaction().commit();
-                    em.close();
-
-                }
-                catch (final Exception e)
-                {
-                    RegisterActionTest.logger.info("error : " + e);
-                    Assert.fail();
-                }
-                finally
-                {
-                    emf.close();
-                }
-            }
-        }.run();
-
-    }
+	}
 
 }

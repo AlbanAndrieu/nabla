@@ -14,8 +14,6 @@ import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 import javax.persistence.UniqueConstraint;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
@@ -34,15 +32,16 @@ import org.jboss.seam.annotations.Scope;
 { "username", "email", "id" }))
 // Uncomment to enable entity listener for User
 // @javax.persistence.EntityListeners({org.andromda.timetracker.domain.UserListener.class})
-@Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
+// Uncomment to enable caching for User
+// @org.hibernate.annotations.Cache(usage = org.hibernate.annotations.CacheConcurrencyStrategy.TRANSACTIONAL)
 @NamedQueries(
-{ @NamedQuery(name = "User.findAll", query = "SELECT u FROM User AS u"), @NamedQuery(name = "User.findByEmail", query = "select user from User user where user.email = :email order by user.email") })
+{ @NamedQuery(name = "User.findAll", query = "SELECT u FROM User AS u"), @NamedQuery(name = "User.findByEmail", query = "select u from User u where u.email = :email order by u.email") })
 public class User extends UserEmbeddable implements Serializable, Comparable<User>
 {
     /**
      * The serial version UID of this class required for serialization.
      */
-    private static final long serialVersionUID = -6177852626226267723L;
+    private static final long serialVersionUID = 280161844106669459L;
 
     // --------------- constructors -----------------
 
@@ -59,9 +58,9 @@ public class User extends UserEmbeddable implements Serializable, Comparable<Use
      * This method sets all POJO fields defined in this/super class to the
      * values provided by the parameters.
      */
-    public User(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment)
+    public User(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment)
     {
-        super(username, password, firstName, lastName, email, isActive, creationDate, comment);
+        super(username, password, firstName, lastName, email, isEnable, creationDate, comment);
     }
 
     /**
@@ -72,14 +71,14 @@ public class User extends UserEmbeddable implements Serializable, Comparable<Use
      * @param firstName Value for the firstName property
      * @param lastName Value for the lastName property
      * @param email Value for the email property
-     * @param isActive Value for the isActive property
+     * @param isEnable Value for the isEnable property
      * @param creationDate Value for the creationDate property
      * @param comment Value for the comment property
      * @param roles Value for the roles relation
      */
-    public User(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Set<UserRole> roles)
+    public User(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Set<UserRole> roles)
     {
-        super(username, password, firstName, lastName, email, isActive, creationDate, comment, roles);
+        super(username, password, firstName, lastName, email, isEnable, creationDate, comment, roles);
     }
 
     // -------------- Entity Methods -----------------

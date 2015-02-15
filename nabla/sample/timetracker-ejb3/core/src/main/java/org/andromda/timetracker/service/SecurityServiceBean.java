@@ -15,6 +15,13 @@ import org.andromda.timetracker.vo.UserDetailsVO;
  */
 // Uncomment to enable webservices for SecurityServiceBean
 // @javax.jws.WebService(endpointInterface = "org.andromda.timetracker.service.SecurityServiceWSInterface", serviceName = "SecurityService")
+/*
+ * @Stateless
+ * @Scope(ScopeType.CONVERSATION)
+ * @Name("securityService")
+ * @Interceptors(SeamInterceptor.class)
+ * @JndiName("java:app/core/SecurityServiceBean")
+ */
 public class SecurityServiceBean extends SecurityServiceBase implements SecurityServiceRemote
 {
 

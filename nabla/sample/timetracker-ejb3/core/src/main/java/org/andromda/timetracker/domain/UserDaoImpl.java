@@ -8,6 +8,7 @@ package org.andromda.timetracker.domain;
 
 import java.util.Collection;
 
+import javax.ejb.Local;
 import javax.ejb.Stateless;
 
 import org.andromda.timetracker.vo.UserDetailsVO;
@@ -15,6 +16,7 @@ import org.andromda.timetracker.vo.UserRoleVO;
 import org.andromda.timetracker.vo.UserVO;
 import org.jboss.seam.ScopeType;
 import org.jboss.seam.annotations.AutoCreate;
+import org.jboss.seam.annotations.JndiName;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 
@@ -26,6 +28,9 @@ import org.jboss.seam.annotations.Scope;
 @Name("userDao")
 @Scope(ScopeType.EVENT)
 @AutoCreate
+@Local(
+{ UserDao.class })
+@JndiName("java:app/core/UserDaoImpl")
 public class UserDaoImpl extends UserDaoBase
 {
 

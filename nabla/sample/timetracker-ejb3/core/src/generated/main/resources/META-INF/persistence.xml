@@ -17,12 +17,12 @@ Modify as necessary for JPA unit testing
 
     <persistence-unit name="timetracker-ejb3" transaction-type="JTA">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
+
         <!-- use jta-data-source only when transaction-type is JTA -->
         <jta-data-source>java:/timetracker-ejb3</jta-data-source>
-        <!-- use non-jta-data-source only when transaction-type is RESOURCE_LOCAL -->
-        <non-jta-data-source>java:/timetracker-ejb3Unmanaged</non-jta-data-source>
-        <!-- Entity list needed for testing in J2SE environment entities=5-->
+        <!-- Entity list needed for testing in J2SE environment entities=6-->
         <class>org.andromda.timetracker.domain.Task</class>
+        <class>org.andromda.timetracker.domain.Movie</class>
         <class>org.andromda.timetracker.domain.UserRole</class>
         <class>org.andromda.timetracker.domain.UserEmbeddable</class>
         <class>org.andromda.timetracker.domain.User</class>
@@ -30,7 +30,6 @@ Modify as necessary for JPA unit testing
         <class>org.andromda.timetracker.domain.Timecard</class>
         <class>org.andromda.timetracker.domain.TimeAllocation</class>
         <class>org.andromda.timetracker.domain.TimePeriod</class>
-        <class>org.andromda.timetracker.domain.Movie</class>
         <properties>
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
             <property name="hibernate.show_sql" value="true"/>
@@ -41,17 +40,7 @@ Modify as necessary for JPA unit testing
             <property name="hibernate.connection.useUnicode" value="true" />
             <property name="hibernate.connection.characterEncoding" value="UTF-8" />
 
-            <!-- Must add hibernate3 module: http://planet.jboss.org/post/using_a_different_persistence_provider_with_as_7_0_1
-            <property name="hibernate.ejb.resource_scanner" value="org.jboss.as.jpa.hibernate3.HibernateAnnotationScanner"/>-->
-            <!-- works with jboss 7.0.2 <property name="jboss.as.jpa.providerModule" value="org.hibernate:3"/>-->
-            <!-- define JPA provider, check:
-            https://docs.jboss.org/author/display/AS7/Developer+Guide#DeveloperGuide-PackagingtheHibernate3.5orgreater3.xJPApersistenceproviderwithyourapplication
-      	    <property name="jboss.as.jpa.providerModule" value="hibernate3-bundled" /> -->
-            <!-- <property name="jboss.as.jpa.providerModule" value="${jpa.provider.module}" />-->
-
             <property name="hibernate.transaction.manager_lookup_class" value="${pu.hibernate.transaction.manager_lookup_class}"/>
-            <!--<property name="jboss.entity.manager.factory.jndi.name" value="java:/timetracker-ejb3EntityManagerFactory"/>-->
-            <property name="jboss.entity.manager.factory.jndi.name" value="${pu.jboss.entity.manager.factory.jndi.name}"/>
             <property name="hibernate.archive.autodetection" value="class, hbm" />
 
         </properties>

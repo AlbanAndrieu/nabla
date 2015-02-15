@@ -6,8 +6,7 @@ package org.andromda.timetracker.service;
 
 import java.util.Collection;
 
-import javax.ejb.Remove;
-import javax.ejb.Stateful;
+import javax.ejb.Stateless;
 import javax.interceptor.Interceptors;
 
 import org.andromda.timetracker.domain.User;
@@ -16,7 +15,7 @@ import org.andromda.timetracker.domain.UserDaoException;
 import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserVO;
 import org.jboss.seam.ScopeType;
-import org.jboss.seam.annotations.Destroy;
+import org.jboss.seam.annotations.JndiName;
 import org.jboss.seam.annotations.Name;
 import org.jboss.seam.annotations.Scope;
 import org.jboss.seam.ejb.SeamInterceptor;
@@ -32,10 +31,11 @@ import org.jboss.seam.faces.FacesMessages;
 // Uncomment to enable webservices for UserServiceBean
 // @javax.jws.WebService(endpointInterface = "org.andromda.timetracker.service.UserServiceWSInterface", serviceName = "UserService")
 // Comment to enable jboss embedded tests for UserServiceBean
-@Stateful
+@Stateless
 @Scope(ScopeType.CONVERSATION)
 @Name("userService")
 @Interceptors(SeamInterceptor.class)
+@JndiName("java:app/core/UserServiceBean!org.andromda.timetracker.service.UserServiceLocal")
 public class UserServiceBean extends UserServiceBase implements UserServiceLocal, UserServiceRemote
 {
 
@@ -113,10 +113,13 @@ public class UserServiceBean extends UserServiceBase implements UserServiceLocal
     /**
      * Remove lifecycle method
      */
-    @Destroy
-    @Remove
-    public void destroy()
-    {
-        super.destroy();
-    }
+    /*
+     * @Override
+     * @Destroy
+     * @Remove
+     * public void destroy()
+     * {
+     * super.destroy();
+     * }
+     */
 }

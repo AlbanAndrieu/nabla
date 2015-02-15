@@ -1,16 +1,17 @@
 package org.andromda.timetracker.action;
 
-import no.knowit.seam.openejb.mock.SeamOpenEjbTest;
-
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.Component;
 import org.jboss.seam.log.LogProvider;
 import org.jboss.seam.log.Logging;
+import org.jboss.seam.mock.JUnitSeamTest;
 import org.jboss.seam.security.Credentials;
 import org.jboss.seam.security.Identity;
+import org.junit.runner.RunWith;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
 
-public class UserTest extends SeamOpenEjbTest
+@RunWith(Arquillian.class)
+public class UserTest extends JUnitSeamTest //SeamOpenEjbTest
 {
 
     //    private static final String  DIRECTOR_JOEL_COEN      = "Joel Coen";
@@ -42,21 +43,21 @@ public class UserTest extends SeamOpenEjbTest
         return identity.login().equals("loggedIn");
     }
 
-    @Override
-    @BeforeSuite
-    public void beforeSuite() throws Exception
-    {
-        //System.out.println("**** UserTest.beforeSuite()");
-
-        // Change some logging, INFO|DEBUG|WARN|ERROR|FATAL
-        contextProperties.put("log4j.category.org.jboss.seam.Component", "DEBUG");
-        contextProperties.put("log4j.category.org.jboss.seam.transaction", "DEBUG");
-        contextProperties.put("log4j.category.org.jboss.seam.mock", "DEBUG");
-        contextProperties.put("log4j.category.no.knowit.seam.openejb.mock", "DEBUG");
-        contextProperties.put("log4j.category.no.knowit.seam.example", "debug");
-
-        super.beforeSuite();
-    }
+    /*
+     * @Override
+     * @BeforeSuite
+     * public void beforeSuite() throws Exception
+     * {
+     * //System.out.println("**** UserTest.beforeSuite()");
+     * // Change some logging, INFO|DEBUG|WARN|ERROR|FATAL
+     * contextProperties.put("log4j.category.org.jboss.seam.Component", "DEBUG");
+     * contextProperties.put("log4j.category.org.jboss.seam.transaction", "DEBUG");
+     * contextProperties.put("log4j.category.org.jboss.seam.mock", "DEBUG");
+     * contextProperties.put("log4j.category.no.knowit.seam.openejb.mock", "DEBUG");
+     * contextProperties.put("log4j.category.no.knowit.seam.example", "debug");
+     * super.beforeSuite();
+     * }
+     */
 
     @Override
     @BeforeClass

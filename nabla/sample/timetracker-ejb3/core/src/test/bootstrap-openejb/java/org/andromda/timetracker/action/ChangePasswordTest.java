@@ -1,13 +1,15 @@
 package org.andromda.timetracker.action;
 
-import no.knowit.seam.openejb.mock.SeamOpenEjbTest;
-
 import org.apache.log4j.Logger;
+import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.seam.contexts.Contexts;
 import org.jboss.seam.core.Manager;
+import org.jboss.seam.mock.JUnitSeamTest;
+import org.junit.runner.RunWith;
 import org.testng.annotations.Test;
 
-public class ChangePasswordTest extends SeamOpenEjbTest
+@RunWith(Arquillian.class)
+public class ChangePasswordTest extends JUnitSeamTest //SeamOpenEjbTest
 {
     private static final Logger logger = Logger.getLogger(ChangePasswordTest.class);
 
