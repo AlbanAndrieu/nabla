@@ -506,12 +506,13 @@
                 <inplace>true</inplace>
                 <logLevel>INFO</logLevel>
                 <extraJvmArgs>-Xmx512m</extraJvmArgs>
+                <!-- below fix drools issue : java.lang.NoSuchFieldError: warningThreshold -->
+                <gwtSdkFirstInClasspath>true</gwtSdkFirstInClasspath><!-- The GWT compiler must the correct JDT version -->
                 <!-- Configure GWT's development mode (formerly known as hosted 
                   mode) to not start the default server (embedded jetty), but to download the 
                   HTML host page from the configured runTarget. -->
                 <noServer>true</noServer>
-                <runTarget>http://localhost:${server.port}/timetracker-ejb3/HelloWorldGWT.html</runTarget>
-             
+                <runTarget>http://localhost:${server.port}/timetracker-ejb3/HelloWorldGWT.html</runTarget>             
               </configuration>
               <executions>
                 <execution>
