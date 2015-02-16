@@ -80,7 +80,6 @@
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator-legacy</artifactId>
-            <!--<version>${hibernate.validator.legacy.version}</version>-->
             <exclusions>
                 <exclusion>
                     <groupId>org.hibernate</groupId>
@@ -110,7 +109,6 @@
         <dependency>
             <groupId>cglib</groupId>
             <artifactId>cglib-nodep</artifactId>
-            <!--<version>2.1_3</version>-->
         </dependency>        
         <!-- works with asm 1.5.1
         <dependency>
@@ -160,7 +158,6 @@
         <dependency>
             <groupId>batik</groupId>
             <artifactId>batik-ext</artifactId>
-            <version>${batik.ext.version}</version>
         </dependency>
         <!-- replace this by slf4j-api and slf4j-simple
         http://pwu-developer.blogspot.com/2010/08/caused-by-javalangerror-this-version-of.html
@@ -185,14 +182,12 @@
         <dependency>
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
-            <version>${log4j.version}</version>
             <scope>test</scope>
         </dependency>
 
         <dependency>
             <groupId>org.jboss.logging</groupId>
             <artifactId>jboss-logging</artifactId>
-            <version>${jboss.logging.version}</version>
         </dependency>
         	
 		<dependency>

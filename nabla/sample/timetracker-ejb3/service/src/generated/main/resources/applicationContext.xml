@@ -22,6 +22,7 @@
                 <value>classpath:org/andromda/timetracker/domain/TimeAllocation.hbm.xml</value>
                 <value>classpath:org/andromda/timetracker/domain/Timecard.hbm.xml</value>
                 <value>classpath:org/andromda/timetracker/domain/UserRole.hbm.xml</value>
+                <value>classpath:org/andromda/timetracker/domain/Movie.hbm.xml</value>
             </list>
          </property>
     </bean>
@@ -40,19 +41,19 @@
     </bean>
 
     <!-- Hibernate SessionFactory -->
-    <bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="mappingLocations" ref="hibernateMappingLocations"/>
         <property name="hibernateProperties" ref="hibernateProperties"/>
         <!-- applicationContext sessionFactory merge-point -->
     </bean>
 
-    <!-- The Hibernate interceptor -->
-    <bean id="hibernateInterceptor" class="org.springframework.orm.hibernate3.HibernateInterceptor">
+    <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
-        <!-- applicationContext hibernateInterceptor merge-point -->
     </bean>
-
+ 
+    <!-- Translates Hibernate exceptions to Spring Data Access Exceptions -->
+    <bean class="org.springframework.orm.hibernate4.HibernateExceptionTranslator"/>
 
     <bean id="org.andromda.timetracker.domain.UserDaoImpl" class="org.andromda.timetracker.domain.UserDaoImpl">
         <property name="sessionFactory" ref="sessionFactory"/>
@@ -64,11 +65,6 @@
     <bean id="userDao" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="target" ref="org.andromda.timetracker.domain.UserDaoImpl"/>
         <property name="proxyInterfaces" value="org.andromda.timetracker.domain.UserDao"/>
-        <property name="interceptorNames">
-            <list>
-                <value>hibernateInterceptor</value>
-            </list>
-        </property>
     </bean>
 
     <bean id="org.andromda.timetracker.domain.TaskDaoImpl" class="org.andromda.timetracker.domain.TaskDaoImpl">
@@ -80,11 +76,6 @@
     <bean id="taskDao" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="target" ref="org.andromda.timetracker.domain.TaskDaoImpl"/>
         <property name="proxyInterfaces" value="org.andromda.timetracker.domain.TaskDao"/>
-        <property name="interceptorNames">
-            <list>
-                <value>hibernateInterceptor</value>
-            </list>
-        </property>
     </bean>
 
     <bean id="org.andromda.timetracker.domain.TimeAllocationDaoImpl" class="org.andromda.timetracker.domain.TimeAllocationDaoImpl">
@@ -96,11 +87,6 @@
     <bean id="timeAllocationDao" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="target" ref="org.andromda.timetracker.domain.TimeAllocationDaoImpl"/>
         <property name="proxyInterfaces" value="org.andromda.timetracker.domain.TimeAllocationDao"/>
-        <property name="interceptorNames">
-            <list>
-                <value>hibernateInterceptor</value>
-            </list>
-        </property>
     </bean>
 
     <bean id="org.andromda.timetracker.domain.TimecardDaoImpl" class="org.andromda.timetracker.domain.TimecardDaoImpl">
@@ -113,11 +99,6 @@
     <bean id="timecardDao" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="target" ref="org.andromda.timetracker.domain.TimecardDaoImpl"/>
         <property name="proxyInterfaces" value="org.andromda.timetracker.domain.TimecardDao"/>
-        <property name="interceptorNames">
-            <list>
-                <value>hibernateInterceptor</value>
-            </list>
-        </property>
     </bean>
 
     <bean id="org.andromda.timetracker.domain.UserRoleDaoImpl" class="org.andromda.timetracker.domain.UserRoleDaoImpl">
@@ -129,11 +110,17 @@
     <bean id="userRoleDao" class="org.springframework.aop.framework.ProxyFactoryBean">
         <property name="target" ref="org.andromda.timetracker.domain.UserRoleDaoImpl"/>
         <property name="proxyInterfaces" value="org.andromda.timetracker.domain.UserRoleDao"/>
-        <property name="interceptorNames">
-            <list>
-                <value>hibernateInterceptor</value>
-            </list>
-        </property>
+    </bean>
+
+    <bean id="org.andromda.timetracker.domain.MovieDaoImpl" class="org.andromda.timetracker.domain.MovieDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+        <!-- Movie entity property merge-point -->
+    </bean>
+
+    <!-- Movie Entity Proxy with inner Movie Entity implementation -->
+    <bean id="movieDao" class="org.springframework.aop.framework.ProxyFactoryBean">
+        <property name="target" ref="org.andromda.timetracker.domain.MovieDaoImpl"/>
+        <property name="proxyInterfaces" value="org.andromda.timetracker.domain.MovieDao"/>
     </bean>
 
     <!-- ========================= Start of SERVICE DEFINITIONS ========================= -->
@@ -166,7 +153,6 @@
         <property name="interceptorNames">
             <list>
                 <value>serviceTransactionInterceptor</value>
-                <value>hibernateInterceptor</value>
             </list>
         </property>
     </bean>
@@ -183,7 +169,6 @@
         <property name="interceptorNames">
             <list>
                 <value>serviceTransactionInterceptor</value>
-                <value>hibernateInterceptor</value>
             </list>
         </property>
     </bean>
@@ -200,7 +185,6 @@
         <property name="interceptorNames">
             <list>
                 <value>serviceTransactionInterceptor</value>
-                <value>hibernateInterceptor</value>
             </list>
         </property>
     </bean>

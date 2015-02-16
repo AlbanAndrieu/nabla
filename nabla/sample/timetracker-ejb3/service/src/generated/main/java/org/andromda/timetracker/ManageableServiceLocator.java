@@ -5,8 +5,10 @@
 //
 package org.andromda.timetracker;
 
+import org.andromda.timetracker.domain.crud.MovieManageableService;
 import org.andromda.timetracker.domain.crud.TaskManageableService;
 import org.andromda.timetracker.domain.crud.UserManageableService;
+import org.andromda.timetracker.domain.crud.UserRoleManageableService;
 import org.springframework.beans.factory.access.BeanFactoryLocator;
 import org.springframework.beans.factory.access.BeanFactoryReference;
 import org.springframework.context.ApplicationContext;
@@ -121,5 +123,25 @@ public class ManageableServiceLocator
     {
         return (TaskManageableService)
             getContext().getBean("TaskManageableService");
+    }
+
+    /**
+     * Gets an instance of {@link UserRoleManageableService}.
+     * @return getContext().getBean("UserRoleManageableService")
+     */
+    public final UserRoleManageableService getUserRoleManageableService()
+    {
+        return (UserRoleManageableService)
+            getContext().getBean("UserRoleManageableService");
+    }
+
+    /**
+     * Gets an instance of {@link MovieManageableService}.
+     * @return getContext().getBean("MovieManageableService")
+     */
+    public final MovieManageableService getMovieManageableService()
+    {
+        return (MovieManageableService)
+            getContext().getBean("MovieManageableService");
     }
 }

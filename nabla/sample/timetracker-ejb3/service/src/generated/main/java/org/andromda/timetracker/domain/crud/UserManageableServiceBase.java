@@ -41,7 +41,7 @@ public final class UserManageableServiceBase
      * @param firstName TODO: Model Documentation for User.firstName
      * @param lastName TODO: Model Documentation for User.lastName
      * @param email TODO: Model Documentation for User.email
-     * @param isActive TODO: Model Documentation for User.isActive
+     * @param isEnable TODO: Model Documentation for User.isEnable
      * @param creationDate TODO: Model Documentation for User.creationDate
      * @param comment TODO: Model Documentation for User.comment
      * @param id TODO: Model Documentation for User.id
@@ -50,46 +50,46 @@ public final class UserManageableServiceBase
      * @throws Exception
      * @see org.andromda.timetracker.domain.UserDao#create
      */
-    public UserVO create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public UserVO create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles)
         throws Exception
     {
         if (username == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles) - 'username' can not be null");
+                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'username' can not be null");
         }
 
         if (password == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles) - 'password' can not be null");
+                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'password' can not be null");
         }
 
         if (firstName == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles) - 'firstName' can not be null");
+                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'firstName' can not be null");
         }
 
         if (lastName == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles) - 'lastName' can not be null");
+                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'lastName' can not be null");
         }
 
         if (email == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles) - 'email' can not be null");
+                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'email' can not be null");
         }
 
         if (creationDate == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles) - 'creationDate' can not be null");
+                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'creationDate' can not be null");
         }
 
-        return toValueObject(this.dao.create(username, password, firstName, lastName, email, isActive, creationDate, comment, id, roles));
+        return toValueObject(this.dao.create(username, password, firstName, lastName, email, isEnable, creationDate, comment, id, roles));
     }
 
     /**
@@ -110,7 +110,7 @@ public final class UserManageableServiceBase
      * @param firstName TODO: Model Documentation for User.firstName
      * @param lastName TODO: Model Documentation for User.lastName
      * @param email TODO: Model Documentation for User.email
-     * @param isActive TODO: Model Documentation for User.isActive
+     * @param isEnable TODO: Model Documentation for User.isEnable
      * @param creationDate TODO: Model Documentation for User.creationDate
      * @param comment TODO: Model Documentation for User.comment
      * @param id TODO: Model Documentation for User.id
@@ -119,10 +119,10 @@ public final class UserManageableServiceBase
      * @throws Exception
      * @see UserManageableService#read
      */
-    public List<UserVO> read(String username, String password, String firstName, String lastName, String email, Boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public List<UserVO> read(String username, String password, String firstName, String lastName, String email, Boolean isEnable, Date creationDate, String comment, Long id, Long[] roles)
         throws Exception
     {
-        return toValueObjects(this.dao.read(username, password, firstName, lastName, email, isActive, creationDate, comment, id, roles));
+        return toValueObjects(this.dao.read(username, password, firstName, lastName, email, isEnable, creationDate, comment, id, roles));
     }
 
     /**
@@ -152,55 +152,55 @@ public final class UserManageableServiceBase
      * @param firstName TODO: Model Documentation for User.firstName
      * @param lastName TODO: Model Documentation for User.lastName
      * @param email TODO: Model Documentation for User.email
-     * @param isActive TODO: Model Documentation for User.isActive
+     * @param isEnable TODO: Model Documentation for User.isEnable
      * @param creationDate TODO: Model Documentation for User.creationDate
      * @param comment TODO: Model Documentation for User.comment
      * @param id TODO: Model Documentation for User.id
      * @param roles TODO: Model Documentation for UserRole
-     * @return toValueObject(this.dao.update(username, password, firstName, lastName, email, isActive, creationDate, comment, id, roles))
+     * @return toValueObject(this.dao.update(username, password, firstName, lastName, email, isEnable, creationDate, comment, id, roles))
      * @throws Exception
      * @see UserManageableDao#update
      */
-    public UserVO update(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles)
+    public UserVO update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles)
         throws Exception
     {
         if (username == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles) - 'username' can not be null");
+                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'username' can not be null");
         }
 
         if (password == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles) - 'password' can not be null");
+                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'password' can not be null");
         }
 
         if (firstName == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles) - 'firstName' can not be null");
+                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'firstName' can not be null");
         }
 
         if (lastName == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles) - 'lastName' can not be null");
+                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'lastName' can not be null");
         }
 
         if (email == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles) - 'email' can not be null");
+                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'email' can not be null");
         }
 
         if (creationDate == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Long id, Long[] roles) - 'creationDate' can not be null");
+                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'creationDate' can not be null");
         }
 
-        return toValueObject(this.dao.update(username, password, firstName, lastName, email, isActive, creationDate, comment, id, roles));
+        return toValueObject(this.dao.update(username, password, firstName, lastName, email, isEnable, creationDate, comment, id, roles));
     }
 
     /**
@@ -241,7 +241,7 @@ public final class UserManageableServiceBase
         valueObject.setFirstName(entity.getFirstName());
         valueObject.setLastName(entity.getLastName());
         valueObject.setEmail(entity.getEmail());
-        valueObject.setIsActive(entity.isIsActive());
+        valueObject.setIsEnable(entity.isIsEnable());
         valueObject.setCreationDate(entity.getCreationDate());
         valueObject.setComment(entity.getComment());
         valueObject.setId(entity.getId());
@@ -250,17 +250,21 @@ public final class UserManageableServiceBase
         if (roles == null || roles.isEmpty())
         {
             valueObject.setRoles(null);
+            valueObject.setRolesLabels(null);
         }
         else
         {
             final Long[] values = new Long[roles.size()];
+            final Boolean[] labels = new Boolean[roles.size()];
             int counter = 0;
             for (final Iterator<UserRole> iterator = roles.iterator(); iterator.hasNext();counter++)
             {
                 final UserRole element = iterator.next();
                 values[counter] = element.getId();
+                labels[counter] = element.getConditional();
             }
             valueObject.setRoles(values);
+            valueObject.setRolesLabels(labels);
         }
 
         return valueObject;

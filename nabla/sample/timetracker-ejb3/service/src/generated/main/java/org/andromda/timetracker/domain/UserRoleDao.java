@@ -255,14 +255,16 @@ public interface UserRoleDao
      * the persistent store.
      * </p>
      * @param role TODO: Model Documentation for UserRole.role
+     * @param conditional TODO: Model Documentation for UserRole.conditional
      * @return UserRole
      */
     public UserRole create(
-        Role role);
+        Role role,
+        Boolean conditional);
 
     /**
      * <p>
-     * Does the same thing as {@link #create(Role)} with an
+     * Does the same thing as {@link #create(Role, Boolean)} with an
      * additional flag called <code>transform</code>. If this flag is set to <code>TRANSFORM_NONE</code> then
      * the returned entity will <strong>NOT</strong> be transformed. If this flag is any of the other constants
      * defined here then the result <strong>WILL BE</strong> passed through an operation which can optionally
@@ -271,11 +273,13 @@ public interface UserRoleDao
      * </p>
      * @param transform
      * @param role TODO: Model Documentation for UserRole.role
+     * @param conditional TODO: Model Documentation for UserRole.conditional
      * @return UserRole
      */
     public Object create(
         int transform,
-        Role role);
+        Role role,
+        Boolean conditional);
 
 
     /**
@@ -392,6 +396,21 @@ public interface UserRoleDao
      * @see #transformEntity(int,UserRole)
      */
     public void transformEntities(final int transform, final Collection<?> entities);
+
+    /**
+     * Searches for a single instance of UserRole.
+     * @param conditional the unique conditional to be used in the search.'
+     * @return a single instance of UserRole.
+     */
+    public UserRole searchUniqueConditional(final Boolean conditional);
+
+    /**
+     * Searches for a single instance of UserRole.
+     * @param transform the transformation flag.
+     * @param conditional the unique conditional to be used in the search.
+     * @return a value object according the transformation flag.
+     */
+    public Object searchUniqueConditional(final int transform, final Boolean conditional);
 
     // spring-dao merge-point
 }
