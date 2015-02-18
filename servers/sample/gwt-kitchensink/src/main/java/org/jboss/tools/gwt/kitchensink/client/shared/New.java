@@ -14,14 +14,16 @@ import javax.inject.Qualifier;
 
 /**
  * Like the built-in CDI {@code @New} annotation, but <i>newer</i>.
- *
+ * 
  * @author Jonathan Fuerth <jfuerth@redhat.com>
  * @author Christian Sadilek <csadilek@redhat.com>
  */
-@Target({ FIELD, PARAMETER, METHOD, TYPE })
+@Target(
+{ FIELD, PARAMETER, METHOD, TYPE })
 @Retention(RUNTIME)
 @Documented
 @Qualifier
-public @interface New {
+public @interface New
+{
 
 }

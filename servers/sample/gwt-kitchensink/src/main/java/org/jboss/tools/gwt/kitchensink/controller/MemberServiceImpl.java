@@ -20,13 +20,14 @@ import org.jboss.errai.bus.server.annotations.Service;
 /**
  * CDI service that can be called from either the client side (via Errai RPC) or
  * the server side.
- *
+ * 
  * @author Jonathan Fuerth <jfuerth@redhat.com>
  * @author Christian Sadilek <csadilek@redhat.com>
  */
 @ApplicationScoped
 @Service
-public class MemberServiceImpl implements MemberService {
+public class MemberServiceImpl implements MemberService
+{
 
     @Inject
     private Logger          log;
@@ -42,18 +43,21 @@ public class MemberServiceImpl implements MemberService {
     private Event<Member>   newMemberEvent;
 
     @Override
-    public void register(Member newMember) {
+    public void register(Member newMember)
+    {
         log.info("Registering " + newMember.getName());
-        try {
+        try
+        {
             userTransaction.begin();
             em.persist(newMember);
             userTransaction.commit();
-        }
-        catch (Exception ex) {
-            try {
+        } catch (Exception ex)
+        {
+            try
+            {
                 userTransaction.rollback();
-            }
-            catch (Exception e) {
+            } catch (Exception e)
+            {
                 e.printStackTrace();
             }
             throw new RuntimeException("Registering the member failed: " + ex.toString());
@@ -62,7 +66,8 @@ public class MemberServiceImpl implements MemberService {
     }
 
     @Override
-    public List<Member> retrieveAllMembersOrderedByName() {
+    public List<Member> retrieveAllMembersOrderedByName()
+    {
         CriteriaBuilder cb = em.getCriteriaBuilder();
         CriteriaQuery<Member> criteria = cb.createQuery(Member.class);
         Root<Member> member = criteria.from(Member.class);

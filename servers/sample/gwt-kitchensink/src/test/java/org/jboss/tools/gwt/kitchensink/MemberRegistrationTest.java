@@ -20,9 +20,11 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
-public class MemberRegistrationTest {
+public class MemberRegistrationTest
+{
     @Deployment
-    public static Archive<?> createTestArchive() {
+    public static Archive<?> createTestArchive()
+    {
         return ShrinkWrap.create(WebArchive.class, "gwt-kitchensink.war").addClasses(Member.class, MemberService.class, MemberServiceImpl.class, Resources.class)
                 .addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml").addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 // Deploy our test datasource
@@ -36,7 +38,8 @@ public class MemberRegistrationTest {
     Logger        log;
 
     @Test
-    public void testRegister() throws Exception {
+    public void testRegister() throws Exception
+    {
         Member newMember = new Member();
         newMember.setName("Jane Doe");
         newMember.setEmail("jane@mailinator.com");

@@ -357,7 +357,7 @@ module.exports = function (grunt) {
     'concurrent:test',
     'autoprefixer',
     'connect:test',
-    'karma'
+    'karma'    
   ]);
 
   grunt.registerTask('build', [
@@ -372,7 +372,8 @@ module.exports = function (grunt) {
     'replace',
     'uglify',
     'rev',
-    'usemin'
+    'usemin',
+    'documentation'
   ]);
 
   grunt.registerTask('default', [

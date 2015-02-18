@@ -32,21 +32,25 @@ import java.io.Serializable;
  */
 @Named
 @SessionScoped
-public class PageBean implements Serializable {
+public class PageBean implements Serializable
+{
     private static final long serialVersionUID = 281964859634018452L;
 
-    private String location;
-    private String page;
+    private String            location;
+    private String            page;
 
-    public String getPage() {
+    public String getPage()
+    {
         return page;
     }
 
-    public String getLocation() {
+    public String getLocation()
+    {
         return location;
     }
 
-    public void setLocation(String location) {
+    public void setLocation(String location)
+    {
         this.location = location;
         this.page = String.format("/mobile/%s.xhtml", location);
     }

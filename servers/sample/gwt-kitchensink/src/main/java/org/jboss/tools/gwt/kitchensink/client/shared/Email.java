@@ -15,14 +15,16 @@ import javax.validation.Payload;
  * An Email validator with the same semantics as the built-in Hibernate email
  * validator, but uses a validation implementation that works on both the client
  * side and the server side.
- *
+ * 
  * @author Jonathan Fuerth <jfuerth@redhat.com>
  * @author Christian Sadilek <csadilek@redhat.com>
  */
-@Target({ METHOD, FIELD, ANNOTATION_TYPE })
+@Target(
+{ METHOD, FIELD, ANNOTATION_TYPE })
 @Retention(RUNTIME)
 @Constraint(validatedBy = GwtCompatibleEmailValidator.class)
-public @interface Email {
+public @interface Email
+{
     String message() default "{org.hibernate.validator.constraints.Email.message}";
 
     Class<?>[] groups() default {};

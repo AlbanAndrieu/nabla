@@ -563,15 +563,15 @@
 			    </configuration>
 			    <dependencies>
 			        <dependency>
-					<groupId>org.jboss.tools.gwt.kitchensink</groupId>
-					<artifactId>gwt-kitchensink</artifactId>
-					<version>${project.version}</version>
-					<type>war</type>    
+						<groupId>org.jboss.tools.gwt.kitchensink</groupId>
+						<artifactId>gwt-kitchensink</artifactId>
+						<version>${project.version}</version>
+						<type>war</type>    
 			        </dependency>
 			        <dependency>
-			            <groupId>${jdbc.groupId}</groupId>
-					<artifactId>${jdbc.client.artifactId}</artifactId>
-					<version>${jdbc.version}</version>
+							<groupId>${jdbc.groupId}</groupId>
+							<artifactId>${jdbc.client.artifactId}</artifactId>
+							<version>${jdbc.version}</version>
 			            	<scope>runtime</scope>
 			        </dependency>
 			    </dependencies>

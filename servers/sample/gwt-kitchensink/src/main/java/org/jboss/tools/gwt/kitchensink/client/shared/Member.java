@@ -22,27 +22,25 @@ import org.jboss.errai.common.client.api.annotations.Portable;
  * annotations because it's the subject of four separate annotation-driven
  * frameworks:
  * <dl>
- *   <dt>JAXB - The Java API for XML Binding
- *   <dd>{@code @XmlRootElement} indicates that this class can be serialized as XML.
- *       This allows automatic serialization in the JAX-RS resource.
- *
- *   <dt>JPA - The Java Persistence API
- *   <dd>{@code @Entity} indicates that this class should be persisted to the
- *       server-side relational database.
- *
- *   <dt>Errai Marshalling
- *   <dd>{@code @Portable} indicates that instances of this class can be sent to clients.
- *
- *   <dt>Bean Validation
- *   <dd>{@code @NotNull, @NotEmpty, @Email, @Size} specify validation constraints on various properties of this bean.
- *       Both JPA and the GWT client understand these rules, and test instances of this class against them.
+ * <dt>JAXB - The Java API for XML Binding
+ * <dd>{@code @XmlRootElement} indicates that this class can be serialized as XML.
+ * This allows automatic serialization in the JAX-RS resource.
+ * <dt>JPA - The Java Persistence API
+ * <dd>{@code @Entity} indicates that this class should be persisted to the
+ * server-side relational database.
+ * <dt>Errai Marshalling
+ * <dd>{@code @Portable} indicates that instances of this class can be sent to clients.
+ * <dt>Bean Validation
+ * <dd>{@code @NotNull, @NotEmpty, @Email, @Size} specify validation constraints on various properties of this bean.
+ * Both JPA and the GWT client understand these rules, and test instances of this class against them.
  * </dl>
  */
 @Portable
 @XmlRootElement
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
-public class Member implements Serializable, Comparable<Member> {
+public class Member implements Serializable, Comparable<Member>
+{
     /** Default value included to remove warning. Remove or modify at will. **/
     private static final long serialVersionUID = 1L;
 
@@ -66,35 +64,43 @@ public class Member implements Serializable, Comparable<Member> {
     @Column(name = "phone_number")
     private String            phoneNumber;
 
-    public Long getId() {
+    public Long getId()
+    {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Long id)
+    {
         this.id = id;
     }
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName(String name)
+    {
         this.name = name;
     }
 
-    public String getEmail() {
+    public String getEmail()
+    {
         return email;
     }
 
-    public void setEmail(String email) {
+    public void setEmail(String email)
+    {
         this.email = email;
     }
 
-    public String getPhoneNumber() {
+    public String getPhoneNumber()
+    {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber)
+    {
         this.phoneNumber = phoneNumber;
     }
 
@@ -102,17 +108,22 @@ public class Member implements Serializable, Comparable<Member> {
      * Compares this member to the other member case-insensitive-alphabetically by name.
      */
     @Override
-    public int compareTo(Member o) {
-        if (o == null) {
+    public int compareTo(Member o)
+    {
+        if (o == null)
+        {
             return 1;
         }
-        if (this.name == null && o.name != null) {
+        if (this.name == null && o.name != null)
+        {
             return -1;
         }
-        if (this.name == null && o.name == null) {
+        if (this.name == null && o.name == null)
+        {
             return 0;
         }
-        if (this.name != null && o.name == null) {
+        if (this.name != null && o.name == null)
+        {
             return 1;
         }
         return this.name.compareToIgnoreCase(o.name);

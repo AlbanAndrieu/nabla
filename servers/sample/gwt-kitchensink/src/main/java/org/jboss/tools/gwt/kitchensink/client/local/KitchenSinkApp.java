@@ -19,15 +19,15 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.RootPanel;
 
 /**
- * Entry point for the Errai Kitchen Sink application. The {@code @EntryPoint}
- * annotation indicates to the Errai framework that this class should be
+ * Entry point for the Errai Kitchen Sink application. The {@code @EntryPoint} annotation indicates to the Errai framework that this class should be
  * instantiated inside the web browser when the web page is first loaded.
- *
+ * 
  * @author Jonathan Fuerth <jfuerth@redhat.com>
  * @author Christian Sadilek <csadilek@redhat.com>
  */
 @EntryPoint
-public class KitchenSinkApp {
+public class KitchenSinkApp
+{
 
     /**
      * This is the client-side proxy to the Errai service implemented by
@@ -55,7 +55,8 @@ public class KitchenSinkApp {
      * channel to the server.
      */
     @AfterInitialization
-    public void createUI() {
+    public void createUI()
+    {
         kitchenSinkUi = new KitchenSinkClient(memberService);
         kitchenSinkUi.setTableStatusMessage("Fetching member list...");
 
@@ -66,30 +67,36 @@ public class KitchenSinkApp {
     /**
      * Responds to the CDI event that's fired every time a new member is added to
      * the database.
-     *
+     * 
      * @param newMember The member that was just added to the database.
      */
-    public void onMemberAdded(@Observes @New Member newMember) {
+    public void onMemberAdded(@Observes @New Member newMember)
+    {
         kitchenSinkUi.addDisplayedMember(newMember);
     }
 
     /**
      * Fetches the member list from the server, adding each member to the table in the UI.
      */
-    private void fetchMemberList() {
+    private void fetchMemberList()
+    {
 
         // note that GWT.log messages only show up in development mode. They have no effect in production mode.
         GWT.log("Requesting member list...");
 
-        memberService.call(new RemoteCallback<List<Member>>() {
+        memberService.call(new RemoteCallback<List<Member>>()
+        {
             @Override
-            public void callback(List<Member> response) {
+            public void callback(List<Member> response)
+            {
                 GWT.log("Got member list. Size: " + response.size());
                 kitchenSinkUi.setDisplayedMembers(response);
             }
-        }, new ErrorCallback() {
+        }, new ErrorCallback()
+        {
             @Override
-            public boolean error(Message message, Throwable throwable) {
+            public boolean error(Message message, Throwable throwable)
+            {
                 throwable.printStackTrace();
                 kitchenSinkUi.setGeneralErrorMessage("Failed to retrieve list of members: " + throwable.getMessage());
                 return false;
