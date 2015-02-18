@@ -1324,6 +1324,7 @@
 
                 <!-- Testing dependency versions -->
                 <cargo.version>1.0</cargo.version>
+                <cargo.core.uberjar.version>1.4.5</cargo.core.uberjar.version>
                 <!-- NOT needed instead remove jmock-junit4 because it does not work with jacoco
                 <jmock.version>2.6.0</jmock.version>
                 -->
@@ -1337,7 +1338,7 @@
                 <hamcrest.version>${hamcrest.all.version}</hamcrest.version>
                 <hamcrest.core.version>${hamcrest.all.version}</hamcrest.core.version>
                 <jsp.version>2.0</jsp.version>
-                <jsp-api.version>2.2.1-b03</jsp-api.version>
+                <jsp.api.version>2.2.1-b03</jsp.api.version>
                 <!--<junit.version>4.12</junit.version> does not work in visma -->
                 <junit.version>4.11</junit.version>
                 <jcip.annotations.version>1.0-1</jcip.annotations.version>
@@ -1509,7 +1510,8 @@
                 <xmlsec.version>1.4.3</xmlsec.version>
                 <xmlsec.santuario.version>1.5.6</xmlsec.santuario.version>
                 <wss4j.version>1.5.8</wss4j.version>
-                <wsdl4j.version>1.6.2</wsdl4j.version>
+                <jsr311.api.version>1.1.1</jsr311.api.version>
+                <wsdl4j.version>1.6.5</wsdl4j.version> <!-- works with cxf 2.7.14 -->
                 <groovy.version>2.3.3</groovy.version>
                 <http.builder.version>0.6</http.builder.version>
                 <groovy.eclipse.compiler.version>2.7.0-01</groovy.eclipse.compiler.version>
@@ -1724,6 +1726,7 @@
                 <maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
                 <maven.codenarc.plugin.version>0.18-1</maven.codenarc.plugin.version>
                 <maven.dependency.check.plugin.version>1.2.8</maven.dependency.check.plugin.version>
+                <maven.versioneye.plugin.version>3.1.1</maven.versioneye.plugin.version>
                 <maven.selenium.plugin.version>2.3</maven.selenium.plugin.version>
                 <maven.wro4j.plugin.version>1.7.7</maven.wro4j.plugin.version>
                 <maven.classpath.fitnesse.version>1.7</maven.classpath.fitnesse.version>
@@ -1977,6 +1980,20 @@
                                                                         </action>
                                                                 </pluginExecution>
                                                                 -->
+                                                                <!-- see http://stackoverflow.com/questions/8706017/maven-dependency-plugin-goals-copy-dependencies-unpack-is-not-supported-b -->
+																<pluginExecution>
+																	<pluginExecutionFilter>
+																		<groupId>org.apache.maven.plugins</groupId>
+																		<artifactId>maven-dependency-plugin</artifactId>
+																		<versionRange>[${maven.dependency.plugin.version},)</versionRange>
+																		<goals>
+																			<goal>copy-dependencies</goal>
+																		</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																		<ignore />
+																	</action>
+																</pluginExecution>	                                                                
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.andromda.maven.plugins</groupId>
@@ -3662,6 +3679,14 @@
 										</execution>
 									</executions>									
 								</plugin>
+								<plugin>
+									<groupId>com.versioneye</groupId>
+									<artifactId>versioneye-maven-plugin</artifactId>
+									<version>${maven.versioneye.plugin.version}</version>
+									<configuration>
+										<apiKey>b61c27b9c7842af2f2a4</apiKey>
+									</configuration>									
+								</plugin> 							
                                 <plugin>
                                         <groupId>org.codehaus.mojo</groupId>
                                         <artifactId>dashboard-maven-plugin</artifactId>
@@ -5039,6 +5064,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <version>${hamcrest.all.version}</version>
                                 <scope>test</scope>
                         </dependency>
+						<dependency>
+							<groupId>org.codehaus.cargo</groupId>
+							<artifactId>cargo-core-uberjar</artifactId>
+							<version>${cargo.core.uberjar.version}</version>
+							<scope>test</scope>
+						</dependency>                        
                         <dependency>
                                 <groupId>org.springframework</groupId>
                                 <artifactId>spring-mock</artifactId>
@@ -6689,7 +6720,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         <dependency>
                                 <groupId>javax.servlet.jsp</groupId>
                                 <artifactId>jsp-api</artifactId>
-                                <version>${jsp-api.version}</version>
+                                <version>${jsp.api.version}</version>
                                 <scope>provided</scope>
                         </dependency>
                         <dependency>
@@ -7962,6 +7993,11 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                 <version>${wss4j.version}</version>
                 <scope>compile</scope>
             </dependency>
+			<dependency>
+			  <groupId>javax.ws.rs</groupId>
+			  <artifactId>jsr311-api</artifactId>
+			  <version>${jsr311.api.version}</version>
+			</dependency>            
             <!--
             <dependency>
                 <groupId>com.adobe.flex.compiler</groupId>
