@@ -1358,6 +1358,7 @@
                 <!--<org.jboss.arquillian.junit.version>1.0.0.Alpha5</org.jboss.arquillian.junit.version>-->
                 <!--<org.jboss.arquillian.junit.version>${org.jboss.arquillian.bom.version}</org.jboss.arquillian.junit.version>-->
                 <org.jboss.arquillian.junit.version>${org.jboss.arquillian.version}</org.jboss.arquillian.junit.version><!-- NOK with 1.1.4.Final java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
+                <org.openejb.arquillian.tomee.embedded.version>1.7.1</org.openejb.arquillian.tomee.embedded.version>
                 <org.jboss.arquillian.core.version>${org.jboss.arquillian.version}</org.jboss.arquillian.core.version>
                 <org.jboss.arquillian.jsfunit.version>1.0.0.Alpha4.SP1</org.jboss.arquillian.jsfunit.version>
                 <org.jboss.arquillian.jacoco.version>1.0.0.Alpha6</org.jboss.arquillian.jacoco.version>
@@ -1375,8 +1376,12 @@
                 <xmlunit.version>1.5</xmlunit.version>
                 <jsonassert.version>1.2.3</jsonassert.version>
                 <wiser.version>1.2</wiser.version>
+                <scala.version>2.9.3</scala.version> <!-- for gatling to work -->
+                <scala.suffix>_2.9</scala.suffix>
+                <!--
                 <scala.version>2.11.4</scala.version>
                 <scala.suffix>_2.11</scala.suffix>
+                -->
                 <akka.version>2.3.7</akka.version>
 
                 <google.api.client.version>1.0.10-alpha</google.api.client.version>
@@ -6069,6 +6074,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <artifactId>ant</artifactId>
                                 <version>${ant.version}</version>
                         </dependency>
+                        <dependency>
+                                <groupId>org.apache.ant</groupId>
+                                <artifactId>ant-launcher</artifactId>
+                                <version>${ant.version}</version>
+                        </dependency>                        
+                              
                         <!--
                         <dependency>
                                 <groupId>ant</groupId>
