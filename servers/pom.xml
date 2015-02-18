@@ -54,11 +54,37 @@
 					<artifactId>cargo-maven2-plugin</artifactId>
 					<version>${maven.cargo.maven2.plugin.version}</version>
 					<configuration>
+						<!--
+						When Cargo starts the container, the following tag instructs it to
+						wait for you to kill the session with Crtl-C (when true)
+						-->
 						<wait>${cargo.wait}</wait>
 						<container>
+							<!--
+								Specifying "tomcat6x" is very important! This one tripped me up
+								for quite a while. The issue is that instead of being an
+								identifier for you, "tomcat6x" is an identifier for Cargo that
+								you want to deploy your webapp in Tomcat 6.x. I had initially
+								thought otherwise and hence just dropped the 'x', making it
+								"tomcat6", but that never worked.
+							-->
+							<!--<containerId>tomcat6x</containerId>-->
+							<!--
+								Type == Installed means that you want to deploy to a container
+								that's installed on your computer
+							-->
+							<!--<type>installed</type>-->
+							<!-- The home folder for your local Tomcat -->
+							<!--<home>${catalina.home}</home>-->
 							<timeout>240000</timeout> <!-- 4 minutes -->
 						</container>
 						<configuration>
+							<!--
+								This is another one that confused me for long. Its not enough to
+								specify 'installed' in the container tag. You have to now specify
+								another configuration with type == existing and re-issue the home
+								path
+							-->
 							<type>${cargo.configuration.type}</type>
 							<!--<home>${cargo.container.home}</home>-->
 							<properties>
@@ -795,7 +821,8 @@
 				<cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-8/v${server.version}/bin/apache-tomcat-${server.version}.zip</cargo.container.url>
 				<cargo.container.type>installed</cargo.container.type>
 				<!--<cargo.container.type>remote</cargo.container.type>-->
-				<cargo.configuration.type>existing</cargo.configuration.type>
+				<!--<cargo.configuration.type>existing</cargo.configuration.type>-->
+				<cargo.configuration.type>standalone</cargo.configuration.type>
 				<!--<cargo.configuration.type>runtime</cargo.configuration.type>-->
 				<!--<cargo.configuration.home>${tomcat.home}</cargo.configuration.home>-->
 				<cargo.configuration.home>${project.build.directory}/catalina-base</cargo.configuration.home>
@@ -809,7 +836,7 @@
 				<scope.type>${scope.compile}</scope.type>
 				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
 				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
-				<cargo.tomcat.ajp.port>8299</cargo.tomcat.ajp.port>
+				<cargo.tomcat.ajp.port>8399</cargo.tomcat.ajp.port>
 			</properties>
 			<!-- todo tomcatee
 			<dependencies>
@@ -826,7 +853,7 @@
 						<groupId>org.codehaus.cargo</groupId>
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
-							<home>${cargo.configuration.home}</home>
+							<!--<home>${cargo.configuration.home}</home>-->
 							<type>${cargo.configuration.type}</type>
 							<properties>
 								<cargo.remote.username>${cargo.remote.user}</cargo.remote.username>
