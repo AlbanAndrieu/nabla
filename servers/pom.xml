@@ -41,6 +41,25 @@
 			<scope.tomcat.only.type>${scope.provided}</scope.tomcat.only.type> <!-- for jar needed for tomcat only but not for other -->
 			<scope.tomcat.never.type>${scope.compile}</scope.tomcat.never.type> <!-- for jar not needed for tomcat but for other -->
 			<webdriver.base.url>http://${cargo.host}:${cargo.port}</webdriver.base.url> <!-- default url used by selenium butcan be ovverrided doing mvn clean verify -Psample -Dserver=jetty9x -Ddatabase=derby -Dwebdriver.base.url=http://localhost:9090 -->
+			<cargo.jetty.jmx.activation>-Dcom.sun.management.jmxremote
+-Dcom.sun.management.jmxremote.ssl=false
+-Dcom.sun.management.jmxremote.authenticate=false
+-Dcom.sun.management.jmxremote.port=${cargo.rmi.port}
+-Djetty.jmxrmihost=localhost
+-Djetty.jmxrmiport=${cargo.rmi.port}
+            </cargo.jetty.jmx.activation>
+			<cargo.tomcat.jmx.activation>-Dcom.sun.management.jmxremote
+-Dcom.sun.management.jmxremote.ssl=false
+-Dcom.sun.management.jmxremote.authenticate=false
+-Dcom.sun.management.jmxremote.port=${cargo.rmi.port}
+            </cargo.tomcat.jmx.activation>            
+			<!-- if you want a remote debugging on a different a address override on
+			command line with -Dcargo.debug.addres=xxxx -->
+			<cargo.debug.address>8000</cargo.debug.address>
+			<!-- if you want to start remote debugging session suspended override on
+			command line with -Dcargo.debug.suspend=y -->
+			<cargo.debug.suspend>y</cargo.debug.suspend>
+			<javaagent />         
 		</properties>
 
 	<build>
@@ -556,6 +575,8 @@
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
+				
+				<cargo.jmx.activation>${cargo.jetty.jmx.activation}</cargo.jmx.activation>
 
 				<scope.type>${scope.compile}</scope.type>
 			</properties>
@@ -616,6 +637,8 @@
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
+				
+				<cargo.jmx.activation>${cargo.jetty.jmx.activation}</cargo.jmx.activation>
 
 				<scope.type>${scope.compile}</scope.type>
 				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
@@ -683,6 +706,8 @@
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
+				
+				<cargo.jmx.activation>${cargo.jetty.jmx.activation}</cargo.jmx.activation>
 
 				<scope.type>${scope.compile}</scope.type>
 				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
@@ -750,6 +775,8 @@
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
+				
+				<cargo.jmx.activation>${cargo.jetty.jmx.activation}</cargo.jmx.activation>
 
 				<scope.type>${scope.compile}</scope.type>
 				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
@@ -829,14 +856,16 @@
 				<cargo.deployables.type></cargo.deployables.type>
 				<cargo.host>localhost</cargo.host>
 				<cargo.port>${tomcat.port}</cargo.port>
-				<cargo.rmi.port>1099</cargo.rmi.port>
+				<cargo.rmi.port>9205</cargo.rmi.port>
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
 				<scope.type>${scope.compile}</scope.type>
 				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
 				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
-				<cargo.tomcat.ajp.port>8399</cargo.tomcat.ajp.port>
+				<cargo.tomcat.ajp.port>9009</cargo.tomcat.ajp.port>
+				
+				<cargo.jmx.activation>${cargo.tomcat.jmx.activation}</cargo.jmx.activation>
 			</properties>
 			<!-- todo tomcatee
 			<dependencies>
@@ -853,17 +882,19 @@
 						<groupId>org.codehaus.cargo</groupId>
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
-							<!--<home>${cargo.configuration.home}</home>-->
-							<type>${cargo.configuration.type}</type>
-							<properties>
-								<cargo.remote.username>${cargo.remote.user}</cargo.remote.username>
-								<cargo.remote.password>${cargo.remote.password}</cargo.remote.password>
-								<cargo.remote.uri>${deploy.url}</cargo.remote.uri>
-								<cargo.logging>high</cargo.logging>
-								<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
-								<cargo.rmi.port>${cargo.rmi.port}</cargo.rmi.port>
-								<cargo.tomcat.ajp.port>${cargo.tomcat.ajp.port}</cargo.tomcat.ajp.port>							
-							</properties>							   
+							<configuration>
+								<type>${cargo.configuration.type}</type>
+								<!--<home>${cargo.configuration.home}</home>-->
+								<properties>
+									<cargo.remote.username>${cargo.remote.user}</cargo.remote.username>
+									<cargo.remote.password>${cargo.remote.password}</cargo.remote.password>
+									<cargo.remote.uri>${deploy.url}</cargo.remote.uri>
+									<cargo.logging>high</cargo.logging>
+									<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
+									<cargo.rmi.port>${cargo.rmi.port}</cargo.rmi.port>
+									<cargo.tomcat.ajp.port>${cargo.tomcat.ajp.port}</cargo.tomcat.ajp.port>							
+								</properties>	
+							</configuration>						
 							<container>
 								<containerId>${cargo.container}</containerId>
 								<type>${cargo.container.type}</type>
@@ -873,6 +904,7 @@
 								-->
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
+									<!--<installdir>${project.build.directory}/container-install-${cargo.port}</installdir>-->
 								</zipUrlInstaller>
 							</container>
 							<packager>
@@ -892,7 +924,7 @@
 								<phase>post-integration-test</phase>
 								<goals>
 									<goal>stop</goal>
-								</goals>
+								</goals>								
 							</execution>
 							<execution>
 								<id>package</id>
@@ -946,6 +978,8 @@
 				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
 				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
 				<cargo.tomcat.ajp.port>8299</cargo.tomcat.ajp.port>
+				
+				<cargo.jmx.activation>${cargo.tomcat.jmx.activation}</cargo.jmx.activation>
 			</properties>
 			<!-- todo tomcatee
 			<dependencies>
@@ -1051,6 +1085,8 @@
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
+				
+				<cargo.jmx.activation>${cargo.tomcat.jmx.activation}</cargo.jmx.activation>
 
 				<scope.type>${scope.compile}</scope.type>
 				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
