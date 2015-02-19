@@ -27,7 +27,7 @@
 				<system>Jenkins</system>
 				<url>${JOB_URL}</url>
 		</ciManagement>
-		
+
 		<!-- ================= Default Properties ================= -->
 		<properties>
 			<!-- needed for maven-ear-plugin -->
@@ -40,6 +40,7 @@
 			<jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deployments</jboss.deploy.directory>
 			<scope.tomcat.only.type>${scope.provided}</scope.tomcat.only.type> <!-- for jar needed for tomcat only but not for other -->
 			<scope.tomcat.never.type>${scope.compile}</scope.tomcat.never.type> <!-- for jar not needed for tomcat but for other -->
+			<!-- cargo.port must be used by jenkins to overriden using a pool of tcp port -->
 			<webdriver.base.url>http://${cargo.host}:${cargo.port}</webdriver.base.url> <!-- default url used by selenium butcan be ovverrided doing mvn clean verify -Psample -Dserver=jetty9x -Ddatabase=derby -Dwebdriver.base.url=http://localhost:9090 -->
 			<cargo.jetty.jmx.activation>-Dcom.sun.management.jmxremote
 -Dcom.sun.management.jmxremote.ssl=false
@@ -52,14 +53,14 @@
 -Dcom.sun.management.jmxremote.ssl=false
 -Dcom.sun.management.jmxremote.authenticate=false
 -Dcom.sun.management.jmxremote.port=${cargo.rmi.port}
-            </cargo.tomcat.jmx.activation>            
+            </cargo.tomcat.jmx.activation>
 			<!-- if you want a remote debugging on a different a address override on
 			command line with -Dcargo.debug.addres=xxxx -->
 			<cargo.debug.address>8000</cargo.debug.address>
 			<!-- if you want to start remote debugging session suspended override on
 			command line with -Dcargo.debug.suspend=y -->
 			<cargo.debug.suspend>y</cargo.debug.suspend>
-			<javaagent />         
+			<javaagent />
 		</properties>
 
 	<build>
@@ -107,7 +108,7 @@
 							<type>${cargo.configuration.type}</type>
 							<!--<home>${cargo.container.home}</home>-->
 							<properties>
-								<cargo.hostname>${cargo.host}</cargo.hostname>								
+								<cargo.hostname>${cargo.host}</cargo.hostname>
 								<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
 								<cargo.tomcat.manager.url>${deploy.url}</cargo.tomcat.manager.url>
 								<cargo.remote.username>${cargo.remote.user}</cargo.remote.username>
@@ -129,7 +130,7 @@
 							<goal>start</goal>
 						  </goals>
 						  <configuration>
-							<timeout>240000</timeout> 
+							<timeout>240000</timeout>
 						  </configuration>
 						</execution>
 						<execution>
@@ -139,11 +140,11 @@
 							<goal>stop</goal>
 						  </goals>
 						  <configuration>
-							<timeout>60000</timeout> 
+							<timeout>60000</timeout>
 						  </configuration>
 						</execution>
-					  </executions>	 
-					  -->		   
+					  </executions>
+					  -->
 				</plugin>
 							  <!-- end Web application server helpers -->
 			</plugins>
@@ -183,7 +184,7 @@
 				<datasource>java:/jdbc/${datasource.name}</datasource>
 				<!--<datasource>java:/${datasource.name}</datasource> also change in /workspace/jboss-as-7.1.1.Final/standalone/configuration/standalone.xml -->
 				<!--<datasource>java:/jdbc/${datasource.name}</datasource>-->
-				
+
 				<ejb.jndi.mappedname.pattern>java:global/${application.name}</ejb.jndi.mappedname.pattern>
 				<!--<ejb.jndi.mappedname.pattern.openejb>global/${application.context}-ear/core-${project.version}</ejb.jndi.mappedname.pattern.openejb> -->
 				<ejb.jndi.mappedname.pattern.openejb>${ejb.jndi.mappedname.pattern}</ejb.jndi.mappedname.pattern.openejb>
@@ -211,7 +212,7 @@
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
 				<!--<jboss.bind.address>localhost</jboss.bind.address> -->
-				<jboss.server>standalone</jboss.server>			 
+				<jboss.server>standalone</jboss.server>
 				<jboss.servers.directory>${jboss.home}</jboss.servers.directory>
 				<jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deployments</jboss.deploy.directory>
 				<!-- for jboss 7.1.1 compile -->
@@ -225,15 +226,27 @@
 						<groupId>org.codehaus.cargo</groupId>
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
-							<!--<home>${project.build.directory}/cargo/installs/jboss-as-dist-7.1.1.Final/jboss-as-7.1.1.Final/standalone/</home>-->
-							<type>${cargo.configuration.type}</type>					
+							<skip>${maven.test.skip}</skip>
+							<wait>${cargo.wait}</wait>
+							<configuration>
+								<!--<home>${project.build.directory}/cargo/installs/jboss-as-dist-7.1.1.Final/jboss-as-7.1.1.Final/standalone/</home>-->
+								<type>${cargo.configuration.type}</type>
+								<properties>
+									<cargo.servlet.port>${jboss.port}</cargo.servlet.port>
+									<!--<cargo.jboss.configuration>default</cargo.jboss.configuration>
+									<cargo.jboss.management.port>9999</cargo.jboss.management.port>
+									<cargo.rmi.port>1099</cargo.rmi.port>-->
+									<cargo.jboss.management-native.port>9990</cargo.jboss.management-native.port>
+									<cargo.logging>high</cargo.logging>
+								</properties>
+							</configuration>
 							<container>
 								<containerId>${cargo.container}</containerId>
 								<type>${cargo.container.type}</type>
 								<log>${project.build.directory}/cargo.log</log>
 								<logLevel>debug</logLevel>
-								<home>${cargo.container.home}</home>				
-								<timeout>240000</timeout> <!-- 4 minutes -->					
+								<home>${cargo.container.home}</home>
+								<timeout>240000</timeout> <!-- 4 minutes -->
 								<artifactInstaller>
 								  <groupId>org.wildfly</groupId>
 								  <artifactId>wildfly-dist</artifactId>
@@ -243,14 +256,6 @@
 									<jboss.server.log.threshold>INFO</jboss.server.log.threshold>
 								</systemProperties>
 							</container>
-							<properties>								
-								<cargo.servlet.port>${jboss.port}</cargo.servlet.port>
-								<!--<cargo.jboss.configuration>default</cargo.jboss.configuration>
-								<cargo.jboss.management.port>9999</cargo.jboss.management.port>
-								<cargo.rmi.port>1099</cargo.rmi.port>-->
-								<cargo.jboss.management-native.port>9990</cargo.jboss.management-native.port>							   
-								<cargo.logging>high</cargo.logging>
-							</properties>						   
 						</configuration>
 						<executions>
 							<execution>
@@ -267,19 +272,19 @@
 									<goal>deployer-deploy</goal>
 								</goals>
 							</execution>
-						</executions>		
+						</executions>
 						<dependencies>
 								<dependency>
 										<groupId>org.jboss.as</groupId>
 										<artifactId>jboss-as-controller-client</artifactId>
 										<version>${org.jboss.as.arquillian.container.version}</version>
 								</dependency>
-						</dependencies>							 
+						</dependencies>
 					</plugin>
 				</plugins>
 			</build>
 		</profile>
-				
+
 		<profile>
 			<id>jboss7x</id>
 			<activation>
@@ -310,7 +315,7 @@
 				<datasource>java:/jdbc/${datasource.name}</datasource>
 				<!--<datasource>java:/${datasource.name}</datasource> also change in /workspace/jboss-as-7.1.1.Final/standalone/configuration/standalone.xml -->
 				<!--<datasource>java:/jdbc/${datasource.name}</datasource>-->
-				
+
 				<ejb.jndi.mappedname.pattern>java:global/${application.name}</ejb.jndi.mappedname.pattern>
 				<!--<ejb.jndi.mappedname.pattern.openejb>global/${application.context}-ear/core-${project.version}</ejb.jndi.mappedname.pattern.openejb> -->
 				<ejb.jndi.mappedname.pattern.openejb>${ejb.jndi.mappedname.pattern}</ejb.jndi.mappedname.pattern.openejb>
@@ -338,7 +343,7 @@
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
 				<!--<jboss.bind.address>localhost</jboss.bind.address> -->
-				<jboss.server>standalone</jboss.server>			 
+				<jboss.server>standalone</jboss.server>
 				<jboss.servers.directory>${jboss.home}</jboss.servers.directory>
 				<jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deployments</jboss.deploy.directory>
 				<!-- for jboss 7.1.1 compile -->
@@ -366,37 +371,41 @@
 						<groupId>org.codehaus.cargo</groupId>
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
-							<!--<home>${project.build.directory}/cargo/installs/jboss-as-dist-7.1.1.Final/jboss-as-7.1.1.Final/standalone/</home>-->
-							<type>${cargo.configuration.type}</type>					
+							<skip>${maven.test.skip}</skip>
+							<wait>${cargo.wait}</wait>
+							<configuration>
+								<!--<home>${project.build.directory}/cargo/installs/jboss-as-dist-7.1.1.Final/jboss-as-7.1.1.Final/standalone/</home>-->
+								<type>${cargo.configuration.type}</type>
+								<properties>
+									<cargo.servlet.port>${jboss.port}</cargo.servlet.port>
+									<!--<cargo.jboss.configuration>default</cargo.jboss.configuration>
+									<cargo.jboss.management.port>9999</cargo.jboss.management.port>
+									<cargo.rmi.port>1099</cargo.rmi.port>-->
+									<cargo.jboss.management-native.port>9999</cargo.jboss.management-native.port>
+									<cargo.logging>high</cargo.logging>
+								</properties>
+							</configuration>
 							<container>
 								<containerId>${cargo.container}</containerId>
 								<type>${cargo.container.type}</type>
 								<log>${project.build.directory}/cargo.log</log>
 								<logLevel>debug</logLevel>
-								<home>${cargo.container.home}</home>				
-								<timeout>240000</timeout> <!-- 4 minutes -->					
-								<!--		
+								<home>${cargo.container.home}</home>
+								<timeout>240000</timeout> <!-- 4 minutes -->
+								<!--
 								<artifactInstaller>
 									<groupId>org.jboss.as</groupId>
 									<artifactId>jboss-as-dist</artifactId>
-									<version>${jboss.version}</version>								 
+									<version>${jboss.version}</version>
 								</artifactInstaller>
 								-->
 								<systemProperties>
 									<jboss.server.log.threshold>INFO</jboss.server.log.threshold>
 								</systemProperties>
 							</container>
-							<properties>								
-								<cargo.servlet.port>${jboss.port}</cargo.servlet.port>
-								<!--<cargo.jboss.configuration>default</cargo.jboss.configuration>
-								<cargo.jboss.management.port>9999</cargo.jboss.management.port>
-								<cargo.rmi.port>1099</cargo.rmi.port>-->
-								<cargo.jboss.management-native.port>9999</cargo.jboss.management-native.port>							   
-								<cargo.logging>high</cargo.logging>
-							</properties>						   
 						</configuration>
 						<executions>
-							<!--							
+							<!--
 							<execution>
 								<id>start-container</id>
 								<phase>pre-integration-test</phase>
@@ -411,7 +420,7 @@
 									<goal>stop</goal>
 								</goals>
 							</execution>
-							-->			   
+							-->
 							<execution>
 								<id>deploy</id>
 								<phase>pre-integration-test</phase>
@@ -435,14 +444,14 @@
 								</goals>
 							</execution>
 							-->
-						</executions>		
+						</executions>
 						<dependencies>
 								<dependency>
 										<groupId>org.jboss.as</groupId>
 										<artifactId>jboss-as-controller-client</artifactId>
 										<version>${org.jboss.as.arquillian.container.version}</version>
 								</dependency>
-						</dependencies>							 
+						</dependencies>
 					</plugin>
 				</plugins>
 			</build>
@@ -457,7 +466,7 @@
 					<name>server</name>
 					<value>jboss5x</value>
 					-->
-					<name>!server</name>	
+					<name>!server</name>
 				</property>
 			</activation>
 			<properties>
@@ -467,7 +476,7 @@
 				<jboss.home>${env.JBOSS_HOME}</jboss.home>
 				<!--<jboss.home>C:\jboss-${jboss5.version}</jboss.home> -->
 				<jboss.version>${jboss5.version}</jboss.version> <!-- overrided -->
-				<server.version>${jboss.version}</server.version>			   
+				<server.version>${jboss.version}</server.version>
 				<server.home>${jboss.home}</server.home>
 				<server.name>${product.name}</server.name>
 				<server.port>${jboss.port}</server.port>
@@ -541,8 +550,8 @@
 									<goal>stop</goal>
 								</goals>
 							</execution>
-						</executions>		   
-						-->		 
+						</executions>
+						-->
 					</plugin>
 				</plugins>
 			</build>
@@ -575,7 +584,7 @@
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
-				
+
 				<cargo.jmx.activation>${cargo.jetty.jmx.activation}</cargo.jmx.activation>
 
 				<scope.type>${scope.compile}</scope.type>
@@ -605,7 +614,7 @@
 									<goal>stop</goal>
 								</goals>
 							</execution>
-						</executions>					   
+						</executions>
 					</plugin>
 				</plugins>
 			</build>
@@ -637,12 +646,12 @@
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
-				
+
 				<cargo.jmx.activation>${cargo.jetty.jmx.activation}</cargo.jmx.activation>
 
 				<scope.type>${scope.compile}</scope.type>
 				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
-				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>			
+				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
 			</properties>
 			<build>
 				<plugins>
@@ -674,7 +683,7 @@
 									<goal>stop</goal>
 								</goals>
 							</execution>
-						</executions>					   
+						</executions>
 					</plugin>
 				</plugins>
 			</build>
@@ -706,12 +715,12 @@
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
-				
+
 				<cargo.jmx.activation>${cargo.jetty.jmx.activation}</cargo.jmx.activation>
 
 				<scope.type>${scope.compile}</scope.type>
 				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
-				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>				
+				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
 			</properties>
 			<build>
 				<plugins>
@@ -743,11 +752,11 @@
 									<goal>stop</goal>
 								</goals>
 							</execution>
-						</executions>					   
+						</executions>
 					</plugin>
 				</plugins>
 			</build>
-		</profile>	  
+		</profile>
 		<profile>
 			<id>jetty9x</id>
 			<activation>
@@ -775,7 +784,7 @@
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
-				
+
 				<cargo.jmx.activation>${cargo.jetty.jmx.activation}</cargo.jmx.activation>
 
 				<scope.type>${scope.compile}</scope.type>
@@ -810,7 +819,7 @@
 									  <cargo.jvmargs>${jacoco.agent.it.arg}</cargo.jvmargs>
 									</properties>
 								  </configuration>
-								</configuration>								
+								</configuration>
 							</execution>
 							<execution>
 								<id>stop-container</id>
@@ -819,13 +828,14 @@
 									<goal>stop</goal>
 								</goals>
 							</execution>
-						</executions>					   
+						</executions>
 					</plugin>
 				</plugins>
 			</build>
 		</profile>
 		<profile>
 			<id>tomcat8x</id>
+			<!--<id>tomcat8x-embedded</id>-->
 			<activation>
 				<property>
 					<name>server</name>
@@ -833,7 +843,7 @@
 				</property>
 			</activation>
 			<properties>
-				<tomcat.home>${env.CATALINA_BASE}</tomcat.home> 
+				<tomcat.home>${env.CATALINA_BASE}</tomcat.home>
 				<!--<tomcat.home>/tomcat-7.0</tomcat.home>-->
 				<server.home>${tomcat.home}</server.home>
 				<server.version>8.0.3</server.version>
@@ -864,16 +874,16 @@
 				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
 				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
 				<cargo.tomcat.ajp.port>9009</cargo.tomcat.ajp.port>
-				
+
 				<cargo.jmx.activation>${cargo.tomcat.jmx.activation}</cargo.jmx.activation>
 			</properties>
 			<!-- todo tomcatee
 			<dependencies>
-				<dependency> 
-					 <groupId>org.apache.openejb</groupId> 
-					 <artifactId>apache-tomee</artifactId> 
+				<dependency>
+					 <groupId>org.apache.openejb</groupId>
+					 <artifactId>apache-tomee</artifactId>
 					 <version>1.6.0</version>
-				</dependency>				
+				</dependency>
 			</dependencies>
 			-->
 			<build>
@@ -882,6 +892,8 @@
 						<groupId>org.codehaus.cargo</groupId>
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
+							<skip>${maven.test.skip}</skip>
+							<wait>${cargo.wait}</wait>
 							<configuration>
 								<type>${cargo.configuration.type}</type>
 								<!--<home>${cargo.configuration.home}</home>-->
@@ -892,16 +904,18 @@
 									<cargo.logging>high</cargo.logging>
 									<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
 									<cargo.rmi.port>${cargo.rmi.port}</cargo.rmi.port>
-									<cargo.tomcat.ajp.port>${cargo.tomcat.ajp.port}</cargo.tomcat.ajp.port>							
-								</properties>	
-							</configuration>						
+									<cargo.tomcat.ajp.port>${cargo.tomcat.ajp.port}</cargo.tomcat.ajp.port>
+								</properties>
+							</configuration>
 							<container>
 								<containerId>${cargo.container}</containerId>
 								<type>${cargo.container.type}</type>
 								<log>${project.build.directory}/cargo.log</log>
 								<logLevel>debug</logLevel>
-								<!--<home>${cargo.container.home}</home>							
-								-->
+								<!--<home>${cargo.container.home}</home>-->
+								<systemProperties>							
+									<webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
+								</systemProperties>										
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
 									<!--<installdir>${project.build.directory}/container-install-${cargo.port}</installdir>-->
@@ -909,23 +923,26 @@
 							</container>
 							<packager>
 								<outputLocation>${project.build.directory}/tomcat-packaged</outputLocation>
-							</packager>								
-						</configuration>					
+							</packager>
+						</configuration>
 						<executions>
 							<execution>
 								<id>start</id>
 								<phase>pre-integration-test</phase>
-								<goals>
+								<goals>									
 									<goal>start</goal>
+									<goal>deployer-deploy</goal>
 								</goals>
-							</execution>
+							</execution>						
 							<execution>
 								<id>stop</id>
 								<phase>post-integration-test</phase>
 								<goals>
+									<goal>deployer-undeploy</goal>
 									<goal>stop</goal>
-								</goals>								
+								</goals>
 							</execution>
+							<!--
 							<execution>
 								<id>package</id>
 								<phase>post-integration-test</phase>
@@ -933,13 +950,15 @@
 									<goal>package</goal>
 								</goals>
 							</execution>
+							-->
 						</executions>
 					</plugin>
 				</plugins>
 			</build>
-		</profile>		
+		</profile>
 		<profile>
 			<id>tomcat7x</id>
+			<!--<id>tomcat7x-embedded</id>-->
 			<activation>
 				<property>
 					<name>server</name>
@@ -947,7 +966,129 @@
 				</property>
 			</activation>
 			<properties>
-				<tomcat.home>${env.CATALINA_BASE}</tomcat.home> 
+				<tomcat.home>${env.CATALINA_BASE}</tomcat.home>
+				<!--<tomcat.home>/tomcat-7.0</tomcat.home>-->
+				<server.home>${tomcat.home}</server.home>
+				<server.version>7.0.30</server.version>
+				<server.name>${product.name}</server.name>
+				<server.port>${tomcat.port}</server.port>
+				<!--<datasource>${datasource.name}</datasource>-->
+				<datasource>openejb:Resource/jdbc/${datasource.name}</datasource>
+				<deploy.url>http://${cargo.host}:${tomcat.port}/manager/text</deploy.url>
+
+				<cargo.container>tomcat7x</cargo.container>
+				<cargo.container.home>${tomcat.home}</cargo.container.home>
+				<!-- see usage http://cargo.codehaus.org/Generating+a+container+configuration+deployment+structure -->
+				<cargo.container.url>http://archive.apache.org/dist/tomcat/tomcat-7/v${server.version}/bin/apache-tomcat-${server.version}.zip</cargo.container.url>
+				<!--<cargo.container.type>installed</cargo.container.type>-->
+				<cargo.container.type>installed</cargo.container.type>
+				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<cargo.configuration.home>${tomcat.home}</cargo.configuration.home>
+				<cargo.deployables.type></cargo.deployables.type>
+				<cargo.host>localhost</cargo.host>
+				<cargo.port>${tomcat.port}</cargo.port>
+				<cargo.rmi.port>1098</cargo.rmi.port>
+				<cargo.wait>false</cargo.wait>
+				<cargo.remote.user>admin</cargo.remote.user>
+				<cargo.remote.password>microsoft</cargo.remote.password>
+				<scope.type>${scope.compile}</scope.type>
+				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
+				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
+				<cargo.tomcat.ajp.port>8298</cargo.tomcat.ajp.port>
+
+				<cargo.jmx.activation>${cargo.tomcat.jmx.activation}</cargo.jmx.activation>
+			</properties>
+			<!-- todo tomcatee
+			<dependencies>
+				<dependency>
+					 <groupId>org.apache.openejb</groupId>
+					 <artifactId>apache-tomee</artifactId>
+					 <version>1.6.0</version>
+				</dependency>
+			</dependencies>
+			-->
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<configuration>
+							<skip>${maven.test.skip}</skip>
+							<wait>${cargo.wait}</wait>
+							<configuration>
+								<!--<home>${cargo.configuration.home}</home>-->
+								<type>${cargo.configuration.type}</type>
+								<properties>
+									<cargo.remote.username>${cargo.remote.user}</cargo.remote.username>
+									<cargo.remote.password>${cargo.remote.password}</cargo.remote.password>
+									<cargo.remote.uri>${deploy.url}</cargo.remote.uri>
+									<cargo.logging>high</cargo.logging>
+									<cargo.hostname>${cargo.host}</cargo.hostname>
+									<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
+									<cargo.rmi.port>${cargo.rmi.port}</cargo.rmi.port>
+									<cargo.tomcat.ajp.port>${cargo.tomcat.ajp.port}</cargo.tomcat.ajp.port>
+								</properties>
+							</configuration>
+							<container>
+								<containerId>${cargo.container}</containerId>
+								<type>${cargo.container.type}</type>
+								<log>${project.build.directory}/cargo.log</log>
+								<logLevel>debug</logLevel>
+								<!--<home>${cargo.container.home}</home>-->
+								<systemProperties>							
+									<webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
+								</systemProperties>										
+								<zipUrlInstaller>
+									<url>${cargo.container.url}</url>
+									<!--<installdir>${project.build.directory}/container-install-${cargo.port}</installdir>-->
+								</zipUrlInstaller>
+							</container>
+							
+							<packager>
+								<outputLocation>${project.build.directory}/tomcat-packaged</outputLocation>
+							</packager>
+						</configuration>
+						<executions>
+							<execution>
+								<id>start</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>start</goal>
+									<goal>deployer-deploy</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>stop</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>deployer-undeploy</goal>
+									<goal>stop</goal>
+								</goals>
+							</execution>
+							<!--
+							<execution>
+								<id>package</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>package</goal>
+								</goals>
+							</execution>
+							-->
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>tomcat7x-standalone</id>
+			<activation>
+				<property>
+					<name>server</name>
+					<value>tomcat7x-standalone</value>
+				</property>
+			</activation>
+			<properties>
+				<tomcat.home>${env.CATALINA_BASE}</tomcat.home>
 				<!--<tomcat.home>/tomcat-7.0</tomcat.home>-->
 				<server.home>${tomcat.home}</server.home>
 				<server.version>7.0.30</server.version>
@@ -978,16 +1119,16 @@
 				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
 				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
 				<cargo.tomcat.ajp.port>8299</cargo.tomcat.ajp.port>
-				
+
 				<cargo.jmx.activation>${cargo.tomcat.jmx.activation}</cargo.jmx.activation>
 			</properties>
 			<!-- todo tomcatee
 			<dependencies>
-				<dependency> 
-					 <groupId>org.apache.openejb</groupId> 
-					 <artifactId>apache-tomee</artifactId> 
+				<dependency>
+					 <groupId>org.apache.openejb</groupId>
+					 <artifactId>apache-tomee</artifactId>
 					 <version>1.6.0</version>
-				</dependency>				
+				</dependency>
 			</dependencies>
 			-->
 			<build>
@@ -996,24 +1137,29 @@
 						<groupId>org.codehaus.cargo</groupId>
 						<artifactId>cargo-maven2-plugin</artifactId>
 						<configuration>
-							<home>${cargo.configuration.home}</home>
-							<type>${cargo.configuration.type}</type>
-							<properties>
-								<cargo.remote.username>${cargo.remote.user}</cargo.remote.username>
-								<cargo.remote.password>${cargo.remote.password}</cargo.remote.password>
-								<cargo.remote.uri>${deploy.url}</cargo.remote.uri>
-								<cargo.logging>high</cargo.logging>
-								<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
-								<cargo.rmi.port>${cargo.rmi.port}</cargo.rmi.port>
-								<cargo.tomcat.ajp.port>${cargo.tomcat.ajp.port}</cargo.tomcat.ajp.port>								
-							</properties>							   
+							<skip>${maven.test.skip}</skip>
+							<wait>${cargo.wait}</wait>
+							<configuration>
+								<home>${cargo.configuration.home}</home>
+								<type>${cargo.configuration.type}</type>
+								<properties>
+									<cargo.remote.username>${cargo.remote.user}</cargo.remote.username>
+									<cargo.remote.password>${cargo.remote.password}</cargo.remote.password>
+									<cargo.remote.uri>${deploy.url}</cargo.remote.uri>
+									<cargo.logging>high</cargo.logging>
+									<cargo.hostname>${cargo.host}</cargo.hostname>
+									<cargo.servlet.port>${cargo.port}</cargo.servlet.port>
+									<cargo.rmi.port>${cargo.rmi.port}</cargo.rmi.port>
+									<cargo.tomcat.ajp.port>${cargo.tomcat.ajp.port}</cargo.tomcat.ajp.port>
+								</properties>
+							</configuration>
 							<container>
 								<containerId>${cargo.container}</containerId>
 								<type>${cargo.container.type}</type>
 								<log>${project.build.directory}/cargo.log</log>
 								<logLevel>debug</logLevel>
-								<!--<home>${cargo.container.home}</home>							
-								
+								<!--<home>${cargo.container.home}</home>
+
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
 								</zipUrlInstaller>
@@ -1085,7 +1231,7 @@
 				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
-				
+
 				<cargo.jmx.activation>${cargo.tomcat.jmx.activation}</cargo.jmx.activation>
 
 				<scope.type>${scope.compile}</scope.type>
@@ -1103,7 +1249,7 @@
 								<containerId>${cargo.container}</containerId>
 								<type>${cargo.container.type}</type>
 								<log>${project.build.directory}/cargo.log</log>
-								<logLevel>debug</logLevel>							  
+								<logLevel>debug</logLevel>
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
 								</zipUrlInstaller>
@@ -1213,20 +1359,20 @@
 				</plugins>
 			</build>
 		</profile>
-		
+
 			<!-- ================= END Container Profiles ================= -->
-			
+
 			<!-- ================= START Container JBoss Specific Profiles ================= -->
 		<!-- Run with: mvn clean test -Parq-weld-ee-embedded -->
-		<profile>		   
+		<profile>
 			<id>arq-weld-ee-embedded</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
                 <property>
                     <name>arquillian</name>
                     <value>arq-weld-ee-embedded</value>
-                </property>				
-			</activation>		   
+                </property>
+			</activation>
 			<dependencies>
 				<!--
 				<dependency>
@@ -1235,8 +1381,8 @@
 					<version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
 					<type>pom</type>
 					<scope>provided</scope>
-				</dependency>	
-				-->			
+				</dependency>
+				-->
 				<dependency>
 					<groupId>org.jboss.spec</groupId>
 					<artifactId>jboss-javaee-6.0</artifactId>
@@ -1244,7 +1390,7 @@
 					<version>${org.jboss.spec.jboss.javaee6.version}</version>
 					<type>pom</type>
 					<scope>provided</scope>
-				</dependency>	
+				</dependency>
 				<dependency>
 					<groupId>org.jboss.arquillian.container</groupId>
 					<artifactId>arquillian-weld-ee-embedded-1.1</artifactId>
@@ -1281,12 +1427,12 @@
                         </configuration>
                     </plugin>
                 </plugins>
-            </build>			
+            </build>
 		</profile>
 
 		<!-- Run with: mvn clean test -Parq-jbossas-embedded -->
 		<!-- does not work
-		<profile>		   
+		<profile>
 			<id>arq-jbossas-embedded</id>
 			<dependencies>
 				<dependency>
@@ -1298,13 +1444,13 @@
 			</dependencies>
 		</profile>
 		-->
-		
+
 		<profile>
-			<!-- We add the JBoss repository as we need the JBoss AS connectors for 
+			<!-- We add the JBoss repository as we need the JBoss AS connectors for
 				Arquillian -->
-			<!-- An optional Arquillian testing profile that executes tests in your 
+			<!-- An optional Arquillian testing profile that executes tests in your
 				JBoss AS instance -->
-			<!-- This profile will start a new JBoss AS instance, and execute the 
+			<!-- This profile will start a new JBoss AS instance, and execute the
 				test, shutting it down when done -->
 			<!-- Run with: mvn clean test -Parq-jbossas-managed -->
 			<id>arq-jbossas-managed</id>
@@ -1313,7 +1459,7 @@
                     <name>arquillian</name>
                     <value>arq-jbossas-managed</value>
                 </property>
-            </activation>			
+            </activation>
 			<dependencies>
 				<!--
 				<dependency>
@@ -1322,8 +1468,8 @@
 					<version>${org.jboss.bom.jboss.javaee6.with.tools.version}</version>
 					<type>pom</type>
 					<scope>provided</scope>
-				</dependency>	
-				-->			
+				</dependency>
+				-->
 				<dependency>
 					<groupId>org.jboss.spec</groupId>
 					<artifactId>jboss-javaee-6.0</artifactId>
@@ -1332,7 +1478,7 @@
 					<type>pom</type>
 					<scope>provided</scope>
 				</dependency>
-				
+
 				<!--
 				<dependency>
 				  <groupId>org.jboss.arquillian</groupId>
@@ -1342,7 +1488,7 @@
 				  <scope>import</scope>
 				</dependency>
 				-->
-                                		
+
 				<!-- Optional, but highly recommended -->
 				<!-- Arquillian allows you to test enterprise code such as EJBs and Transactional(JTA) JPA from JUnit/TestNG -->
 				<!--
@@ -1352,7 +1498,7 @@
 					<scope>test</scope>
 				</dependency>
 				-->
-                                		
+
 				<dependency>
 					<groupId>org.jboss.as</groupId>
 					<artifactId>jboss-as-arquillian-container-managed</artifactId>
@@ -1363,7 +1509,7 @@
 					<groupId>org.jboss.arquillian.protocol</groupId>
 					<artifactId>arquillian-protocol-servlet</artifactId>
 					<scope>test</scope>
-				</dependency>			   
+				</dependency>
 			</dependencies>
 			<build>
                <plugins>
@@ -1377,13 +1523,13 @@
                      </configuration>
                   </plugin>
                </plugins>
-            </build>			
+            </build>
 		</profile>
 
 		<profile>
-			<!-- We add the JBoss repository as we need the JBoss AS connectors for 
+			<!-- We add the JBoss repository as we need the JBoss AS connectors for
 				Arquillian -->
-			<!-- An optional Arquillian testing profile that executes tests in a remote 
+			<!-- An optional Arquillian testing profile that executes tests in a remote
 				JBoss AS instance -->
 			<!-- Run with: mvn clean test -Parq-jbossas-remote -->
 			<id>arq-jbossas-remote</id>
@@ -1392,7 +1538,7 @@
                     <name>arquillian</name>
                     <value>arq-jbossas-remote</value>
                 </property>
-            </activation>			
+            </activation>
 			<dependencies>
 				<dependency>
 					<groupId>org.jboss.as</groupId>
@@ -1420,7 +1566,7 @@
 								<excludes>
 								   <exclude>**/weld/**</exclude>
 								</excludes>
-							 </configuration>							
+							 </configuration>
 						</configuration>
 					</plugin>
 					<plugin>
@@ -1449,7 +1595,7 @@
 						</executions>
 					</plugin>
 				</plugins>
-			</build>			
+			</build>
 		</profile>
 
 		<!-- Run with: mvn clean test -Parq-glassfish-embedded -->
@@ -1461,7 +1607,7 @@
                     <name>arquillian</name>
                     <value>arq-glassfish-embedded</value>
                 </property>
-            </activation>			
+            </activation>
 			<dependencies>
 				<dependency>
 					<groupId>org.jboss.arquillian.container</groupId>
@@ -1524,14 +1670,14 @@
                   </plugin>
                </plugins>
             </build>
-        </profile> 
-        
+        </profile>
+
 		<profile>
-			<!-- When built in OpenShift the 'openshift' profile will be used when 
+			<!-- When built in OpenShift the 'openshift' profile will be used when
 				invoking mvn. -->
-			<!-- Use this profile for any OpenShift specific customization your app 
+			<!-- Use this profile for any OpenShift specific customization your app
 				will need. -->
-			<!-- By default that is to put the resulting archive into the 'deployments' 
+			<!-- By default that is to put the resulting archive into the 'deployments'
 				folder. -->
 			<!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
 			<id>openshift</id>
@@ -1548,8 +1694,8 @@
 					</plugin>
 				</plugins>
 			</build>
-		</profile>	  
-		
+		</profile>
+
 		<!-- see https://docs.jboss.org/author/display/ARQ/Jetty+7.0+-+Embedded -->
 		  <profile>
 			 <id>arq-jetty-embedded</id>
@@ -1596,7 +1742,7 @@
 				 <version>1.0.1-Final</version>
 				 <scope>test</scope>
 			  </dependency>
-			  
+
 			  <!--
                <dependency>
                     <groupId>org.jboss.spec.javax.servlet.jsp</groupId>
@@ -1604,7 +1750,7 @@
                     <scope>test</scope>
                 </dependency>
                 -->
-                			  
+
 				<dependency>
 				   <groupId>com.sun.faces</groupId>
 				   <artifactId>jsf-impl</artifactId>
@@ -1647,7 +1793,7 @@
                         </configuration>
                     </plugin>
                 </plugins>
-            </build>						 
+            </build>
 		  </profile>
 		  <!-- TODO tomcatee
 		  <profile>
@@ -1658,10 +1804,10 @@
 				   <artifactId>arquillian-tomee-embedded</artifactId>
 				   <version>${org.openejb.arquillian.tomee.embedded.version}</version>
 				   <scope>test</scope>
-				</dependency>		
-			 </dependencies>				
-		  </profile>			
-		  -->	  
+				</dependency>
+			 </dependencies>
+		  </profile>
+		  -->
 		  <profile>
 			 <id>arq-tomcat-embedded</id>
 			 <dependencies>
@@ -1722,7 +1868,7 @@
 			 -->
 			 <id>copy-test-libs</id>
 			 <build>
-				<plugins> 
+				<plugins>
 				   <plugin>
 					  <groupId>org.apache.maven.plugins</groupId>
 					  <artifactId>maven-dependency-plugin</artifactId>
@@ -1741,9 +1887,9 @@
 						 </execution>
 					  </executions>
 				   </plugin>
-				</plugins> 
+				</plugins>
 			 </build>
-		  </profile>		
+		  </profile>
 				<!-- ================= START Container JBoss Specific Profiles ================= -->
 		<profile>
 			<id>sample</id>
