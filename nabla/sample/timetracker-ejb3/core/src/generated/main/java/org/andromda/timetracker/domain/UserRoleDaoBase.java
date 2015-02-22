@@ -182,9 +182,9 @@ public abstract class UserRoleDaoBase implements UserRoleDao
      * @see UserRoleDao#create(Role, Boolean)
      */
     @Override
-    public UserRole create(Role role, Boolean conditional) throws UserRoleDaoException
+    public UserRole create(Role role, Boolean isConditional) throws UserRoleDaoException
     {
-        return (UserRole)this.create(TRANSFORM_NONE, role, conditional);
+        return (UserRole)this.create(TRANSFORM_NONE, role, isConditional);
     }
 
     /**
@@ -193,11 +193,11 @@ public abstract class UserRoleDaoBase implements UserRoleDao
      * composite=false identifiers=1
      */
     @Override
-    public Object create(final int transform, Role role, Boolean conditional) throws UserRoleDaoException
+    public Object create(final int transform, Role role, Boolean isConditional) throws UserRoleDaoException
     {
         UserRole entity = new UserRole();
         entity.setRole(role);
-        entity.setConditional(conditional);
+        entity.setIsConditional(isConditional);
         return this.create(transform, entity);
     }
 

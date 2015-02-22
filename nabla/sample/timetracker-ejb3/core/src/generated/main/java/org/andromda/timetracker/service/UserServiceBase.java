@@ -5,15 +5,12 @@
 //
 package org.andromda.timetracker.service;
 
-import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.ejb.Remove;
 import org.andromda.timetracker.domain.User;
 import org.andromda.timetracker.domain.UserDao;
 import org.andromda.timetracker.vo.UserDetailsVO;
 import org.andromda.timetracker.vo.UserVO;
-import org.jboss.seam.annotations.Destroy;
 import org.jboss.seam.annotations.Factory;
 import org.jboss.seam.annotations.Logger;
 import org.jboss.seam.annotations.datamodel.DataModel;
@@ -25,14 +22,11 @@ import org.jboss.seam.log.Log;
  * method level annotations for the session bean.  All method level annotations
  * are inherited by the extending session bean class.
  *
- * UserServiceBean is a stateful session bean and implements Serializable to maintain
- * state when bean instance not in use.
- *
  * This Seam component is defined through META-INF/components.xml rather than
  * class level annotations.
  * TODO: Model Documentation for UserService
  */
-public abstract class UserServiceBase implements UserService, Serializable
+public abstract class UserServiceBase implements UserService
 {
 
     // ------ No Session Context Injection ------
@@ -227,13 +221,4 @@ public abstract class UserServiceBase implements UserService, Serializable
 
     // -------- Lifecycle Callbacks --------------
 
-
-    // ------------ Destroy Method ------------
-
-    /**
-     * Remove lifecycle method
-     */
-    @Destroy
-    @Remove
-    public void destroy() {}
 }

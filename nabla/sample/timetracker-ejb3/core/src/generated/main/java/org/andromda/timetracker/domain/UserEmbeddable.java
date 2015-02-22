@@ -6,7 +6,6 @@
 package org.andromda.timetracker.domain;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,7 +20,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.MappedSuperclass;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
@@ -63,7 +61,6 @@ public abstract class UserEmbeddable implements Serializable{
     private Set<UserRole> roles = new HashSet<UserRole>();
 
     // ---- Manageable Display Attributes (Transient) -----
-    private Collection<Boolean> rolesLabels;    // Manageable display attribute
 
     // -------- 9 Attribute Accessors ----------
     /**
@@ -317,27 +314,6 @@ public abstract class UserEmbeddable implements Serializable{
     public void setRoles (Set<UserRole> rolesIn)
     {
         this.roles = rolesIn;
-    }
-
-    // -------- Manageable Attribute Display -----------
-    /**
-     * TODO: Model Documentation for UserRole
-     * Get the rolesLabels
-     * @return Collection<Boolean>     */
-    @Transient
-    public Collection<Boolean> getRolesLabels()
-    {
-        return this.rolesLabels;
-    }
-
-    /**
-     * TODO: Model Documentation for UserRole
-     * Set the rolesLabels
-     * @param rolesLabelsIn
-     */
-    public void setRolesLabels (Collection<Boolean> rolesLabelsIn)
-    {
-        this.rolesLabels = rolesLabelsIn;
     }
 
     // --------------- Constructors -----------------

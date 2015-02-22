@@ -8,9 +8,10 @@
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="core"/>
 <stringAttribute key="org.hibernate.eclipse.launch.CONFIGURATION_FACTORY" value="JPA"/>
+<stringAttribute key="org.hibernate.eclipse.launch.CONNECTION_PROFILE_NAME" value="Generic JDBC Driver"/>
 <listAttribute key="org.hibernate.eclipse.launch.FILE_MAPPINGS"/>
-<stringAttribute key="org.hibernate.eclipse.launch.HIBERNATE_VERSION" value="3.5"/>
-<stringAttribute key="org.hibernate.eclipse.launch.PROPERTY_FILE" value="/core/hibernate-console.properties"/>
-<stringAttribute key="org.hibernate.eclipse.launch.USE_JPA_PROJECT_PROFILE" value="true"/>
+<stringAttribute key="org.hibernate.eclipse.launch.HIBERNATE_VERSION" value="3.6"/>
+<stringAttribute key="org.hibernate.eclipse.launch.PERSISTENCE_UNIT_NAME" value="timetracker-ejb3"/>
+<stringAttribute key="org.hibernate.eclipse.launch.PROPERTY_FILE" value="\core\hibernate-console.properties"/>
 <stringAttribute key="org.hibernate.eclipse.launchDIALECT" value="org.hibernate.dialect.H2Dialect"/>
 </launchConfiguration>

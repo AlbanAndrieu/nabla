@@ -15,8 +15,4 @@ public interface UserService
 
     // ----------- Accessors For Constants ------------
 
-
-    // ------------ Lifecycle Methods  -----------------
-
-    public void destroy();
 }

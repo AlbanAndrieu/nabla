@@ -187,13 +187,13 @@ public interface UserRoleDao
      *   instance from <strong>all</strong> attributes and adds it to
      *   the persistent store.
      * @param role
-     * @param conditional
+     * @param isConditional
      * @return the created instances. UserRole
      * @throws UserRoleDaoException
      */
     public UserRole create(
         Role role,
-        Boolean conditional)
+        Boolean isConditional)
         throws UserRoleDaoException;
 
     /**
@@ -206,14 +206,14 @@ public interface UserRoleDao
      *
      * @param transform
      * @param role
-     * @param conditional
+     * @param isConditional
      * @return the created instances. Object
      * @throws UserRoleDaoException
      */
     public Object create(
         int transform,
         Role role,
-        Boolean conditional)
+        Boolean isConditional)
         throws UserRoleDaoException;
 
 

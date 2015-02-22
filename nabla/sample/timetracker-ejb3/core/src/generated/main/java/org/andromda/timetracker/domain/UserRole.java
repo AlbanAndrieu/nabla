@@ -6,7 +6,6 @@
 package org.andromda.timetracker.domain;
 
 import java.io.Serializable;
-import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
@@ -21,7 +20,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
-import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -48,18 +46,17 @@ import org.hibernate.validator.constraints.NotEmpty;
 @Table(name="USER_ROLE")
 @NamedQuery(name="UserRole.findAll", query="SELECT u FROM UserRole AS u")
 public class UserRole implements Serializable, Comparable<UserRole>{
-    private static final long serialVersionUID = -3424123090539852512L;
+    private static final long serialVersionUID = 4491898486466294586L;
 
     // ----------- 3 Attribute Definitions ------------
     private Role role;
-    private Boolean conditional;
+    private Boolean isConditional;
     private Long id;
 
     // --------- 1 Relationship Definitions -----------
     private Set<UserRole> groups = new HashSet<UserRole>();
 
     // ---- Manageable Display Attributes (Transient) -----
-    private Collection<Boolean> groupsLabels;    // Manageable display attribute
 
     // -------- 3 Attribute Accessors ----------
     /**
@@ -88,27 +85,25 @@ public class UserRole implements Serializable, Comparable<UserRole>{
     }
 
     /**
-     * TODO: Model Documentation for UserRole.conditional
-     * Get the conditional property.
-     * @return Boolean The value of conditional
+     * TODO: Model Documentation for UserRole.isConditional
+     * Get the isConditional property.
+     * @return Boolean The value of isConditional
      */
-    @Column(name="CONDITIONAL", unique=true, nullable=false, insertable=true, updatable=true)
-    @NotNull(message="conditional is required")
-    @NotEmpty(message = "You should enter a value for conditional.")
+    @Column(name="IS_CONDITIONAL", insertable=true, updatable=true)
 
-    public Boolean getConditional()
+    public Boolean getIsConditional()
     {
-        return this.conditional;
+        return this.isConditional;
     }
 
     /**
-     * TODO: Model Documentation for UserRole.conditional
-     * Set the conditional property.
+     * TODO: Model Documentation for UserRole.isConditional
+     * Set the isConditional property.
      * @param value the new value
      */
-    public void setConditional(Boolean value)
+    public void setIsConditional(Boolean value)
     {
-        this.conditional = value;
+        this.isConditional = value;
     }
 
     /**
@@ -164,27 +159,6 @@ public class UserRole implements Serializable, Comparable<UserRole>{
         this.groups = groupsIn;
     }
 
-    // -------- Manageable Attribute Display -----------
-    /**
-     * TODO: Model Documentation for UserRole
-     * Get the groupsLabels
-     * @return Collection<Boolean>     */
-    @Transient
-    public Collection<Boolean> getGroupsLabels()
-    {
-        return this.groupsLabels;
-    }
-
-    /**
-     * TODO: Model Documentation for UserRole
-     * Set the groupsLabels
-     * @param groupsLabelsIn
-     */
-    public void setGroupsLabels (Collection<Boolean> groupsLabelsIn)
-    {
-        this.groupsLabels = groupsLabelsIn;
-    }
-
     // --------------- Constructors -----------------
 
     /**
@@ -199,27 +173,36 @@ public class UserRole implements Serializable, Comparable<UserRole>{
      * Constructor with all updatable Entity attributes except auto incremented identifiers.
      *
      * @param role Role value for the role property true  1
-     * @param conditional Boolean value for the conditional property false  0
+     * @param isConditional Boolean value for the isConditional property false  0
      */
-    public UserRole(Role role, Boolean conditional)
+    public UserRole(Role role, Boolean isConditional)
     {
         setRole(role);
-        setConditional(conditional);
+        setIsConditional(isConditional);
     }
 
+    /**
+     * Constructor with required Entity attributes except auto incremented identifiers.
+     *
+     * @param role Value for the role property
+     */
+    public UserRole(Role role)
+    {
+        setRole(role);
+    }
 
     /**
      * Constructor with all Entity attribute values and CMR relations.
      *
      * @param role Role value for the role property
-     * @param conditional Boolean value for the conditional property
+     * @param isConditional Boolean value for the isConditional property
      * @param groups Set<UserRole> value for the groups relation
      */
-    public UserRole(Role role, Boolean conditional, Set<UserRole> groups)
+    public UserRole(Role role, Boolean isConditional, Set<UserRole> groups)
     {
         // 2 updatableAttributes
         setRole(role);
-        setConditional(conditional);
+        setIsConditional(isConditional);
 
         // 1 relations
         setGroups(groups);
@@ -280,7 +263,7 @@ public class UserRole implements Serializable, Comparable<UserRole>{
         StringBuilder sb = new StringBuilder();
         sb.append("UserRole(");
         sb.append(" role=").append(getRole());
-        sb.append(" conditional=").append(getConditional());
+        sb.append(" isConditional=").append(getIsConditional());
         sb.append(" id=").append(getId());
         sb.append(" groups=").append(getGroups());
         sb.append(")");
@@ -304,9 +287,9 @@ public class UserRole implements Serializable, Comparable<UserRole>{
             {
                 cmp = (cmp != 0 ? cmp : this.getRole().compareTo(o.getRole()));
             }
-            if (this.getConditional() != null)
+            if (this.getIsConditional() != null)
             {
-                cmp = (cmp != 0 ? cmp : this.getConditional().compareTo(o.getConditional()));
+                cmp = (cmp != 0 ? cmp : this.getIsConditional().compareTo(o.getIsConditional()));
             }
         }
         return cmp;
