@@ -54,11 +54,9 @@ public class SimpleSeamArquillianTest extends JUnitSeamTest
         // resolve jboss-seam, because it is provided-scoped in the pom, but we need it bundled in the WAR
         // .resolve("org.jboss.seam:jboss-seam").withTransitivity().asFile();
 
-        return ShrinkWrap
-                .create(WebArchive.class, "core.war")
+        return ShrinkWrap.create(WebArchive.class, "core.war")
                 .addClasses(SimpleSeamArquillianTest.class, Authenticator.class, AuthenticatorAction.class, UserDaoBase.class, UserServiceBean.class, ChangePasswordAction.class)
-                .addPackages(true, "org.andromda.timetracker.action")
-.addPackages(true, "org.andromda.timetracker.domain")
+                .addPackages(true, "org.andromda.timetracker.action").addPackages(true, "org.andromda.timetracker.domain")
                 .addPackages(true, "org.andromda.timetracker")
                 // Needed to run in managed / remote container
                 .addAsWebInfResource("META-INF/ejb-jar.xml", "ejb-jar.xml").addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml")
@@ -66,11 +64,9 @@ public class SimpleSeamArquillianTest extends JUnitSeamTest
                 .addAsResource(EmptyAsset.INSTANCE, "seam.properties")
                 // Deploy our test datasource
                 // .addAsWebInfResource("test-ds.xml", "test-ds.xml")
-                .addAsWebInfResource("WEB-INF/test-web.xml", "web.xml")
-.addAsWebInfResource("WEB-INF/test-components.xml", "components.xml")
-.addAsWebInfResource("WEB-INF/jboss-deployment-structure.xml")
+                .addAsWebInfResource("WEB-INF/test-web.xml", "web.xml").addAsWebInfResource("WEB-INF/test-components.xml", "components.xml").addAsWebInfResource("WEB-INF/jboss-deployment-structure.xml")
                 .addAsResource("META-INF/security.drl", "META-INF/security.drl").addAsResource("import.sql", "import.sql").addAsLibraries(libs)
-                // libraries resolved using ShrinkWrap Resolver
+        // libraries resolved using ShrinkWrap Resolver
         // .addAsLibraries(resolver.resolve("org.jboss.seam:jboss-seam").withTransitivity().asFile())
         // .addAsLibraries(resolver.resolve("commons-collections:commons-collections").withTransitivity().asFile())
         // .addAsLibraries(resolver.resolve("org.hibernate:hibernate-core").withTransitivity().asFile())
@@ -138,6 +134,7 @@ public class SimpleSeamArquillianTest extends JUnitSeamTest
                 Identity.setSecurityEnabled(false);
 
                 ChangePassword beanChangePassword = (ChangePassword) getInstance("changePassword");
+                Assert.assertNotNull(beanChangePassword);
 
                 Identity identity = Identity.instance();
 
