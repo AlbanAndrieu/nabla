@@ -250,21 +250,17 @@ public final class UserManageableServiceBase
         if (roles == null || roles.isEmpty())
         {
             valueObject.setRoles(null);
-            valueObject.setRolesLabels(null);
         }
         else
         {
             final Long[] values = new Long[roles.size()];
-            final Boolean[] labels = new Boolean[roles.size()];
             int counter = 0;
             for (final Iterator<UserRole> iterator = roles.iterator(); iterator.hasNext();counter++)
             {
                 final UserRole element = iterator.next();
                 values[counter] = element.getId();
-                labels[counter] = element.getConditional();
             }
             valueObject.setRoles(values);
-            valueObject.setRolesLabels(labels);
         }
 
         return valueObject;

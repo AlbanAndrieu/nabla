@@ -17,14 +17,12 @@ import org.andromda.spring.PaginationResult;
 import org.andromda.timetracker.PrincipalStore;
 import org.andromda.timetracker.PropertySearch;
 import org.andromda.timetracker.Search;
-import org.andromda.timetracker.SearchParameter;
 import org.andromda.timetracker.vo.UserRoleVO;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Transformer;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.Criteria;
-import org.hibernate.NonUniqueResultException;
 import org.hibernate.Query;
 import org.hibernate.ScrollableResults;
 import org.hibernate.Session;
@@ -252,9 +250,9 @@ public abstract class UserRoleDaoBase
     @Override
     public UserRole create(
         Role role,
-        Boolean conditional)
+        Boolean isConditional)
     {
-        return (UserRole)this.create(UserRoleDao.TRANSFORM_NONE, role, conditional);
+        return (UserRole)this.create(UserRoleDao.TRANSFORM_NONE, role, isConditional);
     }
 
     /**
@@ -264,11 +262,11 @@ public abstract class UserRoleDaoBase
     public Object create(
         final int transform,
         Role role,
-        Boolean conditional)
+        Boolean isConditional)
     {
         UserRole entity = new UserRoleImpl();
         entity.setRole(role);
-        entity.setConditional(conditional);
+        entity.setIsConditional(isConditional);
         return this.create(transform, entity);
     }
 
@@ -690,41 +688,6 @@ public abstract class UserRoleDaoBase
         Set results = new LinkedHashSet(queryObject.list());
         transformEntities(transform, results);
         return new PaginationResult(results.toArray(new Object[results.size()]), totalCount);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public UserRole searchUniqueConditional(final Boolean conditional)
-    {
-        final Search search=new Search(
-            new SearchParameter[]{
-                new SearchParameter("conditional",conditional,SearchParameter.EQUAL_COMPARATOR)
-            }
-        );
-
-        final Set<UserRole> searchResult=this.search(search);
-        switch(searchResult.size())
-        {
-            case 0: return null;
-            case 1: return searchResult.iterator().next();
-            default: throw new NonUniqueResultException(searchResult.size());
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Object searchUniqueConditional(final int transform, final Boolean conditional)
-    {
-        final UserRole uniqueEntity=this.searchUniqueConditional(conditional);
-        if(uniqueEntity == null)
-        {
-            return null;
-        }
-        return transformEntity(transform, uniqueEntity);
     }
 
     // spring-hibernate-dao-base merge-point

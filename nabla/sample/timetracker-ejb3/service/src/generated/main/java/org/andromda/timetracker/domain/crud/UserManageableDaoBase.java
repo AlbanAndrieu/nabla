@@ -270,7 +270,7 @@ public final class UserManageableDaoBase
         try
         {
             // Put the manageableAssociationEnds in the session query
-            lists.put("roles", session.createQuery("select item.id, item.conditional from UserRoleImpl item order by item.conditional").list());
+            lists.put("roles", session.createQuery("select item.id, item.id from UserRoleImpl item order by item.id").list());
         }
         catch (HibernateException ex)
         {
