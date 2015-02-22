@@ -159,7 +159,7 @@
         <component
             name="userService"
             class="org.andromda.timetracker.service.UserServiceBean"
-            scope="CONVERSATION"
+            scope="STATELESS"
             jndi-name="UserServiceBean/local"/>
         -->
         <!-- service : org.andromda.cartridges.ejb3.metafacades.EJB3WebServiceFacadeLogicImpl[org.andromda.timetracker.service.TimeTrackingService] -->

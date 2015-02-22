@@ -16,6 +16,29 @@
     
     <dependencyManagement>
         <dependencies>
+				<dependency>
+					<groupId>org.jboss.seam</groupId>
+					<artifactId>seam-bom</artifactId>
+					<version>${seam.bom.version}</version>
+					<type>pom</type>
+					<scope>import</scope>
+				</dependency>
+				 <!-- Override dependency resolver with latest version.
+				 This must go *BEFORE* the Arquillian BOM. -->
+				<dependency>
+				    <groupId>org.jboss.shrinkwrap.resolver</groupId>
+				    <artifactId>shrinkwrap-resolver-bom</artifactId>
+				    <version>${org.jboss.shrinkwrap.bom.version}</version>
+				    <type>pom</type>
+				    <scope>import</scope>
+				</dependency>					
+				<dependency>
+				    <groupId>org.jboss.arquillian</groupId>
+				    <artifactId>arquillian-bom</artifactId>
+				    <version>${org.jboss.arquillian.bom.version}</version>
+				    <type>pom</type>
+				    <scope>import</scope>
+				</dependency>	        
             <!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill
                 of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
                 of artifacts. We use this here so that we always get the correct versions
@@ -1141,6 +1164,184 @@
     </build>
 
     <profiles>
+                <profile>
+					    <!-- this profile must be activated with arq-jbossas-managed -->
+                        <id>arquillian</id>
+                        <activation>
+                                <property>
+                                        <name>!profile.activation</name>
+                                </property>
+                        </activation>
+                        <dependencies>
+								<!-- already inside microcontainer-openejb
+                                <dependency>
+                                  <groupId>no.knowit.seam</groupId>
+                                  <artifactId>seam-utils-ejb</artifactId>
+                                  <type>ejb</type>
+                                  <scope>test</scope>
+                                </dependency>
+
+                                <dependency>
+                                  <groupId>no.knowit.seam</groupId>
+                                  <artifactId>seam-utils-openejb</artifactId>
+                                  <type>ejb</type>
+                                  <scope>test</scope>
+                                </dependency>
+
+                                <dependency>
+                                 <groupId>dom4j</groupId>
+                                 <artifactId>dom4j</artifactId>
+                                 <scope>test</scope>
+                                </dependency>
+
+                                <dependency>
+                                    <groupId>org.apache.openejb</groupId>
+                                    <artifactId>openejb-core</artifactId>
+                                    <scope>test</scope>
+                                </dependency>
+                                -->
+                                
+                                <!--
+                                <dependency>
+                                        <groupId>junit</groupId>
+                                        <artifactId>junit</artifactId>
+                                        <type>jar</type>
+                                        <scope>test</scope>
+                                </dependency>         
+                                -->                       
+                                <!-- comment <provider>org.hibernate.ejb.HibernatePersistence</provider> in persistence.xml to enable openjpa -->
+                                <!--
+                                <dependency>
+                                    <groupId>org.apache.openjpa</groupId>
+                                    <artifactId>openjpa</artifactId>
+                                    <version>${openjpa.version}</version>
+                                </dependency>
+                                -->
+                                <!--
+                                <dependency>
+                                  <groupId>org.jboss.arquillian.extension</groupId>
+                                  <artifactId>arquillian-seam2</artifactId>
+                                  <version>${org.jboss.arquillian.seam2.version}</version>
+                                  <scope>test</scope>
+                                </dependency>
+                                -->
+                                
+								<dependency>
+									<groupId>org.jboss.arquillian.junit</groupId>
+									<artifactId>arquillian-junit-container</artifactId>
+									<scope>test</scope>
+								</dependency>                                
+                                <!-- not recommended for Seam 2.3 http://docs.jboss.org/seam/2.3.0.Final/reference/en-US/html/testing.html
+								<dependency>
+									<groupId>org.jboss.arquillian.testng</groupId>
+									<artifactId>arquillian-testng-container</artifactId>
+									<scope>test</scope>
+								</dependency>	                  
+								-->              
+								<dependency>
+									<groupId>org.jboss.as</groupId>
+									<artifactId>jboss-as-arquillian-container-managed</artifactId>
+									<scope>test</scope>
+								</dependency>				
+
+								<!--
+								<dependency>
+								  <groupId>org.jboss.shrinkwrap.resolver</groupId>
+								  <artifactId>shrinkwrap-resolver-depchain</artifactId>
+								  <version>${org.jboss.shrinkwrap.resolver.version}</version>
+								  <type>pom</type>
+								  <scope>test</scope>
+								</dependency>
+								-->
+								
+								<dependency>
+									<groupId>org.jboss.shrinkwrap.resolver</groupId>
+									<artifactId>shrinkwrap-resolver-impl-maven</artifactId>
+									<version>${org.jboss.shrinkwrap.resolver.version}</version>
+									<scope>test</scope>  
+								</dependency>
+
+								<!--
+								<dependency>
+										  <groupId>org.jboss.arquillian.protocol</groupId>
+										  <artifactId>arquillian-protocol-servlet</artifactId>
+										  <scope>test</scope>
+								</dependency>		
+								-->								
+                        </dependencies>
+                        <build>
+                                <plugins>
+                                        <plugin>
+                                                <groupId>org.codehaus.mojo</groupId>
+                                                <artifactId>build-helper-maven-plugin</artifactId>
+                                                <executions>
+                                                        <execution>
+                                                                <id>add-test-source</id>
+                                                                <phase>generate-test-sources</phase>
+                                                                <goals>
+                                                                        <goal>add-test-source</goal>
+                                                                </goals>
+                                                                <configuration>
+                                                                        <sources>
+                                                                                <source>${basedir}/src/test/bootstrap-arquillian/java</source>
+                                                                        </sources>
+                                                                </configuration>
+                                                        </execution>
+                                                </executions>
+                                        </plugin>
+                                        <!--
+                                        <plugin>
+                                            <groupId>org.apache.maven.plugins</groupId>
+                                            <artifactId>maven-surefire-plugin</artifactId>
+                                            <version>${maven.surefire.plugin.version}</version>
+                                            <configuration>
+                                                    <suiteXmlFiles>
+                                                            <suiteXmlFile>src/test/bootstrap-arquillian/testng-all.xml</suiteXmlFile>
+                                                    </suiteXmlFiles>
+                                            </configuration>
+                                        </plugin>
+                                        -->
+                                        <plugin>
+                                            <groupId>org.apache.maven.plugins</groupId>
+                                            <artifactId>maven-surefire-plugin</artifactId>
+                                            <version>${maven.surefire.plugin.version}</version>
+                                            <inherited>true</inherited>
+                                            <configuration>
+                                                <skip>${maven.test.skip}</skip>
+                                                <trimStackTrace>false</trimStackTrace>   
+                                                <testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
+                                                <environmentVariables>
+                                                    <JBOSS_HOME>${jboss.home}</JBOSS_HOME>
+                                                </environmentVariables>
+                                                <systemProperties>
+                                                    <jboss.version>${server.version}</jboss.version>
+                                                </systemProperties>
+                                            </configuration>
+                                        </plugin>
+                                </plugins>
+                                <resources>
+                                        <resource>
+                                                <directory>${maven.build.generated}/main/resources</directory>
+                                                <filtering>true</filtering>
+                                        </resource>
+                                        <resource>
+                                                <directory>${basedir}/src/main/resources</directory>
+                                                <filtering>true</filtering>
+                                        </resource>
+                                </resources>
+
+                                <testResources>
+                                        <testResource>
+                                                <directory>${basedir}/src/test/resources</directory>
+                                                <filtering>true</filtering> 
+                                        </testResource>
+                                        <testResource>
+                                                <directory>${basedir}/src/test/bootstrap-arquillian/resources</directory>
+                                                <filtering>true</filtering>
+                                        </testResource>
+                                </testResources>
+                        </build>
+                </profile>    
 	<profile>
 			<id>arq-jbossas-managed-nok</id>
 			<activation>
@@ -1152,6 +1353,7 @@
 				<dependency>
 				  <groupId>org.jboss.arquillian</groupId>
 				  <artifactId>arquillian-bom</artifactId>
+				  <version>${org.jboss.arquillian.bom.version}</version>
 				  <type>pom</type>
 				  <!--<scope>import</scope>-->
 				</dependency>
@@ -1442,7 +1644,7 @@
 			<id>microcontainer-openejb</id>
 			<activation>
 				<property>
-					<name>!profile.activation</name>
+					<name>profile.activation</name>
 				</property>
 			</activation>
 			<dependencies>
