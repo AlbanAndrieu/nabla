@@ -23,7 +23,7 @@ package ${entity.packageName};
  * @see $entity.fullyQualifiedEntityName
  */
 #if ($entity.seamComponent)
-//@javax.ejb.Stateless does not work
+@javax.ejb.Stateless
 //@org.jboss.seam.annotations.Name("${entity.seamComponentName}")
 @org.jboss.seam.annotations.Name("${entity.daoName}")
 //@org.jboss.seam.annotations.Scope(org.jboss.seam.ScopeType.${entity.seamComponentScopeType})
