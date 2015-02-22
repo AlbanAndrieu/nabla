@@ -626,7 +626,6 @@
 						  <plugin>
 							<groupId>org.codehaus.mojo</groupId>
 							<artifactId>sonar-maven-plugin</artifactId>
-							<version>${maven.sonar.maven.plugin.version}</version>
 						  </plugin>
 						</plugins>	
 						</build>		
