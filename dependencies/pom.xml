@@ -1516,7 +1516,7 @@
                 <xmlsec.santuario.version>1.5.6</xmlsec.santuario.version>
                 <wss4j.version>1.5.8</wss4j.version>
                 <jsr311.api.version>1.1.1</jsr311.api.version>
-                <wsdl4j.version>1.6.5</wsdl4j.version> <!-- works with cxf 2.7.14 -->
+                <wsdl4j.version>1.6.2</wsdl4j.version> <!-- works with cxf 2.7.14 -->
                 <groovy.version>2.3.3</groovy.version>
                 <http.builder.version>0.6</http.builder.version>
                 <groovy.eclipse.compiler.version>2.7.0-01</groovy.eclipse.compiler.version>
