@@ -1115,7 +1115,7 @@
 				<destination>${project.reporting.outputDirectory}/tattletale</destination>
 				<reports>
 				  <report>jar</report>
-				  <report>multiplejars</report>
+				  <!--<report>multiplejars</report>-->
 				</reports>
 				<profiles>
 				  <profile>java6</profile>
