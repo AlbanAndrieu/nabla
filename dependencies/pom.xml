@@ -1514,8 +1514,9 @@
                 <yourkit.version>9.0.8</yourkit.version>
                 <xmlsec.version>1.4.3</xmlsec.version>
                 <xmlsec.santuario.version>1.5.6</xmlsec.santuario.version>
-                <wss4j.version>1.5.8</wss4j.version>
+                <wss4j.version>1.6.5</wss4j.version> <!-- works with cxf 2.7.14 -->
                 <jsr311.api.version>1.1.1</jsr311.api.version>
+                <!--<wsdl4j.version>1.6.3</wsdl4j.version>-->
                 <wsdl4j.version>1.6.2</wsdl4j.version> <!-- works with cxf 2.7.14 -->
                 <groovy.version>2.3.3</groovy.version>
                 <http.builder.version>0.6</http.builder.version>
@@ -2415,7 +2416,8 @@
 									<executions>
 										<execution>
 											<id>jmeter-tests</id>
-											<phase>verify</phase>
+											<!--<phase>verify</phase>-->
+											<phase>integration-test</phase>
 											<goals>
 												<goal>jmeter</goal>
 											</goals>
@@ -3687,11 +3689,10 @@
 									<groupId>org.owasp</groupId>
 									<artifactId>dependency-check-maven</artifactId>
 									<version>${maven.dependency.check.plugin.version}</version>
-									<!--
 									<configuration>
-										<failBuildOnCVSS>8</failBuildOnCVSS>
+										<!--<failBuildOnCVSS>8</failBuildOnCVSS>-->
+										<format>XML</format>
 									</configuration>
-									-->
 									<executions>
 										<execution>
 											<goals>
@@ -5661,6 +5662,11 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <artifactId>asm</artifactId>
                                 <version>${asm.ow2.version}</version>
                         </dependency>
+						<dependency>
+								<groupId>org.ow2.asm</groupId>
+								<artifactId>asm-debug-all</artifactId>
+								<version>${asm.ow2.version}</version>
+						</dependency>                        
                         <dependency>
                                 <groupId>cglib</groupId>
                                 <artifactId>cglib-nodep</artifactId>
