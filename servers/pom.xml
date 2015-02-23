@@ -257,6 +257,7 @@
 								</systemProperties>
 							</container>
 						</configuration>
+						<!--
 						<executions>
 							<execution>
 								<id>deploy</id>
@@ -273,6 +274,7 @@
 								</goals>
 							</execution>
 						</executions>
+						-->
 						<dependencies>
 								<dependency>
 										<groupId>org.jboss.as</groupId>
@@ -404,23 +406,35 @@
 								</systemProperties>
 							</container>
 						</configuration>
+						<!--
 						<executions>
+						-->
 							<!--
 							<execution>
 								<id>start-container</id>
 								<phase>pre-integration-test</phase>
 								<goals>
 									<goal>start</goal>
+									<goal>deployer-deploy</goal>
 								</goals>
 							</execution>
 							<execution>
 								<id>stop-container</id>
 								<phase>post-integration-test</phase>
 								<goals>
+									<goal>deployer-undeploy</goal>
 									<goal>stop</goal>
 								</goals>
 							</execution>
+							<execution>
+								<id>clean-undeploy</id>
+								<phase>pre-clean</phase>
+								<goals>
+									<goal>deployer-undeploy</goal>
+								</goals>
+							</execution>							
 							-->
+							<!--
 							<execution>
 								<id>deploy</id>
 								<phase>pre-integration-test</phase>
@@ -435,16 +449,8 @@
 									<goal>deployer-deploy</goal>
 								</goals>
 							</execution>
-							<!--
-							<execution>
-								<id>clean-undeploy</id>
-								<phase>pre-clean</phase>
-								<goals>
-									<goal>deployer-undeploy</goal>
-								</goals>
-							</execution>
-							-->
 						</executions>
+						-->
 						<dependencies>
 								<dependency>
 										<groupId>org.jboss.as</groupId>
