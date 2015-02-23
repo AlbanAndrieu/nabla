@@ -41,7 +41,11 @@
 			<scope.tomcat.only.type>${scope.provided}</scope.tomcat.only.type> <!-- for jar needed for tomcat only but not for other -->
 			<scope.tomcat.never.type>${scope.compile}</scope.tomcat.never.type> <!-- for jar not needed for tomcat but for other -->
 			<!-- cargo.port must be used by jenkins to overriden using a pool of tcp port -->
-			<webdriver.base.url>http://${cargo.host}:${cargo.port}</webdriver.base.url> <!-- default url used by selenium butcan be ovverrided doing mvn clean verify -Psample -Dserver=jetty9x -Ddatabase=derby -Dwebdriver.base.url=http://localhost:9090 -->
+			<cargo.host>localhost</cargo.host>
+			<cargo.wait>false</cargo.wait>
+			<cargo.remote.user>admin</cargo.remote.user>
+			<cargo.remote.password>microsoft</cargo.remote.password>
+			<cargo.rmi.port>1099</cargo.rmi.port>
 			<cargo.jetty.jmx.activation>-Dcom.sun.management.jmxremote
 -Dcom.sun.management.jmxremote.ssl=false
 -Dcom.sun.management.jmxremote.authenticate=false
@@ -60,6 +64,7 @@
 			<!-- if you want to start remote debugging session suspended override on
 			command line with -Dcargo.debug.suspend=y -->
 			<cargo.debug.suspend>y</cargo.debug.suspend>
+			<webdriver.base.url>http://${cargo.host}:${cargo.port}</webdriver.base.url> <!-- default url used by selenium butcan be ovverrided doing mvn clean verify -Psample -Dserver=jetty9x -Ddatabase=derby -Dwebdriver.base.url=http://localhost:9090 -->
 			<javaagent />
 		</properties>
 
@@ -206,9 +211,7 @@
 				<!--<cargo.configuration.type>standalone</cargo.configuration.type>-->
 				<cargo.configuration.type>runtime</cargo.configuration.type>
 				<cargo.deployables.type>installed</cargo.deployables.type>
-				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jboss.port}</cargo.port>
-				<cargo.wait>false</cargo.wait>
 				<cargo.remote.user>admin</cargo.remote.user>
 				<cargo.remote.password>microsoft</cargo.remote.password>
 				<!--<jboss.bind.address>localhost</jboss.bind.address> -->
@@ -339,11 +342,7 @@
 				<!--<cargo.configuration.type>standalone</cargo.configuration.type>-->
 				<cargo.configuration.type>runtime</cargo.configuration.type>
 				<cargo.deployables.type>installed</cargo.deployables.type>
-				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jboss.port}</cargo.port>
-				<cargo.wait>false</cargo.wait>
-				<cargo.remote.user>admin</cargo.remote.user>
-				<cargo.remote.password>microsoft</cargo.remote.password>
 				<!--<jboss.bind.address>localhost</jboss.bind.address> -->
 				<jboss.server>standalone</jboss.server>
 				<jboss.servers.directory>${jboss.home}</jboss.servers.directory>
@@ -432,7 +431,7 @@
 								<goals>
 									<goal>deployer-undeploy</goal>
 								</goals>
-							</execution>							
+							</execution>
 							-->
 							<!--
 							<execution>
@@ -512,11 +511,7 @@
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
 				<cargo.deployables.type>installed</cargo.deployables.type>
-				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jboss.port}</cargo.port>
-				<cargo.wait>false</cargo.wait>
-				<cargo.remote.user>admin</cargo.remote.user>
-				<cargo.remote.password>microsoft</cargo.remote.password>
 				<!--<jboss.bind.address>localhost</jboss.bind.address> -->
 
 				<jboss.server>default</jboss.server>
@@ -585,11 +580,7 @@
 				<cargo.container.type>embedded</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
 				<cargo.deployables.type></cargo.deployables.type>
-				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jetty.port}</cargo.port>
-				<cargo.wait>false</cargo.wait>
-				<cargo.remote.user>admin</cargo.remote.user>
-				<cargo.remote.password>microsoft</cargo.remote.password>
 
 				<cargo.jmx.activation>${cargo.jetty.jmx.activation}</cargo.jmx.activation>
 
@@ -647,11 +638,7 @@
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
 				<cargo.deployables.type></cargo.deployables.type>
-				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jetty.port}</cargo.port>
-				<cargo.wait>false</cargo.wait>
-				<cargo.remote.user>admin</cargo.remote.user>
-				<cargo.remote.password>microsoft</cargo.remote.password>
 
 				<cargo.jmx.activation>${cargo.jetty.jmx.activation}</cargo.jmx.activation>
 
@@ -716,11 +703,7 @@
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
 				<cargo.deployables.type></cargo.deployables.type>
-				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jetty.port}</cargo.port>
-				<cargo.wait>false</cargo.wait>
-				<cargo.remote.user>admin</cargo.remote.user>
-				<cargo.remote.password>microsoft</cargo.remote.password>
 
 				<cargo.jmx.activation>${cargo.jetty.jmx.activation}</cargo.jmx.activation>
 
@@ -785,11 +768,7 @@
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
 				<cargo.deployables.type></cargo.deployables.type>
-				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jetty.port}</cargo.port>
-				<cargo.wait>false</cargo.wait>
-				<cargo.remote.user>admin</cargo.remote.user>
-				<cargo.remote.password>microsoft</cargo.remote.password>
 
 				<cargo.jmx.activation>${cargo.jetty.jmx.activation}</cargo.jmx.activation>
 
@@ -870,12 +849,8 @@
 				<!--<cargo.configuration.home>${tomcat.home}</cargo.configuration.home>-->
 				<cargo.configuration.home>${project.build.directory}/catalina-base</cargo.configuration.home>
 				<cargo.deployables.type></cargo.deployables.type>
-				<cargo.host>localhost</cargo.host>
 				<cargo.port>${tomcat.port}</cargo.port>
-				<cargo.rmi.port>9205</cargo.rmi.port>
-				<cargo.wait>false</cargo.wait>
-				<cargo.remote.user>admin</cargo.remote.user>
-				<cargo.remote.password>microsoft</cargo.remote.password>
+
 				<scope.type>${scope.compile}</scope.type>
 				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
 				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
@@ -919,9 +894,9 @@
 								<log>${project.build.directory}/cargo.log</log>
 								<logLevel>debug</logLevel>
 								<!--<home>${cargo.container.home}</home>-->
-								<systemProperties>							
+								<systemProperties>
 									<webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
-								</systemProperties>										
+								</systemProperties>
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
 									<!--<installdir>${project.build.directory}/container-install-${cargo.port}</installdir>-->
@@ -935,11 +910,11 @@
 							<execution>
 								<id>start</id>
 								<phase>pre-integration-test</phase>
-								<goals>									
+								<goals>
 									<goal>start</goal>
 									<goal>deployer-deploy</goal>
 								</goals>
-							</execution>						
+							</execution>
 							<execution>
 								<id>stop</id>
 								<phase>post-integration-test</phase>
@@ -991,12 +966,8 @@
 				<cargo.configuration.type>standalone</cargo.configuration.type>
 				<cargo.configuration.home>${tomcat.home}</cargo.configuration.home>
 				<cargo.deployables.type></cargo.deployables.type>
-				<cargo.host>localhost</cargo.host>
 				<cargo.port>${tomcat.port}</cargo.port>
-				<cargo.rmi.port>1098</cargo.rmi.port>
-				<cargo.wait>false</cargo.wait>
-				<cargo.remote.user>admin</cargo.remote.user>
-				<cargo.remote.password>microsoft</cargo.remote.password>
+
 				<scope.type>${scope.compile}</scope.type>
 				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
 				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
@@ -1041,15 +1012,15 @@
 								<log>${project.build.directory}/cargo.log</log>
 								<logLevel>debug</logLevel>
 								<!--<home>${cargo.container.home}</home>-->
-								<systemProperties>							
+								<systemProperties>
 									<webdriver.base.url>${webdriver.base.url}</webdriver.base.url>
-								</systemProperties>										
+								</systemProperties>
 								<zipUrlInstaller>
 									<url>${cargo.container.url}</url>
 									<!--<installdir>${project.build.directory}/container-install-${cargo.port}</installdir>-->
 								</zipUrlInstaller>
 							</container>
-							
+
 							<packager>
 								<outputLocation>${project.build.directory}/tomcat-packaged</outputLocation>
 							</packager>
@@ -1115,12 +1086,8 @@
 				<cargo.configuration.type>runtime</cargo.configuration.type>
 				<cargo.configuration.home>${tomcat.home}</cargo.configuration.home>
 				<cargo.deployables.type></cargo.deployables.type>
-				<cargo.host>localhost</cargo.host>
 				<cargo.port>${tomcat.port}</cargo.port>
-				<cargo.rmi.port>1099</cargo.rmi.port>
-				<cargo.wait>false</cargo.wait>
-				<cargo.remote.user>admin</cargo.remote.user>
-				<cargo.remote.password>microsoft</cargo.remote.password>
+
 				<scope.type>${scope.compile}</scope.type>
 				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
 				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
@@ -1231,12 +1198,7 @@
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
 				<cargo.deployables.type></cargo.deployables.type>
-				<cargo.host>localhost</cargo.host>
 				<cargo.port>${tomcat.port}</cargo.port>
-				<cargo.rmi.port>1099</cargo.rmi.port>
-				<cargo.wait>false</cargo.wait>
-				<cargo.remote.user>admin</cargo.remote.user>
-				<cargo.remote.password>microsoft</cargo.remote.password>
 
 				<cargo.jmx.activation>${cargo.tomcat.jmx.activation}</cargo.jmx.activation>
 
@@ -1288,11 +1250,7 @@
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
 				<cargo.deployables.type></cargo.deployables.type>
-				<cargo.host>localhost</cargo.host>
 				<cargo.port>${glassfish.port}</cargo.port>
-				<cargo.wait>false</cargo.wait>
-				<cargo.remote.user>admin</cargo.remote.user>
-				<cargo.remote.password>microsoft</cargo.remote.password>
 
 				<scope.type>${scope.compile}</scope.type>
 			</properties>
@@ -1336,11 +1294,7 @@
 				<cargo.container.type>installed</cargo.container.type>
 				<cargo.configuration.type>standalone</cargo.configuration.type>
 				<cargo.deployables.type></cargo.deployables.type>
-				<cargo.host>localhost</cargo.host>
 				<cargo.port>${jonas.port}</cargo.port>
-				<cargo.wait>false</cargo.wait>
-				<cargo.remote.user>admin</cargo.remote.user>
-				<cargo.remote.password>microsoft</cargo.remote.password>
 
 				<scope.type>${scope.compile}</scope.type>
 			</properties>
