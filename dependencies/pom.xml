@@ -1377,7 +1377,7 @@
                 <jsonassert.version>1.2.3</jsonassert.version>
                 <wiser.version>1.2</wiser.version>
                 <scala.version>2.9.3</scala.version> <!-- for gatling to work -->
-                <scala.suffix>_2.9</scala.suffix>
+                <scala.suffix>_2.11</scala.suffix>
                 <!--
                 <scala.version>2.11.4</scala.version>
                 <scala.suffix>_2.11</scala.suffix>
@@ -1421,6 +1421,8 @@
                 <!--<webdriver.firefox.bin>/usr/lib/firefox/firefox</webdriver.firefox.bin>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
                 <!--<arquillian>arq-jbossas-managed</arquillian>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
                 <drools.version>5.5.0.Final</drools.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
+                <!--<drools.version>6.2.0.CR4</drools.version>-->
+                <drools.api.version>5.1.1</drools.api.version>
                 <drools.transformer.xstream.version>5.1.0.M2</drools.transformer.xstream.version>
                 <!--<drools.version>5.1.1</drools.version>-->
                 <jbpm.jpdl.version>3.2.3</jbpm.jpdl.version>
@@ -6878,11 +6880,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                          <version>${weld.servlet.version}</version>
                       </dependency>
 
+			<!--
                         <dependency>
                           <groupId>org.jboss.errai</groupId>
                           <artifactId>jboss7-support</artifactId>
                           <version>${errai.version}</version>
                         </dependency>
+                        -->
 
 						<!-- TODO activate it if needed      
                         <dependency>
@@ -7532,6 +7536,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                           </exclusions>
                         </dependency>
 
+			<!--
                         <dependency>
                           <groupId>org.jboss.seam</groupId>
                           <artifactId>jboss-seam-jul</artifactId>
@@ -7547,6 +7552,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             </exclusion>
                           </exclusions>
                         </dependency>
+                        -->
 
                         <dependency>
                                 <groupId>org.jboss.seam.international</groupId>
@@ -8119,12 +8125,14 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                 <artifactId>ojdbc14</artifactId>
                 <version>${jdbc.oracle.version}</version>
             </dependency>
+            <!--
             <dependency>
                 <groupId>com.oracle</groupId>
                 <artifactId>orai18n</artifactId>
                 <version>${jdbc.oracle.version}</version>
                 <scope>runtime</scope>
             </dependency>
+            -->
             <!-- // ORACLE -->
             <!-- POSTGRESQL -->
             <dependency>
@@ -8658,11 +8666,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						<artifactId>websocket-api</artifactId>
 						<version>${jetty9.version}</version>
 					</dependency>
+					<!--
 					<dependency>
 						<groupId>org.eclipse.jetty.websocket</groupId>
 						<artifactId>websocket-api-client</artifactId>
 						<version>${jetty9.version}</version>
-					</dependency>
+					</dependency>					
 					<dependency>
 						<groupId>org.eclipse.jetty.websocket</groupId>
 						<artifactId>websocket-api-client-impl</artifactId>
@@ -8673,6 +8682,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						<artifactId>websocket-api-server-impl</artifactId>
 						<version>${jetty9.version}</version>
 					</dependency>
+					-->
 					<dependency>
 						<groupId>org.eclipse.jetty.websocket</groupId>
 						<artifactId>websocket-common</artifactId>
@@ -8832,7 +8842,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                     <dependency>
                       <groupId>org.drools</groupId>
                       <artifactId>drools-api</artifactId>
-                      <version>${drools.version}</version>
+                      <version>${drools.api.version}</version>
                     </dependency>
                     <dependency>
                       <groupId>org.drools</groupId>
