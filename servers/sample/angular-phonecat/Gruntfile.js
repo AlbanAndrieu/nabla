@@ -373,7 +373,6 @@ module.exports = function (grunt) {
     'uglify',
     'rev',
     'usemin',
-    'documentation'
   ]);
 
   grunt.registerTask('default', [
