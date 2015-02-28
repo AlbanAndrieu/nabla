@@ -215,23 +215,4 @@ public class UserVO
         this.roles = rolesIn;
     }
 
-    private Boolean[] rolesLabels;
-
-    /**
-     * TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
-     * @return roles
-     */
-    public Boolean[] getRolesLabels()
-    {
-        return this.rolesLabels;
-    }
-
-    /**
-     * TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
-     * @param rolesLabelsIn
-     */
-    public void setRolesLabels(Boolean[] rolesLabelsIn)
-    {
-        this.rolesLabels = rolesLabelsIn;
-    }
 }

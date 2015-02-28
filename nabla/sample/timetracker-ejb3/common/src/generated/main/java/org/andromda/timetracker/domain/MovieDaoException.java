@@ -8,49 +8,49 @@ package org.andromda.timetracker.domain;
 import org.apache.commons.beanutils.PropertyUtils;
 
 /**
- * TODO: Model Documentation for org.andromda.timetracker.domain.UserRole
+ * TODO: Model Documentation for org.andromda.timetracker.domain.Movie
  */
-public class UserRoleDaoException
+public class MovieDaoException
     extends Exception
 {
     /**
      * The serial version UID of this class. Needed for serialization.
      */
-    private static final long serialVersionUID = 4491898486466294586L;
+    private static final long serialVersionUID = -5894565260968997027L;
 
     /**
      * The default constructor.
      */
-    public UserRoleDaoException()
+    public MovieDaoException()
     {}
 
     /**
-     * Constructs a new instance of UserRoleDaoException
+     * Constructs a new instance of MovieDaoException
      *
      * @param throwable the parent Throwable
      */
-    public UserRoleDaoException(Throwable throwable)
+    public MovieDaoException(Throwable throwable)
     {
         super(findRootCause(throwable));
     }
 
     /**
-     * Constructs a new instance of UserRoleDaoException
+     * Constructs a new instance of MovieDaoException
      *
      * @param message the throwable message.
      */
-    public UserRoleDaoException(String message)
+    public MovieDaoException(String message)
     {
         super(message);
     }
 
     /**
-     * Constructs a new instance of UserRoleDaoException
+     * Constructs a new instance of MovieDaoException
      *
      * @param message the throwable message.
      * @param throwable the parent of this Throwable.
      */
-    public UserRoleDaoException(String message, Throwable throwable)
+    public MovieDaoException(String message, Throwable throwable)
     {
         super(message, findRootCause(throwable));
     }
