@@ -52,7 +52,7 @@ public abstract class UserDaoBase implements UserDao
     /**
      * Inject DAO UserRoleDao
      */
-    @EJB 
+    @EJB(mappedName="java:global/TimeTracker/UserRoleDaoImpl")
     protected UserRoleDao userRoleDao;
 
     /**

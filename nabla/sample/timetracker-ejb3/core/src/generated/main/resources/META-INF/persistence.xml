@@ -19,7 +19,7 @@ Modify as necessary for JPA unit testing
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
 
         <!-- use jta-data-source only when transaction-type is JTA -->
-        <jta-data-source>java:/timetracker-ejb3</jta-data-source>
+        <jta-data-source>java:/jdbc/timetracker-ejb3</jta-data-source>
         <!-- Entity list needed for testing in J2SE environment entities=6-->
         <class>org.andromda.timetracker.domain.Task</class>
         <class>org.andromda.timetracker.domain.Movie</class>

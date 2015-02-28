@@ -57,7 +57,7 @@ public abstract class TimecardDaoBase implements TimecardDao
     /**
      * Inject DAO TimeAllocationDao
      */
-    @EJB 
+    @EJB(mappedName="java:global/TimeTracker/TimeAllocationDaoImpl")
     protected TimeAllocationDao timeAllocationDao;
 
     /**

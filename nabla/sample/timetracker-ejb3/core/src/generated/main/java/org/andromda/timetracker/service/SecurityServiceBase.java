@@ -43,7 +43,7 @@ public abstract class SecurityServiceBase implements SecurityService
     /**
      * Inject DAO UserDao
      */
-    @EJB 
+    @EJB(mappedName="java:global/TimeTracker/UserDaoImpl")
     private UserDao userDao;
 
     // --------------- Constructors ---------------

@@ -124,7 +124,7 @@ public class ServiceLocator
      */
     public final UserServiceRemote get_org_andromda_timetracker_service_UserServiceBean_Remote(Properties env) throws NamingException
     {
-        return (UserServiceRemote) getContext(env).lookup("UserServiceBean/remote");
+        return (UserServiceRemote) getContext(env).lookup("java:global/TimeTracker/UserServiceBean/remote");
     }
 
     /**
@@ -136,7 +136,7 @@ public class ServiceLocator
      */
     public final UserServiceLocal get_org_andromda_timetracker_service_UserServiceBean_Local(Properties env) throws NamingException
     {
-        return (UserServiceLocal) getContext(env).lookup("UserServiceBean/local");
+        return (UserServiceLocal) getContext(env).lookup("java:global/TimeTracker/UserServiceBean/local");
     }
 
 
@@ -162,7 +162,7 @@ public class ServiceLocator
      */
     public final TimeTrackingServiceRemote get_org_andromda_timetracker_service_TimeTrackingServiceBean_Remote(Properties env) throws NamingException
     {
-        return (TimeTrackingServiceRemote) getContext(env).lookup("TimeTrackingServiceBean/remote");
+        return (TimeTrackingServiceRemote) getContext(env).lookup("java:global/TimeTracker/TimeTrackingServiceBean/remote");
     }
 
 
@@ -188,7 +188,7 @@ public class ServiceLocator
      */
     public final SecurityServiceRemote get_org_andromda_timetracker_service_SecurityServiceBean_Remote(Properties env) throws NamingException
     {
-        return (SecurityServiceRemote) getContext(env).lookup("SecurityServiceBean/remote");
+        return (SecurityServiceRemote) getContext(env).lookup("java:global/TimeTracker/SecurityServiceBean/remote");
     }
 
 
