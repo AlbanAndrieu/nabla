@@ -125,7 +125,7 @@
                 <property name="pluralizeAttributeNames">true</property>
                 <property name="pluralizeParameterNames">true</property -->
                 <property name="xmlAttributes">false</property>
-                <property name="dataSource">${dataSource}</property>
+                <property name="dataSource">${datasource}</property>
                 <property name="username">${jdbc.username}</property>
                 <property name="password">${jdbc.password}</property>
                 <property name="driver">${jdbc.driver}</property>
@@ -165,7 +165,7 @@
                 -->
                 <property name="sessionFactory">org.springframework.orm.hibernate4.LocalSessionFactoryBean</property>
                 <property name="localTransactionManager">org.springframework.orm.hibernate4.HibernateTransactionManager</property>
-                
+
                 <!--<property name="hibernateCacheProvider">net.sf.ehcache.hibernate.EhCacheProvider</property>-->
                 <!--<property name="mergeMappingsUri">file:${conf.dir}/mappings/SpringMergeMappings.xml</property>-->
                 <property name="mergeMappingsUri">${merge.mappings.spring}</property>
@@ -215,7 +215,7 @@
 				<property name="entityManagerFactoryJndiName">java:/${application.context}EntityManagerFactory</property>
 				<property name="jndiNamePrefix">${ejb.jndi.mappedname.pattern}</property>
 				<property name="transactionType">${pu.transaction-type}</property>
-                <property name="dataSourceName">${dataSource.name}</property>
+                <property name="dataSourceName">${datasource.name}</property>
                 <property name="entity-beans">${core.generated.dir}</property>
                 <property name="entity-impls">${core.manual.dir}</property>
                 <property name="entity-config">${core.generated.resources.dir}</property>
@@ -232,13 +232,15 @@
                 <property name="services">${core.generated.dir}</property>
                 <property name="application-config">${application.config.dir}</property>
                 <property name="application-metainf">${application.metainf.dir}</property>
-                <!--
+
+				<!--
                 <property name="test-config">${core.manual.test.resources.dir}</property>
                 <property name="tests">${core.generated.test.dir}</property>
                 <property name="test-impls">${core.manual.test.dir}</property>
                 -->
+
                 <property name="ejb3TypesPackage">${application.package}</property>
-                <property name="entityManagerJTADataSource">${dataSource}</property>
+                <property name="entityManagerJTADataSource">${datasource}</property>
                 <!-- uncomment to specify transaction manager
                 <property name="hibernateTransactionManagerLookupClass">org.hibernate.transaction.JBossTransactionManagerLookup</property>
                 -->
