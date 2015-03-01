@@ -303,11 +303,209 @@
 				<as.version>6</as.version>
 				<jboss.ear.version>5</jboss.ear.version>
 				<!-- START INFO USE BY MDA -->
-				<jboss.home>${env.JBOSS_HOME}</jboss.home>
+				<!--<jboss.home>${env.JBOSS_HOME}</jboss.home>-->
+				<!--<jboss.home>C:\jboss-as-7.1.1.Final</jboss.home> -->
+				<jboss.home>target/jboss-as-7.1.1.Final/</jboss.home>
 				<jboss.version>${jboss7.version}</jboss.version> <!-- overrided -->
 				<server.version>${jboss.version}</server.version>
-				<!--<jboss.home>C:\jboss-as-7.1.1.Final</jboss.home> -->
-				<!--<jboss.home>/workspace/jboss-as-7.1.1.Final/</jboss.home> -->
+				<server.home>${jboss.home}</server.home>
+				<server.name>${product.name}</server.name>
+				<server.port>${jboss.port}</server.port>
+				<!-- Change this to the host on which your webservice will be deployed -->
+				<webservice.host>localhost</webservice.host>
+				<!-- Change this the port on which your webservice will be deploy -->
+				<webservice.port>8180</webservice.port>
+				<!-- JBoss7 uses java:/ and everyone else uses java:comp/env for server
+					compatibility -->
+				<datasource>java:/jdbc/${datasource.name}</datasource>
+				<!--<datasource>java:/${datasource.name}</datasource> also change in /workspace/jboss-as-7.1.1.Final/standalone/configuration/standalone.xml -->
+				<!--<datasource>java:/jdbc/${datasource.name}</datasource>-->
+
+				<ejb.jndi.mappedname.pattern>java:global/${application.name}</ejb.jndi.mappedname.pattern>
+				<!--<ejb.jndi.mappedname.pattern.openejb>global/${application.context}-ear/core-${project.version}</ejb.jndi.mappedname.pattern.openejb> -->
+				<ejb.jndi.mappedname.pattern.openejb>${ejb.jndi.mappedname.pattern}</ejb.jndi.mappedname.pattern.openejb>
+				<ejb.jndi.pattern>java:app/core-${project.version}.jar/#{ejbName}</ejb.jndi.pattern>
+				<ejb.jndi.pattern.test>${ejb.jndi.mappedname.pattern.openejb}/#{ejbName}/Local</ejb.jndi.pattern.test>
+				<!-- define JPA provider, check: https://docs.jboss.org/author/display/AS7/Developer+Guide#DeveloperGuide-PackagingtheHibernate3.5orgreater3.xJPApersistenceproviderwithyourapplication -->
+				<jpa.provider.module>hibernate3-bundled</jpa.provider.module>
+				<!-- hibernate.cache.provider NOT needed for jboss 7 : https://access.redhat.com/site/documentation/en-US/JBoss_Enterprise_Application_Platform/6.1/html/Migration_Guide/Migrate_the_Seam_2.2_Booking_Example_to_JBoss_Enterprise_Application_Platform_6.html -->
+				<hibernate.cache.provider></hibernate.cache.provider> <!-- must be to org.hibernate.cache.HashtableCacheProvider for openejb junit tests -->
+				<deploy.url>WRONG use tomcat profile</deploy.url>
+
+				<!-- END INFO USE BY MDA -->
+				<cargo.container>jboss71x</cargo.container>
+				<cargo.container.home>${jboss.home}</cargo.container.home>
+				<cargo.container.url>http://easynews.dl.sourceforge.net/sourceforge/jboss/jboss-${jboss.version}.zip</cargo.container.url>
+				<cargo.container.type>installed</cargo.container.type>
+				<!--OLD <cargo.container.type>remote</cargo.container.type>-->
+				<!--<cargo.configuration.type>existing</cargo.configuration.type>-->
+				<cargo.configuration.type>standalone</cargo.configuration.type>
+				<!--<cargo.configuration.type>runtime</cargo.configuration.type>-->
+				<cargo.deployables.type>installed</cargo.deployables.type>
+
+				<cargo.port>${jboss.port}</cargo.port>
+				<!--<jboss.bind.address>localhost</jboss.bind.address> -->
+				<jboss.server>standalone</jboss.server>
+				<jboss.servers.directory>${jboss.home}</jboss.servers.directory>
+				<jboss.deploy.directory>${jboss.servers.directory}/${jboss.server}/deployments</jboss.deploy.directory>
+				<!-- for jboss 7.1.1 compile -->
+				<!--<scope.type>${scope.provided}</scope.type> -->
+				<scope.type>${scope.compile}</scope.type>
+				<!-- openejb works with hibernate 3.3.2.GA but not 3.6.8.Final -->
+								<!--
+								<hibernate.core.version>3.6.8.Final</hibernate.core.version>
+								<hibernate.validator.version>4.0.2.GA</hibernate.validator.version>
+								-->
+				<!-- works with hibernate.core.version 3.6.8.GA -->
+
+				<!-- must be emtpy for non jboss7 target -->
+				<!-- uncomment for open ejb to work -->
+				<!--
+				<ejb.jndi.mappedname.pattern></ejb.jndi.mappedname.pattern>
+				<ejb.jndi.mappedname.pattern.openejb></ejb.jndi.mappedname.pattern.openejb>
+				<hibernate.cache.provider>org.hibernate.cache.HashtableCacheProvider</hibernate.cache.provider>
+				-->
+			</properties>
+			<build>
+				<plugins>
+					<!-- TODO http://cargo.codehaus.org/JBoss+Remote+Deployer -->
+					<plugin>
+						<groupId>org.codehaus.cargo</groupId>
+						<artifactId>cargo-maven2-plugin</artifactId>
+						<configuration>
+							<skip>${maven.test.skip}</skip>
+							<wait>${cargo.wait}</wait>
+							<configuration>
+								<!--<home>${project.build.directory}/cargo/installs/jboss-as-dist-7.1.1.Final/jboss-as-7.1.1.Final/standalone/</home>-->
+								<type>${cargo.configuration.type}</type>
+								<properties>
+									<cargo.servlet.port>${jboss.port}</cargo.servlet.port>
+									<!--<cargo.jboss.configuration>default</cargo.jboss.configuration>
+									<cargo.jboss.management.port>9999</cargo.jboss.management.port>
+									<cargo.rmi.port>1099</cargo.rmi.port>-->
+									<cargo.jboss.management-native.port>9999</cargo.jboss.management-native.port>
+									<cargo.logging>high</cargo.logging>
+								</properties>
+							</configuration>
+							<container>
+								<containerId>${cargo.container}</containerId>
+								<type>${cargo.container.type}</type>
+								<log>${project.build.directory}/cargo.log</log>
+								<logLevel>debug</logLevel>
+								<home>${cargo.container.home}</home>
+								<timeout>240000</timeout> <!-- 4 minutes -->
+								<artifactInstaller>
+									<groupId>org.jboss.as</groupId>
+									<artifactId>jboss-as-dist</artifactId>
+									<version>${jboss.version}</version>
+								</artifactInstaller>
+								<!--
+								<zipUrlInstaller>
+									<url>http://download.jboss.org/jbossas/7.0/jboss-as-7.0.0.Final/jboss-as-7.0.0.Final.zip</url>
+								</zipUrlInstaller>
+								-->
+								<systemProperties>
+									<jboss.server.log.threshold>INFO</jboss.server.log.threshold>
+								</systemProperties>
+							</container>
+						</configuration>
+						<executions>
+							<execution>
+								<id>start-container</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>start</goal>
+									<goal>deployer-deploy</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>stop-container</id>
+								<phase>post-integration-test</phase>
+								<goals>
+									<goal>deployer-undeploy</goal>
+									<goal>stop</goal>
+								</goals>
+							</execution>
+							<!--
+							<execution>
+								<id>clean-undeploy</id>
+								<phase>pre-clean</phase>
+								<goals>
+									<goal>deployer-undeploy</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>deploy</id>
+								<phase>pre-integration-test</phase>
+								<goals>
+									<goal>deployer-redeploy</goal>
+								</goals>
+							</execution>
+							<execution>
+								<id>verify-deploy</id>
+								<phase>install</phase>
+								<goals>
+									<goal>deployer-deploy</goal>
+								</goals>
+							</execution>
+							-->
+						</executions>
+						<dependencies>
+								<dependency>
+										<groupId>org.jboss.as</groupId>
+										<artifactId>jboss-as-controller-client</artifactId>
+										<version>${org.jboss.as.arquillian.container.version}</version>
+								</dependency>
+						</dependencies>
+					</plugin>
+					<!-- install jboss 7.7.7-Final in target/jboss-as-7.1.1.Final -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>unpack</id>
+								<phase>process-test-classes</phase>
+								<goals>
+									<goal>unpack</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>org.jboss.as</groupId>
+											<artifactId>jboss-as-dist</artifactId>
+											<version>${jboss7.version}</version>
+											<type>zip</type>
+											<overWrite>false</overWrite>
+											<outputDirectory>target</outputDirectory>
+										</artifactItem>
+									</artifactItems>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<profile>
+			<id>jboss7x-remote</id>
+			<activation>
+				<property>
+					<name>server</name>
+					<value>jboss7x-remote</value>
+				</property>
+			</activation>
+			<properties>
+				<!-- console user myNewUser admin added with add-user.sh -->
+				<as.version>6</as.version>
+				<jboss.ear.version>5</jboss.ear.version>
+				<!-- START INFO USE BY MDA -->
+				<jboss.home>${env.JBOSS_HOME}</jboss.home>
+				<!--<jboss.home>C:\jboss-as-7.1.1.Final</jboss.home>
+				<jboss.home>target/jboss-as-7.1.1.Final/</jboss.home> -->
+				<jboss.version>${jboss7.version}</jboss.version> <!-- overrided -->
+				<server.version>${jboss.version}</server.version>
 				<server.home>${jboss.home}</server.home>
 				<server.name>${product.name}</server.name>
 				<server.port>${jboss.port}</server.port>
@@ -342,6 +540,7 @@
 				<!--<cargo.configuration.type>standalone</cargo.configuration.type>-->
 				<cargo.configuration.type>runtime</cargo.configuration.type>
 				<cargo.deployables.type>installed</cargo.deployables.type>
+
 				<cargo.port>${jboss.port}</cargo.port>
 				<!--<jboss.bind.address>localhost</jboss.bind.address> -->
 				<jboss.server>standalone</jboss.server>
@@ -358,12 +557,12 @@
 				<!-- works with hibernate.core.version 3.6.8.GA -->
 
 				<!-- must be emtpy for non jboss7 target -->
-								<!-- uncomment for open ejb to work -->
-								<!--
-								<ejb.jndi.mappedname.pattern></ejb.jndi.mappedname.pattern>
-								<ejb.jndi.mappedname.pattern.openejb></ejb.jndi.mappedname.pattern.openejb>
-								<hibernate.cache.provider>org.hibernate.cache.HashtableCacheProvider</hibernate.cache.provider>
-								-->
+				<!-- uncomment for open ejb to work -->
+				<!--
+				<ejb.jndi.mappedname.pattern></ejb.jndi.mappedname.pattern>
+				<ejb.jndi.mappedname.pattern.openejb></ejb.jndi.mappedname.pattern.openejb>
+				<hibernate.cache.provider>org.hibernate.cache.HashtableCacheProvider</hibernate.cache.provider>
+				-->
 			</properties>
 			<build>
 				<plugins>
@@ -399,6 +598,9 @@
 									<artifactId>jboss-as-dist</artifactId>
 									<version>${jboss.version}</version>
 								</artifactInstaller>
+								<zipUrlInstaller>
+									<url>http://download.jboss.org/jbossas/7.0/jboss-as-7.0.0.Final/jboss-as-7.0.0.Final.zip</url>
+								</zipUrlInstaller>
 								-->
 								<systemProperties>
 									<jboss.server.log.threshold>INFO</jboss.server.log.threshold>
@@ -407,8 +609,6 @@
 						</configuration>
 						<!--
 						<executions>
-						-->
-							<!--
 							<execution>
 								<id>start-container</id>
 								<phase>pre-integration-test</phase>
@@ -425,6 +625,8 @@
 									<goal>stop</goal>
 								</goals>
 							</execution>
+							-->
+							<!--
 							<execution>
 								<id>clean-undeploy</id>
 								<phase>pre-clean</phase>
@@ -432,8 +634,6 @@
 									<goal>deployer-undeploy</goal>
 								</goals>
 							</execution>
-							-->
-							<!--
 							<execution>
 								<id>deploy</id>
 								<phase>pre-integration-test</phase>
@@ -448,6 +648,8 @@
 									<goal>deployer-deploy</goal>
 								</goals>
 							</execution>
+							-->
+							<!--
 						</executions>
 						-->
 						<dependencies>
@@ -457,32 +659,6 @@
 										<version>${org.jboss.as.arquillian.container.version}</version>
 								</dependency>
 						</dependencies>
-					</plugin>
-					<!-- install jboss 7.7.7-Final in target/jboss-as-7.1.1.Final -->
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-dependency-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>unpack</id>
-								<phase>process-test-classes</phase>
-								<goals>
-									<goal>unpack</goal>
-								</goals>
-								<configuration>
-									<artifactItems>
-										<artifactItem>
-											<groupId>org.jboss.as</groupId>
-											<artifactId>jboss-as-dist</artifactId>
-											<version>${jboss7.version}</version>
-											<type>zip</type>
-											<overWrite>false</overWrite>
-											<outputDirectory>target</outputDirectory>
-										</artifactItem>
-									</artifactItems>
-								</configuration>
-							</execution>
-						</executions>
 					</plugin>
 				</plugins>
 			</build>

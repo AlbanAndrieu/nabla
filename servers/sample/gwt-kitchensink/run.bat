@@ -9,6 +9,10 @@ REM set in JAVA_OPTS
 REM -Derrai.devel.debugCacheDir=/tmp/Errai
 REM -Derrai.devel.debugCacheDir=target/errai
 
-mvn clean install -Psample,arq-jbossas-managed,with.test -Dserver=jboss7x -Derrai.devel.debugCacheDir=target/errai > install.log
+REM OK with arq-jbossas-managed BUT NOK with arq-weld-ee-embedded
+mvn clean install -Psample,arq-jbossas-managed,with.test -Dserver=jboss7x -Darquillian=arq-jbossas-managed -Derrai.devel.debugCacheDir=target/errai > install.log
+REM TODO mvn clean install -Psample,arq-weld-ee-embedded,with.test -Dserver=jboss7x -Darquillian=arq-weld-ee-embedded -Derrai.devel.debugCacheDir=target/errai > install.log
+
+REM TO ADD in eclipse maven profile \!jacoco,sample,arq-jbossas-managed,jboss7x,with.test -Dserver=jboss7x -Darquillian=arq-jbossas-managed
 
 pause

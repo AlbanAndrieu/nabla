@@ -34,7 +34,9 @@ import com.thoughtworks.selenium.DefaultSelenium;
 //@RunWith(Parameterized.class)
 public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProvider */
 {
-    private static final String        DEFAULT_CHROMEDRIVER = "/var/lib/chromedriver";   // "C:\\chromedriver\\chromedriver.exe"
+    private static final String SUBMIT_BUTTON = "j_idt8:j_idt10";
+	private static final String INPUT_TEXT = "j_idt8:j_idt9";
+	private static final String        DEFAULT_CHROMEDRIVER = "/var/lib/chromedriver";   // "C:\\chromedriver\\chromedriver.exe"
     private static final String        DEFAULT_FIREFOXBIN   = "/usr/lib/firefox/firefox"; // "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
     private static final String        DEFAULT_URL          = "http://localhost:9090";
     private static final String        PAGE_TO_LOAD_TIMEOUT = "30000";
@@ -238,8 +240,8 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
         // selenium.waitForPageToLoad(PAGE_TO_LOAD_TIMEOUT);
         // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
         assertEquals("JSF 2.0 Hello World Example - hello.xhtml", driver.findElement(By.cssSelector("h3")).getText());
-        driver.findElement(By.name("j_idt6:j_idt7")).clear();
-        driver.findElement(By.name("j_idt6:j_idt7")).sendKeys("Test me !!!");
+        driver.findElement(By.name(INPUT_TEXT)).clear();
+        driver.findElement(By.name(INPUT_TEXT)).sendKeys("Test me !!!");
 
         // wait for the application to get fully loaded
         WebElement findOwnerLink = (new WebDriverWait(driver, 5)).until(new ExpectedCondition<WebElement>()
@@ -247,17 +249,17 @@ public class SimpleRemoteWebDriverSTest /* implements SauceOnDemandSessionIdProv
             public WebElement apply(WebDriver d)
             {
                 // d.get(baseUrl);
-                return d.findElement(By.name("j_idt6:j_idt7"));
+                return d.findElement(By.name(INPUT_TEXT));
             }
         });
 
         findOwnerLink.click();
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.elementToBeClickable(By.name("j_idt6:j_idt8")));
+        wait.until(ExpectedConditions.elementToBeClickable(By.name(SUBMIT_BUTTON)));
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-        driver.findElement(By.name("j_idt6:j_idt8")).click();
+        driver.findElement(By.name(SUBMIT_BUTTON)).click();
 
         assertEquals("JSF 2.0 Hello World Example - welcome.xhtml", driver.findElement(By.cssSelector("h3")).getText());
         assertEquals("Welcome Test me !!!", driver.findElement(By.cssSelector("h4")).getText());

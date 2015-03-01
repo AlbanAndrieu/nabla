@@ -25,10 +25,8 @@ public class MemberRegistrationTest
     @Deployment
     public static Archive<?> createTestArchive()
     {
-        return ShrinkWrap.create(WebArchive.class, "gwt-kitchensink-test.war")
-        		.addClasses(Member.class, MemberService.class, MemberServiceImpl.class, Resources.class)
-                .addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml")
-                .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
+        return ShrinkWrap.create(WebArchive.class, "gwt-kitchensink-test.war").addClasses(Member.class, MemberService.class, MemberServiceImpl.class, Resources.class)
+                .addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml").addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 // Deploy our test datasource
                 .addAsWebInfResource("test-ds.xml", "test-ds.xml");
     }
