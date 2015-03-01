@@ -55,7 +55,7 @@
                 <url>http://localhost:8070/hudson/</url>
                 -->
                 <system>Jenkins</system>
-                <url>https://home.nabla.mobi/jenkins</url>
+                <url>http://home.nabla.mobi:8380/jenkins</url>
                 <notifiers>
                         <notifier>
                                 <type>mail</type>
