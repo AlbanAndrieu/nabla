@@ -7,7 +7,7 @@
 		<groupId>com.nabla.project.servers.sample</groupId>
 		<version>1.0.1-SNAPSHOT</version>
 	</parent>
-
+	
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.jboss.tools.gwt.kitchensink</groupId>
 	<artifactId>gwt-kitchensink</artifactId>
@@ -20,25 +20,25 @@
 		<!--<datasource>java:/jdbc/${datasource.name}</datasource>-->
 		<database.name>nabla</database.name>
 
-		<!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any 
-			dependencies from org.jboss.spec will have their version defined by this 
+		<!-- Define the version of JBoss' Java EE 6 APIs we want to import. Any
+			dependencies from org.jboss.spec will have their version defined by this
 			BOM -->
 		<!--<org.jboss.spec.jboss.javaee6.version>2.0.0.Final</org.jboss.spec.jboss.javaee6.version> -->
-		<!-- Alternatively, comment out the above line, and un-comment the line 
-			below to use version 3.0.0.Beta1-redhat-1 which is a release certified to 
-			work with JBoss EAP 6. It requires you have access to the JBoss EAP 6 maven 
+		<!-- Alternatively, comment out the above line, and un-comment the line
+			below to use version 3.0.0.Beta1-redhat-1 which is a release certified to
+			work with JBoss EAP 6. It requires you have access to the JBoss EAP 6 maven
 			repository. -->
 		<!-- <org.jboss.spec.jboss.javaee6.version>3.0.0.Beta1-redhat-1</org.jboss.spec.jboss.javaee6.version> -->
-		<!-- <errai.version>2.0.Beta3</errai.version> <gwt.version>2.4.0</gwt.version> 
+		<!-- <errai.version>2.0.Beta3</errai.version> <gwt.version>2.4.0</gwt.version>
 			<maven.gwt.plugin.version>${gwt.version}</maven.gwt.plugin.version> <junit.version>4.10</junit.version> -->
 		<hibernate.validator.version>4.2.0.Final</hibernate.validator.version> <!-- TODO check because version is better than main pom -->
-		<!-- <validation.api.version>1.0.0.GA</validation.api.version> <hibernate.jpamodelgen.version>1.1.1.Final</hibernate.jpamodelgen.version> 
-			<maven.war.plugin.version>2.2</maven.war.plugin.version> <maven.clean.plugin.version>2.4.1</maven.clean.plugin.version> 
-			<maven.compiler.plugin.version>2.5.1</maven.compiler.plugin.version> <maven.surefire.plugin.version>2.12</maven.surefire.plugin.version> 
+		<!-- <validation.api.version>1.0.0.GA</validation.api.version> <hibernate.jpamodelgen.version>1.1.1.Final</hibernate.jpamodelgen.version>
+			<maven.war.plugin.version>2.2</maven.war.plugin.version> <maven.clean.plugin.version>2.4.1</maven.clean.plugin.version>
+			<maven.compiler.plugin.version>2.5.1</maven.compiler.plugin.version> <maven.surefire.plugin.version>2.12</maven.surefire.plugin.version>
 			<maven.jboss.as.plugin.version>7.1.1.Final</maven.jboss.as.plugin.version> -->
 		<org.mvel.mvel2.version>2.1.Beta8</org.mvel.mvel2.version> <!-- TODO check because version is better than main pom -->
 		<!-- TODO remove -->
-		<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>		
+		<org.jboss.bom.jboss.javaee6.with.tools.version>1.0.0.M6</org.jboss.bom.jboss.javaee6.with.tools.version>
 		<!-- TODO SEE https://docs.jboss.org/author/display/ARQ/Apache+OpenEJB+3.1+-+Embedded -->
 		<webappDirectory>${project.build.directory}/${project.build.finalName}</webappDirectory>
 	</properties>
@@ -48,11 +48,11 @@
 
 			<!-- Arquillian : http://arquillian.org/guides/getting_started_fr -->
 
-			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill 
-				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection) 
-				of artifacts. We use this here so that we always get the correct versions 
-				of artifacts. Here we use the jboss-javaee-6.0-with tools stack (you can 
-				read this as the JBoss stack of the Java EE 6 APIs, with some extras tools 
+			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill
+				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
+				of artifacts. We use this here so that we always get the correct versions
+				of artifacts. Here we use the jboss-javaee-6.0-with tools stack (you can
+				read this as the JBoss stack of the Java EE 6 APIs, with some extras tools
 				for your project, such as Arquillian for testing) -->
 			<dependency>
 				<groupId>org.jboss.bom</groupId>
@@ -62,16 +62,16 @@
 				<scope>import</scope>
 			</dependency>
 
-			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill 
-				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection) 
-				of artifacts. We use this here so that we always get the correct versions 
-				of artifacts. Here we use the jboss-javaee-6.0 stack (you can read this as 
-				the JBoss stack of the Java EE 6 APIs). You can actually use this stack with 
+			<!-- JBoss distributes a complete set of Java EE 6 APIs including a Bill
+				of Materials (BOM). A BOM specifies the versions of a "stack" (or a collection)
+				of artifacts. We use this here so that we always get the correct versions
+				of artifacts. Here we use the jboss-javaee-6.0 stack (you can read this as
+				the JBoss stack of the Java EE 6 APIs). You can actually use this stack with
 				any version of JBoss AS that implements Java EE 6, not just JBoss AS 7! -->
-			<!-- <dependency> <groupId>org.jboss.spec</groupId> <artifactId>jboss-javaee-6.0</artifactId> 
-				<version>${org.jboss.spec.jboss.javaee6.version}</version> <type>pom</type> 
-				<scope>import</scope> </dependency> <dependency> <groupId>org.jboss.arquillian</groupId> 
-				<artifactId>arquillian-bom</artifactId> <version>${version.org.jboss.arquillian}</version> 
+			<!-- <dependency> <groupId>org.jboss.spec</groupId> <artifactId>jboss-javaee-6.0</artifactId>
+				<version>${org.jboss.spec.jboss.javaee6.version}</version> <type>pom</type>
+				<scope>import</scope> </dependency> <dependency> <groupId>org.jboss.arquillian</groupId>
+				<artifactId>arquillian-bom</artifactId> <version>${version.org.jboss.arquillian}</version>
 				<scope>import</scope> <type>pom</type> </dependency> -->
 
 			<!-- Errai Core and ErraiBus -->
@@ -183,10 +183,10 @@
 
 	<dependencies>
 
-		<!-- First declare the APIs we depend on and need for compilation. All 
+		<!-- First declare the APIs we depend on and need for compilation. All
 			of them are provided by JBoss AS 7 -->
 
-		<!-- Import the CDI API, we use provided scope as the API is included in 
+		<!-- Import the CDI API, we use provided scope as the API is included in
 			JBoss AS 7 -->
 		<dependency>
 			<groupId>javax.enterprise</groupId>
@@ -194,7 +194,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Import the JPA API, we use provided scope as the API is included in 
+		<!-- Import the JPA API, we use provided scope as the API is included in
 			JBoss AS 7 -->
 		<dependency>
 			<groupId>org.jboss.spec.javax.transaction</groupId>
@@ -202,7 +202,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Import the Common Annotations API (JSR-250), we use provided scope 
+		<!-- Import the Common Annotations API (JSR-250), we use provided scope
 			as the API is included in JBoss AS 7 -->
 		<dependency>
 			<groupId>org.jboss.spec.javax.annotation</groupId>
@@ -210,7 +210,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Import the JAX-RS API, we use provided scope as the API is included 
+		<!-- Import the JAX-RS API, we use provided scope as the API is included
 			in JBoss AS 7 -->
 		<dependency>
 			<groupId>org.jboss.spec.javax.ws.rs</groupId>
@@ -218,7 +218,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Import the JPA API, we use provided scope as the API is included in 
+		<!-- Import the JPA API, we use provided scope as the API is included in
 			JBoss AS 7 -->
 		<dependency>
 			<groupId>org.hibernate.javax.persistence</groupId>
@@ -226,7 +226,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Import the EJB API, we use provided scope as the API is included in 
+		<!-- Import the EJB API, we use provided scope as the API is included in
 			JBoss AS 7 -->
 		<dependency>
 			<groupId>org.jboss.spec.javax.ejb</groupId>
@@ -234,7 +234,7 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Import the Bean Validation API, which is used both on the server and 
+		<!-- Import the Bean Validation API, which is used both on the server and
 			the client. -->
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -257,7 +257,7 @@
 			</exclusions>
 		</dependency>
 
-		<!-- GWT validation uses Hibernate Validator, and requires the sources 
+		<!-- GWT validation uses Hibernate Validator, and requires the sources
 			at compile time. -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -273,7 +273,7 @@
 			</exclusions>
 		</dependency>
 
-		<!-- GWT validation also requires the validation API sources at compile 
+		<!-- GWT validation also requires the validation API sources at compile
 			time -->
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -346,7 +346,7 @@
 			</exclusions>
 		</dependency>
 
-		<!-- gwt-user is required at runtime because we use some of the client/server 
+		<!-- gwt-user is required at runtime because we use some of the client/server
 			shared APIs such as RegExp, so scope is 'compile' rather than 'provided'. -->
 		<dependency>
 			<groupId>com.google.gwt</groupId>
@@ -370,7 +370,7 @@
 
 		<!-- Now we declare any tools needed -->
 
-		<!-- Annotation processor to generate the JPA 2.0 metamodel classes for 
+		<!-- Annotation processor to generate the JPA 2.0 metamodel classes for
 			typesafe criteria queries -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -424,7 +424,7 @@
 
 	<build>
 		<!-- Generate compiled stuff in the folder used for developing mode -->
-        	<outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
+        <outputDirectory>${webappDirectory}/WEB-INF/classes</outputDirectory>
 		<resources>
 			<resource>
 				<directory>${basedir}/src/main/resources</directory>
@@ -432,8 +432,8 @@
 				<includes>
 					<include>**/*.xml</include>
 					<include>**/*.properties</include>
-				</includes>				
-			</resource>	
+				</includes>
+			</resource>
 			<resource>
 				<directory>${basedir}/src/main/webapp/WEB-INF</directory>
 				<filtering>true</filtering>
@@ -441,7 +441,7 @@
 					<include>**/*.xml</include>
 					<include>**/*.properties</include>
 				</includes>
-			</resource>				
+			</resource>
 		</resources>
 		<testResources>
 			<testResource>
@@ -450,10 +450,10 @@
 				<includes>
 					<include>**/*.xml</include>
 					<include>**/*.properties</include>
-				</includes>				
+				</includes>
 			</testResource>
-		</testResources>	
-		<!-- Maven will append the version to the finalName (which is the name 
+		</testResources>
+		<!-- Maven will append the version to the finalName (which is the name
 			given to the generated war, and hence the context root) -->
 		<finalName>${project.artifactId}</finalName>
 		<plugins>
@@ -463,12 +463,12 @@
 				<version>${maven.war.plugin.version}</version>
 				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
-					<!-- Maven will append the version to the finalName (which is the name 
+					<!-- Maven will append the version to the finalName (which is the name
 						given to the generated war, and hence the context root) -->
 					<warName>${project.artifactId}</warName>
 
-					<!-- We must exclude GWT client local classes from the deployment, or 
-						classpath scanners such as Hibernate and Weld get confused when the webapp 
+					<!-- We must exclude GWT client local classes from the deployment, or
+						classpath scanners such as Hibernate and Weld get confused when the webapp
 						is bootstrapping. -->
 					<packagingExcludes>**/javax/**/*.*,**/client/local/**/*.class</packagingExcludes>
 
@@ -509,7 +509,7 @@
 					</filesets>
 				</configuration>
 			</plugin>
-			
+
 			<plugin>
 				<!-- Allow this web application to be started with the command : 'mvn jetty:run-war -Djetty.port=9090' -->
 				<groupId>org.eclipse.jetty</groupId>
@@ -538,7 +538,7 @@
 					</systemProperties>
 					-->
 				</configuration>
-			</plugin>				
+			</plugin>
 					<!-- Allow this web application to be started with the command : 'mvn tomcat7:run' -->
 			<plugin>
 			    <groupId>org.apache.tomcat.maven</groupId>
@@ -566,7 +566,7 @@
 						<groupId>org.jboss.tools.gwt.kitchensink</groupId>
 						<artifactId>gwt-kitchensink</artifactId>
 						<version>${project.version}</version>
-						<type>war</type>    
+						<type>war</type>
 			        </dependency>
 			        <dependency>
 							<groupId>${jdbc.groupId}</groupId>
@@ -575,7 +575,7 @@
 			            	<scope>runtime</scope>
 			        </dependency>
 			    </dependencies>
-			</plugin>					
+			</plugin>
 		</plugins>
 
 		<pluginManagement>
@@ -640,14 +640,14 @@
         	/ with.clover.everything profiles would not overwrite the default setting (and we have to disable two goals) -->
         	<profile>
         	    <id>default</id>
-		    <activation>
-		    	<activeByDefault>true</activeByDefault>
-		    </activation>        	    
+				<activation>
+					<activeByDefault>true</activeByDefault>
+				</activation>
         	    <build>
         	        <plugins>
-			    <!-- The default profile skips all tests, though you can tune it to run 
+			    <!-- The default profile skips all tests, though you can tune it to run
 			    	just unit tests based on a custom pattern -->
-			    <!-- Seperate profiles are provided for running all tests, including Arquillian 
+			    <!-- Seperate profiles are provided for running all tests, including Arquillian
 			    	tests that execute in the specified container -->
 			    <plugin>
 			    	<groupId>org.apache.maven.plugins</groupId>
@@ -656,8 +656,8 @@
 			    	<configuration>
 			    		<skip>true</skip>
 			    	</configuration>
-			    </plugin>  		        		            
-			    <!-- GWT plugin to compile client-side java code to javascript and to 
+			    </plugin>
+			    <!-- GWT plugin to compile client-side java code to javascript and to
 			    	run GWT development mode -->
 			    <plugin>
 			    	<groupId>org.codehaus.mojo</groupId>
@@ -667,9 +667,9 @@
 			    		<inplace>true</inplace>
 			    		<logLevel>INFO</logLevel>
 			    		<extraJvmArgs>-Xmx512m</extraJvmArgs>
-                	    
-			    		<!-- Configure GWT's development mode (formerly known as hosted mode) 
-			    			to not start the default server (embedded jetty), but to download the HTML 
+
+			    		<!-- Configure GWT's development mode (formerly known as hosted mode)
+			    			to not start the default server (embedded jetty), but to download the HTML
 			    			host page from the configured runTarget. -->
 			    		<noServer>true</noServer>
 			    		<hostedWebapp>${webappDirectory}</hostedWebapp>
@@ -687,7 +687,7 @@
 			    				<goal>resources</goal>
 			    				<goal>compile</goal>
 			    				<!--
-			    				<goal>test</goal>                	                		
+			    				<goal>test</goal>
                 	                		<goal>i18n</goal>
                 	                		<goal>generateAsync</goal>
                 	                		-->
@@ -701,11 +701,11 @@
 			    			</goals>
 			    		</execution>
 			    	</executions>
-			    </plugin>        		            
+			    </plugin>
         	        </plugins>
         	    </build>
         	</profile>
-        	
+
        	<!-- ============================================================================================ -->
         	<!-- Use this profile to enable Clover instrumentation for server-side code only.                 -->
         	<!-- Client and common code will not be instrumented so it can be translated by GWT to JavaScript -->
@@ -743,22 +743,22 @@
         	                    -->
         	                </configuration>
         	            </plugin>
-			    <plugin>
-			    	<groupId>org.apache.maven.plugins</groupId>
-			    	<artifactId>maven-surefire-plugin</artifactId>
-			    	<version>${maven.surefire.plugin.version}</version>
-			    	<configuration>
-			    		<skip>false</skip>
-			    		<!--
-            		                <environmentVariables>
-            		                    <JBOSS_HOME>${project.build.directory}/jboss-as-${server.version}</JBOSS_HOME>
-            		                </environmentVariables>            		                
-            		                <systemProperties>
-            		                    <jboss.version>${server.version}</jboss.version>
-            		                </systemProperties>	
-            		                -->		    		
-			    	</configuration>
-			    </plugin>  		             	            
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-surefire-plugin</artifactId>
+							<version>${maven.surefire.plugin.version}</version>
+							<configuration>
+								<skip>false</skip>
+								<!--
+											<environmentVariables>
+												<JBOSS_HOME>${project.build.directory}/jboss-as-${server.version}</JBOSS_HOME>
+											</environmentVariables>
+											<systemProperties>
+												<jboss.version>${server.version}</jboss.version>
+											</systemProperties>
+											-->
+							</configuration>
+						</plugin>
         	            <plugin>
         	                <groupId>com.atlassian.maven.plugins</groupId>
         	                <artifactId>maven-clover2-plugin</artifactId>
@@ -769,7 +769,7 @@
         	        </plugins>
         	    </build>
         	</profile>
-        	        	
+
         	<!-- ============================================================================================ -->
         	<!-- Use this profile to enable Clover instrumentation for server-side code only.                 -->
         	<!-- Client and common code will not be instrumented so it can be translated by GWT to JavaScript -->
@@ -840,7 +840,7 @@
         	        </plugins>
         	    </build>
         	</profile>
-        	
+
         	<!-- ============================================================================================ -->
         	<!-- Use this profile to enable Clover instrumentation for server, client and common code         -->
         	<!-- Because of fact that everything will be instrumented, client-side and common code cannot     -->

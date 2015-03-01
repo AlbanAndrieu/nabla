@@ -25,7 +25,7 @@
 		<!-- If you want to use the JBOSS_HOME environment variable, just delete 
 			the jbossHome property -->
 		<configuration>
-			<!--<property name="jbossHome">${project.baseDir}/target/jboss-as-7.1.1.Final/</property>-->
+			<property name="jbossHome">target/jboss-as-7.1.1.Final/</property>
 			<!--<property name="jbossHome">${server.home}</property> -->
 			<property name="allowConnectingToRunningServer">true</property>
 			<property name="javaVmArguments">-agentlib:jdwp=transport=dt_socket,address=5005,server=y,suspend=y -client -noverify -XX:+UseFastAccessorMethods -Xms64m -Xmx1024m -XX:MaxPermSize=512m</property>
