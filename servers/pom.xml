@@ -305,7 +305,7 @@
 				<!-- START INFO USE BY MDA -->
 				<!--<jboss.home>${env.JBOSS_HOME}</jboss.home>-->
 				<!--<jboss.home>C:\jboss-as-7.1.1.Final</jboss.home> -->
-				<jboss.home>target/jboss-as-7.1.1.Final/</jboss.home>
+				<jboss.home>${basedir}/target/jboss-as-7.1.1.Final/</jboss.home>
 				<jboss.version>${jboss7.version}</jboss.version> <!-- overrided -->
 				<server.version>${jboss.version}</server.version>
 				<server.home>${jboss.home}</server.home>
@@ -383,6 +383,7 @@
 									<!--<cargo.jboss.configuration>default</cargo.jboss.configuration>
 									<cargo.jboss.management.port>9999</cargo.jboss.management.port>
 									<cargo.rmi.port>1099</cargo.rmi.port>-->
+									<cargo.jboss.ajp.port>8010</cargo.jboss.ajp.port>
 									<cargo.jboss.management-native.port>9999</cargo.jboss.management-native.port>
 									<cargo.logging>high</cargo.logging>
 								</properties>
