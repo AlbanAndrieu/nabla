@@ -458,6 +458,32 @@
 								</dependency>
 						</dependencies>
 					</plugin>
+					<!-- install jboss 7.7.7-Final in target/jboss-as-7.1.1.Final -->
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>unpack</id>
+								<phase>process-test-classes</phase>
+								<goals>
+									<goal>unpack</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
+											<groupId>org.jboss.as</groupId>
+											<artifactId>jboss-as-dist</artifactId>
+											<version>${jboss7.version}</version>
+											<type>zip</type>
+											<overWrite>false</overWrite>
+											<outputDirectory>target</outputDirectory>
+										</artifactItem>
+									</artifactItems>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
 				</plugins>
 			</build>
 		</profile>
@@ -1433,8 +1459,8 @@
 				<dependency>
 					<groupId>org.jboss.spec</groupId>
 					<artifactId>jboss-javaee-6.0</artifactId>
-					<!--<version>1.0.0.Final</version>-->
-					<version>${org.jboss.spec.jboss.javaee6.version}</version>
+					<version>1.0.0.Final</version>
+					<!--<version>${org.jboss.spec.jboss.javaee6.version}</version>-->
 					<type>pom</type>
 					<scope>provided</scope>
 				</dependency>
@@ -1773,7 +1799,7 @@
 			 <dependencies>
 				<dependency>
 				   <groupId>org.jboss.arquillian.container</groupId>
-				   <artifactId>arquillian-tomcat-embedded-6</artifactId>
+				   <artifactId>arquillian-tomcat-embedded-7</artifactId>
 				   <version>${org.jboss.arquillian.junit.version}</version>
 				   <scope>test</scope>
 				</dependency>
