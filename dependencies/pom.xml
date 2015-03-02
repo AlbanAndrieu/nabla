@@ -1022,8 +1022,22 @@
                 <sonar.issue.ignore.block.e2.beginBlockRegexp>Copyright</sonar.issue.ignore.block.e2.beginBlockRegexp>
                 <sonar.issue.ignore.block.e2.endBlockRegexp>License 1.0</sonar.issue.ignore.block.e2.endBlockRegexp>
 
-				<sonar.skippedModules>cartridges</sonar.skippedModules>
+		<sonar.skippedModules>cartridges</sonar.skippedModules>
 
+		<!-- TODO move to profile jmeter -->
+		<cargo.host>localhost</cargo.host>
+		<cargo.port>80</cargo.port>
+		<performancetest.webservice.host>${cargo.host}</performancetest.webservice.host>
+        	<performancetest.webservice.port>${cargo.port}</performancetest.webservice.port>
+		<performancetest.connectTimeout>1000</performancetest.connectTimeout>
+        	<performancetest.responseTimeout>3000</performancetest.responseTimeout>
+        	<!--
+        	<performancetest.threadCount>20</performancetest.threadCount>
+        	<performancetest.loopCount>10</performancetest.loopCount>
+        	-->
+        	<performancetest.threadCount>5</performancetest.threadCount>
+                <performancetest.loopCount>5</performancetest.loopCount>
+        
                 <cucumber.feature></cucumber.feature>
                 <cucumber.tags>~@no-tag-specified</cucumber.tags>
                 <cucumber.features.dir>src/test/resources/features</cucumber.features.dir>
@@ -1649,6 +1663,8 @@
                 <maven.sonar.plugin.version>2.4</maven.sonar.plugin.version>
                 <maven.gatling.plugin.version>${gatling.version}</maven.gatling.plugin.version>
                 <maven.jmeter.plugin.version>1.10.0</maven.jmeter.plugin.version>
+                <maven.jmeter.graph.plugin.version>0.1.0</maven.jmeter.graph.plugin.version>
+                <maven.jmeter.analysis.plugin.version>1.0.5</maven.jmeter.analysis.plugin.version>
                 <maven.scala.plugin.version>3.2.0</maven.scala.plugin.version>
                 <maven.hotdeploy.plugin.version>0.3.3</maven.hotdeploy.plugin.version>
                 <maven.cli.plugin.version>1.0.11</maven.cli.plugin.version>
@@ -2412,22 +2428,191 @@
                                     <version>${maven.gatling.plugin.version}</version>
                                 </plugin>
 
-								<plugin>
-									<groupId>com.lazerycode.jmeter</groupId>
-									<artifactId>jmeter-maven-plugin</artifactId>
-									<version>${maven.jmeter.plugin.version}</version>
-									<executions>
-										<execution>
-											<id>jmeter-tests</id>
-											<!--<phase>verify</phase>-->
-											<phase>integration-test</phase>
-											<goals>
-												<goal>jmeter</goal>
-											</goals>
-										</execution>
-									</executions>
-								</plugin>
-
+				<!-- https://blog.codecentric.de/en/2014/01/automating-jmeter-tests-maven-jenkins/-->
+				<!--
+				mvn jmeter:gui 
+				mvn jmeter:jmeter 
+				-->				
+				<plugin>
+					<groupId>com.lazerycode.jmeter</groupId>
+					<artifactId>jmeter-maven-plugin</artifactId>
+					<version>${maven.jmeter.plugin.version}</version>
+  					<configuration>
+  					  <!--
+  					     By default the test results are saved in a file  
+  					     /target/jmeter/results/<testname>-<timestamp>.jtl
+  					     Further processing is easier without timestamp though.
+  					  -->
+  					  <testResultsTimestamp>false</testResultsTimestamp>									
+  					  <!--
+  					     To simplify debugging, it is advisable to adapt the loglevel.
+  					     The jmeter logs are written to the file jmeter.log.
+  					  -->
+  					  <overrideRootLogLevel>DEBUG</overrideRootLogLevel>									
+  					  <!--
+  					     By default, the console output during a jmeter test run is suppressed.
+  					     We want to display the progress using the listener "Generate Summary Results" 
+  					     (which periodically prints stats to stdout). Therefore we have to make sure,
+  					     that the jmeter output is not suppressed.
+  					  -->
+  					  <suppressJMeterOutput>false</suppressJMeterOutput>									
+  					  <!--
+  					     If tests fail (e.g. a http-request running into a timeout), the corresponding maven
+  					     goal also fails (and subsequent goals aren't executed anymore). We want to create graphs
+  					     from test-results, no matter if some requests failed or not, so we ignore jmeter failures.
+  					  -->
+  					  <ignoreResultFailures>true</ignoreResultFailures>
+		   			  <propertiesUser>
+                   			      <webservice.host>${performancetest.webservice.host}</webservice.host>
+                   			      <webservice.port>${performancetest.webservice.port}</webservice.port>
+                   			      <webservice.path>${performancetest.webservice.path}</webservice.path>
+                   			      <webservice.connectTimeout>${performancetest.connectTimeout}</webservice.connectTimeout>
+                   			      <webservice.responseTimeout>${performancetest.responseTimeout}</webservice.responseTimeout>
+                   			      <threadCount>${performancetest.threadCount}</threadCount>
+                   			      <loopCount>${performancetest.threadCount}</loopCount>
+                   			  </propertiesUser>
+                   			  <propertiesJMeter>
+                   			      <jmeter.save.saveservice.thread_counts>true</jmeter.save.saveservice.thread_counts>
+                   			  </propertiesJMeter>
+                   			  <jmeterPlugins>
+                   			      <plugin>
+                   			          <groupId>kg.apc</groupId>
+                   			          <artifactId>jmeter-plugins</artifactId>
+                   			      </plugin>
+                   			  </jmeterPlugins>  					  
+  					</configuration>									
+					<executions>
+						<execution>
+							<id>jmeter-tests</id>
+							<!--<phase>verify</phase>-->
+							<phase>integration-test</phase>
+							<goals>
+								<goal>jmeter</goal>
+							</goals>
+						</execution>
+					</executions>
+					<dependencies>
+                		   	    <dependency>
+                		   	        <groupId>kg.apc</groupId>
+                		   	        <artifactId>jmeter-plugins</artifactId>
+                		   	        <version>1.0.0</version>
+                		   	        <exclusions>
+                		   	            <!--
+                		   	                Unfortunately some transitive dependencies cannot be found on mvncentral
+                		   	                and we have to explicitly exclude them.
+                		   	                For a complete list, see https://github.com/mlex/jmeter-maven-example/
+                		   	            -->
+                		   	            <exclusion>
+                		   	                <groupId>kg.apc</groupId>
+                		   	                <artifactId>perfmon</artifactId>
+                		   	            </exclusion>
+                		   	            <exclusion>
+                		   	                <groupId>org.apache.hadoop</groupId>
+                		   	                <artifactId>hadoop-core</artifactId>
+                		   	            </exclusion>
+                		   	            <exclusion>
+                		   	                <groupId>org.apache.hbase</groupId>
+                		   	                <artifactId>hbase</artifactId>
+                		   	            </exclusion>
+                		   	            
+                		   	            <!--
+                		   	                These dependencies would override direct JMeter dependencies,
+                		   	                which results in version conflicts (e.g. NoSuchMethodError on jmeter startup
+                		   	            -->
+                		   	            <exclusion>
+                		   	                <groupId>org.apache.jmeter</groupId>
+                		   	                <artifactId>jorphan</artifactId>
+                		   	            </exclusion>
+                		   	            <exclusion>
+                		   	                <groupId>org.apache.bsf</groupId>
+                		   	                <artifactId>bsf-api</artifactId>
+                		   	            </exclusion>
+                		   	            <exclusion>
+                		   	                <groupId>org.bouncycastle</groupId>
+                		   	                <artifactId>bcmail-jdk15</artifactId>
+                		   	            </exclusion>
+                		   	            <exclusion>
+                		   	                <groupId>org.bouncycastle</groupId>
+                		   	                <artifactId>bcprov-jdk15</artifactId>
+                		   	            </exclusion>
+                		   	            <exclusion>
+                		   	                <groupId>javax.activation</groupId>
+                		   	                <artifactId>activation</artifactId>
+                		   	            </exclusion>
+                		   	            <exclusion>
+                		   	                <groupId>commons-logging</groupId>
+                		   	                <artifactId>commons-logging</artifactId>
+                		   	            </exclusion>
+                		   	        </exclusions>
+                		   	    </dependency>
+                		   	</dependencies>					
+				</plugin>
+				<!-- TODO https://github.com/codecentric/jmeter-graph-maven-plugin -->     
+				<!-- TODO https://github.com/mlex/jmeter-maven-example/blob/master/src/test/jmeter/SimpleWebservicePerformanceTest.jmx -->
+           			<plugin>
+           			     <groupId>com.lazerycode.jmeter</groupId>
+           			     <artifactId>jmeter-analysis-maven-plugin</artifactId>
+           			     <version>${maven.jmeter.analysis.plugin.version}</version>
+           			     <configuration>
+           			         <source>${project.build.directory}/jmeter/results/jmeter.jtl</source>
+           			     </configuration>
+           			     <executions>
+           			         <execution>
+           			             <id>create-html-report</id>
+           			             <phase>verify</phase>
+           			             <goals>
+           			                 <goal>analyze</goal>
+           			             </goals>
+           			         </execution>
+           			     </executions>
+           			</plugin>				
+      				<plugin>
+      				  <groupId>de.codecentric</groupId>
+      				  <artifactId>jmeter-graph-maven-plugin</artifactId>
+      				  <version>${maven.jmeter.graph.plugin.version}</version>
+				  <executions>
+                		    <execution>
+                		        <id>create-graph-threads</id>
+                		        <goals>
+                		            <goal>create-graph</goal>
+                		        </goals>
+                		        <phase>verify</phase>
+                		    </execution>
+                		  </executions>      				  
+      				  <configuration>
+      				    <inputFile>${project.build.directory}/jmeter/results/jmeter.jtl</inputFile>
+      				    <graphs>
+      				      <graph>
+      				        <pluginType>ThreadsStateOverTime</pluginType>
+      				        <width>800</width>
+      				        <height>600</height>
+      				        <outputFile>${project.build.directory}/jmeter/results/jmeter-ThreadsStateOverTime.png</outputFile>
+      				      </graph>
+      				      <graph>
+                        	          <pluginType>ResponseTimesOverTime</pluginType>
+                        	          <width>800</width>
+                        	          <height>600</height>
+                        	          <outputFile>${project.build.directory}/jmeter/results/jmeter-ResponseTimesOverTime.png</outputFile>
+                        	      </graph>
+                        	      <graph>
+                        	          <pluginType>TransactionsPerSecond</pluginType>
+                        	          <width>800</width>
+                        	          <height>600</height>
+                        	          <outputFile>${project.build.directory}/jmeter/results/jmeter-TransactionsPerSecond.png</outputFile>
+                        	      </graph>
+      				    </graphs>
+      				  </configuration>
+      				</plugin>				
+				<!--
+				<plugin>
+				    <groupId>org.apache.jmeter</groupId>
+				    <artifactId>maven-jmeter-plugin</artifactId>
+				    <version>1.0-GA</version>
+				    <configuration>
+				        <reportDir>${project.build.directory}/jmeter-reports</reportDir>
+				    </configuration>
+				</plugin>
+				-->
                                 <plugin>
                                     <groupId>net.alchim31.maven</groupId>
                                     <artifactId>scala-maven-plugin</artifactId>
