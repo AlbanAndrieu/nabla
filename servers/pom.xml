@@ -385,6 +385,7 @@
 									<cargo.rmi.port>1099</cargo.rmi.port>-->
 									<cargo.jboss.ajp.port>8010</cargo.jboss.ajp.port>
 									<cargo.jboss.management-native.port>9999</cargo.jboss.management-native.port>
+									<cargo.jboss.management-http.port>9998</cargo.jboss.management-http.port>
 									<cargo.logging>high</cargo.logging>
 								</properties>
 							</configuration>
