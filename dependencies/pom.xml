@@ -2462,6 +2462,8 @@
   					     from test-results, no matter if some requests failed or not, so we ignore jmeter failures.
   					  -->
   					  <ignoreResultFailures>true</ignoreResultFailures>
+  					  <skipTests>${maven.test.skip}</skipTests>
+  					  <!--<resultsDirectory>${project.base.directory}/target/jmeter/results</resultsDirectory>-->
 		   			  <propertiesUser>
                    			      <webservice.host>${performancetest.webservice.host}</webservice.host>
                    			      <webservice.port>${performancetest.webservice.port}</webservice.port>
