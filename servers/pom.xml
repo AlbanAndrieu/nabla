@@ -16,12 +16,12 @@
 	<description>The Servers pom file is a superpom to centralize all third parties</description>
 	<url>http://maven.nabla.mobi/dependencies/customs/main/databases/servers</url>
 
-	<scm>
-		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/servers</connection>
-		<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/servers</developerConnection>
-		<url>https://alban.googlecode.com/svn/${project.svn.path}/servers</url>
-		<tag>HEAD</tag>
-	</scm>
+		<scm>
+			<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/servers</connection>
+			<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/servers</developerConnection>
+			<url>https://alban.googlecode.com/svn/${project.svn.path}/servers</url>
+			<tag>HEAD</tag>
+		</scm>
 
 		<ciManagement>
 				<system>Jenkins</system>
@@ -46,6 +46,11 @@
 			<cargo.remote.user>admin</cargo.remote.user>
 			<cargo.remote.password>microsoft</cargo.remote.password>
 			<cargo.rmi.port>1099</cargo.rmi.port>
+			<cargo.ajp.port>9009</cargo.ajp.port>
+			<cargo.tomcat.ajp.port>${cargo.ajp.port}</cargo.tomcat.ajp.port>
+			<cargo.jboss.ajp.port>${cargo.ajp.port}</cargo.jboss.ajp.port>
+			<cargo.jboss.management.native.port>9997</cargo.jboss.management.native.port>
+			<cargo.jboss.management.http.port>9998</cargo.jboss.management.http.port>
 			<cargo.jetty.jmx.activation>-Dcom.sun.management.jmxremote
 -Dcom.sun.management.jmxremote.ssl=false
 -Dcom.sun.management.jmxremote.authenticate=false
@@ -239,7 +244,7 @@
 									<!--<cargo.jboss.configuration>default</cargo.jboss.configuration>
 									<cargo.jboss.management.port>9999</cargo.jboss.management.port>
 									<cargo.rmi.port>1099</cargo.rmi.port>-->
-									<cargo.jboss.management-native.port>9990</cargo.jboss.management-native.port>
+									<cargo.jboss.management-native.port>${cargo.jboss.management.native.port}</cargo.jboss.management-native.port>
 									<cargo.logging>high</cargo.logging>
 								</properties>
 							</configuration>
@@ -383,9 +388,9 @@
 									<!--<cargo.jboss.configuration>default</cargo.jboss.configuration>
 									<cargo.jboss.management.port>9999</cargo.jboss.management.port>
 									<cargo.rmi.port>1099</cargo.rmi.port>-->
-									<cargo.jboss.ajp.port>8010</cargo.jboss.ajp.port>
-									<cargo.jboss.management-native.port>9999</cargo.jboss.management-native.port>
-									<cargo.jboss.management-http.port>9998</cargo.jboss.management-http.port>
+									<cargo.jboss.ajp.port>${cargo.jboss.ajp.port}</cargo.jboss.ajp.port>
+									<cargo.jboss.management-native.port>${cargo.jboss.management.native.port}</cargo.jboss.management-native.port>
+									<cargo.jboss.management-http.port>${cargo.jboss.management.http.port}</cargo.jboss.management-http.port>
 									<cargo.logging>high</cargo.logging>
 								</properties>
 							</configuration>
@@ -583,7 +588,7 @@
 									<!--<cargo.jboss.configuration>default</cargo.jboss.configuration>
 									<cargo.jboss.management.port>9999</cargo.jboss.management.port>
 									<cargo.rmi.port>1099</cargo.rmi.port>-->
-									<cargo.jboss.management-native.port>9999</cargo.jboss.management-native.port>
+									<cargo.jboss.management-native.port>${cargo.jboss.management.native.port}</cargo.jboss.management-native.port>
 									<cargo.logging>high</cargo.logging>
 								</properties>
 							</configuration>
@@ -1058,7 +1063,6 @@
 				<scope.type>${scope.compile}</scope.type>
 				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
 				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
-				<cargo.tomcat.ajp.port>9009</cargo.tomcat.ajp.port>
 
 				<cargo.jmx.activation>${cargo.tomcat.jmx.activation}</cargo.jmx.activation>
 			</properties>
@@ -1175,7 +1179,6 @@
 				<scope.type>${scope.compile}</scope.type>
 				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
 				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
-				<cargo.tomcat.ajp.port>8298</cargo.tomcat.ajp.port>
 
 				<cargo.jmx.activation>${cargo.tomcat.jmx.activation}</cargo.jmx.activation>
 			</properties>
@@ -1295,7 +1298,6 @@
 				<scope.type>${scope.compile}</scope.type>
 				<scope.tomcat.only.type>${scope.compile}</scope.tomcat.only.type>
 				<scope.tomcat.never.type>${scope.provided}</scope.tomcat.never.type>
-				<cargo.tomcat.ajp.port>8299</cargo.tomcat.ajp.port>
 
 				<cargo.jmx.activation>${cargo.tomcat.jmx.activation}</cargo.jmx.activation>
 			</properties>
