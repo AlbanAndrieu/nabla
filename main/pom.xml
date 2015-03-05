@@ -22,12 +22,12 @@
                 <url>https://alban.googlecode.com/svn/${project.svn.path}/main</url>
                 <tag>HEAD</tag>
         </scm>
-        
+
         <ciManagement>
                 <system>Jenkins</system>
                 <url>${JOB_URL}</url>
         </ciManagement>
-        
+
         <!-- ================= Default Properties ================= -->
         <properties>
                 <invoker.skip>true</invoker.skip>
@@ -61,10 +61,13 @@
                 <server.name>${product.name}</server.name>
                 <server.port>8180</server.port>
                 <datasource.name>jdbc/${application.id}</datasource.name>
-                <datasource>java:/${dataSource.name}</datasource>
-                <webservice.host>localhost</webservice.host>
-                <webservice.port>8180</webservice.port>
+                <datasource>java:/${datasource.name}</datasource>
                 -->
+				<!-- Change this to the host on which your webservice will be deployed -->
+				<webservice.host>localhost</webservice.host>
+				<!-- Change this the port on which your webservice will be deploy -->
+				<webservice.port>8187</webservice.port>
+
                 <!-- END INFO USE BY MDA -->
                 <!--
                 <cargo.container>jboss4x</cargo.container>
@@ -81,13 +84,13 @@
                 <hudson.lumbermill.port>4431</hudson.lumbermill.port>
                 <glassfish.port>8090</glassfish.port><!-- 4848 -->
                 <!-- change jboss port at \server\default\deploy\jbossweb.sar\server.xml -->
-                <jboss.port>8180</jboss.port>
+                <jboss.port>8180</jboss.port> <!-- jenkins cargo 8182,8183 -->
                 <jboss.remote.debug.port>8787</jboss.remote.debug.port>
                 <jboss.htpp.debug.port>8181</jboss.htpp.debug.port> <!-- in Eclipse Local Monitor Port 8181 and Port 8180 -->
 
                 <hudson.port>8070</hudson.port>
-                <tomcat.port>8280</tomcat.port>
-                <jetty.port>9090</jetty.port>
+                <tomcat.port>8280</tomcat.port> <!-- jenkins cargo 8281,8282 -->
+                <jetty.port>9090</jetty.port> <!-- jenkins cargo 9090,9091 -->
                 <!--<jenkins.port>${tomcat.port}</jenkins.port>  http://localhost:8280/jenkins/ -->
                 <jenkins.port>8380</jenkins.port>
                 <apache.port>7070</apache.port>
@@ -108,6 +111,7 @@
                 <bugzilla.mysql.port>${mysql.port}</bugzilla.mysql.port>
 				<crowd.port>8095</crowd.port><!-- http://localhost:8095/crowd/ -->
 				<chronon.port>8032</chronon.port>
+				<pitest.port>8092</pitest.port>
 
                 <apache-continuum.version>1.2.3</apache-continuum.version>
 
@@ -118,10 +122,10 @@
                 <project.includedictionaries>${project.target}</project.includedictionaries>
                 <maven.build.generated>src/generated</maven.build.generated>
                 <maven.build.src>${pom.basedir}/${maven.build.generated}</maven.build.src>
-                <append.to.project.name>trunk</append.to.project.name>                
+                <append.to.project.name>trunk</append.to.project.name>
                 <!-- Profile create-src-jars copies src JARs to the following directory -->
 				<src.jars.dir>${project.target}/src</src.jars.dir>
-				
+
 				<newrelic.agent>-javaagent:"${settings.localRepository}"/com/newrelic/agent/java/newrelic-agent/${newrelic.version}/newrelic-agent-${newrelic.version}.jar -Dnewrelic.config.file=${user.home}/newrelic.yml</newrelic.agent>
         </properties>
         <dependencyManagement>
@@ -169,13 +173,13 @@
 						<scope>test</scope>
 				</dependency>
 				-->
-                                                
+
                 <!-- FIX BUG http://forum.spring.io/forum/spring-projects/container/52022-spring-test-breaks-in-junit-4-5 -->
 				<dependency>
 						<groupId>com.google.code.protoj</groupId>
 						<artifactId>protoj-nodep</artifactId>
 						<scope>test</scope>
-				</dependency>              
+				</dependency>
                 <dependency>
                         <groupId>junitperf</groupId>
                         <artifactId>junitperf</artifactId>
@@ -345,7 +349,7 @@
 															<content>
 															<![CDATA[eclipse.preferences.version=1${line.separator}encoding/<project>=${project.build.sourceEncoding}${line.separator}]]>
 															</content>
-														</file>                                                
+														</file>
                                                         <file>
                                                                 <name>.checkstyle</name>
                                                                 <!--redirect to to checkstyle_regles_nabla_eclipse.xml (must be imported by hand in eclipse -->
@@ -436,7 +440,7 @@
                                 <!--
                                         NoClassDefFoundError running maven plugins site, always shows 0%
                                         coverage anyway
-                                -->                             
+                                -->
                         </plugins>
                 </pluginManagement>
 
@@ -618,7 +622,7 @@
                                 <groupId>org.apache.maven.plugins</groupId>
                                 <artifactId>maven-jar-plugin</artifactId>
                         </plugin>
-						
+
                         <plugin>
                                 <groupId>org.codehaus.mojo</groupId>
                                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -632,22 +636,36 @@
                                                 </goals>
                                                 <configuration>
                                                         <sources>
-                                                                <source>${basedir}/src/generated/main/java</source>
-                                                                <source>${basedir}/src/generated/main/resources</source>
-                                                                <!--
+                                                                <source>${maven.build.generated}/main/java</source>
+                                                                <source>${basedir}/src/main/groovy</source>
                                                                 <source>${basedir}/src/main/java</source>
-                                                                <source>${basedir}/src/main/resources</source>
-                                                                -->
-                                                                <!--<source>src/main/groovy</source>-->
+                                                                <source>${basedir}/src/main/config/${uml2}</source>
+                                                                <source>${basedir}/src/main/uml/${uml.type}</source>
                                                                 <!--
                                                                 <source>${basedir}/${target.dir}/generated-sources/antlr</source>
                                                                 <source>${basedir}/${target.dir}/generated-sources/main/java</source>
-                                                                <source>${basedir}/${target.dir}/generated-sources/main/resources</source>
                                                                 -->
                                                                 <!--<source>${basedir}/${target.dir}/generated-sources/test/java</source> -->
-                                                                <!-- <source>${basedir}/${target.dir}/generated-sources/test/resources</source> -->
+
                                                         </sources>
                                                 </configuration>
+                                        </execution>
+                                        <execution>
+                                            <id>add-resource</id>
+                                            <phase>generate-resources</phase>
+                                            <goals>
+                                                    <goal>add-resource</goal>
+                                            </goals>
+                                            <configuration>
+                                                    <resources>
+															<resource>
+																<directory>${maven.build.generated}/main/resources</directory>
+															</resource>
+                                                            <!--<resource>${basedir}/src/main/resources</resource>-->
+                                                            <!--<resource>${basedir}/${target.dir}/generated-sources/main/resources</resource>-->
+                                                            <!-- <resource>${basedir}/${target.dir}/generated-sources/test/resources</resource> -->
+                                                    </resources>
+                                            </configuration>
                                         </execution>
                                         <execution>
                                             <id>add-test-source</id>
@@ -657,10 +675,28 @@
                                             </goals>
                                             <configuration>
                                                 <sources>
-                                                    <source>src/test/groovy</source>
+                                                    <source>${basedir}/src/test/groovy</source>
+                                                    <source>${basedir}/src/test/java</source>
+                                                    <source>${basedir}/src/test/${uml.type}</source>
                                                 </sources>
                                             </configuration>
                                         </execution>
+                                        <!--
+                                        <execution>
+                                            <id>add-test-resource</id>
+                                            <phase>generate-test-resources</phase>
+                                            <goals>
+                                                <goal>add-test-resource</goal>
+                                            </goals>
+                                            <configuration>
+                                                <resources>
+                                                    <resource>
+														<directory>${basedir}/src/test/resources</directory>
+													</resource>
+                                                </resources>
+                                            </configuration>
+                                        </execution>
+                                        -->
                                 </executions>
                         </plugin>
 						<plugin>
@@ -724,24 +760,24 @@
 					</activation>
 					<build>
 						<plugins>
-						<!-- The next two plugins (maven-assembly-plugin and maven-dependency-plugin) 
-							are used in the 'src-jars' profile to create extra JARs containing source 
-							code. Modules that have files in src/main/java and/or src/test/java must 
-							include the following snippet at the bottom of their POMs: <profiles> <profile> 
-							<id>src-jars</id> <activation> <activeByDefault>false</activeByDefault> </activation> 
-							<build> <plugins> <plugin> <artifactId>maven-assembly-plugin</artifactId> 
-							</plugin> <plugin> <artifactId>maven-dependency-plugin</artifactId> </plugin> 
-							</plugins> </build> </profile> </profiles> This will cause the following 
-							extra JARs (containing the source files) to be created: <module-name>-0.0.1-SNAPSHOT-sources.jar 
-							<module-name>-0.0.1-SNAPSHOT-test-sources.jar It will also cause the JARs 
-							to be copied to the path specified by property ${src.jars.dir}, which has 
-							a default value defined in this POM, but can be overridden on the command 
-							line using -Dsrc.jars.dir=... NOTE: Currently the src-jars profile is only 
-							intended to be used by the TopOffice release tool. If you want to use it, 
-							then take into account the following: (1) There is no 'clean' functionality 
-							associated with the src JARs: the src JARs of a module are not deleted from 
-							${src.jars.dir} when you run 'mvn clean' for the module. (2) Even if a module 
-							has no tests, a source zip file for the module is still created: it will 
+						<!-- The next two plugins (maven-assembly-plugin and maven-dependency-plugin)
+							are used in the 'src-jars' profile to create extra JARs containing source
+							code. Modules that have files in src/main/java and/or src/test/java must
+							include the following snippet at the bottom of their POMs: <profiles> <profile>
+							<id>src-jars</id> <activation> <activeByDefault>false</activeByDefault> </activation>
+							<build> <plugins> <plugin> <artifactId>maven-assembly-plugin</artifactId>
+							</plugin> <plugin> <artifactId>maven-dependency-plugin</artifactId> </plugin>
+							</plugins> </build> </profile> </profiles> This will cause the following
+							extra JARs (containing the source files) to be created: <module-name>-0.0.1-SNAPSHOT-sources.jar
+							<module-name>-0.0.1-SNAPSHOT-test-sources.jar It will also cause the JARs
+							to be copied to the path specified by property ${src.jars.dir}, which has
+							a default value defined in this POM, but can be overridden on the command
+							line using -Dsrc.jars.dir=... NOTE: Currently the src-jars profile is only
+							intended to be used by the TopOffice release tool. If you want to use it,
+							then take into account the following: (1) There is no 'clean' functionality
+							associated with the src JARs: the src JARs of a module are not deleted from
+							${src.jars.dir} when you run 'mvn clean' for the module. (2) Even if a module
+							has no tests, a source zip file for the module is still created: it will
 							just be empty. -->
 						<plugin>
 							<groupId>org.apache.maven.plugins</groupId>
@@ -766,14 +802,14 @@
 											<descriptorRef>test-src-assembly-descriptor</descriptorRef>
 										</descriptorRefs>
 										<archive>
-											<!-- NOTE: if you make any changes to this element, then make sure 
-												you make the same changes in the same element of maven-jar-plugin and maven-war-plugin 
+											<!-- NOTE: if you make any changes to this element, then make sure
+												you make the same changes in the same element of maven-jar-plugin and maven-war-plugin
 												in this file. -->
 											<manifestEntries>
 												<Specification-Vendor>Misys</Specification-Vendor>
 												<Specification-Title>${project.artifactId}</Specification-Title>
 												<Implementation-Title>${project.artifactId}</Implementation-Title>
-												<!-- For information on the next attribute, see the comment accompanying 
+												<!-- For information on the next attribute, see the comment accompanying
 													the same attribute in the maven-jar-plugin element in this file -->
 												<Implementation-Version>${baseline}</Implementation-Version>
 											</manifestEntries>
@@ -817,7 +853,7 @@
 						</plugin>
 						</plugins>
 					</build>
-				</profile>         
+				</profile>
 				<profile>
 				    <activation>
 				        <file>
@@ -859,7 +895,7 @@
 				         </pluginManagement>
 				    </build>
 				</profile>
-                <!-- see http://www.aheritier.net/maven-failsafe-sonar-and-jacoco-are-in-a-boat/ -->		
+                <!-- see http://www.aheritier.net/maven-failsafe-sonar-and-jacoco-are-in-a-boat/ -->
 				<!-- activate jacoco profile with coverage for arquillian to work -->
 				<profile>
 					<id>jacoco</id>
@@ -867,7 +903,7 @@
 							<property>
 									<name>!profile.activation</name>
 							</property>
-					</activation>			
+					</activation>
 					<properties>
 						<!-- ************************ -->
 						<!-- Sonar/Reporting settings -->
@@ -875,21 +911,21 @@
 						<!-- Sonar/Jacoco integration. Note that these properties need to be defined outside the "coverage" profile
 						because we want to be to able to execute mvn sonar:sonar without passing a profile -->
 						<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
-						<sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>	
+						<sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
 						<sonar.jacoco.reportMissing.force.zero>true</sonar.jacoco.reportMissing.force.zero>
 						<!-- Tells Sonar to use jacoco for coverage results -->
 						<!-- Don't let Sonar execute tests. We will ask it to Maven -->
-						<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>		
+						<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
 						<!-- The system property jacoco.outputDir needs to be override on the command line
 						with an absolute path if you want to merge results from all modules.
 						Example in a Jenkisn build where ${WORKSPACE} is defined and your project in the root directory of the workspace :
 						mvn clean install -Prun-its,coverage -Djacoco.outputDir=${WORKSPACE}/target
 						Note that unfortunately using the following does not work because of
-						 
+
 						http://jira.codehaus.org/browse/SONAR-3427:
-						 
+
 						<jacoco.outputDir>${session.executionRootDirectory}/target/</jacoco.outputDir>
-						-->						
+						-->
 						<jacoco.outputDir>${project.build.directory}</jacoco.outputDir>
 						<!-- Jacoco output file for UTs -->
 						<jacoco.out.ut.file>jacoco.exec</jacoco.out.ut.file>
@@ -900,22 +936,22 @@
 						<!-- Tells Sonar where the Jacoco coverage result file is located for Integration Tests -->
 						<sonar.jacoco.itReportPath>${jacoco.outputDir}/${jacoco.out.it.file}</sonar.jacoco.itReportPath>
 						<!--<jacoco.skip>true</jacoco.skip>-->
-						<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>	
-						
+						<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>
+
 						<!--<jacoco.agent>${project.build.directory}/org.jacoco.agent-${jacoco.version}-runtime.jar</jacoco.agent>-->
 						<jacoco.agent>-javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${jacoco.agent.version}/org.jacoco.agent-${jacoco.agent.version}-runtime.jar=destfile=${sonar.jacoco.itReportPath}</jacoco.agent>
-					</properties>										
+					</properties>
 					<dependencies>
 						<dependency>
 							<groupId>org.jboss.arquillian.extension</groupId>
 							<artifactId>arquillian-jacoco</artifactId>
-							<version>${org.jboss.arquillian.jacoco.version}</version>  
+							<version>${org.jboss.arquillian.jacoco.version}</version>
 							<scope>test</scope>
 						</dependency>
 						<dependency>
 							<groupId>org.jacoco</groupId>
 							<artifactId>org.jacoco.core</artifactId>
-							<version>${jacoco.version}</version> 
+							<version>${jacoco.version}</version>
 							<scope>provided</scope>
 						</dependency>
 						<!--
@@ -923,13 +959,13 @@
 						  <groupId>org.codehaus.sonar-plugins.java</groupId>
 						  <artifactId>sonar-jacoco-listeners</artifactId>
 						  <version>${sonar.jacoco.listeners.version}</version>
-						  <scope>test</scope>					  
-						</dependency>	
+						  <scope>test</scope>
+						</dependency>
 						-->
 					</dependencies>
 
 					<build>
-						<plugins>		
+						<plugins>
 							  <plugin>
 								<groupId>org.apache.maven.plugins</groupId>
 								<artifactId>maven-surefire-plugin</artifactId>
@@ -943,7 +979,7 @@
 								  <skipTests>${maven.test.ut.skip}</skipTests>
 								  <!-- Enable or disable Stop maven -->
 								  <testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
-								  <forkMode>once</forkMode>							  
+								  <forkMode>once</forkMode>
 								  <!-- Specific to generate mapping between tests and covered code -->
 								  <!--
 								  <properties>
@@ -956,8 +992,8 @@
 								  <!-- NOT needed instead remove jmock-junit4 because it does not work with jacoco
 								  <excludes>
 									 <exclude>**/*DaoTest.java</exclude>
-								  </excludes>		 
-								  --> 
+								  </excludes>
+								  -->
 								  <excludes>
 									<exclude>**/*ITest*</exclude>
 									<exclude>**/*STest*</exclude>
@@ -966,13 +1002,13 @@
 								  <systemPropertyVariables>
 										<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
 										<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
-										<webdriver.safari.noinstall>true</webdriver.safari.noinstall>									
+										<webdriver.safari.noinstall>true</webdriver.safari.noinstall>
 										<arquillian.launch>${arquillian}</arquillian.launch>
 										<arquillian>${arquillian}</arquillian>
 										<cucumber.options>
 											  <![CDATA[--tags ${cucumber.tags} ${cucumber.features.dir}/${cucumber.feature}]]>
-										</cucumber.options>				
-								  </systemPropertyVariables>						  
+										</cucumber.options>
+								  </systemPropertyVariables>
 								</configuration>
 							  </plugin>
 							  <plugin>
@@ -992,7 +1028,7 @@
 								  </properties>
 								  -->
 								  <!-- Let's put failsafe reports with surefire to have access to tests failures/success reports in sonar -->
-								  <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>					  
+								  <reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
 								</configuration>
 							  </plugin>
 							  <plugin>
@@ -1039,8 +1075,8 @@
 								 	 <goals>
 								 	 <goal>report</goal>
 								 	 </goals>
-								  </execution>		
-								  -->						  
+								  </execution>
+								  -->
 								</executions>
 								<configuration>
 								  <!-- The destination file for the code coverage report has to be set to the same value
@@ -1050,16 +1086,16 @@
 								  <excludes>
 									<exclude>jsp/**/*.class</exclude>
 									<exclude>**/*STest*</exclude>
-									<!-- Exclude JMockit classes https://github.com/jmockit/jmockit1/issues/125 -->                     
+									<!-- Exclude JMockit classes https://github.com/jmockit/jmockit1/issues/125 -->
 									<!--<exclude>*$Impl_*</exclude>--> <!-- WARNING might not work with guice -->
 								  </excludes>
-								</configuration>						  
-							  </plugin>							
+								</configuration>
+							  </plugin>
 						</plugins>
 					</build>
 				</profile>
 				<!-- see https://github.com/jmxtrans/jmxtrans/blob/master/pom.xml for rpm -->
-				<!-- TODO add rpm profile -->				
+				<!-- TODO add rpm profile -->
 				<profile>
 					<id>mutation</id>
 					<build>
@@ -1079,7 +1115,7 @@
 							</plugin>
 						</plugins>
 					</build>
-				</profile>				
+				</profile>
 				<profile>
 					<id>fitnesse</id>
 					<build>
@@ -1116,15 +1152,15 @@
 						<version>${maven.classpath.fitnesse.version}</version>
 						<scope>runtime</scope>
 					  </dependency>
-		
+
 					<dependency>
 						<groupId>org.fitnesse</groupId>
 						<artifactId>fitnesse</artifactId>
 						<version>${fitnesse.version}</version>
 						<scope>runtime</scope>
-					</dependency>						  
-					</dependencies>				
-			    </profile>				
+					</dependency>
+					</dependencies>
+			    </profile>
 				<profile>
 					<id>tattletale</id>
 					<!-- DO not activate by default as it is using too much heap
@@ -1132,14 +1168,14 @@
 							<property>
 									<name>!profile.activation</name>
 							</property>
-					</activation>	
-					-->	
+					</activation>
+					-->
 					<build>
-						<plugins>            
+						<plugins>
 							<plugin>
 								<groupId>org.apache.maven.plugins</groupId>
 								<artifactId>maven-dependency-plugin</artifactId>
-								<executions>					
+								<executions>
 									<execution>
 									  <id>copy-dependency-jars-to-tattletale-source-directory</id>
 									  <phase>pre-site</phase>
@@ -1149,9 +1185,9 @@
 									  <configuration>
 										<outputDirectory>${tattletale-source-directory}</outputDirectory>
 									  </configuration>
-									</execution>					
+									</execution>
 								</executions>
-							</plugin>		
+							</plugin>
 							<plugin>
 							  <groupId>org.apache.maven.plugins</groupId>
 							  <artifactId>maven-resources-plugin</artifactId>
@@ -1197,26 +1233,26 @@
 									<goal>report</goal>
 								  </goals>
 								  <configuration>
-									<source>${tattletale-source-directory}</source>                    
+									<source>${tattletale-source-directory}</source>
 									<destination>${tattletale-destination-directory}</destination>
 								  </configuration>
 								</execution>
 							  </executions>
-							</plugin>		            
+							</plugin>
 						</plugins>
 					</build>
-				</profile>	
+				</profile>
 				<profile>
 					<id>checkstyle.report</id>
 					<activation>
 						<activeByDefault>false</activeByDefault>
 					</activation>
 					<build>
-						<plugins>						
+						<plugins>
 							<plugin>
 								<groupId>org.apache.maven.plugins</groupId>
 								<artifactId>maven-checkstyle-plugin</artifactId>
-								<version>${maven.checkstyle.plugin.version}</version>					
+								<version>${maven.checkstyle.plugin.version}</version>
 								 <executions>
 									<execution>
 										<id>checkstyle</id>
@@ -1229,7 +1265,7 @@
 							</plugin>
 						</plugins>
 					</build>
-				</profile>				
+				</profile>
 				<profile>
 					<id>clover.report</id>
 					<activation>
@@ -1266,7 +1302,7 @@
 									<excludes>
 										<exclude>**/*.groovy</exclude>
 									</excludes>
-								</configuration>								
+								</configuration>
 								<executions>
 									<execution>
 										<id>clover-reporting</id>
@@ -1372,9 +1408,9 @@
 					</profile>
 				<!--
 				This profile is used to launch integration tests with the failsafe plugin
-				 
+
 				http://maven.apache.org/plugins/maven-failsafe-plugin/
-				 
+
 				-->
 				<profile>
 				  <id>run-its</id>
@@ -1391,12 +1427,12 @@
 								<include>**/*ITest*</include>
 								<include>**/*STest*</include>
 							</includes>
-							<!-- exclude cucumber tests as it does not work with jacoco 
+							<!-- exclude cucumber tests as it does not work with jacoco
 							<excludes>
-								<exclude>**/RunCukesSTest.java</exclude> 										
-							</excludes>										
-							-->	
-						</configuration>						
+								<exclude>**/RunCukesSTest.java</exclude>
+							</excludes>
+							-->
+						</configuration>
 						<!--
 						<executions>
 						  <execution>
@@ -1434,14 +1470,14 @@
 								<systemPropertyVariables>
 									<webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
 									<webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
-									<webdriver.safari.noinstall>true</webdriver.safari.noinstall>									
+									<webdriver.safari.noinstall>true</webdriver.safari.noinstall>
 									<arquillian.launch>${arquillian}</arquillian.launch>
 									<arquillian>${arquillian}</arquillian>
 									<cucumber.options>
 										  <![CDATA[--tags ${cucumber.tags} ${cucumber.features.dir}/${cucumber.feature}]]>
-									</cucumber.options>					
+									</cucumber.options>
 								</systemPropertyVariables>
-								<!-- workaround for jacoco and jmockit to work altogether 
+								<!-- workaround for jacoco and jmockit to work altogether
 								<argLine>-javaagent:${settings.localRepository}/com/googlecode/jmockit/jmockit/${googlecode.jmockit.version}/jmockit-${googlecode.jmockit.version}.jar</argLine>
 								-->
 							</configuration>
@@ -1465,10 +1501,10 @@
 								</execution>
 							</executions>
 							-->
-						</plugin>					  
+						</plugin>
 					</plugins>
 				  </build>
-				</profile>                
+				</profile>
                 <!-- ================= START MDA Profiles ================= -->
                 <profile>
                         <id>uml14</id>
@@ -1530,7 +1566,7 @@
                         <properties>
                                 <environment>integration</environment>
                                 <maven.javadoc.skip>false</maven.javadoc.skip>
-                        </properties>                        
+                        </properties>
                         <build>
                                 <plugins>
                                         <plugin>
@@ -1673,7 +1709,7 @@
                                                                         </reportSets>
                                                                 </plugin>
                                                                 -->
-                                                                
+
                                                                 <!-- *** GENERATION JAVADOC *** -->
                                                                 <!-- Javadoc settings -->
                                                                 <plugin>
@@ -1827,7 +1863,7 @@
                                                                                 <!--
 																				<show>package</show>
 																				<show>private</show>
-																				--> 				
+																				-->
 																				<show>public</show>
                                                                                 <version>true</version>
                                                                                 <javadocVersion>${jdkLevel}</javadocVersion>
@@ -1858,7 +1894,7 @@
                                                                                         -outputencoding utf8</additionalparam>
                                                                                 <excludePackageNames>com.nabla.andromda.cartridges.technical.karma.*:com.nabla.andromda.cartridges.technical..unittest:*.cartridges.*</excludePackageNames>
                                                                                 -->
-                                                                                
+
 																				<doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
 																				<docletArtifact>
 																						<groupId>org.umlgraph</groupId>
@@ -1870,20 +1906,20 @@
 																						<version>${org.umlgraph.umlgraph.version}</version>
 																				</docletArtifact>
 																				<useStandardDocletOptions>true</useStandardDocletOptions>
-																				<additionalparam>-views</additionalparam>												
+																				<additionalparam>-views</additionalparam>
 																				<additionalparam>-operations</additionalparam>
 																				<additionalparam>-qualify</additionalparam>
 																				<additionalparam>-types</additionalparam>
 																				<additionalparam>-visibility</additionalparam>
 																				<additionalparam>-collpackages</additionalparam>
-                                                                        </configuration>  
-                                                                        <!--    
+                                                                        </configuration>
+                                                                        <!--
 																		<dependencies>
 																		    <dependency>
 																				<groupId>org.umlgraph</groupId>
 																				<artifactId>umlgraph</artifactId>
 																				<version>${org.umlgraph.umlgraph.version}</version>
-																		    </dependency>  
+																		    </dependency>
 																		    <dependency>
 																				<groupId>org.codehaus.mojo</groupId>
 																				<artifactId>clirr-maven-plugin</artifactId>
@@ -1893,9 +1929,9 @@
 																				<groupId>com.nabla.project</groupId>
 																				<artifactId>build-tools</artifactId>
 																				<version>1.0.1-SNAPSHOT</version>
-																			</dependency>										  
-																		</dependencies>	    
-																		-->                                                                                                                                                                                                                 
+																			</dependency>
+																		</dependencies>
+																		-->
                                                                 </plugin>
 
                                                                 <!-- *** GENERATION DES SOURCES NAVIGABLES EN HTML *** -->
@@ -1971,15 +2007,15 @@
 																			<propertyExpansion>projectname=nabla</propertyExpansion>
 																			<excludes>**/generated/**/*</excludes>
 																			<excludes>**/clover/**/*</excludes>
-																		</configuration>	
+																		</configuration>
 																		<!--
 																		<dependencies>
 																			<dependency>
 																				<groupId>com.nabla.project</groupId>
 																				<artifactId>build-tools</artifactId>
 																				<version>1.0.1-SNAPSHOT</version>
-																			</dependency>										  
-																		</dependencies>	    
+																			</dependency>
+																		</dependencies>
 																		-->
                                                                 </plugin>
 
@@ -2003,7 +2039,7 @@
 
 										<!--
                                                                                 <rulesets>
-                                                                                         <ruleset>project/pmd_regles_nabla.xml</ruleset> 
+                                                                                         <ruleset>project/pmd_regles_nabla.xml</ruleset>
                                                                                 </rulesets>
                                                                                 -->
                                                                         </configuration>
@@ -2013,9 +2049,9 @@
 																				<groupId>com.nabla.project</groupId>
 																				<artifactId>build-tools</artifactId>
 																				<version>1.0.1-SNAPSHOT</version>
-																			</dependency>										  
-																		</dependencies>      
-																		-->                                                                  
+																			</dependency>
+																		</dependencies>
+																		-->
                                                                 </plugin>
 
                                                                 <!-- *** GENERATION FINDBUGS *** -->
@@ -2025,7 +2061,7 @@
                                                                         <groupId>org.codehaus.mojo</groupId>
                                                                         <artifactId>findbugs-maven-plugin</artifactId>
                                                                         <version>${maven.findbugs.plugin.version}</version>
-                                                                        <configuration>                                                                                 
+                                                                        <configuration>
 																				<findbugsXmlOutput>true</findbugsXmlOutput>                                                                          												<findbugsXmlOutput>true</findbugsXmlOutput>
 																				<findbugsXmlWithMessages>true</findbugsXmlWithMessages>
 																				<xmlOutput>true</xmlOutput>
@@ -2042,8 +2078,8 @@
 																				<groupId>com.nabla.project</groupId>
 																				<artifactId>build-tools</artifactId>
 																				<version>1.0.1-SNAPSHOT</version>
-																			</dependency>										  
-																		</dependencies>                                                                        
+																			</dependency>
+																		</dependencies>
                                                                 </plugin>
                                                                 -->
 
@@ -2067,14 +2103,14 @@
                                                                           <failOnViolation>true</failOnViolation>
                                                                           <ccnLimit>12</ccnLimit>
                                                                           <ncssLimit>90</ncssLimit>
-                                                                        -->						
-                                                                        <!--							
+                                                                        -->
+                                                                        <!--
 																		   <excludes>
 																			  <exclude>**/generated/**/*</exclude>
 																			  <exclude>**/clover/**/*</exclude>
 																			  <exclude>**/Visma.java</exclude>
 																			</excludes>
-																		</configuration>                                                                        
+																		</configuration>
                                                                 </plugin>
                                                                 -->
 
@@ -2134,7 +2170,7 @@
                                                                                 <!--<generateHistorical>true</generateHistorical>-->
                                                                         </configuration>
                                                                 </plugin>
-                                                                
+
                                                                 <plugin>
                                                                         <groupId>org.apache.maven.plugins</groupId>
                                                                         <artifactId>maven-doap-plugin</artifactId>
@@ -2158,8 +2194,8 @@
                                                                         <configuration>
                                                                                 <minSeverity>info</minSeverity>
                                                                         </configuration>
-                                                                </plugin>                                                                  
-                                                                
+                                                                </plugin>
+
 																<plugin>
 																	<groupId>de.smartics.maven.plugin</groupId>
 																	<artifactId>maven-buildmetadata-plugin</artifactId>
@@ -2176,7 +2212,7 @@
 																	<groupId>org.codehaus.mojo</groupId>
 																	<artifactId>codenarc-maven-plugin</artifactId>
 																	<version>${maven.codenarc.plugin.version}</version>
-                                                                </plugin>			
+                                                                </plugin>
 																<plugin>
 																	<groupId>org.owasp</groupId>
 																	<artifactId>dependency-check-maven</artifactId>
@@ -2185,13 +2221,13 @@
                                                         </reportPlugins>
                                                 </configuration>
                                                 <dependencies>
-                                                        
+
                                                         <dependency>
                                                                 <groupId>org.apache.maven.skins</groupId>
                                                                 <artifactId>maven-default-skin</artifactId>
                                                                 <version>${maven.default.skin.version}</version>
                                                         </dependency>
-                                                        
+
                                                         <!--
                                                         <dependency>
                                                                 <groupId>com.nabla.project</groupId>
@@ -2232,13 +2268,13 @@
 													<excludes>**/generated/**/*</excludes>
 													<excludes>**/clover/**/*</excludes>
 												</configuration>
-												<dependencies>														
+												<dependencies>
 													<dependency>
 															<groupId>com.nabla.project</groupId>
 															<artifactId>build-tools</artifactId>
 															<version>1.0.1-SNAPSHOT</version>
 													</dependency>
-												</dependencies>			
+												</dependencies>
                                         </plugin>
 
                                         <!-- Delete code coverage database when 'mvn clean' is executed -->
@@ -2380,12 +2416,12 @@
 										  <groupId>de.smartics.maven.plugin</groupId>
 										  <artifactId>maven-buildmetadata-plugin</artifactId>
 										  <version>${maven.buildmetadata.plugin.version}</version>
-										</plugin>                                          
+										</plugin>
                                 </plugins>
                         </build>
                 </profile>
                 <profile>
-                        <id>validation</id>                        
+                        <id>validation</id>
                         <activation>
                                 <property>
                                         <name>env</name>
@@ -2434,7 +2470,7 @@
                         <properties>
                                 <environment>release</environment>
                                 <maven.javadoc.skip>false</maven.javadoc.skip>
-                        </properties>                          
+                        </properties>
                         <build>
                                 <plugins>
                                         <plugin>
@@ -2797,7 +2833,7 @@
                                                                                 <!--
 																				<show>package</show>
 																				<show>private</show>
-																				--> 	
+																				-->
                                                                                 <show>public</show>
                                                                                 <version>true</version>
                                                                                 <javadocVersion>${jdkLevel}</javadocVersion>
@@ -2810,7 +2846,7 @@
                                                                                 <charset>${project.build.sourceEncoding}</charset>
                                                                                 <docencoding>${project.build.sourceEncoding}</docencoding>
                                                                                 <encoding>${project.build.sourceEncoding}</encoding>
-                                                                                
+
                                                                                 <!--
                                                                                 <doclet>gr.spinellis.umlgraph.doclet.UmlGraphDoc</doclet>
                                                                                 <docletArtifact>
@@ -2828,7 +2864,7 @@
                                                                                         -outputencoding utf8</additionalparam>
                                                                                 <excludePackageNames>com.nabla.andromda.cartridges.technical.karma.*:com.nabla.andromda.cartridges.technical..unittest:*.cartridges.*</excludePackageNames>
                                                                                 -->
-                                                                                
+
   																				<doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
 																				<docletArtifact>
 																						<groupId>org.umlgraph</groupId>
@@ -2840,7 +2876,7 @@
 																						<version>${org.umlgraph.umlgraph.version}</version>
 																				</docletArtifact>
 																				<useStandardDocletOptions>true</useStandardDocletOptions>
-																				<additionalparam>-views</additionalparam>												
+																				<additionalparam>-views</additionalparam>
 																				<additionalparam>-operations</additionalparam>
 																				<additionalparam>-qualify</additionalparam>
 																				<additionalparam>-types</additionalparam>
@@ -2903,7 +2939,7 @@
                                                                         <configuration>
                                                                                 <minSeverity>info</minSeverity>
                                                                         </configuration>
-                                                                </plugin>                                                                
+                                                                </plugin>
                                                         </reportPlugins>
                                                 </configuration>
                                                 <dependencies>
