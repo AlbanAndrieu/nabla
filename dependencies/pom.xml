@@ -1749,7 +1749,7 @@
                 <maven.flex.pmd.plugin.version>1.2</maven.flex.pmd.plugin.version>
                 <maven.bundle.plugin.version>2.5.3</maven.bundle.plugin.version>
                 <maven.flexmojos.plugin.version>4.2-beta</maven.flexmojos.plugin.version>
-                <maven.pitest.plugin.version>1.1.2</maven.pitest.plugin.version>
+                <maven.pitest.plugin.version>1.1.4</maven.pitest.plugin.version>
                 <maven.pax.plugin.version>1.5</maven.pax.plugin.version>
                 <maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
                 <maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
@@ -4756,7 +4756,6 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                             <param>**/*ITest*</param>
                                             <param>**/*STest*</param>
                                         </excludedClasses>
-                                        <!--
                                         <avoidCallsTo>
                                             <avoidCallsTo>akka.event.LoggingAdapter</avoidCallsTo>
                                             <avoidCallsTo>java.util.logging</avoidCallsTo>
@@ -4764,7 +4763,6 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                             <avoidCallsTo>org.slf4j</avoidCallsTo>
                                             <avoidCallsTo>org.apache.commons.logging</avoidCallsTo>
                                         </avoidCallsTo>
-                                        -->
                                         <jvmArgs>
                                             <value>-Xms256m</value>
                                             <value>-Xmx512m</value>
@@ -4786,6 +4784,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                             <mutator>NON_VOID_METHOD_CALLS</mutator>
                                             <mutator>CONSTRUCTOR_CALLS</mutator>
                                         </mutators>
+                                        <!--<skip>true</skip>-->
                                     </configuration>
                                 </plugin>
                         </plugins>
