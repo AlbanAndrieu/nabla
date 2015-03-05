@@ -55,7 +55,8 @@
                 <url>http://localhost:8070/hudson/</url>
                 -->
                 <system>Jenkins</system>
-                <url>http://home.nabla.mobi:8380/jenkins</url>
+                <!--<url>${JENKINS_URL}/job/${JOB_NAME}</url>-->
+                <url>${JOB_URL}</url>
                 <notifiers>
                         <notifier>
                                 <type>mail</type>
@@ -129,7 +130,7 @@
         <profiles>
             <!-- ================= START Environment Profiles ================= -->
             <!-- Add this profile when you want to debug unit tests in Eclipse e.g.
-                $> mvn install -Pdebugtest -->
+                $> mvn install -Pdebugtest -Dmaven.surefire.debug=true -->
             <profile>
                 <id>debugtest</id>
                 <activation>
@@ -1022,22 +1023,22 @@
                 <sonar.issue.ignore.block.e2.beginBlockRegexp>Copyright</sonar.issue.ignore.block.e2.beginBlockRegexp>
                 <sonar.issue.ignore.block.e2.endBlockRegexp>License 1.0</sonar.issue.ignore.block.e2.endBlockRegexp>
 
-		<sonar.skippedModules>cartridges</sonar.skippedModules>
+				<sonar.skippedModules>cartridges</sonar.skippedModules>
 
-		<!-- TODO move to profile jmeter -->
-		<cargo.host>localhost</cargo.host>
-		<cargo.port>80</cargo.port>
-		<performancetest.webservice.host>${cargo.host}</performancetest.webservice.host>
-        	<performancetest.webservice.port>${cargo.port}</performancetest.webservice.port>
-		<performancetest.connectTimeout>1000</performancetest.connectTimeout>
-        	<performancetest.responseTimeout>3000</performancetest.responseTimeout>
-        	<!--
-        	<performancetest.threadCount>20</performancetest.threadCount>
-        	<performancetest.loopCount>10</performancetest.loopCount>
-        	-->
-        	<performancetest.threadCount>5</performancetest.threadCount>
+				<!-- TODO move to profile jmeter -->
+				<cargo.host>localhost</cargo.host>
+				<cargo.port>80</cargo.port>
+				<performancetest.webservice.host>${cargo.host}</performancetest.webservice.host>
+				<performancetest.webservice.port>${cargo.port}</performancetest.webservice.port>
+				<performancetest.connectTimeout>1000</performancetest.connectTimeout>
+				<performancetest.responseTimeout>3000</performancetest.responseTimeout>
+				<!--
+				<performancetest.threadCount>20</performancetest.threadCount>
+				<performancetest.loopCount>10</performancetest.loopCount>
+				-->
+				<performancetest.threadCount>5</performancetest.threadCount>
                 <performancetest.loopCount>5</performancetest.loopCount>
-        
+
                 <cucumber.feature></cucumber.feature>
                 <cucumber.tags>~@no-tag-specified</cucumber.tags>
                 <cucumber.features.dir>src/test/resources/features</cucumber.features.dir>
@@ -1237,11 +1238,11 @@
                 <aspectj.version>1.7.1</aspectj.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
                 <aspectj.weaver.version>1.6.4</aspectj.weaver.version>
 
-				<camel.version>2.13.0</camel.version>
-				<esper.version>4.11.0</esper.version>
-				<ejml.version>0.24</ejml.version>
-				<mongo.version>2.12.3</mongo.version>
-				<embed.mongo.version>1.46.1</embed.mongo.version>
+                <camel.version>2.13.0</camel.version>
+                <esper.version>4.11.0</esper.version>
+                <ejml.version>0.24</ejml.version>
+                <mongo.version>2.12.3</mongo.version>
+                <embed.mongo.version>1.46.1</embed.mongo.version>
                 <clickstream.version>1.0.2</clickstream.version>
                 <corejsf.validator.version>1.0</corejsf.validator.version>
                 <displaytag.version>1.2</displaytag.version>
@@ -1470,8 +1471,8 @@
                 <appfuse.version>2.1.0-M1</appfuse.version>
                 <javax.persistence.version>1.0.2</javax.persistence.version>
 
-				<cxf.version>2.7.14</cxf.version><!-- version of cxf that is working with jetty 8 -->
-				<!--<cxf.jetty.version>8.1.15.v20140411</cxf.jetty.version>  version of jetty used by cxf 2.7.14 -->
+                <cxf.version>2.7.14</cxf.version><!-- version of cxf that is working with jetty 8 -->
+                <!--<cxf.jetty.version>8.1.15.v20140411</cxf.jetty.version>  version of jetty used by cxf 2.7.14 -->
                 <!--<cxf.version>3.0.2</cxf.version> TODO TEST upgrade -->
                 <cxf.common.schemas.version>2.3.11</cxf.common.schemas.version>
                 <cxf.common.utilities.version>2.5.11</cxf.common.utilities.version>
@@ -1887,10 +1888,10 @@
                                                                         </action>
                                                                         -->
                                                                         <action>
-																			<execute>
-																				<runOnIncremental>false</runOnIncremental>
-																			</execute>
-																		</action>
+                                                                            <execute>
+                                                                                <runOnIncremental>false</runOnIncremental>
+                                                                            </execute>
+                                                                        </action>
                                                                 </pluginExecution>
                                                                 <pluginExecution>
                                                                     <pluginExecutionFilter>
@@ -1975,23 +1976,23 @@
                                                                         </action>
                                                                 </pluginExecution>
                                                                 <!--
-																<pluginExecution>
-																	<pluginExecutionFilter>
-																		<groupId>org.apache.maven.plugins</groupId>
-																		<artifactId>maven-compiler-plugin</artifactId>
-																		<versionRange>
-																			[${maven.compiler.plugin.version},)
-																		</versionRange>
-																		<goals>
-																			<goal>testCompile</goal>
-																			<goal>compile</goal>
-																		</goals>
-																	</pluginExecutionFilter>
-																	<action>
-																		<ignore></ignore>
-																	</action>
-																</pluginExecution>
-																-->
+                                                                <pluginExecution>
+                                                                    <pluginExecutionFilter>
+                                                                        <groupId>org.apache.maven.plugins</groupId>
+                                                                        <artifactId>maven-compiler-plugin</artifactId>
+                                                                        <versionRange>
+                                                                            [${maven.compiler.plugin.version},)
+                                                                        </versionRange>
+                                                                        <goals>
+                                                                            <goal>testCompile</goal>
+                                                                            <goal>compile</goal>
+                                                                        </goals>
+                                                                    </pluginExecutionFilter>
+                                                                    <action>
+                                                                        <ignore></ignore>
+                                                                    </action>
+                                                                </pluginExecution>
+                                                                -->
                                                                 <!-- eclipse has now a m2e connector -->
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
@@ -2008,19 +2009,19 @@
                                                                         </action>
                                                                 </pluginExecution>
                                                                 <!-- see http://stackoverflow.com/questions/8706017/maven-dependency-plugin-goals-copy-dependencies-unpack-is-not-supported-b -->
-																<pluginExecution>
-																	<pluginExecutionFilter>
-																		<groupId>org.apache.maven.plugins</groupId>
-																		<artifactId>maven-dependency-plugin</artifactId>
-																		<versionRange>[${maven.dependency.plugin.version},)</versionRange>
-																		<goals>
-																			<goal>copy-dependencies</goal>
-																		</goals>
-																	</pluginExecutionFilter>
-																	<action>
-																		<ignore />
-																	</action>
-																</pluginExecution>
+                                                                <pluginExecution>
+                                                                    <pluginExecutionFilter>
+                                                                        <groupId>org.apache.maven.plugins</groupId>
+                                                                        <artifactId>maven-dependency-plugin</artifactId>
+                                                                        <versionRange>[${maven.dependency.plugin.version},)</versionRange>
+                                                                        <goals>
+                                                                            <goal>copy-dependencies</goal>
+                                                                        </goals>
+                                                                    </pluginExecutionFilter>
+                                                                    <action>
+                                                                        <ignore />
+                                                                    </action>
+                                                                </pluginExecution>
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.andromda.maven.plugins</groupId>
@@ -2116,74 +2117,74 @@
                                                                                 <ignore></ignore>
                                                                         </action>
                                                                 </pluginExecution>
-																<pluginExecution>
-																	<pluginExecutionFilter>
-																		<groupId>org.sonatype.flexmojos</groupId>
-																		<artifactId>flexmojos-maven-plugin</artifactId>
-																		<versionRange>[${maven.flexmojos.plugin.version},)</versionRange>
-																		<goals>
-																			<goal>compile-swf</goal>
-																			<goal>test-compile</goal>
-																		</goals>
-																	</pluginExecutionFilter>
-																	<action>
-																		<ignore />
-																	</action>
-																</pluginExecution>
-																<pluginExecution>
-																	<pluginExecutionFilter>
-																		<groupId>org.codehaus.mojo</groupId>
-																		<artifactId>apt-maven-plugin</artifactId>
-																		<versionRange>[${maven.apt.plugin.version},)</versionRange>
-																		<goals>
-																			<goal>process</goal>
-																			<goal>test-process</goal>
-																		</goals>
-																	</pluginExecutionFilter>
-																	<action>
-																		<ignore />
-																	</action>
-																</pluginExecution>
-																<pluginExecution>
-																	<pluginExecutionFilter>
-																		<groupId>org.apache.maven.plugins</groupId>
-																		<artifactId>maven-javadoc-plugin</artifactId>
-																		<versionRange>[${maven.javadoc.plugin.version},)</versionRange>
-																		<goals>
-																			<goal>javadoc</goal>
-																		</goals>
-																	</pluginExecutionFilter>
-																	<action>
-																		<ignore />
-																	</action>
-																</pluginExecution>
-																<pluginExecution>
-																	<pluginExecutionFilter>
-																		<groupId>org.apache.maven.plugins</groupId>
-																		<artifactId>maven-enforcer-plugin</artifactId>
-																		<versionRange>[${maven.enforcer.plugin.version},)</versionRange>
-																		<goals>
-																			<goal>enforce</goal>
-																		</goals>
-																	</pluginExecutionFilter>
-																	<action>
-																		<ignore />
-																	</action>
-																</pluginExecution>
-																<pluginExecution>
-																	<pluginExecutionFilter>
-																		<groupId>org.codehaus.mojo.jspc</groupId>
-																		<artifactId>jspc-maven-plugin</artifactId>
-																		<versionRange>[${maven.jspc.plugin.version},)</versionRange>
-																		<goals>
-																			<goal>compile</goal>
-																			<goal>process-sources</goal>
-																		</goals>
-																	</pluginExecutionFilter>
-																	<action>
-																		<ignore />
-																	</action>
-																</pluginExecution>
+                                                                <pluginExecution>
+                                                                    <pluginExecutionFilter>
+                                                                        <groupId>org.sonatype.flexmojos</groupId>
+                                                                        <artifactId>flexmojos-maven-plugin</artifactId>
+                                                                        <versionRange>[${maven.flexmojos.plugin.version},)</versionRange>
+                                                                        <goals>
+                                                                            <goal>compile-swf</goal>
+                                                                            <goal>test-compile</goal>
+                                                                        </goals>
+                                                                    </pluginExecutionFilter>
+                                                                    <action>
+                                                                        <ignore />
+                                                                    </action>
+                                                                </pluginExecution>
+                                                                <pluginExecution>
+                                                                    <pluginExecutionFilter>
+                                                                        <groupId>org.codehaus.mojo</groupId>
+                                                                        <artifactId>apt-maven-plugin</artifactId>
+                                                                        <versionRange>[${maven.apt.plugin.version},)</versionRange>
+                                                                        <goals>
+                                                                            <goal>process</goal>
+                                                                            <goal>test-process</goal>
+                                                                        </goals>
+                                                                    </pluginExecutionFilter>
+                                                                    <action>
+                                                                        <ignore />
+                                                                    </action>
+                                                                </pluginExecution>
+                                                                <pluginExecution>
+                                                                    <pluginExecutionFilter>
+                                                                        <groupId>org.apache.maven.plugins</groupId>
+                                                                        <artifactId>maven-javadoc-plugin</artifactId>
+                                                                        <versionRange>[${maven.javadoc.plugin.version},)</versionRange>
+                                                                        <goals>
+                                                                            <goal>javadoc</goal>
+                                                                        </goals>
+                                                                    </pluginExecutionFilter>
+                                                                    <action>
+                                                                        <ignore />
+                                                                    </action>
+                                                                </pluginExecution>
+                                                                <pluginExecution>
+                                                                    <pluginExecutionFilter>
+                                                                        <groupId>org.apache.maven.plugins</groupId>
+                                                                        <artifactId>maven-enforcer-plugin</artifactId>
+                                                                        <versionRange>[${maven.enforcer.plugin.version},)</versionRange>
+                                                                        <goals>
+                                                                            <goal>enforce</goal>
+                                                                        </goals>
+                                                                    </pluginExecutionFilter>
+                                                                    <action>
+                                                                        <ignore />
+                                                                    </action>
+                                                                </pluginExecution>
+                                                                <pluginExecution>
+                                                                    <pluginExecutionFilter>
+                                                                        <groupId>org.codehaus.mojo.jspc</groupId>
+                                                                        <artifactId>jspc-maven-plugin</artifactId>
+                                                                        <versionRange>[${maven.jspc.plugin.version},)</versionRange>
+                                                                        <goals>
+                                                                            <goal>compile</goal>
+                                                                            <goal>process-sources</goal>
+                                                                        </goals>
+                                                                    </pluginExecutionFilter>
+                                                                    <action>
+                                                                        <ignore />
+                                                                    </action>
+                                                                </pluginExecution>
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>com.ctp.seam.maven</groupId>
@@ -2212,26 +2213,26 @@
                                                                         </action>
                                                                 </pluginExecution>
                                                                 -->
-																<pluginExecution>
-																	<pluginExecutionFilter>
-																			<groupId>org.apache.cxf</groupId>
-																			<artifactId>cxf-java2ws-plugin</artifactId>
-																			<versionRange>[${cxf.version},)</versionRange>
-																			<goals>
-																				<goal>java2ws</goal>
-																			</goals>
-																	</pluginExecutionFilter>
-																	<action>
-																		<ignore />
-																	</action>
-																</pluginExecution>
+                                                                <pluginExecution>
+                                                                    <pluginExecutionFilter>
+                                                                            <groupId>org.apache.cxf</groupId>
+                                                                            <artifactId>cxf-java2ws-plugin</artifactId>
+                                                                            <versionRange>[${cxf.version},)</versionRange>
+                                                                            <goals>
+                                                                                <goal>java2ws</goal>
+                                                                            </goals>
+                                                                    </pluginExecutionFilter>
+                                                                    <action>
+                                                                        <ignore />
+                                                                    </action>
+                                                                </pluginExecution>
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.codehaus.mojo</groupId>
                                                                                 <artifactId>build-helper-maven-plugin</artifactId>
                                                                                 <versionRange>[${maven.build.helper.plugin.version},)</versionRange>
                                                                                 <goals>
-																					    <goal>add-source</goal>
+                                                                                        <goal>add-source</goal>
                                                                                         <goal>add-test-source</goal>
                                                                                 </goals>
                                                                         </pluginExecutionFilter>
@@ -2306,19 +2307,19 @@
                                                                     <execute />
                                                                   </action>
                                                                 </pluginExecution>
-																<pluginExecution>
-																	<pluginExecutionFilter>
-																		<groupId>org.antlr</groupId>
-																		<artifactId>antlr3-maven-plugin</artifactId>
-																		<versionRange>[${maven.antlr3.plugin.version},)</versionRange>
-																		<goals>
-																			<goal>antlr</goal>
-																		</goals>
-																	</pluginExecutionFilter>
-																	<action>
-																		<ignore />
-																	</action>
-																</pluginExecution>
+                                                                <pluginExecution>
+                                                                    <pluginExecutionFilter>
+                                                                        <groupId>org.antlr</groupId>
+                                                                        <artifactId>antlr3-maven-plugin</artifactId>
+                                                                        <versionRange>[${maven.antlr3.plugin.version},)</versionRange>
+                                                                        <goals>
+                                                                            <goal>antlr</goal>
+                                                                        </goals>
+                                                                    </pluginExecutionFilter>
+                                                                    <action>
+                                                                        <ignore />
+                                                                    </action>
+                                                                </pluginExecution>
                                                                 <pluginExecution>
                                                                     <pluginExecutionFilter>
                                                                             <groupId>org.codehaus.mojo</groupId>
@@ -2371,32 +2372,32 @@
                                                                         <ignore></ignore>
                                                                     </action>
                                                                 </pluginExecution>
-																<pluginExecution>
-																	<pluginExecutionFilter>
-																		<groupId>org.apache.cxf</groupId>
-																		<artifactId>cxf-codegen-plugin</artifactId>
-																		<versionRange>[${cxf.version},)</versionRange>
-																		<goals>
-																			<goal>wsdl2java</goal>
-																		</goals>
-																	</pluginExecutionFilter>
-																	<action>
-																		<ignore />
-																	</action>
-																</pluginExecution>
-																<pluginExecution>
-																	<pluginExecutionFilter>
-																		<groupId>org.owasp</groupId>
-																		<artifactId>dependency-check-maven</artifactId>
-																		<versionRange>[${maven.dependency.check.plugin.version},)</versionRange>
-																		<goals>
-																			<goal>check</goal>
-																		</goals>
-																	</pluginExecutionFilter>
-																	<action>
-																		<ignore></ignore>
-																	</action>
-																</pluginExecution>
+                                                                <pluginExecution>
+                                                                    <pluginExecutionFilter>
+                                                                        <groupId>org.apache.cxf</groupId>
+                                                                        <artifactId>cxf-codegen-plugin</artifactId>
+                                                                        <versionRange>[${cxf.version},)</versionRange>
+                                                                        <goals>
+                                                                            <goal>wsdl2java</goal>
+                                                                        </goals>
+                                                                    </pluginExecutionFilter>
+                                                                    <action>
+                                                                        <ignore />
+                                                                    </action>
+                                                                </pluginExecution>
+                                                                <pluginExecution>
+                                                                    <pluginExecutionFilter>
+                                                                        <groupId>org.owasp</groupId>
+                                                                        <artifactId>dependency-check-maven</artifactId>
+                                                                        <versionRange>[${maven.dependency.check.plugin.version},)</versionRange>
+                                                                        <goals>
+                                                                            <goal>check</goal>
+                                                                        </goals>
+                                                                    </pluginExecutionFilter>
+                                                                    <action>
+                                                                        <ignore></ignore>
+                                                                    </action>
+                                                                </pluginExecution>
                                                         </pluginExecutions>
                                                 </lifecycleMappingMetadata>
                                         </configuration>
@@ -2428,193 +2429,195 @@
                                     <version>${maven.gatling.plugin.version}</version>
                                 </plugin>
 
-				<!-- https://blog.codecentric.de/en/2014/01/automating-jmeter-tests-maven-jenkins/-->
-				<!--
-				mvn jmeter:gui 
-				mvn jmeter:jmeter 
-				-->				
-				<plugin>
-					<groupId>com.lazerycode.jmeter</groupId>
-					<artifactId>jmeter-maven-plugin</artifactId>
-					<version>${maven.jmeter.plugin.version}</version>
-  					<configuration>
-  					  <!--
-  					     By default the test results are saved in a file  
-  					     /target/jmeter/results/<testname>-<timestamp>.jtl
-  					     Further processing is easier without timestamp though.
-  					  -->
-  					  <testResultsTimestamp>false</testResultsTimestamp>									
-  					  <!--
-  					     To simplify debugging, it is advisable to adapt the loglevel.
-  					     The jmeter logs are written to the file jmeter.log.
-  					  -->
-  					  <overrideRootLogLevel>DEBUG</overrideRootLogLevel>									
-  					  <!--
-  					     By default, the console output during a jmeter test run is suppressed.
-  					     We want to display the progress using the listener "Generate Summary Results" 
-  					     (which periodically prints stats to stdout). Therefore we have to make sure,
-  					     that the jmeter output is not suppressed.
-  					  -->
-  					  <suppressJMeterOutput>false</suppressJMeterOutput>									
-  					  <!--
-  					     If tests fail (e.g. a http-request running into a timeout), the corresponding maven
-  					     goal also fails (and subsequent goals aren't executed anymore). We want to create graphs
-  					     from test-results, no matter if some requests failed or not, so we ignore jmeter failures.
-  					  -->
-  					  <ignoreResultFailures>true</ignoreResultFailures>
-  					  <skipTests>${maven.test.skip}</skipTests>
-  					  <!--<resultsDirectory>${project.base.directory}/target/jmeter/results</resultsDirectory>-->
-		   			  <propertiesUser>
-                   			      <webservice.host>${performancetest.webservice.host}</webservice.host>
-                   			      <webservice.port>${performancetest.webservice.port}</webservice.port>
-                   			      <webservice.path>${performancetest.webservice.path}</webservice.path>
-                   			      <webservice.connectTimeout>${performancetest.connectTimeout}</webservice.connectTimeout>
-                   			      <webservice.responseTimeout>${performancetest.responseTimeout}</webservice.responseTimeout>
-                   			      <threadCount>${performancetest.threadCount}</threadCount>
-                   			      <loopCount>${performancetest.threadCount}</loopCount>
-                   			  </propertiesUser>
-                   			  <propertiesJMeter>
-                   			      <jmeter.save.saveservice.thread_counts>true</jmeter.save.saveservice.thread_counts>
-                   			  </propertiesJMeter>
-                   			  <jmeterPlugins>
-                   			      <plugin>
-                   			          <groupId>kg.apc</groupId>
-                   			          <artifactId>jmeter-plugins</artifactId>
-                   			      </plugin>
-                   			  </jmeterPlugins>  					  
-  					</configuration>									
-					<executions>
-						<execution>
-							<id>jmeter-tests</id>
-							<!--<phase>verify</phase>-->
-							<phase>integration-test</phase>
-							<goals>
-								<goal>jmeter</goal>
-							</goals>
-						</execution>
-					</executions>
-					<dependencies>
-                		   	    <dependency>
-                		   	        <groupId>kg.apc</groupId>
-                		   	        <artifactId>jmeter-plugins</artifactId>
-                		   	        <version>1.0.0</version>
-                		   	        <exclusions>
-                		   	            <!--
-                		   	                Unfortunately some transitive dependencies cannot be found on mvncentral
-                		   	                and we have to explicitly exclude them.
-                		   	                For a complete list, see https://github.com/mlex/jmeter-maven-example/
-                		   	            -->
-                		   	            <exclusion>
-                		   	                <groupId>kg.apc</groupId>
-                		   	                <artifactId>perfmon</artifactId>
-                		   	            </exclusion>
-                		   	            <exclusion>
-                		   	                <groupId>org.apache.hadoop</groupId>
-                		   	                <artifactId>hadoop-core</artifactId>
-                		   	            </exclusion>
-                		   	            <exclusion>
-                		   	                <groupId>org.apache.hbase</groupId>
-                		   	                <artifactId>hbase</artifactId>
-                		   	            </exclusion>
-                		   	            
-                		   	            <!--
-                		   	                These dependencies would override direct JMeter dependencies,
-                		   	                which results in version conflicts (e.g. NoSuchMethodError on jmeter startup
-                		   	            -->
-                		   	            <exclusion>
-                		   	                <groupId>org.apache.jmeter</groupId>
-                		   	                <artifactId>jorphan</artifactId>
-                		   	            </exclusion>
-                		   	            <exclusion>
-                		   	                <groupId>org.apache.bsf</groupId>
-                		   	                <artifactId>bsf-api</artifactId>
-                		   	            </exclusion>
-                		   	            <exclusion>
-                		   	                <groupId>org.bouncycastle</groupId>
-                		   	                <artifactId>bcmail-jdk15</artifactId>
-                		   	            </exclusion>
-                		   	            <exclusion>
-                		   	                <groupId>org.bouncycastle</groupId>
-                		   	                <artifactId>bcprov-jdk15</artifactId>
-                		   	            </exclusion>
-                		   	            <exclusion>
-                		   	                <groupId>javax.activation</groupId>
-                		   	                <artifactId>activation</artifactId>
-                		   	            </exclusion>
-                		   	            <exclusion>
-                		   	                <groupId>commons-logging</groupId>
-                		   	                <artifactId>commons-logging</artifactId>
-                		   	            </exclusion>
-                		   	        </exclusions>
-                		   	    </dependency>
-                		   	</dependencies>					
-				</plugin>
-				<!-- TODO https://github.com/codecentric/jmeter-graph-maven-plugin -->     
-				<!-- TODO https://github.com/mlex/jmeter-maven-example/blob/master/src/test/jmeter/SimpleWebservicePerformanceTest.jmx -->
-           			<plugin>
-           			     <groupId>com.lazerycode.jmeter</groupId>
-           			     <artifactId>jmeter-analysis-maven-plugin</artifactId>
-           			     <version>${maven.jmeter.analysis.plugin.version}</version>
-           			     <configuration>
-           			         <source>${project.build.directory}/jmeter/results/jmeter.jtl</source>
-           			     </configuration>
-           			     <executions>
-           			         <execution>
-           			             <id>create-html-report</id>
-           			             <phase>verify</phase>
-           			             <goals>
-           			                 <goal>analyze</goal>
-           			             </goals>
-           			         </execution>
-           			     </executions>
-           			</plugin>				
-      				<plugin>
-      				  <groupId>de.codecentric</groupId>
-      				  <artifactId>jmeter-graph-maven-plugin</artifactId>
-      				  <version>${maven.jmeter.graph.plugin.version}</version>
-				  <executions>
-                		    <execution>
-                		        <id>create-graph-threads</id>
-                		        <goals>
-                		            <goal>create-graph</goal>
-                		        </goals>
-                		        <phase>verify</phase>
-                		    </execution>
-                		  </executions>      				  
-      				  <configuration>
-      				    <inputFile>${project.build.directory}/jmeter/results/jmeter.jtl</inputFile>
-      				    <graphs>
-      				      <graph>
-      				        <pluginType>ThreadsStateOverTime</pluginType>
-      				        <width>800</width>
-      				        <height>600</height>
-      				        <outputFile>${project.build.directory}/jmeter/results/jmeter-ThreadsStateOverTime.png</outputFile>
-      				      </graph>
-      				      <graph>
-                        	          <pluginType>ResponseTimesOverTime</pluginType>
-                        	          <width>800</width>
-                        	          <height>600</height>
-                        	          <outputFile>${project.build.directory}/jmeter/results/jmeter-ResponseTimesOverTime.png</outputFile>
-                        	      </graph>
-                        	      <graph>
-                        	          <pluginType>TransactionsPerSecond</pluginType>
-                        	          <width>800</width>
-                        	          <height>600</height>
-                        	          <outputFile>${project.build.directory}/jmeter/results/jmeter-TransactionsPerSecond.png</outputFile>
-                        	      </graph>
-      				    </graphs>
-      				  </configuration>
-      				</plugin>				
-				<!--
-				<plugin>
-				    <groupId>org.apache.jmeter</groupId>
-				    <artifactId>maven-jmeter-plugin</artifactId>
-				    <version>1.0-GA</version>
-				    <configuration>
-				        <reportDir>${project.build.directory}/jmeter-reports</reportDir>
-				    </configuration>
-				</plugin>
-				-->
+								<!-- https://blog.codecentric.de/en/2014/01/automating-jmeter-tests-maven-jenkins/-->
+								<!--
+								mvn jmeter:gui
+								mvn jmeter:jmeter
+								-->
+								<plugin>
+									<groupId>com.lazerycode.jmeter</groupId>
+									<artifactId>jmeter-maven-plugin</artifactId>
+									<version>${maven.jmeter.plugin.version}</version>
+									<configuration>
+									<!--
+										By default the test results are saved in a file
+										/target/jmeter/results/<testname>-<timestamp>.jtl
+										Further processing is easier without timestamp though.
+									-->
+									<testResultsTimestamp>false</testResultsTimestamp>
+									<!--
+										To simplify debugging, it is advisable to adapt the loglevel.
+										The jmeter logs are written to the file jmeter.log.
+									-->
+									<overrideRootLogLevel>DEBUG</overrideRootLogLevel>
+									<!--
+										By default, the console output during a jmeter test run is suppressed.
+										We want to display the progress using the listener "Generate Summary Results"
+										(which periodically prints stats to stdout). Therefore we have to make sure,
+										that the jmeter output is not suppressed.
+									-->
+									<suppressJMeterOutput>false</suppressJMeterOutput>
+									<!--
+										If tests fail (e.g. a http-request running into a timeout), the corresponding maven
+										goal also fails (and subsequent goals aren't executed anymore). We want to create graphs
+										from test-results, no matter if some requests failed or not, so we ignore jmeter failures.
+									-->
+									<ignoreResultFailures>true</ignoreResultFailures>
+									<skipTests>${maven.test.skip}</skipTests>
+									<!--<resultsDirectory>${project.base.directory}/target/jmeter/results</resultsDirectory>-->
+									<propertiesUser>
+										<webservice.host>${performancetest.webservice.host}</webservice.host>
+										<webservice.port>${performancetest.webservice.port}</webservice.port>
+										<webservice.path>${performancetest.webservice.path}</webservice.path>
+										<webservice.connectTimeout>${performancetest.connectTimeout}</webservice.connectTimeout>
+										<webservice.responseTimeout>${performancetest.responseTimeout}</webservice.responseTimeout>
+										<threadCount>${performancetest.threadCount}</threadCount>
+										<loopCount>${performancetest.threadCount}</loopCount>
+									</propertiesUser>
+									<propertiesJMeter>
+										<jmeter.save.saveservice.thread_counts>true</jmeter.save.saveservice.thread_counts>
+									</propertiesJMeter>
+									<jmeterPlugins>
+										<plugin>
+											<groupId>kg.apc</groupId>
+											<artifactId>jmeter-plugins</artifactId>
+										</plugin>
+									</jmeterPlugins>
+									</configuration>
+									<executions>
+										<execution>
+											<id>jmeter-tests</id>
+											<!--<phase>verify</phase>-->
+											<phase>integration-test</phase>
+											<goals>
+												<goal>jmeter</goal>
+											</goals>
+										</execution>
+									</executions>
+									<dependencies>
+										<dependency>
+											<groupId>kg.apc</groupId>
+											<artifactId>jmeter-plugins</artifactId>
+											<version>1.0.0</version>
+											<exclusions>
+												<!--
+													Unfortunately some transitive dependencies cannot be found on mvncentral
+													and we have to explicitly exclude them.
+													For a complete list, see https://github.com/mlex/jmeter-maven-example/
+												-->
+												<exclusion>
+													<groupId>kg.apc</groupId>
+													<artifactId>perfmon</artifactId>
+												</exclusion>
+												<exclusion>
+													<groupId>org.apache.hadoop</groupId>
+													<artifactId>hadoop-core</artifactId>
+												</exclusion>
+												<exclusion>
+													<groupId>org.apache.hbase</groupId>
+													<artifactId>hbase</artifactId>
+												</exclusion>
+
+												<!--
+													These dependencies would override direct JMeter dependencies,
+													which results in version conflicts (e.g. NoSuchMethodError on jmeter startup
+												-->
+												<exclusion>
+													<groupId>org.apache.jmeter</groupId>
+													<artifactId>jorphan</artifactId>
+												</exclusion>
+												<exclusion>
+													<groupId>org.apache.bsf</groupId>
+													<artifactId>bsf-api</artifactId>
+												</exclusion>
+												<exclusion>
+													<groupId>org.bouncycastle</groupId>
+													<artifactId>bcmail-jdk15</artifactId>
+												</exclusion>
+												<exclusion>
+													<groupId>org.bouncycastle</groupId>
+													<artifactId>bcprov-jdk15</artifactId>
+												</exclusion>
+												<exclusion>
+													<groupId>javax.activation</groupId>
+													<artifactId>activation</artifactId>
+												</exclusion>
+												<exclusion>
+													<groupId>commons-logging</groupId>
+													<artifactId>commons-logging</artifactId>
+												</exclusion>
+											</exclusions>
+										</dependency>
+									</dependencies>
+								</plugin>
+								<!-- TODO https://github.com/codecentric/jmeter-graph-maven-plugin -->
+								<!-- TODO https://github.com/mlex/jmeter-maven-example/blob/master/src/test/jmeter/SimpleWebservicePerformanceTest.jmx -->
+								<plugin>
+									<groupId>com.lazerycode.jmeter</groupId>
+									<artifactId>jmeter-analysis-maven-plugin</artifactId>
+									<version>${maven.jmeter.analysis.plugin.version}</version>
+									<configuration>
+										<source>${project.build.directory}/jmeter/results/jmeter.jtl</source>
+									</configuration>
+									<executions>
+										<execution>
+											<id>create-html-report</id>
+											<!--<phase>verify</phase>-->
+											<phase>integration-test</phase>
+											<goals>
+												<goal>analyze</goal>
+											</goals>
+										</execution>
+									</executions>
+								</plugin>
+								<plugin>
+									<groupId>de.codecentric</groupId>
+									<artifactId>jmeter-graph-maven-plugin</artifactId>
+									<version>${maven.jmeter.graph.plugin.version}</version>
+									<executions>
+											<execution>
+												<id>create-graph-threads</id>
+												<!--<phase>verify</phase>-->
+												<phase>integration-test</phase>
+												<goals>
+													<goal>create-graph</goal>
+												</goals>
+											</execution>
+									</executions>
+									<configuration>
+										<inputFile>${project.build.directory}/jmeter/results/jmeter.jtl</inputFile>
+										<graphs>
+										<graph>
+											<pluginType>ThreadsStateOverTime</pluginType>
+											<width>800</width>
+											<height>600</height>
+											<outputFile>${project.build.directory}/jmeter/results/jmeter-ThreadsStateOverTime.png</outputFile>
+										</graph>
+										<graph>
+											<pluginType>ResponseTimesOverTime</pluginType>
+											<width>800</width>
+											<height>600</height>
+											<outputFile>${project.build.directory}/jmeter/results/jmeter-ResponseTimesOverTime.png</outputFile>
+										</graph>
+										<graph>
+											<pluginType>TransactionsPerSecond</pluginType>
+											<width>800</width>
+											<height>600</height>
+											<outputFile>${project.build.directory}/jmeter/results/jmeter-TransactionsPerSecond.png</outputFile>
+										</graph>
+										</graphs>
+									</configuration>
+								</plugin>
+                <!--
+                <plugin>
+                    <groupId>org.apache.jmeter</groupId>
+                    <artifactId>maven-jmeter-plugin</artifactId>
+                    <version>1.0-GA</version>
+                    <configuration>
+                        <reportDir>${project.build.directory}/jmeter-reports</reportDir>
+                    </configuration>
+                </plugin>
+                -->
                                 <plugin>
                                     <groupId>net.alchim31.maven</groupId>
                                     <artifactId>scala-maven-plugin</artifactId>
@@ -2825,13 +2828,13 @@
                                                         </configuration>
                                                 </execution>
                                         </executions>
-										<dependencies>
-											<dependency>
-												<groupId>de.andrena.tools.nopackagecycles</groupId>
-												<artifactId>no-package-cycles-enforcer-rule</artifactId>
-												<version>${maven.enforcer.no.package.cycles.plugin.version}</version>
-											</dependency>
-										</dependencies>
+                                        <dependencies>
+                                            <dependency>
+                                                <groupId>de.andrena.tools.nopackagecycles</groupId>
+                                                <artifactId>no-package-cycles-enforcer-rule</artifactId>
+                                                <version>${maven.enforcer.no.package.cycles.plugin.version}</version>
+                                            </dependency>
+                                        </dependencies>
                                 </plugin>
                                 <!-- allow to create a single jar with all dependencies -->
                                 <!-- only use for tests and not in production -->
@@ -2861,15 +2864,15 @@
                                         <version>${maven.site.plugin.version}</version>
                                 </plugin>
                                 <!--
-								<plugin>
-										<groupId>com.github.github</groupId>
-										<artifactId>downloads-maven-plugin</artifactId>
-										<version>${maven.downloads.github.plugin.version}</version>
+                                <plugin>
+                                        <groupId>com.github.github</groupId>
+                                        <artifactId>downloads-maven-plugin</artifactId>
+                                        <version>${maven.downloads.github.plugin.version}</version>
                                 </plugin>
                                 <plugin>
-										<groupId>com.github.github</groupId>
-										<artifactId>site-maven-plugin</artifactId>
-										<version>${maven.site.github.plugin.version}</version>
+                                        <groupId>com.github.github</groupId>
+                                        <artifactId>site-maven-plugin</artifactId>
+                                        <version>${maven.site.github.plugin.version}</version>
                                 </plugin>
                                 -->
                                 <plugin>
@@ -2952,9 +2955,9 @@
                                                 <!-- for parallel test -->
                                                 <!--<parallel>methods</parallel>-->
                                                 <parallel>classes</parallel>
-												<threadCount>1</threadCount>
-												<forkCount>1</forkCount>
-												<reuseForks>false</reuseForks>
+                                                <threadCount>1</threadCount>
+                                                <forkCount>1</forkCount>
+                                                <reuseForks>false</reuseForks>
                                                 <systemPropertyVariables>
                                                         <!--
                                                         <property>
@@ -3854,52 +3857,52 @@
                                         <!--classDumpDir>${project.build.directory}/jacoco-instrumented</classDumpDir-->
                                     </configuration>
                                 </plugin>
-								<plugin>
-									<groupId>org.codehaus.mojo</groupId>
-									<artifactId>codenarc-maven-plugin</artifactId>
-									<version>${maven.codenarc.plugin.version}</version>
-									<configuration>
-										<sourceDirectory>${project.basedir}/src/main/groovy</sourceDirectory>
-										<!--
-										<maxPriority1Violations>0</maxPriority1Violations>
-										<maxPriority2Violations>0</maxPriority2Violations>
-										<maxPriority3Violations>0</maxPriority3Violations>
-										-->
-									</configuration>
-									<executions>
-										<execution>
-										<phase>prepare-package</phase>
-										<goals>
-											<goal>codenarc</goal>
-										</goals>
-										</execution>
-									</executions>
-								</plugin>
-								<plugin>
-									<groupId>org.owasp</groupId>
-									<artifactId>dependency-check-maven</artifactId>
-									<version>${maven.dependency.check.plugin.version}</version>
-									<configuration>
-										<!--<failBuildOnCVSS>8</failBuildOnCVSS>-->
-										<format>XML</format>
-									</configuration>
-									<executions>
-										<execution>
-											<goals>
-												<goal>check</goal>
-												<!--<report>aggregate</report>-->
-											</goals>
-										</execution>
-									</executions>
-								</plugin>
-								<plugin>
-									<groupId>com.versioneye</groupId>
-									<artifactId>versioneye-maven-plugin</artifactId>
-									<version>${maven.versioneye.plugin.version}</version>
-									<configuration>
-										<apiKey>b61c27b9c7842af2f2a4</apiKey>
-									</configuration>
-								</plugin>
+                                <plugin>
+                                    <groupId>org.codehaus.mojo</groupId>
+                                    <artifactId>codenarc-maven-plugin</artifactId>
+                                    <version>${maven.codenarc.plugin.version}</version>
+                                    <configuration>
+                                        <sourceDirectory>${project.basedir}/src/main/groovy</sourceDirectory>
+                                        <!--
+                                        <maxPriority1Violations>0</maxPriority1Violations>
+                                        <maxPriority2Violations>0</maxPriority2Violations>
+                                        <maxPriority3Violations>0</maxPriority3Violations>
+                                        -->
+                                    </configuration>
+                                    <executions>
+                                        <execution>
+                                        <phase>prepare-package</phase>
+                                        <goals>
+                                            <goal>codenarc</goal>
+                                        </goals>
+                                        </execution>
+                                    </executions>
+                                </plugin>
+                                <plugin>
+                                    <groupId>org.owasp</groupId>
+                                    <artifactId>dependency-check-maven</artifactId>
+                                    <version>${maven.dependency.check.plugin.version}</version>
+                                    <configuration>
+                                        <!--<failBuildOnCVSS>8</failBuildOnCVSS>-->
+                                        <format>XML</format>
+                                    </configuration>
+                                    <executions>
+                                        <execution>
+                                            <goals>
+                                                <goal>check</goal>
+                                                <!--<report>aggregate</report>-->
+                                            </goals>
+                                        </execution>
+                                    </executions>
+                                </plugin>
+                                <plugin>
+                                    <groupId>com.versioneye</groupId>
+                                    <artifactId>versioneye-maven-plugin</artifactId>
+                                    <version>${maven.versioneye.plugin.version}</version>
+                                    <configuration>
+                                        <apiKey>b61c27b9c7842af2f2a4</apiKey>
+                                    </configuration>
+                                </plugin>
                                 <plugin>
                                         <groupId>org.codehaus.mojo</groupId>
                                         <artifactId>dashboard-maven-plugin</artifactId>
@@ -4038,26 +4041,26 @@
                                         </configuration>
                                         -->
                                         <!-- for gridgain
-										<executions>
-											<execution>
-												<id>copy</id>
-												<phase>process-resources</phase>
-												<goals>
-													<goal>copy</goal>
-												</goals>
-												<configuration>
-													<artifactitems>
-														<artifactitem>
-															<groupid>org.aspectj</groupid>
-															<artifactid>aspectjweaver</artifactid>
-															<version>${aspectj.weaver.version}</version>
-															<outputdirectory>${project.build.directory}/libs/</outputdirectory>
-														</artifactitem>
-													</artifactitems>
-												</configuration>
-											</execution>
-										</executions>
-										-->
+                                        <executions>
+                                            <execution>
+                                                <id>copy</id>
+                                                <phase>process-resources</phase>
+                                                <goals>
+                                                    <goal>copy</goal>
+                                                </goals>
+                                                <configuration>
+                                                    <artifactitems>
+                                                        <artifactitem>
+                                                            <groupid>org.aspectj</groupid>
+                                                            <artifactid>aspectjweaver</artifactid>
+                                                            <version>${aspectj.weaver.version}</version>
+                                                            <outputdirectory>${project.build.directory}/libs/</outputdirectory>
+                                                        </artifactitem>
+                                                    </artifactitems>
+                                                </configuration>
+                                            </execution>
+                                        </executions>
+                                        -->
                                 </plugin>
                                 <plugin>
                                     <groupId>org.databene</groupId>
@@ -4613,9 +4616,9 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                         <skipTests>${maven.test.skip}</skipTests>
                                         <skipITs>${maven.test.it.skip}</skipITs>
                                         <parallel>classes</parallel>
-										<threadCount>1</threadCount>
-										<forkCount>1</forkCount>
-										<reuseForks>false</reuseForks>
+                                        <threadCount>1</threadCount>
+                                        <forkCount>1</forkCount>
+                                        <reuseForks>false</reuseForks>
                                         <systemPropertyVariables>
                                           <cucumber.options>
                                             <![CDATA[--tags ${cucumber.tags} ${cucumber.features.dir}/${cucumber.feature}]]>
@@ -4739,11 +4742,11 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                         <failWhenNoMutations>false</failWhenNoMutations>
                                         <timestampedReports>false</timestampedReports>
                                         <!--
-										<mutationThreshold>26</mutationThreshold>
-										<coverageThreshold>80</coverageThreshold>
-										<historyInputFile>${project.basedir}/pitest-history.xml</historyInputFile>
-										<historyOutputFile>${project.build.directory}/pitest-history.xml</historyOutputFile>
-										-->
+                                        <mutationThreshold>26</mutationThreshold>
+                                        <coverageThreshold>80</coverageThreshold>
+                                        <historyInputFile>${project.basedir}/pitest-history.xml</historyInputFile>
+                                        <historyOutputFile>${project.build.directory}/pitest-history.xml</historyOutputFile>
+                                        -->
                                         <!--<threads>4</threads>-->
                                         <excludedClasses>
                                             <param>com.nabla.todo.*</param>
@@ -4779,9 +4782,9 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                             <mutator>DEFAULTS</mutator>
                                             <mutator>EXPERIMENTAL_MEMBER_VARIABLE</mutator>
                                             <mutator>REMOVE_CONDITIONALS</mutator>
-											<mutator>INLINE_CONSTS</mutator>
-											<mutator>NON_VOID_METHOD_CALLS</mutator>
-											<mutator>CONSTRUCTOR_CALLS</mutator>
+                                            <mutator>INLINE_CONSTS</mutator>
+                                            <mutator>NON_VOID_METHOD_CALLS</mutator>
+                                            <mutator>CONSTRUCTOR_CALLS</mutator>
                                         </mutators>
                                     </configuration>
                                 </plugin>
@@ -5146,14 +5149,14 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <version>${jacoco.version}</version>
                             <scope>provided</scope>
                         </dependency>
-						<dependency>
-						    <groupId>org.jacoco</groupId>
-						    <artifactId>org.jacoco.agent</artifactId>
-						    <version>${jacoco.agent.version}</version>
-						    <type>jar</type>
-						    <classifier>runtime</classifier>
-						    <scope>test</scope>
-						</dependency>
+                        <dependency>
+                            <groupId>org.jacoco</groupId>
+                            <artifactId>org.jacoco.agent</artifactId>
+                            <version>${jacoco.agent.version}</version>
+                            <type>jar</type>
+                            <classifier>runtime</classifier>
+                            <scope>test</scope>
+                        </dependency>
 
                         <dependency>
                             <groupId>junit</groupId>
@@ -5162,21 +5165,21 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <type>jar</type>
                             <scope>test</scope>
                         </dependency>
-						<!-- in order to use @net.jcip.annotations.NotThreadSafe in junit test -->
-						<dependency>
-							<groupId>com.github.stephenc.jcip</groupId>
-							<artifactId>jcip-annotations</artifactId>
-							<version>${jcip.annotations.version}</version>
-							<scope>test</scope>
-						</dependency>
-						<!-- TODO activate it if needed
-						<dependency>
-							<groupId>org.gridgain</groupId>
-							<artifactId>gridgain</artifactId>
-							<version>${gridgain.version}</version>
-							<scope>test</scope>
-						</dependency>
-						-->
+                        <!-- in order to use @net.jcip.annotations.NotThreadSafe in junit test -->
+                        <dependency>
+                            <groupId>com.github.stephenc.jcip</groupId>
+                            <artifactId>jcip-annotations</artifactId>
+                            <version>${jcip.annotations.version}</version>
+                            <scope>test</scope>
+                        </dependency>
+                        <!-- TODO activate it if needed
+                        <dependency>
+                            <groupId>org.gridgain</groupId>
+                            <artifactId>gridgain</artifactId>
+                            <version>${gridgain.version}</version>
+                            <scope>test</scope>
+                        </dependency>
+                        -->
                         <dependency>
                             <groupId>org.databene</groupId>
                             <artifactId>feed4junit</artifactId>
@@ -5195,12 +5198,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <version>${junitperf.version}</version>
                             <scope>test</scope>
                         </dependency>
-						<dependency>
-							<groupId>org.unitils</groupId>
-							<artifactId>unitils-core</artifactId>
-							<version>${unitils.core.version}</version>
-							<scope>test</scope>
-						</dependency>
+                        <dependency>
+                            <groupId>org.unitils</groupId>
+                            <artifactId>unitils-core</artifactId>
+                            <version>${unitils.core.version}</version>
+                            <scope>test</scope>
+                        </dependency>
                         <dependency>
                             <groupId>org.skyscreamer</groupId>
                             <artifactId>jsonassert</artifactId>
@@ -5240,18 +5243,18 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <version>${mockito.version}</version>
                                 <scope>test</scope>
                         </dependency>
-						<dependency>
-							<groupId>org.powermock</groupId>
-							<artifactId>powermock-mockito-release-full</artifactId>
-							<version>${powermock.mockito.version}</version>
-							<classifier>full</classifier>
-							<exclusions>
-								<exclusion>
-								<artifactId>powermock-module-testng</artifactId>
-								<groupId>org.powermock</groupId>
-								</exclusion>
-							</exclusions>
-						</dependency>
+                        <dependency>
+                            <groupId>org.powermock</groupId>
+                            <artifactId>powermock-mockito-release-full</artifactId>
+                            <version>${powermock.mockito.version}</version>
+                            <classifier>full</classifier>
+                            <exclusions>
+                                <exclusion>
+                                <artifactId>powermock-module-testng</artifactId>
+                                <groupId>org.powermock</groupId>
+                                </exclusion>
+                            </exclusions>
+                        </dependency>
                         <!-- googlecode.jmockit moved to org.jmockit
                         <dependency>
                                 <groupId>com.googlecode.jmockit</groupId>
@@ -5261,11 +5264,11 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         </dependency>
                         -->
                         <dependency>
-		                	    <groupId>org.jmockit</groupId>
-		                	    <artifactId>jmockit</artifactId>
-		                	    <version>${jmockit.version}</version>
-		                	    <scope>test</scope>
-		                </dependency>
+                                <groupId>org.jmockit</groupId>
+                                <artifactId>jmockit</artifactId>
+                                <version>${jmockit.version}</version>
+                                <scope>test</scope>
+                        </dependency>
                         <dependency>
                                 <groupId>org.hamcrest</groupId>
                                 <artifactId>hamcrest-library</artifactId>
@@ -5278,12 +5281,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <version>${hamcrest.all.version}</version>
                                 <scope>test</scope>
                         </dependency>
-						<dependency>
-							<groupId>org.codehaus.cargo</groupId>
-							<artifactId>cargo-core-uberjar</artifactId>
-							<version>${cargo.core.uberjar.version}</version>
-							<scope>test</scope>
-						</dependency>
+                        <dependency>
+                            <groupId>org.codehaus.cargo</groupId>
+                            <artifactId>cargo-core-uberjar</artifactId>
+                            <version>${cargo.core.uberjar.version}</version>
+                            <scope>test</scope>
+                        </dependency>
                         <dependency>
                                 <groupId>org.springframework</groupId>
                                 <artifactId>spring-mock</artifactId>
@@ -5516,21 +5519,21 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <scope>test</scope>
                         </dependency>
 
-						<dependency>
-						  <groupId>com.newrelic.agent.java</groupId>
-						  <artifactId>newrelic-agent</artifactId>
-						  <version>${newrelic.version}</version>
-						  <scope>runtime</scope>
-						</dependency>
+                        <dependency>
+                          <groupId>com.newrelic.agent.java</groupId>
+                          <artifactId>newrelic-agent</artifactId>
+                          <version>${newrelic.version}</version>
+                          <scope>runtime</scope>
+                        </dependency>
 
-						<!-- The newrelic-java.zip dependency. -->
-						<dependency>
-						  <groupId>com.newrelic.agent.java</groupId>
-						  <artifactId>newrelic-java</artifactId>
-						  <version>${newrelic.version}</version>
-						  <scope>provided</scope>
-						  <type>zip</type>
-						</dependency>
+                        <!-- The newrelic-java.zip dependency. -->
+                        <dependency>
+                          <groupId>com.newrelic.agent.java</groupId>
+                          <artifactId>newrelic-java</artifactId>
+                          <version>${newrelic.version}</version>
+                          <scope>provided</scope>
+                          <type>zip</type>
+                        </dependency>
 
                         <dependency>
                             <groupId>com.excilys.ebi.gatling.highcharts</groupId>
@@ -5591,87 +5594,87 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <scope>runtime</scope>
                         </dependency>
 
-						<dependency>
-							<groupId>org.jvnet.mimepull</groupId>
-							<artifactId>mimepull</artifactId>
-							<version>${mimepull.version}</version>
-						</dependency>
                         <dependency>
-							<groupId>org.beanshell</groupId>
-							<artifactId>bsh</artifactId>
-							<version>${org.beanshell.bsh.version}</version>
+                            <groupId>org.jvnet.mimepull</groupId>
+                            <artifactId>mimepull</artifactId>
+                            <version>${mimepull.version}</version>
                         </dependency>
                         <dependency>
-							<groupId>org.hamcrest</groupId>
-							<artifactId>hamcrest-core</artifactId>
-							<version>${hamcrest.core.version}</version>
+                            <groupId>org.beanshell</groupId>
+                            <artifactId>bsh</artifactId>
+                            <version>${org.beanshell.bsh.version}</version>
                         </dependency>
                         <dependency>
-							<groupId>xerces</groupId>
-							<artifactId>xercesImpl</artifactId>
-							<version>${xerces.version}</version>
-							<scope>provided</scope>
-							<exclusions>
-								<exclusion>
-									<groupId>xml-apis</groupId>
-									<artifactId>xml-apis</artifactId>
-								</exclusion>
-							</exclusions>
+                            <groupId>org.hamcrest</groupId>
+                            <artifactId>hamcrest-core</artifactId>
+                            <version>${hamcrest.core.version}</version>
                         </dependency>
                         <dependency>
-							<groupId>xalan</groupId>
-							<artifactId>xalan</artifactId>
-							<version>${xalan.version}</version>
-							<scope>provided</scope>
-							<exclusions>
-								<exclusion>
-									<groupId>xml-apis</groupId>
-									<artifactId>xml-apis</artifactId>
-								</exclusion>
-							</exclusions>
+                            <groupId>xerces</groupId>
+                            <artifactId>xercesImpl</artifactId>
+                            <version>${xerces.version}</version>
+                            <scope>provided</scope>
+                            <exclusions>
+                                <exclusion>
+                                    <groupId>xml-apis</groupId>
+                                    <artifactId>xml-apis</artifactId>
+                                </exclusion>
+                            </exclusions>
                         </dependency>
                         <dependency>
-						   <groupId>dom4j</groupId>
-						   <artifactId>dom4j</artifactId>
-						   <version>${dom4j.version}</version>
-						   <scope>compile</scope>
-						   <exclusions>
-								<exclusion>
-									<groupId>xml-apis</groupId>
-									<artifactId>xml-apis</artifactId>
-								</exclusion>
-							</exclusions>
+                            <groupId>xalan</groupId>
+                            <artifactId>xalan</artifactId>
+                            <version>${xalan.version}</version>
+                            <scope>provided</scope>
+                            <exclusions>
+                                <exclusion>
+                                    <groupId>xml-apis</groupId>
+                                    <artifactId>xml-apis</artifactId>
+                                </exclusion>
+                            </exclusions>
+                        </dependency>
+                        <dependency>
+                           <groupId>dom4j</groupId>
+                           <artifactId>dom4j</artifactId>
+                           <version>${dom4j.version}</version>
+                           <scope>compile</scope>
+                           <exclusions>
+                                <exclusion>
+                                    <groupId>xml-apis</groupId>
+                                    <artifactId>xml-apis</artifactId>
+                                </exclusion>
+                            </exclusions>
                         </dependency>
 
                         <!-- Spring -->
 
                         <!-- to remove for spring 3.x -->
                         <dependency>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring</artifactId>
-							<version>${spring2.version}</version>
-							<type>jar</type>
-							<scope>compile</scope>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring</artifactId>
+                            <version>${spring2.version}</version>
+                            <type>jar</type>
+                            <scope>compile</scope>
                         </dependency>
                         <!-- Support for testing Spring applications with tools such as JUnit and TestNG This artifact is generally always defined with a 'test' scope for the integration testing framework and unit testing stubs -->
                         <dependency>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-test</artifactId>
-							<version>${spring.test.version}</version>
-							<scope>test</scope>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-test</artifactId>
+                            <version>${spring.test.version}</version>
+                            <scope>test</scope>
                         </dependency>
                         <!-- Spring MVC for Servlet Environments (depends on spring-core, spring-beans, spring-context, spring-web) Define this if you use Spring MVC with a Servlet Container such as Apache Tomcat (org.springframework.web.servlet.*) -->
                         <dependency>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-webmvc</artifactId>
-							<version>${spring.legacy.version}</version>
-							<scope>compile</scope>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-webmvc</artifactId>
+                            <version>${spring.legacy.version}</version>
+                            <scope>compile</scope>
                         </dependency>
                         <!-- Spring MVC for Portlet Environments (depends on spring-core, spring-beans, spring-context, spring-web) Define this if you use Spring MVC with a Portlet Container (org.springframework.web.portlet.*) -->
                         <dependency>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-webmvc-portlet</artifactId>
-							<version>${spring.legacy.version}</version>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-webmvc-portlet</artifactId>
+                            <version>${spring.legacy.version}</version>
                         </dependency>
                         <dependency>
                             <groupId>org.springframework</groupId>
@@ -5691,15 +5694,15 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         </dependency>
                         <!-- Core utilities used by other modules. Define this if you use Spring Utility APIs (org.springframework.core.*/org.springframework.util.*) -->
                         <dependency>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-core</artifactId>
-							<version>${spring3.version}</version>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-core</artifactId>
+                            <version>${spring3.version}</version>
                         </dependency>
                         <!-- Expression Language (depends on spring-core) Define this if you use Spring Expression APIs (org.springframework.expression.*) -->
                         <dependency>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-expression</artifactId>
-							<version>${spring3.version}</version>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-expression</artifactId>
+                            <version>${spring3.version}</version>
                         </dependency>
                         <!-- Object-to-XML Mapping (OXM) abstraction and integration with JAXB, JiBX, Castor, XStream, and XML Beans. (depends on spring-core, spring-beans, spring-context) Define this if you need OXM (org.springframework.oxm.*) -->
                         <dependency>
@@ -5709,92 +5712,92 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         </dependency>
                         <!-- Web application development utilities applicable to both Servlet and Portlet Environments (depends on spring-core, spring-beans, spring-context) Define this if you use Spring MVC, or wish to use Struts, JSF, or another web framework with Spring (org.springframework.web.*) -->
                         <dependency>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-web</artifactId>
-							<version>${spring3.version}</version>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-web</artifactId>
+                            <version>${spring3.version}</version>
                         </dependency>
                         <!-- Bean Factory and JavaBeans utilities (depends on spring-core) Define this if you use Spring Bean APIs (org.springframework.beans.*) -->
                         <dependency>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-beans</artifactId>
-							<version>${spring3.version}</version>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-beans</artifactId>
+                            <version>${spring3.version}</version>
                         </dependency>
                         <!-- Application Context (depends on spring-core, spring-expression, spring-aop, spring-beans) This is the central artifact for Spring's Dependency Injection Container and is generally always defined -->
                         <dependency>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-context</artifactId>
-							<version>${spring3.version}</version>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-context</artifactId>
+                            <version>${spring3.version}</version>
                         </dependency>
                         <!-- Aspect Oriented Programming (AOP) Framework (depends on spring-core, spring-beans) Define this if you use Spring AOP APIs (org.springframework.aop.*) -->
                         <dependency>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-aop</artifactId>
-							<version>${spring3.version}</version>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-aop</artifactId>
+                            <version>${spring3.version}</version>
                         </dependency>
                         <!-- Various Application Context utilities, including EhCache, JavaMail, Quartz, and Freemarker integration Define this if you need any of these integrations -->
                         <dependency>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-context-support</artifactId>
-							<version>${spring3.version}</version>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-context-support</artifactId>
+                            <version>${spring3.version}</version>
                         </dependency>
                         <!-- Transaction Management Abstraction (depends on spring-core, spring-beans, spring-aop, spring-context) Define this if you use Spring Transactions or DAO Exception Hierarchy (org.springframework.transaction.*/org.springframework.dao.*) -->
                         <dependency>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-tx</artifactId>
-							<version>${spring3.version}</version>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-tx</artifactId>
+                            <version>${spring3.version}</version>
                         </dependency>
 
                         <!-- Object-to-Relation-Mapping (ORM) integration with Hibernate, JPA, and iBatis. (depends on spring-core, spring-beans, spring-context, spring-tx) Define this if you need ORM (org.springframework.orm.*) -->
                         <dependency>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-orm</artifactId>
-							<version>${spring3.version}</version>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-orm</artifactId>
+                            <version>${spring3.version}</version>
                         </dependency>
                         <!-- JDBC Data Access Library (depends on spring-core, spring-beans, spring-context, spring-tx) Define this if you use Spring's JdbcTemplate API (org.springframework.jdbc.*) -->
                         <dependency>
-							<groupId>org.springframework</groupId>
-							<artifactId>spring-jdbc</artifactId>
-							<version>${spring3.version}</version>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>spring-jdbc</artifactId>
+                            <version>${spring3.version}</version>
                         </dependency>
                         <dependency>
-							<groupId>org.springframework</groupId>
-							<artifactId>springloaded</artifactId>
-							<version>${spring.springloaded.version}</version>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>springloaded</artifactId>
+                            <version>${spring.springloaded.version}</version>
                         </dependency>
                       <!-- // Spring -->
 
                         <dependency>
-							<groupId>com.google.api.client</groupId>
-							<artifactId>google-api-client</artifactId>
-							<version>${google.api.client.version}</version>
-							<scope>compile</scope>
+                            <groupId>com.google.api.client</groupId>
+                            <artifactId>google-api-client</artifactId>
+                            <version>${google.api.client.version}</version>
+                            <scope>compile</scope>
                         </dependency>
 
                         <!-- see pom in database -->
                         <dependency>
-							<groupId>org.hibernate</groupId>
-							<artifactId>hibernate</artifactId>
-							<version>${hibernate.legacy.version}</version>
-							<!--<scope>compile</scope> error when deployed in jboss -->
-							<scope>provided</scope>
-							<exclusions>
-									<exclusion>
-											<groupId>javax.transaction</groupId>
-											<artifactId>jta</artifactId>
-									</exclusion>
-									<exclusion>
-											<groupId>asm</groupId>
-											<artifactId>asm</artifactId>
-									</exclusion>
-									<exclusion>
-											<groupId>asm</groupId>
-											<artifactId>asm-attrs</artifactId>
-									</exclusion>
-									<exclusion>
-											<groupId>cglib</groupId>
-											<artifactId>cglib</artifactId>
-									</exclusion>
-							</exclusions>
+                            <groupId>org.hibernate</groupId>
+                            <artifactId>hibernate</artifactId>
+                            <version>${hibernate.legacy.version}</version>
+                            <!--<scope>compile</scope> error when deployed in jboss -->
+                            <scope>provided</scope>
+                            <exclusions>
+                                    <exclusion>
+                                            <groupId>javax.transaction</groupId>
+                                            <artifactId>jta</artifactId>
+                                    </exclusion>
+                                    <exclusion>
+                                            <groupId>asm</groupId>
+                                            <artifactId>asm</artifactId>
+                                    </exclusion>
+                                    <exclusion>
+                                            <groupId>asm</groupId>
+                                            <artifactId>asm-attrs</artifactId>
+                                    </exclusion>
+                                    <exclusion>
+                                            <groupId>cglib</groupId>
+                                            <artifactId>cglib</artifactId>
+                                    </exclusion>
+                            </exclusions>
                         </dependency>
                         <!-- For JBoss AS6 and earlier: Avoid NoSuchMethodException: org.hibernate.validator.ClassValidator.<init> -->
                         <dependency>
@@ -5853,11 +5856,11 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <artifactId>asm</artifactId>
                                 <version>${asm.ow2.version}</version>
                         </dependency>
-						<dependency>
-								<groupId>org.ow2.asm</groupId>
-								<artifactId>asm-debug-all</artifactId>
-								<version>${asm.ow2.version}</version>
-						</dependency>
+                        <dependency>
+                                <groupId>org.ow2.asm</groupId>
+                                <artifactId>asm-debug-all</artifactId>
+                                <version>${asm.ow2.version}</version>
+                        </dependency>
                         <dependency>
                                 <groupId>cglib</groupId>
                                 <artifactId>cglib-nodep</artifactId>
@@ -6455,243 +6458,243 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             </exclusion>
                           </exclusions>
                         </dependency>
-						<dependency>
-							<groupId>org.codehaus.groovy</groupId>
-							<artifactId>groovy-eclipse-compiler</artifactId>
-							<version>${groovy.eclipse.compiler.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>org.codehaus.groovy</groupId>
-							<artifactId>groovy-eclipse-batch</artifactId>
-							<version>${groovy.eclipse.batch.version}</version>
-						</dependency>
-
-						<!-- to generate .png from .svg (because IE 8 can't) -->
-						<dependency>
-							<groupId>org.apache.xmlgraphics</groupId>
-							<artifactId>batik-transcoder</artifactId>
-							<version>${batik.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>org.apache.xmlgraphics</groupId>
-							<artifactId>batik-codec</artifactId>
-							<version>${batik.version}</version>
-						</dependency>
-						<!-- batik avoid java.lang.NoClassDefFoundError: org/w3c/dom/ElementTraversal -->
-						<dependency>
-							<groupId>batik</groupId>
-							<artifactId>batik-ext</artifactId>
-							<version>${batik.ext.version}</version>
-						</dependency>
-
-						<dependency>
-							<groupId>org.jogamp.gluegen</groupId>
-							<artifactId>gluegen-rt-main</artifactId>
-							<version>${gluegen.rt.main.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>org.jogamp.jocl</groupId>
-							<artifactId>jocl-main</artifactId>
-							<version>${gluegen.rt.main.version}</version>
-						</dependency>
-
-						<dependency>
-							<groupId>commons-validator</groupId>
-							<artifactId>commons-validator</artifactId>
-							<version>${commons.validator.version}</version>
-							<exclusions>
-								<exclusion>
-									<groupId>commons-logging</groupId>
-									<artifactId>commons-logging</artifactId>
-								</exclusion>
-							</exclusions>
-						</dependency>
-						<dependency>
-							<groupId>commons-collections</groupId>
-							<artifactId>commons-collections</artifactId>
-							<version>${commons.collections.version}</version>
-							<scope>compile</scope>
-							<!-- JBoss contains a version which causes a classloader conflict unless not bundled>
-							<scope>provided</scope -->
-						</dependency>
-						<dependency>
-							<groupId>commons-digester</groupId>
-							<artifactId>commons-digester</artifactId>
-							<version>${commons.digester.version}</version>
-							<!--<scope>runtime</scope>-->
-							<scope>compile</scope>
-							<exclusions>
-							  <exclusion>
-								  <groupId>xml-apis</groupId>
-								  <artifactId>xml-apis</artifactId>
-							  </exclusion>
-							  <exclusion>
-								<groupId>commons-logging</groupId>
-								<artifactId>commons-logging</artifactId>
-							  </exclusion>
-							  <exclusion>
-								<groupId>commons-beanutils</groupId>
-								<artifactId>commons-beanutils</artifactId>
-							  </exclusion>
-							</exclusions>
-						</dependency>
-						<dependency>
-							<groupId>commons-fileupload</groupId>
-							<artifactId>commons-fileupload</artifactId>
-							<version>${commons.fileupload.version}</version>
-							<!--<scope>runtime</scope>-->
-							<scope>compile</scope>
-						</dependency>
-						<dependency>
-							<groupId>commons-io</groupId>
-							<artifactId>commons-io</artifactId>
-							<version>${commons.io.version}</version>
-							<scope>compile</scope>
-						</dependency>
-						<dependency>
-							<groupId>commons-logging</groupId>
-							<artifactId>commons-logging</artifactId>
-							<version>${commons.logging.version}</version>
-							<scope>compile</scope>
-						</dependency>
-						<dependency>
-							<groupId>commons-configuration</groupId>
-							<artifactId>commons-configuration</artifactId>
-							<version>${commons.configuration.version}</version>
-							<scope>compile</scope>
-						</dependency>
-						<dependency>
-							<groupId>commons-lang</groupId>
-							<artifactId>commons-lang</artifactId>
-							<version>${commons.lang.version}</version>
-							<scope>compile</scope>
-						</dependency>
-						<dependency>
-							<groupId>org.apache.commons</groupId>
-							<artifactId>commons-lang3</artifactId>
-							<version>${commons.lang3.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>org.apache.xmlbeans</groupId>
-							<artifactId>xmlbeans</artifactId>
-							<version>${xmlbeans.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>commons-cli</groupId>
-							<artifactId>commons-cli</artifactId>
-							<version>${commons.cli.version}</version>
-							<scope>compile</scope>
-							<exclusions>
-								<exclusion>
-									<groupId>commons-logging</groupId>
-									<artifactId>commons-logging</artifactId>
-								</exclusion>
-							</exclusions>
-						</dependency>
-						<dependency>
-							<groupId>commons-beanutils</groupId>
-							<artifactId>commons-beanutils</artifactId>
-							<version>${commons.beanutils.version}</version>
-							<scope>compile</scope>
-						</dependency>
-						<dependency>
-						    <groupId>commons-beanutils</groupId>
-						    <artifactId>commons-beanutils-core</artifactId>
-						    <version>${commons.beanutils.version}</version>
-						    <exclusions>
-							  <exclusion>
-							    <groupId>commons-logging</groupId>
-							    <artifactId>commons-logging</artifactId>
-							  </exclusion>
-						    </exclusions>
-						</dependency>
-						<dependency>
-							<groupId>commons-beanutils</groupId>
-							<artifactId>commons-beanutils-bean-collections</artifactId>
-							<version>${commons.beanutils.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>commons-codec</groupId>
-							<artifactId>commons-codec</artifactId>
-							<version>${commons.codec.version}</version>
-							<!--<scope>compile</scope>-->
-							<scope>runtime</scope>
-						</dependency>
-						<dependency>
-							<groupId>commons-discovery</groupId>
-							<artifactId>commons-discovery</artifactId>
-							<version>${commons.discovery.version}</version>
-							<scope>compile</scope>
-						</dependency>
-						 <dependency>
-							<groupId>org.apache.commons</groupId>
-							<artifactId>commons-math</artifactId>
-							<version>${commons.math.version}</version>
-						</dependency>
-						<dependency>
-							<groupId>org.apache.commons</groupId>
-							<artifactId>commons-math3</artifactId>
-							<version>${commons.math3.version}</version>
-						</dependency>
                         <dependency>
-							<groupId>concurrent</groupId>
-							<artifactId>concurrent</artifactId>
-							<version>${concurrent.version}</version>
-							<scope>compile</scope>
+                            <groupId>org.codehaus.groovy</groupId>
+                            <artifactId>groovy-eclipse-compiler</artifactId>
+                            <version>${groovy.eclipse.compiler.version}</version>
                         </dependency>
                         <dependency>
-							<groupId>struts</groupId>
-							<artifactId>struts</artifactId>
-							<version>${struts.version}</version>
-							<exclusions>
-								<exclusion>
-									<groupId>commons-chain</groupId>
-									<artifactId>commons-chain</artifactId>
-								</exclusion>
-								<exclusion>
-									<groupId>commons-digester</groupId>
-									<artifactId>commons-digester</artifactId>
-								</exclusion>
-								<exclusion>
-									<groupId>xalan</groupId>
-									<artifactId>xalan</artifactId>
-								</exclusion>
-							</exclusions>
+                            <groupId>org.codehaus.groovy</groupId>
+                            <artifactId>groovy-eclipse-batch</artifactId>
+                            <version>${groovy.eclipse.batch.version}</version>
+                        </dependency>
+
+                        <!-- to generate .png from .svg (because IE 8 can't) -->
+                        <dependency>
+                            <groupId>org.apache.xmlgraphics</groupId>
+                            <artifactId>batik-transcoder</artifactId>
+                            <version>${batik.version}</version>
                         </dependency>
                         <dependency>
-							<groupId>struts-menu</groupId>
-							<artifactId>struts-menu</artifactId>
-							<version>${struts.menu.version}</version>
+                            <groupId>org.apache.xmlgraphics</groupId>
+                            <artifactId>batik-codec</artifactId>
+                            <version>${batik.version}</version>
+                        </dependency>
+                        <!-- batik avoid java.lang.NoClassDefFoundError: org/w3c/dom/ElementTraversal -->
+                        <dependency>
+                            <groupId>batik</groupId>
+                            <artifactId>batik-ext</artifactId>
+                            <version>${batik.ext.version}</version>
+                        </dependency>
+
+                        <dependency>
+                            <groupId>org.jogamp.gluegen</groupId>
+                            <artifactId>gluegen-rt-main</artifactId>
+                            <version>${gluegen.rt.main.version}</version>
                         </dependency>
                         <dependency>
-							<groupId>displaytag</groupId>
-							<artifactId>displaytag</artifactId>
-							<version>${displaytag.version}</version>
-							<scope>runtime</scope>
-							<exclusions>
-								<exclusion>
-									<groupId>taglibs</groupId>
-									<artifactId>standard</artifactId>
-								</exclusion>
-								<exclusion>
-									<groupId>log4j</groupId>
-									<artifactId>log4j</artifactId>
-								</exclusion>
-							</exclusions>
+                            <groupId>org.jogamp.jocl</groupId>
+                            <artifactId>jocl-main</artifactId>
+                            <version>${gluegen.rt.main.version}</version>
+                        </dependency>
+
+                        <dependency>
+                            <groupId>commons-validator</groupId>
+                            <artifactId>commons-validator</artifactId>
+                            <version>${commons.validator.version}</version>
+                            <exclusions>
+                                <exclusion>
+                                    <groupId>commons-logging</groupId>
+                                    <artifactId>commons-logging</artifactId>
+                                </exclusion>
+                            </exclusions>
+                        </dependency>
+                        <dependency>
+                            <groupId>commons-collections</groupId>
+                            <artifactId>commons-collections</artifactId>
+                            <version>${commons.collections.version}</version>
+                            <scope>compile</scope>
+                            <!-- JBoss contains a version which causes a classloader conflict unless not bundled>
+                            <scope>provided</scope -->
+                        </dependency>
+                        <dependency>
+                            <groupId>commons-digester</groupId>
+                            <artifactId>commons-digester</artifactId>
+                            <version>${commons.digester.version}</version>
+                            <!--<scope>runtime</scope>-->
+                            <scope>compile</scope>
+                            <exclusions>
+                              <exclusion>
+                                  <groupId>xml-apis</groupId>
+                                  <artifactId>xml-apis</artifactId>
+                              </exclusion>
+                              <exclusion>
+                                <groupId>commons-logging</groupId>
+                                <artifactId>commons-logging</artifactId>
+                              </exclusion>
+                              <exclusion>
+                                <groupId>commons-beanutils</groupId>
+                                <artifactId>commons-beanutils</artifactId>
+                              </exclusion>
+                            </exclusions>
+                        </dependency>
+                        <dependency>
+                            <groupId>commons-fileupload</groupId>
+                            <artifactId>commons-fileupload</artifactId>
+                            <version>${commons.fileupload.version}</version>
+                            <!--<scope>runtime</scope>-->
+                            <scope>compile</scope>
+                        </dependency>
+                        <dependency>
+                            <groupId>commons-io</groupId>
+                            <artifactId>commons-io</artifactId>
+                            <version>${commons.io.version}</version>
+                            <scope>compile</scope>
+                        </dependency>
+                        <dependency>
+                            <groupId>commons-logging</groupId>
+                            <artifactId>commons-logging</artifactId>
+                            <version>${commons.logging.version}</version>
+                            <scope>compile</scope>
+                        </dependency>
+                        <dependency>
+                            <groupId>commons-configuration</groupId>
+                            <artifactId>commons-configuration</artifactId>
+                            <version>${commons.configuration.version}</version>
+                            <scope>compile</scope>
+                        </dependency>
+                        <dependency>
+                            <groupId>commons-lang</groupId>
+                            <artifactId>commons-lang</artifactId>
+                            <version>${commons.lang.version}</version>
+                            <scope>compile</scope>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.commons</groupId>
+                            <artifactId>commons-lang3</artifactId>
+                            <version>${commons.lang3.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.xmlbeans</groupId>
+                            <artifactId>xmlbeans</artifactId>
+                            <version>${xmlbeans.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>commons-cli</groupId>
+                            <artifactId>commons-cli</artifactId>
+                            <version>${commons.cli.version}</version>
+                            <scope>compile</scope>
+                            <exclusions>
+                                <exclusion>
+                                    <groupId>commons-logging</groupId>
+                                    <artifactId>commons-logging</artifactId>
+                                </exclusion>
+                            </exclusions>
+                        </dependency>
+                        <dependency>
+                            <groupId>commons-beanutils</groupId>
+                            <artifactId>commons-beanutils</artifactId>
+                            <version>${commons.beanutils.version}</version>
+                            <scope>compile</scope>
+                        </dependency>
+                        <dependency>
+                            <groupId>commons-beanutils</groupId>
+                            <artifactId>commons-beanutils-core</artifactId>
+                            <version>${commons.beanutils.version}</version>
+                            <exclusions>
+                              <exclusion>
+                                <groupId>commons-logging</groupId>
+                                <artifactId>commons-logging</artifactId>
+                              </exclusion>
+                            </exclusions>
+                        </dependency>
+                        <dependency>
+                            <groupId>commons-beanutils</groupId>
+                            <artifactId>commons-beanutils-bean-collections</artifactId>
+                            <version>${commons.beanutils.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>commons-codec</groupId>
+                            <artifactId>commons-codec</artifactId>
+                            <version>${commons.codec.version}</version>
+                            <!--<scope>compile</scope>-->
+                            <scope>runtime</scope>
+                        </dependency>
+                        <dependency>
+                            <groupId>commons-discovery</groupId>
+                            <artifactId>commons-discovery</artifactId>
+                            <version>${commons.discovery.version}</version>
+                            <scope>compile</scope>
+                        </dependency>
+                         <dependency>
+                            <groupId>org.apache.commons</groupId>
+                            <artifactId>commons-math</artifactId>
+                            <version>${commons.math.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.apache.commons</groupId>
+                            <artifactId>commons-math3</artifactId>
+                            <version>${commons.math3.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>concurrent</groupId>
+                            <artifactId>concurrent</artifactId>
+                            <version>${concurrent.version}</version>
+                            <scope>compile</scope>
+                        </dependency>
+                        <dependency>
+                            <groupId>struts</groupId>
+                            <artifactId>struts</artifactId>
+                            <version>${struts.version}</version>
+                            <exclusions>
+                                <exclusion>
+                                    <groupId>commons-chain</groupId>
+                                    <artifactId>commons-chain</artifactId>
+                                </exclusion>
+                                <exclusion>
+                                    <groupId>commons-digester</groupId>
+                                    <artifactId>commons-digester</artifactId>
+                                </exclusion>
+                                <exclusion>
+                                    <groupId>xalan</groupId>
+                                    <artifactId>xalan</artifactId>
+                                </exclusion>
+                            </exclusions>
+                        </dependency>
+                        <dependency>
+                            <groupId>struts-menu</groupId>
+                            <artifactId>struts-menu</artifactId>
+                            <version>${struts.menu.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>displaytag</groupId>
+                            <artifactId>displaytag</artifactId>
+                            <version>${displaytag.version}</version>
+                            <scope>runtime</scope>
+                            <exclusions>
+                                <exclusion>
+                                    <groupId>taglibs</groupId>
+                                    <artifactId>standard</artifactId>
+                                </exclusion>
+                                <exclusion>
+                                    <groupId>log4j</groupId>
+                                    <artifactId>log4j</artifactId>
+                                </exclusion>
+                            </exclusions>
                         </dependency>
                         <!-- validation dependencies for hibernate-entitymanager -->
                         <dependency>
-							<groupId>javax.validation</groupId>
-							<artifactId>validation-api</artifactId>
-							<version>${validation.api.version}</version>
+                            <groupId>javax.validation</groupId>
+                            <artifactId>validation-api</artifactId>
+                            <version>${validation.api.version}</version>
                         </dependency>
                         <!-- GWT validation also requires the validation API sources at compile
                           time -->
                         <dependency>
-							<groupId>javax.validation</groupId>
-							<artifactId>validation-api</artifactId>
-							<version>${validation.api.version}</version>
-							<classifier>sources</classifier>
+                            <groupId>javax.validation</groupId>
+                            <artifactId>validation-api</artifactId>
+                            <version>${validation.api.version}</version>
+                            <classifier>sources</classifier>
                         </dependency>
 
                         <!-- richfaces -->
@@ -7074,7 +7077,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                          <version>${weld.servlet.version}</version>
                       </dependency>
 
-			<!--
+            <!--
                         <dependency>
                           <groupId>org.jboss.errai</groupId>
                           <artifactId>jboss7-support</artifactId>
@@ -7082,7 +7085,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         </dependency>
                         -->
 
-						<!-- TODO activate it if needed
+                        <!-- TODO activate it if needed
                         <dependency>
                             <groupId>com.vaadin</groupId>
                             <artifactId>vaadin</artifactId>
@@ -7730,7 +7733,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                           </exclusions>
                         </dependency>
 
-			<!--
+            <!--
                         <dependency>
                           <groupId>org.jboss.seam</groupId>
                           <artifactId>jboss-seam-jul</artifactId>
@@ -7754,34 +7757,34 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <version>${seam.international.version}</version>
                         </dependency>
 
-						<dependency>
-								<groupId>org.apache.camel</groupId>
-								<artifactId>camel-core</artifactId>
-								<version>${camel.version}</version>
-						</dependency>
-						<dependency>
-								<groupId>com.espertech</groupId>
-								<artifactId>esper</artifactId>
-								<version>${esper.version}</version>
-						</dependency>
-						<dependency>
-								<groupId>com.googlecode.efficient-java-matrix-library</groupId>
-								<artifactId>ejml</artifactId>
-								<version>${ejml.version}</version>
-						</dependency>
+                        <dependency>
+                                <groupId>org.apache.camel</groupId>
+                                <artifactId>camel-core</artifactId>
+                                <version>${camel.version}</version>
+                        </dependency>
+                        <dependency>
+                                <groupId>com.espertech</groupId>
+                                <artifactId>esper</artifactId>
+                                <version>${esper.version}</version>
+                        </dependency>
+                        <dependency>
+                                <groupId>com.googlecode.efficient-java-matrix-library</groupId>
+                                <artifactId>ejml</artifactId>
+                                <version>${ejml.version}</version>
+                        </dependency>
 
-						<!-- mongo-->
-						<dependency>
-								<groupId>org.mongodb</groupId>
-								<artifactId>mongo-java-driver</artifactId>
-								<version>${mongo.version}</version>
-						</dependency>
-						<dependency>
-								<groupId>de.flapdoodle.embed</groupId>
-								<artifactId>de.flapdoodle.embed.mongo</artifactId>
-								<version>${embed.mongo.version}</version>
-								<scope>test</scope>
-						</dependency>
+                        <!-- mongo-->
+                        <dependency>
+                                <groupId>org.mongodb</groupId>
+                                <artifactId>mongo-java-driver</artifactId>
+                                <version>${mongo.version}</version>
+                        </dependency>
+                        <dependency>
+                                <groupId>de.flapdoodle.embed</groupId>
+                                <artifactId>de.flapdoodle.embed.mongo</artifactId>
+                                <version>${embed.mongo.version}</version>
+                                <scope>test</scope>
+                        </dependency>
 
                         <!-- akka-->
                         <dependency>
@@ -8009,17 +8012,17 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                 <groupId>org.apache.cxf</groupId>
                 <artifactId>cxf-rt-transports-http-jetty</artifactId>
                 <version>${cxf.version}</version>
-				<!-- exclude jetty 6 since cxf has been upgraded -->
-				<exclusions>
-					<exclusion>
-						<groupId>org.mortbay.jetty</groupId>
-						<artifactId>jetty</artifactId>
-					</exclusion>
-					<exclusion>
-						<groupId>org.mortbay.jetty</groupId>
-						<artifactId>jetty-util</artifactId>
-					</exclusion>
-				</exclusions>
+                <!-- exclude jetty 6 since cxf has been upgraded -->
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.mortbay.jetty</groupId>
+                        <artifactId>jetty</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>org.mortbay.jetty</groupId>
+                        <artifactId>jetty-util</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>org.apache.cxf</groupId>
@@ -8227,11 +8230,11 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                 <version>${wss4j.version}</version>
                 <scope>compile</scope>
             </dependency>
-			<dependency>
-			  <groupId>javax.ws.rs</groupId>
-			  <artifactId>jsr311-api</artifactId>
-			  <version>${jsr311.api.version}</version>
-			</dependency>
+            <dependency>
+              <groupId>javax.ws.rs</groupId>
+              <artifactId>jsr311-api</artifactId>
+              <version>${jsr311.api.version}</version>
+            </dependency>
             <!--
             <dependency>
                 <groupId>com.adobe.flex.compiler</groupId>
@@ -8649,20 +8652,20 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <version>${jackson.version}</version>
                         </dependency>
                          <dependency>
-			            	<groupId>com.fasterxml.jackson.core</groupId>
-			            	<artifactId>jackson-core</artifactId>
-			            	<version>${fasterxml.jackson.version}</version>
-			            </dependency>
-			            <dependency>
-			            	<groupId>com.fasterxml.jackson.core</groupId>
-			            	<artifactId>jackson-databind</artifactId>
-			            	<version>${fasterxml.jackson.version}</version>
-			            </dependency>
-			            <dependency>
-			            	<groupId>com.fasterxml.jackson.core</groupId>
-			            	<artifactId>jackson-annotations</artifactId>
-			            	<version>${fasterxml.jackson.version}</version>
-			            </dependency>
+                            <groupId>com.fasterxml.jackson.core</groupId>
+                            <artifactId>jackson-core</artifactId>
+                            <version>${fasterxml.jackson.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>com.fasterxml.jackson.core</groupId>
+                            <artifactId>jackson-databind</artifactId>
+                            <version>${fasterxml.jackson.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>com.fasterxml.jackson.core</groupId>
+                            <artifactId>jackson-annotations</artifactId>
+                            <version>${fasterxml.jackson.version}</version>
+                        </dependency>
                         <!-- // Jackson -->
 
                         <!-- Jersey -->
@@ -8734,12 +8737,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <scope>runtime</scope>
                         </dependency>
 
-						// Use instead
-						<dependency>
-							<groupId>org.eclipse.jetty</groupId>
-							<artifactId>jetty-proxy</artifactId>
-							<version>${jetty9.version}</version>
-						</dependency>
+                        // Use instead
+                        <dependency>
+                            <groupId>org.eclipse.jetty</groupId>
+                            <artifactId>jetty-proxy</artifactId>
+                            <version>${jetty9.version}</version>
+                        </dependency>
                         -->
                         <!-- // Jetty -->
 
@@ -8769,140 +8772,140 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         <!-- // Jetty7 -->
 
 
-					<dependency>
-						<groupId>javax.websocket</groupId>
-						<artifactId>javax.websocket-api</artifactId>
-						<version>${javax.websocket.api}</version>
-					</dependency>
+                    <dependency>
+                        <groupId>javax.websocket</groupId>
+                        <artifactId>javax.websocket-api</artifactId>
+                        <version>${javax.websocket.api}</version>
+                    </dependency>
 
-					<!-- // Jetty8 -->
-					<dependency>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-websocket</artifactId>
-						<version>${jetty8.version}</version>
-					</dependency>
-					<!-- // Jetty8 -->
+                    <!-- // Jetty8 -->
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-websocket</artifactId>
+                        <version>${jetty8.version}</version>
+                    </dependency>
+                    <!-- // Jetty8 -->
 
-					<!-- // Jetty8 and Jetty9 -->
-					<dependency>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-server</artifactId>
-						<version>${jetty.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-security</artifactId>
-						<version>${jetty.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-util</artifactId>
-						<version>${jetty.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-servlet</artifactId>
-						<version>${jetty.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-servlets</artifactId>
-						<version>${jetty.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-deploy</artifactId>
-						<version>${jetty.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-webapp</artifactId>
-						<version>${jetty.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-xml</artifactId>
-						<version>${jetty.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-continuation</artifactId>
-						<version>${jetty.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-http</artifactId>
-						<version>${jetty.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-io</artifactId>
-						<version>${jetty.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-start</artifactId>
-						<version>${jetty.version}</version>
-					</dependency>
-					<!-- // Jetty8 and Jetty9 -->
+                    <!-- // Jetty8 and Jetty9 -->
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-server</artifactId>
+                        <version>${jetty.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-security</artifactId>
+                        <version>${jetty.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-util</artifactId>
+                        <version>${jetty.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-servlet</artifactId>
+                        <version>${jetty.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-servlets</artifactId>
+                        <version>${jetty.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-deploy</artifactId>
+                        <version>${jetty.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-webapp</artifactId>
+                        <version>${jetty.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-xml</artifactId>
+                        <version>${jetty.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-continuation</artifactId>
+                        <version>${jetty.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-http</artifactId>
+                        <version>${jetty.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-io</artifactId>
+                        <version>${jetty.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-start</artifactId>
+                        <version>${jetty.version}</version>
+                    </dependency>
+                    <!-- // Jetty8 and Jetty9 -->
 
-					<!-- Jetty for test	-->
-					<dependency>
-						<groupId>org.eclipse.jetty.websocket</groupId>
-						<artifactId>javax-websocket-server-impl</artifactId>
-						<version>${jetty9.version}</version>
-						<scope>test</scope>
-					</dependency>
+                    <!-- Jetty for test -->
+                    <dependency>
+                        <groupId>org.eclipse.jetty.websocket</groupId>
+                        <artifactId>javax-websocket-server-impl</artifactId>
+                        <version>${jetty9.version}</version>
+                        <scope>test</scope>
+                    </dependency>
 
-					<!-- Jetty 9 -->
-					<dependency>
-						<groupId>org.eclipse.jetty.websocket</groupId>
-						<artifactId>websocket-api</artifactId>
-						<version>${jetty9.version}</version>
-					</dependency>
-					<!--
-					<dependency>
-						<groupId>org.eclipse.jetty.websocket</groupId>
-						<artifactId>websocket-api-client</artifactId>
-						<version>${jetty9.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.jetty.websocket</groupId>
-						<artifactId>websocket-api-client-impl</artifactId>
-						<version>${jetty9.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.jetty.websocket</groupId>
-						<artifactId>websocket-api-server-impl</artifactId>
-						<version>${jetty9.version}</version>
-					</dependency>
-					-->
-					<dependency>
-						<groupId>org.eclipse.jetty.websocket</groupId>
-						<artifactId>websocket-common</artifactId>
-						<version>${jetty9.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.jetty.websocket</groupId>
-						<artifactId>websocket-parent</artifactId>
-						<version>${jetty9.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.jetty.websocket</groupId>
-						<artifactId>websocket-server</artifactId>
-						<version>${jetty9.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.jetty.websocket</groupId>
-						<artifactId>websocket-servlet</artifactId>
-						<version>${jetty9.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.eclipse.jetty</groupId>
-						<artifactId>jetty-proxy</artifactId>
-						<version>${jetty9.version}</version>
-					</dependency>
-					<!-- // Jetty 9 -->
+                    <!-- Jetty 9 -->
+                    <dependency>
+                        <groupId>org.eclipse.jetty.websocket</groupId>
+                        <artifactId>websocket-api</artifactId>
+                        <version>${jetty9.version}</version>
+                    </dependency>
+                    <!--
+                    <dependency>
+                        <groupId>org.eclipse.jetty.websocket</groupId>
+                        <artifactId>websocket-api-client</artifactId>
+                        <version>${jetty9.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty.websocket</groupId>
+                        <artifactId>websocket-api-client-impl</artifactId>
+                        <version>${jetty9.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty.websocket</groupId>
+                        <artifactId>websocket-api-server-impl</artifactId>
+                        <version>${jetty9.version}</version>
+                    </dependency>
+                    -->
+                    <dependency>
+                        <groupId>org.eclipse.jetty.websocket</groupId>
+                        <artifactId>websocket-common</artifactId>
+                        <version>${jetty9.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty.websocket</groupId>
+                        <artifactId>websocket-parent</artifactId>
+                        <version>${jetty9.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty.websocket</groupId>
+                        <artifactId>websocket-server</artifactId>
+                        <version>${jetty9.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty.websocket</groupId>
+                        <artifactId>websocket-servlet</artifactId>
+                        <version>${jetty9.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-proxy</artifactId>
+                        <version>${jetty9.version}</version>
+                    </dependency>
+                    <!-- // Jetty 9 -->
 
                     <!-- Logging -->
                     <dependency>
@@ -8970,25 +8973,25 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                     </dependency>
                     <!-- // Logging -->
 
-					<!-- TODO activate it if needed
-					<dependency>
-						<groupId>org.gridgain</groupId>
-						<artifactId>gridgain-platform</artifactId>
-						<version>${gridgain.platform.version}</version>
-					</dependency>
-					<dependency>
-						<groupId>org.gridgain</groupId>
-						<artifactId>gridgain-datagrid</artifactId>
-						<version>${gridgain.version}</version>
-						<type>pom</type>
-					</dependency>
-					-->
+                    <!-- TODO activate it if needed
+                    <dependency>
+                        <groupId>org.gridgain</groupId>
+                        <artifactId>gridgain-platform</artifactId>
+                        <version>${gridgain.platform.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.gridgain</groupId>
+                        <artifactId>gridgain-datagrid</artifactId>
+                        <version>${gridgain.version}</version>
+                        <type>pom</type>
+                    </dependency>
+                    -->
 
-					<dependency>
-						<groupId>org.aspectj</groupId>
-						<artifactId>aspectjweaver</artifactId>
-						<version>${aspectj.weaver.version}</version>
-					</dependency>
+                    <dependency>
+                        <groupId>org.aspectj</groupId>
+                        <artifactId>aspectjweaver</artifactId>
+                        <version>${aspectj.weaver.version}</version>
+                    </dependency>
 
                     <dependency>
                         <groupId>org.aspectj</groupId>
