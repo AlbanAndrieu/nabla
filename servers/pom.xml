@@ -46,11 +46,11 @@
 			<cargo.remote.user>admin</cargo.remote.user>
 			<cargo.remote.password>microsoft</cargo.remote.password>
 			<cargo.rmi.port>1099</cargo.rmi.port>
-			<cargo.ajp.port>9009</cargo.ajp.port>
+			<cargo.ajp.port>9010</cargo.ajp.port>
 			<cargo.tomcat.ajp.port>${cargo.ajp.port}</cargo.tomcat.ajp.port>
 			<cargo.jboss.ajp.port>${cargo.ajp.port}</cargo.jboss.ajp.port>
-			<cargo.jboss.management.native.port>9997</cargo.jboss.management.native.port>
-			<cargo.jboss.management.http.port>9998</cargo.jboss.management.http.port>
+			<cargo.jboss.management.native.port>9995</cargo.jboss.management.native.port>
+			<cargo.jboss.management.http.port>9996</cargo.jboss.management.http.port>
 			<cargo.jetty.jmx.activation>-Dcom.sun.management.jmxremote
 -Dcom.sun.management.jmxremote.ssl=false
 -Dcom.sun.management.jmxremote.authenticate=false
