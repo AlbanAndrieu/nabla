@@ -51,6 +51,7 @@
 			<cargo.jboss.ajp.port>${cargo.ajp.port}</cargo.jboss.ajp.port>
 			<cargo.jboss.management.native.port>9995</cargo.jboss.management.native.port>
 			<cargo.jboss.management.http.port>9996</cargo.jboss.management.http.port>
+			<cargo.jboss.remoting.transport.port>4547</cargo.jboss.remoting.transport.port>
 			<cargo.jetty.jmx.activation>-Dcom.sun.management.jmxremote
 -Dcom.sun.management.jmxremote.ssl=false
 -Dcom.sun.management.jmxremote.authenticate=false
@@ -385,6 +386,7 @@
 									<cargo.jboss.ajp.port>${cargo.jboss.ajp.port}</cargo.jboss.ajp.port>
 									<cargo.jboss.management-native.port>${cargo.jboss.management.native.port}</cargo.jboss.management-native.port>
 									<cargo.jboss.management-http.port>${cargo.jboss.management.http.port}</cargo.jboss.management-http.port>
+									<cargo.jboss.remoting.transport.port>${cargo.jboss.remoting.transport.port}</cargo.jboss.remoting.transport.port>
 									<cargo.logging>high</cargo.logging>
 								</properties>
 							</configuration>
