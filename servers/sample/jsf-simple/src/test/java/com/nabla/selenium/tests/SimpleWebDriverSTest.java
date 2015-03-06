@@ -28,22 +28,25 @@ import com.thoughtworks.selenium.webdriven.WebDriverBackedSelenium;
 
 public class SimpleWebDriverSTest
 {
-    private static final String SUBMIT_BUTTON = "j_idt8:j_idt10";
-	private static final String INPUT_TEXT = "j_idt8:j_idt9";
-	// private static final String DEFAULT_CHROMEDRIVER = "C:\\chromedriver\\chromedriver.exe"; // "/var/lib/chromedriver"
+    public static final String FORM_ID              = "hello-form";
+    public static final String SUBMIT_BUTTON_ID     = FORM_ID + ":submit-text";
+    public static final String INPUT_TEXT_ID        = FORM_ID + ":input-text";
+    // private static final String DEFAULT_CHROMEDRIVER = "C:\\chromedriver\\chromedriver.exe"; // "/var/lib/chromedriver"
     // private static final String DEFAULT_FIREFOXBIN = "C:\\Program Files\\Mozilla Firefox\\firefox.exe"; // "/usr/lib/firefox/firefox"
-    private static final String DEFAULT_CHROMEDRIVER = "/var/lib/chromedriver";   // "C:\\chromedriver\\chromedriver.exe"
-    private static final String DEFAULT_FIREFOXBIN   = "/usr/lib/firefox/firefox"; // "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
+    public static final String DEFAULT_CHROMEDRIVER = "/var/lib/chromedriver";                      // "C:\\chromedriver\\chromedriver.exe"
+    public static final String DEFAULT_FIREFOXBIN   = "/usr/lib/firefox/firefox";                   // "C:\\Program Files\\Mozilla Firefox\\firefox.exe"
 
-    private static final String DEFAULT_URL          = "http://localhost:8180";
-    private static final String PAGE_TO_LOAD_TIMEOUT = "30000";
-    private WebDriver           driver;
-    private String              baseUrl              = DEFAULT_URL;
-    private String              chromeDriver         = DEFAULT_CHROMEDRIVER;
-    private String              firefoxBin           = DEFAULT_FIREFOXBIN;
-    private boolean             acceptNextAlert      = true;
-    private StringBuffer        verificationErrors   = new StringBuffer();
-    private DefaultSelenium     selenium;
+    public static final String DEFAULT_HOST         = "localhost";
+    public static final String DEFAULT_PORT         = "8180";
+    public static final String DEFAULT_URL          = "http://" + DEFAULT_HOST + ":" + DEFAULT_PORT;
+    public static final String PAGE_TO_LOAD_TIMEOUT = "30000";
+    private WebDriver          driver;
+    private String             baseUrl              = DEFAULT_URL;
+    private String             chromeDriver         = DEFAULT_CHROMEDRIVER;
+    private String             firefoxBin           = DEFAULT_FIREFOXBIN;
+    private boolean            acceptNextAlert      = true;
+    private StringBuffer       verificationErrors   = new StringBuffer();
+    private DefaultSelenium    selenium;
 
     // public static SeleniumServer server;
 
@@ -120,8 +123,8 @@ public class SimpleWebDriverSTest
         selenium.waitForPageToLoad(PAGE_TO_LOAD_TIMEOUT);
         // WebElement myDynamicElement = (new WebDriverWait(driver, 20)).until(ExpectedConditions.presenceOfElementLocated(By.id("j_idt8")));
         assertEquals("JSF 2.0 Hello World Example - hello.xhtml", driver.findElement(By.cssSelector("h3")).getText());
-        driver.findElement(By.name(INPUT_TEXT)).clear();
-        driver.findElement(By.name(INPUT_TEXT)).sendKeys("Test me !!!");
+        driver.findElement(By.name(INPUT_TEXT_ID)).clear();
+        driver.findElement(By.name(INPUT_TEXT_ID)).sendKeys("Test me !!!");
 
         // wait for the application to get fully loaded
         WebElement findOwnerLink = (new WebDriverWait(driver, 5)).until(new ExpectedCondition<WebElement>()
@@ -129,17 +132,17 @@ public class SimpleWebDriverSTest
             public WebElement apply(WebDriver d)
             {
                 // d.get(baseUrl);
-                return d.findElement(By.name(INPUT_TEXT));
+                return d.findElement(By.name(INPUT_TEXT_ID));
             }
         });
 
         findOwnerLink.click();
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.elementToBeClickable(By.name(SUBMIT_BUTTON)));
+        wait.until(ExpectedConditions.elementToBeClickable(By.name(SUBMIT_BUTTON_ID)));
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-        driver.findElement(By.name(SUBMIT_BUTTON)).click();
+        driver.findElement(By.name(SUBMIT_BUTTON_ID)).click();
 
         assertEquals("JSF 2.0 Hello World Example - welcome.xhtml", driver.findElement(By.cssSelector("h3")).getText());
         assertEquals("Welcome Test me !!!", driver.findElement(By.cssSelector("h4")).getText());

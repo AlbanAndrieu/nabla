@@ -10,9 +10,9 @@
     </h:head>
     <h:body>
     	<h3>JSF 2.0 Hello World Example - hello.xhtml</h3>
-    	<h:form>
-    		<h:inputText value="#{helloBean.name}"></h:inputText>
-    		<h:commandButton value="Welcome Me" action="welcome"></h:commandButton>
+    	<h:form id="hello-form">
+    		<h:inputText label="Input text" id="input-text" value="#{helloBean.name}"></h:inputText>
+    		<h:commandButton title="Click to submit your input" id="submit-text" value="Welcome Me" action="welcome"></h:commandButton>
     	</h:form>
 	</h:body>
 </html>
