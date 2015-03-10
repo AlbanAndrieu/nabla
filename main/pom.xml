@@ -91,6 +91,7 @@
                 <hudson.port>8070</hudson.port>
                 <tomcat.port>8280</tomcat.port> <!-- jenkins cargo 8281,8282 -->
                 <jetty.port>9090</jetty.port> <!-- jenkins cargo 9090,9091 -->
+                <jetty.stop.port>19097</jetty.stop.port>
                 <!--<jenkins.port>${tomcat.port}</jenkins.port>  http://localhost:8280/jenkins/ -->
                 <jenkins.port>8380</jenkins.port>
                 <apache.port>7070</apache.port>
@@ -1505,6 +1506,67 @@
 					</plugins>
 				  </build>
 				</profile>
+				<profile>
+					<id>jmeter</id>
+					<activation>
+							<property>
+									<name>profile.activation</name>
+							</property>
+					</activation>
+					<build>
+						<plugins>
+							<plugin>
+								<groupId>com.lazerycode.jmeter</groupId>
+								<artifactId>jmeter-maven-plugin</artifactId>
+								<version>${maven.jmeter.plugin.version}</version>
+								<inherited>true</inherited>
+								<executions>
+									<execution>
+										<id>jmeter-tests</id>
+										<!--<phase>verify</phase>-->
+										<phase>integration-test</phase>
+										<goals>
+											<goal>jmeter</goal>
+										</goals>
+									</execution>
+								</executions>
+							</plugin>
+							<plugin>
+								<groupId>com.lazerycode.jmeter</groupId>
+								<artifactId>jmeter-analysis-maven-plugin</artifactId>
+								<version>${maven.jmeter.analysis.plugin.version}</version>
+								<inherited>true</inherited>
+								<executions>
+									<execution>
+										<id>create-html-report</id>
+										<!--<phase>verify</phase>-->
+										<phase>integration-test</phase>
+										<goals>
+											<goal>analyze</goal>
+										</goals>
+									</execution>
+								</executions>
+							</plugin>
+							<plugin>
+								<groupId>de.codecentric</groupId>
+								<artifactId>jmeter-graph-maven-plugin</artifactId>
+								<version>${maven.jmeter.graph.plugin.version}</version>
+								<inherited>true</inherited>
+								<executions>
+										<execution>
+											<id>create-graph-threads</id>
+											<!--<phase>verify</phase>-->
+											<phase>integration-test</phase>
+											<goals>
+												<goal>create-graph</goal>
+											</goals>
+										</execution>
+								</executions>
+							</plugin>
+						</plugins>
+					</build>
+				</profile>
+
                 <!-- ================= START MDA Profiles ================= -->
                 <profile>
                         <id>uml14</id>
