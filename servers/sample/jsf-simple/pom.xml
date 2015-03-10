@@ -15,8 +15,11 @@
 	<!--<version>1.0</version> -->
 	<name>Java Server Faces Maven Webapp</name>
 
-	<!--
+
     <properties>
+		<!-- for jmeter -->
+		<performancetest.webservice.path>/welcome</performancetest.webservice.path>
+		<!--
 		<jsf.api.version>2.1</jsf.api.version>
         <jsf.impl.version>2.1</jsf.impl.version>
 		<jsf.api.version>1.2_15</jsf.api.version>
@@ -25,8 +28,8 @@
 		<sun.jsf.impl.version>2.1.7</sun.jsf.impl.version>
 		<el.api.version>2.2.1-b04</el.api.version>
 		<jboss.el.version>1.0_02.CR6</jboss.el.version>
+		-->
     </properties>
-	-->
 
 	<dependencyManagement>
 		<dependencies>
@@ -697,67 +700,5 @@
 		</plugins>
 	</build>
 
- <profiles>
-		<profile>
-            <id>jmeter</id>
-		    <activation>
-		    		<property>
-		    				<name>profile.activation</name>
-		    		</property>
-		    </activation>
-            <build>
-                <plugins>
-					<plugin>
-						<groupId>com.lazerycode.jmeter</groupId>
-						<artifactId>jmeter-maven-plugin</artifactId>
-						<version>${maven.jmeter.plugin.version}</version>
-						<inherited>true</inherited>
-						<executions>
-							<execution>
-								<id>jmeter-tests</id>
-								<!--<phase>verify</phase>-->
-								<phase>integration-test</phase>
-								<goals>
-									<goal>jmeter</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>com.lazerycode.jmeter</groupId>
-						<artifactId>jmeter-analysis-maven-plugin</artifactId>
-						<version>${maven.jmeter.analysis.plugin.version}</version>
-						<inherited>true</inherited>
-						<executions>
-							<execution>
-								<id>create-html-report</id>
-								<!--<phase>verify</phase>-->
-								<phase>integration-test</phase>
-								<goals>
-									<goal>analyze</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-					<plugin>
-						<groupId>de.codecentric</groupId>
-						<artifactId>jmeter-graph-maven-plugin</artifactId>
-						<version>${maven.jmeter.graph.plugin.version}</version>
-						<inherited>true</inherited>
-						<executions>
-								<execution>
-									<id>create-graph-threads</id>
-									<!--<phase>verify</phase>-->
-									<phase>integration-test</phase>
-									<goals>
-										<goal>create-graph</goal>
-									</goals>
-								</execution>
-						</executions>
-					</plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
 </project>
 
