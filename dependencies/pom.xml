@@ -1030,6 +1030,7 @@
 				<cargo.port>80</cargo.port>
 				<performancetest.webservice.host>${cargo.host}</performancetest.webservice.host>
 				<performancetest.webservice.port>${cargo.port}</performancetest.webservice.port>
+				<performancetest.webservice.path>/</performancetest.webservice.path>
 				<performancetest.connectTimeout>1000</performancetest.connectTimeout>
 				<performancetest.responseTimeout>3000</performancetest.responseTimeout>
 				<!--
@@ -1423,6 +1424,7 @@
                 <!-- check compatibility http://selenium.googlecode.com/git/java/CHANGELOG -->
                 <!--<selenium.version>2.37.1</selenium.version>-->
                 <selenium.version>2.44.0</selenium.version>
+                <!--<selenium.version>2.41.0</selenium.version>--> <!-- Same as Jenkins version -->
                 <!--<selenium.driver.version>2.9.0</selenium.driver.version>-->
                 <selenium.driver.version>${selenium.version}</selenium.driver.version>
                 <selenium.safari.driver.version>${selenium.version}</selenium.safari.driver.version>
@@ -1543,10 +1545,14 @@
                 <groovy.eclipse.batch.version>2.0.6-01</groovy.eclipse.batch.version>
                 <gluegen.rt.main.version>2.0-rc11</gluegen.rt.main.version>
 
+				<!-- flex versions -->
+				<flex.pmd.version>1.2</flex.pmd.version>
                 <flex.sdk.version>4.6.b.23201</flex.sdk.version>
                 <flexlib.version>2.5</flexlib.version>
                 <flexunit.version>4.0-rc-1</flexunit.version>
+                <flex.automation.version>${flex.sdk.version}</flex.automation.version>
                 <spark.version>4.6.b.23201</spark.version>
+
                 <ilog-elixir.version>3.0.21588</ilog-elixir.version>
                 <jackson.version>1.9.13</jackson.version>
                 <fasterxml.jackson.version>2.5.0</fasterxml.jackson.version>
@@ -1617,7 +1623,7 @@
                 <maven.tomcat.plugin.version>1.2-SNAPSHOT</maven.tomcat.plugin.version>
                 <maven.apache.rat.plugin.version>0.11</maven.apache.rat.plugin.version>
                 <maven.rat.plugin.version>1.0-alpha-3</maven.rat.plugin.version>
-                <maven.cobertura.plugin.version>2.5.2</maven.cobertura.plugin.version>
+                <maven.cobertura.plugin.version>2.6</maven.cobertura.plugin.version>
                 <maven.release.plugin.version>2.5.1</maven.release.plugin.version>
                 <!-- maybe needed to be downgraded <maven.release.plugin.version>2.3.2</maven.release.plugin.version>-->
                 <maven.antrun.plugin.version>1.7</maven.antrun.plugin.version>
@@ -1714,7 +1720,8 @@
                 <maven.apt.plugin.version>1.0-alpha-5</maven.apt.plugin.version>
                 <maven.tomcat7.plugin.version>2.2</maven.tomcat7.plugin.version>
                 <maven.jetty.mortbay.plugin.version>${jetty.version}</maven.jetty.mortbay.plugin.version> <!-- TODO remove or 7.0.0.pre5-->
-                <maven.jetty.eclipse.plugin.version>9.3.0.M1</maven.jetty.eclipse.plugin.version>
+                <!--<maven.jetty.eclipse.plugin.version>9.3.0.M1</maven.jetty.eclipse.plugin.version>-->
+                <maven.jetty.eclipse.plugin.version>${jetty.version}</maven.jetty.eclipse.plugin.version>
                 <maven.jboss.as.plugin.version>7.6.Final</maven.jboss.as.plugin.version>
                 <maven.ant.plugin.version>2.3</maven.ant.plugin.version>
                 <maven.jalopy.plugin.version>1.0-alpha-1</maven.jalopy.plugin.version>
@@ -4230,6 +4237,8 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                                 <maxIdleTime>600000</maxIdleTime>
                                             </connector>
                                         </connectors>
+                                        <stopPort>${jetty.stop.port}</stopPort>
+										<stopKey>STOP</stopKey>
                                         <!--
                                         <systemProperties>
                                             <systemProperty>
@@ -4259,6 +4268,8 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                                     <maxIdleTime>60000</maxIdleTime>
                                                   </connector>
                                                 </connectors>
+                                                <stopPort>${jetty.stop.port}</stopPort>
+												<stopKey>STOP</stopKey>
                                                 <scanTargetPatterns>
                                                         <scanTargetPattern>
                                                                 <directory>src/main/webapp/WEB-INF</directory>
@@ -8122,6 +8133,24 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                 <type>swc</type>
                 <scope>test</scope>
             </dependency>
+			<dependency>
+				<groupId>com.adobe.flex.framework</groupId>
+				<artifactId>automation</artifactId>
+				<version>${flex.automation.version}</version>
+				<type>swc</type>
+			</dependency>
+			<dependency>
+				<groupId>com.adobe.flex.framework</groupId>
+				<artifactId>automation_dmv</artifactId>
+				<version>${flex.automation.version}</version>
+				<type>swc</type>
+			</dependency>
+			<dependency>
+				<groupId>com.adobe.flex.framework</groupId>
+				<artifactId>automation_spark</artifactId>
+				<version>${flex.automation.version}</version>
+				<type>swc</type>
+			</dependency>
             <dependency>
                 <groupId>com.ilog</groupId>
                 <artifactId>ilog-elixir-enterprise</artifactId>
