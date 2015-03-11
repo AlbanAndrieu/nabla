@@ -1506,6 +1506,7 @@
 					</plugins>
 				  </build>
 				</profile>
+				<!--
 				<profile>
 					<id>jmeter</id>
 					<activation>
@@ -1523,7 +1524,6 @@
 								<executions>
 									<execution>
 										<id>jmeter-tests</id>
-										<!--<phase>verify</phase>-->
 										<phase>integration-test</phase>
 										<goals>
 											<goal>jmeter</goal>
@@ -1539,7 +1539,6 @@
 								<executions>
 									<execution>
 										<id>create-html-report</id>
-										<!--<phase>verify</phase>-->
 										<phase>integration-test</phase>
 										<goals>
 											<goal>analyze</goal>
@@ -1555,7 +1554,6 @@
 								<executions>
 										<execution>
 											<id>create-graph-threads</id>
-											<!--<phase>verify</phase>-->
 											<phase>integration-test</phase>
 											<goals>
 												<goal>create-graph</goal>
@@ -1566,6 +1564,7 @@
 						</plugins>
 					</build>
 				</profile>
+				-->
 
                 <!-- ================= START MDA Profiles ================= -->
                 <profile>
