@@ -700,5 +700,64 @@
 		</plugins>
 	</build>
 
+    <profiles>
+		<profile>
+            <id>jmeter</id>
+		    <activation>
+		    		<property>
+		    				<name>profile.activation</name>
+		    		</property>
+		    </activation>
+            <build>
+                <plugins>
+					<plugin>
+						<groupId>com.lazerycode.jmeter</groupId>
+						<artifactId>jmeter-maven-plugin</artifactId>
+						<version>${maven.jmeter.plugin.version}</version>
+						<inherited>true</inherited>
+						<executions>
+							<execution>
+								<id>jmeter-tests</id>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>jmeter</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>com.lazerycode.jmeter</groupId>
+						<artifactId>jmeter-analysis-maven-plugin</artifactId>
+						<version>${maven.jmeter.analysis.plugin.version}</version>
+						<inherited>true</inherited>
+						<executions>
+							<execution>
+								<id>create-html-report</id>
+								<phase>integration-test</phase>
+								<goals>
+									<goal>analyze</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>de.codecentric</groupId>
+						<artifactId>jmeter-graph-maven-plugin</artifactId>
+						<version>${maven.jmeter.graph.plugin.version}</version>
+						<inherited>true</inherited>
+						<executions>
+								<execution>
+									<id>create-graph-threads</id>
+									<phase>integration-test</phase>
+									<goals>
+										<goal>create-graph</goal>
+									</goals>
+								</execution>
+						</executions>
+					</plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
 
