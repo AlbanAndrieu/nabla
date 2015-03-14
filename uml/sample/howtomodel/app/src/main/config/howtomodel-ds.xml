@@ -2,7 +2,7 @@
 <!-- JBoss Server DataSource -->
 <datasources>
     <local-tx-datasource>
-        <jndi-name>${dataSource.name}</jndi-name>
+        <jndi-name>${datasource.name}</jndi-name>
         <connection-url>${jdbc.url}</connection-url>
         <driver-class>${jdbc.driver}</driver-class>
         <user-name>${jdbc.username}</user-name>
