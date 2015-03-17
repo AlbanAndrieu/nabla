@@ -29,7 +29,7 @@ sudo nano  /etc/init.d/sonar
 # Short-Description: SonarQube system (www.sonarsource.org)
 # Description: SonarQube system (www.sonarsource.org)
 ### END INIT INFO
- 
+
 /usr/bin/sonar $*
 --------------------
 sudo chmod 755 /etc/init.d/sonar
@@ -81,18 +81,18 @@ mvn -Dsonargraph.prepareForSonar=true -Dsonargraph.activationCode=2356-F3B2-E2C6
 mvn sonar:sonar
 For Sonargraph-Quality you would use:
 mvn -Dsonargraph.prepareForSonar=true -Dsonargraph.license=<license-path> (or -Dsonargraph.activationCode=<activation code>) com.hello2morrow.sonargraph:maven-sonargraph-plugin:7.1.10:quality-report-direct-parsing-mode
-    
-#NOK in Jenkins mvn -Dsonarj.prepareForSonar=true -Dsonarj.license=<license-path> (or -Dsonarj.activationCode=<activation code>) com.hello2morrow.sonar:maven-sonarj-plugin:6.0.3:sonarj    
-#NOK in Jenkins mvn -Dsonarj.prepareForSonar=true -Dsonarj.activationCode=2356-F3B2-E2C6-CC70 com.hello2morrow.sonar:maven-sonarj-plugin:6.0.3:sonarj    
-    
-#Caused by: java.lang.IllegalArgumentException: Parameter 'directory' is not a directory    
-#Please keep in mind that if you are using a NABLA compilation WITHOUT a mutation test 
-#and you're using a Sonar WITH mutation test ... job will fail 
-#I've switched a NABLA project on Sonar page to another profile 
+
+#NOK in Jenkins mvn -Dsonarj.prepareForSonar=true -Dsonarj.license=<license-path> (or -Dsonarj.activationCode=<activation code>) com.hello2morrow.sonar:maven-sonarj-plugin:6.0.3:sonarj
+#NOK in Jenkins mvn -Dsonarj.prepareForSonar=true -Dsonarj.activationCode=2356-F3B2-E2C6-CC70 com.hello2morrow.sonar:maven-sonarj-plugin:6.0.3:sonarj
+
+#Caused by: java.lang.IllegalArgumentException: Parameter 'directory' is not a directory
+#Please keep in mind that if you are using a NABLA compilation WITHOUT a mutation test
+#and you're using a Sonar WITH mutation test ... job will fail
+#I've switched a NABLA project on Sonar page to another profile
 #without mutation tests
-#there is only one difference between this and CommonProfile <http://home.nabla.mobi:9000/rules_configuration/index/9>  
+#there is only one difference between this and CommonProfile <http://home.nabla.mobi:9000/rules_configuration/index/9>
 #
-#Config rule called: Survived mutant <http://home.nabla.mobi:9000/rules_configuration/index/9?sort_by=SORT_BY_RULE_NAME&searchtext=mutant&rule_activation=ACTIVE&commit=Search#>  
+#Config rule called: Survived mutant <http://home.nabla.mobi:9000/rules_configuration/index/9?sort_by=SORT_BY_RULE_NAME&searchtext=mutant&rule_activation=ACTIVE&commit=Search#>
 #This rule "is supposing" that in the build process there will be a "special" directory for mutation tests
 #this is why build has been failing
 
@@ -146,8 +146,23 @@ sonar.updatecenter.url=http://www.qalitax.com/update-center/excentia-update-cent
 #Fixed IP Address 192.168.0.29
 
 #Security
+mysql -u root –p mysql
+use mysql;
+SELECT host,user FROM user;
+
+GRANT ALL PRIVILEGES ON sonar.* TO 'sonar'@'10.0.2.2' IDENTIFIED BY 'Motdepasse12';
+FLUSH PRIVILEGES;
+
+mysql -u sonar --password=Motdepass12 -h 10.21.22.69 sonar
+
 #Grant sonar access from outside (for docker and other servers)
-GRANT ALL ON sonar.* TO 'sonar'@'localhost' IDENTIFIED BY 'sonar';
-GRANT ALL ON sonar.* TO 'sonar'@'albandri' IDENTIFIED BY 'sonar';
+CREATE USER 'sonar'@'localhost' IDENTIFIED BY 'microsoft';
+CREATE USER 'sonar'@'127.0.0.1' IDENTIFIED BY 'microsoft';
+GRANT ALL ON sonar.* TO 'sonar'@'localhost';
+GRANT ALL ON sonar.* TO 'sonar'@'127.0.0.1';
+#GRANT ALL ON sonar.* TO sonar@'%' IDENTIFIED BY 'sonar';
+#REVOKE ALL PRIVILEGES ON  `sonar` . * FROM  'sonar'@'localhost';
+#GRANT ALL ON sonar.* TO 'sonar'@'localhost' IDENTIFIED BY 'sonar';
+#GRANT ALL ON sonar.* TO 'sonar'@'albandri' IDENTIFIED BY 'sonar';
 FLUSH PRIVILEGES;
 #Use sonar instead of root inside Jenkins

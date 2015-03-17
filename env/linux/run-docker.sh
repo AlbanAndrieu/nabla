@@ -88,3 +88,5 @@ sudo docker kill stupefied_albattani
 #docker registry http://150.151.160.25:5000
 docker login 150.151.160.25:5000
 docker push 150.151.160.25:5000/jenkins-2
+
+docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs --no-run-if-empty docker rm

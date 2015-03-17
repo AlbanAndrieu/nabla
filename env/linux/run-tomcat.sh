@@ -63,3 +63,16 @@ curl -T - -u manager:123456 'http://localhost:8080/manager/text/deploy?update=tr
 tail -f /var/log/tomcat7
 tail -f /var/lib/tomcat7/logs/
 tail -f /usr/share/tomcat7/logs
+
+#In order to fix
+#java.util.prefs.BackingStoreException: Couldn't get file lock
+#http://stackoverflow.com/questions/23960451/java-system-preferences-under-different-users-in-linux
+echo ${CATALINA_HOME}
+#/usr/share/tomcat7
+cd ${CATALINA_HOME}
+sudo mkdir -p ${CATALINA_HOME}/.java/.systemPrefs
+sudo mkdir ${CATALINA_HOME}/.java/.userPrefs
+sudo chmod -R 755 ${CATALINA_HOME}/.java
+
+#inside ${CATALINA_HOME}/bin/catalina.sh
+export JAVA_OPTS="$JAVA_OPTS -Djava.util.prefs.systemRoot=${CATALINA_HOME}/.java -Djava.util.prefs.userRoot=${CATALINA_HOME}/.java/.userPrefs"

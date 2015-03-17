@@ -19,7 +19,7 @@ sudo apt-get install subversion cvs git maven
 sudo apt-get install tomcat7 apache2
 sudo apt-get install vim dos2unix xxdiff
 sudo apt-get install wget curl nmap ssh
-sudo apt-get install smartmontools mon 
+sudo apt-get install smartmontools mon
 sudo apt-get install cmake scons
 sudo apt-get install doxygen graphviz
 
@@ -30,7 +30,7 @@ sudo apt-get install maven
 #sudo ln -s maven maven3
 
 #sudo apt-cache search 5
-#sudo apt-get install libdb5.1-dev 
+#sudo apt-get install libdb5.1-dev
 
 sudo apt-get install ssmtp mailutils
 sudo apt-get install geany gedit
@@ -263,7 +263,7 @@ ifconfig eth0
 #uid of current user
 id -u
 
-sudo apt-get install zabbix-agent 
+sudo apt-get install zabbix-agent
 #for cacti
 sudo apt-get install snmp snmpd
 
@@ -283,7 +283,7 @@ LC_IDENTIFICATION=en_US.UTF-8
 
 #dhcp
 sudo nano /etc/dhcp/dhclient.conf
-#add 
+#add
 append domain-name " nabla.mobi";
 #restart dhcp
 sudo dhclient
@@ -309,7 +309,7 @@ sudo apt-get install pidgin pidgin-sipe pidgin-skype
 #Connection security Use old-style SSL
 #Connect port 5223
 #Connect server  talk.google.com
-#add my misys account 
+#add my misys account
 #Protocol Office Communicator
 #Username alban.andrieu@misys.com
 #Login alban.andrieu@misys.com
@@ -322,8 +322,8 @@ sudo apt-get install pidgin pidgin-sipe pidgin-skype
 #sudo add-apt-repository ppa:rabbitvcs/ppa
 #deb http://ppa.launchpad.net/rabbitvcs/ppa/ubuntu precise main
 sudo apt-get update
-sudo apt-get install rabbitvcs-nautilus 
-sudo apt-get install rabbitvcs-gedit 
+sudo apt-get install rabbitvcs-nautilus
+sudo apt-get install rabbitvcs-gedit
 sudo apt-get install rabbitvcs-cli
 
 #putty
@@ -371,7 +371,7 @@ gksu gedit /etc/sysctl.conf
 #Decrease swappiness value
 vm.swappiness=10
 cat /proc/sys/vm/swappiness
-#for more info about swap please see 
+#for more info about swap please see
 #https://help.ubuntu.com/community/SwapFaq
 
 # extra package to add
@@ -414,5 +414,9 @@ fuser -v /bin/bash
 lsb_release -a
 sudo apt-get  install lsb-core
 lsb_release -a
-lsmod 
+lsmod
 sudo modinfo btrfs
+
+#remove
+sudo rm /etc/apt/sources.list.d/pdffs-precise-virt-trusty.list
+sudo apt-get update

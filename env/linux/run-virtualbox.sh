@@ -16,7 +16,7 @@ cp -R ~/.VirtualBox /workspace/virtualbox/$USER
 rm -rf ~/.VirtualBox
 ln -s /workspace/virtualbox/$USER/.VirtualBox ~/.VirtualBox
 
-cp -r ~/VirtualBox\ VMs /workspace/virtualbox/$USER 
+cp -r ~/VirtualBox\ VMs /workspace/virtualbox/$USER
 mkdir -p /workspace/virtualbox/$USER/VirtualBox\ VMs
 #rm -rf ~/VirtualBox \ VMs
 ln -s /workspace/virtualbox/$USER/VirtualBox\ VMs ~/VirtualBox\ VMs
@@ -37,3 +37,20 @@ qemu-img convert -O vmdk OpenSolaris.raw OpenSolaris.vmdk
 #http://10.0.2.4
 #http://10.0.2.2:9000/
 #sudo ifconfig -a
+
+#Sample of command
+VBoxManage list vms
+VBoxManage controlvm vagrant-windows-2012 poweroff
+VBoxManage modifyvm "vagrant-windows-2012" --natpf1 delete "winrm"
+VBoxManage modifyvm "vagrant-windows-2012" --memory 4096
+# MySQL 3306
+VBoxManage modifyvm "vagrant-windows-2012" --natpf1 "tcp-port3306,tcp,,3306,,3306"
+VBoxManage modifyvm "vagrant-windows-2012" --natpf1 "udp-port3306,udp,,3306,,3306"
+
+VBoxManage metrics list "vagrant-windows-2012"
+VBoxManage debugvm "vagrant-windows-2012" osinfo
+VBoxManage startvm "vagrant-windows-2012" --type headless
+
+
+
+#VBoxManage unregistervm vagrant-windows-2012 --delete

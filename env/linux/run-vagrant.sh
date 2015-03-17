@@ -28,6 +28,9 @@ vagrant ssh
 vagrant provision
 vagrant halt
 vagrant destroy
+#vagrant box update
+
+vagrant package --base 'vagrant-windows-2012' --output 'vagrant-windows-2012.box'
 
 #vagrant package
 #tar xf package.box

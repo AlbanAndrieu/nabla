@@ -4,13 +4,13 @@
 \rm -Rf /usr/share/tomcat6/.m2/repository/
 \rm -Rf ~/.m2/repository/
 \rm -Rf ~/.cache/*
-#\rm -Rf .eclipse/*
-\rm -Rf .cpan/*
-\rm -Rf .svn/*
-\rm -Rf .thunderbird/*
-\rm -Rf .mozilla/*
-\rm -Rf .config/*
-\rm -f *.db
+#\rm -Rf ~/.eclipse/*
+\rm -Rf ~/.cpan/*
+\rm -Rf ~/.svn/*
+\rm -Rf ~/.thunderbird/*
+\rm -Rf ~/.mozilla/*
+\rm -Rf ~/.config/*
+\rm -f ~/*.db
 #empty trash
 \rm -rf ~/.local/share/Trash/*
 #google chrome

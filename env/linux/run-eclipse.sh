@@ -33,6 +33,7 @@ Name=New Window
 Exec=/usr/local/eclipse/eclipse-4/eclipse
 TargetEnvironment=Unity
 
+#Update dash configuration
 sudo update-desktop-database
 
 #Or

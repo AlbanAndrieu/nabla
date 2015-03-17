@@ -76,6 +76,8 @@ sudo rpcinfo -p
 
 To check what outbound connections you have running.
 sudo lsof -i -P -n
+To check what outbound connections a process (pid 29156) has running.
+sudo lsof -i -P -n | grep 29156
 
 To check for open ports on the network
 sudo nmap -sV 192.168.0.29

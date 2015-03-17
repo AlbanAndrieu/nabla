@@ -42,3 +42,16 @@ sudo -u logstash /opt/logstash/bin/logstash agent -f /etc/logstash/conf.d -l /va
 
 sudo service logstash-web stop
 
+#log
+tail -f /var/log/upstart/logstash.log
+tail -f /var/log/logstash/logstash.log
+
+#user pass settings
+Instaling apache2-utils because htpasswd is so easy to use. This section creates kibana.htpassword for access to Kibana / Elasticsearch
+
+sudo apt-get install apache2-utils
+sudo htpasswd -c /etc/nginx/conf.d/kibana.htpasswd albandri
+sudo htpasswd /etc/nginx/conf.d/kibana.htpasswd user
+This section creates kibana-write.htpassword for the ability to save dashboards
+
+sudo htpasswd -c /etc/nginx/conf.d/kibana-write.htpasswd albandri

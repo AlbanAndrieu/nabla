@@ -1,6 +1,6 @@
 sudo apt-get install gcc cpp g++ automake1.9 autoconf libtool flex bison python-software-properties
 
-#sudo apt-get install node 
+#sudo apt-get install node
 sudo apt-get install nodejs
 #NOK with ubuntu 13 sudo apt-get install npm
 sudo apt-get install karma-tools
@@ -33,12 +33,12 @@ sudo make install
 node --version
 v0.10.25
 nodejs --version
-v0.10.25        
+v0.10.25
 npm --version
 1.3.24
 
 #sudo su - root
-#sudo ln -s /usr/bin/nodejs /usr/bin/node 
+#sudo ln -s /usr/bin/nodejs /usr/bin/node
 #cd ~
 ##curl https://npmjs.org/install.sh > install.sh
 #curl https://www.npmjs.org/install.sh > install.sh
@@ -58,7 +58,7 @@ npm install -g grunt-cli
 npm install -g bower
 npm install -g protractor
 
-#as root user 
+#as root user
 npm install -g karma
 #npm cache clean
 npm install -g karma-junit-reporter
@@ -66,7 +66,7 @@ npm install -g karma-ng-scenario
 npm install -g karma-ng-html2js-preprocessor
 npm install -g karma-coverage
 npm install -g karma-jasmine
-npm install -g phantomjs 
+npm install -g phantomjs
 npm install -g karma-phantomjs-launcher
 npm install -g selenium-webdriver
 #if it failed try as non root user whitout -g option
@@ -74,14 +74,18 @@ npm install -g selenium-webdriver
 npm install -g doctor
 npm install -g yo
 #npm install selenium-standalone
-npm install -g connect-livereload 
+npm install -g connect-livereload
+
+#as local user
+npm install grunt
+npm install grunt-cli
 
 #/usr/lib/node_modules/karma/bin/karma --version
 #export PATH="$PATH:/usr/lib/node_modules/karma/bin"
 
 #or
 cd /usr/local/bin/
-#Ubuntu 13 
+#Ubuntu 13
 ln -s /usr/local/lib/node_modules/karma/bin/karma /usr/local/bin/karma
 #ln -s /root/npm/lib/node_modules/karma/bin/karma /usr/local/bin/karma
 #Ubuntu 12 ln -s /usr/lib/node_modules/karma/bin/karma /usr/local/bin/karma
@@ -91,7 +95,7 @@ sudo chmod -R 777 /usr/local/lib/node_modules/
 karma --version
 Karma version: 0.10.9
 
-#Ubuntu 13 
+#Ubuntu 13
 #ln -s /usr/local/lib/node_modules/grunt-cli/bin/grunt /usr/local/bin/grunt
 
 #check it is working
@@ -112,7 +116,7 @@ npm -g ls
 #see https://github.com/georgy/nexus-npm-repository-plugin
 #inside nexus use http://registry.npmjs.org/ without the s
 #as jenkins and albandri user
-npm config set registry http://home.nabla.mobi:8081/nexus/content/npm/registry.npmjs.org/ 
+npm config set registry http://home.nabla.mobi:8081/nexus/content/npm/registry.npmjs.org/
 npm config ls -l | grep registry
 
 #http://karma-runner.github.io/0.10/index.html
@@ -135,6 +139,64 @@ npm run update-webdriver : install the drivers needed by Protractor
 
 #update clean up npm repo
 sudo chown -R albandri:albandri  ~/.npm
-npm cache clear 
+npm cache clear
+#update npm
 npm update
+
+#Upgrade npm
+#as root
+npm install -g npm
+
+#Install private bower
+#https://github.com/Hacklone/private-bower/blob/master/README.md
+npm install -g private-bower
+ll /usr/local/bin/private-bower
+ll /usr/local/lib/node_modules/private-bower
+#start
+sudo private-bower
+http://localhost:5678/
+http://localhost:5678/packages
+
+#npm adduser --registry http://localhost:5678/
+#admin/micro/alban.andrieu@free.f
+
+bower register [packageName] [gitRepo]
+bower register sample-component ssh://git@scm-git-eur.misys.global.ad:7999/risk/bower-fr-sample-component.git
+
+#Install bower-registry
+#Install redis
+#http://redis.io/topics/quickstart
+sudo apt-get install redis-server
+#check it is working
+redis-cli ping
+npm install -g bower-registry
+#start
+bower-registry -d redis
+bower-registry -p 8089 -d redis -o '{"port": 6379, "host": "127.0.0.1"}' -P
+curl http://localhost:8089/packages
+#find package jquery
+curl http://localhost:8089/packages/jquery
+http://localhost:8089/
+#install bower-registry-client
+npm install --save bower-registry-client
+
+#bower cache
+bower cache list
+bower cache clean
+
+#build a project
+npm install
+#then
+#grunt task
+grunt build
+grunt karma:unit
+grunt documentation
+#bower register test https://scm-git-eur.misys.global.ad/scm/risk/ui-components.git
+#for bower registry
+curl -X DELETE "http://localhost:5678/packages/test?access_token=password"
+#for bower private
+curl -X POST http://localhost:5678/removePackage -d '{"name":"test"}' -H "Content-Type: application/json" --header "Auth-Key:123456"
+
+ll ~/.m2/bowerRepository.json
+ll ~/.m2/bowerRepositoryPublic.json
 

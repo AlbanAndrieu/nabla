@@ -12,7 +12,40 @@ sudo apt-get install ansible
 sudo apt-get install python-pip python-dev build-essential
 sudo pip install --upgrade pip
 
-sudo pip install paramiko PyYAML jinja2 httplib2
+#Red hat installation
+#https://www.digitalocean.com/community/tutorials/how-to-set-up-python-2-7-6-and-3-3-3-on-centos-6-4
+subscription-manager list --available --all
+yum update -y
+sudo sh -c 'wget -qO- http://people.redhat.com/bkabrda/scl_python27.repo >> /etc/yum.repos.d/scl.repo'
+yum search python27
+yum install python27
+scl enable python27 bash
+#yum install python-pip python-devel
+#pip install pycrypto
+#sudo pip install pycrypto --upgrade
+#sudo pip uninstall pycrypto
+# yum erase python-crypto
+# yum install python-crypto python-paramiko
+#sudo pip install paramiko
+#sudo pip install PyYAML jinja2 httplib2 --upgrade
+pip2.7 install ansible
+
+#Red hat usage in bash script
+#scl enable python27 bash
+export PATH="/opt/rh/python27/root/usr/bin:/usr/lib64/qt-3.3/bin:/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin"
+export LD_LIBRARY_PATH="/opt/rh/python27/root/usr/lib64"
+
+#alias python='/opt/rh/python27/root/usr/bin/python2.7'
+#alias pip='/opt/rh/python27/root/usr/bin/pip2.7'
+#alias ansible='/opt/rh/python27/root/usr/bin/ansible'
+
+python -V
+python2.7 -V
+
+pip -V
+
+ansible --version
+#Red hat installation end
 
 #build yourself
 #git clone git://github.com/ansible/ansible.git
@@ -80,7 +113,9 @@ ansible-playbook -c paramiko -i step-00/hosts step-00/setup.yml --ask-pass --sud
 #see params
 ansible -m setup albandri | grep eth0
 ansible -m setup localhost
-
+ansible -m setup dantooine -i hosts-dantooine -vvvv -u root
+ansible -m setup zone -i hosts -vvvv -u root --ask-pass -e 'ansible_python_interpreter=/usr/local/bin/python2.7'
+ 
 #jenkins
 #https://blog.trifork.com/2013/04/02/ansible-example-playbook-to-setup-jenkins-slave/
 
