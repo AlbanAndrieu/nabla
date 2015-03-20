@@ -9,11 +9,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
+
 import javax.annotation.Resource;
 import javax.ejb.SessionContext;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
+
 import org.andromda.timetracker.vo.TaskVO;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.Transformer;
@@ -28,25 +30,28 @@ import org.hibernate.Session;
  *
  * @see TaskDao
  */
-//@javax.ejb.TransactionAttribute(javax.ejb.TransactionAttributeType.REQUIRED)
-//@javax.ejb.Local({TaskDao.class})
+// @javax.ejb.TransactionAttribute(javax.ejb.TransactionAttributeType.REQUIRED)
+// @javax.ejb.Local({TaskDao.class})
 public abstract class TaskDaoBase implements TaskDao
 {
 
     private static final Logger logger = Logger.getLogger(TaskDaoBase.class);
-    
+
     /** Session Context Injection */
     @Resource
-    protected SessionContext context;
+    protected SessionContext    context;
 
     /**
-     * Inject persistence context timetracker-ejb3     */    
-    @PersistenceContext(unitName = "timetracker-ejb3")    protected EntityManager entityManager;
+     * Inject persistence context timetracker-ejb3
+     */
+    @PersistenceContext(unitName = "timetracker-ejb3")
+    protected EntityManager     entityManager;
 
     /**
      * Inject Hibernate Session
      */
-    @PersistenceContext(unitName = "timetracker-ejb3")    protected Session hibernateSession;
+    @PersistenceContext(unitName = "timetracker-ejb3")
+    protected Session           hibernateSession;
 
     /**
      * @see TaskDao#load
@@ -60,29 +65,29 @@ public abstract class TaskDaoBase implements TaskDao
         }
         try
         {
-                        final Task entity = this.entityManager.find(Task.class, id);
+            final Task entity = this.entityManager.find(Task.class, id);
             return transformEntity(transform, entity);
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new TaskDaoException(ex);
         }
     }
 
     /**
-     * @see TaskDao#load( Long)
+     * @see TaskDao#load(Long)
      */
     @Override
-        public Task load( final Long id) throws TaskDaoException
+    public Task load(final Long id) throws TaskDaoException
     {
-        return (Task)this.load(TRANSFORM_NONE, id);
+        return (Task) this.load(TRANSFORM_NONE, id);
     }
 
     /**
      * @see TaskDao#loadAll()
      */
     @Override
-    @SuppressWarnings({"unchecked"})
+    @SuppressWarnings(
+    { "unchecked" })
     public Collection<Task> loadAll() throws TaskDaoException
     {
         return this.loadAll(TRANSFORM_NONE);
@@ -102,8 +107,7 @@ public abstract class TaskDaoBase implements TaskDao
             List<Task> results = query.getResultList();
             this.transformEntities(transform, results);
             return results;
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new TaskDaoException(ex);
         }
@@ -111,16 +115,18 @@ public abstract class TaskDaoBase implements TaskDao
 
     /**
      * Create Task with no VO transformation
+     * 
      * @see TaskDao#create(Task)
      */
     @Override
     public Task create(Task task) throws TaskDaoException
     {
-        return (Task)this.create(TRANSFORM_NONE, task);
+        return (Task) this.create(TRANSFORM_NONE, task);
     }
 
     /**
      * Create Task with VO transformation
+     * 
      * @see TaskDao#create(int, Task)
      */
     @Override
@@ -136,8 +142,7 @@ public abstract class TaskDaoBase implements TaskDao
             this.entityManager.persist(task);
             this.entityManager.flush();
             return this.transformEntity(transform, task);
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new TaskDaoException(ex);
         }
@@ -145,10 +150,11 @@ public abstract class TaskDaoBase implements TaskDao
 
     /**
      * Create a Collection of Task with no VO transformation
+     * 
      * @see TaskDao#create(Collection)
      */
     @Override
-    //@SuppressWarnings({"unchecked"})
+    // @SuppressWarnings({"unchecked"})
     public Collection<Task> create(final Collection<Task> entities) throws TaskDaoException
     {
         return create(TRANSFORM_NONE, entities);
@@ -156,10 +162,12 @@ public abstract class TaskDaoBase implements TaskDao
 
     /**
      * Create a Collection of Task with VO transformation
+     * 
      * @see TaskDao#create(int, Collection)
      */
     @Override
-    @SuppressWarnings({"unchecked", "rawtypes"})
+    @SuppressWarnings(
+    { "unchecked", "rawtypes" })
     public Collection create(final int transform, final Collection<Task> entities) throws TaskDaoException
     {
         if (entities == null)
@@ -173,8 +181,7 @@ public abstract class TaskDaoBase implements TaskDao
             {
                 results.add(create(transform, entity));
             }
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new TaskDaoException(ex);
         }
@@ -183,16 +190,18 @@ public abstract class TaskDaoBase implements TaskDao
 
     /**
      * Create Entity Task using instance attributes with no VO transformation
+     * 
      * @see TaskDao#create(String)
      */
     @Override
     public Task create(String name) throws TaskDaoException
     {
-        return (Task)this.create(TRANSFORM_NONE, name);
+        return (Task) this.create(TRANSFORM_NONE, name);
     }
 
     /**
      * Create Entity Task using instance attributes with VO transformation
+     * 
      * @see TaskDao#create(int, String)
      * composite=false identifiers=1
      */
@@ -218,8 +227,7 @@ public abstract class TaskDaoBase implements TaskDao
         {
             this.entityManager.merge(task);
             this.entityManager.flush();
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new TaskDaoException(ex);
         }
@@ -241,8 +249,7 @@ public abstract class TaskDaoBase implements TaskDao
             {
                 update(entity);
             }
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new TaskDaoException(ex);
         }
@@ -262,8 +269,7 @@ public abstract class TaskDaoBase implements TaskDao
         {
             this.entityManager.remove(task);
             this.entityManager.flush();
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new TaskDaoException(ex);
         }
@@ -286,8 +292,7 @@ public abstract class TaskDaoBase implements TaskDao
             {
                 this.remove(entity);
             }
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new TaskDaoException(ex);
         }
@@ -309,8 +314,7 @@ public abstract class TaskDaoBase implements TaskDao
             {
                 remove(entity);
             }
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new TaskDaoException(ex);
         }
@@ -325,10 +329,9 @@ public abstract class TaskDaoBase implements TaskDao
      * <p/>
      * This method will return instances of these types:
      * <ul>
-     *   <li>{@link Task} - {@link #TRANSFORM_NONE}</li>
-     *   <li>{@link TaskVO} - {@link #TRANSFORM_TASKVO}</li>
+     * <li>{@link Task} - {@link #TRANSFORM_NONE}</li>
+     * <li>{@link TaskVO} - {@link #TRANSFORM_TASKVO}</li>
      * </ul>
-     *
      * If the integer argument value is unknown {@link #TRANSFORM_NONE} is assumed.
      *
      * @param transform one of the constants declared in {@link TaskDao}
@@ -343,10 +346,10 @@ public abstract class TaskDaoBase implements TaskDao
         {
             switch (transform)
             {
-                case TaskDao.TRANSFORM_TASKVO :
+                case TaskDao.TRANSFORM_TASKVO:
                     target = toTaskVO(entity);
                     break;
-                case TRANSFORM_NONE : // fall-through
+                case TRANSFORM_NONE: // fall-through
                 default:
                     target = entity;
             }
@@ -355,9 +358,7 @@ public abstract class TaskDaoBase implements TaskDao
     }
 
     /**
-     * Transforms a collection of entities using the
-     * {@link #transformEntity(int, Task)}
-     * method. This method does not instantiate a new collection.
+     * Transforms a collection of entities using the {@link #transformEntity(int, Task)} method. This method does not instantiate a new collection.
      * <p/>
      * Transforms into the same collection as the argument, but this time containing the transformed entities
      * This method is to be used internally only.
@@ -370,11 +371,11 @@ public abstract class TaskDaoBase implements TaskDao
     {
         switch (transform)
         {
-            case TaskDao.TRANSFORM_TASKVO :
+            case TaskDao.TRANSFORM_TASKVO:
                 toTaskVOCollection(entities);
                 break;
-            case TRANSFORM_NONE : // fall-through
-                default:
+            case TRANSFORM_NONE: // fall-through
+            default:
                 // do nothing;
         }
     }
@@ -393,8 +394,8 @@ public abstract class TaskDaoBase implements TaskDao
 
     /**
      * Default implementation for transforming the results of a report query into a value object. This
-     * implementation exists for convenience reasons only. It needs only be overridden in the
-     * {@link TaskDaoImpl} class if you intend to use reporting queries.
+     * implementation exists for convenience reasons only. It needs only be overridden in the {@link TaskDaoImpl} class if you intend to use reporting queries.
+     * 
      * @param row Object[] Array of Task to transform
      * @return target TaskVO
      * @see TaskDao#toTaskVO(Task)
@@ -410,7 +411,7 @@ public abstract class TaskDaoBase implements TaskDao
                 final Object object = row[ctr];
                 if (object instanceof Task)
                 {
-                    target = this.toTaskVO((Task)object);
+                    target = this.toTaskVO((Task) object);
                     break;
                 }
             }
@@ -420,31 +421,29 @@ public abstract class TaskDaoBase implements TaskDao
 
     /**
      * This anonymous transformer is designed to transform entities or report query results
-     * (which result in an array of objects) to {@link TaskVO}
-     * using the Jakarta Commons-Collections Transformation API.
+     * (which result in an array of objects) to {@link TaskVO} using the Jakarta Commons-Collections Transformation API.
      */
-    private Transformer TASKVO_TRANSFORMER =
-        new Transformer()
-        {
-            @Override
-            public Object transform(Object input)
-            {
-                Object result = null;
-                if (input instanceof Task)
-                {
-                    result = toTaskVO((Task)input);
-                }
-                else if (input instanceof Object[])
-                {
-                    result = toTaskVO((Object[])input);
-                }
-                return result;
-            }
-        };
+    private Transformer TASKVO_TRANSFORMER = new Transformer()
+                                           {
+                                               @Override
+                                               public Object transform(Object input)
+                                               {
+                                                   Object result = null;
+                                                   if (input instanceof Task)
+                                                   {
+                                                       result = toTaskVO((Task) input);
+                                                   } else if (input instanceof Object[])
+                                                   {
+                                                       result = toTaskVO((Object[]) input);
+                                                   }
+                                                   return result;
+                                               }
+                                           };
 
     /**
      * @see TaskDao#taskVOToEntityCollection(Collection)
      */
+    @SuppressWarnings("rawtypes")
     @Override
     public final void taskVOToEntityCollection(Collection instances)
     {
@@ -462,21 +461,20 @@ public abstract class TaskDaoBase implements TaskDao
         }
     }
 
-    private final Transformer TaskVOToEntityTransformer =
-        new Transformer()
-        {
-            @Override
-            public Object transform(Object input)
-            {
-                return taskVOToEntity((TaskVO)input);
-            }
-        };
+    private final Transformer TaskVOToEntityTransformer = new Transformer()
+                                                        {
+                                                            @Override
+                                                            public Object transform(Object input)
+                                                            {
+                                                                return taskVOToEntity((TaskVO) input);
+                                                            }
+                                                        };
 
     /**
      * @see TaskDao#toTaskVO(Task, TaskVO)
      */
     @Override
-    public void toTaskVO( Task source, TaskVO target)
+    public void toTaskVO(Task source, TaskVO target)
     {
         target.setId(source.getId());
         target.setName(source.getName());
@@ -497,14 +495,13 @@ public abstract class TaskDaoBase implements TaskDao
      * @see TaskDao#taskVOToEntity(TaskVO, Task, boolean)
      */
     @Override
-    public void taskVOToEntity( TaskVO source, Task target, boolean copyIfNull)
+    public void taskVOToEntity(TaskVO source, Task target, boolean copyIfNull)
     {
         if (copyIfNull || source.getName() != null)
         {
             target.setName(source.getName());
         }
     }
-
 
     // For unit testing outside of container - persistence context not injected
     /**
@@ -541,7 +538,7 @@ public abstract class TaskDaoBase implements TaskDao
 
     /**
      * @return the hibernateSession
-     */   
+     */
     public Session getHibernateSession()
     {
         return this.hibernateSession;
@@ -553,5 +550,5 @@ public abstract class TaskDaoBase implements TaskDao
     public void setHibernateSession(Session hibernateSessionIn)
     {
         this.hibernateSession = hibernateSessionIn;
-    }        
+    }
 }

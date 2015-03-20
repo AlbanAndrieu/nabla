@@ -43,7 +43,7 @@ import org.apache.commons.collections.Predicate;
  * objects that pass the <code>evaluate</code> test. <p/> It is useful for
  * filtering the results of a query.
  * </p>
- *
+ * 
  * @author Anthony Mowers
  * @author Chad Brandon
  */
@@ -51,7 +51,7 @@ public abstract class FilteredCollection extends ArrayList implements Predicate
 {
     /**
      * Constructor for the FilterCollection object
-     *
+     * 
      * @param collection
      */
     public FilteredCollection(Collection collection)

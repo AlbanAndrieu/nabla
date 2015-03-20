@@ -40,9 +40,9 @@ import org.apache.commons.lang.StringUtils;
 /**
  * <p/>
  * An object responsible for mapping types in the object model to other language identifiers/types. (For example, Java,
- * SQL, Jdbc, etc).  Basically just wraps the core {@link Mappings} instance in order to provide type specific mapping
+ * SQL, Jdbc, etc). Basically just wraps the core {@link Mappings} instance in order to provide type specific mapping
  * functionality. </p>
- *
+ * 
  * @author Chad Brandon
  * @author Bob Fields
  */
@@ -55,7 +55,7 @@ public final class TypeMappings
 
     /**
      * The constructor that takes the {@link Mappings} instance.
-     *
+     * 
      * @param mappings the Mapping instance from which to construct this TypeMappings instance.
      */
     private TypeMappings(Mappings mappings)
@@ -65,7 +65,7 @@ public final class TypeMappings
 
     /**
      * Sets the optional suffix used for array types (if
-     *
+     * 
      * @param arraySuffix the suffix used for arrays within this mapping.
      */
     public void setArraySuffix(String arraySuffix)
@@ -75,7 +75,7 @@ public final class TypeMappings
 
     /**
      * Returns a new configured instance of this TypeMappings configured from the mappings instance.
-     *
+     * 
      * @param mappings the Mappings instance.
      * @return TypeMappings the configured TypeMappings instance.
      */
@@ -86,7 +86,7 @@ public final class TypeMappings
 
     /**
      * Returns a new configured instance of this TypeMappings configured from the mappings instance.
-     *
+     * 
      * @param mappingsUri the URI to configure the underlying {@link Mappings} instance.
      * @return TypeMappings the configured TypeMappings instance.
      */
@@ -102,10 +102,10 @@ public final class TypeMappings
 
     /**
      * Returns the <code>to</code> mapping from a given <code>from</code> mapping.
-     *
+     * 
      * @param from the <code>from</code> mapping, this is the type/identifier that is in the model.
      * @return String to the <code>to</code> mapping (this is the mapping that can be retrieved if a corresponding
-     *         'from' is found.
+     * 'from' is found.
      */
     public String getTo(String from)
     {
@@ -153,7 +153,7 @@ public final class TypeMappings
 
     /**
      * Returns the Mappings instance which this TypeMapping wraps.
-     *
+     * 
      * @return URL
      */
     public Mappings getMappings()

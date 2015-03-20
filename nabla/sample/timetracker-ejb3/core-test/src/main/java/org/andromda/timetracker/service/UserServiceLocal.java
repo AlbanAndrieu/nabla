@@ -12,10 +12,9 @@ import org.andromda.timetracker.vo.UserVO;
 
 /**
  * Local component interface for the UserServiceBean session bean.
- * The service that implement this business interface is a Seam component.  The cartridge
+ * The service that implement this business interface is a Seam component. The cartridge
  * only exposes this interface as a Local business interface for the Seam bean
  * component.
- *
  */
 @Local
 public interface UserServiceLocal extends UserService

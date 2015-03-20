@@ -2,25 +2,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	
         <parent>
-		<groupId>com.nabla.project.uml</groupId>
-		<artifactId>nabla</artifactId>
+			<groupId>com.nabla.project.uml</groupId>
+			<artifactId>nabla</artifactId>
 	    	<version>1.0.1-SNAPSHOT</version>
         </parent>
                 	
-	<modelVersion>4.0.0</modelVersion>
+		<modelVersion>4.0.0</modelVersion>
     	<groupId>com.nabla.project.uml.timetracker</groupId>
     	<artifactId>sample</artifactId>
-	<packaging>pom</packaging>
-	<name>Nabla Samples</name>
+		<packaging>pom</packaging>
+		<name>Nabla Samples</name>
     	<description>Nabla Samples</description>
-	<modules>
-		<module>timetracker-hibernate</module>
-		<module>timetracker-gui</module>
+		
+		<modules>
+			<module>timetracker-hibernate</module>
+			<module>timetracker-gui</module>
         	<module>timetracker-ejb3</module>        	
-  	</modules>
+		</modules>
   	
-  	<properties>
-  		<nabla.mda.dir>${pom.basedir}/../../..</nabla.mda.dir>
-                <model.uri>file:${nabla.mda.dir}/model/src/main/uml/${uml.type}/timetracker/${model.base.name}.uml</model.uri>
+		<properties>
+			<nabla.mda.dir>${pom.basedir}/../../..</nabla.mda.dir>
+            <model.uri>file:${nabla.mda.dir}/model/src/main/uml/${uml.type}/timetracker/${model.base.name}.uml</model.uri>
         </properties>      
 </project>

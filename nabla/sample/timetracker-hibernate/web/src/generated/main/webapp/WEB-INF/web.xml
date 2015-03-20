@@ -250,6 +250,14 @@
         <filter-name>org.andromda.timetracker.domain.crud.ManageTaskFormPopulator</filter-name>
         <filter-class>org.andromda.timetracker.domain.crud.ManageTaskFormPopulator</filter-class>
     </filter>
+    <filter>
+        <filter-name>org.andromda.timetracker.domain.crud.ManageUserRoleFormPopulator</filter-name>
+        <filter-class>org.andromda.timetracker.domain.crud.ManageUserRoleFormPopulator</filter-class>
+    </filter>
+    <filter>
+        <filter-name>org.andromda.timetracker.domain.crud.ManageMovieFormPopulator</filter-name>
+        <filter-class>org.andromda.timetracker.domain.crud.ManageMovieFormPopulator</filter-class>
+    </filter>
 
     <!-- uncomment the following if you're using the open-session-in-view pattern
     <filter-mapping>
@@ -291,6 +299,14 @@
     <filter-mapping>
         <filter-name>org.andromda.timetracker.domain.crud.ManageTaskFormPopulator</filter-name>
         <url-pattern>/org/andromda/timetracker/domain/crud/task-crud.jsf</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>org.andromda.timetracker.domain.crud.ManageUserRoleFormPopulator</filter-name>
+        <url-pattern>/org/andromda/timetracker/domain/crud/userrole-crud.jsf</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>org.andromda.timetracker.domain.crud.ManageMovieFormPopulator</filter-name>
+        <url-pattern>/org/andromda/timetracker/domain/crud/movie-crud.jsf</url-pattern>
     </filter-mapping>
 
     <filter-mapping>

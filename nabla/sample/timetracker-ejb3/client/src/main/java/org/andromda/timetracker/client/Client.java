@@ -36,12 +36,10 @@ public class Client
         try
         {
             users = usd.getAllUsers();
-        }
-        catch (final UserDoesNotExistException e)
+        } catch (final UserDoesNotExistException e)
         {
             this.logger.debug("UserDoesNotExistException catched", e);
-        }
-        finally
+        } finally
         {
             if (usd != null)
             {
@@ -82,12 +80,10 @@ public class Client
         {
             usd = new UserServiceDelegate(this.prop);
             usd.registerUser(userDetailsVO);
-        }
-        catch (final UserDoesNotExistException e)
+        } catch (final UserDoesNotExistException e)
         {
             this.logger.debug("UserDoesNotExistException catched", e);
-        }
-        finally
+        } finally
         {
             if (usd != null)
             {

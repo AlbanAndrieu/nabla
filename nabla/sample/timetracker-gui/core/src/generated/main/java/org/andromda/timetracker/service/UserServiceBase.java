@@ -6,8 +6,8 @@
 /**
  * TEMPLATE:    SpringServiceBase.vsl in andromda-spring cartridge
  * MODEL CLASS: TimeTracker::TimeTracker::org.andromda.timetracker::service::UserService
- * STEREOTYPE:  Seam
  * STEREOTYPE:  Service
+ * STEREOTYPE:  Seam
  */
 package org.andromda.timetracker.service;
 

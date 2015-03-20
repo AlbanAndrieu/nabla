@@ -113,6 +113,7 @@
             <scope>provided</scope>
         </dependency>
 
+		<!-- must be use with hibernate.cache.provider_class org.hibernate.cache.EhCacheProvider in persistence.xml -->
         <dependency>
             <groupId>net.sf.ehcache</groupId>
             <artifactId>ehcache</artifactId>

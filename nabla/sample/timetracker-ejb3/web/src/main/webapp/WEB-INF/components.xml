@@ -160,7 +160,7 @@
             name="userService"
             class="org.andromda.timetracker.service.UserServiceBean"
             scope="STATELESS"
-            jndi-name="UserServiceBean/local"/>
+            jndi-name="java:global/TimeTracker/UserServiceBean/local"/>
         -->
         <!-- service : org.andromda.cartridges.ejb3.metafacades.EJB3WebServiceFacadeLogicImpl[org.andromda.timetracker.service.TimeTrackingService] -->
         <!-- service : org.andromda.cartridges.ejb3.metafacades.EJB3WebServiceFacadeLogicImpl[org.andromda.timetracker.service.SecurityService] -->

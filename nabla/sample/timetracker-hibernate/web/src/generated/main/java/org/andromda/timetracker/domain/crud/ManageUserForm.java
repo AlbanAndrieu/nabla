@@ -290,40 +290,40 @@ public class ManageUserForm
         this.emailBackingList = emailBackingListIn;
     }
 
-    private boolean isActive;
+    private boolean isEnable;
 
     /**
-     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
-     * @return isActive
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isEnable
+     * @return isEnable
      */
-    public boolean isIsActive()
+    public boolean isIsEnable()
     {
-        return this.isActive;
+        return this.isEnable;
     }
 
     /**
-     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
-     * @param isActiveIn
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isEnable
+     * @param isEnableIn
      */
-    public void setIsActive(boolean isActiveIn)
+    public void setIsEnable(boolean isEnableIn)
     {
-        this.isActive = isActiveIn;
+        this.isEnable = isEnableIn;
     }
 
-    private Collection<?> isActiveBackingList;
+    private Collection<?> isEnableBackingList;
 
     /**
-     * @return isActiveBackingList
+     * @return isEnableBackingList
      */
-    public Collection<?> getIsActiveBackingList(){
-        return this.isActiveBackingList;
+    public Collection<?> getIsEnableBackingList(){
+        return this.isEnableBackingList;
     }
 
     /**
-     * @param isActiveBackingListIn
+     * @param isEnableBackingListIn
      */
-    public void setIsActiveBackingList(Collection<?> isActiveBackingListIn){
-        this.isActiveBackingList = isActiveBackingListIn;
+    public void setIsEnableBackingList(Collection<?> isEnableBackingListIn){
+        this.isEnableBackingList = isEnableBackingListIn;
     }
 
     private Date creationDate;
@@ -609,8 +609,8 @@ public class ManageUserForm
         this.setLastNameBackingList(otherForm.getLastNameBackingList());
         this.setEmail(otherForm.getEmail());
         this.setEmailBackingList(otherForm.getEmailBackingList());
-        this.setIsActive(otherForm.isIsActive());
-        this.setIsActiveBackingList(otherForm.getIsActiveBackingList());
+        this.setIsEnable(otherForm.isIsEnable());
+        this.setIsEnableBackingList(otherForm.getIsEnableBackingList());
         this.setCreationDate(otherForm.getCreationDate());
         this.setCreationDateBackingList(otherForm.getCreationDateBackingList());
         this.setComment(otherForm.getComment());
@@ -632,5 +632,5 @@ public class ManageUserForm
     /**
      * The serial version UID of this class. Needed for serialization.
      */
-    private static final long serialVersionUID = -7704208955313079469L;
+    private static final long serialVersionUID = 2315613480778833561L;
 }

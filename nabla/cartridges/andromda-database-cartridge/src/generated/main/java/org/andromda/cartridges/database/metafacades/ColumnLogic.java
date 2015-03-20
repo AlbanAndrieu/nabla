@@ -1113,7 +1113,7 @@ public abstract class ColumnLogic
     }
 
     /**
-     * Get the template parameter for this model element having the parameterName
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -1122,7 +1122,7 @@ public abstract class ColumnLogic
     }
 
     /**
-     * Get the template parameters for this model element
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()

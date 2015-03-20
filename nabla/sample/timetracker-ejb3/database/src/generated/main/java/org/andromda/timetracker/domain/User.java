@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * TODO: Model Documentation for User
  */
-@XmlType(propOrder = {"username", "password", "firstName", "lastName", "email", "isActive", "creationDate", "comment"})
+@XmlType(propOrder = {"username", "password", "firstName", "lastName", "email", "isEnable", "creationDate", "comment"})
 @XmlAccessorType(XmlAccessType.FIELD)
 // HibernateEntity.vsl annotations merge-point
 public abstract class User implements Serializable, Comparable<User>
@@ -25,7 +25,7 @@ public abstract class User implements Serializable, Comparable<User>
     /**
      * The serial version UID of this class. Needed for serialization.
      */
-    private static final long serialVersionUID = -6177852626226267723L;
+    private static final long serialVersionUID = 280161844106669459L;
 
     // Generate 9 attributes
     @XmlElement(name = "username")
@@ -133,25 +133,25 @@ public abstract class User implements Serializable, Comparable<User>
         this.email = emailIn;
     }
 
-    @XmlElement(name = "isActive")
-    private boolean isActive;
+    @XmlElement(name = "isEnable")
+    private boolean isEnable;
 
     /**
-     * TODO: Model Documentation for User.isActive
-     * @return this.isActive boolean
+     * TODO: Model Documentation for User.isEnable
+     * @return this.isEnable boolean
      */
-    public boolean isIsActive()
+    public boolean isIsEnable()
     {
-        return this.isActive;
+        return this.isEnable;
     }
 
     /**
-     * TODO: Model Documentation for User.isActive
-     * @param isActiveIn boolean
+     * TODO: Model Documentation for User.isEnable
+     * @param isEnableIn boolean
      */
-    public void setIsActive(boolean isActiveIn)
+    public void setIsEnable(boolean isEnableIn)
     {
-        this.isActive = isActiveIn;
+        this.isEnable = isEnableIn;
     }
 
     @XmlElement(name = "creationDate")
@@ -318,11 +318,11 @@ public abstract class User implements Serializable, Comparable<User>
          * @param firstName String
          * @param lastName String
          * @param email String
-         * @param isActive boolean
+         * @param isEnable boolean
          * @param creationDate Date
          * @return newInstance
          */
-        public static User newInstance(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate)
+        public static User newInstance(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate)
         {
             final User entity = new UserImpl();
             entity.setUsername(username);
@@ -330,7 +330,7 @@ public abstract class User implements Serializable, Comparable<User>
             entity.setFirstName(firstName);
             entity.setLastName(lastName);
             entity.setEmail(email);
-            entity.setIsActive(isActive);
+            entity.setIsEnable(isEnable);
             entity.setCreationDate(creationDate);
             return entity;
         }
@@ -343,13 +343,13 @@ public abstract class User implements Serializable, Comparable<User>
          * @param firstName String
          * @param lastName String
          * @param email String
-         * @param isActive boolean
+         * @param isEnable boolean
          * @param creationDate Date
          * @param comment String
          * @param roles Collection<UserRole>
          * @return newInstance User
          */
-        public static User newInstance(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment, Collection<UserRole> roles)
+        public static User newInstance(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Collection<UserRole> roles)
         {
             final User entity = new UserImpl();
             entity.setUsername(username);
@@ -357,7 +357,7 @@ public abstract class User implements Serializable, Comparable<User>
             entity.setFirstName(firstName);
             entity.setLastName(lastName);
             entity.setEmail(email);
-            entity.setIsActive(isActive);
+            entity.setIsEnable(isEnable);
             entity.setCreationDate(creationDate);
             entity.setComment(comment);
             entity.setRoles(roles);

@@ -62,6 +62,7 @@ public class User implements Serializable
 
     /**
      * Set the lastName property.
+     * 
      * @param value the new value
      */
     public void setLastName(final String value)
@@ -84,7 +85,7 @@ public class User implements Serializable
 
     /**
      * Get the id property.
-     *
+     * 
      * @return Long The value of id
      */
     @Id
@@ -97,6 +98,7 @@ public class User implements Serializable
 
     /**
      * Set the id property.
+     * 
      * @param value the new value
      */
     public void setId(final Long value)

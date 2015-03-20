@@ -99,7 +99,7 @@ public class ChangePasswordAction implements ChangePassword
 
     /**
      * DOCUMENT ME! Alban.
-     *
+     * 
      * @return the user
      */
     @Override
@@ -110,7 +110,7 @@ public class ChangePasswordAction implements ChangePassword
 
     /**
      * DOCUMENT ME! Alban.
-     *
+     * 
      * @param user the user to set
      */
     public void setUser(final User user)

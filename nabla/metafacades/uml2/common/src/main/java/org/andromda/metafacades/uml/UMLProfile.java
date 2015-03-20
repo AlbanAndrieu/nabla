@@ -38,7 +38,7 @@ import org.andromda.core.profile.Profile;
 /**
  * Contains the common UML AndroMDA profile. That is, it contains elements "common" to all AndroMDA components (tagged
  * values, stereotypes, and datatypes).
- *
+ * 
  * @author Chad Brandon
  * @author Bob Fields
  */
@@ -370,7 +370,7 @@ public class UMLProfile
      * 'andromda_serialVersionUID'
      * Stores the serial version UID to be used for a class. If not specified, it will be calculated
      * based on the class signature.
-     *
+     * 
      * @see org.andromda.metafacades.uml.ClassifierFacade#getSerialVersionUID()
      */
     public static final String   TAGGEDVALUE_SERIALVERSION_UID                          = profile.get("SERIALVERSION_UID");

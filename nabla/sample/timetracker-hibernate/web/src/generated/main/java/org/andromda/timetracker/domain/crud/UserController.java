@@ -76,7 +76,7 @@ public abstract class UserController
         form.getSearchForm().setFirstName(null);
         form.getSearchForm().setLastName(null);
         form.getSearchForm().setEmail(null);
-        form.getSearchForm().setIsActive(null);
+        form.getSearchForm().setIsEnable(null);
         form.getSearchForm().setCreationDate(null);
         form.getSearchForm().setComment(null);
         form.getSearchForm().setRoles(null);
@@ -137,7 +137,7 @@ public abstract class UserController
         form.setFirstName(vo.getFirstName());
         form.setLastName(vo.getLastName());
         form.setEmail(vo.getEmail());
-        form.setIsActive(vo.isIsActive());
+        form.setIsEnable(vo.isIsEnable());
         form.setCreationDate(vo.getCreationDate());
         form.setComment(vo.getComment());
         form.setId(vo.getId());
@@ -238,7 +238,7 @@ public abstract class UserController
         form.setFirstName(null);
         form.setLastName(null);
         form.setEmail(null);
-        form.setIsActive(false);
+        form.setIsEnable(false);
         form.setCreationDate(null);
         form.setComment(null);
         form.setId(null);
@@ -301,7 +301,7 @@ public abstract class UserController
                     , form.getFirstName()
                     , form.getLastName()
                     , form.getEmail()
-                    , form.isIsActive()
+                    , form.isIsEnable()
                     , form.getCreationDate()
                     , form.getComment()
                     , null
@@ -317,7 +317,7 @@ public abstract class UserController
                 , form.getFirstName()
                 , form.getLastName()
                 , form.getEmail()
-                , form.isIsActive()
+                , form.isIsEnable()
                 , form.getCreationDate()
                 , form.getComment()
                 , form.getId()
@@ -417,7 +417,7 @@ public abstract class UserController
             && StringUtils.isBlank(form.getSearchForm().getFirstName())
             && StringUtils.isBlank(form.getSearchForm().getLastName())
             && StringUtils.isBlank(form.getSearchForm().getEmail())
-            && form.getSearchForm().getIsActive() == null
+            && form.getSearchForm().getIsEnable() == null
             && form.getSearchForm().getCreationDate() == null
             && StringUtils.isBlank(form.getSearchForm().getComment())
             && form.getSearchForm().getRoles() == null
@@ -430,7 +430,7 @@ public abstract class UserController
                 , form.getSearchForm().getFirstName()
                 , form.getSearchForm().getLastName()
                 , form.getSearchForm().getEmail()
-                , form.getSearchForm().getIsActive()
+                , form.getSearchForm().getIsEnable()
                 , form.getSearchForm().getCreationDate()
                 , form.getSearchForm().getComment()
                 , null

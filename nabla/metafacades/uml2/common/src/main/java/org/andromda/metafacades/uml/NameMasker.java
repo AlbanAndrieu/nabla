@@ -40,7 +40,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * Provides the ability to <code>mask</code> names in a standard manner.
- *
+ * 
  * @author Chad Brandon
  */
 public class NameMasker
@@ -98,7 +98,7 @@ public class NameMasker
     /**
      * Returns the name with the appropriate <code>mask</code> applied. The mask, must match one of the valid mask
      * properties or will be ignored.
-     *
+     * 
      * @param name the name to be masked
      * @param mask the mask to apply
      * @return the masked name.

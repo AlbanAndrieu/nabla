@@ -50,6 +50,9 @@ public final class $manageable.manageableServiceBaseName
     // ------------ Private Operations ----------
 
 #**##foreach ($associatedClass in $associatedClasses)
+#if ($enableTemplating)
+    @SuppressWarnings({"unchecked"})
+#end
     private java.util.List<${associatedClass.fullyQualifiedEntityName}> find${associatedClass.name}ByIds(${associatedClass.identifier.type.fullyQualifiedName}[] ids)
         throws ${manageable.fullyQualifiedManageableServiceReadExceptionName}
     {
@@ -157,7 +160,7 @@ public final class $manageable.manageableServiceBaseName
 
 #end
 #if ($manageable.read)
- 
+
      /**
      * Entity read operation
      *
@@ -175,7 +178,7 @@ public final class $manageable.manageableServiceBaseName
             throw new ${manageable.fullyQualifiedManageableServiceReadExceptionName}(ex);
         }
     }
-       
+
     /**
      * Read operation
      *

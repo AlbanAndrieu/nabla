@@ -55,10 +55,10 @@
             </column>
             <type name="java.lang.String"/>
         </property>
-        <property name="isActive">
-            <meta attribute="field-description">TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive</meta>
-            <column name="IS_ACTIVE" not-null="true" unique="false" sql-type="BIT">
-                <comment>TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive</comment>
+        <property name="isEnable">
+            <meta attribute="field-description">TODO: Model Documentation for org.andromda.timetracker.domain.User.isEnable</meta>
+            <column name="IS_ENABLE" not-null="true" unique="false" sql-type="BIT">
+                <comment>TODO: Model Documentation for org.andromda.timetracker.domain.User.isEnable</comment>
             </column>
             <type name="boolean"/>
         </property>
@@ -76,14 +76,19 @@
             </column>
             <type name="java.lang.String"/>
         </property>
-        <set name="roles" order-by="USERS" lazy="true" fetch="select" inverse="false">
-            <meta attribute="field-description">TODO: Model Documentation for org.andromda.timetracker.domain.User</meta>
+        <set name="roles" table="ROLES2USERS" order-by="ROLES" lazy="true" fetch="select" inverse="false">
+            <meta attribute="field-description">TODO: Model Documentation for org.andromda.timetracker.domain.UserRole</meta>
             <key foreign-key="USER_ROLE_USERSC">
                 <column name="USERS" sql-type="BIGINT">
                     <comment>TODO: Model Documentation for org.andromda.timetracker.domain.User</comment>
                 </column>
             </key>
-            <one-to-many class="org.andromda.timetracker.domain.UserRoleImpl" not-found="exception"/>
+            <many-to-many class="org.andromda.timetracker.domain.UserRoleImpl" foreign-key="USERS_ROLESC">
+                <meta attribute="field-description">TODO: Model Documentation for org.andromda.timetracker.domain.UserRole</meta>
+                <column name="ROLES" sql-type="BIGINT">
+                    <comment>TODO: Model Documentation for org.andromda.timetracker.domain.UserRole</comment>
+                </column>
+            </many-to-many>
         </set>
     </class>
 </hibernate-mapping>

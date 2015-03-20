@@ -40,6 +40,7 @@ public class H2
 
     /**
      * Example values when run as a Java class - modify to match your local configuration.
+     * 
      * @param args
      */
     public static void main(String[] args)
@@ -112,8 +113,7 @@ public class H2
                             try
                             {
                                 rset.close();
-                            }
-                            catch (Exception e)
+                            } catch (Exception e)
                             {
                                 LOGGER.error(e);
                             }
@@ -128,8 +128,7 @@ public class H2
                             LOGGER.info(sql + ";\rExecuted Successfully\r");
                         }
                         successfulCount++;
-                    }
-                    catch (SQLException e)
+                    } catch (SQLException e)
                     {
                         LOGGER.error(e);
                     }
@@ -142,16 +141,13 @@ public class H2
             {
                 // There is no Daemon option when starting DB through connection, just have to go into an infinite loop
             }
-        }
-        catch (IOException e)
+        } catch (IOException e)
         {
             LOGGER.error(e);
-        }
-        catch (ClassNotFoundException e)
+        } catch (ClassNotFoundException e)
         {
             LOGGER.error(e);
-        }
-        catch (SQLException e)
+        } catch (SQLException e)
         {
             LOGGER.error(e);
         }
@@ -160,7 +156,7 @@ public class H2
     /**
      * Load a text file contents with SQL commands as a <code>List of Strings<code>.
      * This method does not perform encoding conversions
-     *
+     * 
      * @param fileName The input file location + name
      * @param delimiter The character delimiter used to separate statements within the file
      * @return The file contents as a <code>String</code>

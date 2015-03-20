@@ -44,24 +44,21 @@ public class AuthenticatorArquillianTest extends JUnitSeamTest // SeamOpenEjbTes
         // resolve jboss-seam, because it is provided-scoped in the pom, but we need it bundled in the WAR
         // .resolve("org.jboss.seam:jboss-seam").withTransitivity().asFile();
 
-        return ShrinkWrap.create(WebArchive.class, "core.war").addClasses(AuthenticatorArquillianTest.class, Authenticator.class, AuthenticatorAction.class, UserDaoBase.class)
+        return ShrinkWrap.create(WebArchive.class, "core-test.war").addClasses(AuthenticatorArquillianTest.class, Authenticator.class, AuthenticatorAction.class, UserDaoBase.class)
                 .addPackages(true, "org.andromda.timetracker.action")
                 .addPackages(true, "org.andromda.timetracker.domain")
                 .addPackages(true, "org.andromda.timetracker")
                 // Needed to run in managed / remote container
-                .addAsWebInfResource("META-INF/ejb-jar.xml", "ejb-jar.xml")
-                .addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml")
+                .addAsWebInfResource("META-INF/ejb-jar.xml", "ejb-jar.xml").addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsResource(EmptyAsset.INSTANCE, "seam.properties")
                 // Deploy our test datasource
-                // .addAsWebInfResource("test-ds.xml", "test-ds.xml")
-                .addAsWebInfResource("WEB-INF/test-web.xml", "web.xml").addAsWebInfResource("WEB-INF/test-components.xml", "components.xml")
-.addAsWebInfResource("WEB-INF/jboss-deployment-structure.xml")
-                .addAsResource("META-INF/security.drl", "META-INF/security.drl")
-.addAsResource("import.sql", "import.sql").addAsResource("log4j.xml", "log4j.xml")
+                .addAsWebInfResource("test-ds.xml", "test-ds.xml").addAsWebInfResource("WEB-INF/test-web.xml", "web.xml").addAsWebInfResource("WEB-INF/test-components.xml", "components.xml")
+                .addAsWebInfResource("WEB-INF/jboss-deployment-structure.xml").addAsResource("META-INF/security.drl", "META-INF/security.drl").addAsResource("import.sql", "import.sql")
+                .addAsResource("log4j.xml", "log4j.xml")
                 // libraries resolved using ShrinkWrap Resolver
                 .addAsLibraries(libs)
-        // libraries resolved using ShrinkWrap Resolver
+                // libraries resolved using ShrinkWrap Resolver
                 // needed for FacesMessages
                 .addAsLibraries(resolver.resolve("org.jboss.seam:jboss-seam:2.3.1.Final").withTransitivity().asFile())
         // .addAsLibraries(resolver.resolve("commons-collections:commons-collections").withTransitivity().asFile())

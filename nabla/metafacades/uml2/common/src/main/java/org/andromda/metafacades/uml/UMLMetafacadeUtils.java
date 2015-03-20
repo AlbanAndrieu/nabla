@@ -53,7 +53,7 @@ import org.apache.log4j.Logger;
 
 /**
  * Contains utilities that are common to the UML metafacades.
- *
+ * 
  * @author Chad Brandon
  * @author Bob Fields
  */
@@ -67,6 +67,7 @@ public class UMLMetafacadeUtils
     /**
      * Returns true or false depending on whether or not this Classifier or any of its specializations is of the given
      * type having the specified <code>typeName</code>
+     * 
      * @param classifier
      * @param typeName the name of the type (i.e. datatype::Collection)
      * @return true/false
@@ -230,6 +231,7 @@ public class UMLMetafacadeUtils
 
     /**
      * Returns true if the value is a reserved keyword in Java or C#, or cannot be used as a name
+     * 
      * @param name the String to check if a keyword
      * @return true/false
      */
@@ -246,7 +248,7 @@ public class UMLMetafacadeUtils
 
     /**
      * Gets the getter prefix for a getter operation given the <code>type</code>.
-     *
+     * 
      * @param type the type from which to determine the prefix.
      * @return the getter prefix.
      */
@@ -258,7 +260,7 @@ public class UMLMetafacadeUtils
     /**
      * Gets the getter prefix for a getter operation given the <code>type</code>,
      * taking multiplicity into account for booleans
-     *
+     * 
      * @param type the type from which to determine the prefix.
      * @param lowerBound If > 0 then type is not optional, thus primitive isBoolean()
      * @return the getter prefix.
@@ -271,9 +273,9 @@ public class UMLMetafacadeUtils
 
     /**
      * Returns true if the passed in constraint <code>expression</code> is of type <code>kind</code>, false otherwise.
-     *
+     * 
      * @param expression the expression to check.
-     * @param kind       the constraint kind (i.e. <em>inv</em>,<em>pre</em>, <em>body</em>, etc).
+     * @param kind the constraint kind (i.e. <em>inv</em>,<em>pre</em>, <em>body</em>, etc).
      * @return true/false
      */
     public static boolean isConstraintKind(String expression, String kind)
@@ -290,7 +292,7 @@ public class UMLMetafacadeUtils
      * Transforms the declared type to implementation type for a declared Collection.
      * Default: Collection=LinkedList, List=ArrayList, Set=HashSet, SortedSet=TreeSet.
      * Retains the generics and package in the template declaration, if any
-     *
+     * 
      * @param input the declared Collection type to be transformed into an implementation type
      * @return the Collection implementation declaration.
      */
@@ -367,6 +369,7 @@ public class UMLMetafacadeUtils
      * Determines if the class/package should be generated. Will not be generated if it has any
      * stereotypes: documentation, docOnly, Future, Ignore, analysis, perspective,
      * or any invalid package identifier characters ` ~!@#%^&*()-+={}[]:;<>,?/|
+     * 
      * @param mef ModelElementFacade class to check for stereotypes.
      * @return false if it has any Stereotypes DocOnly, Future, Ignore configured in UMLProfile
      */
@@ -394,8 +397,7 @@ public class UMLMetafacadeUtils
                 {
                     rtn = false;
                 }
-            }
-            catch (Exception ex)
+            } catch (Exception ex)
             {
                 // Output=true anyway just in case we want this output
                 logger.error("UMLMetafacadeUtils.shouldOutput for " + mef.toString() + ' ' + ex.getClass().getName() + ": " + ex.getMessage());
@@ -406,7 +408,7 @@ public class UMLMetafacadeUtils
 
     /**
      * Get the classname without the package name and without additional template<> parameters.
-     *
+     * 
      * @param facade
      * @param enableTemplating
      * @return getNameWithoutPackage
@@ -424,7 +426,7 @@ public class UMLMetafacadeUtils
 
     /**
      * Get the classname without the package name and without additional template<> parameters.
-     *
+     * 
      * @param facade
      * @param className Class name to use in the class declaration, overrides facade.getName()
      * @param enableTemplating Whether template declaration should be created.
@@ -509,7 +511,7 @@ public class UMLMetafacadeUtils
 
     /**
      * Get the generic template<?, ?> declaration.
-     *
+     * 
      * @param facade
      * @param enableTemplating
      * @return getGenericTemplate
@@ -550,7 +552,7 @@ public class UMLMetafacadeUtils
 
     /**
      * Get the fully-qualified classname without the additional template<> parameters.
-     *
+     * 
      * @param facade
      * @return getFQNameWithoutTemplate
      */
@@ -575,6 +577,7 @@ public class UMLMetafacadeUtils
 
     /**
      * Returns the number of methods without stereotypes or with SimpleClass stereotype. .
+     * 
      * @param mef ModelElementFacade class to check for stereotypes.
      * @param outletFile Name of output file currently being processed. How do we get this in template?
      * @param refOutput Should .ref files be output?
@@ -599,6 +602,7 @@ public class UMLMetafacadeUtils
 
     /**
      * Supplies a result for type = <new value>; initialization for all types
+     * 
      * @param facade Type to create default object for
      * @return Constructor String with facade name
      */
@@ -609,6 +613,7 @@ public class UMLMetafacadeUtils
 
     /**
      * Supplies a result for type = <new value>; initialization for all types
+     * 
      * @param facade Type to create default object for
      * @param useMany Return constructor with multiplicity type instead of underlying type
      * @return Constructor String with facade name
@@ -620,6 +625,7 @@ public class UMLMetafacadeUtils
 
     /**
      * Supplies a result for type = <new value>; initialization for all types
+     * 
      * @param facade Type to create default object for
      * @param useMany Return constructor with multiplicity type instead of underlying type
      * @param parent Object containing this facade, which may have an attribute named dependency to a different type
@@ -992,8 +998,7 @@ public class UMLMetafacadeUtils
             {
                 logger.debug("facade=" + facade + " facadeName=" + facade.getName() + " type=" + type + " typeName=" + typeName + " name=" + name + " isMany=" + isMany + " defaultValue=" + defaultValue + " rtn=" + rtn);
             }
-        }
-        catch (RuntimeException e)
+        } catch (RuntimeException e)
         {
             logger.error(e + " facade=" + facade + " facadeName=" + facade.getName() + " parent=" + parent + " type=" + type + " typeName=" + typeName + " name=" + name + " isMany=" + isMany + " defaultValue="
                     + defaultValue);
@@ -1009,6 +1014,7 @@ public class UMLMetafacadeUtils
      * multiplicity, aggregation/composition. If all else fails, the longest name owns the
      * association, or else the alphabetically first name. One side of a relationship must
      * always own the association and be created and deleted first.
+     * 
      * @param associationEnd the association end
      * @return true if the associationEnd (property of the entity on the other end) is owned by the entity on the other end
      */
@@ -1099,7 +1105,7 @@ public class UMLMetafacadeUtils
 
     /**
      * Returns the current Date in the specified format.
-     *
+     * 
      * @param format The format for the output date
      * @return the current date in the specified format.
      */
@@ -1114,7 +1120,7 @@ public class UMLMetafacadeUtils
 
     /**
      * Returns the current Date in the specified format.
-     *
+     * 
      * @return the current date with the default format .
      */
     public static String getDate()

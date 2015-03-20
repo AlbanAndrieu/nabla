@@ -17,6 +17,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeSet;
+
 import javax.annotation.Resource;
 import javax.ejb.Remote;
 import javax.ejb.SessionContext;
@@ -25,6 +26,7 @@ import javax.ejb.TransactionAttributeType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+
 import org.andromda.timetracker.domain.Timecard;
 import org.andromda.timetracker.domain.User;
 import org.andromda.timetracker.domain.UserRole;
@@ -38,9 +40,9 @@ import org.andromda.timetracker.domain.UserRole;
  * javax.ejb.${manageable.type}
  */
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
-@Remote({UserManageableService.class})
-public final class UserManageableServiceBase
-    implements UserManageableService
+@Remote(
+{ UserManageableService.class })
+public final class UserManageableServiceBase implements UserManageableService
 {
     // ------ Session Context Injection ------
 
@@ -53,35 +55,32 @@ public final class UserManageableServiceBase
      * Inject persistence context timetracker-ejb3
      */
     @PersistenceContext(unitName = "timetracker-ejb3")
-    protected EntityManager emanager;
+    protected EntityManager  emanager;
 
     // ------------ Private Operations ----------
 
-    private List<UserRole> findUserRoleByIds(Long[] ids)
-        throws UserReadManageableException
+    private List<UserRole> findUserRoleByIds(Long[] ids) throws UserReadManageableException
     {
         try
         {
             Query query = emanager.createQuery("select entity from UserRole as entity where entity.id in (:id)");
             query.setParameter("id", Arrays.asList(ids));
             return query.getResultList();
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new UserReadManageableException(ex);
         }
     }
 
-    private List<Timecard> findTimecardByIds(Long[] ids)
-        throws UserReadManageableException
+    @SuppressWarnings("unchecked")
+    private List<Timecard> findTimecardByIds(Long[] ids) throws UserReadManageableException
     {
         try
         {
             Query query = emanager.createQuery("select entity from Timecard as entity where entity.id in (:id)");
             query.setParameter("id", Arrays.asList(ids));
             return query.getResultList();
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new UserReadManageableException(ex);
         }
@@ -95,43 +94,44 @@ public final class UserManageableServiceBase
      * @return UserVO
      * @throws UserCreateManageableException
      */
+    @Override
     public UserVO create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles)
-        throws UserCreateManageableException
+            throws UserCreateManageableException
     {
         if (username == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'username' can not be null");
+                    "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'username' can not be null");
         }
 
         if (password == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'password' can not be null");
+                    "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'password' can not be null");
         }
 
         if (firstName == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'firstName' can not be null");
+                    "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'firstName' can not be null");
         }
 
         if (lastName == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'lastName' can not be null");
+                    "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'lastName' can not be null");
         }
 
         if (email == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'email' can not be null");
+                    "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'email' can not be null");
         }
 
         if (creationDate == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'creationDate' can not be null");
+                    "org.andromda.timetracker.domain.crud.UserManageableService.create(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'creationDate' can not be null");
         }
 
         final User entity = new User();
@@ -147,11 +147,7 @@ public final class UserManageableServiceBase
 
         try
         {
-            final List<UserRole> rolesEntities =
-                (roles != null && roles.length > 0)
-                    ? this.findUserRoleByIds(roles)
-                        : Collections.EMPTY_LIST;
-
+            final List<UserRole> rolesEntities = (roles != null && roles.length > 0) ? this.findUserRoleByIds(roles) : Collections.EMPTY_LIST;
 
             if (rolesEntities != null)
             {
@@ -162,44 +158,42 @@ public final class UserManageableServiceBase
                 // the result is that only one end of this association will be set
             }
 
-
             emanager.persist(entity);
             emanager.flush();
             return toValueObject(entity);
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new UserCreateManageableException(ex);
         }
     }
 
- 
-     /**
+    /**
      * Entity read operation
      *
      * @return UserVO
      * @throws UserReadManageableException
      */
-    public UserVO readById(Long id)
-        throws UserReadManageableException
+    @Override
+    public UserVO readById(Long id) throws UserReadManageableException
     {
-        try{
-            return toValueObject((User)emanager.find(User.class, id));
-        }
-        catch (Exception ex)
+        try
+        {
+            return toValueObject(emanager.find(User.class, id));
+        } catch (Exception ex)
         {
             throw new UserReadManageableException(ex);
         }
     }
-       
+
     /**
      * Read operation
      *
      * @return List
      * @throws UserReadManageableException
      */
+    @Override
     public List<UserVO> read(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles)
-        throws UserReadManageableException
+            throws UserReadManageableException
     {
         String logicalOperator = "";
         StringBuilder buf = new StringBuilder("from User as entity");
@@ -239,8 +233,7 @@ public final class UserManageableServiceBase
         if (isEnable)
         {
             buf.append("entity.isEnable is true");
-        }
-        else
+        } else
         {
             buf.append("entity.isEnable is not true");
         }
@@ -250,14 +243,10 @@ public final class UserManageableServiceBase
             buf.append(logicalOperator);
             final Calendar calendar = new GregorianCalendar();
             calendar.setTime(creationDate);
-            if (calendar.get(Calendar.HOUR) != 0
-                 || calendar.get(Calendar.MINUTE) != 0
-                 || calendar.get(Calendar.SECOND) != 0
-                 || calendar.get(Calendar.MILLISECOND) != 0)
+            if (calendar.get(Calendar.HOUR) != 0 || calendar.get(Calendar.MINUTE) != 0 || calendar.get(Calendar.SECOND) != 0 || calendar.get(Calendar.MILLISECOND) != 0)
             {
                 buf.append("entity.creationDate = :creationDate");
-            }
-            else
+            } else
             {
                 buf.append("entity.creationDate between = :creationDateStart and :creationDateEnd");
             }
@@ -292,8 +281,7 @@ public final class UserManageableServiceBase
             }
             query.setMaxResults(250);
             return query.getResultList();
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new UserReadManageableException(ex);
         }
@@ -305,8 +293,8 @@ public final class UserManageableServiceBase
      * @return List
      * @throws UserReadManageableException
      */
-    public List<UserVO> readAll()
-        throws UserReadManageableException
+    @Override
+    public List<UserVO> readAll() throws UserReadManageableException
     {
         try
         {
@@ -314,8 +302,7 @@ public final class UserManageableServiceBase
             query.setMaxResults(250);
             List<User> entities = query.getResultList();
             return toValueObjects(entities);
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new UserReadManageableException(ex);
         }
@@ -327,16 +314,15 @@ public final class UserManageableServiceBase
      * @return Map
      * @throws UserReadManageableException
      */
-    public Map readBackingLists()
-        throws UserReadManageableException
+    @Override
+    public Map<String, List> readBackingLists() throws UserReadManageableException
     {
-        final Map lists = new HashMap();
+        final Map<String, List> lists = new HashMap<String, List>();
 
         try
         {
             lists.put("roles", emanager.createQuery("select item.id, item.id from UserRole as item order by item.id").getResultList());
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new UserReadManageableException(ex);
         }
@@ -349,46 +335,47 @@ public final class UserManageableServiceBase
      * @return UserVO
      * @throws UserUpdateManageableException
      */
+    @Override
     public UserVO update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles)
-        throws UserUpdateManageableException
+            throws UserUpdateManageableException
     {
         if (username == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'username' can not be null");
+                    "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'username' can not be null");
         }
 
         if (password == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'password' can not be null");
+                    "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'password' can not be null");
         }
 
         if (firstName == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'firstName' can not be null");
+                    "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'firstName' can not be null");
         }
 
         if (lastName == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'lastName' can not be null");
+                    "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'lastName' can not be null");
         }
 
         if (email == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'email' can not be null");
+                    "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'email' can not be null");
         }
 
         if (creationDate == null)
         {
             throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'creationDate' can not be null");
+                    "org.andromda.timetracker.domain.crud.UserManageableService.update(String username, String password, String firstName, String lastName, String email, boolean isEnable, Date creationDate, String comment, Long id, Long[] roles) - 'creationDate' can not be null");
         }
 
-        final User entity = (User)emanager.find(User.class, id);
+        final User entity = emanager.find(User.class, id);
         entity.setUsername(username);
         entity.setPassword(password);
         entity.setFirstName(firstName);
@@ -400,11 +387,7 @@ public final class UserManageableServiceBase
 
         try
         {
-            final List<UserRole> rolesEntities =
-                (roles != null && roles.length > 0)
-                    ? this.findUserRoleByIds(roles)
-                        : Collections.EMPTY_LIST;
-
+            final List<UserRole> rolesEntities = (roles != null && roles.length > 0) ? this.findUserRoleByIds(roles) : Collections.EMPTY_LIST;
 
             if (rolesEntities != null)
             {
@@ -418,8 +401,7 @@ public final class UserManageableServiceBase
             emanager.merge(entity);
             emanager.flush();
             return toValueObject(entity);
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new UserUpdateManageableException(ex);
         }
@@ -430,13 +412,12 @@ public final class UserManageableServiceBase
      *
      * @throws UserDeleteManageableException
      */
-    public void delete(Long[] ids)
-        throws UserDeleteManageableException
+    @Override
+    public void delete(Long[] ids) throws UserDeleteManageableException
     {
         if (ids == null)
         {
-            throw new IllegalArgumentException(
-                "org.andromda.timetracker.domain.crud.UserManageableService.delete(Long[] ids) - 'ids' can not be null");
+            throw new IllegalArgumentException("org.andromda.timetracker.domain.crud.UserManageableService.delete(Long[] ids) - 'ids' can not be null");
         }
 
         try
@@ -444,8 +425,7 @@ public final class UserManageableServiceBase
             final Query queryObject = emanager.createQuery("delete from User where id in (:ids)");
             queryObject.setParameter("ids", Arrays.asList(ids));
             queryObject.executeUpdate();
-        }
-        catch (Exception ex)
+        } catch (Exception ex)
         {
             throw new UserDeleteManageableException(ex);
         }
@@ -481,12 +461,11 @@ public final class UserManageableServiceBase
         if (roles == null || roles.isEmpty())
         {
             valueObject.setRoles(null);
-        }
-        else
+        } else
         {
             final Long[] values = new Long[roles.size()];
             int counter = 0;
-            for (final Iterator<UserRole> iterator = roles.iterator(); iterator.hasNext();counter++)
+            for (final Iterator<UserRole> iterator = roles.iterator(); iterator.hasNext(); counter++)
             {
                 final UserRole element = iterator.next();
                 values[counter] = element.getId();

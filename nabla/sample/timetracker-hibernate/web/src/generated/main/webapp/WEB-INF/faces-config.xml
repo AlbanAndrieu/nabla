@@ -71,6 +71,16 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
+        <managed-bean-name>userRoleController</managed-bean-name>
+        <managed-bean-class>org.andromda.timetracker.domain.crud.UserRoleControllerImpl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>movieController</managed-bean-name>
+        <managed-bean-class>org.andromda.timetracker.domain.crud.MovieControllerImpl</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
         <managed-bean-name>autocompleteHelper</managed-bean-name>
         <managed-bean-class>org.andromda.presentation.jsf.AutocompleteHelper</managed-bean-class>
         <managed-bean-scope>request</managed-bean-scope>
@@ -206,6 +216,58 @@
        </managed-property>
     </managed-bean>
 
+    <managed-bean>
+       <managed-bean-name>navItem_ManageUserRole</managed-bean-name>
+       <managed-bean-class>org.andromda.presentation.jsf.NavigationItem</managed-bean-class>
+       <managed-bean-scope>request</managed-bean-scope>
+       <managed-property>
+          <property-name>label</property-name>
+          <value>user.role.view.title</value>
+       </managed-property>
+       <managed-property>
+          <property-name>viewId</property-name>
+          <value>/org/andromda/timetracker/domain/crud/userrole-crud.xhtml</value>
+       </managed-property>
+       <managed-property>
+          <property-name>controllerBean</property-name>
+          <value>#{userRoleController}</value>
+       </managed-property>
+       <managed-property>
+         <property-name>controllerAction</property-name>
+         <value>init</value>
+       </managed-property>
+       <managed-property>
+          <property-name>outcome</property-name>
+          <value>/org/andromda/timetracker/domain/crud/userrole-crud</value>
+       </managed-property>
+    </managed-bean>
+
+    <managed-bean>
+       <managed-bean-name>navItem_ManageMovie</managed-bean-name>
+       <managed-bean-class>org.andromda.presentation.jsf.NavigationItem</managed-bean-class>
+       <managed-bean-scope>request</managed-bean-scope>
+       <managed-property>
+          <property-name>label</property-name>
+          <value>movie.view.title</value>
+       </managed-property>
+       <managed-property>
+          <property-name>viewId</property-name>
+          <value>/org/andromda/timetracker/domain/crud/movie-crud.xhtml</value>
+       </managed-property>
+       <managed-property>
+          <property-name>controllerBean</property-name>
+          <value>#{movieController}</value>
+       </managed-property>
+       <managed-property>
+         <property-name>controllerAction</property-name>
+         <value>init</value>
+       </managed-property>
+       <managed-property>
+          <property-name>outcome</property-name>
+          <value>/org/andromda/timetracker/domain/crud/movie-crud</value>
+       </managed-property>
+    </managed-bean>
+
 
     <!-- setup the (root of the) treemodel -->
 
@@ -222,6 +284,8 @@
           <value>#{navItem_timecard_details_usecase}</value>
         <value>#{navItem_ManageUser}</value>
         <value>#{navItem_ManageTask}</value>
+        <value>#{navItem_ManageUserRole}</value>
+        <value>#{navItem_ManageMovie}</value>
        </list-entries>
     </managed-bean>
 
@@ -282,6 +346,10 @@
           <value>/org/andromda/timetracker/domain/crud/ManageUser.xhtml</value>
           <value>/org/andromda/timetracker/domain/crud/task-crud.xhtml</value>
           <value>/org/andromda/timetracker/domain/crud/ManageTask.xhtml</value>
+          <value>/org/andromda/timetracker/domain/crud/userrole-crud.xhtml</value>
+          <value>/org/andromda/timetracker/domain/crud/ManageUserRole.xhtml</value>
+          <value>/org/andromda/timetracker/domain/crud/movie-crud.xhtml</value>
+          <value>/org/andromda/timetracker/domain/crud/ManageMovie.xhtml</value>
         </list-entries>
       </managed-property>
     </managed-bean>
@@ -392,6 +460,34 @@
             <redirect/>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>/org/andromda/timetracker/domain/crud/userrole-crud</from-outcome>
+            <to-view-id>/org/andromda/timetracker/domain/crud/userrole-crud.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>/org/andromda/timetracker/domain/crud/userrole-ods-export</from-outcome>
+            <to-view-id>/org/andromda/timetracker/domain/crud/userrole-ods-export.ods</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>/org/andromda/timetracker/domain/crud/movie-crud</from-outcome>
+            <to-view-id>/org/andromda/timetracker/domain/crud/movie-crud.xhtml</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <navigation-case>
+            <from-outcome>/org/andromda/timetracker/domain/crud/movie-ods-export</from-outcome>
+            <to-view-id>/org/andromda/timetracker/domain/crud/movie-ods-export.ods</to-view-id>
+            <redirect/>
+        </navigation-case>
+    </navigation-rule>
 
     <navigation-rule>
         <navigation-case>
@@ -447,6 +543,22 @@
     <converter>
         <converter-for-class>org.andromda.timetracker.domain.crud.TaskJsfConverter</converter-for-class>
         <converter-class>org.andromda.timetracker.domain.crud.TaskJsfConverter</converter-class>
+    </converter>
+    <converter>
+        <converter-id>org.andromda.timetracker.domain.crud.UserRoleJsfConverter</converter-id>
+        <converter-class>org.andromda.timetracker.domain.crud.UserRoleJsfConverter</converter-class>
+    </converter>
+    <converter>
+        <converter-for-class>org.andromda.timetracker.domain.crud.UserRoleJsfConverter</converter-for-class>
+        <converter-class>org.andromda.timetracker.domain.crud.UserRoleJsfConverter</converter-class>
+    </converter>
+    <converter>
+        <converter-id>org.andromda.timetracker.domain.crud.MovieJsfConverter</converter-id>
+        <converter-class>org.andromda.timetracker.domain.crud.MovieJsfConverter</converter-class>
+    </converter>
+    <converter>
+        <converter-for-class>org.andromda.timetracker.domain.crud.MovieJsfConverter</converter-for-class>
+        <converter-class>org.andromda.timetracker.domain.crud.MovieJsfConverter</converter-class>
     </converter>
 
     <!-- faces-config merge-point -->

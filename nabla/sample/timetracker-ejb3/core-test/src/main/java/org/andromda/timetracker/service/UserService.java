@@ -7,7 +7,7 @@ package org.andromda.timetracker.service;
 
 /**
  * Parent interface for the UserServiceBean session bean which is
- * extended by Local and Remote business interfaces.  Contains constant
+ * extended by Local and Remote business interfaces. Contains constant
  * and attribute accessor method definitions.
  */
 public interface UserService
@@ -15,8 +15,7 @@ public interface UserService
 
     // ----------- Accessors For Constants ------------
 
-
-    // ------------ Lifecycle Methods  -----------------
+    // ------------ Lifecycle Methods -----------------
 
     public void destroy();
 }

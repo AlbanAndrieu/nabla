@@ -124,7 +124,7 @@
                 <property name="pluralizeAttributeNames">true</property>
                 <property name="pluralizeParameterNames">true</property -->
                 <property name="xmlAttributes">false</property>
-                <property name="dataSource">${dataSource}</property>
+                <property name="dataSource">${datasource}</property>
                 <property name="username">${jdbc.username}</property>
                 <property name="password">${jdbc.password}</property>
                 <property name="driver">${jdbc.driver}</property>
@@ -134,17 +134,17 @@
                 <property name="testDriver">${jdbc.driver}</property>
                 <property name="testConnectionUrl">${jdbc.url}</property>
                 <property name="testDialect">${hibernate.dialect}</property>
-                <property name="hibernateVersion">3</property>                   
+                <property name="hibernateVersion">3</property>
                 <!--<property name="hibernateHbm2DDLAuto">update</property>-->
-                <property name="hibernateHbm2DDLAuto">create-drop</property> <!--does not work with unitest-->               
-                <property name="hibernateDialect">${hibernate.dialect}</property>       
+                <property name="hibernateHbm2DDLAuto">create-drop</property> <!--does not work with unitest-->
+                <property name="hibernateDialect">${hibernate.dialect}</property>
                 <property name="persistenceContextUnitName">${application.id}</property>
                 <property name="hibernateQueryUseNamedParameters">true</property>
-                <property name="hibernateEnableCache">false</property>         
-                <property name="hibernateEnableAssociationsCache">false</property>      
-                <property name="hibernateQueryCacheFactory">org.hibernate.cache.StandardQueryCacheFactory</property>                
-                <property name="hibernateInheritanceStrategy">${hibernate.inheritance.strategy}</property> 
-                <property name="persistenceProviderExtensions">hibernate</property>                                                             
+                <property name="hibernateEnableCache">false</property>
+                <property name="hibernateEnableAssociationsCache">false</property>
+                <property name="hibernateQueryCacheFactory">org.hibernate.cache.StandardQueryCacheFactory</property>
+                <property name="hibernateInheritanceStrategy">${hibernate.inheritance.strategy}</property>
+                <property name="persistenceProviderExtensions">hibernate</property>
                 <property name="entityManagerName">${application.id}</property>
                 <property name="crudValueObjectSuffix">VO</property>
             </properties>

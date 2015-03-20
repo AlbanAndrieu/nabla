@@ -3,7 +3,7 @@ CREATE TABLE USER_ROLE
 (
     ID BIGINT NOT NULL,
     ROLE VARCHAR(256) NOT NULL,
-    CONDITIONAL BIT NULL
+    IS_CONDITIONAL BIT NULL
 );
 
 /* ------------- relation indexes ------------------ */

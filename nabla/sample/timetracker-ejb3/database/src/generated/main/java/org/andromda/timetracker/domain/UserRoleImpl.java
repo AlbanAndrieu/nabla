@@ -15,7 +15,7 @@ public class UserRoleImpl
     /**
      * The serial version UID of this class. Needed for serialization.
      */
-    private static final long serialVersionUID = 7844086459073233566L;
+    private static final long serialVersionUID = 4491898486466294586L;
 
 // HibernateEntityImpl.vsl merge-point
 }

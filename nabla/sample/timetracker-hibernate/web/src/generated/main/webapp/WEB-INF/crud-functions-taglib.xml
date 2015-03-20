@@ -15,4 +15,14 @@
         <function-class>org.andromda.timetracker.domain.crud.TaskController</function-class>
         <function-signature>org.andromda.timetracker.domain.crud.TaskValueObject load(java.lang.Long)</function-signature>
     </function>
+    <function>
+        <function-name>loadUserRole</function-name>
+        <function-class>org.andromda.timetracker.domain.crud.UserRoleController</function-class>
+        <function-signature>org.andromda.timetracker.domain.crud.UserRoleValueObject load(java.lang.Long)</function-signature>
+    </function>
+    <function>
+        <function-name>loadMovie</function-name>
+        <function-class>org.andromda.timetracker.domain.crud.MovieController</function-class>
+        <function-signature>org.andromda.timetracker.domain.crud.MovieValueObject load(java.lang.Long)</function-signature>
+    </function>
 </facelet-taglib>

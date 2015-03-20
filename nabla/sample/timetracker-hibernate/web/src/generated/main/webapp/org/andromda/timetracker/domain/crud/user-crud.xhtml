@@ -31,7 +31,7 @@
         </tr:inputText>
         <tr:inputText id="searchForm_email" value="#{manageUserForm.searchForm.email}" label="#{messages['user.email']}:" required="false" readOnly="false" maximumLength="50">
         </tr:inputText>
-        <tr:selectOneChoice id="searchForm_isActive" value="#{manageUserForm.searchForm.isActive}" label="#{messages['user.is.active']}:" required="false" readOnly="false" unselectedLabel="">
+        <tr:selectOneChoice id="searchForm_isEnable" value="#{manageUserForm.searchForm.isEnable}" label="#{messages['user.is.enable']}:" required="false" readOnly="false" unselectedLabel="">
             <tr:selectItem label="#{messages['yes']}" value="true"/>
             <tr:selectItem label="#{messages['no']}" value="false"/>
         </tr:selectOneChoice>
@@ -40,6 +40,13 @@
         </tr:inputDate>
         <tr:inputText id="searchForm_comment" value="#{manageUserForm.searchForm.comment}" label="#{messages['user.comment']}:" required="false" readOnly="false">
         </tr:inputText>
+        <tr:selectManyListbox id="searchForm_roles" value="#{manageUserForm.searchForm.roles}" label="#{messages['user.roles']}:" required="false" readOnly="false" size="3">
+            <c:if test="${!empty manageUserForm.rolesBackingList}">
+                <c:forEach var="row" items="#{manageUserForm.rolesBackingList}">
+                    <f:selectItem itemLabel="#{row[1]}" itemValue="#{row[0]}" />
+                </c:forEach>
+            </c:if>
+        </tr:selectManyListbox>
         <f:facet name="footer">
             <tr:panelButtonBar>
                 <tr:commandButton id="searchAction" text="#{messages['action.search']}" action="#{userController.search}" accessKey="#{messages['action.search.access.key']}" partialSubmit="true"/>
@@ -121,11 +128,11 @@
                 <tr:outputText value="#{row.email}">
                 </tr:outputText>
             </tr:column>
-            <tr:column sortable="true" sortProperty="isActive">
+            <tr:column sortable="true" sortProperty="isEnable">
                 <f:facet name="header">
-                    <tr:outputText value="#{messages['user.is.active']}"/>
+                    <tr:outputText value="#{messages['user.is.enable']}"/>
                 </f:facet>
-                <tr:outputText value="#{row.isActive}">
+                <tr:outputText value="#{row.isEnable}">
                 </tr:outputText>
             </tr:column>
             <tr:column sortable="true" sortProperty="creationDate">
@@ -159,7 +166,7 @@
         </tr:inputText>
         <tr:inputText id="email" value="#{manageUserForm.email}" label="#{messages['user.email']}:" required="true" readOnly="false" maximumLength="50">
         </tr:inputText>
-        <tr:selectBooleanCheckbox id="isActive" value="#{manageUserForm.isActive}" label="#{messages['user.is.active']}:" required="true" readOnly="false"/>
+        <tr:selectBooleanCheckbox id="isEnable" value="#{manageUserForm.isEnable}" label="#{messages['user.is.enable']}:" required="true" readOnly="false"/>
         <!-- org.andromda.cartridges.jsf.metafacades.JSFManageableEntityAttributeLogicImpl[org.andromda.timetracker.domain.User.creationDate] true -->
         <tr:inputDate id="creationDate" value="#{manageUserForm.creationDate}" label="#{messages['user.creation.date']}:" required="true">
             <f:convertDateTime pattern="MM/dd/yyyy"/>
@@ -167,6 +174,13 @@
         <tr:inputText id="comment" value="#{manageUserForm.comment}" label="#{messages['user.comment']}:" required="false" readOnly="false">
         </tr:inputText>
             <tr:inputHidden id="id" value="#{manageUserForm.id}"/>
+            <tr:selectManyListbox id="roles" value="#{manageUserForm.roles}" label="#{messages['user.roles']}:" required="false" readOnly="false" size="3">
+                   <c:if test="${!empty manageUserForm.rolesBackingList}">
+                       <c:forEach var="row" items="#{manageUserForm.rolesBackingList}">
+                           <f:selectItem itemLabel="#{row[1]}" itemValue="#{row[0]}" />
+                       </c:forEach>
+                   </c:if>
+            </tr:selectManyListbox>
 
             <f:facet name="footer">
                    <tr:panelButtonBar>

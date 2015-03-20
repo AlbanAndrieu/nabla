@@ -6,6 +6,8 @@
 package org.andromda.timetracker.domain;
 
 import java.io.Serializable;
+import java.util.Collection;
+import java.util.HashSet;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -14,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
 /**
  * TODO: Model Documentation for UserRole
  */
-@XmlType(propOrder = {"role"})
+@XmlType(propOrder = {"role", "isConditional"})
 @XmlAccessorType(XmlAccessType.FIELD)
 // HibernateEntity.vsl annotations merge-point
 public abstract class UserRole implements Serializable, Comparable<UserRole>
@@ -22,9 +24,9 @@ public abstract class UserRole implements Serializable, Comparable<UserRole>
     /**
      * The serial version UID of this class. Needed for serialization.
      */
-    private static final long serialVersionUID = 7844086459073233566L;
+    private static final long serialVersionUID = 4491898486466294586L;
 
-    // Generate 2 attributes
+    // Generate 3 attributes
     @XmlElement(name = "role")
     private Role role;
 
@@ -44,6 +46,27 @@ public abstract class UserRole implements Serializable, Comparable<UserRole>
     public void setRole(Role roleIn)
     {
         this.role = roleIn;
+    }
+
+    @XmlElement(name = "isConditional")
+    private Boolean isConditional;
+
+    /**
+     * TODO: Model Documentation for UserRole.isConditional
+     * @return this.isConditional Boolean
+     */
+    public Boolean getIsConditional()
+    {
+        return this.isConditional;
+    }
+
+    /**
+     * TODO: Model Documentation for UserRole.isConditional
+     * @param isConditionalIn Boolean
+     */
+    public void setIsConditional(Boolean isConditionalIn)
+    {
+        this.isConditional = isConditionalIn;
     }
 
     @XmlElement(name = "id")
@@ -67,7 +90,49 @@ public abstract class UserRole implements Serializable, Comparable<UserRole>
         this.id = idIn;
     }
 
-    // Generate 1 associations
+    // Generate 3 associations
+    private Collection<UserRole> groups = new HashSet<UserRole>();
+
+    /**
+     * TODO: Model Documentation for UserRole
+     * @return this.groups Collection<UserRole>
+     */
+    public Collection<UserRole> getGroups()
+    {
+        return this.groups;
+    }
+
+    /**
+     * TODO: Model Documentation for UserRole
+     * @param groupsIn Collection<UserRole>
+     */
+    public void setGroups(Collection<UserRole> groupsIn)
+    {
+        this.groups = groupsIn;
+    }
+
+    /**
+     * TODO: Model Documentation for UserRole
+     * @param elementToAdd UserRole
+     * @return <tt>true</tt> if this collection changed as a result of the
+     *         call
+     */
+    public boolean addGroups(UserRole elementToAdd)
+    {
+        return this.groups.add(elementToAdd);
+    }
+
+    /**
+     * TODO: Model Documentation for UserRole
+     * @param elementToRemove UserRole
+     * @return <tt>true</tt> if this collection changed as a result of the
+     *         call
+     */
+    public boolean removeGroups(UserRole elementToRemove)
+    {
+        return this.groups.remove(elementToRemove);
+    }
+
     /**
      * Returns <code>true</code> if the argument is an UserRole instance and all identifiers for this entity
      * equal the identifiers of the argument entity. Returns <code>false</code> otherwise.
@@ -117,17 +182,34 @@ public abstract class UserRole implements Serializable, Comparable<UserRole>
             return new UserRoleImpl();
         }
 
-
+        // requiredParams not identifier : 1 allSize minus identifier : 3 all required constructor parameters : 1 identifiers : 1 all properties :  4
         /**
-         * Constructs a new instance of {@link UserRole}, taking all possible properties
-         * (except the identifier(s))as arguments.
+         * Constructs a new instance of {@link UserRole}, taking all required and/or
+         * read-only properties as arguments, except for identifiers.
          * @param role Role
-         * @return newInstance UserRole
+         * @return newInstance
          */
         public static UserRole newInstance(Role role)
         {
             final UserRole entity = new UserRoleImpl();
             entity.setRole(role);
+            return entity;
+        }
+
+        /**
+         * Constructs a new instance of {@link UserRole}, taking all possible properties
+         * (except the identifier(s))as arguments.
+         * @param role Role
+         * @param isConditional Boolean
+         * @param groups Collection<UserRole>
+         * @return newInstance UserRole
+         */
+        public static UserRole newInstance(Role role, Boolean isConditional, Collection<UserRole> groups)
+        {
+            final UserRole entity = new UserRoleImpl();
+            entity.setRole(role);
+            entity.setIsConditional(isConditional);
+            entity.setGroups(groups);
             return entity;
         }
     }
@@ -150,6 +232,10 @@ public abstract class UserRole implements Serializable, Comparable<UserRole>
             if (this.getRole() != null)
             {
                 cmp = (cmp != 0 ? cmp : this.getRole().compareTo(other.getRole()));
+            }
+            if (this.getIsConditional() != null)
+            {
+                cmp = (cmp != 0 ? cmp : this.getIsConditional().compareTo(other.getIsConditional()));
             }
         }
         return cmp;

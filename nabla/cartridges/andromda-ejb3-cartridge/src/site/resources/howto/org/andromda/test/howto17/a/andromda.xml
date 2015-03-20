@@ -62,7 +62,7 @@
                 <property name="persistenceContainerName">jboss</property>
                 <property name="persistenceContextUnitName">${application.id}</property>
                 <property name="entityManagerName">${application.id}</property>
-                <property name="entityManagerJTADataSource">${dataSource}</property>
+                <property name="entityManagerJTADataSource">${datasource}</property>
                 <property name="hibernateDialect">${hibernate.dialect}</property>
                 <property name="hibernateHbm2DDLAuto">update</property>
                 <property name="enableTemplating">true</property>
@@ -87,7 +87,7 @@
                 <!-- uncomment to enable default association caching configuration -->
                 <property name="hibernateAssociationCache">TRANSACTIONAL</property>
                 <property name="hibernateVersion">3</property>
-                <property name="persistenceVersion">1.0</property>                
+                <property name="persistenceVersion">1.0</property>
                 <property name="enableClustering">true</property>
                 <property name="webServiceEnabled">true</property>
                 <property name="webServiceContextRoot">/${application.id}-ws</property>

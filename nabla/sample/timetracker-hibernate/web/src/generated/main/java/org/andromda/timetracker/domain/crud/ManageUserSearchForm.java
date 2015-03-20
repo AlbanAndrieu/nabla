@@ -114,24 +114,24 @@ public final class ManageUserSearchForm
         this.email = emailIn;
     }
 
-    private Boolean isActive;
+    private Boolean isEnable;
 
     /**
-     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
-     * @return isActive
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isEnable
+     * @return isEnable
      */
-    public Boolean getIsActive()
+    public Boolean getIsEnable()
     {
-        return this.isActive;
+        return this.isEnable;
     }
 
     /**
-     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isActive
-     * @param isActiveIn
+     * TODO: Model Documentation for org.andromda.timetracker.domain.User.isEnable
+     * @param isEnableIn
      */
-    public void setIsActive(Boolean isActiveIn)
+    public void setIsEnable(Boolean isEnableIn)
     {
-        this.isActive = isActiveIn;
+        this.isEnable = isEnableIn;
     }
 
     private Date creationDate;
@@ -236,5 +236,5 @@ public final class ManageUserSearchForm
     /**
      * The serial version UID of this class. Needed for serialization.
      */
-    private static final long serialVersionUID = -7704208955313079469L;
+    private static final long serialVersionUID = 2315613480778833561L;
 }

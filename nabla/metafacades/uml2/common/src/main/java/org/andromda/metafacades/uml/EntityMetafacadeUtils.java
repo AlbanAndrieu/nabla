@@ -47,7 +47,7 @@ import org.apache.log4j.Logger;
 
 /**
  * Utilities for dealing with entity metafacades
- *
+ * 
  * @author Chad Brandon
  * @author Bob Fields
  */
@@ -63,7 +63,7 @@ public class EntityMetafacadeUtils
      * database attribute name. For example convert customerName to
      * CUSTOMER_NAME.
      * </p>
-     *
+     * 
      * @param modelElementName the string to convert
      * @param separator character used to separate words
      * @return string converted to database attribute format
@@ -91,13 +91,13 @@ public class EntityMetafacadeUtils
      * Gets the SQL name. (i.e. column name, table name, etc.). If it can't find
      * the corresponding tagged value with the specified <code>name</code>,
      * then it uses the element name by default and just returns that.
-     *
+     * 
      * @param prefix the optional prefix to add to the sql name (i.e. table name
-     *        prefix, etc.).
+     * prefix, etc.).
      * @param element from which to retrieve the SQL name.
      * @param name the name of the tagged value.
      * @param nameMaxLength if this is not null, then the name returned will be
-     *        trimmed to this length (if it happens to be longer).
+     * trimmed to this length (if it happens to be longer).
      * @param separator character used to separate words
      * @return the SQL name as a String.
      */
@@ -110,13 +110,13 @@ public class EntityMetafacadeUtils
      * Gets the SQL name. (i.e. column name, table name, etc.). If it can't find
      * the corresponding tagged value with the specified <code>name</code>,
      * then it uses the element name by default and just returns that.
-     *
+     * 
      * @param element from which to retrieve the SQL name.
      * @param name the name of the tagged value.
      * @param nameMaxLength if this is not null, then the name returned will be
-     *        trimmed to this length (if it happens to be longer).
+     * trimmed to this length (if it happens to be longer).
      * @param suffix the optional suffix to add to the sql name (i.e. foreign
-     *        key suffix, etc.)
+     * key suffix, etc.)
      * @param separator character used to separate words
      * @return the SQL name as a String.
      */
@@ -129,11 +129,11 @@ public class EntityMetafacadeUtils
      * Gets the SQL name. (i.e. column name, table name, etc.). If it can't find
      * the corresponding tagged value with the specified <code>name</code>,
      * then it uses the element name by default and just returns that.
-     *
+     * 
      * @param element from which to retrieve the SQL name.
      * @param name the name of the tagged value.
      * @param nameMaxLength if this is not null, then the name returned will be
-     *        trimmed to this length (if it happens to be longer).
+     * trimmed to this length (if it happens to be longer).
      * @param separator character used to separate words
      * @return the SQL name as a String.
      */
@@ -146,15 +146,15 @@ public class EntityMetafacadeUtils
      * Gets the SQL name. (i.e. column name, table name, etc.). If it can't find
      * the corresponding tagged value with the specified <code>name</code>,
      * then it uses the element name by default and just returns that.
-     *
+     * 
      * @param prefix the optional prefix to add to the sql name (i.e. table name
-     *        prefix, etc.).
+     * prefix, etc.).
      * @param element from which to retrieve the SQL name.
      * @param name the name of the tagged value.
      * @param nameMaxLength if this is not null, then the name returned will be
-     *        trimmed to this length (if it happens to be longer).
+     * trimmed to this length (if it happens to be longer).
      * @param suffix the optional suffix to add to the sql name (i.e. foreign
-     *        key suffix, etc.)
+     * key suffix, etc.)
      * @param separator character used to separate words
      * @return the SQL name as a String.
      */
@@ -196,7 +196,7 @@ public class EntityMetafacadeUtils
      * Puts non-abstract entities in order based on associations. To be used in constructors and
      * tests so that entities may be created and deleted in the proper order, without
      * violating key constraints in the database
-     *
+     * 
      * @param entities the entity list to be sorted.
      * @param ascending true for entities with no associations first.
      * @return the sorted entity list.
@@ -398,7 +398,7 @@ public class EntityMetafacadeUtils
     /**
      * Gets the execution priority of a specific entity, based on dependency/owning relationships,
      * so that TestNG unit tests can be put in the proper order across all entities and CRUD methods
-     *
+     * 
      * @param entity the entity to be prioritized.
      * @return int the entity priority.
      */
@@ -424,10 +424,10 @@ public class EntityMetafacadeUtils
      * <p/> Trims the passed in value to the maximum name length.
      * </p>
      * If no maximum length has been set then this method does nothing.
-     *
+     * 
      * @param name the name length to check and trim if necessary
      * @param nameMaxLength if this is not null, then the name returned will be
-     *        trimmed to this length (if it happens to be longer).
+     * trimmed to this length (if it happens to be longer).
      * @return String the string to be used as SQL type
      */
     public static String ensureMaximumNameLength(String name, Short nameMaxLength)
@@ -447,13 +447,13 @@ public class EntityMetafacadeUtils
      * Gets all identifiers for an entity. If 'follow' is true, and if
      * no identifiers can be found on the entity, a search up the
      * inheritance chain will be performed, and the identifiers from
-     * the first super class having them will be used.   If no
+     * the first super class having them will be used. If no
      * identifiers exist, a default identifier will be created if the
      * allowDefaultIdentifiers property is set to true.
-     *
+     * 
      * @param entity the entity for which to retrieve the identifiers
      * @param follow a flag indicating whether or not the inheritance hierarchy
-     *        should be followed
+     * should be followed
      * @return the collection of entity identifier attributes.
      */
     public static Collection<ModelElementFacade> getIdentifiers(final Entity entity, final boolean follow)
@@ -554,10 +554,10 @@ public class EntityMetafacadeUtils
      * relationships are traversed to find the identifying attributes of the related
      * associationEnd classifiers, in addition to the primitive/wrapped identifiers
      * on the Entity itself.
-     *
+     * 
      * @param entity the entity for which to retrieve the identifiers
      * @param follow a flag indicating whether or not the inheritance hierarchy
-     *        should be followed
+     * should be followed
      * @return the collection of entity identifier attributes.
      */
     public static Collection<ModelElementFacade> getIdentifierAttributes(final Entity entity, final boolean follow)
@@ -643,9 +643,9 @@ public class EntityMetafacadeUtils
     /**
      * Constructs a sql type name from the given <code>mappedName</code> and
      * <code>columnLength</code>.
-     *
+     * 
      * @param typeName the actual type name (usually retrieved from a mappings
-     *        file, i.e. NUMBER(19).
+     * file, i.e. NUMBER(19).
      * @param columnLength the length of the column.
      * @return the new name construct
      */
@@ -673,7 +673,7 @@ public class EntityMetafacadeUtils
     /**
      * Constructs and returns the foreign key constraint name for the given <code>associationEnd</code>, <code>suffix</code>, <code>sqlNameSeparator</code>
      * and <code>maxLengthProperty</code>.
-     *
+     * 
      * @param associationEnd the association end for which to construct the constraint name.
      * @param suffix the suffix appended to the constraint name (if not limited by length).
      * @param sqlNameSeparator the SQL name separator to use (i.e. '_').
@@ -720,15 +720,15 @@ public class EntityMetafacadeUtils
 
     /**
      * An internal static cache for foreign key names (allows us to keep track
-     * of which ones have been used).  Its not great that its static, but for now
+     * of which ones have been used). Its not great that its static, but for now
      * this is the easiest way to enforce this.
      */
     private static Collection<String> foreignKeyConstraintNameCache = new ArrayList<String>();
 
     /**
-     * Retrieves a unique foreign key constraint name given the proposedName.  Compares the proposedName
+     * Retrieves a unique foreign key constraint name given the proposedName. Compares the proposedName
      * against any foreign key names already stored in an internal collection.
-     *
+     * 
      * @param proposedName the proposed foreign key name.
      * @return the unique foreign key name.
      */
@@ -744,9 +744,9 @@ public class EntityMetafacadeUtils
     }
 
     /**
-     * Retrieves a unique foreign key constraint name given the proposedName.  Compares the proposedName
+     * Retrieves a unique foreign key constraint name given the proposedName. Compares the proposedName
      * against any foreign key names already stored in an internal collection.
-     *
+     * 
      * @param proposedName the proposed foreign key name.
      * @param random the Random number generator to use for enforcing uniqueness.
      * @return the unique foreign key name.

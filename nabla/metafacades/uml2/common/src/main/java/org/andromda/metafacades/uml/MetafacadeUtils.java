@@ -46,7 +46,7 @@ import org.apache.commons.lang.StringUtils;
 
 /**
  * A class containing utilities for metafacade manipulation.
- *
+ * 
  * @author Chad Brandon
  * @author Wouter Zoons
  * @author Bob Fields
@@ -56,7 +56,7 @@ public class MetafacadeUtils
     /**
      * Checks to see if the element is the specified type and if so casts it to the object and returns it, otherwise it
      * returns null.
-     *
+     * 
      * @param element the element to check.
      * @param type the Class type.
      * @return the element has the given type or null.
@@ -78,10 +78,10 @@ public class MetafacadeUtils
     /**
      * Filters out the model elements from the <code>modelElements</code> collection that don't have the specified
      * <code>stereotype</code>
-     *
+     * 
      * @param modelElements the model elements to filter.
-     * @param stereotype    the stereotype that a model element must have in order to stay remain within the
-     *                      <code>modelElements</code> collection.
+     * @param stereotype the stereotype that a model element must have in order to stay remain within the
+     * <code>modelElements</code> collection.
      */
     public static void filterByStereotype(final Collection modelElements, final String stereotype)
     {
@@ -101,9 +101,9 @@ public class MetafacadeUtils
     /**
      * Filters out the model elements from the <code>modelElements</code> collection that are not of (or do not inherit
      * from) the specified type <code>type</code>
-     *
+     * 
      * @param modelElements the model elements to filter.
-     * @param type          the type of Class.
+     * @param type the type of Class.
      */
     public static void filterByType(final Collection modelElements, final Class type)
     {
@@ -122,7 +122,7 @@ public class MetafacadeUtils
     /**
      * Filters out the model elements from the <code>modelElements</code> collection that are of (or inherit from) the
      * specified type <code>type</code>
-     *
+     * 
      * @param modelElements the model elements to filter.
      * @param type the type of Class.
      */
@@ -147,10 +147,10 @@ public class MetafacadeUtils
      * may appear with the name Customer-Address. But if you are in the Address entity looking at the Customer then you
      * will get an error because the relation will be called Address-Customer. A simple way to guarantee that both ends
      * of the relationship have the same name is merely to use alphabetical ordering. </p>
-     *
-     * @param roleName       name of role in relation
+     * 
+     * @param roleName name of role in relation
      * @param targetRoleName name of target role in relation
-     * @param separator      character used to separate words
+     * @param separator character used to separate words
      * @return uniform mapping name (in alphabetical order)
      */
     public static String toRelationName(final String roleName, final String targetRoleName, final String separator)
@@ -164,7 +164,7 @@ public class MetafacadeUtils
 
     /**
      * Sorts given metafacades by their fully qualified name.
-     *
+     * 
      * @param metafacades the collection of model elements to sort.
      */
     public static void sortByFullyQualifiedName(final List metafacades)
@@ -194,9 +194,9 @@ public class MetafacadeUtils
     }
 
     /**
-     * Creates a typed argument list with the given <code>arguments</code>.  If the <code>withArgumentNames</code>
+     * Creates a typed argument list with the given <code>arguments</code>. If the <code>withArgumentNames</code>
      * flag is true, the argument names are included in the list.
-     *
+     * 
      * @param arguments the arguments from which to create the list.
      * @param withArgumentNames whether or not to include the argument names.
      * @param modifier
@@ -237,9 +237,9 @@ public class MetafacadeUtils
     }
 
     /**
-     * Creates a typed argument list with the given <code>arguments</code>.  If the <code>withArgumentNames</code>
+     * Creates a typed argument list with the given <code>arguments</code>. If the <code>withArgumentNames</code>
      * flag is true, the argument names are included in the list.
-     *
+     * 
      * @param name
      * @param arguments the arguments from which to create the list.
      * @param withArgumentNames whether or not to include the argument names.
@@ -263,7 +263,7 @@ public class MetafacadeUtils
      * Changes andromda standard tag format Strings to EMF standard format Strings
      * (must be a valid Java identifier). Used for backwards compatibility with UML14 conventions.
      * For example, @andromda.whatever becomes andromda_whatever.
-     *
+     * 
      * @param name
      * @return getTypedArgumentList(arguments, withArgumentNames, argumentModifier)
      */
@@ -285,7 +285,7 @@ public class MetafacadeUtils
      * Changes EMF standard tag format Strings to AndroMDA standard format Strings.
      * Used for backwards compatibility with UML14 conventions.
      * For example, andromda_whatever becomes @andromda.whatever.
-     *
+     * 
      * @param name
      * @return getTypedArgumentList(arguments, withArgumentNames, argumentModifier)
      */
@@ -306,14 +306,12 @@ public class MetafacadeUtils
     /**
      * Calculates the serial version UID of this classifier based on the
      * signature of the classifier (name, visibility, attributes and methods).
-     * The algorithm is inspired by
-     * {@link java.io.ObjectStreamClass#getSerialVersionUID()}.
-     *
+     * The algorithm is inspired by {@link java.io.ObjectStreamClass#getSerialVersionUID()}.
      * The value should be stable as long as the classifier remains unchanged
      * and should change as soon as there is any change in the signature of the
      * classifier.
+     * 
      * @param object
-     *
      * @return the serial version UID of this classifier.
      */
     public static long calculateDefaultSUID(ClassifierFacade object)
@@ -362,8 +360,7 @@ public class MetafacadeUtils
                 hash = (hash << 8) | (hashBytes[ctr] & 0xFF);
             }
             serialVersionUID = hash;
-        }
-        catch (final NoSuchAlgorithmException ignore)
+        } catch (final NoSuchAlgorithmException ignore)
         {
             // ignore exception
         }

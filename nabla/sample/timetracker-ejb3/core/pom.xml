@@ -13,7 +13,7 @@
         <packaging>ejb</packaging>
         <name>[${project.parent.artifactId} :: EJB3 Core Business Tier] - ${project.artifactId} : ${project.version}</name>
 
-		<!-- migration 
+		<!-- migration
 		https://docs.jboss.org/author/display/AS71/Seam+2+Booking+EAR+Migration+of+Binaries+-+Step+by+Step
 		http://docs.jboss.org/seam/2.3.0.Final/reference/en-US/html/migration23.html
 		http://docs.huihoo.com/jboss/seam/2.3.0/html_single/#d0e8614
@@ -35,14 +35,14 @@
 				    <version>${org.jboss.shrinkwrap.bom.version}</version>
 				    <type>pom</type>
 				    <scope>import</scope>
-				</dependency>					
+				</dependency>
 				<dependency>
 				    <groupId>org.jboss.arquillian</groupId>
 				    <artifactId>arquillian-bom</artifactId>
 				    <version>${org.jboss.arquillian.bom.version}</version>
 				    <type>pom</type>
 				    <scope>import</scope>
-				</dependency>	
+				</dependency>
 			</dependencies>
 		</dependencyManagement>
 
@@ -155,7 +155,7 @@
                         <artifactId>commons-lang</artifactId>
                         <scope>provided</scope>
                 </dependency>
-          
+
 				<!--
                 <dependency>
                         <groupId>commons-beanutils</groupId>
@@ -297,7 +297,7 @@
                    <scope>provided</scope>
                 </dependency>
                 -->
-                
+
                 <dependency>
                   <groupId>javax.ejb</groupId>
                   <artifactId>ejb-api</artifactId>
@@ -399,7 +399,7 @@
 					<artifactId>mail</artifactId>
 				</dependency>
 				-->
-        
+
                 <!-- *************** RichFaces Dependency *************** -->
 
                 <!--
@@ -473,7 +473,7 @@
                         <scope>provided</scope>
                 </dependency>
                 -->
-				
+
                 <dependency>
                         <groupId>com.sun.faces</groupId>
                         <artifactId>jsf-api</artifactId>
@@ -485,7 +485,7 @@
                         <artifactId>jsf-impl</artifactId>
                         <version>${sun.jsf.version}</version>
                         <scope>${scope.tomcat.only.type}</scope>
-                </dependency>                
+                </dependency>
 
                 <!-- *************** Drools / jBPM Dependency *************** -->
 
@@ -510,7 +510,7 @@
                         <version>${org.mvel.mvel2.version}</version>
                         <scope>provided</scope>
                 </dependency>
-            
+
                 <dependency>
                         <groupId>org.jbpm</groupId>
                         <artifactId>jbpm-jpdl</artifactId>
@@ -551,7 +551,7 @@
                         </exclusions>
                 </dependency>
                 -->
-                
+
                 <!-- needed to avoid java.lang.NoClassDefFoundError: javax.servlet.http.HttpSession -->
                 <dependency>
                         <groupId>com.google.gwt</groupId>
@@ -572,20 +572,20 @@
                                 </exclusion>
                         </exclusions>
                 </dependency>
-                
+
 				<dependency>
 					<groupId>org.jboss.spec.javax.el</groupId>
 					<artifactId>jboss-el-api_2.2_spec</artifactId>
 					<scope>provided</scope>
 				</dependency>
-        
+
                 <dependency>
                         <groupId>org.jboss.el</groupId>
                         <artifactId>jboss-el</artifactId>
                         <version>${jboss.el.version}</version>
                         <scope>provided</scope>
                 </dependency>
-                
+
                 <dependency>
 					<groupId>javax.el</groupId>
 					<artifactId>el-api</artifactId>
@@ -695,7 +695,7 @@
 					<artifactId>${jdbc.client.artifactId}</artifactId>
 					<version>${jdbc.version}</version>
 					<scope>test</scope>
-				</dependency>            
+				</dependency>
             <!-- put jar instead in C:\jboss-5.1.0.GA\server\default\lib h2-1.3.160.jar
                 <dependency>
                         <groupId>${jdbc.groupId}</groupId>
@@ -703,7 +703,7 @@
                         <version>${jdbc.version}</version>
                         <scope>compile</scope>
                 </dependency>
-            -->        	     
+            -->
         </dependencies>
 
         <properties>
@@ -764,38 +764,38 @@
 							  </goals>
 							</execution>
 						  </executions>
-						</plugin>                
-						-->                   
+						</plugin>
+						-->
                         <!-- http://docs.jboss.org/hibernate/orm/4.3/topical/html/metamodelgen/MetamodelGenerator.html -->
                         <!-- TODO
-						<plugin>  
-							<groupId>org.bsc.maven</groupId>  
-							<artifactId>maven-processor-plugin</artifactId>  
-							<version>${maven.processor.plugin.version}</version>  
-							<executions>  
-							  <execution>  
-								<id>process</id>  
-								<phase>generate-sources</phase>  
-								<goals>  
-								  <goal>process</goal>  
-								</goals>  
-								<configuration>  
-								  <processors>  
-									<processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>  
-								  </processors>  
+						<plugin>
+							<groupId>org.bsc.maven</groupId>
+							<artifactId>maven-processor-plugin</artifactId>
+							<version>${maven.processor.plugin.version}</version>
+							<executions>
+							  <execution>
+								<id>process</id>
+								<phase>generate-sources</phase>
+								<goals>
+								  <goal>process</goal>
+								</goals>
+								<configuration>
+								  <processors>
+									<processor>org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor</processor>
+								  </processors>
 								  <outputDirectory>${maven.build.generated}/main/java</outputDirectory>
-								</configuration>  
-							  </execution>  
-							</executions>  
-							<dependencies>  
-							  <dependency>  
-								<groupId>org.hibernate</groupId>  
-								<artifactId>hibernate-jpamodelgen</artifactId>  
-								<version>${hibernate.jpamodelgen.version}</version>  
-							  </dependency>  
-							</dependencies>  
+								</configuration>
+							  </execution>
+							</executions>
+							<dependencies>
+							  <dependency>
+								<groupId>org.hibernate</groupId>
+								<artifactId>hibernate-jpamodelgen</artifactId>
+								<version>${hibernate.jpamodelgen.version}</version>
+							  </dependency>
+							</dependencies>
 						  </plugin>
-						  -->                          
+						  -->
                 </plugins>
         </build>
         <profiles>
@@ -805,9 +805,9 @@
                                 <property>
                                         <name>profile.activation</name>
                                 </property>
-                        </activation>   
-						<build>                         
-							  <plugins>                                                                            
+                        </activation>
+						<build>
+							  <plugins>
 									<!--
 									  see:   http://mojo.codehaus.org/maven-hibernate3/hibernate3-maven-plugin/
 									  see:   http://unmaintainable.wordpress.com/2008/04/12/hibernate3-schema-creation/
@@ -1013,9 +1013,9 @@
 										</dependencies>
 									</plugin>
 									-->
-							  </plugins>   
-						</build>                                                                   
-                </profile>                        
+							  </plugins>
+						</build>
+                </profile>
                 <profile>
 					    <!-- this profile must be activated with arq-jbossas-managed -->
                         <id>arquillian</id>
@@ -1052,15 +1052,15 @@
                                     <scope>test</scope>
                                 </dependency>
                                 -->
-                                
+
                                 <!--
                                 <dependency>
                                         <groupId>junit</groupId>
                                         <artifactId>junit</artifactId>
                                         <type>jar</type>
                                         <scope>test</scope>
-                                </dependency>         
-                                -->                       
+                                </dependency>
+                                -->
                                 <!-- comment <provider>org.hibernate.ejb.HibernatePersistence</provider> in persistence.xml to enable openjpa -->
                                 <!--
                                 <dependency>
@@ -1077,24 +1077,24 @@
                                   <scope>test</scope>
                                 </dependency>
                                 -->
-                                
+
 								<dependency>
 									<groupId>org.jboss.arquillian.junit</groupId>
 									<artifactId>arquillian-junit-container</artifactId>
 									<scope>test</scope>
-								</dependency>                                
+								</dependency>
                                 <!-- not recommended for Seam 2.3 http://docs.jboss.org/seam/2.3.0.Final/reference/en-US/html/testing.html
 								<dependency>
 									<groupId>org.jboss.arquillian.testng</groupId>
 									<artifactId>arquillian-testng-container</artifactId>
 									<scope>test</scope>
-								</dependency>	                  
-								-->              
+								</dependency>
+								-->
 								<dependency>
 									<groupId>org.jboss.as</groupId>
 									<artifactId>jboss-as-arquillian-container-managed</artifactId>
 									<scope>test</scope>
-								</dependency>				
+								</dependency>
 
 								<!--
 								<dependency>
@@ -1105,12 +1105,12 @@
 								  <scope>test</scope>
 								</dependency>
 								-->
-								
+
 								<dependency>
 									<groupId>org.jboss.shrinkwrap.resolver</groupId>
 									<artifactId>shrinkwrap-resolver-impl-maven</artifactId>
 									<version>${org.jboss.shrinkwrap.resolver.version}</version>
-									<scope>test</scope>  
+									<scope>test</scope>
 								</dependency>
 
 								<!--
@@ -1118,14 +1118,15 @@
 										  <groupId>org.jboss.arquillian.protocol</groupId>
 										  <artifactId>arquillian-protocol-servlet</artifactId>
 										  <scope>test</scope>
-								</dependency>		
-								-->								
+								</dependency>
+								-->
                         </dependencies>
                         <build>
                                 <plugins>
                                         <plugin>
                                                 <groupId>org.codehaus.mojo</groupId>
                                                 <artifactId>build-helper-maven-plugin</artifactId>
+                                                <inherited>true</inherited>
                                                 <executions>
                                                         <execution>
                                                                 <id>add-test-source</id>
@@ -1139,6 +1140,18 @@
                                                                         </sources>
                                                                 </configuration>
                                                         </execution>
+														<execution>
+															<id>add-test-resource</id>
+															<phase>generate-test-resources</phase>
+															<goals>
+																<goal>add-test-resource</goal>
+															</goals>
+															<configuration>
+																<resources>
+																	<resource><directory>${basedir}/src/test/bootstrap-arquillian/resources</directory></resource>
+																</resources>
+															</configuration>
+														</execution>
                                                 </executions>
                                         </plugin>
                                         <!--
@@ -1160,7 +1173,7 @@
                                             <inherited>true</inherited>
                                             <configuration>
                                                 <skip>${maven.test.skip}</skip>
-                                                <trimStackTrace>false</trimStackTrace>   
+                                                <trimStackTrace>false</trimStackTrace>
                                                 <testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
                                                 <environmentVariables>
                                                     <JBOSS_HOME>${jboss.home}</JBOSS_HOME>
@@ -1185,7 +1198,7 @@
                                 <testResources>
                                         <testResource>
                                                 <directory>${basedir}/src/test/resources</directory>
-                                                <filtering>true</filtering> 
+                                                <filtering>true</filtering>
                                         </testResource>
                                         <testResource>
                                                 <directory>${basedir}/src/test/bootstrap-arquillian/resources</directory>

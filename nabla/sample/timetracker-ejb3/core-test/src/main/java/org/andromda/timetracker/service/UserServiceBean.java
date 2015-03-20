@@ -18,10 +18,8 @@ import org.jboss.seam.faces.FacesMessages;
 
 /**
  * @see UserServiceBase
- *
  * Remember to manually configure the local business interface this bean implements if originally you only
- * defined the remote business interface.  However, this change is automatically reflected in the ejb-jar.xml.
- *
+ * defined the remote business interface. However, this change is automatically reflected in the ejb-jar.xml.
  * Do not specify the javax.ejb.Stateless annotation
  * Instead, the session bean is defined in the ejb-jar.xml descriptor.
  */
@@ -59,8 +57,7 @@ public class UserServiceBean extends UserServiceBase implements UserServiceLocal
         {
             userVOs = this.getUserDao().loadAll(UserDao.TRANSFORM_USERVO);
             // this.userList = (List<User>) this.getUserDao().loadAll(UserDao.TRANSFORM_NONE);
-        }
-        catch (final UserDaoException ex)
+        } catch (final UserDaoException ex)
         {
             // FacesMessages.instance().addToControl("user", StatusMessage.Severity.ERROR, "User not found on database.", (Object[]) null);
             FacesMessages.instance().addToControl("user", "User not found on database.", (Object[]) null);
@@ -79,8 +76,7 @@ public class UserServiceBean extends UserServiceBase implements UserServiceLocal
         {
             final User user = this.getUserDao().getUserDetails(username);
             return this.getUserDao().toUserVO(user);
-        }
-        catch (final Exception ex)
+        } catch (final Exception ex)
         {
             throw new UserDoesNotExistException("User : " + username + " does not exist");
         }

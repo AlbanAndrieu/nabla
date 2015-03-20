@@ -486,7 +486,7 @@ public abstract class AssociationTableLogic
     }
 
     /**
-     * Return all generalizations (ancestors) from this generalizable element.
+     * The model element that represents an element that can be generalized or specialized.
      * @see GeneralizableElementFacade#getGeneralizations()
      */
     public Collection<GeneralizableElementFacade> getGeneralizations()
@@ -800,7 +800,7 @@ public abstract class AssociationTableLogic
     }
 
     /**
-     * Get the template parameter for this model element having the parameterName
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -809,7 +809,7 @@ public abstract class AssociationTableLogic
     }
 
     /**
-     * Get the template parameters for this model element
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()

@@ -30,15 +30,15 @@ public interface UserDao
      * or other types, different methods in a class implementing this interface support this feature: look for
      * an <code>int</code> parameter called <code>transform</code>.
      * <p/>
-     * This specific flag denotes entities must be transformed into objects of type
-     * {@link UserVO}.
+     * This specific flag denotes entities must be transformed into objects of type {@link UserVO}.
      */
     public static final int TRANSFORM_USERVO = 1;
 
     /**
-     * Copies the fields of the specified entity to the target value object.  This method is similar to
+     * Copies the fields of the specified entity to the target value object. This method is similar to
      * toUserVO(), but it does not handle any attributes in the target
      * value object that are "read-only" (as those do not have setter methods exposed).
+     * 
      * @param sourceEntity
      * @param targetVO
      */
@@ -46,6 +46,7 @@ public interface UserDao
 
     /**
      * Converts this DAO's entity to an object of type {@link UserVO}.
+     * 
      * @param entity
      * @return UserVO
      */
@@ -53,21 +54,24 @@ public interface UserDao
 
     /**
      * Converts this DAO's entity to a Collection of instances of type {@link UserVO}.
+     * 
      * @param entities
      */
     public void toUserVOCollection(Collection entities);
 
     /**
      * Copies the fields of {@link UserVO} to the specified entity.
+     * 
      * @param sourceVO
      * @param targetEntity
      * @param copyIfNull If FALSE, the value object's field will not be copied to the entity if the value is NULL. If TRUE,
-     *        it will be copied regardless of its value.
+     * it will be copied regardless of its value.
      */
     public void userVOToEntity(UserVO sourceVO, User targetEntity, boolean copyIfNull);
 
     /**
      * Converts an instance of type {@link UserVO} to this DAO's entity.
+     * 
      * @param userVO
      * @return User
      */
@@ -76,6 +80,7 @@ public interface UserDao
     /**
      * Converts a Collection of instances of type {@link UserVO} to this
      * DAO's entity.
+     * 
      * @param instances
      */
     public void userVOToEntityCollection(Collection instances);
@@ -85,15 +90,15 @@ public interface UserDao
      * or other types, different methods in a class implementing this interface support this feature: look for
      * an <code>int</code> parameter called <code>transform</code>.
      * <p/>
-     * This specific flag denotes entities must be transformed into objects of type
-     * {@link UserDetailsVO}.
+     * This specific flag denotes entities must be transformed into objects of type {@link UserDetailsVO}.
      */
     public static final int TRANSFORM_USERDETAILSVO = 2;
 
     /**
-     * Copies the fields of the specified entity to the target value object.  This method is similar to
+     * Copies the fields of the specified entity to the target value object. This method is similar to
      * toUserDetailsVO(), but it does not handle any attributes in the target
      * value object that are "read-only" (as those do not have setter methods exposed).
+     * 
      * @param sourceEntity
      * @param targetVO
      */
@@ -101,6 +106,7 @@ public interface UserDao
 
     /**
      * Converts this DAO's entity to an object of type {@link UserDetailsVO}.
+     * 
      * @param entity
      * @return UserDetailsVO
      */
@@ -108,21 +114,24 @@ public interface UserDao
 
     /**
      * Converts this DAO's entity to a Collection of instances of type {@link UserDetailsVO}.
+     * 
      * @param entities
      */
     public void toUserDetailsVOCollection(Collection entities);
 
     /**
      * Copies the fields of {@link UserDetailsVO} to the specified entity.
+     * 
      * @param sourceVO
      * @param targetEntity
      * @param copyIfNull If FALSE, the value object's field will not be copied to the entity if the value is NULL. If TRUE,
-     *        it will be copied regardless of its value.
+     * it will be copied regardless of its value.
      */
     public void userDetailsVOToEntity(UserDetailsVO sourceVO, User targetEntity, boolean copyIfNull);
 
     /**
      * Converts an instance of type {@link UserDetailsVO} to this DAO's entity.
+     * 
      * @param userDetailsVO
      * @return User
      */
@@ -131,25 +140,27 @@ public interface UserDao
     /**
      * Converts a Collection of instances of type {@link UserDetailsVO} to this
      * DAO's entity.
+     * 
      * @param instances
      */
     public void userDetailsVOToEntityCollection(Collection instances);
 
     /**
      * Loads an instance of User from the persistent store.
+     * 
      * @param id the identifier of the entity to load.
      * @throws UserDaoException
      */
     public User load(Long id) throws UserDaoException;
 
     /**
-     *   Does the same thing as {@link #load(Long)} with an
-     *   additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
-     *   the returned entity will <strong>NOT</strong> be transformed.  If this flag is any of the other constants
-     *   defined in this class then the result <strong>WILL BE</strong> passed through an operation which can
-     *   optionally transform the entity (into a value object for example).  By default, transformation does
-     *   not occur.
-     *
+     * Does the same thing as {@link #load(Long)} with an
+     * additional flag called <code>transform</code>. If this flag is set to <code>TRANSFORM_NONE</code> then
+     * the returned entity will <strong>NOT</strong> be transformed. If this flag is any of the other constants
+     * defined in this class then the result <strong>WILL BE</strong> passed through an operation which can
+     * optionally transform the entity (into a value object for example). By default, transformation does
+     * not occur.
+     * 
      * @param id the identifier of the entity to load.
      * @return either the entity or the object transformed from the entity.
      * @throws UserDaoException
@@ -158,20 +169,20 @@ public interface UserDao
 
     /**
      * Loads all entities of type {@link User}.
-     *
+     * 
      * @return the loaded entities.
      * @throws UserDaoException
      */
     public Collection<User> loadAll() throws UserDaoException;
 
     /**
-     *   Does the same thing as {@link #loadAll()} with an
-     *   additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
-     *   the returned entity will <strong>NOT</strong> be transformed.  If this flag is any of the other constants
-     *   defined here then the result <strong>WILL BE</strong> passed through an operation which can optionally
-     *   transform the entity (into a value object for example).  By default, transformation does
-     *   not occur.
-     *
+     * Does the same thing as {@link #loadAll()} with an
+     * additional flag called <code>transform</code>. If this flag is set to <code>TRANSFORM_NONE</code> then
+     * the returned entity will <strong>NOT</strong> be transformed. If this flag is any of the other constants
+     * defined here then the result <strong>WILL BE</strong> passed through an operation which can optionally
+     * transform the entity (into a value object for example). By default, transformation does
+     * not occur.
+     * 
      * @param transform the flag indicating what transformation to use.
      * @return Collection of the loaded entities.
      * @throws UserDaoException
@@ -180,6 +191,7 @@ public interface UserDao
 
     /**
      * Creates an instance of User and adds it to the persistent store.
+     * 
      * @param user
      * @return User
      * @throws UserDaoException
@@ -187,13 +199,13 @@ public interface UserDao
     public User create(User user) throws UserDaoException;
 
     /**
-     *   Does the same thing as {@link #create(User)} with an
-     *   additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
-     *   the returned entity will <strong>NOT</strong> be transformed.  If this flag is any of the other constants
-     *   defined here then the result <strong>WILL BE</strong> passed through an operation which can optionally
-     *   transform the entity (into a value object for example).  By default, transformation does
-     *   not occur.
-     *
+     * Does the same thing as {@link #create(User)} with an
+     * additional flag called <code>transform</code>. If this flag is set to <code>TRANSFORM_NONE</code> then
+     * the returned entity will <strong>NOT</strong> be transformed. If this flag is any of the other constants
+     * defined here then the result <strong>WILL BE</strong> passed through an operation which can optionally
+     * transform the entity (into a value object for example). By default, transformation does
+     * not occur.
+     * 
      * @param transform
      * @param user
      * @return Object
@@ -204,22 +216,22 @@ public interface UserDao
     /**
      * Creates a new instance of User and adds
      * from the passed in <code>entities</code> collection
-     *
+     * 
      * @param entities the collection of User
-     *        instances to create.
+     * instances to create.
      * @return the created instances. Collection<User>
      * @throws UserDaoException
      */
     public Collection<User> create(Collection<User> entities) throws UserDaoException;
 
     /**
-     *   Does the same thing as {@link #create(User)} with an
-     *   additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
-     *   the returned entity will <strong>NOT</strong> be transformed.  If this flag is any of the other constants
-     *   defined here then the result <strong>WILL BE</strong> passed through an operation which can optionally
-     *   transform the entities (into value objects for example).  By default, transformation does
-     *   not occur.
-     *
+     * Does the same thing as {@link #create(User)} with an
+     * additional flag called <code>transform</code>. If this flag is set to <code>TRANSFORM_NONE</code> then
+     * the returned entity will <strong>NOT</strong> be transformed. If this flag is any of the other constants
+     * defined here then the result <strong>WILL BE</strong> passed through an operation which can optionally
+     * transform the entities (into value objects for example). By default, transformation does
+     * not occur.
+     * 
      * @param transform
      * @param entities
      * @return the created instances. Collection
@@ -228,9 +240,10 @@ public interface UserDao
     public Collection create(int transform, Collection<User> entities) throws UserDaoException;
 
     /**
-     *   Creates a new <code>User</code>
-     *   instance from <strong>all</strong> attributes and adds it to
-     *   the persistent store.
+     * Creates a new <code>User</code>
+     * instance from <strong>all</strong> attributes and adds it to
+     * the persistent store.
+     * 
      * @param username
      * @param password
      * @param firstName
@@ -245,13 +258,13 @@ public interface UserDao
     public User create(String username, String password, String firstName, String lastName, String email, boolean isActive, Date creationDate, String comment) throws UserDaoException;
 
     /**
-     *   Does the same thing as {@link #create(String, String, String, String, String, boolean, Date, String)} with an
-     *   additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
-     *   the returned entity will <strong>NOT</strong> be transformed.  If this flag is any of the other constants
-     *   defined here then the result <strong>WILL BE</strong> passed through an operation which can optionally
-     *   transform the entity (into a value object for example).  By default, transformation does
-     *   not occur.
-     *
+     * Does the same thing as {@link #create(String, String, String, String, String, boolean, Date, String)} with an
+     * additional flag called <code>transform</code>. If this flag is set to <code>TRANSFORM_NONE</code> then
+     * the returned entity will <strong>NOT</strong> be transformed. If this flag is any of the other constants
+     * defined here then the result <strong>WILL BE</strong> passed through an operation which can optionally
+     * transform the entity (into a value object for example). By default, transformation does
+     * not occur.
+     * 
      * @param transform
      * @param username
      * @param password
@@ -268,6 +281,7 @@ public interface UserDao
 
     /**
      * Updates the <code>user</code> instance in the persistent store.
+     * 
      * @param user
      * @throws UserDaoException
      */
@@ -275,6 +289,7 @@ public interface UserDao
 
     /**
      * Updates all instances in the <code>entities</code> collection in the persistent store.
+     * 
      * @param entities
      * @throws UserDaoException
      */
@@ -282,6 +297,7 @@ public interface UserDao
 
     /**
      * Removes the instance of User from the persistent store.
+     * 
      * @param user
      * @throws UserDaoException
      */
@@ -290,6 +306,7 @@ public interface UserDao
     /**
      * Removes the instance of User having the given
      * <code>identifier</code> from the persistent store.
+     * 
      * @param id
      * @throws UserDaoException
      */
@@ -297,13 +314,13 @@ public interface UserDao
 
     /**
      * Removes all entities in the given <code>entities<code> collection.
+     * 
      * @param entities
      * @throws UserDaoException
      */
     public void remove(Collection<User> entities) throws UserDaoException;
 
     /**
-     *
      * @param email
      * @return User
      * @throws UserDaoException
@@ -311,9 +328,10 @@ public interface UserDao
     public User findByEmail(String email) throws UserDaoException;
 
     /**
-     *   Does the same thing as {@link #findByEmail(String)} with an
-     *   additional argument called <code>queryString</code>.  This <code>queryString</code>
-     *   argument allows you to override the query string defined in {@link #findByEmail(String)}.
+     * Does the same thing as {@link #findByEmail(String)} with an
+     * additional argument called <code>queryString</code>. This <code>queryString</code>
+     * argument allows you to override the query string defined in {@link #findByEmail(String)}.
+     * 
      * @param email
      * @return User
      * @throws UserDaoException
@@ -321,13 +339,14 @@ public interface UserDao
     public User findByEmail(String queryString, String email) throws UserDaoException;
 
     /**
-     *   Does the same thing as {@link #findByEmail(String)} with an
-     *   additional flag called <code>transform</code>.  If this flag is set to <code>TRANSFORM_NONE</code> then
-     *   finder results will <strong>NOT</strong> be transformed during retrieval.
-     *   If this flag is any of the other constants defined here
-     *   then finder results <strong>WILL BE</strong> passed through an operation which can optionally
-     *   transform the entities (into value objects for example).  By default, transformation does
-     *   not occur.
+     * Does the same thing as {@link #findByEmail(String)} with an
+     * additional flag called <code>transform</code>. If this flag is set to <code>TRANSFORM_NONE</code> then
+     * finder results will <strong>NOT</strong> be transformed during retrieval.
+     * If this flag is any of the other constants defined here
+     * then finder results <strong>WILL BE</strong> passed through an operation which can optionally
+     * transform the entities (into value objects for example). By default, transformation does
+     * not occur.
+     * 
      * @param email
      * @return Object
      * @throws UserDaoException
@@ -335,14 +354,13 @@ public interface UserDao
     public Object findByEmail(int transform, String email) throws UserDaoException;
 
     /**
-     *   Does the same thing as {@link #findByEmail(boolean, String)} with an
-     *   additional argument called <code>queryString</code>.  This <code>queryString</code>
-     *   argument allows you to override the query string defined in {@link #findByEmail(int, String email)}.
+     * Does the same thing as {@link #findByEmail(boolean, String)} with an
+     * additional argument called <code>queryString</code>. This <code>queryString</code>
+     * argument allows you to override the query string defined in {@link #findByEmail(int, String email)}.
      */
     public Object findByEmail(int transform, String queryString, String email) throws UserDaoException;
 
     /**
-     *
      * @param username
      * @return User
      */

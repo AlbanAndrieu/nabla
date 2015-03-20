@@ -12,10 +12,9 @@ import org.andromda.timetracker.vo.UserVO;
 
 /**
  * Remote component interface for the UserServiceBean session bean.
- * The service that implement this business interface is a Seam component.  The cartridge
+ * The service that implement this business interface is a Seam component. The cartridge
  * will not expose this interface as a Remote business interface for the bean
- * component.  Seam components will only have a Local business interface.
- *
+ * component. Seam components will only have a Local business interface.
  */
 @Remote
 public interface UserServiceRemote extends UserService

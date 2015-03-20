@@ -47,9 +47,7 @@ public class SecurityServiceTest extends JUnitSeamTest
 
         File[] libs = resolver.loadPomFromFile("pom.xml").importDependencies(ScopeType.TEST, ScopeType.COMPILE, ScopeType.PROVIDED).resolve().withTransitivity().asFile();
 
-        return ShrinkWrap
-                .create(WebArchive.class, "core.war")
-                .addClasses(SecurityServiceTest.class, Authenticator.class, AuthenticatorAction.class, UserDaoBase.class)
+        return ShrinkWrap.create(WebArchive.class, "core*test.war").addClasses(SecurityServiceTest.class, Authenticator.class, AuthenticatorAction.class, UserDaoBase.class)
                 .addPackages(true, "org.andromda.timetracker.action")
                 .addPackages(true, "org.andromda.timetracker.domain")
                 .addPackages(true, "org.andromda.timetracker.service")
@@ -59,9 +57,9 @@ public class SecurityServiceTest extends JUnitSeamTest
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsResource(EmptyAsset.INSTANCE, "seam.properties")
                 // Deploy our test datasource
-                // .addAsWebInfResource("test-ds.xml", "test-ds.xml")
-                .addAsWebInfResource("WEB-INF/test-web.xml", "web.xml").addAsWebInfResource("WEB-INF/test-components.xml", "components.xml").addAsWebInfResource("WEB-INF/jboss-deployment-structure.xml")
-                .addAsResource("META-INF/security.drl", "META-INF/security.drl").addAsResource("import.sql", "import.sql").addAsResource("log4j.xml", "log4j.xml")
+                .addAsWebInfResource("test-ds.xml", "test-ds.xml").addAsWebInfResource("WEB-INF/test-web.xml", "web.xml").addAsWebInfResource("WEB-INF/test-components.xml", "components.xml")
+                .addAsWebInfResource("WEB-INF/jboss-deployment-structure.xml").addAsResource("META-INF/security.drl", "META-INF/security.drl").addAsResource("import.sql", "import.sql")
+                .addAsResource("log4j.xml", "log4j.xml")
                 // libraries resolved using ShrinkWrap Resolver
                 .addAsLibraries(libs)
         // other libraries resolved using ShrinkWrap Resolver

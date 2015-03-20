@@ -33,7 +33,6 @@
                 <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
                 <prop key="hibernate.default_batch_fetch_size">16</prop>
                 <prop key="hibernate.hbm2ddl.auto">create-drop</prop>
-                <prop key="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</prop>
                 <prop key="hibernate.cache.query_cache_factory">org.hibernate.cache.StandardQueryCacheFactory</prop>
                 <!-- add specific (non-supported in the Spring cartridge) hibernate properties here -->
             </props>

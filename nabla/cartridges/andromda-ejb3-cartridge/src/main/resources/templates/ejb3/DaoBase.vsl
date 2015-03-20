@@ -51,7 +51,7 @@ public abstract class $entity.daoBaseName## no new line
 {
 
     private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(${entity.daoBaseName}.class);
-    
+
     /** Session Context Injection */
     @javax.annotation.Resource
     protected javax.ejb.SessionContext context;
@@ -59,13 +59,14 @@ public abstract class $entity.daoBaseName## no new line
 #if ( ($entity.seamComponent) && ($hibernateUtils.seamVersion22) )
     /**
      * Inject persistence seam context
-     */    
+     */
     @org.jboss.seam.annotations.In
 #else
     /**
      * Inject persistence context #if ($entity.defaultPersistenceContextUnitName)${entity.defaultPersistenceContextUnitName}#end
-     */    
+     */
     @javax.persistence.PersistenceContext#if ($entity.defaultPersistenceContextUnitName)(unitName = "${entity.defaultPersistenceContextUnitName}")#end
+
 #end
     protected javax.persistence.EntityManager entityManager;
 
@@ -85,12 +86,12 @@ public abstract class $entity.daoBaseName## no new line
     /**
      * Inject DAO $entityRef.targetElement.fullyQualifiedDaoName
      */
-#set ($jndiNamePrefix = $entity.jndiNamePrefix)     
-#if (!$jndiNamePrefix.empty)   
+#set ($jndiNamePrefix = $entity.jndiNamePrefix)
+#if (!$jndiNamePrefix.empty)
     @javax.ejb.EJB(mappedName="${jndiNamePrefix}/${entityRef.targetElement.daoImplementationName}")
-#else   
-    @javax.ejb.EJB 
-#end          
+#else
+    @javax.ejb.EJB
+#end
     protected $entityRef.targetElement.fullyQualifiedDaoName $entityRef.daoName;
 
 #**##end
@@ -190,12 +191,12 @@ public abstract class $entity.daoBaseName## no new line
 ##TypedQuery is JPA 2
 #if($hibernateUtils.version4)
             javax.persistence.TypedQuery<${entity.fullyQualifiedEntityName}> query = this.entityManager.createNamedQuery("${entity.name}.findAll", ${entity.fullyQualifiedEntityName}.class);
-#else       
+#else
 ##Query is JPA 1
-  #if($hibernateUtils.version3)   
+  #if($hibernateUtils.version3)
             javax.persistence.Query<${entity.fullyQualifiedEntityName}> query = this.entityManager.createNamedQuery("${entity.name}.findAll", ${entity.fullyQualifiedEntityName}.class);
   #else
-            javax.persistence.Query query = entityManager.createNamedQuery("${entity.name}.findAll");            
+            javax.persistence.Query query = entityManager.createNamedQuery("${entity.name}.findAll");
   #end
 #end
 
@@ -203,9 +204,9 @@ public abstract class $entity.daoBaseName## no new line
 ##TypedQuery is JPA 2
 #if($hibernateUtils.version4)
             javax.persistence.TypedQuery<${entity.fullyQualifiedEntityName}> query = this.entityManager.createQuery("from ${entity.entityName} as entity", ${entity.fullyQualifiedEntityName}.class);
-#else       
-##Query is JPA 1            
-  #if($hibernateUtils.version3)              
+#else
+##Query is JPA 1
+  #if($hibernateUtils.version3)
             javax.persistence.Query<${entity.fullyQualifiedEntityName}> query = this.entityManager.createQuery("from ${entity.entityName} as entity", ${entity.fullyQualifiedEntityName}.class);
   #else
             javax.persistence.Query query = entityManager.createQuery("from ${entity.entityName} as entity");
@@ -276,7 +277,7 @@ public abstract class $entity.daoBaseName## no new line
     @Override
 #end
 #if ($enableTemplating)
-    //@SuppressWarnings({"unchecked"})
+    @SuppressWarnings({"unchecked"})
 #end
     public $entityCollectionType create(final $entityCollectionType entities)## no new line
  throws ${entity.fullyQualifiedDaoDefaultExceptionName}
@@ -641,17 +642,17 @@ public abstract class $entity.daoBaseName## no new line
     {
         try
         {
-##TypedQuery is JPA 2        
+##TypedQuery is JPA 2
 #if($hibernateUtils.version4)
             javax.persistence.TypedQuery<${rootEntityType}> queryObject = this.entityManager.createNamedQuery("${entity.name}.${finder.name}", ${rootEntityType}.class);
-#else       
-##Query is JPA 1            
-  #if($hibernateUtils.version3)            
+#else
+##Query is JPA 1
+  #if($hibernateUtils.version3)
             javax.persistence.Query<${rootEntityType}> queryObject = this.entityManager.createNamedQuery("${entity.name}.${finder.name}", ${rootEntityType}.class);
   #else
             javax.persistence.Query queryObject = entityManager.createNamedQuery("${entity.name}.${finder.name}");
-  #end   
-#end        
+  #end
+#end
 #**##foreach($argument in $finder.arguments)
 #*  *##set ($count = $velocityCount - 1)
 #*  *##set ($argumentValue = $argument.name)
@@ -721,17 +722,17 @@ public abstract class $entity.daoBaseName## no new line
     {
         try
         {
-##TypedQuery is JPA 2        
+##TypedQuery is JPA 2
 #if($hibernateUtils.version4)
             javax.persistence.TypedQuery<${entity.fullyQualifiedEntityName}> queryObject = this.entityManager.createQuery(queryString, ${entity.fullyQualifiedEntityName}.class);
-#else       
-##Query is JPA 1            
-  #if($hibernateUtils.version3)             
+#else
+##Query is JPA 1
+  #if($hibernateUtils.version3)
             javax.persistence.Query<${entity.fullyQualifiedEntityName}> queryObject = this.entityManager.createQuery(queryString, ${entity.fullyQualifiedEntityName}.class);
   #else
             javax.persistence.Query queryObject = entityManager.createQuery(queryString);
-  #end          
-#end       
+  #end
+#end
 #**##foreach($argument in $finder.arguments)
 #*  *##set ($count = $velocityCount - 1)
 #*  *##set ($argumentValue = $argument.name)
@@ -838,7 +839,7 @@ public abstract class $entity.daoBaseName## no new line
 #foreach($argument in $operation.arguments)
       * @param $argument.name $argument.fullyQualifiedType
 #end
-      * @return $operation.returnType.fullyQualifiedName 
+      * @return $operation.returnType.fullyQualifiedName
       * @throws Exception
       */
     protected abstract $operation.returnType.fullyQualifiedName $operation.implementationSignature## no new line
@@ -991,6 +992,9 @@ public abstract class $entity.daoBaseName## no new line
 #if ($javaVersion.compareTo("1.6")>-1)
     @Override
 #end
+#if ($enableTemplating)
+    @SuppressWarnings({"rawtypes"})
+#end
     public final void ${valueObjectRef.transformationToEntityCollectionMethodName}(java.util.Collection instances)
     {
         if (instances != null)
@@ -1132,7 +1136,7 @@ public abstract class $entity.daoBaseName## no new line
 
     /**
      * @return the hibernateSession
-     */   
+     */
 #if ($entity.seamComponent)
     public Session getHibernateSession()
     {
@@ -1143,9 +1147,9 @@ public abstract class $entity.daoBaseName## no new line
         {
             return (org.hibernate.Session) this.entityManager.getDelegate();
         }
-    }    
+    }
 
-#else    
+#else
     public Session getHibernateSession()
     {
         return this.hibernateSession;
@@ -1157,7 +1161,7 @@ public abstract class $entity.daoBaseName## no new line
     public void setHibernateSession(Session hibernateSessionIn)
     {
         this.hibernateSession = hibernateSessionIn;
-    }        
+    }
 #end
 #end
 }

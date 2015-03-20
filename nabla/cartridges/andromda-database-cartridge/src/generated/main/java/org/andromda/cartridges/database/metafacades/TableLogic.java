@@ -1444,8 +1444,7 @@ public abstract class TableLogic
     }
 
     /**
-     * True if this entity identifier is a composite (consists of multiple key columns, typically
-     * abstracted into an external composite identifier class)
+     * TODO: Model Documentation for Entity.compositeIdentifier
      * @see Entity#isCompositeIdentifier()
      */
     public boolean isCompositeIdentifier()
@@ -1558,7 +1557,7 @@ public abstract class TableLogic
     }
 
     /**
-     * Return all generalizations (ancestors) from this generalizable element.
+     * The model element that represents an element that can be generalized or specialized.
      * @see GeneralizableElementFacade#getGeneralizations()
      */
     public Collection<GeneralizableElementFacade> getGeneralizations()
@@ -1872,7 +1871,7 @@ public abstract class TableLogic
     }
 
     /**
-     * Get the template parameter for this model element having the parameterName
+     * Get the template parameters for this model element.
      * @see ModelElementFacade#getTemplateParameter(String parameterName)
      */
     public Object getTemplateParameter(String parameterName)
@@ -1881,7 +1880,7 @@ public abstract class TableLogic
     }
 
     /**
-     * Get the template parameters for this model element
+     * Get the template parameter for this model element having the parameterName.
      * @see ModelElementFacade#getTemplateParameters()
      */
     public Collection<TemplateParameterFacade> getTemplateParameters()

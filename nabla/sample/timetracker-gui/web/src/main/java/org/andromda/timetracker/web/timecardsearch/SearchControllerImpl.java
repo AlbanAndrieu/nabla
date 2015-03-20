@@ -32,7 +32,8 @@ public class SearchControllerImpl extends SearchController
     private static final String ALL_STRING       = "-- All --";
 
     /**
-     * @see org.andromda.timetracker.web.timecardsearch.SearchController#populateSearchScreen(java.lang.Long submitter, java.lang.Long approver, java.lang.String status, Date startDateMinimum, Date startDateMaximum, TimecardSummaryVO[] timecardSummaries)
+     * @see org.andromda.timetracker.web.timecardsearch.SearchController#populateSearchScreen(java.lang.Long submitter, java.lang.Long approver, java.lang.String status, Date startDateMinimum, Date startDateMaximum,
+     * TimecardSummaryVO[] timecardSummaries)
      */
     @Override
     public void populateSearchScreen(final PopulateSearchScreenForm form)
@@ -63,8 +64,7 @@ public class SearchControllerImpl extends SearchController
             // Populate submitter and approver dropdowns
             form.setSubmitterBackingList(userList, "id", "username");
             form.setApproverBackingList(userList, "id", "username");
-        }
-        catch (final UserDoesNotExistException e)
+        } catch (final UserDoesNotExistException e)
         {
             SearchControllerImpl.logger.debug("UserDoesNotExistException : " + e);
         }

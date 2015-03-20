@@ -35,7 +35,7 @@ package org.andromda.metafacades.uml;
 
 /**
  * Stores the metafacade namespace properties used throughout the UML metafacades.
- *
+ * 
  * @author Chad Brandon
  * @author Bob Fields
  */
@@ -117,60 +117,70 @@ public class UMLMetafacadeProperties
 
     /**
      * The mask to apply to role names
+     * 
      * @see NameMasker#mask(String, String)
      */
     public static final String ROLE_NAME_MASK                             = "roleNameMask";
 
     /**
      * The mask to apply to any model element names
+     * 
      * @see NameMasker#mask(String, String)
      */
     public static final String MODEL_ELEMENT_NAME_MASK                    = "modelElementNameMask";
 
     /**
      * The mask to apply to any classifier names
+     * 
      * @see NameMasker#mask(String, String)
      */
     public static final String CLASSIFIER_NAME_MASK                       = "classifierNameMask";
 
     /**
      * The mask to apply to any of the classifier property names
+     * 
      * @see NameMasker#mask(String, String)
      */
     public static final String CLASSIFIER_PROPERTY_NAME_MASK              = "classifierPropertyNameMask";
 
     /**
      * The mask to apply to any operation names
+     * 
      * @see NameMasker#mask(String, String)
      */
     public static final String OPERATION_NAME_MASK                        = "operationNameMask";
 
     /**
      * The mask to apply to any parameter names
+     * 
      * @see NameMasker#mask(String, String)
      */
     public static final String PARAMETER_NAME_MASK                        = "parameterNameMask";
 
     /**
      * The mask to apply to enumeration literal names
+     * 
      * @see NameMasker#mask(String, String)
      */
     public static final String ENUMERATION_LITERAL_NAME_MASK              = "enumerationLiteralNameMask";
 
     /**
      * The mask to apply to the enumeration literal name
+     * 
      * @see NameMasker#mask(String, String)
      */
     public static final String ENUMERATION_NAME_MASK                      = "enumerationNameMask";
 
     /**
      * The mask to apply to the entity name
+     * 
      * @see NameMasker#mask(String, String)
      */
     public static final String ENTITY_NAME_MASK                           = "entityNameMask";
 
     /**
      * The mask to apply to the entity property (attributes and association) names
+     * 
      * @see NameMasker#mask(String, String)
      */
     public static final String ENTITY_PROPERTY_NAME_MASK                  = "entityPropertyNameMask";

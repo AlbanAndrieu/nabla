@@ -39,14 +39,14 @@ import org.andromda.core.mapping.Mappings;
 
 /**
  * Tests {@link org.andromda.metafacades.uml.TypeMappings}
- *
+ * 
  * @author Chad Brandon
  */
 public class TypeMappingsTest extends TestCase
 {
     /**
      * Constructor for MappingsTest.
-     *
+     * 
      * @param name
      */
     public TypeMappingsTest(String name)

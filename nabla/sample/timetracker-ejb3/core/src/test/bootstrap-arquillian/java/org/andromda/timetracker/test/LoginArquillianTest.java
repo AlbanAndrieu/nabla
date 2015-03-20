@@ -45,31 +45,23 @@ public class LoginArquillianTest extends JUnitSeamTest
         // resolve jboss-seam, because it is provided-scoped in the pom, but we need it bundled in the WAR
         // .resolve("org.jboss.seam:jboss-seam").withTransitivity().asFile();
 
-        return ShrinkWrap
-                .create(WebArchive.class, "core.war")
-                .addClasses(LoginArquillianTest.class, Authenticator.class, AuthenticatorAction.class, UserDaoBase.class)
+        return ShrinkWrap.create(WebArchive.class, "core-test.war").addClasses(LoginArquillianTest.class, Authenticator.class, AuthenticatorAction.class, UserDaoBase.class)
                 .addPackages(true, "org.andromda.timetracker.action")
                 .addPackages(true, "org.andromda.timetracker.domain")
                 .addPackages(true, "org.andromda.timetracker")
                 // Needed to run in managed / remote container
-                .addAsWebInfResource("META-INF/ejb-jar.xml", "ejb-jar.xml")
-                .addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml")
+                .addAsWebInfResource("META-INF/ejb-jar.xml", "ejb-jar.xml").addAsResource("META-INF/test-persistence.xml", "META-INF/persistence.xml")
                 .addAsWebInfResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsResource(EmptyAsset.INSTANCE, "seam.properties")
                 // Deploy our test datasource
-                // .addAsWebInfResource("test-ds.xml", "test-ds.xml")
-                .addAsWebInfResource("WEB-INF/test-web.xml", "web.xml")
-                .addAsWebInfResource("WEB-INF/test-components.xml", "components.xml")
-.addAsWebInfResource("WEB-INF/jboss-deployment-structure.xml")
-                .addAsResource("META-INF/security.drl", "META-INF/security.drl")
-.addAsResource("import.sql", "import.sql")
-.addAsResource("log4j.xml", "log4j.xml")
-                .addAsLibraries(libs)
-                // libraries resolved using ShrinkWrap Resolver
-                // .addAsLibraries(resolver.resolve("org.jboss.seam:jboss-seam").withTransitivity().asFile())
-                // .addAsLibraries(resolver.resolve("commons-collections:commons-collections").withTransitivity().asFile())
-                // .addAsLibraries(resolver.resolve("org.hibernate:hibernate-core").withTransitivity().asFile())
-                // .addAsLibraries(resolver.resolve("org.javassist:javassist").withTransitivity().asFile())
+                .addAsWebInfResource("test-ds.xml", "test-ds.xml").addAsWebInfResource("WEB-INF/test-web.xml", "web.xml").addAsWebInfResource("WEB-INF/test-components.xml", "components.xml")
+                .addAsWebInfResource("WEB-INF/jboss-deployment-structure.xml").addAsResource("META-INF/security.drl", "META-INF/security.drl").addAsResource("import.sql", "import.sql")
+                .addAsResource("log4j.xml", "log4j.xml").addAsLibraries(libs)
+        // libraries resolved using ShrinkWrap Resolver
+        // .addAsLibraries(resolver.resolve("org.jboss.seam:jboss-seam").withTransitivity().asFile())
+        // .addAsLibraries(resolver.resolve("commons-collections:commons-collections").withTransitivity().asFile())
+        // .addAsLibraries(resolver.resolve("org.hibernate:hibernate-core").withTransitivity().asFile())
+        // .addAsLibraries(resolver.resolve("org.javassist:javassist").withTransitivity().asFile())
         // .addAsLibraries(resolver.resolve("org.drools:drools-core").withTransitivity().asFile())
         // .addAsLibraries(resolver.resolve("org.drools:drools-compiler").withTransitivity().asFile())
         // .addAsLibraries(resolver.resolve("org.jbpm:jbpm-jpdl").withTransitivity().asFile())
@@ -77,7 +69,7 @@ public class LoginArquillianTest extends JUnitSeamTest
         // .addAsLibraries(resolver.resolve("javax.ejb:ejb-api").withTransitivity().asFile())
         // .addAsLibraries(resolver.resolve("javax.el:el-api").withTransitivity().asFile())
         // .addAsLibraries(resolver.resolve("org.mvel:mvel2").withTransitivity().asFile())
-;
+        ;
         // .addAsLibraries(resolver.artifact("log4j:log4j").resolveAsFiles())
         // .addAsLibraries(libs);
         // .delete("/WEB-INF/web.xml")

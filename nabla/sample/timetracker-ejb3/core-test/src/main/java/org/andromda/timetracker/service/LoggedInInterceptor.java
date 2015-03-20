@@ -10,7 +10,7 @@ public class LoggedInInterceptor
 {
     /**
      * Default interceptor execution method
-     *
+     * 
      * @param ctx the invocation context
      * @return
      */

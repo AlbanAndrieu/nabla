@@ -31,11 +31,12 @@ import org.jboss.seam.annotations.In;
  * Base EJB3 DAO Class: is able to create, update, remove, load, and find
  * objects of type <code>User</code>.
  * </p>
- *
+ * 
  * @see UserDao
  */
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
-@Local({ UserDao.class })
+@Local(
+{ UserDao.class })
 public abstract class UserDaoBase implements UserDao
 {
     private static final org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(UserDaoBase.class);
@@ -88,8 +89,7 @@ public abstract class UserDaoBase implements UserDao
         {
             final Object entity = this.entityManager.find(User.class, id);
             return this.transformEntity(transform, (User) entity);
-        }
-        catch (final Exception ex)
+        } catch (final Exception ex)
         {
             throw new UserDaoException(ex);
         }
@@ -126,8 +126,7 @@ public abstract class UserDaoBase implements UserDao
             final List<User> results = query.getResultList();
             this.transformEntities(transform, results);
             return results;
-        }
-        catch (final Exception ex)
+        } catch (final Exception ex)
         {
             throw new UserDaoException(ex);
         }
@@ -158,8 +157,7 @@ public abstract class UserDaoBase implements UserDao
             this.entityManager.persist(user);
             this.entityManager.flush();
             return this.transformEntity(transform, user);
-        }
-        catch (final Exception ex)
+        } catch (final Exception ex)
         {
             throw new UserDaoException(ex);
         }
@@ -179,7 +177,8 @@ public abstract class UserDaoBase implements UserDao
      * @see UserDao#create(int, Collection)
      */
     @Override
-    @SuppressWarnings({ "unchecked" })
+    @SuppressWarnings(
+    { "unchecked" })
     public Collection create(final int transform, final Collection<User> entities) throws UserDaoException
     {
         if (entities == null)
@@ -193,8 +192,7 @@ public abstract class UserDaoBase implements UserDao
             {
                 results.add(this.create(transform, entity));
             }
-        }
-        catch (final Exception ex)
+        } catch (final Exception ex)
         {
             throw new UserDaoException(ex);
         }
@@ -244,8 +242,7 @@ public abstract class UserDaoBase implements UserDao
         {
             this.entityManager.merge(user);
             this.entityManager.flush();
-        }
-        catch (final Exception ex)
+        } catch (final Exception ex)
         {
             throw new UserDaoException(ex);
         }
@@ -267,8 +264,7 @@ public abstract class UserDaoBase implements UserDao
             {
                 this.update(entity);
             }
-        }
-        catch (final Exception ex)
+        } catch (final Exception ex)
         {
             throw new UserDaoException(ex);
         }
@@ -288,8 +284,7 @@ public abstract class UserDaoBase implements UserDao
         {
             this.entityManager.remove(user);
             this.entityManager.flush();
-        }
-        catch (final Exception ex)
+        } catch (final Exception ex)
         {
             throw new UserDaoException(ex);
         }
@@ -312,8 +307,7 @@ public abstract class UserDaoBase implements UserDao
             {
                 this.remove(entity);
             }
-        }
-        catch (final Exception ex)
+        } catch (final Exception ex)
         {
             throw new UserDaoException(ex);
         }
@@ -335,8 +329,7 @@ public abstract class UserDaoBase implements UserDao
             {
                 this.remove(entity);
             }
-        }
-        catch (final Exception ex)
+        } catch (final Exception ex)
         {
             throw new UserDaoException(ex);
         }
@@ -373,8 +366,7 @@ public abstract class UserDaoBase implements UserDao
             Object result = queryObject.getSingleResult();
             result = this.transformEntity(transform, (User) result);
             return result;
-        }
-        catch (final Exception ex)
+        } catch (final Exception ex)
         {
             throw new UserDaoException(ex);
         }
@@ -393,8 +385,7 @@ public abstract class UserDaoBase implements UserDao
             Object result = queryObject.getSingleResult();
             result = this.transformEntity(transform, (User) result);
             return result;
-        }
-        catch (final Exception ex)
+        } catch (final Exception ex)
         {
             throw new UserDaoException(ex);
         }
@@ -413,8 +404,7 @@ public abstract class UserDaoBase implements UserDao
         try
         {
             return this.handleGetUserDetails(username);
-        }
-        catch (final Throwable th)
+        } catch (final Throwable th)
         {
             UserDaoBase.logger.debug("Error performing 'UserDao.getUserDetails(String username)' --> " + th);
             throw new RuntimeException("Error performing 'UserDao.getUserDetails(String username)' --> " + th, th);
@@ -435,13 +425,12 @@ public abstract class UserDaoBase implements UserDao
      * <p/>
      * This method will return instances of these types:
      * <ul>
-     *   <li>{@link User} - {@link #TRANSFORM_NONE}</li>
-     *   <li>{@link UserVO} - {@link TRANSFORM_USERVO}</li>
-     *   <li>{@link UserDetailsVO} - {@link TRANSFORM_USERDETAILSVO}</li>
+     * <li>{@link User} - {@link #TRANSFORM_NONE}</li>
+     * <li>{@link UserVO} - {@link TRANSFORM_USERVO}</li>
+     * <li>{@link UserDetailsVO} - {@link TRANSFORM_USERDETAILSVO}</li>
      * </ul>
-     *
      * If the integer argument value is unknown {@link #TRANSFORM_NONE} is assumed.
-     *
+     * 
      * @param transform one of the constants declared in {@link UserDao}
      * @param entity an entity that was found
      * @return the transformed entity (i.e. new value object, etc)
@@ -469,13 +458,11 @@ public abstract class UserDaoBase implements UserDao
     }
 
     /**
-     * Transforms a collection of entities using the
-     * {@link #transformEntity(int, User)}
-     * method. This method does not instantiate a new collection.
+     * Transforms a collection of entities using the {@link #transformEntity(int, User)} method. This method does not instantiate a new collection.
      * <p/>
      * Transforms into the same collection as the argument, but this time containing the transformed entities
      * This method is to be used internally only.
-     *
+     * 
      * @param transform one of the constants declared in <code>UserDao</code>
      * @param entities the collection of entities to transform
      * @see #transformEntity(int, User)
@@ -510,8 +497,8 @@ public abstract class UserDaoBase implements UserDao
 
     /**
      * Default implementation for transforming the results of a report query into a value object. This
-     * implementation exists for convenience reasons only. It needs only be overridden in the
-     * {@link UserDaoImpl} class if you intend to use reporting queries.
+     * implementation exists for convenience reasons only. It needs only be overridden in the {@link UserDaoImpl} class if you intend to use reporting queries.
+     * 
      * @see UserDao#toUserVO(User)
      */
     protected UserVO toUserVO(final Object[] row)
@@ -535,8 +522,7 @@ public abstract class UserDaoBase implements UserDao
 
     /**
      * This anonymous transformer is designed to transform entities or report query results
-     * (which result in an array of objects) to {@link UserVO}
-     * using the Jakarta Commons-Collections Transformation API.
+     * (which result in an array of objects) to {@link UserVO} using the Jakarta Commons-Collections Transformation API.
      */
     private final Transformer USERVO_TRANSFORMER = new Transformer()
                                                  {
@@ -641,8 +627,8 @@ public abstract class UserDaoBase implements UserDao
 
     /**
      * Default implementation for transforming the results of a report query into a value object. This
-     * implementation exists for convenience reasons only. It needs only be overridden in the
-     * {@link UserDaoImpl} class if you intend to use reporting queries.
+     * implementation exists for convenience reasons only. It needs only be overridden in the {@link UserDaoImpl} class if you intend to use reporting queries.
+     * 
      * @see UserDao#toUserDetailsVO(User)
      */
     protected UserDetailsVO toUserDetailsVO(final Object[] row)
@@ -666,8 +652,7 @@ public abstract class UserDaoBase implements UserDao
 
     /**
      * This anonymous transformer is designed to transform entities or report query results
-     * (which result in an array of objects) to {@link UserDetailsVO}
-     * using the Jakarta Commons-Collections Transformation API.
+     * (which result in an array of objects) to {@link UserDetailsVO} using the Jakarta Commons-Collections Transformation API.
      */
     private final Transformer USERDETAILSVO_TRANSFORMER = new Transformer()
                                                         {
