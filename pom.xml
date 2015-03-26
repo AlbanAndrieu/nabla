@@ -170,9 +170,11 @@
 				</snapshotRepository>
 
 				<site>
-					<id>website</id>
+					<!--<id>website</id>-->
+					<id>webdav</id>
 					<name>Project Website</name>
-					<url>ftp://www.nabla.mobi/maven</url>
+					<!--<url>ftp://www.nabla.mobi/maven</url>-->
+					<url>dav:http://192.168.0.46:8087/maven/</url>
 				</site>
 			</distributionManagement>
 			<!-- <properties> <repositoryId>server-snapshots</repositoryId> <url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url> 
