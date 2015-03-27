@@ -98,6 +98,7 @@
                 <varnish.port>80</varnish.port>
                 <nginx.port>8480</nginx.port>
                 <oracle.port>8080</oracle.port>
+                <webdav.port>8087</webdav.port> <!-- dav:http://home.nabla.mobi:8087/maven -->
                 <archiva.port>8010</archiva.port>
                 <nexus.port>8081</nexus.port>
 				<jira.port>8082</jira.port><!-- http://localhost:8082/ control port 8006 -->
@@ -640,7 +641,7 @@
                                                                 <source>${maven.build.generated}/main/java</source>
                                                                 <source>${basedir}/src/main/groovy</source>
                                                                 <source>${basedir}/src/main/java</source>
-                                                                <source>${basedir}/src/main/config/${uml2}</source>
+                                                                <source>${basedir}/src/main/config/${uml.type}</source>
                                                                 <source>${basedir}/src/main/uml/${uml.type}</source>
                                                                 <!--
                                                                 <source>${basedir}/${target.dir}/generated-sources/antlr</source>
@@ -659,9 +660,9 @@
                                             </goals>
                                             <configuration>
                                                     <resources>
-															<resource>
-																<directory>${maven.build.generated}/main/resources</directory>
-															</resource>
+							    <resource>
+							    	<directory>${maven.build.generated}/main/resources</directory>
+							    </resource>
                                                             <!--<resource>${basedir}/src/main/resources</resource>-->
                                                             <!--<resource>${basedir}/${target.dir}/generated-sources/main/resources</resource>-->
                                                             <!-- <resource>${basedir}/${target.dir}/generated-sources/test/resources</resource> -->
