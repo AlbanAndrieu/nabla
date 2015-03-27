@@ -28,3 +28,6 @@ stty -istrip            ; # allow 8-bit chars for input
 
 # share our files with the group
 umask 002
+
+#setenv SHELL /bin/bash
+#exec /bin/bash -li

@@ -1,6 +1,0 @@
-Bundle-SymbolicName: ${bundle.symbolicName}
-Bundle-Version: ${wrapped.version}
--exportcontents:*
-Private-Package:!*
-Embed-Dependency:*;scope=compile|runtime;inline=true
-

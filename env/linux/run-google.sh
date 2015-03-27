@@ -7,9 +7,9 @@ TODO SONAR connect to OpenID
 openssl req -x509 -nodes -days 365 -newkey rsa:1024 -sha1 -subj \
   '/C=FR/ST=IDF/L=Paris/CN=www.nabla.mobi' -keyout \
   nablarsakey.pem -out /tmp/nablarsacert.pem
-  
+
 #For connecting google to ldap see run-ldap
-#http://support.google.com/a/bin/answer.py?hl=fr&answer=106368  
+#http://support.google.com/a/bin/answer.py?hl=fr&answer=106368
 
 TODO add password syncronisation in Google Apps Directory Sync
 
@@ -49,3 +49,6 @@ Port: 465 or 587
 Requires SSL: Yes
 Requires authentication: Yes
 Use same settings as incoming mail server
+
+#My google analytics account ID
+UA-56011797-1

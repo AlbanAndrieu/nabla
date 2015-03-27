@@ -34,8 +34,8 @@
 		<defaultGoal>install</defaultGoal>
 		<extensions>
 			<!-- WebDAV for remote deployment -->
-			<!-- not working with maven 3 mvn site <extension> <groupId>org.apache.maven.wagon</groupId> 
-				<artifactId>wagon-webdav</artifactId> <version>${wagon.webdav.plugin.version}</version> 
+			<!-- not working with maven 3 mvn site <extension> <groupId>org.apache.maven.wagon</groupId>
+				<artifactId>wagon-webdav</artifactId> <version>${wagon.webdav.plugin.version}</version>
 				</extension> -->
 			<!-- comment to avoid basic authentication scheme selected -->
 			<extension>
@@ -100,9 +100,9 @@
 				<module>main</module>
 				<module>servers</module>
 				<module>customs</module>
-				<module>project</module>
+				<module>projects</module>
 				<module>uml</module>
-				<module>nabla</module>
+				<module>andromda</module>
 				<module>installer</module>
 				<module>deploy</module>
 			</modules>
@@ -131,7 +131,7 @@
 				<site>
 					<id>website</id>
 					<name>Project Website</name>
-					<!-- <url>scp://${site.server}/${home.dir}/fullsite/site-deploy</url> 
+					<!-- <url>scp://${site.server}/${home.dir}/fullsite/site-deploy</url>
 						<url>file:/var/www/docs</url> -->
 					<!--<url>file://${deploy.dir}</url> -->
 					<url>file:/tmp</url>
@@ -147,14 +147,14 @@
 				</property>
 			</activation>
 			<build>
-				<!-- <plugins> <plugin> <artifactId>maven-gpg-plugin</artifactId> <inherited>true</inherited> 
+				<!-- <plugins> <plugin> <artifactId>maven-gpg-plugin</artifactId> <inherited>true</inherited>
 					</plugin> </plugins> -->
 			</build>
 			<distributionManagement>
-				<!-- <repository> <id>server-releases</id> <name>External Staging Repository</name> 
+				<!-- <repository> <id>server-releases</id> <name>External Staging Repository</name>
 					<url>svn:https://alban.googlecode.com/svn/mavenrepo/releases</url> </repository> -->
-				<!-- <snapshotRepository> <id>server-snapshots</id> <name>External Snapshot 
-					Repository</name> <url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url> 
+				<!-- <snapshotRepository> <id>server-snapshots</id> <name>External Snapshot
+					Repository</name> <url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
 					</snapshotRepository> -->
 				<repository>
 					<id>nexus-releases</id>
@@ -177,9 +177,9 @@
 					<url>dav:http://home.nabla.mobi:8087/maven/todo</url>
 				</site>
 			</distributionManagement>
-			<!-- <properties> <repositoryId>server-snapshots</repositoryId> <url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url> 
+			<!-- <properties> <repositoryId>server-snapshots</repositoryId> <url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
 				</properties> -->
-			<!-- <properties> <repositoryId>server-forge-release</repositoryId> <url>dav:https://repository-nabla.forge.cloudbees.com/release</url> 
+			<!-- <properties> <repositoryId>server-forge-release</repositoryId> <url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
 				</properties> -->
 			<properties>
 				<repositoryId>nexus-releases</repositoryId>
@@ -213,12 +213,12 @@
 				<enabled>false</enabled>
 			</releases>
 		</repository>
-		<!-- <repository> <id>nabla-releases</id> <name>Nabla Release Repository</name> 
-			<url>http://alban.googlecode.com/svn/mavenrepo/releases</url> <snapshots> 
-			<enabled>false</enabled> </snapshots> <releases> <enabled>true</enabled> 
-			</releases> </repository> <repository> <id>nabla-snapshots</id> <name>Nabla 
-			Snapshot Repository</name> <url>http://alban.googlecode.com/svn/mavenrepo/snapshots</url> 
-			<snapshots> <enabled>true</enabled> <updatePolicy>daily</updatePolicy> <checksumPolicy>ignore</checksumPolicy> 
+		<!-- <repository> <id>nabla-releases</id> <name>Nabla Release Repository</name>
+			<url>http://alban.googlecode.com/svn/mavenrepo/releases</url> <snapshots>
+			<enabled>false</enabled> </snapshots> <releases> <enabled>true</enabled>
+			</releases> </repository> <repository> <id>nabla-snapshots</id> <name>Nabla
+			Snapshot Repository</name> <url>http://alban.googlecode.com/svn/mavenrepo/snapshots</url>
+			<snapshots> <enabled>true</enabled> <updatePolicy>daily</updatePolicy> <checksumPolicy>ignore</checksumPolicy>
 			</snapshots> <releases> <enabled>false</enabled> </releases> </repository> -->
 		<repository>
 			<id>openqa-releases</id>
@@ -412,7 +412,7 @@
 			<releases>
 				<enabled>true</enabled>
 			</releases>
-		</repository>		
+		</repository>
 	</repositories>
 
 	<pluginRepositories>
@@ -436,8 +436,8 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</pluginRepository>
-		<!-- <pluginRepository> <id>nabla-plugins</id> <url>http://alban.googlecode.com/svn/mavenrepo/releases</url> 
-			<snapshots> <enabled>false</enabled> </snapshots> <releases> <enabled>true</enabled> 
+		<!-- <pluginRepository> <id>nabla-plugins</id> <url>http://alban.googlecode.com/svn/mavenrepo/releases</url>
+			<snapshots> <enabled>false</enabled> </snapshots> <releases> <enabled>true</enabled>
 			</releases> </pluginRepository> -->
 		<pluginRepository>
 			<id>cloudbees-public-release</id>

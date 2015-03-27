@@ -1,9 +1,9 @@
 [user]
-	email = alban.andrieu@mysis.com
+	email = alban.andrieu@misys.com
 	name = Alban Andrieu
 [core]
 	autocrlf = input
-	editor = gedit
+	editor = vim
 [credential]
 	helper = cache --timeout=86400
 [alias]
@@ -12,8 +12,8 @@
 	ci = commit
 	st = status
     pl = pull —rebase
-    di = diff --ignore-space-at-eol -b -w 
-    lo = log --graph 
+    di = diff --ignore-space-at-eol -b -w
+    lo = log --graph
 	unstage = reset HEAD --
 	last = log -1 HEAD
 [help]
@@ -24,3 +24,7 @@
 	rebase = true
 [branch]
 	autosetuprebase = always
+[diff]
+    external = /usr/local/bin/git-diff.sh
+[push]
+	default = simple

@@ -23,5 +23,8 @@
 #AllAutocomplete
 #Maven
 #Grunt
+#EditorConfig
+#SublimeLinter-jscs
+#less
 
 #https://gist.github.com/thbkrkr/3194275

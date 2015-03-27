@@ -276,7 +276,7 @@ if 'package' in COMMAND_LINE_TARGETS:
                  SUMMARY        = 'Nabla (Backend)',
                  DESCRIPTION    = 'Nabla (Backend)',
                  X_RPM_GROUP    = 'Application/nabla',
-                 SOURCE_URL     = 'http://nabla.mobi/nabla-1.2.3.tar.gz'
+                 SOURCE_URL     = 'https://home.nabla.mobi/nabla-1.2.3.tar.gz'
             )
 
 print "DEFAULT_TARGETS", map(str, DEFAULT_TARGETS)

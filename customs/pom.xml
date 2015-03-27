@@ -2,12 +2,12 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-        <parent>
-                <groupId>com.nabla.project</groupId>
-                <artifactId>dependencies</artifactId>
-                <version>1.0.1-SNAPSHOT</version>
-                <relativePath>../dependencies/pom.xml</relativePath>
-        </parent>
+	<parent>
+			<groupId>com.nabla.project</groupId>
+			<artifactId>dependencies</artifactId>
+			<version>1.0.1-SNAPSHOT</version>
+			<relativePath>../dependencies/pom.xml</relativePath>
+	</parent>
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.nabla.project</groupId>
@@ -15,7 +15,7 @@
 	<name>Customs</name>
 	<packaging>pom</packaging>
 	<description>The Customs pom file is a superpom to centralize all third parties</description>
-        <url>http://maven.nabla.mobi/dependencies/customs</url>
+    <url>http://maven.nabla.mobi/dependencies/customs</url>
 
 	<scm>
 		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/customs</connection>
@@ -24,20 +24,20 @@
 		<tag>HEAD</tag>
 	</scm>
 
-        <ciManagement>
-                <system>Jenkins</system>
-                <url>${JOB_URL}</url>
-        </ciManagement>
+	<ciManagement>
+			<system>Jenkins</system>
+			<url>${JOB_URL}</url>
+	</ciManagement>
 
 	<profiles>
 		<profile>
 			<!-- site light for jenkins -->
 			<id>jenkins</id>
-            		<activation>
-            		    <property>
-            		        <name>BUILD_NUMBER</name>
-            		    </property>
-            		</activation>
+			<activation>
+				<property>
+					<name>BUILD_NUMBER</name>
+				</property>
+			</activation>
 			<properties>
 				<invoker.skip>true</invoker.skip>
 				<maven.test.skip>false</maven.test.skip>

@@ -1556,7 +1556,7 @@
                 <ilog-elixir.version>3.0.21588</ilog-elixir.version>
                 <jackson.version>1.9.13</jackson.version>
                 <fasterxml.jackson.version>2.5.0</fasterxml.jackson.version>
-                <jersey.version>1.17.1</jersey.version>
+                <jersey.version>1.8</jersey.version>
                 <jetty6.version>6.1.25</jetty6.version>
                 <jetty7.version>7.6.5.v20120716</jetty7.version> <!-- 7.6.3.v20120416 TODO remove jetty 6 -->
                 <jetty8.version>8.1.15.v20140411</jetty8.version> <!-- version of jetty used by cxf 2.7.14 -->
@@ -1573,8 +1573,9 @@
                 <izpack.version>5.0.0-beta11</izpack.version>
                 <izpack.compiler.version>${izpack.version}</izpack.compiler.version>
                 <izpack.standalone.compiler.version>4.3.5</izpack.standalone.compiler.version>
-                <node.version>0.10.32</node.version>
-                <npm.version>1.4.9</npm.version>
+                <!--<node.version>0.10.32</node.version>-->
+                <node.version>0.10.24</node.version>
+                <npm.version>2.5.0</npm.version>
 
                 <jaxws.rt.version>2.2.8</jaxws.rt.version>
                 <jaxws.tools.version>2.2.5</jaxws.tools.version>
@@ -2405,6 +2406,21 @@
                                                                         <ignore></ignore>
                                                                     </action>
                                                                 </pluginExecution>
+																<pluginExecution>
+																	<pluginExecutionFilter>
+																		<groupId>com.github.eirslett</groupId>
+																		<artifactId>frontend-maven-plugin</artifactId>
+																		<versionRange>[${maven.frontend.plugin.version},)</versionRange>
+																		<goals>
+																			<goal>install-node-and-npm</goal>
+																			<goal>npm</goal>
+																			<goal>grunt</goal>
+																		</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																		<ignore></ignore>
+																	</action>
+																</pluginExecution>
                                                         </pluginExecutions>
                                                 </lifecycleMappingMetadata>
                                         </configuration>
@@ -4227,18 +4243,18 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                     <artifactId>jetty-maven-plugin</artifactId>
                                     <version>${maven.jetty.eclipse.plugin.version}</version>
                                     <configuration>
-                                        <webAppConfig>
+										<scanIntervalSeconds>10</scanIntervalSeconds>
+                                        <webApp>
                                             <contextPath>/nabla</contextPath>
-                                        </webAppConfig>
+                                        </webApp>
                                         <useTestClasspath>true</useTestClasspath>
-                                        <connectors>
-                                            <connector implementation="org.eclipse.jetty.server.nio.SelectChannelConnector">
-                                                <port>${jetty.port}</port>
-                                                <maxIdleTime>600000</maxIdleTime>
-                                            </connector>
-                                        </connectors>
+                                        <httpConnector>
+                                            <!--host>localhost</host-->
+                                            <port>${jetty.port}</port>
+                                        </httpConnector>
                                         <stopPort>${jetty.stop.port}</stopPort>
 										<stopKey>STOP</stopKey>
+										<stopWait>10</stopWait>
                                         <!--
                                         <systemProperties>
                                             <systemProperty>

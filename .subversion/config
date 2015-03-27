@@ -49,17 +49,12 @@ password-stores =
 ###   This will override the compile-time default, which is to use
 ###   Subversion's internal diff implementation.
 # diff-cmd = diff_program (diff, gdiff, etc.)
-
-#diff-cmd = xxdiff-subversion
-#diff-cmd = xx-diff-proxy 
 diff-cmd = meld
 ### Set diff3-cmd to the absolute path of your 'diff3' program.
 ###   This will override the compile-time default, which is to use
 ###   Subversion's internal diff3 implementation.
 # diff3-cmd = diff3_program (diff3, gdiff3, etc.)
-#diff3-cmd = xxdiff-subversion
-#diff3-cmd = xx-diff-proxy 
-diff3-cmd = meld
+#diff3-cmd = /usr/bin//svn-merge-meld.sh
 ### Set diff3-has-program-arg to 'yes' if your 'diff3' program
 ###   accepts the '--diff-program' option.
 # diff3-has-program-arg = [yes | no]
@@ -67,9 +62,7 @@ diff3-cmd = meld
 ### merging tool of choice. Subversion will pass 4 arguments to
 ### the specified command: base theirs mine merged
 # merge-tool-cmd = merge_command
-#merge-tool-cmd = ~/env/scripts/svn-merge-meld.sh
-merge-tool-cmd = ~/env/scripts/svn-merge-meld.py
-
+#merge-tool-cmd = /usr/bin//svn-merge-meld.sh
 ### Section for configuring tunnel agents.
 [tunnels]
 ### Configure svn protocol tunnel schemes here.  By default, only

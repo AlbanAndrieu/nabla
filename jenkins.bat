@@ -27,12 +27,19 @@ call mvn eclipse:configure-workspace -P!mda,sample,arq-jbossas-managed > eclipse
 call mvn eclipse:eclipse -P!mda,sample,arq-jbossas-managed -DdownloadSources=true -DdownloadJavadocs=true -Peclipse-folders -Dappend.to.project.name=trunk > eclipse.log 2>&1
 call mvn rat:check -Psample,arq-jbossas-managed > rat.log 2>&1
 call mvn doap:generate -Psample,arq-jbossas-managed > doap.log 2>&1
+call mvn codenarc:codenarc -Psample,arq-jbossas-managed > codenarc.log 2>&1
 call mvn clean install org.pitest:pitest-maven:mutationCoverage -Psample,arq-jbossas-managed > pit.log 2>&1
+call mvn versioneye:create
+call mvn versioneye:update
+
+call mvn -B -U -e -Dsurefire.useFile=false install pmd:pmd pmd:cpd checkstyle:checkstyle findbugs:findbugs codenarc:codenarc cobertura:cobertura -Psample,arq-jbossas-managed,jacoco,mutation,run-its,upstream -Djacoco.outputDir=${WORKSPACE}/target > jenkins.log 2>&1
 REM karma start ${WORKSPACE}/code/riskinsight/webapp/src/main/webapp/karma.jenkins.conf.js
 REM output code/riskinsight/webapp/src/main/webapp/TEST-Karma-resultsTest.xml
+REM mvn -Dsonargraph.prepareForSonar=true -Dsonargraph.activationCode=2356-F3B2-E2C6-CC70 com.hello2morrow.sonargraph:maven-sonargraph-plugin:7.1.10:architect-report -Psample -Ddatabase=derby
 #TODO Archive the artifacts **/pit-reports/**/*.html
 
 REM call mvn install -pl maven/skin
 REM call mvn install -amd maven/skin
+REM call mvn -Dsonar.branch=`git rev-parse --abbrev-ref HEAD` sonar:sonar
 
 pause

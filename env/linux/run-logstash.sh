@@ -52,6 +52,9 @@ Instaling apache2-utils because htpasswd is so easy to use. This section creates
 sudo apt-get install apache2-utils
 sudo htpasswd -c /etc/nginx/conf.d/kibana.htpasswd albandri
 sudo htpasswd /etc/nginx/conf.d/kibana.htpasswd user
-This section creates kibana-write.htpassword for the ability to save dashboards
+#This section creates kibana-write.htpassword for the ability to save dashboards
 
 sudo htpasswd -c /etc/nginx/conf.d/kibana-write.htpasswd albandri
+
+#clean up elasticsearch
+ll /var/lib/elasticsearch/elasticsearch/nodes/

@@ -69,6 +69,8 @@ npm install -g karma-jasmine
 npm install -g phantomjs
 npm install -g karma-phantomjs-launcher
 npm install -g selenium-webdriver
+npm install -g grunt-contrib-compress
+npm install -g angular
 #if it failed try as non root user whitout -g option
 
 npm install -g doctor
@@ -95,6 +97,10 @@ sudo chmod -R 777 /usr/local/lib/node_modules/
 karma --version
 Karma version: 0.10.9
 
+#start karma test by hand
+karma start karma-ri-header.conf.js
+grunt karma:riHeader​
+
 #Ubuntu 13
 #ln -s /usr/local/lib/node_modules/grunt-cli/bin/grunt /usr/local/bin/grunt
 
@@ -117,12 +123,16 @@ npm -g ls
 #inside nexus use http://registry.npmjs.org/ without the s
 #as jenkins and albandri user
 npm config set registry http://home.nabla.mobi:8081/nexus/content/npm/registry.npmjs.org/
+npm config set registry http://bm-artifacts.france.effix.fr/maven/content/groups/npmjs-all/
+#npm config set registry https://registry.npmjs.org/
 npm config ls -l | grep registry
 
 #http://karma-runner.github.io/0.10/index.html
 #http://yeoman.io/
-
-#npm install -g yo karma protractor
+npm install -g grunt bower yo generator-karma generator-angular
+#launch yo
+yo
+npm install --save grunt-google-cdn
 
 #fix issue
 #axconfig: port 1 not active
@@ -142,6 +152,9 @@ sudo chown -R albandri:albandri  ~/.npm
 npm cache clear
 #update npm
 npm update
+
+#show which dependencies is using connect
+npm ls connect
 
 #Upgrade npm
 #as root
@@ -183,6 +196,7 @@ npm install --save bower-registry-client
 #bower cache
 bower cache list
 bower cache clean
+bower ls angular
 
 #build a project
 npm install

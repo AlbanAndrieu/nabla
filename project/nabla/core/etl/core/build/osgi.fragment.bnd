@@ -1,5 +1,0 @@
-Bundle-SymbolicName:${bundle.symbolicName}
-Bundle-Version:${project.version}
-Fragment-Host:${bundle.fragmentHost};bundle-version="${bundle.hostVersion}"
-Export-Package:!${bundle.namespace}.internal.*,${bundle.namespace}.*
-Private-Package:${bundle.namespace}.internal.*
