@@ -20,8 +20,8 @@
 \rm -Rf ~/env/config/setEnvFiles.list.txt
 find ~/.thumbnails -type f -atime +7 -exec rm {} \;
 
-#find /var/log -type f -name '*.log' -exec chmod 664 {} \; 
- 
+#find /var/log -type f -name '*.log' -exec chmod 664 {} \;
+
 #\rm -Rf workspace-cpp
 #\rm -Rf workspace-j2ee
 #\rm -Rf hudson
@@ -31,13 +31,14 @@ find . -type f -name '*\.log' | xargs rm -r $1
 find . -type d -name '.svn' | xargs rm -r $1
 find /jenkins -type d -name 'workspace' | grep -v 'builds' | xargs rm -r $1
 
-#find ~/ -name '*~' -print0 
+#find ~/ -name '*~' -print0
 find ~/ -name '*~' -type f
 find ~/ -name '*~' -type f -print0 | xargs -0 rm
 
 sudo apt-get autoclean
 sudo apt-get autoremove
 sudo dpkg -P `dpkg -l | grep "^rc" | tr -s ' ' | cut -d ' ' -f 2`
+sudo apt-get --purge remove tex.\*-doc$
 
 #Removed useless local file
 #sudo apt-get install localepurge
