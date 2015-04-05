@@ -14,19 +14,24 @@
         <name>Nabla Main</name>
         <packaging>pom</packaging>
         <description>The Main pom file is a superpom to centralize all third parties</description>
-        <url>http://maven.nabla.mobi/dependencies/customs/main</url>
+        <!--<url>http://maven.nabla.mobi/dependencies/customs/main</url>-->
+		<url>https://github.com/AlbanAndrieu/nabla-main</url>
 
-        <scm>
-                <connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/main</connection>
-                <developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/main</developerConnection>
-                <url>https://alban.googlecode.com/svn/${project.svn.path}/main</url>
-                <tag>HEAD</tag>
-        </scm>
+		<scm>
+			<connection>scm:git:git://github.com/AlbanAndrieu/nabla-main.git</connection>
+			<developerConnection>scm:git:git@github.com:AlbanAndrieu/nabla-main.git</developerConnection>
+			<url>https://github.com/AlbanAndrieu/nabla-main</url>
+		</scm>
 
-        <ciManagement>
-                <system>Jenkins</system>
-                <url>${JOB_URL}</url>
-        </ciManagement>
+		<ciManagement>
+			<system>Jenkins</system>
+			<url>${JOB_URL}</url>
+		</ciManagement>
+
+		<issueManagement>
+			<url>https://github.com/AlbanAndrieu/nabla-main/issues</url>
+			<system>GitHub Issues</system>
+		</issueManagement>
 
         <!-- ================= Default Properties ================= -->
         <properties>

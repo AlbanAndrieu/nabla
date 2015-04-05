@@ -1,0 +1,21 @@
+[submodule "build-tools"]
+	path = build-tools
+	url = https://github.com/AlbanAndrieu/nabla-build-tools.git
+[submodule "maven"]
+	path = maven
+	url = https://github.com/AlbanAndrieu/nabla-maven.git
+[submodule "uml"]
+	path = uml
+	url = https://github.com/AlbanAndrieu/nabla-uml.git
+[submodule "servers"]
+	path = servers
+	url = https://github.com/AlbanAndrieu/nabla-servers.git
+[submodule "databases"]
+	path = databases
+	url = https://github.com/AlbanAndrieu/nabla-databases.git
+[submodule "projects"]
+	path = projects
+	url = https://github.com/AlbanAndrieu/nabla-projects.git
+[submodule "andromda"]
+	path = andromda
+	url = https://github.com/AlbanAndrieu/nabla-andromda.git

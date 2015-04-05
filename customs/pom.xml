@@ -15,19 +15,24 @@
 	<name>Customs</name>
 	<packaging>pom</packaging>
 	<description>The Customs pom file is a superpom to centralize all third parties</description>
-    <url>http://maven.nabla.mobi/dependencies/customs</url>
+    <!--<url>http://maven.nabla.mobi/dependencies/customs</url>-->
+	<url>https://github.com/AlbanAndrieu/nabla-customs</url>
 
 	<scm>
-		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/customs</connection>
-		<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/customs</developerConnection>
-		<url>https://alban.googlecode.com/svn/${project.svn.path}/customs</url>
-		<tag>HEAD</tag>
+		<connection>scm:git:git://github.com/AlbanAndrieu/nabla-customs.git</connection>
+		<developerConnection>scm:git:git@github.com:AlbanAndrieu/nabla-customs.git</developerConnection>
+		<url>https://github.com/AlbanAndrieu/nabla-customs</url>
 	</scm>
 
 	<ciManagement>
-			<system>Jenkins</system>
-			<url>${JOB_URL}</url>
+		<system>Jenkins</system>
+		<url>${JOB_URL}</url>
 	</ciManagement>
+
+	<issueManagement>
+		<url>https://github.com/AlbanAndrieu/nabla-customs/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
 
 	<profiles>
 		<profile>
