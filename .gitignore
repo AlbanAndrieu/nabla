@@ -66,6 +66,7 @@ test-output/
 .project
 .settings
 .metadata
+target/
 
 # IDEA
 .idea
@@ -81,8 +82,14 @@ test-output/
 # Node.js
 
 node_modules/
+node/
+.bower/
+bower_components/
 
 # misc
 *.orig
 
 /tools/wrk/wrk
+
+*~
+*.log

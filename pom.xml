@@ -10,8 +10,25 @@
 	<version>1.0.1-SNAPSHOT</version>
 	<!-- This element provides a basic description of your project -->
 	<description>Users</description>
-	<url>http://www.maven.nabla.mobi</url>
-	<!--<url>${JOB_URL}</url> -->
+	<!--<url>http://www.maven.nabla.mobi</url>-->
+	<!--<url>${JOB_URL}</url>-->
+    <url>https://github.com/AlbanAndrieu/nabla</url>
+
+    <scm>
+		<connection>scm:git:git://github.com/AlbanAndrieu/nabla.git</connection>
+		<developerConnection>scm:git:git@github.com:AlbanAndrieu/nabla.git</developerConnection>
+		<url>https://github.com/AlbanAndrieu/nabla</url>
+    </scm>
+
+	<ciManagement>
+		<system>Jenkins</system>
+        <url>${JOB_URL}</url>
+	</ciManagement>
+
+	<issueManagement>
+		<url>https://github.com/AlbanAndrieu/nabla/issues</url>
+		<system>GitHub Issues</system>
+	</issueManagement>
 
 	<prerequisites>
 		<maven>3.0.4</maven>
@@ -96,13 +113,15 @@
 			</activation>
 			<modules>
 				<module>dependencies</module>
-				<module>databases</module>
+				<!--<module>databases</module>-->
 				<module>main</module>
-				<module>servers</module>
+				<!--<module>servers</module>-->
 				<module>customs</module>
+				<!--
 				<module>projects</module>
 				<module>uml</module>
 				<module>andromda</module>
+				-->
 				<module>installer</module>
 				<module>deploy</module>
 			</modules>
