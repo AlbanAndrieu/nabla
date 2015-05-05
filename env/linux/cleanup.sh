@@ -10,6 +10,12 @@
 \rm -Rf ~/.thunderbird/*
 \rm -Rf ~/.mozilla/*
 \rm -Rf ~/.config/*
+\rm -Rf ~/.fonts
+\rm -Rf ~/.gem
+\rm -Rf ~/.node_cache
+\rm -Rf ~/.node_tmp
+\rm -Rf ~/.node-gyp
+\rm -Rf ~/tmp
 \rm -f ~/*.db
 #empty trash
 \rm -rf ~/.local/share/Trash/*

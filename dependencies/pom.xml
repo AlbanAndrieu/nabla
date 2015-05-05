@@ -1539,10 +1539,10 @@
                 <jsr311.api.version>1.1.1</jsr311.api.version>
                 <!--<wsdl4j.version>1.6.3</wsdl4j.version>-->
                 <wsdl4j.version>1.6.2</wsdl4j.version> <!-- works with cxf 2.7.14 -->
-                <groovy.version>2.3.3</groovy.version>
+                <groovy.version>2.3.7</groovy.version>
                 <http.builder.version>0.6</http.builder.version>
-                <groovy.eclipse.compiler.version>2.7.0-01</groovy.eclipse.compiler.version>
-                <groovy.eclipse.batch.version>2.0.6-01</groovy.eclipse.batch.version>
+                <groovy.eclipse.compiler.version>2.9.2-01</groovy.eclipse.compiler.version>
+                <groovy.eclipse.batch.version>2.4.3-01</groovy.eclipse.batch.version>
                 <gluegen.rt.main.version>2.0-rc11</gluegen.rt.main.version>
 
 				<!-- flex versions -->
@@ -1563,7 +1563,7 @@
                 <jetty9.version>9.2.2.v20140723</jetty9.version>
                 <jetty.version>${jetty9.version}</jetty.version>
                 <jetty.websocket.version>${jetty8.version}</jetty.websocket.version>
-                <jetty.runner.version>8.1.15.v20140411</jetty.runner.version>
+                <jetty.runner.version>${jetty8.version}</jetty.runner.version>
                 <javax.websocket.api>1.0</javax.websocket.api>
 
                 <gmaven.runtime.version>${maven.gmaven.plugin.version}</gmaven.runtime.version>
@@ -1573,8 +1573,7 @@
                 <izpack.version>5.0.0-beta11</izpack.version>
                 <izpack.compiler.version>${izpack.version}</izpack.compiler.version>
                 <izpack.standalone.compiler.version>4.3.5</izpack.standalone.compiler.version>
-                <!--<node.version>0.10.32</node.version>-->
-                <node.version>0.10.24</node.version>
+                <node.version>0.10.32</node.version>
                 <npm.version>2.5.0</npm.version>
 
                 <jaxws.rt.version>2.2.8</jaxws.rt.version>
@@ -1757,7 +1756,7 @@
                 <maven.flex.pmd.plugin.version>1.2</maven.flex.pmd.plugin.version>
                 <maven.bundle.plugin.version>2.5.3</maven.bundle.plugin.version>
                 <maven.flexmojos.plugin.version>4.2-beta</maven.flexmojos.plugin.version>
-                <maven.pitest.plugin.version>1.1.4</maven.pitest.plugin.version>
+                <maven.pitest.plugin.version>1.1.5</maven.pitest.plugin.version>
                 <maven.pax.plugin.version>1.5</maven.pax.plugin.version>
                 <maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
                 <maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
@@ -3121,6 +3120,9 @@
                                 <!--
                                   see: http://docs.codehaus.org/display/GMAVEN/Home
                                 -->
+                                <!-- TODO DEPRECATED SOON
+								http://docs.groovy-lang.org/latest/html/documentation/tools-groovyeclipse.html
+								-->
                                 <plugin>
                                   <groupId>org.codehaus.gmaven</groupId>
                                   <artifactId>gmaven-plugin</artifactId>
@@ -4236,7 +4238,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <plugin>
                                         <groupId>org.apache.tomcat.maven</groupId>
                                         <artifactId>tomcat7-maven-plugin</artifactId>
-                                    <version>${maven.tomcat7.plugin.version}</version>
+										<version>${maven.tomcat7.plugin.version}</version>
                                 </plugin>
                                 <plugin>
                                     <groupId>org.eclipse.jetty</groupId>

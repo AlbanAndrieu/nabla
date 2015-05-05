@@ -63,10 +63,20 @@ nmap -v -sV -PN albandri
 sudo lsof -i :7070
 sudo lsof -i tcp:443
 
+#try to find all open jenkins ports
+#sudo lsof -iTCP:1-1024 -sTCP:ESTABLISHED | more
+#sudo lsof -iTCP:1024-9999 -sTCP:ESTABLISHED | grep jenkins | more
+sudo watch -d -n0 "sudo lsof -iTCP:1024-9999 -sTCP:ESTABLISHED | grep jenkins"
+sudo lsof -u jenkins | grep ESTABLISHED
+
 From the machine 192.168.0.29 run the following and post back here.
 To list listening devices and ports
 sudo netstat -lnp
+#sudo netstat -aNlnptu  | grep ESTABLISHED
 sudo netstat -an | grep LISTEN
+
+#to watch a continuous list of active connections
+watch -d -n0 "netstat -atnp | grep ESTA"
 
 To list firewall settings
 sudo iptables -L
@@ -78,6 +88,7 @@ To check what outbound connections you have running.
 sudo lsof -i -P -n
 To check what outbound connections a process (pid 29156) has running.
 sudo lsof -i -P -n | grep 29156
+#sudo lsof -ni:8080 -sTCP:ESTABLISHED
 
 To check for open ports on the network
 sudo nmap -sV 192.168.0.29
@@ -87,6 +98,7 @@ sudo nmap localhost
 
 To check one particular open port on a server
 telnet <IP> 3389
+
 
 --------- change apache to port 7070 -----------
 #http://www.cyberciti.biz/faq/linux-apache2-change-default-port-ipbinding/
@@ -116,7 +128,7 @@ Listen 7074
 
 #http://technique.arscenic.org/lamp-linux-apache-mysql-php/apache/modules-complementaires/article/mod_proxy-rediriger-en-tout
 
-/etc/init.d/apache2 reload        
+/etc/init.d/apache2 reload
 
 ls -lrta /etc/apache2/conf-enabled
 
@@ -133,7 +145,7 @@ sudo a2enmod rewrite
 sudo a2enmod proxy
 sudo a2enmod ssl
 sudo a2enmod proxy_http
- 
+
 #check site that are enable at
 cd /etc/apache2/sites-enabled
 
@@ -179,18 +191,18 @@ Add the following to your Apache httpd.conf:
 # Put this after the other LoadModule directives
 LoadModule proxy_module /usr/lib/apache2/modules/mod_proxy.so
 LoadModule proxy_http_module /usr/lib/apache2/modules/mod_proxy_http.so
- 
+
 # Put this with your other VirtualHosts, or at the bottom of the file
 NameVirtualHost *
 <VirtualHost *>
     ServerName confluence.example.com
- 
+
     ProxyRequests Off
     <Proxy *>
         Order deny,allow
         Allow from all
     </Proxy>
- 
+
     ProxyPass / http://confluence-app-server.internal.example.com:8090/
     ProxyPassReverse / http://confluence-app-server.internal.example.com:8090/
     <Location />
@@ -200,13 +212,13 @@ NameVirtualHost *
 </VirtualHost>
 <VirtualHost *>
     ServerName jira.example.com
- 
+
     ProxyRequests Off
     <Proxy *>
         Order deny,allow
         Allow from all
     </Proxy>
- 
+
     ProxyPass / http://jira-app-server.internal.example.com:7070/
     ProxyPassReverse / http://jira-app-server.internal.example.com:7070/
     <Location />
@@ -225,7 +237,7 @@ Contributor: Alban Andrieu <alban.andrieu@free.fr>
 
 Service: http
 OS: Ubuntu
-Device: 
+Device:
 Application: apache
 Version: 1.0
 

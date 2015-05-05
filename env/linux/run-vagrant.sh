@@ -36,7 +36,7 @@ vagrant package --base 'vagrant-windows-2012' --output 'vagrant-windows-2012.box
 #tar xf package.box
 #ovftool box.ovf box.ova
 
-#you might need to change 
+#you might need to change
 #export VAGRANT_HOME=/devel/albandri/home/.vagrant.d
 #create symbolic link
 #ln -s /devel/albandri/home/VirtualBox\ VMs/ 'VirtualBox VMs'
@@ -46,3 +46,8 @@ vagrant package --base 'vagrant-windows-2012' --output 'vagrant-windows-2012.box
 #add vagrant plugin
 sudo apt-get install libxslt-dev libxml2-dev libvirt-dev
 sudo vagrant plugin install vagrant-libvirt
+sudo vagrant plugin uninstall vagrant-lxc
+sudo vagrant plugin install vagrant-vbguest
+sudo vagrant plugin install vagrant-hosts vagrant-share vagrant-winrm vagrant-windows
+sudo vagrant plugin list
+sudo vagrant plugin update
