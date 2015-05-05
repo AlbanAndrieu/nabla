@@ -33,7 +33,7 @@
 #In apache
 sudo a2enmod headers
 sudo nano /etc/apache2/ports.conf
-#add 
+#add
 <IfModule mod_headers.c>
     Header unset ETag
     Header set X-Frame-Options: deny
@@ -42,3 +42,32 @@ sudo nano /etc/apache2/ports.conf
     Header set X-WebKit-CSP: "default-src 'self'"
     Header set X-Permitted-Cross-Domain-Policies: "master-only"
 </IfModule>
+
+#Zap sample : The BodgeIt Store is a vulnerable web application suitable for pen testing
+#based on http://code.google.com/p/bodgeit/
+#git clone https://code.google.com/p/bodgeit-maven/
+#My fork
+git clone https://github.com/AlbanAndrieu/bodgeit.git
+
+#Zap
+#http://www.dinosec.com/docs/Building_ZAP_with_Eclipse_v3.0.pdf
+sudo apt-get install ant-contrib
+svn checkout http://zaproxy.googlecode.com/svn/trunk/ zaproxy-read-only
+mvn install:install-file -Dfile=./zap/zap-api-v2-4.jar -DgroupId=org.zaproxy -DartifactId=clientapi -Dversion=2.4.0.1 -Dpackaging=jar
+cd zaproxy-read-only/build
+ant lite-release
+
+#Maven
+#git clone https://github.com/ShiNoSenshi/zap-maven-plugin.git
+#git clone https://code.google.com/p/zap-maven-plugin/
+git clone https://github.com/javabeanz/zap-maven-plugin.git
+
+#grunt
+npm install async --save-dev
+npm install request --save-dev
+npm install grunt-zaproxy --save-dev
+
+#jenkins
+#add PATH
+export PATH=/usr/local/zap/zap-2:$PATH
+sudo lsof -i :8090

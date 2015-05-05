@@ -111,6 +111,7 @@
 				<confluence.port>8090</confluence.port><!-- http://localhost:8090/ control port 8000 -->
                 <continuum.port>8020</continuum.port>
                 <mysql.port>3306</mysql.port>
+                <zap.port>8090</zap.port>
                 <sonar.port>9000</sonar.port>
                 <sonar.derby.port>1527</sonar.derby.port>
                 <sonar.mysql.port>${mysql.port}</sonar.mysql.port>
@@ -665,9 +666,9 @@
                                             </goals>
                                             <configuration>
                                                     <resources>
-							    <resource>
-							    	<directory>${maven.build.generated}/main/resources</directory>
-							    </resource>
+															<resource>
+																<directory>${maven.build.generated}/main/resources</directory>
+															</resource>
                                                             <!--<resource>${basedir}/src/main/resources</resource>-->
                                                             <!--<resource>${basedir}/${target.dir}/generated-sources/main/resources</resource>-->
                                                             <!-- <resource>${basedir}/${target.dir}/generated-sources/test/resources</resource> -->
