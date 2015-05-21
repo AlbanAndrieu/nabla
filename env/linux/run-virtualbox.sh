@@ -6,6 +6,10 @@ deb http://download.virtualbox.org/virtualbox/debian precise contrib
 
 wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | sudo apt-key add -
 
+#do not install
+#sudo apt-get install virtualbox virtualbox-ose-dkms
+#sudo apt-get install virtualbox-guest-additions-iso
+
 sudo apt-get update
 sudo apt-get install virtualbox-4.3
 sudo apt-get install dkms
@@ -41,6 +45,8 @@ qemu-img convert -O vmdk OpenSolaris.raw OpenSolaris.vmdk
 #Sample of command
 VBoxManage list vms
 VBoxManage controlvm vagrant-windows-2012 poweroff
+VBoxManage unregistervm vagrant-windows-2012 --delete
+#VBoxManage modifyvm vagrant-windows-2012 --longmode off
 VBoxManage modifyvm "vagrant-windows-2012" --natpf1 delete "winrm"
 VBoxManage modifyvm "vagrant-windows-2012" --memory 4096
 # MySQL 3306
@@ -51,6 +57,9 @@ VBoxManage metrics list "vagrant-windows-2012"
 VBoxManage debugvm "vagrant-windows-2012" osinfo
 VBoxManage startvm "vagrant-windows-2012" --type headless
 
-
-
 #VBoxManage unregistervm vagrant-windows-2012 --delete
+
+#CentOS
+yum install binutils qt gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel dkms
+yum install VirtualBox-4.3
+

@@ -25,6 +25,7 @@ vagrant init base
 #vagrant up --provider=libvirt
 vagrant up
 vagrant ssh
+vagrant rdp
 vagrant provision
 vagrant halt
 vagrant destroy
@@ -51,3 +52,4 @@ sudo vagrant plugin install vagrant-vbguest
 sudo vagrant plugin install vagrant-hosts vagrant-share vagrant-winrm vagrant-windows
 sudo vagrant plugin list
 sudo vagrant plugin update
+
