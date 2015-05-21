@@ -93,3 +93,12 @@ docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs --no-run-if-empty doc
 
 #bug fix for swap
 #http://docs.docker.com/installation/ubuntulinux/#adjust-memory-and-swap-accounting
+
+#check disk space
+gksudo baobab
+#cleaning
+#sudo docker rm `sudo docker ps -a | grep Exited | awk '{print $1 }'`
+#docker rmi `docker images -aq`
+sudo docker images --no-trunc| grep none | awk '{print $3}' | xargs -r sudo docker rmi
+
+ll /var/lib/docker/tmp/docker-build*/Downloads

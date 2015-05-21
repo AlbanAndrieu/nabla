@@ -1484,7 +1484,7 @@
                 <!--<xerces.version>2.10.0</xerces.version> TODO add dependency batik to avoid java.lang.NoClassDefFoundError: org/w3c/dom/ElementTraversal -->
                 <tomcat.version>6.0.29</tomcat.version>
 
-                <logback.version>1.0.7</logback.version>
+                <logback.version>1.0.13</logback.version>
                 <log4jdbc.remix.version>0.2.7</log4jdbc.remix.version>
                 <slf4j.version>1.7.5</slf4j.version>
                 <commons.dbcp>1.2.2</commons.dbcp>
@@ -1667,7 +1667,7 @@
                 <maven.replacer.plugin.version>1.4.1</maven.replacer.plugin.version>
                 <maven.gpg.plugin.version>1.5</maven.gpg.plugin.version>
                 <maven.properties.plugin.version>1.0-alpha-2</maven.properties.plugin.version>
-                <maven.sonar.plugin.version>2.4</maven.sonar.plugin.version>
+                <maven.sonar.plugin.version>2.6</maven.sonar.plugin.version>
                 <maven.gatling.plugin.version>${gatling.version}</maven.gatling.plugin.version>
                 <maven.jmeter.plugin.version>1.10.0</maven.jmeter.plugin.version>
                 <maven.jmeter.graph.plugin.version>0.1.0</maven.jmeter.graph.plugin.version>
@@ -1853,6 +1853,23 @@
                                         <configuration>
                                                 <lifecycleMappingMetadata>
                                                         <pluginExecutions>
+																<pluginExecution>
+																	<pluginExecutionFilter>
+																		<groupId>org.owasp</groupId>
+																		<artifactId>
+																			dependency-check-maven
+																		</artifactId>
+																		<versionRange>
+																			[${maven.dependency.check.plugin.version},)
+																		</versionRange>
+																		<goals>
+																			<goal>check</goal>
+																		</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																		<ignore></ignore>
+																	</action>
+																</pluginExecution>
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.jacoco</groupId>
@@ -2999,6 +3016,10 @@
                                                         <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
                                                         <webdriver.firefox.bin>${webdriver.firefox.bin}</webdriver.firefox.bin>
                                                         <webdriver.safari.noinstall>true</webdriver.safari.noinstall>
+                                                        <!--
+                                                        <http.proxyHost>${env.HTTP.PROXYHOST}</http.proxyHost>
+														<http.proxyPort>${env.HTTP.PROXYPORT}</http.proxyPort>
+														-->
                                                 </systemPropertyVariables>
                                                  <!-- Add source folders to test classpath in order to run gwt-tests as normal junit-tests -->
                                                 <additionalClasspathElements>

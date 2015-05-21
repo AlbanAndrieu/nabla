@@ -94,3 +94,7 @@ curl -XPUT 'localhost:9200/_settings' -d '
 cd /usr/share/elasticsearch/bin
 sudo ./plugin -install royrusso/elasticsearch-HQ
 echo http://localhost:9200/_plugin/HQ/
+
+#redis
+sudo service redis-server start
+tail -f /var/log/redis/redis-server.log
