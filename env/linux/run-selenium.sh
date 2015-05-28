@@ -43,7 +43,7 @@ netstat -an | grep 6666
 sudo lsof -i :6666
 curl http://home.nabla.mobi:6666/selenium-server/driver/?cmd=shutDownSeleniumServer
 
-#Start server 
+#Start server
 cd ~/servers/sample/jsf-simple
 mvn jetty:run-war -Psample -Dserver=jetty9x -Ddatabase=derby -Djetty.port=9090
 
@@ -63,7 +63,7 @@ chmod -R 777 /workspace/users/albandri10/.mozilla
 #Create a new profile, called Selenium
 #Now, when running the selenium command, add "-firefoxProfileTemplate "/home/{username}/.mozilla/firefox/{profile dir}" to the command. (where {username} is your username and {profile dir} is the profile directory, which for me was "6f2um01h.Selenium"
 
-#NOK -Dwebdriver.chrome.driver=/var/lib/chromedriver -port 6666 -log=/jenkins/selenium.log -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/lwc4dypx.Selenium/ 
+#NOK -Dwebdriver.chrome.driver=/var/lib/chromedriver -port 6666 -log=/jenkins/selenium.log -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/lwc4dypx.Selenium/
 
 # Let's see if Selenium works for firefox:
 sudo chown -R jenkins:jenkins /workspace/users/albandri10/.mozilla/firefox/eaadg7zv.Jenkins
@@ -74,7 +74,7 @@ java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *firefox http://l
 #NOK java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *chrome /opt/google/chrome/chrome http://localhost:8280/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/chrome-results.html" -log=/jenkins/selenium.log -debug=true`
 java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *chrome http://localhost:8280/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/chrome-results.html" -log=/jenkins/selenium.log -debug=true
 java -jar /var/lib/selenium/selenium.jar -Dwebdriver.chrome.driver=/var/lib/chromedriver -port 6666 -log=/jenkins/selenium.log -debug=true -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/lwc4dypx.Selenium/ -htmlSuite *chrome http://localhost:8280/welcome/ /jenkins/jobs/nabla-servers-jsf-simple-seleniumhq/workspace/src/test/selenium/SimpleSTestSuite.html /jenkins/jobs/nabla-servers-jsf-simple-seleniumhq/workspace/target/test-reports/chrome-results.html
-  
+
 # For chrome we also need to specify the Chrome driver location.:
 java -jar -Dwebdriver.chrome.driver=/var/lib/chromedriver /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *googlechrome http://localhost:9090/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/chrome-results.html"
 
@@ -107,12 +107,12 @@ java -jar -Dwebdriver.chrome.driver=/var/lib/chromedriver /var/lib/selenium/sele
 ##
 ##[xdmcp]
 ##Enable=true
-  
+
 ##xhost +
 
-http://chromedriver.storage.googleapis.com/index.html  
-  
-selenium available browser  
+http://chromedriver.storage.googleapis.com/index.html
+
+selenium available browser
 *firefox
 *mock
 *firefoxproxy
@@ -130,15 +130,15 @@ selenium available browser
 *firefoxchrome
 *opera
 *iehta
-*custom  
-    
-#PATH=${PATH}:/usr/lib/chromium-browser/libs  
+*custom
+
+#PATH=${PATH}:/usr/lib/chromium-browser/libs
 
  -Dwebdriver.chrome.driver=/var/lib/chromedriver
  -Dwebdriver.chrome.driver="chromedriver"
  -Dwebdriver.chrome.driver=/opt/google/chrome/chrome
-  
-cd /jenkins/plugins/selenium/WEB-INF/lib  
+
+cd /jenkins/plugins/selenium/WEB-INF/lib
 sudo ln -s /workspace/selenium-server-standalone-2.40.0.jar selenium-server-standalone-2.29.0.jar
 cd /jenkins
 sudo ln -s /workspace/selenium-server-standalone-2.40.0.jar selenium-server-standalone-2.29.0.jar
@@ -146,6 +146,12 @@ sudo ln -s /workspace/selenium-server-standalone-2.40.0.jar selenium-server-stan
 /usr/local/lib/node_modules/protractor/selenium/chromedriver
 
 REM NOK webdriver-manager start
+
+#browser version
+/usr/bin/firefox  -V
+/usr/lib/firefox/firefox -V
+/usr/bin/chromium-browser --version
+/opt/google/chrome/chrome --version
 
 #https://code.google.com/p/selenium/wiki/Grid2
 java -jar /workspace/selenium-server-standalone-2.40.0.jar -role hub
@@ -166,3 +172,10 @@ sudo ldconfig
 #In order to fic issue:
 #ubuntu firefox is already running error
 find . -name '.parentlock' -exec rm {} ;
+
+#start by hand
+java -jar /local/Jenkins-slave/selenium-server-standalone-2.45.0.jar -role hub -port 4444
+export DISPLAY=localhost:99.0 && java -jar /local/Jenkins-slave/selenium-server-standalone-2.45.0.jar -role node -hub http://home.nabla.mobi:4444/wd/register -browser browserName=firefox,version=38.0,firefox_binary=/usr/bin/firefox,maxInstances=1,platform=LINUX -browser browserName=chrome,version=39.0.2171.95,chrome_binary=/opt/google/chrome/chrome,maxInstances=1,platform=LINUX
+
+http://home.nabla.mobi:4444/grid/console
+http://home.nabla.mobi:5555/wd/hub/static/resource/hub.html
