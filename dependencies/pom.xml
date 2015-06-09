@@ -1574,7 +1574,7 @@
                 <izpack.compiler.version>${izpack.version}</izpack.compiler.version>
                 <izpack.standalone.compiler.version>4.3.5</izpack.standalone.compiler.version>
                 <node.version>0.10.32</node.version>
-                <npm.version>2.5.0</npm.version>
+                <npm.version>2.11.0</npm.version>
 
                 <jaxws.rt.version>2.2.8</jaxws.rt.version>
                 <jaxws.tools.version>2.2.5</jaxws.tools.version>

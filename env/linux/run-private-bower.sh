@@ -40,3 +40,33 @@ curl http://localhost:8089/packages/jquery
 http://localhost:8089/
 #install bower-registry-client
 npm install --save bower-registry-client
+
+#log
+less /service/private-bower/log/private-bower/current
+
+#TODO start private-bower as daemontools
+#http://cr.yp.to/daemontools.html
+sudo apt-get install daemontools
+sudo /command/svstat .
+.: up (pid 32259) 54601 seconds
+#http://www.wolframalpha.com/input/?i=54601%20seconds%20ago
+
+To read status:
+
+cd /service
+
+sudo /command/svstat *
+$ sudo /command/svstat /service/private-bower/
+/service/private-bower/: up (pid 21632) 1358 seconds
+
+To stop:
+sudo /command/svc –d /service/private-bower/
+
+To start:
+sudo /command/svc –u /service/private-bower/
+
+To restart:
+sudo /command/svc –t /service/private-bower/
+
+cd /files/bower/private-bower/gitRepoCache/nabla-auth
+git fetch --prune --tags
