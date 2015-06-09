@@ -173,3 +173,10 @@ grunt build
 grunt karma:unit
 grunt documentation
 grunt protractor:e2e
+
+#Upgrade
+#https://github.com/karma-runner/karma-jasmine
+npm install karma-jasmine@2_0 --save-dev
+npm install jasmine-core --save-dev
+#https://github.com/larrymyers/jasmine-reporters
+npm install --save-dev jasmine-reporters@^2.0.0
