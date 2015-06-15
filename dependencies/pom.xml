@@ -1423,7 +1423,7 @@
 
                 <!-- check compatibility http://selenium.googlecode.com/git/java/CHANGELOG -->
                 <!--<selenium.version>2.37.1</selenium.version>-->
-                <selenium.version>2.44.0</selenium.version>
+                <selenium.version>2.46.0</selenium.version>
                 <!--<selenium.version>2.41.0</selenium.version>--> <!-- Same as Jenkins version -->
                 <!--<selenium.driver.version>2.9.0</selenium.driver.version>-->
                 <selenium.driver.version>${selenium.version}</selenium.driver.version>
