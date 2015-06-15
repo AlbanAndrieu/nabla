@@ -1556,7 +1556,7 @@
                 <ilog-elixir.version>3.0.21588</ilog-elixir.version>
                 <jackson.version>1.9.13</jackson.version>
                 <fasterxml.jackson.version>2.5.0</fasterxml.jackson.version>
-                <jersey.version>1.8</jersey.version>
+                <jersey.version>1.9</jersey.version>
                 <jetty6.version>6.1.25</jetty6.version>
                 <jetty7.version>7.6.5.v20120716</jetty7.version> <!-- 7.6.3.v20120416 TODO remove jetty 6 -->
                 <jetty8.version>8.1.15.v20140411</jetty8.version> <!-- version of jetty used by cxf 2.7.14 -->
