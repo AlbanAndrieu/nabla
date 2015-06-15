@@ -49,7 +49,11 @@ tail -f  /var/log/messages
 http://sourceforge.net/projects/freenas/files/FreeNAS-8.3.1/RELEASE-p2/x64/
 
 #minidlna
+#install minidlna by hand
+#http://www.durindel.fr/informatique/tuto-freenas-9-3-installer-des-plugins-plex-et-minidlna
 http://192.168.0.47:8200
+http://192.168.0.2:8200/
+service minidlna onestart
 
 tail -f /mnt/dpool/jail/software/var/log/minidlna.log
 #rm -Rf /mnt/dpool/jail/software/var/db/minidlna/files.db
@@ -89,6 +93,8 @@ https://192.168.0.8:9090/sabnzbd/
 #user admin
 
 #subsonic
+#install subsonic 4.9 (5.2 is not working)
+#get pbi 4.9 at http://www.freenas.org/downloads/plugins/9/x64/
 pkg_add -v -r xtrans
 pkg_add -v -r xproto
 pkg_add -v -r xextproto
