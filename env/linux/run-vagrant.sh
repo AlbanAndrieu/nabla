@@ -46,10 +46,11 @@ vagrant package --base 'vagrant-windows-2012' --output 'vagrant-windows-2012.box
 
 #add vagrant plugin
 sudo apt-get install libxslt-dev libxml2-dev libvirt-dev
-sudo vagrant plugin install vagrant-libvirt
+#sudo vagrant plugin install vagrant-hosts
+sudo vagrant plugin install vagrant-libvirt vagrant-login vagrant-share vagrant-winrm
+sudo vagrant plugin uninstall vagrant-windows
 sudo vagrant plugin uninstall vagrant-lxc
-sudo vagrant plugin install vagrant-vbguest
-sudo vagrant plugin install vagrant-hosts vagrant-share vagrant-winrm vagrant-windows
+sudo vagrant plugin uninstall vagrant-vbguest
 sudo vagrant plugin list
 sudo vagrant plugin update
 

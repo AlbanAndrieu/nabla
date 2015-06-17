@@ -20,7 +20,7 @@ cd /workspace
 cd /usr/lib/chromium-browser/
 #NOK sudo wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip
 #NOK sudo unzip chromedriver_linux64.zip
-sudo sudo wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux32.zip
+sudo wget http://chromedriver.storage.googleapis.com/2.16/chromedriver_linux32.zip
 sudo unzip chromedriver_linux32.zip
 sudo chmod 755 chromedriver
 
@@ -33,7 +33,7 @@ sudo ln -s /usr/lib/chromium-browser/chromedriver /var/lib/chromedriver
 ls /var/lib/chromedriver
 sudo mkdir selenium
 cd /var/lib/selenium
-ln -s /workspace/selenium-server-standalone-2.39.0.jar selenium.jar
+sudo ln -s /workspace/selenium-server-standalone-2.46.0.jar selenium.jar
 ls /var/lib/selenium/selenium.jar
 
 # Now we have to set the DISPLAY env variable so Firefox and Chrome know where to open the browser.
@@ -151,7 +151,11 @@ REM NOK webdriver-manager start
 /usr/bin/firefox  -V
 /usr/lib/firefox/firefox -V
 /usr/bin/chromium-browser --version
-/opt/google/chrome/chrome --version
+
+#if issue :
+#/opt/google/chrome/chrome: error while loading shared libraries: libudev.so.0: cannot open shared object file: No such file or directory
+#sudo apt-get install libudev0:i386
+sudo ln -sf /lib/i386-linux-gnu/libudev.so.1 /lib/i386-linux-gnu/libudev.so.0
 
 #https://code.google.com/p/selenium/wiki/Grid2
 java -jar /workspace/selenium-server-standalone-2.40.0.jar -role hub
@@ -169,13 +173,16 @@ sudo nano /etc/ld.so.conf.d/chrome_lib.conf
 /usr/lib/chromium-browser/libs
 sudo ldconfig
 
-#In order to fic issue:
+#In order to fix issue:
 #ubuntu firefox is already running error
+cd ~/.mozilla
 find . -name '.parentlock' -exec rm {} ;
 
 #start by hand
-java -jar /local/Jenkins-slave/selenium-server-standalone-2.45.0.jar -role hub -port 4444
-export DISPLAY=localhost:99.0 && java -jar /local/Jenkins-slave/selenium-server-standalone-2.45.0.jar -role node -hub http://home.nabla.mobi:4444/wd/register -browser browserName=firefox,version=38.0,firefox_binary=/usr/bin/firefox,maxInstances=1,platform=LINUX -browser browserName=chrome,version=39.0.2171.95,chrome_binary=/opt/google/chrome/chrome,maxInstances=1,platform=LINUX
+cd /jenkins
+sudo ln -s /workspace/selenium-server-standalone-2.46.0.jar selenium-server-standalone-2.41.0.jar
+java -jar /jenkins/selenium-server-standalone-2.46.0.jar -role hub -port 4444
+export DISPLAY=localhost:99.0 && java -jar /jenkins/selenium-server-standalone-2.46.0.jar -role node -hub http://home.nabla.mobi:4444/wd/register -browser browserName=firefox,version=38.0,firefox_binary=/usr/bin/firefox,maxInstances=1,platform=LINUX -browser browserName=chrome,version=39.0.2171.95,chrome_binary=/opt/google/chrome/chrome,maxInstances=1,platform=LINUX
 
 http://home.nabla.mobi:4444/grid/console
 http://home.nabla.mobi:5555/wd/hub/static/resource/hub.html

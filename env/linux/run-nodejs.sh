@@ -180,3 +180,7 @@ npm install karma-jasmine@2_0 --save-dev
 npm install jasmine-core --save-dev
 #https://github.com/larrymyers/jasmine-reporters
 npm install --save-dev jasmine-reporters@^2.0.0
+
+#Cache added in http://home.nabla.mobi/html/download/
+cd /var/www/html/download
+cd nodejs/v0.12.4
