@@ -1,6 +1,10 @@
+#as root
+
+npm install phantomjs -g
+
 #http://yslow.org/phantomjs/
 
-sudo npm install yslow -g
+npm install yslow -g
 
 #https://www.npmjs.com/package/grunt-yslow
 #npm install --global phantomjs
@@ -39,5 +43,18 @@ npm install grunt-wpt --save-dev
 
 npm install -g sitespeed.io
 
-
 npm install grunt-gh-pages --save-dev
+
+#phantomas
+#https://github.com/stefanjudis/grunt-phantomas
+npm install --global phantomas
+npm install grunt-phantomas --save-dev
+
+npm install grunt-sitespeedio --save-dev
+
+#uncss
+npm install -g generator-webapp-uncss
+yo webapp-uncss
+
+npm install grunt-uncss --save-dev
+
