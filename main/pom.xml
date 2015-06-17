@@ -960,7 +960,7 @@
 							<groupId>org.jacoco</groupId>
 							<artifactId>org.jacoco.core</artifactId>
 							<version>${jacoco.version}</version>
-							<scope>provided</scope>
+							<scope>test</scope>
 						</dependency>
 						<!--
 						<dependency>

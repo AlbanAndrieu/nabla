@@ -1152,7 +1152,7 @@
                 <ant.trax.version>1.7.0</ant.trax.version>
                 <ant.contrib.version>20020829</ant.contrib.version>
                 <c3p0.version>0.8.5.2</c3p0.version>
-                <jacoco.version>0.7.5.201505241946</jacoco.version>
+                <jacoco.version>0.7.4.201502262128</jacoco.version>
                 <jacoco.agent.version>${jacoco.version}</jacoco.agent.version>
 
                 <jdbc.derby.version>10.10.1.1</jdbc.derby.version>
@@ -1366,7 +1366,8 @@
                 <protoj.nodep.version>1.8.4</protoj.nodep.version>
                 <bean.matchers.version>0.8.1</bean.matchers.version>
                 <!--<org.jboss.arquillian.version>1.1.0.Final</org.jboss.arquillian.version>--> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
-                <org.jboss.arquillian.version>1.0.0.CR7</org.jboss.arquillian.version>
+                <!--OK<org.jboss.arquillian.version>1.0.0.CR7</org.jboss.arquillian.version>-->
+                <org.jboss.arquillian.version>1.1.8.Final</org.jboss.arquillian.version>                
                 <!-- NOK <org.jboss.arquillian.version>1.1.4.Final</org.jboss.arquillian.version> NOK with 1.1.4.Final java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
                 <!-- NOK with 1.1.0.Final <org.jboss.arquillian.bom.version>${org.jboss.arquillian.version}</org.jboss.arquillian.bom.version>-->
                 <org.jboss.arquillian.bom.version>${org.jboss.arquillian.version}</org.jboss.arquillian.bom.version>
@@ -1379,7 +1380,7 @@
                 <org.openejb.arquillian.tomee.embedded.version>1.7.1</org.openejb.arquillian.tomee.embedded.version>
                 <org.jboss.arquillian.core.version>${org.jboss.arquillian.version}</org.jboss.arquillian.core.version>
                 <org.jboss.arquillian.jsfunit.version>1.0.0.Alpha4.SP1</org.jboss.arquillian.jsfunit.version>
-                <org.jboss.arquillian.jacoco.version>1.0.0.Alpha6</org.jboss.arquillian.jacoco.version>
+                <org.jboss.arquillian.jacoco.version>1.0.0.Alpha8</org.jboss.arquillian.jacoco.version>
                 <org.jboss.arquillian.glassfish.embedded.version>1.0.0.CR3</org.jboss.arquillian.glassfish.embedded.version>
                 <org.jboss.as.arquillian.container.version>${jboss7.version}</org.jboss.as.arquillian.container.version>
                 <!--NOK with arq-jbossas-managed <org.jboss.as.arquillian.container.version>7.2.0.Final</org.jboss.as.arquillian.container.version>-->  <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
@@ -5051,7 +5052,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <type>pom</type>
                             <scope>import</scope>
                         </dependency>
-
+		        <dependency>
+		            <groupId>org.jboss.arquillian.selenium</groupId>
+		            <artifactId>selenium-bom</artifactId>
+		            <version>${selenium.version}</version>
+		            <type>pom</type>
+		            <scope>import</scope>
+		        </dependency>
                         <!-- Similarly to the JBoss Java EE 6 BOM above, the RichFaces BOM specifies the
                             versions of artifacts required for using RichFaces in your project. -->
                         <dependency>
