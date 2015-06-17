@@ -47,6 +47,7 @@ less /service/private-bower/log/private-bower/current
 #TODO start private-bower as daemontools
 #http://cr.yp.to/daemontools.html
 sudo apt-get install daemontools
+cd /service/private-bower/
 sudo /command/svstat .
 .: up (pid 32259) 54601 seconds
 #http://www.wolframalpha.com/input/?i=54601%20seconds%20ago
