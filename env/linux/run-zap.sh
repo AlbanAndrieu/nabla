@@ -69,5 +69,14 @@ npm install grunt-zaproxy --save-dev
 
 #jenkins
 #add PATH
-export PATH=/usr/local/zap/zap-2:$PATH
-sudo lsof -i :8090
+#Inside Jenkins for master
+#http://stackoverflow.com/questions/5818403/jenkins-hudson-environment-variables
+#sudo nano /etc/profile
+#export ZAPROXY_HOME=/zapSource/build/zap
+#export PATH=$PATH:$ZAPROXY_HOME
+#sudo su - jenkins
+#source /etc/profile
+
+sudo nano /etc/init/jenkins.conf
+export ZAPROXY_HOME=/zapSource/build/zap
+export PATH=$PATH:$ZAPROXY_HOME
