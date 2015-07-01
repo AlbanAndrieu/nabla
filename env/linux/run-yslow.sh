@@ -58,3 +58,12 @@ yo webapp-uncss
 
 npm install grunt-uncss --save-dev
 
+#phantomcss
+sudo npm install -g phantomcss
+sudo npm install -g resemble-cli
+#run-resemble width=500 url=https://www.optimizely.com/ pages=about,contact,resources/sample-size-calculator/,resources/live-demo-webinar,customers,customers/customer-stories screensDir=mobile
+sudo npm install -g gm
+#sudo npm install -g casperjs
+#deprecated npm install grunt-phantomcss-gitdiff --save-dev
+npm install grunt-resemble-cli --save-dev
+

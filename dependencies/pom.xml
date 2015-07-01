@@ -1152,7 +1152,7 @@
                 <ant.trax.version>1.7.0</ant.trax.version>
                 <ant.contrib.version>20020829</ant.contrib.version>
                 <c3p0.version>0.8.5.2</c3p0.version>
-                <jacoco.version>0.7.4.201502262128</jacoco.version>
+                <jacoco.version>0.7.5.201505241946</jacoco.version>
                 <jacoco.agent.version>${jacoco.version}</jacoco.agent.version>
 
                 <jdbc.derby.version>10.10.1.1</jdbc.derby.version>
@@ -1347,7 +1347,8 @@
                 <jmock.version>2.6.0</jmock.version>
                 -->
                 <easymock.version>3.2</easymock.version>
-                <mockito.version>1.10.19</mockito.version>
+                <mockito.version>1.10.19</mockito.version> <!-- issue with clover, use 1.9.5 instead -->
+                <!--<mockito.version>1.9.5</mockito.version>-->
                 <powermock.mockito.version>1.4.9</powermock.mockito.version>
                 <googlecode.jmockit.version>1.7</googlecode.jmockit.version> <!-- googlecode.jmockit moved to org.jmockit -->
                 <jmockit.version>1.14</jmockit.version> <!-- WARNING jmockit does not work wit jacoco coverage -->
@@ -1367,7 +1368,7 @@
                 <bean.matchers.version>0.8.1</bean.matchers.version>
                 <!--<org.jboss.arquillian.version>1.1.0.Final</org.jboss.arquillian.version>--> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
                 <!--OK<org.jboss.arquillian.version>1.0.0.CR7</org.jboss.arquillian.version>-->
-                <org.jboss.arquillian.version>1.1.8.Final</org.jboss.arquillian.version>                
+                <org.jboss.arquillian.version>1.1.8.Final</org.jboss.arquillian.version>
                 <!-- NOK <org.jboss.arquillian.version>1.1.4.Final</org.jboss.arquillian.version> NOK with 1.1.4.Final java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
                 <!-- NOK with 1.1.0.Final <org.jboss.arquillian.bom.version>${org.jboss.arquillian.version}</org.jboss.arquillian.bom.version>-->
                 <org.jboss.arquillian.bom.version>${org.jboss.arquillian.version}</org.jboss.arquillian.bom.version>
@@ -1619,21 +1620,21 @@
                 <maven.gae.plugin.version>0.7.3</maven.gae.plugin.version>
                 <maven.processor.plugin.version>2.2.4</maven.processor.plugin.version>
                 <maven.karma.plugin.version>1.8</maven.karma.plugin.version>
-                <maven.grunt.plugin.version>1.4.1</maven.grunt.plugin.version>
+                <maven.grunt.plugin.version>1.5.1</maven.grunt.plugin.version>
                 <maven.jspc.plugin.version>2.0-alpha-3</maven.jspc.plugin.version>
                 <maven.tomcat.plugin.version>1.2-SNAPSHOT</maven.tomcat.plugin.version>
                 <maven.apache.rat.plugin.version>0.11</maven.apache.rat.plugin.version>
                 <maven.rat.plugin.version>1.0-alpha-3</maven.rat.plugin.version>
                 <maven.cobertura.plugin.version>2.7</maven.cobertura.plugin.version>
-                <maven.release.plugin.version>2.5.1</maven.release.plugin.version>
+                <maven.release.plugin.version>2.5.2</maven.release.plugin.version>
                 <!-- maybe needed to be downgraded <maven.release.plugin.version>2.3.2</maven.release.plugin.version>-->
-                <maven.antrun.plugin.version>1.7</maven.antrun.plugin.version>
+                <maven.antrun.plugin.version>1.8</maven.antrun.plugin.version>
                 <maven.emma.plugin.version>1.0-alpha-3</maven.emma.plugin.version>
                 <maven.shared.jar.version>1.0</maven.shared.jar.version>
                 <!--<maven.jar.plugin.version>2.4</maven.jar.plugin.version> does not work in eclipse org.codehaus.plexus.archiver.jar.Manifest.merge(org.codehaus.plexus.archiver.jar.Manifest) see : http://dev.eclipse.org/mhonarc/lists/m2e-users/msg02273.html-->
-                <maven.jar.plugin.version>2.5</maven.jar.plugin.version>
-                <maven.ejb.plugin.version>2.4</maven.ejb.plugin.version>
-                <maven.war.plugin.version>2.5</maven.war.plugin.version>
+                <maven.jar.plugin.version>2.6</maven.jar.plugin.version>
+                <maven.ejb.plugin.version>2.5.1</maven.ejb.plugin.version>
+                <maven.war.plugin.version>2.6</maven.war.plugin.version>
                 <maven.qalab.plugin.version>2.2</maven.qalab.plugin.version>
                 <maven.plugin.api.plugin.version>2.0</maven.plugin.api.plugin.version>
                 <maven.archiver.plugin.version>2.5</maven.archiver.plugin.version>
@@ -1641,56 +1642,55 @@
                 <maven.artifact.plugin.version>${maven.version}</maven.artifact.plugin.version>
                 <maven.plugin.api.plugin.version>${maven.version}</maven.plugin.api.plugin.version>
                 <maven.gui.plugin.version>1.0</maven.gui.plugin.version>
-                <maven.plugin.plugin.plugin.version>3.3</maven.plugin.plugin.plugin.version>
+                <maven.plugin.plugin.plugin.version>3.4</maven.plugin.plugin.plugin.version>
                 <maven.clirr.plugin.version>2.6.1</maven.clirr.plugin.version>
-                <maven.patch.plugin.version>1.1.1</maven.patch.plugin.version>
+                <maven.patch.plugin.version>1.2</maven.patch.plugin.version>
                 <maven.one.plugin.version>1.3</maven.one.plugin.version>
-                <maven.findbugs.plugin.version>3.0.0</maven.findbugs.plugin.version>
+                <maven.findbugs.plugin.version>3.0.1</maven.findbugs.plugin.version>
                 <maven.js.plugin.version>1.3.1</maven.js.plugin.version>
                 <maven.jstools.plugin.version>0.7</maven.jstools.plugin.version>
                 <maven.javancss.plugin.version>2.1</maven.javancss.plugin.version>
-                <maven.jdepend.plugin.version>2.0-beta-2</maven.jdepend.plugin.version>
+                <maven.jdepend.plugin.version>2.0</maven.jdepend.plugin.version>
                 <maven.changes.plugin.version>2.11</maven.changes.plugin.version>
                 <maven.dashboard.plugin.version>1.0.0-beta-1</maven.dashboard.plugin.version>
                 <maven.native2ascii.maven.plugin.version>1.0-beta-1</maven.native2ascii.maven.plugin.version>
-                <maven.archetype.plugin.version>2.2</maven.archetype.plugin.version>
+                <maven.archetype.plugin.version>2.3</maven.archetype.plugin.version>
                 <maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
-                <maven.assembly.plugin.version>2.5.2</maven.assembly.plugin.version>
+                <maven.assembly.plugin.version>2.5.5</maven.assembly.plugin.version>
                 <maven.changelog.plugin.version>2.3</maven.changelog.plugin.version>
-                <maven.scm.plugin.version>1.9.2</maven.scm.plugin.version>
-                <maven.checkstyle.plugin.version>2.13</maven.checkstyle.plugin.version>
+                <maven.scm.plugin.version>1.9.4</maven.scm.plugin.version>
+                <maven.checkstyle.plugin.version>2.15</maven.checkstyle.plugin.version>
                 <maven.clean.plugin.version>2.6.1</maven.clean.plugin.version>
-                <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
+                <maven.compiler.plugin.version>3.3</maven.compiler.plugin.version>
                 <!--<maven.compiler.plugin.version>3.2</maven.compiler.plugin.version> issue with jpamodelgen-->
-                <maven.dependency.plugin.version>2.9</maven.dependency.plugin.version>
+                <maven.dependency.plugin.version>2.10</maven.dependency.plugin.version>
                 <maven.clover.plugin.version>${clover.version}</maven.clover.plugin.version>
-                <maven.eclipse.plugin.version>2.9</maven.eclipse.plugin.version>
+                <maven.eclipse.plugin.version>2.10</maven.eclipse.plugin.version>
                 <maven.replacer.plugin.version>1.4.1</maven.replacer.plugin.version>
-                <maven.gpg.plugin.version>1.5</maven.gpg.plugin.version>
+                <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
                 <maven.properties.plugin.version>1.0-alpha-2</maven.properties.plugin.version>
                 <maven.sonar.plugin.version>2.6</maven.sonar.plugin.version>
                 <maven.gatling.plugin.version>${gatling.version}</maven.gatling.plugin.version>
-                <maven.jmeter.plugin.version>1.10.0</maven.jmeter.plugin.version>
+                <maven.jmeter.plugin.version>1.10.1</maven.jmeter.plugin.version>
                 <maven.jmeter.graph.plugin.version>0.1.0</maven.jmeter.graph.plugin.version>
-                <maven.jmeter.analysis.plugin.version>1.0.5</maven.jmeter.analysis.plugin.version>
-                <maven.scala.plugin.version>3.2.0</maven.scala.plugin.version>
+                <maven.jmeter.analysis.plugin.version>1.0.6</maven.jmeter.analysis.plugin.version>
+                <maven.scala.plugin.version>3.2.2</maven.scala.plugin.version>
                 <maven.hotdeploy.plugin.version>0.3.3</maven.hotdeploy.plugin.version>
                 <maven.cli.plugin.version>1.0.11</maven.cli.plugin.version>
                 <maven.frontend.plugin.version>0.0.22</maven.frontend.plugin.version>
-                <maven.shade.plugin.version>2.3</maven.shade.plugin.version>
+                <maven.shade.plugin.version>2.4</maven.shade.plugin.version>
                 <maven.rar.plugin.version>2.4</maven.rar.plugin.version>
                 <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
-                <maven.ear.plugin.version>2.9.1</maven.ear.plugin.version>
+                <maven.ear.plugin.version>3.0</maven.ear.plugin.version>
                 <!--<maven.jboss.plugin.version>1.4.1</maven.jboss.plugin.version>--> <!-- only version 1.4.1 supports hard deploying multiple files -->
                 <maven.jboss.plugin.version>1.5.1</maven.jboss.plugin.version>
                 <maven.jboss.packaging.plugin.version>2.2</maven.jboss.packaging.plugin.version>
-                <maven.invoker.plugin.version>1.9</maven.invoker.plugin.version>
+                <maven.invoker.plugin.version>1.10</maven.invoker.plugin.version>
                 <maven.minify.plugin.version>1.3.5.1</maven.minify.plugin.version>
-                <!--<maven.javadoc.plugin.version>2.9.1</maven.javadoc.plugin.version>  -->
-                <maven.javadoc.plugin.version>2.10.1</maven.javadoc.plugin.version>
+                <maven.javadoc.plugin.version>2.10.3</maven.javadoc.plugin.version>
                 <maven.jxr.plugin.version>2.5</maven.jxr.plugin.version>
-                <maven.pmd.plugin.version>3.3</maven.pmd.plugin.version>
-                <maven.project.info.reports.plugin.version>2.7</maven.project.info.reports.plugin.version>
+                <maven.pmd.plugin.version>3.4</maven.pmd.plugin.version>
+                <maven.project.info.reports.plugin.version>2.8</maven.project.info.reports.plugin.version>
                 <!--<maven.resources.plugin.version>2.7</maven.resources.plugin.version> Mark invalid -->
                 <maven.resources.plugin.version>2.6</maven.resources.plugin.version>
                 <maven.site.old.plugin.version>2.3</maven.site.old.plugin.version>
@@ -1706,7 +1706,7 @@
                 <maven.license.plugin.version>1.10.b1</maven.license.plugin.version>
                 <maven.sonar.report.plugin.version>2.2.1</maven.sonar.report.plugin.version>
                 <maven.gmaven.plugin.version>1.5</maven.gmaven.plugin.version>
-                <maven.verifier.plugin.version>1.0</maven.verifier.plugin.version>
+                <maven.verifier.plugin.version>1.1</maven.verifier.plugin.version>
                 <maven.tattletale.plugin.version>1.2.0.Beta2</maven.tattletale.plugin.version>
                 <maven.h2.plugin.version>1.0</maven.h2.plugin.version>
                 <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
@@ -1723,31 +1723,31 @@
                 <maven.jetty.mortbay.plugin.version>${jetty.version}</maven.jetty.mortbay.plugin.version> <!-- TODO remove or 7.0.0.pre5-->
                 <!--<maven.jetty.eclipse.plugin.version>9.3.0.M1</maven.jetty.eclipse.plugin.version>-->
                 <maven.jetty.eclipse.plugin.version>${jetty.version}</maven.jetty.eclipse.plugin.version>
-                <maven.jboss.as.plugin.version>7.6.Final</maven.jboss.as.plugin.version>
-                <maven.ant.plugin.version>2.3</maven.ant.plugin.version>
+                <maven.jboss.as.plugin.version>7.7.Final</maven.jboss.as.plugin.version>
+                <maven.ant.plugin.version>2.4</maven.ant.plugin.version>
                 <maven.jalopy.plugin.version>1.0-alpha-1</maven.jalopy.plugin.version>
                 <maven.axistools.plugin.version>1.4</maven.axistools.plugin.version>
-                <maven.enforcer.plugin.version>1.3.1</maven.enforcer.plugin.version>
+                <maven.enforcer.plugin.version>1.4</maven.enforcer.plugin.version>
                 <maven.enforcer.no.package.cycles.plugin.version>1.0.5</maven.enforcer.no.package.cycles.plugin.version>
                 <maven.bees.plugin.version>1.3.2</maven.bees.plugin.version>
-                <maven.doap.plugin.version>1.1</maven.doap.plugin.version>
+                <maven.doap.plugin.version>1.2</maven.doap.plugin.version>
                 <!--<maven.antlr3.plugin.version>3.1.1.2</maven.antlr3.plugin.version>-->
                 <maven.antlr3.plugin.version>${org.antlr.version}</maven.antlr3.plugin.version>
                 <maven.help.plugin.version>2.2</maven.help.plugin.version>
                 <maven.build.helper.plugin.version>1.9.1</maven.build.helper.plugin.version>
-                <maven.repository.plugin.version>2.3.1</maven.repository.plugin.version>
+                <maven.repository.plugin.version>2.4</maven.repository.plugin.version>
                 <maven.remote.resources.plugin.version>1.5</maven.remote.resources.plugin.version>
                 <maven.default.skin.version>1.0</maven.default.skin.version>
                 <maven.jaxb.plugin.version>1.1.1</maven.jaxb.plugin.version>
                 <maven.jaxb2.plugin.version>0.11.0</maven.jaxb2.plugin.version>
                 <maven.aspectj.plugin.version>1.7</maven.aspectj.plugin.version>
                 <maven.sql.plugin.version>1.5</maven.sql.plugin.version>
-                <maven.org.liquibase.plugin.version>3.3.0</maven.org.liquibase.plugin.version>
+                <maven.org.liquibase.plugin.version>3.4.0</maven.org.liquibase.plugin.version>
                 <maven.torque.plugin.version>3.3-RC2</maven.torque.plugin.version>
-                <maven.exec.plugin.version>1.3.2</maven.exec.plugin.version>
+                <maven.exec.plugin.version>1.4.0</maven.exec.plugin.version>
                 <maven.gwt.plugin.version>${gwt.version}</maven.gwt.plugin.version>
                 <maven.jacoco.gwt.plugin.version>0.5.4.201202141554</maven.jacoco.gwt.plugin.version>
-                <maven.vaadin.plugin.version>7.4.0.alpha14</maven.vaadin.plugin.version>
+                <maven.vaadin.plugin.version>7.6.0.alpha1</maven.vaadin.plugin.version>
                 <maven.java.formatter.plugin.version>0.4</maven.java.formatter.plugin.version>
                 <maven.failsafe.plugin.version>${maven.surefire.plugin.version}</maven.failsafe.plugin.version>
                 <!--<maven.failsafe.plugin.version>2.17</maven.failsafe.plugin.version>-->
@@ -1755,17 +1755,17 @@
                 <maven.benerator.plugin.version>0.7.7</maven.benerator.plugin.version>
                 <maven.zap.plugin.version>1.2-SNAPSHOT</maven.zap.plugin.version>
                 <maven.flex.pmd.plugin.version>1.2</maven.flex.pmd.plugin.version>
-                <maven.bundle.plugin.version>2.5.3</maven.bundle.plugin.version>
+                <maven.bundle.plugin.version>2.5.4</maven.bundle.plugin.version>
                 <maven.flexmojos.plugin.version>4.2-beta</maven.flexmojos.plugin.version>
                 <maven.pitest.plugin.version>1.1.5</maven.pitest.plugin.version>
                 <maven.pax.plugin.version>1.5</maven.pax.plugin.version>
                 <maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
                 <maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
-                <maven.codenarc.plugin.version>0.18-1</maven.codenarc.plugin.version>
-                <maven.dependency.check.plugin.version>1.2.8</maven.dependency.check.plugin.version>
+                <maven.codenarc.plugin.version>0.22-1</maven.codenarc.plugin.version>
+                <maven.dependency.check.plugin.version>1.2.11</maven.dependency.check.plugin.version>
                 <maven.versioneye.plugin.version>3.1.1</maven.versioneye.plugin.version>
                 <maven.selenium.plugin.version>2.3</maven.selenium.plugin.version>
-                <maven.wro4j.plugin.version>1.7.7</maven.wro4j.plugin.version>
+                <maven.wro4j.plugin.version>1.7.8</maven.wro4j.plugin.version>
                 <maven.classpath.fitnesse.version>1.7</maven.classpath.fitnesse.version>
                 <maven.jaxws.plugin.version>2.2</maven.jaxws.plugin.version>
 
@@ -1857,12 +1857,8 @@
 																<pluginExecution>
 																	<pluginExecutionFilter>
 																		<groupId>org.owasp</groupId>
-																		<artifactId>
-																			dependency-check-maven
-																		</artifactId>
-																		<versionRange>
-																			[${maven.dependency.check.plugin.version},)
-																		</versionRange>
+																		<artifactId>dependency-check-maven</artifactId>
+																		<versionRange>[${maven.dependency.check.plugin.version},)</versionRange>
 																		<goals>
 																			<goal>check</goal>
 																		</goals>

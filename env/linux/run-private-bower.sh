@@ -69,5 +69,11 @@ sudo /command/svc –u /service/private-bower/
 To restart:
 sudo /command/svc –t /service/private-bower/
 
+#issue while refresh
+#try workaround
 cd /files/bower/private-bower/gitRepoCache/nabla-auth
 git fetch --prune --tags
+
+#for each repo
+git config --local --list
+git config http.sslVerify false
