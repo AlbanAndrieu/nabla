@@ -1297,9 +1297,11 @@
                 <hibernate.search.version>4.3.0.Final</hibernate.search.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
                 <!--<hibernate.ehcache.version>4.1.1.Final</hibernate.ehcache.version>-->
                 <hibernate.ehcache.version>4.2.0.Final</hibernate.ehcache.version>
-                <!--<hibernate.jpa.api.version>1.0.0.Final</hibernate.jpa.api.version>-->
-                <hibernate.jpa.api.version>1.0.1.Final</hibernate.jpa.api.version>
+                <hibernate.jpa21.api.version>1.0.0.Final</hibernate.jpa21.api.version> <!-- for hibernate-jpa-2.1-api -->
+                <hibernate.jpa20.api.version>1.0.1.Final</hibernate.jpa20.api.version> <!-- for hibernate-jpa-2.0-api -->
+                <hibernate.jpa.api.version>${hibernate.jpa20.api.version}</hibernate.jpa.api.version>
                 <!--<hibernate.jpamodelgen.version>1.1.1.Final</hibernate.jpamodelgen.version>-->
+                <!--<hibernate.jpamodelgen.version>1.2.0.Final</hibernate.jpamodelgen.version>-->
                 <hibernate.jpamodelgen.version>4.3.6.Final</hibernate.jpamodelgen.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
                 <ejb3.persistence.version>1.0.2.GA</ejb3.persistence.version>
                 <jboss.ejb3.persistence.version>4.0.5-GA</jboss.ejb3.persistence.version>
@@ -5070,7 +5072,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         <dependency>
                                 <groupId>org.hibernate.javax.persistence</groupId>
                                 <artifactId>hibernate-jpa-2.0-api</artifactId>
-                                <version>${hibernate.jpa.api.version}</version>
+                                <version>${hibernate.jpa20.api.version}</version>
+                                <scope>provided</scope>
+                        </dependency>
+                        <dependency>
+                                <groupId>org.hibernate.javax.persistence</groupId>
+                                <artifactId>hibernate-jpa-2.1-api</artifactId>
+                                <version>${hibernate.jpa21.api.version}</version>
                                 <scope>provided</scope>
                         </dependency>
 
@@ -8695,165 +8703,160 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
             </dependency>
             <!-- // JAXB -->
 
-                        <!-- Jackson -->
-                        <dependency>
-                            <groupId>org.codehaus.jackson</groupId>
-                            <artifactId>jackson-core-asl</artifactId>
-                            <version>${jackson.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.codehaus.jackson</groupId>
-                            <artifactId>jackson-jaxrs</artifactId>
-                            <version>${jackson.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.codehaus.jackson</groupId>
-                            <artifactId>jackson-mapper-asl</artifactId>
-                            <version>${jackson.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.codehaus.jackson</groupId>
-                            <artifactId>jackson-smile</artifactId>
-                            <version>${jackson.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.codehaus.jackson</groupId>
-                            <artifactId>jackson-xc</artifactId>
-                            <version>${jackson.version}</version>
-                        </dependency>
-                         <dependency>
-                            <groupId>com.fasterxml.jackson.core</groupId>
-                            <artifactId>jackson-core</artifactId>
-                            <version>${fasterxml.jackson.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>com.fasterxml.jackson.core</groupId>
-                            <artifactId>jackson-databind</artifactId>
-                            <version>${fasterxml.jackson.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>com.fasterxml.jackson.core</groupId>
-                            <artifactId>jackson-annotations</artifactId>
-                            <version>${fasterxml.jackson.version}</version>
-                        </dependency>
-                        <!-- // Jackson -->
-
-                        <!-- Jersey -->
-                        <dependency>
-                            <groupId>com.sun.jersey</groupId>
-                            <artifactId>jersey-core</artifactId>
-                            <version>${jersey.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>com.sun.jersey</groupId>
-                            <artifactId>jersey-json</artifactId>
-                            <version>${jersey.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>com.sun.jersey</groupId>
-                            <artifactId>jersey-client</artifactId>
-                            <version>${jersey.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>com.sun.jersey</groupId>
-                            <artifactId>jersey-server</artifactId>
-                            <version>${jersey.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>com.sun.jersey.contribs</groupId>
-                            <artifactId>jersey-apache-client</artifactId>
-                            <version>${jersey.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>com.sun.jersey.contribs</groupId>
-                            <artifactId>jersey-guice</artifactId>
-                            <version>${jersey.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>com.sun.jersey.contribs</groupId>
-                            <artifactId>wadl-resourcedoc-doclet</artifactId>
-                            <version>${jersey.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>com.sun.jersey.contribs</groupId>
-                            <artifactId>jersey-wadl-json-schema</artifactId>
-                            <version>${jersey.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>com.sun.jersey.contribs</groupId>
-                            <artifactId>jersey-multipart</artifactId>
-                            <version>${jersey.version}</version>
-                        </dependency>
-                        <!-- // Jersey -->
-
-                        <!-- Jetty -->
-                        <!--
-                        <dependency>
-                            <groupId>org.mortbay.jetty</groupId>
-                            <artifactId>jetty</artifactId>
-                            <version>${jetty.version}</version>
-                            <scope>runtime</scope>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.mortbay.jetty</groupId>
-                            <artifactId>jetty-util</artifactId>
-                            <version>${jetty.version}</version>
-                            <scope>runtime</scope>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.mortbay.jetty</groupId>
-                            <artifactId>start</artifactId>
-                            <version>${jetty.version}</version>
-                            <scope>runtime</scope>
-                        </dependency>
-
-                        // Use instead
-                        <dependency>
-                            <groupId>org.eclipse.jetty</groupId>
-                            <artifactId>jetty-proxy</artifactId>
-                            <version>${jetty9.version}</version>
-                        </dependency>
-                        -->
-                        <!-- // Jetty -->
-
-                        <!-- // Jetty7 -->
-                        <!--
-                        <dependency>
-                            <groupId>org.eclipse.jetty</groupId>
-                            <artifactId>jetty-server</artifactId>
-                            <version>${jetty7.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.eclipse.jetty</groupId>
-                            <artifactId>jetty-servlet</artifactId>
-                            <version>${jetty7.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.eclipse.jetty</groupId>
-                            <artifactId>jetty-servlets</artifactId>
-                            <version>${jetty7.version}</version>
-                        </dependency>
-                        <dependency>
-                            <groupId>org.eclipse.jetty</groupId>
-                            <artifactId>jetty-websocket</artifactId>
-                            <version>${jetty7.version}</version>
-                        </dependency>
-                        -->
-                        <!-- // Jetty7 -->
-
-
+                    <!-- Jackson -->
                     <dependency>
-                        <groupId>javax.websocket</groupId>
-                        <artifactId>javax.websocket-api</artifactId>
-                        <version>${javax.websocket.api}</version>
+                        <groupId>org.codehaus.jackson</groupId>
+                        <artifactId>jackson-core-asl</artifactId>
+                        <version>${jackson.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.codehaus.jackson</groupId>
+                        <artifactId>jackson-jaxrs</artifactId>
+                        <version>${jackson.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.codehaus.jackson</groupId>
+                        <artifactId>jackson-mapper-asl</artifactId>
+                        <version>${jackson.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.codehaus.jackson</groupId>
+                        <artifactId>jackson-smile</artifactId>
+                        <version>${jackson.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.codehaus.jackson</groupId>
+                        <artifactId>jackson-xc</artifactId>
+                        <version>${jackson.version}</version>
+                    </dependency>
+                     <dependency>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                        <artifactId>jackson-core</artifactId>
+                        <version>${fasterxml.jackson.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                        <artifactId>jackson-databind</artifactId>
+                        <version>${fasterxml.jackson.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.fasterxml.jackson.core</groupId>
+                        <artifactId>jackson-annotations</artifactId>
+                        <version>${fasterxml.jackson.version}</version>
+                    </dependency>
+                    <!-- // Jackson -->
+
+                    <!-- Jersey -->
+                    <dependency>
+                        <groupId>com.sun.jersey</groupId>
+                        <artifactId>jersey-core</artifactId>
+                        <version>${jersey.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.jersey</groupId>
+                        <artifactId>jersey-json</artifactId>
+                        <version>${jersey.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.jersey</groupId>
+                        <artifactId>jersey-client</artifactId>
+                        <version>${jersey.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.jersey</groupId>
+                        <artifactId>jersey-server</artifactId>
+                        <version>${jersey.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.jersey.contribs</groupId>
+                        <artifactId>jersey-apache-client</artifactId>
+                        <version>${jersey.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.jersey.contribs</groupId>
+                        <artifactId>jersey-guice</artifactId>
+                        <version>${jersey.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.jersey.contribs</groupId>
+                        <artifactId>wadl-resourcedoc-doclet</artifactId>
+                        <version>${jersey.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.jersey.contribs</groupId>
+                        <artifactId>jersey-wadl-json-schema</artifactId>
+                        <version>${jersey.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.jersey.contribs</groupId>
+                        <artifactId>jersey-multipart</artifactId>
+                        <version>${jersey.version}</version>
+                    </dependency>
+                    <!-- // Jersey -->
+
+                    <!-- Jetty 6 -->
+                    <!--
+                    <dependency>
+                        <groupId>org.mortbay.jetty</groupId>
+                        <artifactId>jetty</artifactId>
+                        <version>${jetty.version}</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.mortbay.jetty</groupId>
+                        <artifactId>jetty-util</artifactId>
+                        <version>${jetty.version}</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.mortbay.jetty</groupId>
+                        <artifactId>start</artifactId>
+                        <version>${jetty.version}</version>
+                        <scope>runtime</scope>
                     </dependency>
 
+                    // Use instead org.eclipse.jetty
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-proxy</artifactId>
+                        <version>${jetty9.version}</version>
+                    </dependency>
+                    -->
+                    <!-- // Jetty 6 -->
+
+                    <!-- // Jetty7 -->
+                    <!--
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-server</artifactId>
+                        <version>${jetty7.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-servlet</artifactId>
+                        <version>${jetty7.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-servlets</artifactId>
+                        <version>${jetty7.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.eclipse.jetty</groupId>
+                        <artifactId>jetty-websocket</artifactId>
+                        <version>${jetty7.version}</version>
+                    </dependency>
+                    -->
+                    <!-- // Jetty7 -->
+
                     <!-- // Jetty8 -->
+                    <!--
                     <dependency>
                         <groupId>org.eclipse.jetty</groupId>
                         <artifactId>jetty-websocket</artifactId>
                         <version>${jetty8.version}</version>
                     </dependency>
+                    -->
                     <!-- // Jetty8 -->
 
                     <!-- // Jetty8 and Jetty9 -->
@@ -8976,6 +8979,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         <version>${jetty9.version}</version>
                     </dependency>
                     <!-- // Jetty 9 -->
+
+                    <dependency>
+                        <groupId>javax.websocket</groupId>
+                        <artifactId>javax.websocket-api</artifactId>
+                        <version>${javax.websocket.api}</version>
+                    </dependency>
 
                     <!-- Logging -->
                     <dependency>
