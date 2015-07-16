@@ -1663,7 +1663,7 @@
                 <maven.scm.plugin.version>1.9.4</maven.scm.plugin.version>
                 <maven.checkstyle.plugin.version>2.15</maven.checkstyle.plugin.version>
                 <maven.clean.plugin.version>2.6.1</maven.clean.plugin.version>
-                <maven.compiler.plugin.version>3.3</maven.compiler.plugin.version>
+                <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
                 <!--<maven.compiler.plugin.version>3.2</maven.compiler.plugin.version> issue with jpamodelgen-->
                 <maven.dependency.plugin.version>2.10</maven.dependency.plugin.version>
                 <maven.clover.plugin.version>${clover.version}</maven.clover.plugin.version>
@@ -1683,7 +1683,7 @@
                 <maven.shade.plugin.version>2.4</maven.shade.plugin.version>
                 <maven.rar.plugin.version>2.4</maven.rar.plugin.version>
                 <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
-                <maven.ear.plugin.version>3.0</maven.ear.plugin.version>
+                <maven.ear.plugin.version>2.9.1</maven.ear.plugin.version>
                 <!--<maven.jboss.plugin.version>1.4.1</maven.jboss.plugin.version>--> <!-- only version 1.4.1 supports hard deploying multiple files -->
                 <maven.jboss.plugin.version>1.5.1</maven.jboss.plugin.version>
                 <maven.jboss.packaging.plugin.version>2.2</maven.jboss.packaging.plugin.version>
