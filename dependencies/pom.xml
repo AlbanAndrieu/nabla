@@ -8226,13 +8226,15 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
             -->
             <!-- // BlaseDS/Flex -->
 
+			<!--
             <dependency>
                 <groupId>com.adobe.flex.framework</groupId>
                 <artifactId>spark</artifactId>
                 <version>${spark.version}</version>
                 <type>swc</type>
-                <scope>theme</scope> <!-- do not comment, even if maven is complaining -->
+                <scope>theme</scope>--> <!-- do not comment, even if maven is complaining --><!--
             </dependency>
+            -->
 
             <!-- Caucho Hessian -->
             <dependency>
@@ -8458,6 +8460,9 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
                 <version>${maven.dependency.plugin.version}</version>
+				<configuration>
+					<ignoreNonCompile>true</ignoreNonCompile>
+				</configuration>
             </dependency>
             <dependency>
                 <groupId>org.apache.maven.plugins</groupId>
