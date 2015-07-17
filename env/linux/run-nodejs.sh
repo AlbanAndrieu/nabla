@@ -1,8 +1,14 @@
 sudo apt-get install gcc cpp g++ automake1.9 autoconf libtool flex bison python-software-properties
 
-#sudo apt-get install node
+#On Ubuntu 14 node must be uninstall
+sudo apt-get --purge remove node
+ll /usr/sbin/node
+/bin/ls: cannot access /usr/sbin/node: No such file or directory
 sudo apt-get install nodejs
 #NOK with ubuntu 13 sudo apt-get install npm
+#as root
+curl -L https://www.npmjs.com/install.sh | sh
+
 sudo apt-get install karma-tools
 
 #http://ariejan.net/2011/10/24/installing-node-js-and-npm-on-ubuntu-debian/
@@ -22,6 +28,7 @@ sudo apt-get update
 #http://www.rosehosting.com/blog/how-to-install-the-latest-versions-of-node-js-and-bower-on-ubuntu-13-10/
 
 #as root
+#build it yourself
 cd /usr/local/src
 wget http://nodejs.org/dist/node-latest.tar.gz
 tar zxvf node-latest.tar.gz
@@ -30,14 +37,22 @@ cd node-v0.1*
 make
 sudo make install
 
+echo $NODE_PATH
+/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript
+
+which node
+/usr/bin/node
 node --version
-v0.10.25
+v0.10.37
+which nodejs
+/usr/bin/nodejs
 nodejs --version
-v0.10.25
+v0.10.37
 npm --version
-1.3.24
+2.13.0
 
 #sudo su - root
+#sudo rm /usr/bin/node
 #sudo ln -s /usr/bin/nodejs /usr/bin/node
 #cd ~
 ##curl https://npmjs.org/install.sh > install.sh
@@ -180,8 +195,13 @@ npm install karma-jasmine@2_0 --save-dev
 npm install jasmine-core --save-dev
 #https://github.com/larrymyers/jasmine-reporters
 npm install --save-dev jasmine-reporters@^2.0.0
+npm install grunt-postcss pixrem autoprefixer-core cssnano --save-dev
+#npm install autoprefixer-core --save-dev
 
 #Cache added in http://home.nabla.mobi/html/download/
 cd /var/www/html/download
 cd nodejs/v0.12.4
 
+#get LTS stable version
+npm view npm dist-tags
+npm install -g npm@2.13.0
