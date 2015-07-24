@@ -151,6 +151,10 @@ REM NOK webdriver-manager start
 /usr/bin/firefox  -V
 /usr/lib/firefox/firefox -V
 /usr/bin/chromium-browser --version
+#chromium-browser might need to be removed
+#for chrome
+sudo apt-get install google-chrome-stable
+/opt/google/chrome/chrome --version
 
 #if issue :
 #/opt/google/chrome/chrome: error while loading shared libraries: libudev.so.0: cannot open shared object file: No such file or directory

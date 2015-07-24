@@ -26,5 +26,24 @@ sudo service mon stop
 
 #sudo service lightdm stop
 
-sudo service --status-all
+sudo service slapd stop
+sudo service memcached stop
+#http://www.ihackforfun.eu/index.php?title=improve-security-by-removing-services&more=1&c=1&tb=1&pb=1
+sudo service avahi-daemon stop
+sudo service iscsitarget stop
+sudo service cups stop
+sudo service clamav-daemon stop
+sudo service clamav-freshclam stop
+sudo service conky stop
+#https://linuxacademy.com/blog/linux/disabling-unused-daemons-to-speed-up-your-boot-sequence/
+sudo service bluetooth stop
+sudo service fancontrol stop
+sudo service cups stop
+sudo service cups-browsed stop
 
+#tiger clamav are consuming too many resources
+#ps -edf | grep tiger
+#sudo apt-get remove tiger
+#sudo apt-get remove clamav
+
+sudo service --status-all
