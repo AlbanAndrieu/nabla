@@ -92,6 +92,7 @@ npm install -g doctor
 npm install -g yo
 #npm install selenium-standalone
 npm install -g connect-livereload
+npm install -g gm
 
 #as local user
 npm install grunt
