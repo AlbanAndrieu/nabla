@@ -8,7 +8,6 @@ sudo apt-get install nodejs
 #NOK with ubuntu 13 sudo apt-get install npm
 #as root
 curl -L https://www.npmjs.com/install.sh | sh
-
 sudo apt-get install karma-tools
 
 #http://ariejan.net/2011/10/24/installing-node-js-and-npm-on-ubuntu-debian/
@@ -139,7 +138,6 @@ npm -g ls
 #inside nexus use http://registry.npmjs.org/ without the s
 #as jenkins and albandri user
 npm config set registry http://home.nabla.mobi:8081/nexus/content/npm/registry.npmjs.org/
-npm config set registry http://bm-artifacts.france.effix.fr/maven/content/groups/npmjs-all/
 #npm config set registry https://registry.npmjs.org/
 npm config ls -l | grep registry
 
@@ -176,6 +174,39 @@ npm ls connect
 #as root
 npm install -g npm
 
+#Install private bower
+#https://github.com/Hacklone/private-bower/blob/master/README.md
+npm install -g private-bower
+ll /usr/local/bin/private-bower
+ll /usr/local/lib/node_modules/private-bower
+#start
+sudo private-bower
+http://localhost:5678/
+http://localhost:5678/packages
+
+#npm adduser --registry http://localhost:5678/
+#admin/micro/alban.andrieu@free.f
+
+bower register [packageName] [gitRepo]
+bower register sample-component ssh://git@scm-git-eur.misys.global.ad:7999/risk/bower-fr-sample-component.git
+
+#Install bower-registry
+#Install redis
+#http://redis.io/topics/quickstart
+sudo apt-get install redis-server
+#check it is working
+redis-cli ping
+npm install -g bower-registry
+#start
+bower-registry -d redis
+bower-registry -p 8089 -d redis -o '{"port": 6379, "host": "127.0.0.1"}' -P
+curl http://localhost:8089/packages
+#find package jquery
+curl http://localhost:8089/packages/jquery
+http://localhost:8089/
+#install bower-registry-client
+npm install --save bower-registry-client
+
 #bower cache
 bower cache list
 bower cache clean
@@ -189,6 +220,15 @@ grunt build
 grunt karma:unit
 grunt documentation
 grunt protractor:e2e
+
+#bower register test https://github/scm/risk/ui-components.git
+#for bower registry
+curl -X DELETE "http://localhost:5678/packages/test?access_token=password"
+#for bower private
+curl -X POST http://localhost:5678/removePackage -d '{"name":"test"}' -H "Content-Type: application/json" --header "Auth-Key:123456"
+
+ll ~/.m2/bowerRepository.json
+ll ~/.m2/bowerRepositoryPublic.json
 
 #Upgrade
 #https://github.com/karma-runner/karma-jasmine
@@ -206,3 +246,4 @@ cd nodejs/v0.12.4
 #get LTS stable version
 npm view npm dist-tags
 npm install -g npm@2.13.0
+
