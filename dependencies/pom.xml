@@ -1424,6 +1424,7 @@
                 <vaadin.invient.charts.version>0.8.6</vaadin.invient.charts.version>
                 <vaadin.lazyquerycontainer.version>1.2.9</vaadin.lazyquerycontainer.version>
                 <vaadin.serverpush.version>1.0.6</vaadin.serverpush.version>
+                <appsensor.core.version>2.1.0</appsensor.core.version>
 
                 <!-- check compatibility http://selenium.googlecode.com/git/java/CHANGELOG -->
                 <!--<selenium.version>2.37.1</selenium.version>-->
@@ -1675,7 +1676,7 @@
                 <maven.gatling.plugin.version>${gatling.version}</maven.gatling.plugin.version>
                 <maven.jmeter.plugin.version>1.10.1</maven.jmeter.plugin.version>
                 <maven.jmeter.graph.plugin.version>0.1.0</maven.jmeter.graph.plugin.version>
-                <maven.jmeter.analysis.plugin.version>1.0.6</maven.jmeter.analysis.plugin.version>
+                <maven.jmeter.analysis.plugin.version>1.0.5</maven.jmeter.analysis.plugin.version>
                 <maven.scala.plugin.version>3.2.2</maven.scala.plugin.version>
                 <maven.hotdeploy.plugin.version>0.3.3</maven.hotdeploy.plugin.version>
                 <maven.cli.plugin.version>1.0.11</maven.cli.plugin.version>
@@ -5109,6 +5110,11 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <type>pom</type>
                         </dependency>
                         -->
+						<dependency>
+							<groupId>org.owasp.appsensor</groupId>
+							<artifactId>appsensor-core</artifactId>
+							<version>${appsensor.core.version}</version>
+						</dependency>
 
                         <dependency>
                             <groupId>org.seleniumhq.selenium</groupId>

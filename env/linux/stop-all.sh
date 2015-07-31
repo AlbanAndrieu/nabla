@@ -23,6 +23,7 @@ sudo service jboss stop
 sudo service zabbix-agent stop
 sudo service supervisor stop
 sudo service mon stop
+sudo service mongod stop
 
 #sudo service lightdm stop
 
@@ -38,8 +39,14 @@ sudo service conky stop
 #https://linuxacademy.com/blog/linux/disabling-unused-daemons-to-speed-up-your-boot-sequence/
 sudo service bluetooth stop
 sudo service fancontrol stop
+sudo service lm-sensors stop
 sudo service cups stop
 sudo service cups-browsed stop
+sudo service zabbix-agent stop
+sudo service webmin stop
+sudo service smb stop
+sudo service postgresql stop
+sudo service autofs stop
 
 #tiger clamav are consuming too many resources
 #ps -edf | grep tiger

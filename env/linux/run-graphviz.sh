@@ -12,3 +12,8 @@ sudo wget http://www.graphviz.org/pub/graphviz/stable/ubuntu/ub13.10/x86_64/libg
 sudo gdebi libgraphviz4_2.38.0-1~saucy_amd64.deb
 #sudo gdebi graphviz_2.38.0-1~saucy_i386.deb
 sudo gdebi graphviz_2.38.0-1~saucy_amd64.deb
+
+#dot -Tx
+dot -Tcmapx
+sudo dot -v
+sudo dot -c

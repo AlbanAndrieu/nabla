@@ -161,6 +161,15 @@ npm test : start the Karma unit test runner
 npm run protractor : run the Protractor end 2 end tests
 npm run update-webdriver : install the drivers needed by Protractor
 
+
+#Upgrade node
+#http://stackoverflow.com/questions/8191459/how-to-update-node-js
+#as root
+npm cache clean -f
+npm install -g n
+n stable
+node -v
+
 #update clean up npm repo
 sudo chown -R albandri:albandri  ~/.npm
 npm cache clear
@@ -169,9 +178,7 @@ npm update
 
 #show which dependencies is using connect
 npm ls connect
-
 #Upgrade npm
-#as root
 npm install -g npm
 
 #Install private bower
@@ -247,3 +254,8 @@ cd nodejs/v0.12.4
 npm view npm dist-tags
 npm install -g npm@2.13.0
 
+#install compass
+#sudo apt-get install ruby-full rubygems1.8
+sudo apt-get install rubygems
+sudo gem install sass
+sudo gem install compass
