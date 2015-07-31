@@ -26,6 +26,7 @@ sudo service gearman-job-server stop
 sudo service ansible-tower stop
 sudo service redis-server stop
 sudo service private-bower stop
+sudo service mongod stop
 
 sudo update-rc.d -f webmin remove
 sudo update-rc.d -f usermin remove
@@ -54,3 +55,4 @@ sudo update-rc.d -f gearman-job-server remove
 sudo update-rc.d -f ansible-tower remove
 sudo update-rc.d -f redis-server remove
 sudo update-rc.d -f private-bower remove
+sudo update-rc.d -f mongod remove
