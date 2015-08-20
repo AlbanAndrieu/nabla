@@ -892,7 +892,7 @@
 
                 <product.id>nabla</product.id>
                 <product.name>nabla</product.name>
-                <product.title>${product.name} Application : ${env.BUILD_TAGS}</product.title>
+                <product.title>${product.name} Application : ${env.BUILD_TAG}</product.title>
                 <product.major.version>${project.version}</product.major.version>
 
                 <product.sourceDirectory>${home.dir}/${product.name}</product.sourceDirectory>
@@ -3325,8 +3325,8 @@
                                                           <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
                                                           <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
                                                           <Implementation-Build>${maven.build.timestamp}</Implementation-Build>
-                                                          <Implementation-SCM-Revision-Number>${build.scmRevision.id}</Implementation-SCM-Revision-Number>
-                                                          <Implementation-SCM-Revision-Date>${build.scmRevision.date}</Implementation-SCM-Revision-Date>
+                                                          <Implementation-SCM-Revision-Number>${env.BUILD_NUMBER}</Implementation-SCM-Revision-Number>
+                                                          <Implementation-SCM-Revision-Date>${maven.build.timestamp}</Implementation-SCM-Revision-Date>
                                                           <Implementation-URL>${project.url}</Implementation-URL>
                                                           <Implementation-Date>${maven.build.timestamp}</Implementation-Date>
                                                           <Implementation-Timestamp>${build.timestamp.millis}</Implementation-Timestamp>
@@ -3337,7 +3337,7 @@
                                                           <Built-By>${env.USER}</Built-By>
                                                           <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
                                                           <Build-Date>${maven.build.timestamp}</Build-Date>
-                                                          <Build-Revision>${build.scmRevision.id}-${buildNumberSeq}</Build-Revision>
+                                                          <Build-Revision>${env.BUILD_NUMBER}</Build-Revision>
                                                           <Maven-Version>${build.maven.version}</Maven-Version>
                                                           <Java-Version>${java.version}</Java-Version>
                                                           <Java-Vendor>${java.vendor}</Java-Vendor>
