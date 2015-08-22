@@ -3329,7 +3329,7 @@
                                                           <Implementation-SCM-Revision-Date>${maven.build.timestamp}</Implementation-SCM-Revision-Date>
                                                           <Implementation-URL>${project.url}</Implementation-URL>
                                                           <Implementation-Date>${maven.build.timestamp}</Implementation-Date>
-                                                          <Implementation-Timestamp>${build.timestamp.millis}</Implementation-Timestamp>
+                                                          <Implementation-Timestamp>${maven.build.timestamp}</Implementation-Timestamp>
                                                           <Implementation-DatePattern>${maven.build.timestamp.format}</Implementation-DatePattern>
                                                           <Implementation-Full-Version>${project.version}-${product.version}</Implementation-Full-Version>
                                                           <Built-Host>${env.HOSTNAME}</Built-Host>
@@ -3397,11 +3397,11 @@
                                               <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
                                               <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
                                               <Implementation-Build>${maven.build.timestamp}</Implementation-Build>
-                                              <Implementation-SCM-Revision-Number>${build.scmRevision.id}</Implementation-SCM-Revision-Number>
-                                              <Implementation-SCM-Revision-Date>${build.scmRevision.date}</Implementation-SCM-Revision-Date>
+                                              <Implementation-SCM-Revision-Number>${env.BUILD_NUMBER}</Implementation-SCM-Revision-Number>
+                                              <Implementation-SCM-Revision-Date>${maven.build.timestamp}</Implementation-SCM-Revision-Date>
                                               <Implementation-URL>${project.url}</Implementation-URL>
                                               <Implementation-Date>${maven.build.timestamp}</Implementation-Date>
-                                              <Implementation-Timestamp>${build.timestamp.millis}</Implementation-Timestamp>
+                                              <Implementation-Timestamp>${maven.build.timestamp}</Implementation-Timestamp>
                                               <Implementation-DatePattern>${maven.build.timestamp.format}</Implementation-DatePattern>
                                               <Implementation-Full-Version>${project.version}-${product.version}</Implementation-Full-Version>
                                               <Built-Host>${env.HOSTNAME}</Built-Host>
@@ -3409,7 +3409,7 @@
                                               <Built-By>${env.USER}</Built-By>
                                               <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
                                               <Build-Date>${maven.build.timestamp}</Build-Date>
-                                              <Build-Revision>${build.scmRevision.id}-${buildNumberSeq}</Build-Revision>
+                                              <Build-Revision>${env.BUILD_NUMBER}</Build-Revision>
                                               <Maven-Version>${build.maven.version}</Maven-Version>
                                               <Java-Version>${java.version}</Java-Version>
                                               <Java-Vendor>${java.vendor}</Java-Vendor>
@@ -3482,11 +3482,11 @@
                                                           <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
                                                           <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
                                                           <Implementation-Build>${maven.build.timestamp}</Implementation-Build>
-                                                          <Implementation-SCM-Revision-Number>${build.scmRevision.id}</Implementation-SCM-Revision-Number>
-                                                          <Implementation-SCM-Revision-Date>${build.scmRevision.date}</Implementation-SCM-Revision-Date>
+                                                          <Implementation-SCM-Revision-Number>${env.BUILD_NUMBER}</Implementation-SCM-Revision-Number>
+                                                          <Implementation-SCM-Revision-Date>${maven.build.timestamp}</Implementation-SCM-Revision-Date>
                                                           <Implementation-URL>${project.url}</Implementation-URL>
                                                           <Implementation-Date>${maven.build.timestamp}</Implementation-Date>
-                                                          <Implementation-Timestamp>${build.timestamp.millis}</Implementation-Timestamp>
+                                                          <Implementation-Timestamp>${maven.build.timestamp}</Implementation-Timestamp>
                                                           <Implementation-DatePattern>${maven.build.timestamp.format}</Implementation-DatePattern>
                                                           <Implementation-Full-Version>${project.version}-${product.version}</Implementation-Full-Version>
                                                           <Built-Host>${env.HOSTNAME}</Built-Host>
@@ -3494,7 +3494,7 @@
                                                           <Built-By>${env.USER}</Built-By>
                                                           <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
                                                           <Build-Date>${maven.build.timestamp}</Build-Date>
-                                                          <Build-Revision>${build.scmRevision.id}-${buildNumberSeq}</Build-Revision>
+                                                          <Build-Revision>${env.BUILD_NUMBER}</Build-Revision>
                                                           <Maven-Version>${build.maven.version}</Maven-Version>
                                                           <Java-Version>${java.version}</Java-Version>
                                                           <Java-Vendor>${java.vendor}</Java-Vendor>
@@ -3509,7 +3509,6 @@
                                                         -->
                                                         <!-- Build-Date>${mvn.timestamp.yyyy-MM-dd-HH:mm:ss}</Build-Date -->
                                                         <!--  include repository revision from buildnumber plugin -->
-                                                        <!--<Build-Revision>${build.scmRevision.id}</Build-Revision>-->
                                                 </archive>
                                         </configuration>
                                 </plugin>
@@ -3610,11 +3609,11 @@
                                               <Implementation-Vendor-Id>${project.groupId}</Implementation-Vendor-Id>
                                               <Implementation-Vendor>${project.organization.name}</Implementation-Vendor>
                                               <Implementation-Build>${maven.build.timestamp}</Implementation-Build>
-                                              <Implementation-SCM-Revision-Number>${build.scmRevision.id}</Implementation-SCM-Revision-Number>
-                                              <Implementation-SCM-Revision-Date>${build.scmRevision.date}</Implementation-SCM-Revision-Date>
+                                              <Implementation-SCM-Revision-Number>${env.BUILD_NUMBER}</Implementation-SCM-Revision-Number>
+                                              <Implementation-SCM-Revision-Date>${maven.build.timestamp}</Implementation-SCM-Revision-Date>
                                               <Implementation-URL>${project.url}</Implementation-URL>
                                               <Implementation-Date>${maven.build.timestamp}</Implementation-Date>
-                                              <Implementation-Timestamp>${build.timestamp.millis}</Implementation-Timestamp>
+                                              <Implementation-Timestamp>${maven.build.timestamp}</Implementation-Timestamp>
                                               <Implementation-DatePattern>${maven.build.timestamp.format}</Implementation-DatePattern>
                                               <Implementation-Full-Version>${project.version}-${product.version}</Implementation-Full-Version>
                                               <Built-Host>${env.HOSTNAME}</Built-Host>
@@ -3622,7 +3621,7 @@
                                               <Built-By>${env.USER}</Built-By>
                                               <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
                                               <Build-Date>${maven.build.timestamp}</Build-Date>
-                                              <Build-Revision>${build.scmRevision.id}-${buildNumberSeq}</Build-Revision>
+                                              <Build-Revision>${env.BUILD_NUMBER}</Build-Revision>
                                               <Maven-Version>${build.maven.version}</Maven-Version>
                                               <Java-Version>${java.version}</Java-Version>
                                               <Java-Vendor>${java.vendor}</Java-Vendor>
