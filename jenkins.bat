@@ -7,6 +7,7 @@ REM call mvn clean -Dnabla -Psample,arq-jbossas-managed -amd andromda-database-c
 call mvn versions:display-dependency-updates -Psample,arq-jbossas-managed > dependency-updates.log 2>&1
 call mvn versions:display-plugin-updates -Psample,arq-jbossas-managed > plugin-updates.log 2>&1
 call mvn dependency:tree -Psample,arq-jbossas-managed > dependency-tree.log 2>&1
+call mvn dependency:resolve-plugins -Psample,arq-jbossas-managed > dependency-tree.log 2>&1
 call mvn dependency:build-classpath -Psample,arq-jbossas-managed > dependency-classpath.log 2>&1
 call mvn dependency:copy-dependencies -Psample,arq-jbossas-managed > dependency-dependencies.log 2>&1
 call mvn dependency:analyze -Psample,arq-jbossas-managed > analyze.log 2>&1

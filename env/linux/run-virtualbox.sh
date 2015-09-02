@@ -66,3 +66,8 @@ VBoxManage startvm "vagrant-windows-2012" --type headless
 yum install binutils qt gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel dkms
 yum install VirtualBox-4.3
 
+#fix issue with Extension Pack
+cd ~/.VirtualBox
+sudo VBoxManage extpack uninstall 'Oracle VM VirtualBox Extension Pack'
+sudo VBoxManage extpack cleanup
+sudo VBoxManage extpack install  Oracle_VM_VirtualBox_Extension_Pack-4.3.30.vbox-extpack
