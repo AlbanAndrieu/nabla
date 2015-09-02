@@ -53,4 +53,9 @@ mysql -u root --password=Motdepass12 -h 10.21.22.69 mysql
 sudo netstat -ntlup | grep mysql
 #sudo nano /etc/mysql/conf.d/mysqld.cnf
 #Try to add bind-address = 0.0.0.0 to your [mysqld] section of your my.cnf and restart mysqld.
-sudo nano /etc/mysql/my.cf
+sudo nano /etc/mysql/my.cnf
+
+#sonar timeout fixes
+sudo nano /etc/mysql/my.cnf
+interactive_timeout = 28800
+wait_timeout = 28800

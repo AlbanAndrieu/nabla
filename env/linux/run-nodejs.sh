@@ -259,3 +259,6 @@ npm install -g npm@2.13.0
 sudo apt-get install rubygems
 sudo gem install sass
 sudo gem install compass
+
+sudo apt-get install coffeescript
+coffee --version

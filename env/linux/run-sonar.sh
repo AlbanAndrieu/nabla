@@ -128,11 +128,26 @@ mvn -Dsonargraph.prepareForSonar=true -Dsonargraph.license=<license-path> (or -D
 #DEBUG add parameters
 -Dsonar.showProfiling=true -Dsonar.showSql=true -Dsonar.showSqlResults=true -Dsonar.verbose=true
 
+#incremental mode
+-Dsonar.analysis.mode=analysis
+-Dsonar.analysis.mode=incremental
+-Dsonar.scm.enabled=false -Dsonar.scm-stats.enabled=false -Dissueassignplugin.enabeld=false
+#-Dsonar.preview.excludePlugins=buildstability,devcockpit,pdfreport,report,scmactivity,views,jira,buildbreaker,scmstats
+
 #c++
+sudo apt-get install cppcheck
+#http://sourceforge.net/projects/cppncss/files/
+cppncss
+
 #https://github.com/wenns/sonar-cxx
 cd /workspace/sonar/extensions/plugins/
-sudo wget https://github.com/wenns/sonar-cxx/releases/download/cxx-0.9.1/sonar-cxx-plugin-0.9.1.jar
-sudo wget https://github.com/wenns/sonar-cxx/releases/download/cxx-0.9.1/sslr-cxx-toolkit-0.9.1.jar
+#sudo wget https://github.com/wenns/sonar-cxx/releases/download/cxx-0.9.1/sonar-cxx-plugin-0.9.1.jar
+#sudo wget https://github.com/wenns/sonar-cxx/releases/download/cxx-0.9.1/sslr-cxx-toolkit-0.9.1.jar
+
+#https://libraries.io/github/metova/maven-cxx-plugin
+#https://github.com/franckbonin/cxx-maven-plugin
+#https://github.com/wenns/sonar-cxx/wiki/Running-the-analysis
+mvn sonar:sonar -Psonar-cxx
 
 #security
 #http://www.excentia.es/plugins/owasp/instalacion_en.html
