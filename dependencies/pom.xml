@@ -1108,8 +1108,8 @@
                 <junitperf.version>1.9.1</junitperf.version>
                 <!-- Test Coverage/Sonar - Clover - Do not change this version without checking if everything is working well -->
                 <clover.version>3.3.0</clover.version>
-                <dbunit.version>2.5.1</dbunit.version>
-                <testng.version>6.9.6</testng.version>
+                <dbunit.version>2.4.9</dbunit.version>
+                <testng.version>6.9.8</testng.version>
                 <cucumber.version>1.2.4</cucumber.version>
                 <htmlunit.version>1.11</htmlunit.version>
                 <org.beanshell.bsh.version>2.0b5</org.beanshell.bsh.version>
