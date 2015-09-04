@@ -13,7 +13,7 @@ then
   case "$1" in
     purify)
       TOOLS_OPTION_PURIFY="purify"
-      
+
       export PERLGEN_OPTION="-p"
     ;;
 
@@ -31,13 +31,13 @@ echo "ARCH : ${ARCH} must be sun4sol sun4 rs6000 hprisc solaris linux cygwin win
 if [ -z "$PROJECT_USER" ]
 then
   echo "ERROR: Set PROJECT_USER environment variable!"
-  export PROJECT_USER=root
+  export PROJECT_USER=albandri
 fi
 
 if [ -z "$PROJECT_VERSION" ]
 then
   echo "ERROR: Set PROJECT_VERSION environment variable!"
-  export PROJECT_VERSION=10
+  export PROJECT_VERSION=30
 fi
 
 if [ -z "$DRIVE_PATH" ]
@@ -55,7 +55,7 @@ fi
 if [ -z "$WORKSPACE_ENV" ]
 then
   echo "ERROR: Set WORKSPACE_ENV environment variable!"
-  export WORKSPACE_ENV=${PROJECT_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env
+  export WORKSPACE_ENV=${PROJECT_HOME}/${PROJECT_USER}${PROJECT_VERSION}/nabla/env
 fi
 
 if [ -z "$PROJECT_EXTRACTION" ]
@@ -83,6 +83,9 @@ if [ -d "${WORKSPACE_ENV}/${ARCH}/bin" ] ; then
 fi
 if [ -d "${DRIVE_PATH}/cygwin/bin" ] ; then
     PATH="${DRIVE_PATH}/cygwin/bin:$PATH"
+fi
+if [ -d "${HOME}/.linuxbrew/bin" ] ; then
+    PATH="${HOME}/.linuxbrew/bin:$PATH"
 fi
 
 export PROJECT_MAJOR_VERSION=${PROJECT_VERSION}
@@ -147,6 +150,7 @@ fi
 
 export QTDIR=${DRIVE_PATH}/usr/lib/qt3
 
+export ZAPROXY_HOME=${DRIVE_PATH}/workspace/divers/zaproxy-read-only/build/zap
 export HUDSON_HOME=${DRIVE_PATH}/workspace/hudson
 export JENKINS_HOME=${DRIVE_PATH}/jenkins
 export TOMCAT_HOME=${DRIVE_PATH}/var/lib/tomcat7
@@ -205,17 +209,17 @@ then
 
   CIAO_ROOT=${TAO_ROOT}/CIAO
   export CIAO_ROOT
-  
+
   echo ${CIAO_ROOT}
-  
+
   DANCE_ROOT=${CIAO_ROOT}/DANCE
   export DANCE_ROOT
-  
+
   echo ${DANCE_ROOT}
 
   DDS_ROOT=${CIO_ROOT}/connectors/dds4ccm
   export DDS_ROOT
-  
+
   echo ${DDS_ROOT}
 fi
 
@@ -232,7 +236,7 @@ then
   export BOOST_ROOT=${PROJECT_THIRDPARTY_PATH}/boost/${BOOST_VERSION}
 else
   export BOOST_ROOT=/usr/include
-fi 
+fi
 export BOOST=$BOOST_ROOT
 
 # CMAKE 2.6.4
@@ -244,19 +248,19 @@ export PYTHON_DIR=/usr/lib/python
 
 # ALIAS to python
 alias python='/usr/bin/python'
-  
+
 # SCONS 2.2.0
 #export SCONS_DIR=${PYTHON_DIR}/Lib/site-packages/scons-2.2.0
 export SCONS_DIR=/usr/lib/scons/SCons
-  
+
 # ALIAS to scons-local
 alias scons='/usr/bin/scons'
-  
+
 export SCONS_PATH=/usr/lib/scons/SCons/Script
 if [ "$SCONS_PATH" = "" ]
 then
   echo "WARNING: Set SCONS_PATH environment variable not defined!"
-else    
+else
   export PATH=${SCONS_PATH}:${PATH}
 fi
 
@@ -285,7 +289,7 @@ then
   #export JAVA_HOME="/ProgramFilesx86/Java/jdk1.5.0_22"
 fi
 export JAVA_HOME=/usr/lib/jvm/java-7-oracle/
-  
+
 export JRE_HOME=${JAVA_HOME}/jre
 #export JDK_HOME JRE_HOME JAVA_HOME
 #export JAVA=$JAVA_HOME/bin/java
@@ -295,26 +299,98 @@ export PATH
 
 export JAVA_OPTS="-Xms256m -Xmx1548m"
 
+if [ -z "$JAVA_OPTS" ]
+then
+
+  echo "Enable : -Xms256m -Xmx1548m"
+
+
+  JAVA_OPTS="${JAVA_OPTS} -Xms256m -Xmx1548m"
+  #JAVA_OPTS="${JAVA_OPTS} -XX:PermSize=430m -XX:MaxPermSize=430m -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000"
+  JAVA_OPTS="${JAVA_OPTS} -Djava.awt.headless=true "
+
+  echo "DEFAULT JAVA_OPTS=${JAVA_OPTS}"
+fi
+
+if [ 1 -eq 1 ] ; then
+  export ECLIPSE_DEBUG_PORT="2924"
+  if [ -n "$ECLIPSE_DEBUG_PORT" ]
+  then
+    echo "Enable : ${ECLIPSE_DEBUG_PORT}"
+
+    JAVA_OPTS="${JAVA_OPTS} -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=2924,server=y,suspend=n"
+
+    echo "DEBUG JAVA_OPTS=${JAVA_OPTS}"
+  fi
+
+  export JMX_DEFAULT_DEBUG_PORT="9193"
+  if [ -n "$JMX_DEFAULT_DEBUG_PORT" ]
+  then
+    #On your remote server (the one you want to get statistics
+    #Following line is needed for tomcat to be remotely seen by jvisualvm
+    #jstatd -J-Djava.security.policy=all.policy -p 2020
+    #Add credentials
+    #gedit ~/.java.policy
+    #grant codebase "file:${java.home}/../lib/tools.jar" {
+    #  permission java.security.AllPermission;
+    #};
+    #Disable firewall if any or do a ssh tunneling
+    #ssh -D 9696 albandri@albandri -v
+
+    #these lines activate jmx for visualvm to see threads ; chosen  port is to be entered in ‘add jmx connection’ params
+    # for instance : albandri:9193 if $JMX_PORT=9193
+
+    echo "Enable JMX : ${JMX_DEFAULT_DEBUG_PORT}"
+
+    JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote"
+    #JAVA_OPTS="${JAVA_OPTS} -Djava.rmi.server.hostname=albandri"
+    JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote.port=${JMX_DEFAULT_DEBUG_PORT}"
+    JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote.ssl=false"
+    JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote.authenticate=false"
+
+    echo "JMX JAVA_OPTS=${JAVA_OPTS}"
+
+    #JSTATD POLICY for JMX
+    POLICY=${HOME}/.jstatd.all.policy
+    [ -r ${POLICY} ] || cat >${POLICY} <<'POLICY'
+grant codebase "file:${java.home}/../lib/tools.jar" {
+permission java.security.AllPermission;
+};
+POLICY
+
+    echo "jstatd -J-Djava.security.policy=${POLICY}"
+
+  fi
+
+  # ---- DripStat arguments
+  #DS_JAR=/usr/share/tomcat7/dripstat/dripstat.jar;
+  #export DS_JAR
+  #JAVA_OPTS="$JAVA_OPTS -javaagent:$DS_JAR";
+  #export JAVA_OPTS
+fi
+
 # MAVEN
-export M2_HOME=/usr/share/maven
+export M2_HOME=/usr/local/apache-maven-3.2.1
 export M2=${M2_HOME}/bin
 export PATH=${M2}:$PATH
 #export MAVEN_OPTS="-Xms512m -Xmx1024m"
-#export MAVEN_OPTS="-Xmx512M -XX:MaxPermSize=1024M" 
+#export MAVEN_OPTS="-Xmx512M -XX:MaxPermSize=1024M"
 #export MAVEN_OPTS="-Xms256m -Xmx512m -XX:PermSize=64M -XX:MaxPermSize=160M"
-#Jenkins We have 48GB RAM and 44 GB swap and its 24 core server. 
+#Jenkins We have 48GB RAM and 44 GB swap and its 24 core server.
 #-Xms24g -Xmx24g -Xmn6g -XX:MaxPermSize=512M -XX:+UseParallelOldGC -XX:ParallelGCThreads=16
 #Add MaxPermSize for andromda
-MAVEN_OPTS="-Xms256m -Xmx1024m -XX:PermSize=80M -XX:MaxPermSize=256M -XX:+UseConcMarkSweepGC"
+MAVEN_OPTS="-Xms256m -Xmx1024m -XX:PermSize=80M -XX:MaxPermSize=256M -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
 #for java 8 PermSize and MaxPermSize can be removed
 #MAVEN_OPTS="-Xms256m -Xmx512m"
+#https://developer.atlassian.com/docs/advanced-topics/working-with-maven/colour-coding-your-maven-output
+export MAVEN_COLOR=true
 
 # -Djava.awt.headless=true
 if [ 1 -eq 1 ] ; then
   #with gc info dump in file gc.log -XX:+PrintGCDetails -Xloggc:gc.log
   MAVEN_OPTS="${MAVEN_OPTS} -XX:+PrintGCDetails -Xloggc:gc.log"
 fi
-export MAVEN_OPTS  
+export MAVEN_OPTS
 export M2_REPO=${DRIVE_PATH}/repo
 echo "Maven repo are in : ${M2_REPO}"
 
@@ -339,11 +415,20 @@ export CATALINA_BASE=${DRIVE_PATH}/var/lib/tomcat7
 CATALINA_OPTS=""
 #CATALINA_OPTS="-Dappserver.home=$CATALINA_HOME -Dappserver.base=$CATALINA_HOME -Dapplication.property.dir=${CATALINA_HOME}/project"
 if [ 1 -eq 1 ] ; then
-  export CATALINA_OPTS="-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=2924,server=y,suspend=n -Djava.compiler=NONE $CATALINA_OPTS"
+  CATALINA_OPTS="-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=2924,server=y,suspend=n -Djava.compiler=NONE $CATALINA_OPTS"
 fi
 
+if [ 1 -eq 1 ] ; then
+  # ---- New Relic switch automatically added to start command on 2015 Jan 14, 14:16:32
+  NR_JAR=/usr/share/tomcat7/newrelic/newrelic.jar;
+  export NR_JAR
+  CATALINA_OPTS="$CATALINA_OPTS -javaagent:$NR_JAR";
+fi
+
+export CATALINA_OPTS
+
 # ECLIPSE 3.7
-export ECLIPSE_HOME=/workspace/eclipse-j2ee
+export ECLIPSE_HOME=${DRIVE_PATH}/usr/local/eclipse/eclipse-4
 if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
 then
   export PATH=${ECLIPSE_HOME}:$PATH
@@ -351,6 +436,12 @@ then
 else
   export ECLIPSE_HOME=${DRIVE_PATH}/eclipse
 fi
+
+#ZAPROXY
+export ZAPROXY_HOME=${DRIVE_PATH}/workspace/divers/zaproxy-read-only/build/zap
+
+#JMETER
+export JMETER_HOME=${DRIVE_PATH}/usr/share/jmeter
 
 if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
 then
@@ -374,8 +465,10 @@ export EC2_URL=https://ec2.us-west-2.amazonaws.com
 export EC2_PRIVATE_KEY=$HOME/.ec2/pk-FMQ27HNLF2PVMPVL7MPWHEY5GWDKDOT2.pem
 export EC2_CERT=$HOME/.ec2/cert-FMQ27HNLF2PVMPVL7MPWHEY5GWDKDOT2.pem
 
+export WPT_API_KEY="A.01ea5a02081b6d10415d7b0e7c844e73"
+
 #export NODE_PATH=$NODE_PATH:/usr/local/lib/node_modules
-export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/usr/local/lib/node_modules
+#export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/usr/local/lib/node_modules
 
 # GRAPHVIZ
 if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
@@ -572,7 +665,7 @@ alias svnst="svn st | grep -v ^?"
 
 OLD_PATH=`pwd`
 NEW_PATH=`echo ${OLD_PATH} | sed -e "s/\/${PROJECT_USER}[^\/]*/\/${PROJECT_USER}${PROJECT_VERSION}/"`
-        
+
 if [ "${OLD_PATH}" != "${NEW_PATH}" ]
 then
   if [ -d "${NEW_PATH}" ]
@@ -603,15 +696,15 @@ if [ -f $COWSAY ]
 then
   /usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`/usr/games/fortune -s`"
 else
-  echo "Cowsay is not installed"  
+  echo "Cowsay is not installed"
 fi
 
-#export CONKY_HOME="${PROJECT_HOME}/root10/.conky"
+#export CONKY_HOME="${PROJECT_HOME}/albandri30/.conky"
 #if [ -d $CONKY_HOME ]
 #then
 #  ~/.conky/conky-startup.sh &
 #else
-#  echo "Conky is not installed"  
+#  echo "Conky is not installed"
 #fi
 
 echo "PATH is ${PATH}"
