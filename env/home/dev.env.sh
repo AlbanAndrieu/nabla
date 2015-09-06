@@ -96,7 +96,7 @@ export CLIENT_SERVER_TYPE=jboss
 export PROJECT_DEV=${PROJECT_HOME}/${PROJECT_USER}${PROJECT_MAJOR_VERSION}
 echo PROJECT_USER: ${PROJECT_USER} PROJECT_DEV : ${PROJECT_DEV}
 export PROJECT_SRC=${PROJECT_DEV}/${PROJECT_EXTRACTION}
-export PROJECT_TARGET_PATH=${DRIVE_PATH}/${PROJECT_BUILD_TYPE}
+export PROJECT_TARGET_PATH=${WORKSPACE}/${PROJECT_BUILD_TYPE}
 export PROJECT_USER_PROFILE="${PROJECT_DEV}/env/config/profiles/${PROJECT_USER}${PROJECT_VERSION}.${ARCH}.properties"
 
 export PROJECT_THIRDPARTY_PATH=${DRIVE_PATH}/thirdparty
@@ -288,7 +288,7 @@ then
   ln -s ${DRIVE_PATH}/Program\ Files\ \(x86\) /ProgramFilesx86
   #export JAVA_HOME="/ProgramFilesx86/Java/jdk1.5.0_22"
 fi
-export JAVA_HOME=/usr/lib/jvm/java-7-oracle/
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
 
 export JRE_HOME=${JAVA_HOME}/jre
 #export JDK_HOME JRE_HOME JAVA_HOME
@@ -370,7 +370,7 @@ POLICY
 fi
 
 # MAVEN
-export M2_HOME=/usr/local/apache-maven-3.2.1
+export M2_HOME=/usr/local/apache-maven-3.3.3
 export M2=${M2_HOME}/bin
 export PATH=${M2}:$PATH
 #export MAVEN_OPTS="-Xms512m -Xmx1024m"
@@ -379,9 +379,8 @@ export PATH=${M2}:$PATH
 #Jenkins We have 48GB RAM and 44 GB swap and its 24 core server.
 #-Xms24g -Xmx24g -Xmn6g -XX:MaxPermSize=512M -XX:+UseParallelOldGC -XX:ParallelGCThreads=16
 #Add MaxPermSize for andromda
-MAVEN_OPTS="-Xms256m -Xmx1024m -XX:PermSize=80M -XX:MaxPermSize=256M -XX:+UseConcMarkSweepGC -Dcom.sun.management.jmxremote"
 #for java 8 PermSize and MaxPermSize can be removed
-#MAVEN_OPTS="-Xms256m -Xmx512m"
+MAVEN_OPTS="-Xms256m -Xmx512m -Dcom.sun.management.jmxremote"
 #https://developer.atlassian.com/docs/advanced-topics/working-with-maven/colour-coding-your-maven-output
 export MAVEN_COLOR=true
 

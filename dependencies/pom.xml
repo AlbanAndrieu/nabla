@@ -1670,7 +1670,7 @@
                 <maven.clirr.plugin.version>2.6.1</maven.clirr.plugin.version>
                 <maven.patch.plugin.version>1.2</maven.patch.plugin.version>
                 <maven.one.plugin.version>1.3</maven.one.plugin.version>
-                <maven.findbugs.plugin.version>3.0.1</maven.findbugs.plugin.version>
+                <maven.findbugs.plugin.version>3.0.2</maven.findbugs.plugin.version>
                 <maven.js.plugin.version>1.3.1</maven.js.plugin.version>
                 <maven.jstools.plugin.version>0.7</maven.jstools.plugin.version>
                 <maven.javancss.plugin.version>2.1</maven.javancss.plugin.version>
@@ -1683,7 +1683,7 @@
                 <maven.assembly.plugin.version>2.5.5</maven.assembly.plugin.version>
                 <maven.changelog.plugin.version>2.3</maven.changelog.plugin.version>
                 <maven.scm.plugin.version>1.9.4</maven.scm.plugin.version>
-                <maven.checkstyle.plugin.version>2.15</maven.checkstyle.plugin.version>
+                <maven.checkstyle.plugin.version>2.16</maven.checkstyle.plugin.version>
                 <maven.clean.plugin.version>2.6.1</maven.clean.plugin.version>
                 <maven.compiler.plugin.version>3.1</maven.compiler.plugin.version>
                 <!--<maven.compiler.plugin.version>3.2</maven.compiler.plugin.version> issue with jpamodelgen-->
@@ -1713,7 +1713,7 @@
                 <maven.minify.plugin.version>1.3.5.1</maven.minify.plugin.version>
                 <maven.javadoc.plugin.version>2.10.3</maven.javadoc.plugin.version>
                 <maven.jxr.plugin.version>2.5</maven.jxr.plugin.version>
-                <maven.pmd.plugin.version>3.4</maven.pmd.plugin.version>
+                <maven.pmd.plugin.version>3.5</maven.pmd.plugin.version>
                 <maven.project.info.reports.plugin.version>2.8</maven.project.info.reports.plugin.version>
                 <!--<maven.resources.plugin.version>2.7</maven.resources.plugin.version> Mark invalid -->
                 <maven.resources.plugin.version>2.6</maven.resources.plugin.version>
@@ -1751,7 +1751,7 @@
                 <maven.ant.plugin.version>2.4</maven.ant.plugin.version>
                 <maven.jalopy.plugin.version>1.0-alpha-1</maven.jalopy.plugin.version>
                 <maven.axistools.plugin.version>1.4</maven.axistools.plugin.version>
-                <maven.enforcer.plugin.version>1.4</maven.enforcer.plugin.version>
+                <maven.enforcer.plugin.version>1.4.1</maven.enforcer.plugin.version>
                 <maven.enforcer.no.package.cycles.plugin.version>1.0.5</maven.enforcer.no.package.cycles.plugin.version>
                 <maven.bees.plugin.version>1.3.2</maven.bees.plugin.version>
                 <maven.doap.plugin.version>1.2</maven.doap.plugin.version>
@@ -1766,7 +1766,7 @@
                 <maven.jaxb2.plugin.version>0.11.0</maven.jaxb2.plugin.version>
                 <maven.aspectj.plugin.version>1.7</maven.aspectj.plugin.version>
                 <maven.sql.plugin.version>1.5</maven.sql.plugin.version>
-                <maven.org.liquibase.plugin.version>3.4.0</maven.org.liquibase.plugin.version>
+                <maven.org.liquibase.plugin.version>3.4.1</maven.org.liquibase.plugin.version>
                 <maven.torque.plugin.version>3.3-RC2</maven.torque.plugin.version>
                 <maven.exec.plugin.version>1.4.0</maven.exec.plugin.version>
                 <maven.gwt.plugin.version>${gwt.version}</maven.gwt.plugin.version>
@@ -1787,7 +1787,7 @@
                 <maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
                 <maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
                 <maven.codenarc.plugin.version>0.22-1</maven.codenarc.plugin.version>
-                <maven.dependency.check.plugin.version>1.2.11</maven.dependency.check.plugin.version>
+                <maven.dependency.check.plugin.version>1.3.0</maven.dependency.check.plugin.version>
                 <maven.versioneye.plugin.version>3.5.1</maven.versioneye.plugin.version>
                 <maven.selenium.plugin.version>2.3</maven.selenium.plugin.version>
                 <maven.wro4j.plugin.version>1.7.8</maven.wro4j.plugin.version>
