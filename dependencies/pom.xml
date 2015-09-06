@@ -1419,7 +1419,7 @@
                 <xmlunit.version>1.5</xmlunit.version>
                 <jsonassert.version>1.2.3</jsonassert.version>
                 <wiser.version>1.2</wiser.version>
-                <scala.version>2.9.3</scala.version> <!-- for gatling to work -->
+                <scala.version>2.11.4</scala.version> <!-- for gatling to work -->
                 <scala.suffix>_2.11</scala.suffix>
                 <!--
                 <scala.version>2.11.4</scala.version>
