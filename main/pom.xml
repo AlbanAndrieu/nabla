@@ -979,7 +979,8 @@
 								<artifactId>maven-surefire-plugin</artifactId>
 								<inherited>true</inherited>
 								<configuration>
-								  <argLine>${jacoco.agent.ut.arg} -Xms256m -Xmx512m -XX:MaxPermSize=512m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>
+								  <!--<argLine>${jacoco.agent.ut.arg} -Xms256m -Xmx512m -XX:MaxPermSize=512m -Djava.awt.headless=true -XX:-UseSplitVerifier</argLine>-->
+								  <argLine>${jacoco.agent.ut.arg} -Xms256m -Xmx512m -Djava.awt.headless=true</argLine>
 								  <!-- -javaagent:${settings.localRepository}/com/googlecode/jmockit/jmockit/${googlecode.jmockit.version}/jmockit-${googlecode.jmockit.version}.jar -->
 								  <!-- -javaagent:${settings.localRepository}/org/mockito/mockito-all/${mockito.version}/mockito-all-${mockito.version}.jar -->
 								  <!--<argLine>-Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>-->
@@ -1025,7 +1026,8 @@
 								<configuration>
 								  <skipTests>${maven.test.skip}</skipTests>
 								  <skipITs>${maven.test.it.skip}</skipITs>
-								  <argLine>${jacoco.agent.it.arg} -Xmx1024m -XX:MaxPermSize=256m</argLine>
+								  <!--<argLine>${jacoco.agent.it.arg} -Xmx1024m -XX:MaxPermSize=256m</argLine>-->
+								  <argLine>${jacoco.agent.it.arg} -Xmx1024m</argLine>
 								  <!-- Specific to generate mapping between tests and covered code -->
 								  <!--
 								  <properties>
