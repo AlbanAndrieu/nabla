@@ -1285,7 +1285,7 @@
 						<maven.test.skip>false</maven.test.skip>
 						<maven.test.failure.skip>true</maven.test.failure.skip>
 						<clover.enabled>true</clover.enabled>
-						<clover.jdkLevel>1.6</clover.jdkLevel>
+						<clover.jdkLevel>${jdkLevel}</clover.jdkLevel>
 						<sonar.java.coveragePlugin>clover</sonar.java.coveragePlugin>
 						<sonar.java.codeCoveragePlugin>clover</sonar.java.codeCoveragePlugin>
 						<!--<sonar.surefire.reportsPath>${project.build.directory}/surefire-reports</sonar.surefire.reportsPath>-->
@@ -1409,6 +1409,43 @@
 												<goal>clover</goal>
 												<goal>log</goal>
 												<goal>check</goal>
+											</goals>
+										</execution>
+									</executions>
+								</plugin>
+							</plugins>
+						</build>
+					</profile>
+					<profile>
+						<id>cobertura</id>
+						<properties>
+							<sonar.java.coveragePlugin>cobertura</sonar.java.coveragePlugin>
+							<sonar.language>grvy</sonar.language>
+							<sonar.groovy.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.groovy.cobertura.reportPath>
+						</properties>
+						<build>
+							<plugins>
+								<!-- cobertura -->
+								<plugin>
+									<groupId>org.codehaus.mojo</groupId>
+									<artifactId>cobertura-maven-plugin</artifactId>
+									<version>${cobertura-maven-plugin.version}</version>
+									<configuration>
+										<formats>
+											<format>html</format>
+											<format>xml</format>
+										</formats>
+										<instrumentation>
+											<excludes>
+												<exclude>**/*.class</exclude>
+											</excludes>
+										</instrumentation>
+									</configuration>
+									<executions>
+										<execution>
+											<phase>verify</phase>
+											<goals>
+												<goal>cobertura</goal>
 											</goals>
 										</execution>
 									</executions>
