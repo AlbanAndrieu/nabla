@@ -329,7 +329,7 @@
 
 						<!-- Sonar properties -->
 						<sonar.language>c++</sonar.language>
-						<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+						<!--<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>-->
 					</properties>
 				</profile>
                 <profile>
@@ -1012,8 +1012,10 @@
                 <sonar.pitest.mode>reuseReport</sonar.pitest.mode>
                 <sonar.pitest.reportsDirectory>target/pit-reports</sonar.pitest.reportsDirectory>
                 <sonar.groovy.codenarc.reportPath>target/CodeNarcReport.xml</sonar.groovy.codenarc.reportPath>
-                <sonar.javascript.lcov.reportPath>${basedir}/target/lcov.info</sonar.javascript.lcov.reportPath>
-                <sonar.java.target>1.7</sonar.java.target>
+                <!--<sonar.javascript.lcov.reportPath>${basedir}/target/lcov.info</sonar.javascript.lcov.reportPath>-->
+                <sonar.javascript.lcov.reportPath>${basedir}/**/target/**/lcov.info</sonar.javascript.lcov.reportPath>
+                <sonar.groovy.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.groovy.cobertura.reportPath>
+                <sonar.java.target>1.8</sonar.java.target>
                 <!--<sonar.language>java</sonar.language>-->
                 <!--
                 <jetty.context.path.to.replace>jetty.context.path</jetty.context.path.to.replace>
@@ -1788,7 +1790,9 @@
                 <maven.cxx.plugin.version>0.0.5-SNAPSHOT</maven.cxx.plugin.version>
                 <maven.pax.plugin.version>1.5</maven.pax.plugin.version>
                 <maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
-                <maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
+                <!--TODO <maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>-->
+				<!-- http://stackoverflow.com/questions/30459260/jacoco-sonarqube-incompatible-version-1007 -->
+				<maven.jacoco.plugin.version>0.7.4.201502262128</maven.jacoco.plugin.version>
                 <maven.codenarc.plugin.version>0.22-1</maven.codenarc.plugin.version>
                 <maven.dependency.check.plugin.version>1.3.0</maven.dependency.check.plugin.version>
                 <maven.versioneye.plugin.version>3.5.1</maven.versioneye.plugin.version>
@@ -2783,18 +2787,6 @@
                                                         <verbose>true</verbose> <excludes>
                                                         <exclude>**/*Point*.java</exclude> </excludes>
                                                 -->
-                                                <compilerArguments>
-                                                    <!--verbose/ -->
-                                                    <Xmaxerrs>1000000</Xmaxerrs>
-                                                    <Xmaxwarns>100</Xmaxwarns>
-                                                    <!-- Commented the next line because it causes the following error
-                                                        with Maven 2.0.9: Embedded error: Unknown error trying to execute the external
-                                                        compiler: C:\Views\KFL_1_0\vendors\etc\win32\jdk1.5.0_12\bin\javac "@C:/Documents
-                                                        and Settings/philip.schwarz/Local Settings/Temp/org.codehaus.plexus.compiler.javac.JavacCompiler25355arguments"
-                                                        -J-Xmx512m -J-Xms128m The line does work with Maven 2.1-SNAPSHOT. NOTE: the
-                                                        error only seems to occur when there are compilation errors. -->
-                                                    <!--Xstdout>compile.log</Xstdout -->
-                                                </compilerArguments>
                                         </configuration>
                                 </plugin>
                                 <plugin>

@@ -875,11 +875,12 @@
 				                  <plugin>
 									   <groupId>org.apache.maven.plugins</groupId>
 				                       <artifactId>maven-compiler-plugin</artifactId>
+				                       <version>${maven.compiler.plugin.version}</version>
 				                       <configuration>
 				                           <compilerId>groovy-eclipse-compiler</compilerId>
-				                           <compilerVersion>${jdkVersion}</compilerVersion>
-				                           <source>${jdkVersion}</source>
-				                           <target>${jdkVersion}</target>
+				                           <compilerVersion>${maven.compiler.source}</compilerVersion>
+				                           <source>${maven.compiler.source}</source>
+				                           <target>${maven.compiler.target}</target>
 				                           <showDeprecation>true</showDeprecation>
 				                           <showWarnings>true</showWarnings>
 				                           <debug>true</debug>
@@ -1419,8 +1420,11 @@
 					<profile>
 						<id>cobertura</id>
 						<properties>
+							<!--
 							<sonar.java.coveragePlugin>cobertura</sonar.java.coveragePlugin>
 							<sonar.language>grvy</sonar.language>
+							-->
+							<sonar.grvy.coveragePlugin>cobertura</sonar.grvy.coveragePlugin>
 							<sonar.groovy.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.groovy.cobertura.reportPath>
 						</properties>
 						<build>
