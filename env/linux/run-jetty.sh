@@ -33,3 +33,32 @@ tar -xvf jetty-distribution-9.1.5.v20140505.tar.gz
 #https://code.google.com/p/run-jetty-run/
 #http://run-jetty-run.googlecode.com/svn/trunk/updatesite
 #See marketplace
+
+#https
+#Generating Keys and Certificates with JDK keytool
+cd ./src/main/etc/
+/usr/lib/jvm/java-7-oracle/bin/keytool
+#keytool -keystore keystore -alias jetty -genkey -keyalg RSA -sigalg SHA256withRSA
+keytool -keystore keystore -alias jetty -genkey -keyalg RSA -sigalg SHA256withRSA -ext 'SAN=dns:jetty.eclipse.org,dns:*.jetty.org'
+#keytool -certreq -alias jetty -keystore keystore -file jetty.csr
+#keytool -keystore keystore -alias jetty -export -file jetty.crt
+#${JAVA_HOME}/${KEYTOOL_CMD} -genkey -v  -alias jetty -keystore "$STORE" -keyalg RSA  -storepass "$STOREPASSWD" -validity 36500 << EOF
+#$HTTP_URL
+#Nabla App
+#Nabla
+#Paris
+#Asnieres
+#FR
+#yes
+#
+#EOF
+#${JAVA_HOME}/${KEYTOOL_CMD}  -alias jetty -selfcert -validity 36500 -keystore "$STORE" -storepass "$STOREPASSWD" -keypass "$KEYPASSWD"
+keytool -list -keystore keystore -v
+#Generating a CSR from keytool
+keytool -certreq -alias jetty -keystore keystore -file jetty.csr
+#Loading Certificates with keytool
+keytool -keystore keystore -import -alias jetty -file jetty.crt -trustcacerts
+
+#openssl genrsa -aes128 -out jetty.key
+#openssl req -new -x509 -newkey rsa:2048 -sha256 -key jetty.key -out jetty.crt
+#openssl req -new -key jetty.key -out jetty.csr
