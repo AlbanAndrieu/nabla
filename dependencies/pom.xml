@@ -329,7 +329,7 @@
 
 						<!-- Sonar properties -->
 						<sonar.language>c++</sonar.language>
-						<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+						<!--<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>-->
 					</properties>
 				</profile>
                 <profile>
@@ -1012,8 +1012,10 @@
                 <sonar.pitest.mode>reuseReport</sonar.pitest.mode>
                 <sonar.pitest.reportsDirectory>target/pit-reports</sonar.pitest.reportsDirectory>
                 <sonar.groovy.codenarc.reportPath>target/CodeNarcReport.xml</sonar.groovy.codenarc.reportPath>
-                <sonar.javascript.lcov.reportPath>${basedir}/target/lcov.info</sonar.javascript.lcov.reportPath>
-                <sonar.java.target>1.7</sonar.java.target>
+                <!--<sonar.javascript.lcov.reportPath>${basedir}/target/lcov.info</sonar.javascript.lcov.reportPath>-->
+                <sonar.javascript.lcov.reportPath>${basedir}/**/target/**/lcov.info</sonar.javascript.lcov.reportPath>
+                <sonar.groovy.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.groovy.cobertura.reportPath>
+                <sonar.java.target>1.8</sonar.java.target>
                 <!--<sonar.language>java</sonar.language>-->
                 <!--
                 <jetty.context.path.to.replace>jetty.context.path</jetty.context.path.to.replace>
@@ -1029,7 +1031,7 @@
                 <!--<sonar.exclusions>file:/generated/,**/generated/**</sonar.exclusions>-->
                 <!-- see http://docs.codehaus.org/display/SONAR/Narrowing+the+Focus
                 http://docs.codehaus.org/display/SONAR/Switch+Off+Violations+Plugin -->
-                <sonar.exclusions>**/generated/**, **/pom.xml, **/bower_components/**, **/node_modules/**, **/node/**, **/libs/**, **/lib/**, **/docs/**, **/*.cache.html, **/*.nocache.js, **/*.min.js, **/*.min.css, **/*.gwt.xml, **/*.xhtml, **/*.html, **/web.xml, **/faces-config.xml, **/*.as, **/logback.xml, **/log4j.xml, **/Gruntfile.js, **/lcov-report/**</sonar.exclusions>
+                <sonar.exclusions>test/**, src/test/**, **/generated/**, **/pom.xml, **/bower_components/**, **/node_modules/**, **/node/**, **/libs/**, **/lib/**, **/docs/**, **/*.cache.html, **/*.nocache.js, **/*.min.js, **/*.min.css, **/*.gwt.xml, **/*.xhtml, **/*.html, **/web.xml, **/faces-config.xml, **/*.as, **/logback.xml, **/log4j.xml, **/Gruntfile.js, **/lcov-report/**</sonar.exclusions>
                 <!--<sonar.sources>src/main/java,src/main/js,src/main/webapp,src/generated/java,src/generated/js, **/web.xml, **/*.xhtml</sonar.sources>-->
 
                 <!--
@@ -1347,7 +1349,8 @@
                 <!-- spring4 UPGRADE https://github.com/spring-projects/spring-framework/wiki/Migrating-from-earlier-versions-of-the-spring-framework -->
                 <!-- Hibernate 3.6+, Quartz 1.8+, Jackson 1.8+, Tiles 2.2+ required -->
                 <spring4.version>4.0.5.RELEASE</spring4.version>
-                <spring.test.version>${spring4.version}</spring.test.version>
+                <!--<spring.test.version>${spring4.version}</spring.test.version>-->
+                <spring.test.version>${spring.legacy.version}</spring.test.version>
                 <!--<spring.jpa.version>2.0.6</spring.jpa.version>-->
                 <springmodules.validation.version>0.8</springmodules.validation.version>
                 <spring.springloaded.version>1.2.0.RELEASE</spring.springloaded.version>
@@ -1788,7 +1791,9 @@
                 <maven.cxx.plugin.version>0.0.5-SNAPSHOT</maven.cxx.plugin.version>
                 <maven.pax.plugin.version>1.5</maven.pax.plugin.version>
                 <maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
-                <maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
+                <!--TODO <maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>-->
+				<!-- http://stackoverflow.com/questions/30459260/jacoco-sonarqube-incompatible-version-1007 -->
+				<maven.jacoco.plugin.version>0.7.4.201502262128</maven.jacoco.plugin.version>
                 <maven.codenarc.plugin.version>0.22-1</maven.codenarc.plugin.version>
                 <maven.dependency.check.plugin.version>1.3.0</maven.dependency.check.plugin.version>
                 <maven.versioneye.plugin.version>3.5.1</maven.versioneye.plugin.version>
@@ -2695,6 +2700,7 @@
 											</goals>
 										</execution>
 									</executions>
+									<!--
 									<configuration>
 										<args>
 											<arg>-feature</arg>
@@ -2705,6 +2711,7 @@
 											<jvmArg>-Xmx1024m</jvmArg>
 										</jvmArgs>
 									</configuration>
+									-->
                                 </plugin>
 
                                 <plugin>
@@ -2781,18 +2788,6 @@
                                                         <verbose>true</verbose> <excludes>
                                                         <exclude>**/*Point*.java</exclude> </excludes>
                                                 -->
-                                                <compilerArguments>
-                                                    <!--verbose/ -->
-                                                    <Xmaxerrs>1000000</Xmaxerrs>
-                                                    <Xmaxwarns>100</Xmaxwarns>
-                                                    <!-- Commented the next line because it causes the following error
-                                                        with Maven 2.0.9: Embedded error: Unknown error trying to execute the external
-                                                        compiler: C:\Views\KFL_1_0\vendors\etc\win32\jdk1.5.0_12\bin\javac "@C:/Documents
-                                                        and Settings/philip.schwarz/Local Settings/Temp/org.codehaus.plexus.compiler.javac.JavacCompiler25355arguments"
-                                                        -J-Xmx512m -J-Xms128m The line does work with Maven 2.1-SNAPSHOT. NOTE: the
-                                                        error only seems to occur when there are compilation errors. -->
-                                                    <!--Xstdout>compile.log</Xstdout -->
-                                                </compilerArguments>
                                         </configuration>
                                 </plugin>
                                 <plugin>

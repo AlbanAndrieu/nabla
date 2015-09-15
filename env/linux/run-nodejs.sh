@@ -262,3 +262,14 @@ sudo gem install compass
 
 sudo apt-get install coffeescript
 coffee --version
+
+sudo apt-get install google-chrome-stable
+sudo apt-get install chromium-browser
+
+#upgrade /usr/local/lib/node_modules/protractor/selenium/chromedriver_2.15.zip
+sudo webdriver-manager update
+sudo /usr/local/lib/node_modules/protractor/selenium/chromedriver --version
+ll /usr/local/lib/node_modules/protractor/selenium/selenium-server-standalone-2.45.0.jar
+
+/usr/bin/google-chrome --version
+/usr/bin/chromium-browser --version

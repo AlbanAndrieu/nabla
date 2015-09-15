@@ -1,3 +1,9 @@
+#http://blog.whitehorses.nl/2014/03/18/installing-java-oracle-11g-r2-express-edition-and-sql-developer-on-ubuntu-64-bit/
+
+sudo apt-get install alien libaio1 unixodbc
+
+#TODO
+
 #memory
 #pga (program global area) and sga (system global area)
 #listeners
@@ -27,3 +33,18 @@ AddVMOption -Duser.language=en
 #tip about connection name user@myserver
 #use below variable to point to the right tns
 $TNS_ADMIN
+
+show pagesize
+set pagesize 50000
+set linesize 9999
+
+select * from dba_datapump_jobs
+select 'drop table' || owner_name || '.' || job_name || ';' from dba_datapump_jobs
+
+#under windows
+set ORACLE_HOSTNAME=albandri.nabla.mobi
+set ORACLE_UNQNAME=oracle
+emctl status dbconsole
+
+#interface
+dbca
