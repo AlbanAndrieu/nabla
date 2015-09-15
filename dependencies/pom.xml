@@ -1190,7 +1190,7 @@
                 <jdbc.postgresql.version>9.1-901-1.jdbc4</jdbc.postgresql.version>
                 <jdbc.mysql.version>5.1.27</jdbc.mysql.version>
 
-                <asm.ow2.version>5.0.2</asm.ow2.version>
+                <asm.ow2.version>5.0.3</asm.ow2.version>
                 <!--<asm.version>2.2.3</asm.version>--> <!-- error running openejb -->
                 <asm.version>3.3.1</asm.version> <!-- works with cglib -->
                 <cglib.version>2.2</cglib.version>
@@ -3931,6 +3931,13 @@
                                                         <format>xml</format>
                                                 </formats>
                                         </configuration>
+            				<dependencies>  
+            				    <dependency>  
+            				        <groupId>org.ow2.asm</groupId>  
+            				        <artifactId>asm</artifactId>  
+            				        <version>${asm.ow2.version}</version>  
+            				    </dependency>  
+            				</dependencies>                                          
                                 </plugin>
                                 <plugin>
                                     <groupId>org.jacoco</groupId>
