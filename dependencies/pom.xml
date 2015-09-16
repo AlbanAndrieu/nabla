@@ -1556,7 +1556,8 @@
                 <servlet.api.version>2.5</servlet.api.version>
                 <!--<servlet.version>2.4</servlet.version>-->
                 <wstx.asl.version>3.2.9</wstx.asl.version>
-                <validation.api.version>1.0.0.GA</validation.api.version> <!-- OK see http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
+                <!--<validation.api.version>1.0.0.GA</validation.api.version>--> <!-- OK see http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
+                <validation.api.version>1.1.0.Final</validation.api.version> <!-- for jersey 2.21 -->
 
                 <xml.resolver>1.2</xml.resolver>
                 <xmlschema.version>1.4.7</xmlschema.version>
@@ -1613,6 +1614,8 @@
 
                 <jaxws.rt.version>2.2.8</jaxws.rt.version>
                 <jaxws.tools.version>2.2.5</jaxws.tools.version>
+				<javax.ws.rs-api.version>2.0</javax.ws.rs-api.version>
+				<pool.version>1.4</pool.version>
 
                 <!--
                         French Encoding in some files: can't use UTF-8, TODO update source
@@ -6646,6 +6649,23 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <artifactId>jocl-main</artifactId>
                             <version>${gluegen.rt.main.version}</version>
                         </dependency>
+
+						<!-- WS.RS-API REST JERSEY -->
+						<dependency>
+							<groupId>javax.ws.rs</groupId>
+							<artifactId>javax.ws.rs-api</artifactId>
+							<version>${javax.ws.rs-api.version}</version>
+						</dependency>
+						<!-- // WS.RS-API REST JERSEY -->
+
+						<!-- POOL -->
+						<dependency>
+							<groupId>org.apache.commons</groupId>
+							<artifactId>pool</artifactId>
+							<version>${pool.version}</version>
+							<scope>runtime</scope>
+						</dependency>
+						<!-- // POOL -->
 
                         <dependency>
                             <groupId>commons-validator</groupId>
