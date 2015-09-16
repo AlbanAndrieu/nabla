@@ -1015,6 +1015,8 @@
                 <!--<sonar.javascript.lcov.reportPath>${basedir}/target/lcov.info</sonar.javascript.lcov.reportPath>-->
                 <sonar.javascript.lcov.reportPath>${basedir}/**/target/**/lcov.info</sonar.javascript.lcov.reportPath>
                 <sonar.groovy.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.groovy.cobertura.reportPath>
+                <sonar.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.cobertura.reportPath>
+				<cobertura.format>xml</cobertura.format>
                 <sonar.java.target>1.8</sonar.java.target>
                 <!--<sonar.language>java</sonar.language>-->
                 <!--
@@ -1377,7 +1379,7 @@
                 <!--<mockito.version>1.9.5</mockito.version>-->
                 <powermock.mockito.version>1.4.9</powermock.mockito.version>
                 <googlecode.jmockit.version>1.7</googlecode.jmockit.version> <!-- googlecode.jmockit moved to org.jmockit -->
-                <jmockit.version>1.14</jmockit.version> <!-- WARNING jmockit does not work wit jacoco coverage -->
+                <jmockit.version>1.19</jmockit.version> <!-- WARNING jmockit does not work wit jacoco coverage -->
                 <mockrunner.version>1.0.0</mockrunner.version>
                 <hamcrest.all.version>1.3</hamcrest.all.version>
                 <hamcrest.version>${hamcrest.all.version}</hamcrest.version>
@@ -1587,7 +1589,8 @@
                 <fasterxml.jackson.version>2.5.0</fasterxml.jackson.version>
                 <jettison.version>1.1</jettison.version>
                 <jersey1.version>1.19</jersey1.version>
-                <jersey.version>2.11</jersey.version>
+                <!--<jersey.version>2.11</jersey.version>-->
+                <jersey.version>2.21</jersey.version>
                 <jersey.bom.version>2.21</jersey.bom.version>
                 <jetty6.version>6.1.25</jetty6.version>
                 <jetty7.version>7.6.5.v20120716</jetty7.version> <!-- 7.6.3.v20120416 TODO remove jetty 6 -->
@@ -3926,13 +3929,13 @@
                                                         <format>xml</format>
                                                 </formats>
                                         </configuration>
-            				<dependencies>  
-            				    <dependency>  
-            				        <groupId>org.ow2.asm</groupId>  
-            				        <artifactId>asm</artifactId>  
-            				        <version>${asm.ow2.version}</version>  
-            				    </dependency>  
-            				</dependencies>                                          
+										<dependencies>
+											<dependency>
+												<groupId>org.ow2.asm</groupId>
+												<artifactId>asm</artifactId>
+												<version>${asm.ow2.version}</version>
+											</dependency>
+										</dependencies>
                                 </plugin>
                                 <plugin>
                                     <groupId>org.jacoco</groupId>
@@ -5406,6 +5409,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <scope>test</scope>
                         </dependency>
                         -->
+                        <!-- jmockit must be after junit in the classpath -->
                         <dependency>
                                 <groupId>org.jmockit</groupId>
                                 <artifactId>jmockit</artifactId>
