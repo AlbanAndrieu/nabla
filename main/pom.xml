@@ -950,9 +950,9 @@
 						<!--
 						<sonar.grvy.coveragePlugin>jacoco</sonar.grvy.coveragePlugin>
 						<sonar.groovy.coveragePlugin>jacoco</sonar.groovy.coveragePlugin>
-						-->
 						<sonar.groovy.jacoco.reportPath>${jacoco.outputDir}/${jacoco.out.ut.file}</sonar.groovy.jacoco.reportPath>
 						<sonar.groovy.jacoco.itReportPath>${jacoco.outputDir}/${jacoco.out.it.file}</sonar.groovy.jacoco.itReportPath>
+						-->
 
 						<!--<jacoco.agent>${project.build.directory}/org.jacoco.agent-${jacoco.version}-runtime.jar</jacoco.agent>-->
 						<jacoco.agent>-javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${jacoco.agent.version}/org.jacoco.agent-${jacoco.agent.version}-runtime.jar=destfile=${sonar.jacoco.itReportPath}</jacoco.agent>
