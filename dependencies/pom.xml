@@ -6659,12 +6659,14 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						<!-- // WS.RS-API REST JERSEY -->
 
 						<!-- POOL -->
+						<!--
 						<dependency>
 							<groupId>org.apache.commons</groupId>
 							<artifactId>pool</artifactId>
 							<version>${pool.version}</version>
 							<scope>runtime</scope>
 						</dependency>
+						-->
 						<!-- // POOL -->
 
                         <dependency>
