@@ -1015,6 +1015,8 @@
                 <!--<sonar.javascript.lcov.reportPath>${basedir}/target/lcov.info</sonar.javascript.lcov.reportPath>-->
                 <sonar.javascript.lcov.reportPath>${basedir}/**/target/**/lcov.info</sonar.javascript.lcov.reportPath>
                 <sonar.groovy.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.groovy.cobertura.reportPath>
+                <sonar.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.cobertura.reportPath>
+				<cobertura.format>xml</cobertura.format>
                 <sonar.java.target>1.8</sonar.java.target>
                 <!--<sonar.language>java</sonar.language>-->
                 <!--
@@ -1379,7 +1381,7 @@
                 <!--<mockito.version>1.9.5</mockito.version>-->
                 <powermock.mockito.version>1.4.9</powermock.mockito.version>
                 <googlecode.jmockit.version>1.7</googlecode.jmockit.version> <!-- googlecode.jmockit moved to org.jmockit -->
-                <jmockit.version>1.14</jmockit.version> <!-- WARNING jmockit does not work wit jacoco coverage -->
+                <jmockit.version>1.19</jmockit.version> <!-- WARNING jmockit does not work wit jacoco coverage -->
                 <mockrunner.version>1.0.0</mockrunner.version>
                 <hamcrest.all.version>1.3</hamcrest.all.version>
                 <hamcrest.version>${hamcrest.all.version}</hamcrest.version>
@@ -1556,7 +1558,8 @@
                 <servlet.api.version>2.5</servlet.api.version>
                 <!--<servlet.version>2.4</servlet.version>-->
                 <wstx.asl.version>3.2.9</wstx.asl.version>
-                <validation.api.version>1.0.0.GA</validation.api.version> <!-- OK see http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
+                <!--<validation.api.version>1.0.0.GA</validation.api.version>--> <!-- OK see http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
+                <validation.api.version>1.1.0.Final</validation.api.version> <!-- for jersey 2.21 -->
 
                 <xml.resolver>1.2</xml.resolver>
                 <xmlschema.version>1.4.7</xmlschema.version>
@@ -1589,7 +1592,8 @@
                 <fasterxml.jackson.version>2.5.0</fasterxml.jackson.version>
                 <jettison.version>1.1</jettison.version>
                 <jersey1.version>1.19</jersey1.version>
-                <jersey.version>2.11</jersey.version>
+                <!--<jersey.version>2.11</jersey.version>-->
+                <jersey.version>2.21</jersey.version>
                 <jersey.bom.version>2.21</jersey.bom.version>
                 <jetty6.version>6.1.25</jetty6.version>
                 <jetty7.version>7.6.5.v20120716</jetty7.version> <!-- 7.6.3.v20120416 TODO remove jetty 6 -->
@@ -1612,6 +1616,8 @@
 
                 <jaxws.rt.version>2.2.8</jaxws.rt.version>
                 <jaxws.tools.version>2.2.5</jaxws.tools.version>
+				<javax.ws.rs-api.version>2.0</javax.ws.rs-api.version>
+				<pool.version>1.4</pool.version>
 
                 <!--
                         French Encoding in some files: can't use UTF-8, TODO update source
@@ -3928,13 +3934,13 @@
                                                         <format>xml</format>
                                                 </formats>
                                         </configuration>
-            				<dependencies>  
-            				    <dependency>  
-            				        <groupId>org.ow2.asm</groupId>  
-            				        <artifactId>asm</artifactId>  
-            				        <version>${asm.ow2.version}</version>  
-            				    </dependency>  
-            				</dependencies>                                          
+										<dependencies>
+											<dependency>
+												<groupId>org.ow2.asm</groupId>
+												<artifactId>asm</artifactId>
+												<version>${asm.ow2.version}</version>
+											</dependency>
+										</dependencies>
                                 </plugin>
                                 <plugin>
                                     <groupId>org.jacoco</groupId>
@@ -5408,6 +5414,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <scope>test</scope>
                         </dependency>
                         -->
+                        <!-- jmockit must be after junit in the classpath -->
                         <dependency>
                                 <groupId>org.jmockit</groupId>
                                 <artifactId>jmockit</artifactId>
@@ -5782,7 +5789,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                            <groupId>dom4j</groupId>
                            <artifactId>dom4j</artifactId>
                            <version>${dom4j.version}</version>
-                           <scope>compile</scope>
+                           <!--<scope>compile</scope>-->
                            <exclusions>
                                 <exclusion>
                                     <groupId>xml-apis</groupId>
@@ -5820,7 +5827,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <groupId>org.springframework</groupId>
                             <artifactId>spring-webmvc</artifactId>
                             <version>${spring.legacy.version}</version>
-                            <scope>compile</scope>
+                            <!--<scope>compile</scope>-->
                         </dependency>
                         <!-- Spring MVC for Portlet Environments (depends on spring-core, spring-beans, spring-context, spring-web) Define this if you use Spring MVC with a Portlet Container (org.springframework.web.portlet.*) -->
                         <dependency>
@@ -5917,7 +5924,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <groupId>com.google.api.client</groupId>
                             <artifactId>google-api-client</artifactId>
                             <version>${google.api.client.version}</version>
-                            <scope>compile</scope>
+                            <!--<scope>compile</scope>-->
                         </dependency>
 
                         <!-- see pom in database -->
@@ -6285,7 +6292,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <groupId>org.javassist</groupId>
                                 <artifactId>javassist</artifactId>
                                 <version>${org.javassist.version}</version>
-                                <scope>provided</scope>
+                                <!--<scope>provided</scope>-->
                         </dependency>
                         <dependency>
                                 <groupId>javassist</groupId>
@@ -6347,25 +6354,25 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <groupId>javax.ejb</groupId>
                                 <artifactId>ejb-api</artifactId>
                                 <version>${javax.ejb.api.version}</version>
-                                <scope>compile</scope>
+                                <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                                 <groupId>javax.mail</groupId>
                                 <artifactId>mail</artifactId>
                                 <version>${javax.mail.version}</version>
-                                <scope>compile</scope>
+                                <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                                 <groupId>jfree</groupId>
                                 <artifactId>jfreechart</artifactId>
                                 <version>${jfreechart.version}</version>
-                                <scope>compile</scope>
+                                <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                                 <groupId>jfree</groupId>
                                 <artifactId>jcommon</artifactId>
                                 <version>${jfree.jcommon.version}</version>
-                                <scope>compile</scope>
+                                <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                                 <groupId>oro</groupId>
@@ -6396,19 +6403,19 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <groupId>poi</groupId>
                                 <artifactId>poi</artifactId>
                                 <version>${poi.version}</version>
-                                <scope>compile</scope>
+                                <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                                 <groupId>poi</groupId>
                                 <artifactId>poi-contrib</artifactId>
                                 <version>${poi.version}</version>
-                                <scope>compile</scope>
+                                <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                                 <groupId>poi</groupId>
                                 <artifactId>poi-scratchpad</artifactId>
                                 <version>${poi.version}</version>
-                                <scope>compile</scope>
+                                <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                                 <groupId>org.apache.poi</groupId>
@@ -6421,7 +6428,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <groupId>javax.activation</groupId>
                                 <artifactId>activation</artifactId>
                                 <version>${javax.activation.version}</version>
-                                <scope>compile</scope>
+                                <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                             <groupId>javax.inject</groupId>
@@ -6456,7 +6463,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <groupId>org.antlr</groupId>
                                 <artifactId>antlr</artifactId>
                                 <version>${org.antlr.version}</version>
-                                <scope>compile</scope>
+                                <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                                 <groupId>org.antlr</groupId>
@@ -6472,31 +6479,31 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <groupId>org.apache.lucene</groupId>
                                 <artifactId>lucene-core</artifactId>
                                 <version>${lucene.version}</version>
-                                <scope>compile</scope>
+                                <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                                 <groupId>org.apache.lucene</groupId>
                                 <artifactId>lucene-analyzers</artifactId>
                                 <version>${lucene.version}</version>
-                                <scope>compile</scope>
+                                <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                                 <groupId>org.apache.lucene</groupId>
                                 <artifactId>lucene-queries</artifactId>
                                 <version>${lucene.version}</version>
-                                <scope>compile</scope>
+                                <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                                 <groupId>org.apache.lucene</groupId>
                                 <artifactId>lucene-highlighter</artifactId>
                                 <version>${lucene.version}</version>
-                                <scope>compile</scope>
+                                <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                                 <groupId>org.apache.lucene</groupId>
                                 <artifactId>lucene-snowball</artifactId>
                                 <version>${lucene.version}</version>
-                                <scope>compile</scope>
+                                <!--<scope>compile</scope>-->
                         </dependency>
                         <!--
                         <dependency>
@@ -6645,6 +6652,25 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <version>${gluegen.rt.main.version}</version>
                         </dependency>
 
+						<!-- WS.RS-API REST JERSEY -->
+						<dependency>
+							<groupId>javax.ws.rs</groupId>
+							<artifactId>javax.ws.rs-api</artifactId>
+							<version>${javax.ws.rs-api.version}</version>
+						</dependency>
+						<!-- // WS.RS-API REST JERSEY -->
+
+						<!-- POOL -->
+						<!--
+						<dependency>
+							<groupId>org.apache.commons</groupId>
+							<artifactId>pool</artifactId>
+							<version>${pool.version}</version>
+							<scope>runtime</scope>
+						</dependency>
+						-->
+						<!-- // POOL -->
+
                         <dependency>
                             <groupId>commons-validator</groupId>
                             <artifactId>commons-validator</artifactId>
@@ -6660,7 +6686,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <groupId>commons-collections</groupId>
                             <artifactId>commons-collections</artifactId>
                             <version>${commons.collections.version}</version>
-                            <scope>compile</scope>
+                            <!--<scope>compile</scope>-->
                             <!-- JBoss contains a version which causes a classloader conflict unless not bundled>
                             <scope>provided</scope -->
                         </dependency>
@@ -6668,8 +6694,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <groupId>commons-digester</groupId>
                             <artifactId>commons-digester</artifactId>
                             <version>${commons.digester.version}</version>
-                            <!--<scope>runtime</scope>-->
-                            <scope>compile</scope>
+                            <!--<scope>compile</scope>-->
                             <exclusions>
                               <exclusion>
                                   <groupId>xml-apis</groupId>
@@ -6689,32 +6714,31 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <groupId>commons-fileupload</groupId>
                             <artifactId>commons-fileupload</artifactId>
                             <version>${commons.fileupload.version}</version>
-                            <!--<scope>runtime</scope>-->
-                            <scope>compile</scope>
+                            <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                             <groupId>commons-io</groupId>
                             <artifactId>commons-io</artifactId>
                             <version>${commons.io.version}</version>
-                            <scope>compile</scope>
+                            <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                             <groupId>commons-logging</groupId>
                             <artifactId>commons-logging</artifactId>
                             <version>${commons.logging.version}</version>
-                            <scope>compile</scope>
+                            <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                             <groupId>commons-configuration</groupId>
                             <artifactId>commons-configuration</artifactId>
                             <version>${commons.configuration.version}</version>
-                            <scope>compile</scope>
+                            <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                             <groupId>commons-lang</groupId>
                             <artifactId>commons-lang</artifactId>
                             <version>${commons.lang.version}</version>
-                            <scope>compile</scope>
+                            <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                             <groupId>org.apache.commons</groupId>
@@ -6730,7 +6754,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <groupId>commons-cli</groupId>
                             <artifactId>commons-cli</artifactId>
                             <version>${commons.cli.version}</version>
-                            <scope>compile</scope>
+                            <!--<scope>compile</scope>-->
                             <exclusions>
                                 <exclusion>
                                     <groupId>commons-logging</groupId>
@@ -6742,7 +6766,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <groupId>commons-beanutils</groupId>
                             <artifactId>commons-beanutils</artifactId>
                             <version>${commons.beanutils.version}</version>
-                            <scope>compile</scope>
+                            <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                             <groupId>commons-beanutils</groupId>
@@ -6765,13 +6789,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <artifactId>commons-codec</artifactId>
                             <version>${commons.codec.version}</version>
                             <!--<scope>compile</scope>-->
-                            <scope>runtime</scope>
                         </dependency>
                         <dependency>
                             <groupId>commons-discovery</groupId>
                             <artifactId>commons-discovery</artifactId>
                             <version>${commons.discovery.version}</version>
-                            <scope>compile</scope>
+                            <!--<scope>compile</scope>-->
                         </dependency>
                          <dependency>
                             <groupId>org.apache.commons</groupId>
@@ -6787,7 +6810,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <groupId>concurrent</groupId>
                             <artifactId>concurrent</artifactId>
                             <version>${concurrent.version}</version>
-                            <scope>compile</scope>
+                            <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                             <groupId>struts</groupId>
@@ -6987,14 +7010,14 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <groupId>nekohtml</groupId>
                             <artifactId>nekohtml</artifactId>
                             <version>${nekohtml.version}</version>
-                            <scope>provided</scope>
+                            <!--<scope>provided</scope>-->
                         </dependency>
 
                         <dependency>
                             <groupId>net.sourceforge.nekohtml</groupId>
                             <artifactId>nekohtml</artifactId>
                             <version>${net.sourceforge.nekohtml.version}</version>
-                            <scope>provided</scope>
+                            <!--<scope>provided</scope>-->
                         </dependency>
 
                         <dependency>
@@ -7074,21 +7097,21 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <artifactId>icefaces-comps</artifactId>
                             <version>${icefaces.version}</version>
                             <!--<scope>runtime</scope>-->
-                            <scope>compile</scope>
+                            <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                             <groupId>org.icefaces</groupId>
                             <artifactId>icefaces-facelets</artifactId>
                             <version>${icefaces.version}</version>
                             <!--<scope>runtime</scope>-->
-                            <scope>compile</scope>
+                            <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                                 <groupId>javax.servlet</groupId>
                                 <artifactId>jstl</artifactId>
                                 <version>${jstl.version}</version>
                                 <!--<scope>runtime</scope>-->
-                                <scope>compile</scope>
+                                <!--<scope>compile</scope>-->
                         </dependency>
                         <dependency>
                                 <groupId>javax.servlet</groupId>
@@ -7307,7 +7330,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <groupId>com.gwtplatform</groupId>
                             <artifactId>gwtp-all</artifactId>
                             <version>${gwtp.all.version}</version>
-                            <scope>compile</scope>
+                            <!--<scope>compile</scope>-->
                         </dependency>
 
                         <dependency>
@@ -7530,7 +7553,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <groupId>org.jboss.seam.embedded</groupId>
                                 <artifactId>jboss-embedded-all</artifactId>
                                 <version>${seam.embedded.version}</version>
-                                <scope>compile</scope>
+                                <!--<scope>compile</scope>-->
                                 <exclusions>
                                         <exclusion>
                                                 <groupId>org.jboss.microcontainer</groupId>
@@ -8350,32 +8373,32 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                 <groupId>wsdl4j</groupId>
                 <artifactId>wsdl4j</artifactId>
                 <version>${wsdl4j.version}</version>
-                <scope>compile</scope>
+                <!--<scope>compile</scope>-->
             </dependency>
             <dependency>
                 <groupId>org.codehaus.woodstox</groupId>
                 <artifactId>wstx-asl</artifactId>
                 <version>${wstx.asl.version}</version>
-                <scope>compile</scope>
+                <!--<scope>compile</scope>-->
             </dependency>
 
             <dependency>
                 <groupId>org.apache.ws.commons.schema</groupId>
                 <artifactId>XmlSchema</artifactId>
                 <version>${xmlschema.version}</version>
-                <scope>compile</scope>
+                <!--<scope>compile</scope>-->
             </dependency>
             <dependency>
                 <groupId>xml-resolver</groupId>
                 <artifactId>xml-resolver</artifactId>
                 <version>${xml.resolver}</version>
-                <scope>compile</scope>
+                <!--<scope>compile</scope>-->
             </dependency>
             <dependency>
                 <groupId>com.sun.xml.fastinfoset</groupId>
                 <artifactId>FastInfoset</artifactId>
                 <version>${fastinfoset.version}</version>
-                <scope>compile</scope>
+                <!--<scope>compile</scope>-->
             </dependency>
 
             <!-- WS Security -->
@@ -8383,19 +8406,19 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                 <groupId>org.apache</groupId>
                 <artifactId>xmlsec</artifactId>
                 <version>${xmlsec.version}</version>
-                <scope>compile</scope>
+                <!--<scope>compile</scope>-->
             </dependency>
             <dependency>
                 <groupId>org.apache.santuario</groupId>
                 <artifactId>xmlsec</artifactId>
                 <version>${xmlsec.santuario.version}</version>
-                <scope>compile</scope>
+                <!--<scope>compile</scope>-->
             </dependency>
             <dependency>
                 <groupId>org.apache.ws.security</groupId>
                 <artifactId>wss4j</artifactId>
                 <version>${wss4j.version}</version>
-                <scope>compile</scope>
+                <!--<scope>compile</scope>-->
             </dependency>
             <dependency>
               <groupId>javax.ws.rs</groupId>
@@ -8727,7 +8750,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                     <groupId>javax.jms</groupId>
                     <artifactId>jms</artifactId>
                     <version>${javax.jms.version}</version>
-                    <scope>compile</scope>
+                    <!--<scope>compile</scope>-->
             </dependency>
             <dependency>
                 <groupId>javax.servlet</groupId>
@@ -8771,13 +8794,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                 <groupId>javax.xml.bind</groupId>
                 <artifactId>jaxb-api</artifactId>
                 <version>${jaxb.api.version}</version>
-                <scope>compile</scope>
+                <!--<scope>compile</scope>-->
             </dependency>
             <dependency>
                 <groupId>com.sun.xml.bind</groupId>
                 <artifactId>jaxb-impl</artifactId>
                 <version>${jaxb.impl.version}</version>
-                <scope>compile</scope>
+                <!--<scope>compile</scope>-->
                 <exclusions>
                     <exclusion>
                         <groupId>javax.xml.stream</groupId>
