@@ -47,6 +47,9 @@
                         relative paths to get <jvm>${java.home}../bin/java.exe</jvm>
                 -->
                 <java.home>${env.JAVA_HOME}</java.home>
+				<java.bootstrap.classes>${java.home}/jre/lib/rt.jar</java.bootstrap.classes>
+				<java.cryptographic.extension.classes>${java.home}/jre/lib/jce.jar</java.cryptographic.extension.classes>
+				<java.secure.socket.extension.classes>${java.home}/jre/lib/jsse.jar</java.secure.socket.extension.classes>
 
                 <!-- Application settings -->
                 <application.id>${project.parent.artifactId}</application.id> <!-- hint: same value as artifactId -->
@@ -409,10 +412,60 @@
                                         </configuration>
                                 </plugin>
 
-
-
+								<plugin>
+									<!--groupId>com.pyx4me</groupId-->
+									<groupId>com.github.wvengen</groupId>
+									<artifactId>proguard-maven-plugin</artifactId>
+									<version>${maven.proguard.plugin.version}</version>
+									<executions>
+										<execution>
+											<id>proguard</id>
+											<phase>package</phase>
+											<goals>
+												<goal>proguard</goal>
+											</goals>
+										</execution>
+									</executions>
+									<configuration>
+										<proguardVersion>${net.sf.proguard.version}</proguardVersion>
+										<obfuscate>true</obfuscate>
+										<options>
+											<option>-keep public class * { public protected *; }</option>
+										</options>
+										<libs>
+											<lib>${java.bootstrap.classes}</lib>
+											<lib>${java.cryptographic.extension.classes}</lib>
+											<lib>${java.secure.socket.extension.classes}</lib>
+										</libs>
+									</configuration>
+									<dependencies>
+										<dependency>
+											<groupId>net.sf.proguard</groupId>
+											<artifactId>proguard-base</artifactId>
+											<version>${net.sf.proguard.version}</version>
+											<scope>runtime</scope>
+										</dependency>
+									</dependencies>
+								</plugin>
+								<plugin>
+									<groupId>com.github.marschall</groupId>
+									<artifactId>jdeps-maven-plugin</artifactId>
+									<version>${maven.marschall.jdeps.plugin.version}</version>
+									<executions>
+										<execution>
+											<id>jdeps</id>
+											<phase>package</phase>
+											<goals>
+												<goal>jdeps</goal>
+											</goals>
+										</execution>
+									</executions>
+									<!-- optionally any configuration -->
+									<configuration>
+										<profile>true</profile>
+									</configuration>
+								</plugin>
                                 <!-- Start tools -->
-
                                 <!--
                                 <plugin>
                                         <groupId>com.agilejava.docbkx</groupId>
@@ -3059,6 +3112,15 @@
                                                                                 <minSeverity>info</minSeverity>
                                                                         </configuration>
                                                                 </plugin>
+																<plugin>
+																	<groupId>com.github.marschall</groupId>
+																	<artifactId>jdeps-maven-plugin</artifactId>
+																	<version>${maven.marschall.jdeps.plugin.version}</version>
+																	<!-- optionally any configuration -->
+																	<configuration>
+																		<profile>true</profile>
+																	</configuration>
+																</plugin>
                                                         </reportPlugins>
                                                 </configuration>
                                                 <dependencies>

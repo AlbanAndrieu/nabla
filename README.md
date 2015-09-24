@@ -12,7 +12,7 @@ I have created a Mavenized AndroMDA project based on the Timetracker sample.
 Main goals of this project are :
  * From an UML2 model sample, the "Timetracker" generate java code
  * Use this model (the same) to generate code with different AndroMDA cartridges
- * Have a full mavenized project, using the best maven features with site generation, sonar, nexus, JIRA, Confluence, Crucible, Fisheyes, Stahs, Crowd, OpenGrok ...) fully integrated with eclipse 3.7 on an ubuntu 13 
+ * Have a full mavenized project, using the best maven features with site generation, sonar, nexus, JIRA, Confluence, Crucible, Fisheyes, Stahs, Crowd, OpenGrok ...) fully integrated with eclipse 3.7 on an ubuntu 13
  * Full automation using Ansible around Jenkins, Build farm easily scalable with AWS EC2 instance
  * A enhanced copy of the AndroMDA project have released as 3.4 (to be get rid of the SNAPSHOT version)
  * Use the AndroMDA EJB3 - Seam cartridges
@@ -25,7 +25,7 @@ Main goals of this project are :
  * Use OSGI and SSO
  * Use best practice as much as possible
 
-I felt that it was only right to make the project available to the public, and put together a google code project, as everything I used are OpenSource. 
+I felt that it was only right to make the project available to the public, and put together a google code project, as everything I used are OpenSource.
 
 As of now the project is aimed at running on the any of Jetty/JBoss-7.1.1.x/Tomcat application servers deployed as an war project. Project must also not be tied to any database.
 
@@ -40,7 +40,7 @@ See sample [https://home.nabla.mobi/jenkins/ Jenkins Nabla]
 = IN PROGRESS =
 
  * Finalize the timetracker-ejb3 project.
-  Run with : 
+  Run with :
   - Integrate Ansible POC (with all javascripts tooling)
   - Automatic deploy to JBoss 5.1.0.GA
   - Eclipse 3.7 with JBoss Tools plugins
@@ -64,3 +64,133 @@ See sample [https://home.nabla.mobi/jenkins/ Jenkins Nabla]
  * Improve UML generator using Java MethodHandler to use less PermGenSpace
  * Try to integrate galaxy ansible with openstack
  * Use https://code.google.com/p/google-styleguide/
+
+### Eclipse
+
+How to install and configure eclipse.
+
+#### JAVA Installation
+
+Use https://github.com/AlbanAndrieu/ansible-eclipse
+
+It will download and install eclipse on your Ubuntu workstation
+
+For windows:
+
+Download Eclipse Indigo (Eclipse IDE for Java EE Developers, 212 MB) for Windows 32 Bit at : http://www.eclipse.org/downloads/
+
+Unzip and install it to : C:\eclipse-j2ee-3.7
+
+Create a workspace folder at : C:\workspace\users\workspace-eclipsej2ee3.7-application
+
+Once started update eclipse.
+
+To do so go to menu and click : Help > Check for Updates
+
+#### C++ Installation
+
+Download Eclipse Indigo : Eclipse IDE for C/C++ Developers (includes Incubating components), 108 MB) for Windows 32 Bit at : http://www.eclipse.org/downloads/
+
+Unzip and install it to : C:\eclipse-cpp-3.7
+
+Create a workspace folder at : C:\workspace\users\workspace-eclipse-cpp-3.7-application
+
+Once started update eclipse.
+
+To do so go to menu and click : Help > Check for Updates
+
+JAVA Plugins
+Install usefull plugins.
+
+Go to menu and click : Help > Eclipse Marketplace...
+
+http://marketplace.eclipse.org/
+
+Plugins on Marketplace are :
+
+ * JBoss Tools
+ * Subversive with SVNKit or Subclipse 1.10.05
+ * Groovy/Grails Tool Suite (GGTS) for Eclipse 3.6.4.RELEASE
+   - Groovy-Eclipse for Juno 2.7.1
+ * PyDev
+ * EPIC (Perl)
+ * Maven Integration for Eclipse 1.5
+ * Scala IDE 3.0.x
+ * Java Profiler 10.7 (VisualVM)
+ * Yedit 1.0.14 (YAML)
+ * Enide Studio 2014 (NodeJS http://www.nodeclipse.org/history)
+ * Do not install (it failed with maven integration plugin)
+
+SonarQube 3.4.0
+If plugins not found on Eclipse Marketplace, go to : Help > Install New Software...
+
+Plugins links are :
+
+ * Maven Integration for Eclipse Update Site - http://download.eclipse.org/technology/m2e/releases
+ * Maven Integration for Eclipse Update Extras Site - http://m2eclipse.sonatype.org/sites/m2e-extras
+ * Google Update Site for Eclipse 3.7 - http://dl.google.com/eclipse/plugin/3.7
+ * CheckStyle - http://eclipse-cs.sf.net/update
+ * FindBugs - http://findbugs.cs.umd.edu/eclipse
+ * EclEmma - http://update.eclemma.org
+ * PMD - http://pmd.sf.net/eclipse
+ * VeloEdit - http://veloedit.sourceforge.net/updates
+ * Hudson - http://hudson-eclipse.googlecode.com/svn/trunk/hudson-update
+ * Sonar Integration for Eclipse (update-site) - http://dist.sonar-ide.codehaus.org/eclipse
+ * TestNG (go to : http://marketplace.eclipse.org/content/testng-eclipse)
+ * Clover - http://update.atlassian.com/eclipse/clover
+ * m2e-scala - http://alchim31.free.fr/m2e-scala/update-site/
+ * yourkit - http://www.yourkit.com/download/yjp2014_for_eclipse/
+ * C++ Plugins
+ * Install usefull plugins.
+
+Go to menu and click : Help > Eclipse Marketplace...
+
+http://marketplace.eclipse.org/
+
+Plugins on Marketplace are :
+
+ * CMakeEd : http://cmakeed.sourceforge.net/eclipse/
+
+If plugins not found on Eclipse Marketplace, go to : Help > Install New Software...
+
+Plugins links are :
+
+ * SConsolidator - http://www.sconsolidator.com/update (http://scons.org/wiki/EclipsePlugin)
+ * Python Dev - http://pydev.org/updates
+ * EPIC Perl - http://e-p-i-c.sf.net/updates
+
+#### Settings
+
+Usefull settings.
+
+Go to : Windows > Preferences...
+
+ * General -> Show heap status
+ * General -> Editors -> Text Editors -> Show line numbers
+ * Install/Updates -> Automatic updates -> Automatic find new updates and notify me
+ * Install/Updates -> Automatic updates -> Download new updates automatically...
+ * Java -> Installed JREs -> Add... Standard VM C:\Program Files (x86)\Java\jre6
+
+##### Hibernate/JPA
+
+Add Hibernate Configuration In prpject properties
+
+ * Hibernate Settings -> Enable Hibernate support
+ * Hibernate Configuration -> Common -> Shared file -> select your project
+ * Hibernate Configuration -> Options-> Database Dialect -> H2
+ * Hibernate Configuration -> Main-> Type -> JPA
+ * Hibernate Configuration -> Main-> Hibernate Version -> 3.6
+ * Hibernate Configuration -> Main-> Database connection -> H2 Generic JDBC
+ * Hibernate Configuration -> Main-> Property file -> \your project\hibernate-console.properties
+ * Hibernate Configuration -> Main-> Persistence Unit -> your persistence unit
+ * Add JPA Facet
+
+Platform Generic 2.0
+
+ * JPA Implementation -> Disable Library Configuration
+ * JPA Implementation -> Connection -> H2 Generic JDBC
+
+Commit generated file :
+
+your project-1.0.launch
+hibernate-console.properties
