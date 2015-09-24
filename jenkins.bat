@@ -32,6 +32,7 @@ call mvn codenarc:codenarc -Psample,arq-jbossas-managed > codenarc.log 2>&1
 call mvn clean install org.pitest:pitest-maven:mutationCoverage -Psample,arq-jbossas-managed > pit.log 2>&1
 call mvn versioneye:create
 call mvn versioneye:update
+call mvn jdeps:jdeps
 
 call mvn -B -U -e -Dsurefire.useFile=false install pmd:pmd pmd:cpd checkstyle:checkstyle findbugs:findbugs codenarc:codenarc cobertura:cobertura -Psample,arq-jbossas-managed,jacoco,mutation,run-its,upstream -Djacoco.outputDir=${WORKSPACE}/target > jenkins.log 2>&1
 REM karma start ${WORKSPACE}/code/riskinsight/webapp/src/main/webapp/karma.jenkins.conf.js

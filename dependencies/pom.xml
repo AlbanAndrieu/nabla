@@ -1617,7 +1617,8 @@
                 <jaxws.rt.version>2.2.8</jaxws.rt.version>
                 <jaxws.tools.version>2.2.5</jaxws.tools.version>
 				<javax.ws.rs-api.version>2.0</javax.ws.rs-api.version>
-				<pool.version>1.4</pool.version>
+
+				<net.sf.proguard.version>5.1</net.sf.proguard.version>
 
                 <!--
                         French Encoding in some files: can't use UTF-8, TODO update source
@@ -1809,6 +1810,9 @@
                 <maven.wro4j.plugin.version>1.7.8</maven.wro4j.plugin.version>
                 <maven.classpath.fitnesse.version>1.7</maven.classpath.fitnesse.version>
                 <maven.jaxws.plugin.version>2.2</maven.jaxws.plugin.version>
+                <maven.proguard.plugin.version>2.0.4</maven.proguard.plugin.version>
+                <!--<maven.jdeps.plugin.version>3.0-SNAPSHOT</maven.jdeps.plugin.version>-->
+                <maven.marschall.jdeps.plugin.version>0.4.0</maven.marschall.jdeps.plugin.version>
 
                 <!--<hibernate3.maven.plugin.version>3.0</hibernate3.maven.plugin.version>-->
                 <hibernate3.maven.plugin.version>2.2</hibernate3.maven.plugin.version>
@@ -6659,17 +6663,6 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<version>${javax.ws.rs-api.version}</version>
 						</dependency>
 						<!-- // WS.RS-API REST JERSEY -->
-
-						<!-- POOL -->
-						<!--
-						<dependency>
-							<groupId>org.apache.commons</groupId>
-							<artifactId>pool</artifactId>
-							<version>${pool.version}</version>
-							<scope>runtime</scope>
-						</dependency>
-						-->
-						<!-- // POOL -->
 
                         <dependency>
                             <groupId>commons-validator</groupId>
