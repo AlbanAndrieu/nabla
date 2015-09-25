@@ -1004,7 +1004,6 @@
 
                 <!--<sonar.jacoco.excludes>com/nabla/project/application/model/dao/person/**:com/nabla/pack2/**:</sonar.jacoco.excludes>-->
 
-
                 <sonar.clover.version>${clover.version}</sonar.clover.version>
 
                 <!--<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath> -->
@@ -1013,7 +1012,11 @@
                 <sonar.pitest.reportsDirectory>target/pit-reports</sonar.pitest.reportsDirectory>
                 <sonar.groovy.codenarc.reportPath>target/CodeNarcReport.xml</sonar.groovy.codenarc.reportPath>
                 <!--<sonar.javascript.lcov.reportPath>${basedir}/target/lcov*.info</sonar.javascript.lcov.reportPath>-->
-                <sonar.javascript.lcov.reportPath>${basedir}/target/lcov.info</sonar.javascript.lcov.reportPath>
+                <!--<sonar.javascript.lcov.reportPath>${basedir}/target/lcov.info</sonar.javascript.lcov.reportPath>-->
+				<sonar.javascript.forceZeroCoverage>true</sonar.javascript.forceZeroCoverage>
+				<sonar.javascript.lcov.reportPath>${basedir}/target/lcov-karma.info</sonar.javascript.lcov.reportPath>
+				<sonar.javascript.lcov.itReportPath>${basedir}/target/lcov.info</sonar.javascript.lcov.itReportPath>
+
                 <sonar.groovy.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.groovy.cobertura.reportPath>
                 <sonar.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.cobertura.reportPath>
 				<cobertura.format>xml</cobertura.format>
@@ -1405,8 +1408,11 @@
                 <!-- NOK with 1.1.0.Final <org.jboss.arquillian.bom.version>${org.jboss.arquillian.version}</org.jboss.arquillian.bom.version>-->
                 <org.jboss.arquillian.bom.version>${org.jboss.arquillian.version}</org.jboss.arquillian.bom.version>
                 <!--<org.jboss.shrinkwrap.bom.version>2.0.0</org.jboss.shrinkwrap.bom.version>--> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
-                <org.jboss.shrinkwrap.bom.version>2.1.1</org.jboss.shrinkwrap.bom.version>
-                <org.jboss.shrinkwrap.resolver.version>${org.jboss.shrinkwrap.bom.version}</org.jboss.shrinkwrap.resolver.version>
+                <!--<org.jboss.shrinkwrap.bom.version>2.1.1</org.jboss.shrinkwrap.bom.version>-->
+                <org.jboss.shrinkwrap.resolver.bom.version>1.1.0-alpha-3</org.jboss.shrinkwrap.resolver.bom.version>
+                <org.jboss.shrinkwrap.resolver.version>${org.jboss.shrinkwrap.resolver.bom.version}</org.jboss.shrinkwrap.resolver.version>
+                <org.jboss.shrinkwrap.descriptors.bom.version>1.2.0-alpha-2</org.jboss.shrinkwrap.descriptors.bom.version>
+                <!-- WARNING shrinkwrap-descriptors-spi 2.0.0 with DescriptorImporterBase class and shrinkwrap-descriptors-api-base with DescriptorImporter interface are incompatible with shrinkwrap-descriptors-api 0.1.7 DescriptorImporter interface because the latter lacks the fromStream method. -->
                 <!--<org.jboss.arquillian.junit.version>1.0.0.Alpha5</org.jboss.arquillian.junit.version>-->
                 <!--<org.jboss.arquillian.junit.version>${org.jboss.arquillian.bom.version}</org.jboss.arquillian.junit.version>-->
                 <org.jboss.arquillian.junit.version>${org.jboss.arquillian.version}</org.jboss.arquillian.junit.version><!-- NOK with 1.1.4.Final java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
@@ -1417,7 +1423,7 @@
                 <org.jboss.arquillian.glassfish.embedded.version>1.0.0.CR3</org.jboss.arquillian.glassfish.embedded.version>
                 <org.jboss.as.arquillian.container.version>${jboss7.version}</org.jboss.as.arquillian.container.version>
                 <!--NOK with arq-jbossas-managed <org.jboss.as.arquillian.container.version>7.2.0.Final</org.jboss.as.arquillian.container.version>-->  <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
-                <org.jboss.arquillian.spi.version>1.0.0.Alpha5</org.jboss.arquillian.spi.version>
+                <!--<org.jboss.arquillian.spi.version>1.0.0.Alpha5</org.jboss.arquillian.spi.version>-->
                 <org.jboss.arquillian.weld.ee.embedded.version>1.0.0.CR5</org.jboss.arquillian.weld.ee.embedded.version>
                 <org.jboss.weld.core.version>1.1.9.Final</org.jboss.weld.core.version>
                 <org.jboss.spec.javax.faces.jsf.api.2.1.version>2.1.28.Final</org.jboss.spec.javax.faces.jsf.api.2.1.version>
@@ -5110,10 +5116,17 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         <dependency>
                             <groupId>org.jboss.shrinkwrap.resolver</groupId>
                             <artifactId>shrinkwrap-resolver-bom</artifactId>
-                            <version>${org.jboss.shrinkwrap.bom.version}</version>
+                            <version>${org.jboss.shrinkwrap.resolver.bom.version}</version>
                             <type>pom</type>
                             <scope>import</scope>
                         </dependency>
+						<dependency>
+							<groupId>org.jboss.shrinkwrap.descriptors</groupId>
+							<artifactId>shrinkwrap-descriptors-bom</artifactId>
+							<version>${org.jboss.shrinkwrap.descriptors.bom.version}</version>
+							<type>pom</type>
+							<scope>import</scope>
+						</dependency>
                         <!-- this included in jboss-javaee-6.0-with-tools -->
                         <!-- see http://central.maven.org/maven2/org/jboss/arquillian/arquillian-bom/1.1.4.Final/arquillian-bom-1.1.4.Final.pom -->
                         <!-- NOK with 1.1.4.Final arquillian junit java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
@@ -5574,12 +5587,14 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <version>${org.jboss.arquillian.junit.version}</version>
                             <scope>test</scope>
                         </dependency>
+                        <!--
                         <dependency>
                             <groupId>org.jboss.arquillian</groupId>
                             <artifactId>arquillian-spi</artifactId>
                             <version>${org.jboss.arquillian.spi.version}</version>
                             <scope>test</scope>
                         </dependency>
+                        -->
                         <dependency>
                             <groupId>org.jboss.as</groupId>
                             <artifactId>jboss-as-arquillian-container-managed</artifactId>

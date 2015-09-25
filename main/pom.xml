@@ -975,6 +975,7 @@
 						<sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
 						<sonar.java.codeCoveragePlugin>jacoco</sonar.java.codeCoveragePlugin>
 						<sonar.jacoco.reportMissing.force.zero>true</sonar.jacoco.reportMissing.force.zero>
+
 						<!-- Tells Sonar to use jacoco for coverage results -->
 						<!-- Don't let Sonar execute tests. We will ask it to Maven -->
 						<sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
