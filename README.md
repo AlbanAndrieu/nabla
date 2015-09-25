@@ -120,6 +120,8 @@ Plugins on Marketplace are :
  * Yedit 1.0.14 (YAML)
  * Enide Studio 2014 (NodeJS http://www.nodeclipse.org/history)
  * Do not install (it failed with maven integration plugin)
+ * Bytecode Visualizer
+ * Sourcecode Visualizer
 
 SonarQube 3.4.0
 If plugins not found on Eclipse Marketplace, go to : Help > Install New Software...
