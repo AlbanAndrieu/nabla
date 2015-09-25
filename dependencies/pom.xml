@@ -1012,8 +1012,8 @@
                 <sonar.pitest.mode>reuseReport</sonar.pitest.mode>
                 <sonar.pitest.reportsDirectory>target/pit-reports</sonar.pitest.reportsDirectory>
                 <sonar.groovy.codenarc.reportPath>target/CodeNarcReport.xml</sonar.groovy.codenarc.reportPath>
-                <!--<sonar.javascript.lcov.reportPath>${basedir}/target/lcov.info</sonar.javascript.lcov.reportPath>-->
-                <sonar.javascript.lcov.reportPath>${basedir}/**/target/**/lcov.info</sonar.javascript.lcov.reportPath>
+                <!--<sonar.javascript.lcov.reportPath>${basedir}/target/lcov*.info</sonar.javascript.lcov.reportPath>-->
+                <sonar.javascript.lcov.reportPath>${basedir}/target/lcov.info</sonar.javascript.lcov.reportPath>
                 <sonar.groovy.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.groovy.cobertura.reportPath>
                 <sonar.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.cobertura.reportPath>
 				<cobertura.format>xml</cobertura.format>
@@ -1035,9 +1035,11 @@
                 http://docs.codehaus.org/display/SONAR/Switch+Off+Violations+Plugin -->
                 <sonar.exclusions>test/**, src/test/**, **/generated/**, **/pom.xml, **/bower_components/**, **/node_modules/**, **/node/**, **/libs/**, **/lib/**, **/docs/**, **/*.cache.html, **/*.nocache.js, **/*.min.js, **/*.min.css, **/*.gwt.xml, **/*.xhtml, **/*.html, **/web.xml, **/faces-config.xml, **/*.as, **/logback.xml, **/log4j.xml, **/Gruntfile.js, **/lcov-report/**</sonar.exclusions>
                 <!--<sonar.sources>src/main/java,src/main/js,src/main/webapp,src/generated/java,src/generated/js, **/web.xml, **/*.xhtml</sonar.sources>-->
-		<sonar.sources>src/main,app</sonar.sources>
-		<sonar.tests>src/test,test</sonar.tests>
-		
+                <!-- DO NOT SET below sonar properties for all projects
+				<sonar.sources>src/main,app</sonar.sources>
+				<sonar.tests>src/test,test</sonar.tests>
+				-->
+
                 <!--
                 <sonar.issue.ignore.multicriteria>e1,e2</sonar.issue.ignore.multicriteria>
                 <sonar.issue.ignore.multicriteria.e1.ruleKey>squid:S1451</sonar.issue.ignore.multicriteria.e1.ruleKey>
