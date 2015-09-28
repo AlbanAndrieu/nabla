@@ -1017,7 +1017,7 @@
 				<sonar.javascript.lcov.reportPath>${basedir}/target/lcov-karma.info</sonar.javascript.lcov.reportPath>
 				<sonar.javascript.lcov.itReportPath>${basedir}/target/lcov.info</sonar.javascript.lcov.itReportPath>
 
-                <sonar.groovy.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.groovy.cobertura.reportPath>
+                <!--<sonar.groovy.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.groovy.cobertura.reportPath>-->
                 <sonar.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.cobertura.reportPath>
 				<cobertura.format>xml</cobertura.format>
                 <sonar.java.target>1.8</sonar.java.target>
@@ -1036,7 +1036,8 @@
                 <!--<sonar.exclusions>file:/generated/,**/generated/**</sonar.exclusions>-->
                 <!-- see http://docs.codehaus.org/display/SONAR/Narrowing+the+Focus
                 http://docs.codehaus.org/display/SONAR/Switch+Off+Violations+Plugin -->
-                <sonar.exclusions>test/**, src/test/**, **/generated/**, **/pom.xml, **/bower_components/**, **/node_modules/**, **/node/**, **/libs/**, **/lib/**, **/docs/**, **/*.cache.html, **/*.nocache.js, **/*.min.js, **/*.min.css, **/*.gwt.xml, **/*.xhtml, **/*.html, **/web.xml, **/faces-config.xml, **/*.as, **/logback.xml, **/log4j.xml, **/Gruntfile.js, **/lcov-report/**</sonar.exclusions>
+                <!--**/*.xhtml, **/*.html-->
+                <sonar.exclusions>test/**, src/test/**, **/generated/**, **/pom.xml, **/bower_components/**, **/node_modules/**, **/node/**, **/libs/**, **/lib/**, **/docs/**, **/*.cache.html, **/*.nocache.js, **/*.min.js, **/*.min.css, **/*.gwt.xml, **/web.xml, **/web-jsf.xml, **/faces-config.xml, **/*.as, **/logback.xml, **/log4j.xml, , **/jetty-*.xml, **/Gruntfile.js, **/lcov-report/**</sonar.exclusions>
                 <!--<sonar.sources>src/main/java,src/main/js,src/main/webapp,src/generated/java,src/generated/js, **/web.xml, **/*.xhtml</sonar.sources>-->
                 <!-- DO NOT SET below sonar properties for all projects
 				<sonar.sources>src/main,app</sonar.sources>
