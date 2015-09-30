@@ -1628,6 +1628,7 @@
 				<javax.ws.rs-api.version>2.0</javax.ws.rs-api.version>
 
 				<net.sf.proguard.version>5.1</net.sf.proguard.version>
+				<build.support.version>1.4</build.support.version>
 
                 <!--
                         French Encoding in some files: can't use UTF-8, TODO update source
@@ -2922,10 +2923,33 @@
                                                                           <!-- <uniqueVersions>true</uniqueVersions> -->
                                                                         </requireUpperBoundDeps>
                                                                         <NoPackageCyclesRule implementation="de.andrena.tools.nopackagecycles.NoPackageCyclesRule"></NoPackageCyclesRule>
+                                                                        <!--
+																		<versionTxtRule implementation="org.eclipse.jetty.toolchain.enforcer.rules.VersionTxtRule" />
+																		<versionOsgiRule implementation="org.eclipse.jetty.toolchain.enforcer.rules.RequireOsgiCompatibleVersionRule" />
+																		<versionRedhatRule implementation="org.eclipse.jetty.toolchain.enforcer.rules.RequireRedhatCompatibleVersionRule" />
+																		<versionDebianRule implementation="org.eclipse.jetty.toolchain.enforcer.rules.RequireDebianCompatibleVersionRule" />
+																		-->
                                                                 </rules>
                                                                 <fail>true</fail>
                                                         </configuration>
                                                 </execution>
+												<execution>
+													<id>ban-junit-dep.jar</id>
+													<goals>
+														<goal>enforce</goal>
+													</goals>
+													<configuration>
+														<rules>
+															<bannedDependencies>
+															<excludes>
+																<exclude>junit:junit-dep:*:jar</exclude>
+															</excludes>
+															<searchTransitive>true</searchTransitive>
+															<message>We use junit.jar, not junit-dep.jar (as of junit 4.11, hamcrest is no longer embedded)</message>
+															</bannedDependencies>
+														</rules>
+													</configuration>
+												</execution>
                                         </executions>
                                         <dependencies>
                                             <dependency>
@@ -2933,6 +2957,11 @@
                                                 <artifactId>no-package-cycles-enforcer-rule</artifactId>
                                                 <version>${maven.enforcer.no.package.cycles.plugin.version}</version>
                                             </dependency>
+											<dependency>
+												<groupId>org.eclipse.jetty.toolchain</groupId>
+												<artifactId>jetty-build-support</artifactId>
+												<version>${build.support.version}</version>
+											</dependency>
                                         </dependencies>
                                 </plugin>
                                 <!-- allow to create a single jar with all dependencies -->
@@ -2956,6 +2985,13 @@
                                                         </goals>
                                                 </execution>
                                         </executions>
+										<dependencies>
+											<dependency>
+												<groupId>org.eclipse.jetty.toolchain</groupId>
+												<artifactId>jetty-assembly-descriptors</artifactId>
+												<version>1.0</version>
+											</dependency>
+										</dependencies>
                                 </plugin>
                                 <plugin>
                                         <groupId>org.apache.maven.plugins</groupId>
@@ -3799,8 +3835,10 @@
                                                 <javadocVersion>${jdkLevel}</javadocVersion>
                                                 <linksource>true</linksource>
                                                 <serialwarn>true</serialwarn>
+                                                <docfilessubdirs>true</docfilessubdirs>
                                                 <detectLinks>false</detectLinks>
                                                 <detectOfflineLinks>false</detectOfflineLinks>
+												<detectJavaApiLink>true</detectJavaApiLink>
 
                                                 <charset>${project.build.sourceEncoding}</charset>
                                                 <docencoding>${project.build.sourceEncoding}</docencoding>
@@ -3842,6 +3880,84 @@
                                                 <additionalparam>-types</additionalparam>
                                                 <additionalparam>-visibility</additionalparam>
                                                 <additionalparam>-collpackages</additionalparam>
+
+												<links>
+													<link>http://docs.oracle.com/javase/8/docs/api/</link>
+													<link>http://docs.oracle.com/javaee/7/api/</link>
+													<link>http://junit.org/javadoc/latest/</link>
+													<link>http://download.eclipse.org/jetty/stable-9/apidocs/</link>
+												</links>
+												<tags>
+													<tag>
+														<name>org.apache.xbean.XBean</name>
+														<placement>X</placement>
+														<head />
+													</tag>
+													<tag>
+														<name>phase</name>
+														<placement>t</placement>
+														<head>Phase:</head>
+													</tag>
+													<tag>
+														<name>goal</name>
+														<placement>t</placement>
+														<head>Goal:</head>
+													</tag>
+													<tag>
+														<name>description</name>
+														<placement>a</placement>
+														<head>Description:</head>
+													</tag>
+													<tag>
+														<name>parameter</name>
+														<placement>f</placement>
+														<head>Parameter:</head>
+													</tag>
+													<tag>
+														<name>required</name>
+														<placement>f</placement>
+														<head>Required:</head>
+													</tag>
+													<tag>
+														<name>readonly</name>
+														<placement>f</placement>
+														<head>Read-Only:</head>
+													</tag>
+													<tag>
+														<name>execute</name>
+														<placement>X</placement>
+														<head />
+													</tag>
+													<tag>
+														<name>requiresDependencyResolution</name>
+														<placement>X</placement>
+														<head />
+													</tag>
+													<tag>
+														<name>requiresProject</name>
+														<placement>X</placement>
+														<head />
+													</tag>
+													<tag>
+														<name>threadSafe</name>
+														<placement>X</placement>
+														<head />
+													</tag>
+												</tags>
+												<header>
+												<![CDATA[
+													<script type="text/javascript">
+														var _gaq = _gaq || [];
+														_gaq.push(['_setAccount', 'UA-56011797-1']);
+														_gaq.push(['_trackPageview']);
+														(function() {
+														var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+														ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+														var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+														})();
+													</script>
+												]]>
+												</header>
                                         </configuration>
                                         <dependencies>
                                             <dependency>
