@@ -1805,7 +1805,7 @@
                 <maven.benerator.plugin.version>0.7.7</maven.benerator.plugin.version>
                 <maven.zap.plugin.version>1.2-SNAPSHOT</maven.zap.plugin.version>
                 <maven.flex.pmd.plugin.version>1.2</maven.flex.pmd.plugin.version>
-                <maven.bundle.plugin.version>2.5.4</maven.bundle.plugin.version>
+                <maven.bundle.plugin.version>3.0.0</maven.bundle.plugin.version>
                 <maven.flexmojos.plugin.version>4.2-beta</maven.flexmojos.plugin.version>
                 <maven.pitest.plugin.version>1.1.5</maven.pitest.plugin.version>
                 <maven.cxx.plugin.version>0.0.5-SNAPSHOT</maven.cxx.plugin.version>
