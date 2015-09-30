@@ -965,6 +965,7 @@
 
                 <!-- used by osgi.bnd with maven-bundle-plugin -->
                 <bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
+                <!--<bundle.symbolicName>${project.groupId}.tests.webapp</bundle.symbolicName>-->
                 <bundle.namespace>${project.groupId}</bundle.namespace>
 
                 <!-- ************************ -->
@@ -1771,7 +1772,7 @@
                 <maven.tomcat7.plugin.version>2.2</maven.tomcat7.plugin.version>
                 <maven.jetty.mortbay.plugin.version>${jetty.version}</maven.jetty.mortbay.plugin.version> <!-- TODO remove or 7.0.0.pre5-->
                 <!--<maven.jetty.eclipse.plugin.version>9.3.0.M1</maven.jetty.eclipse.plugin.version>-->
-                <maven.jetty.eclipse.plugin.version>${jetty.version}</maven.jetty.eclipse.plugin.version>
+                <maven.jetty.eclipse.plugin.version>${jetty9.version}</maven.jetty.eclipse.plugin.version>
                 <maven.jboss.as.plugin.version>7.7.Final</maven.jboss.as.plugin.version>
                 <maven.ant.plugin.version>2.4</maven.ant.plugin.version>
                 <maven.jalopy.plugin.version>1.0-alpha-1</maven.jalopy.plugin.version>
@@ -4456,9 +4457,11 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                     <version>${maven.jetty.eclipse.plugin.version}</version>
                                     <configuration>
                                         <scanIntervalSeconds>10</scanIntervalSeconds>
+                                        <!--
                                         <webApp>
                                             <contextPath>/nabla</contextPath>
                                         </webApp>
+                                        -->
                                         <useTestClasspath>true</useTestClasspath>
                                         <httpConnector>
                                             <!--host>localhost</host-->
@@ -4808,9 +4811,11 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                         <supportedProjectType>bundle</supportedProjectType>
                                         <supportedProjectType>war</supportedProjectType>
                                       </supportedProjectTypes>
+                                      <!--
                                       <instructions>
                                           <_include>osgi.bnd</_include>
                                       </instructions>
+                                      -->
                                     </configuration>
                                 </plugin>
 
