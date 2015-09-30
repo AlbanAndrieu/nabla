@@ -3428,13 +3428,13 @@
                                                           <Implementation-Timestamp>${maven.build.timestamp}</Implementation-Timestamp>
                                                           <Implementation-DatePattern>${maven.build.timestamp.format}</Implementation-DatePattern>
                                                           <Implementation-Full-Version>${project.version}-${product.version}</Implementation-Full-Version>
-                                                          <Built-Host>${env.HOSTNAME}</Built-Host>
+                                                          <!--<Built-Host>${env.HOSTNAME}</Built-Host>-->
                                                           <Built-OS>${os.name} / ${os.arch} / ${os.version}</Built-OS>
-                                                          <Built-By>${env.USER}</Built-By>
-                                                          <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
+                                                          <!--<Built-By>${env.USER}</Built-By>-->
+                                                          <!--<Build-Machine>${env.COMPUTERNAME}</Build-Machine>-->
                                                           <Build-Date>${maven.build.timestamp}</Build-Date>
                                                           <Build-Revision>${env.BUILD_NUMBER}</Build-Revision>
-                                                          <Maven-Version>${build.maven.version}</Maven-Version>
+                                                          <!--<Maven-Version>${build.maven.version}</Maven-Version>-->
                                                           <Java-Version>${java.version}</Java-Version>
                                                           <Java-Vendor>${java.vendor}</Java-Vendor>
                                                           <X-Compile-Source-JDK>${jdkLevel}</X-Compile-Source-JDK>
@@ -3500,13 +3500,13 @@
                                               <Implementation-Timestamp>${maven.build.timestamp}</Implementation-Timestamp>
                                               <Implementation-DatePattern>${maven.build.timestamp.format}</Implementation-DatePattern>
                                               <Implementation-Full-Version>${project.version}-${product.version}</Implementation-Full-Version>
-                                              <Built-Host>${env.HOSTNAME}</Built-Host>
+                                              <!--<Built-Host>${env.HOSTNAME}</Built-Host>-->
                                               <Built-OS>${os.name} / ${os.arch} / ${os.version}</Built-OS>
-                                              <Built-By>${env.USER}</Built-By>
-                                              <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
+                                              <!--<Built-By>${env.USER}</Built-By>-->
+                                              <!--<Build-Machine>${env.COMPUTERNAME}</Build-Machine>-->
                                               <Build-Date>${maven.build.timestamp}</Build-Date>
                                               <Build-Revision>${env.BUILD_NUMBER}</Build-Revision>
-                                              <Maven-Version>${build.maven.version}</Maven-Version>
+                                              <!--<Maven-Version>${build.maven.version}</Maven-Version>-->
                                               <Java-Version>${java.version}</Java-Version>
                                               <Java-Vendor>${java.vendor}</Java-Vendor>
                                               <X-Compile-Source-JDK>${jdkLevel}</X-Compile-Source-JDK>
@@ -3585,13 +3585,13 @@
                                                           <Implementation-Timestamp>${maven.build.timestamp}</Implementation-Timestamp>
                                                           <Implementation-DatePattern>${maven.build.timestamp.format}</Implementation-DatePattern>
                                                           <Implementation-Full-Version>${project.version}-${product.version}</Implementation-Full-Version>
-                                                          <Built-Host>${env.HOSTNAME}</Built-Host>
+                                                          <!--<Built-Host>${env.HOSTNAME}</Built-Host>-->
                                                           <Built-OS>${os.name} / ${os.arch} / ${os.version}</Built-OS>
-                                                          <Built-By>${env.USER}</Built-By>
-                                                          <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
+                                                          <!--<Built-By>${env.USER}</Built-By>-->
+                                                          <!--<Build-Machine>${env.COMPUTERNAME}</Build-Machine>-->
                                                           <Build-Date>${maven.build.timestamp}</Build-Date>
                                                           <Build-Revision>${env.BUILD_NUMBER}</Build-Revision>
-                                                          <Maven-Version>${build.maven.version}</Maven-Version>
+                                                          <!--<Maven-Version>${build.maven.version}</Maven-Version>-->
                                                           <Java-Version>${java.version}</Java-Version>
                                                           <Java-Vendor>${java.vendor}</Java-Vendor>
                                                           <X-Compile-Source-JDK>${jdkLevel}</X-Compile-Source-JDK>
@@ -3712,13 +3712,13 @@
                                               <Implementation-Timestamp>${maven.build.timestamp}</Implementation-Timestamp>
                                               <Implementation-DatePattern>${maven.build.timestamp.format}</Implementation-DatePattern>
                                               <Implementation-Full-Version>${project.version}-${product.version}</Implementation-Full-Version>
-                                              <Built-Host>${env.HOSTNAME}</Built-Host>
+                                              <!--<Built-Host>${env.HOSTNAME}</Built-Host>-->
                                               <Built-OS>${os.name} / ${os.arch} / ${os.version}</Built-OS>
-                                              <Built-By>${env.USER}</Built-By>
-                                              <Build-Machine>${env.COMPUTERNAME}</Build-Machine>
+                                              <!--<Built-By>${env.USER}</Built-By>-->
+                                              <!--<Build-Machine>${env.COMPUTERNAME}</Build-Machine>-->
                                               <Build-Date>${maven.build.timestamp}</Build-Date>
                                               <Build-Revision>${env.BUILD_NUMBER}</Build-Revision>
-                                              <Maven-Version>${build.maven.version}</Maven-Version>
+                                              <!--<Maven-Version>${build.maven.version}</Maven-Version>-->
                                               <Java-Version>${java.version}</Java-Version>
                                               <Java-Vendor>${java.vendor}</Java-Vendor>
                                               <X-Compile-Source-JDK>${jdkLevel}</X-Compile-Source-JDK>
