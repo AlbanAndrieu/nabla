@@ -138,6 +138,8 @@
 				<src.jars.dir>${project.target}/src</src.jars.dir>
 
 				<newrelic.agent>-javaagent:"${settings.localRepository}"/com/newrelic/agent/java/newrelic-agent/${newrelic.version}/newrelic-agent-${newrelic.version}.jar -Dnewrelic.config.file=${user.home}/newrelic.yml</newrelic.agent>
+
+				<bundle.symbolic.name>${project.groupId}.tests.webapp</bundle.symbolic.name>
         </properties>
         <dependencyManagement>
                 <dependencies>
@@ -1777,6 +1779,16 @@
                                                 <inherited>true</inherited>
                                                 <configuration>
                                                         <includePom>true</includePom>
+														<archive>
+															<manifestEntries>
+																<Bundle-ManifestVersion>2</Bundle-ManifestVersion>
+																<Bundle-Name>${project.name}</Bundle-Name>
+																<Bundle-SymbolicName>${bundle.symbolic.name}.source</Bundle-SymbolicName>
+																<Bundle-Vendor>Eclipse.org - Jetty</Bundle-Vendor>
+																<Bundle-Version>${parsedVersion.osgiVersion}</Bundle-Version>
+																<Eclipse-SourceBundle>${bundle.symbolic.name};version="${parsedVersion.osgiVersion}";roots:="."</Eclipse-SourceBundle>
+															</manifestEntries>
+														</archive>
                                                 </configuration>
                                                 <executions>
                                                         <execution>
