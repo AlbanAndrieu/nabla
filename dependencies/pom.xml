@@ -1017,6 +1017,7 @@
 				<sonar.javascript.forceZeroCoverage>true</sonar.javascript.forceZeroCoverage>
 				<sonar.javascript.lcov.reportPath>${basedir}/target/lcov-karma.info</sonar.javascript.lcov.reportPath>
 				<sonar.javascript.lcov.itReportPath>${basedir}/target/lcov.info</sonar.javascript.lcov.itReportPath>
+				<sonar.dependencyCheck.reportPath>${basedir}/target/dependency-check-report.xml</sonar.dependencyCheck.reportPath>
 
                 <!--<sonar.groovy.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.groovy.cobertura.reportPath>-->
                 <sonar.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.cobertura.reportPath>
@@ -1438,10 +1439,13 @@
                 <wiser.version>1.2</wiser.version>
                 <scala.version>2.11.4</scala.version> <!-- for gatling to work -->
                 <scala.suffix>_2.11</scala.suffix>
+                <scala.short.version>2.11</scala.short.version>
+                <json4s.version>3.3.0.RC2</json4s.version>
                 <!--
-                <scala.version>2.11.4</scala.version>
-                <scala.suffix>_2.11</scala.suffix>
-                -->
+				<scala.dep.version>${scala-short.version}.6</scala.dep.version>
+				<scala.lib.version>${scala-short.version}.6</scala.lib.version>
+				-->
+				<scalatest.version>2.1.3</scalatest.version>
                 <akka.version>2.3.7</akka.version>
 
                 <google.api.client.version>1.0.10-alpha</google.api.client.version>
@@ -1477,7 +1481,7 @@
                 <saucelabs.selenium.version>2.6</saucelabs.selenium.version>
                 <saucelabs.junit.version>2.1.10</saucelabs.junit.version>
                 <fitnesse.version>20150814</fitnesse.version>
-                <gatling.version>1.5.6</gatling.version>
+                <gatling.version>2.1.7</gatling.version>
                 <newrelic.version>3.20.0</newrelic.version>
                 <!--<webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
                 <!--<webdriver.firefox.bin>/usr/lib/firefox/firefox</webdriver.firefox.bin>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
@@ -1721,6 +1725,7 @@
                 <maven.properties.plugin.version>1.0-alpha-2</maven.properties.plugin.version>
                 <maven.sonar.plugin.version>2.6</maven.sonar.plugin.version>
                 <maven.gatling.plugin.version>${gatling.version}</maven.gatling.plugin.version>
+                <maven.scalatest.plugin.version>1.0</maven.scalatest.plugin.version>
                 <maven.jmeter.plugin.version>1.10.1</maven.jmeter.plugin.version>
                 <maven.jmeter.graph.plugin.version>0.1.0</maven.jmeter.graph.plugin.version>
                 <maven.jmeter.analysis.plugin.version>1.0.6</maven.jmeter.analysis.plugin.version>
@@ -1758,6 +1763,7 @@
                 <maven.gmaven.plugin.version>1.5</maven.gmaven.plugin.version>
                 <maven.verifier.plugin.version>1.1</maven.verifier.plugin.version>
                 <maven.tattletale.plugin.version>1.2.0.Beta2</maven.tattletale.plugin.version>
+                <maven.animal.sniffer.plugin.version>1.10</maven.animal.sniffer.plugin.version>
                 <maven.h2.plugin.version>1.0</maven.h2.plugin.version>
                 <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
                 <maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
@@ -2516,10 +2522,31 @@
                                 </plugin>
 
                                 <plugin>
-                                    <groupId>com.excilys.ebi.gatling</groupId>
+                                    <!--<groupId>com.excilys.ebi.gatling</groupId>-->
+                                    <groupId>io.gatling</groupId>
                                     <artifactId>gatling-maven-plugin</artifactId>
                                     <version>${maven.gatling.plugin.version}</version>
                                 </plugin>
+
+								<!-- enable scalatest -->
+								<plugin>
+									<groupId>org.scalatest</groupId>
+									<artifactId>scalatest-maven-plugin</artifactId>
+									<version>${maven.scalatest.plugin.version}</version>
+									<configuration>
+										<reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+										<junitxml>.</junitxml>
+										<filereports>WDF TestSuite.txt</filereports>
+									</configuration>
+									<executions>
+										<execution>
+											<id>test</id>
+											<goals>
+												<goal>test</goal>
+											</goals>
+										</execution>
+									</executions>
+								</plugin>
 
                                 <!-- https://blog.codecentric.de/en/2014/01/automating-jmeter-tests-maven-jenkins/-->
                                 <!--
@@ -2711,6 +2738,7 @@
                     </configuration>
                 </plugin>
                 -->
+								<!-- Allow proper editing in IDEs and display warnings for feature and deprecation etc, etc -->
                                 <plugin>
                                     <groupId>net.alchim31.maven</groupId>
                                     <artifactId>scala-maven-plugin</artifactId>
@@ -3061,6 +3089,28 @@
                                       <artifactId>tattletale-maven</artifactId>
                                       <version>${maven.tattletale.plugin.version}</version>
                                 </plugin>
+								<plugin>
+									<!-- make sure our code doesn't have 1.6 dependencies except where we know it see * http://mojo.codehaus.org/animal-sniffer/index.html * http://weblogs.java.net/blog/kohsuke/archive/2008/11/compiling_with.html -->
+									<groupId>org.codehaus.mojo</groupId>
+									<artifactId>animal-sniffer-maven-plugin</artifactId>
+									<version>${maven.animal.sniffer.plugin.version}</version>
+									<executions>
+										<execution>
+											<id>check-java-api</id>
+											<phase>test</phase>
+											<goals>
+												<goal>check</goal>
+											</goals>
+											<configuration>
+												<signature>
+													<groupId>org.codehaus.mojo.signature</groupId>
+													<artifactId>java15</artifactId>
+													<version>1.0</version>
+												</signature>
+											</configuration>
+										</execution>
+									</executions>
+								</plugin>
                                 <!-- Global test exclusions -->
                                 <plugin>
                                         <groupId>org.apache.maven.plugins</groupId>
@@ -5858,13 +5908,20 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                           <type>zip</type>
                         </dependency>
 
+						<dependency>
+							<groupId>io.gatling</groupId>
+							<artifactId>gatling-charts</artifactId>
+							<version>${gatling.version}</version>
+						</dependency>
                         <dependency>
-                            <groupId>com.excilys.ebi.gatling.highcharts</groupId>
+                            <!--<groupId>com.excilys.ebi.gatling.highcharts</groupId>-->
+                            <groupId>io.gatling.highcharts</groupId>
                             <artifactId>gatling-charts-highcharts</artifactId>
                             <version>${gatling.version}</version>
                         </dependency>
                         <dependency>
-                            <groupId>com.excilys.ebi.gatling</groupId>
+                            <!--<groupId>com.excilys.ebi.gatling</groupId>-->
+                            <groupId>io.gatling</groupId>
                             <artifactId>gatling-app</artifactId>
                             <version>${gatling.version}</version>
                             <exclusions>
@@ -5874,11 +5931,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 </exclusion>
                             </exclusions>
                         </dependency>
+                        <!--
                         <dependency>
                             <groupId>com.excilys.ebi.gatling</groupId>
                             <artifactId>gatling-recorder</artifactId>
                             <version>${gatling.version}</version>
                         </dependency>
+                        -->
 
                         <dependency>
                             <groupId>org.glassfish.main.extras</groupId>
@@ -6695,6 +6754,16 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <artifactId>scala-compiler</artifactId>
                             <version>${scala.version}</version>
                         </dependency>
+						<dependency>
+							<groupId>org.scala-lang</groupId>
+							<artifactId>scala-reflect</artifactId>
+							<version>${scala.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.json4s</groupId>
+							<artifactId>json4s-jackson_${scala.short.version}</artifactId>
+							<version>${json4s.version}</version>
+						</dependency>
                         <!--
                           groovy-all-1.5.4 provided by Seam-2.1.2, seam-2.2.0 and seam-2.2.1 root POM
                           does not work with the gmaven-1.2 and 1.3 plugin, must use groovy-1.7.x.
@@ -7733,6 +7802,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <version>${seam.embedded.version}</version>
                                 <scope>test</scope>
                         </dependency>
+
+						<dependency>
+							<groupId>org.scalatest</groupId>
+							<artifactId>scalatest_${scala.short.version}</artifactId>
+							<version>${scalatest.version}</version>
+						</dependency>
 
                         <!-- openejb embedded container -->
                         <dependency>
