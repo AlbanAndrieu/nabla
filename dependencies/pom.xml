@@ -1583,7 +1583,7 @@
                 <jsr311.api.version>1.1.1</jsr311.api.version>
                 <!--<wsdl4j.version>1.6.3</wsdl4j.version>-->
                 <wsdl4j.version>1.6.2</wsdl4j.version> <!-- works with cxf 2.7.14 -->
-                <groovy.version>2.3.7</groovy.version>
+                <groovy.version>2.4.5</groovy.version>
                 <http.builder.version>0.6</http.builder.version>
                 <groovy.eclipse.compiler.version>2.9.2-01</groovy.eclipse.compiler.version>
                 <groovy.eclipse.batch.version>2.4.3-01</groovy.eclipse.batch.version>
@@ -1603,8 +1603,8 @@
                 <jettison.version>1.1</jettison.version>
                 <jersey1.version>1.19</jersey1.version>
                 <!--<jersey.version>2.11</jersey.version>-->
-                <jersey.version>2.21</jersey.version>
-                <jersey.bom.version>2.21</jersey.bom.version>
+                <jersey.version>2.22</jersey.version>
+                <jersey.bom.version>${jersey.version}</jersey.bom.version>
                 <jetty6.version>6.1.25</jetty6.version>
                 <jetty7.version>7.6.5.v20120716</jetty7.version> <!-- 7.6.3.v20120416 TODO remove jetty 6 -->
                 <jetty8.version>8.1.15.v20140411</jetty8.version> <!-- version of jetty used by cxf 2.7.14 -->
@@ -1728,7 +1728,7 @@
                 <maven.hotdeploy.plugin.version>0.3.3</maven.hotdeploy.plugin.version>
                 <maven.cli.plugin.version>1.0.11</maven.cli.plugin.version>
                 <maven.frontend.plugin.version>0.0.22</maven.frontend.plugin.version> <!-- 0.0.20 does not work with maven 3.3.3 --> <!-- 0.0.24 issue with native package libxslt -->
-                <maven.shade.plugin.version>2.4</maven.shade.plugin.version>
+                <maven.shade.plugin.version>2.4.1</maven.shade.plugin.version>
                 <maven.rar.plugin.version>2.4</maven.rar.plugin.version>
                 <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
                 <maven.ear.plugin.version>2.9.1</maven.ear.plugin.version>
@@ -2765,6 +2765,12 @@
                                     <groupId>com.github.eirslett</groupId>
                                     <artifactId>frontend-maven-plugin</artifactId>
                                     <version>${maven.frontend.plugin.version}</version>
+									<configuration>
+										<nodeVersion>v${node.version}</nodeVersion>
+										<npmVersion>${npm.version}</npmVersion>
+										<!-- <nodeDownloadRoot>http://home.nabla.mobi/html/download/nodejs/</nodeDownloadRoot>
+											<npmDownloadRoot>http://home.nabla.mobi/html/download/npm/-/</npmDownloadRoot> -->
+									</configuration>
                                 </plugin>
                                 <plugin>
                                         <groupId>org.apache.maven.plugins</groupId>
@@ -4462,7 +4468,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                             <contextPath>/nabla</contextPath>
                                         </webApp>
                                         -->
-                                        <useTestClasspath>true</useTestClasspath>
+                                        <!--<useTestClasspath>true</useTestClasspath>-->
                                         <httpConnector>
                                             <!--host>localhost</host-->
                                             <port>${jetty.port}</port>
@@ -4483,6 +4489,28 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                         </systemProperties>
                                         -->
                                     </configuration>
+									<dependencies>
+										<dependency>
+											<groupId>org.eclipse.jetty</groupId>
+											<artifactId>jetty-client</artifactId>
+											<version>${jetty9.version}</version>
+										</dependency>
+										<dependency>
+											<groupId>org.eclipse.jetty</groupId>
+											<artifactId>jetty-servlets</artifactId>
+											<version>${jetty9.version}</version>
+										</dependency>
+										<dependency>
+											<groupId>org.eclipse.jetty</groupId>
+											<artifactId>jetty-http</artifactId>
+											<version>${jetty9.version}</version>
+										</dependency>
+										<dependency>
+											<groupId>org.eclipse.jetty</groupId>
+											<artifactId>jetty-rewrite</artifactId>
+											<version>${jetty9.version}</version>
+										</dependency>
+									</dependencies>
                                 </plugin>
                                 <!-- TODO already using jetty-maven-plugin -->
                                 <!-- please use instead org.eclipse.jetty -->
