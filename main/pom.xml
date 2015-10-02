@@ -918,6 +918,7 @@
 						</plugins>
 					</build>
 				</profile>
+				<!--
 				<profile>
 					<id>config</id>
 					<activation>
@@ -947,6 +948,7 @@
 						</plugins>
 					</build>
 				</profile>
+				-->
 				<profile>
 				    <activation>
 				        <file>
