@@ -1437,7 +1437,7 @@
                 <xmlunit.version>1.5</xmlunit.version>
                 <jsonassert.version>1.2.3</jsonassert.version>
                 <wiser.version>1.2</wiser.version>
-                <scala.version>2.11.4</scala.version> <!-- for gatling to work -->
+                <scala.version>2.11.7</scala.version> <!-- for gatling to work -->
                 <scala.suffix>_2.11</scala.suffix>
                 <scala.short.version>2.11</scala.short.version>
                 <json4s.version>3.3.0.RC2</json4s.version>
@@ -1774,6 +1774,7 @@
                 <maven.idea.plugin.version>2.3-20100704</maven.idea.plugin.version>
                 <maven.cargo.maven2.plugin.version>1.4.15</maven.cargo.maven2.plugin.version>
                 <!--<maven.cargo.maven2.plugin.version>1.4.11</maven.cargo.maven2.plugin.version>-->
+                <maven.mem.tracker.maven.plugin.version>1.0.0</maven.mem.tracker.maven.plugin.version>
                 <maven.apt.plugin.version>1.0-alpha-5</maven.apt.plugin.version>
                 <maven.tomcat7.plugin.version>2.2</maven.tomcat7.plugin.version>
                 <maven.jetty.mortbay.plugin.version>${jetty.version}</maven.jetty.mortbay.plugin.version> <!-- TODO remove or 7.0.0.pre5-->
@@ -5015,6 +5016,20 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                     <artifactId>cargo-maven2-plugin</artifactId>
                                     <version>${maven.cargo.maven2.plugin.version}</version>
                                 </plugin>
+								<plugin>
+									<groupId>com.sinapsi.memtracker</groupId>
+									<artifactId>mem-tracker-maven-plugin</artifactId>
+									<version>${maven.mem.tracker.maven.plugin.version}</version>
+									<executions>
+										<execution>
+											<id>integration-test</id>
+											<goals>
+												<goal>track</goal>
+											</goals>
+											<phase>integration-test</phase>
+										</execution>
+									</executions>
+								</plugin>
                                 <plugin>
                                     <groupId>com.edugility</groupId>
                                     <artifactId>h2-maven-plugin</artifactId>
