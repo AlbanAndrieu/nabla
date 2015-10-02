@@ -1713,7 +1713,8 @@
                 <maven.native2ascii.maven.plugin.version>1.0-beta-1</maven.native2ascii.maven.plugin.version>
                 <maven.archetype.plugin.version>2.3</maven.archetype.plugin.version>
                 <maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
-                <maven.assembly.plugin.version>2.5.5</maven.assembly.plugin.version>
+                <maven.assembly.plugin.version>2.5.2</maven.assembly.plugin.version>
+                <!--<maven.assembly.plugin.version>2.5.5</maven.assembly.plugin.version>-->
                 <maven.changelog.plugin.version>2.3</maven.changelog.plugin.version>
                 <maven.scm.plugin.version>1.9.4</maven.scm.plugin.version>
                 <maven.checkstyle.plugin.version>2.16</maven.checkstyle.plugin.version>
