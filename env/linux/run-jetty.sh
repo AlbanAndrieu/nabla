@@ -1,3 +1,6 @@
+#!/bin/bash
+[[ -n "$DEBUG" ]] &&  set -x
+
 #install jetty 6
 #sudo apt-get install jetty libjetty8-extra-java libjetty8-java libjetty-extra-java libjetty-extra libjetty-java-doc jetty8 libjetty8-java-doc libjetty-java jsvc default-jre-headless apache2-utils
 sudo apt-get install jetty libjetty-extra-java libjetty-extra libjetty-java-doc
@@ -24,7 +27,7 @@ sudo lsof -i :8079
 #downoad from
 #http://eclipse.org/downloads/download.php?file=/jetty/stable-9/dist/jetty-distribution-9.1.5.v20140505.tar.gz&r=1
 cd /workspace/jetty
-cp ~/Downloads/jetty-distribution-9.1.5.v20140505.tar.gz  .
+cp ~/Downloads/jetty-distribution-9.1.5.v20140505.tar.gz .
 tar -xvf jetty-distribution-9.1.5.v20140505.tar.gz
 
 #eclipse Jetty WTP plugins
@@ -38,8 +41,15 @@ tar -xvf jetty-distribution-9.1.5.v20140505.tar.gz
 #Generating Keys and Certificates with JDK keytool
 cd ./src/main/etc/
 /usr/lib/jvm/java-7-oracle/bin/keytool
+
+keytool -delete -alias jetty_int -keystore keystore
+
 #keytool -keystore keystore -alias jetty -genkey -keyalg RSA -sigalg SHA256withRSA
-keytool -keystore keystore -alias jetty -genkey -keyalg RSA -sigalg SHA256withRSA -ext 'SAN=dns:jetty.eclipse.org,dns:*.jetty.org'
+#keytool -keystore keystore -alias jetty -genkey -keyalg RSA -sigalg SHA256withRSA -ext 'SAN=dns:jetty.eclipse.org,dns:*.jetty.org'
+keytool -keystore keystore -alias jetty -genkey -v -keyalg RSA -validity 36500
+#-sigalg SHA256withRSA
+keytool -alias jetty -selfcert -validity 36500 -keystore "$STORE" -storepass "$STOREPASSWD" -keypass "$KEYPASSWD"
+
 #keytool -certreq -alias jetty -keystore keystore -file jetty.csr
 #keytool -keystore keystore -alias jetty -export -file jetty.crt
 #${JAVA_HOME}/${KEYTOOL_CMD} -genkey -v  -alias jetty -keystore "$STORE" -keyalg RSA  -storepass "$STOREPASSWD" -validity 36500 << EOF
@@ -52,7 +62,7 @@ keytool -keystore keystore -alias jetty -genkey -keyalg RSA -sigalg SHA256withRS
 #yes
 #
 #EOF
-#${JAVA_HOME}/${KEYTOOL_CMD}  -alias jetty -selfcert -validity 36500 -keystore "$STORE" -storepass "$STOREPASSWD" -keypass "$KEYPASSWD"
+#${JAVA_HOME}/${KEYTOOL_CMD} -alias jetty -selfcert -validity 36500 -keystore "$STORE" -storepass "$STOREPASSWD" -keypass "$KEYPASSWD"
 keytool -list -keystore keystore -v
 #Generating a CSR from keytool
 keytool -certreq -alias jetty -keystore keystore -file jetty.csr
@@ -62,3 +72,13 @@ keytool -keystore keystore -import -alias jetty -file jetty.crt -trustcacerts
 #openssl genrsa -aes128 -out jetty.key
 #openssl req -new -x509 -newkey rsa:2048 -sha256 -key jetty.key -out jetty.crt
 #openssl req -new -key jetty.key -out jetty.csr
+
+openssl pkcs12 -inkey jetty.key -in jetty.crt -export -out jetty.pkcs12
+keytool -importkeystore -srckeystore jetty.pkcs12 -srcstoretype PKCS12 -destkeystore keystore
+
+#https://www.eclipse.org/jetty/documentation/current/configuring-security-secure-passwords.html
+export JETTY_VERSION=9.3.3.v20150827
+java -cp ./target/cargo/installs/jetty-distribution-${JETTY_VERSION}/jetty-distribution-${JETTY_VERSION}/lib/jetty-util-$JETTY_VERSION.jar org.eclipse.jetty.util.security.Password Kondor_123
+OBF:1e3b1l181kn01rpg1xmk1xmq1rp61kjm1kxu1e1z
+MD5:7509264c65c3e400d2e5c9d7280c9786
+
