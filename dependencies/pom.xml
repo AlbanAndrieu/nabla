@@ -1623,6 +1623,8 @@
                 <javax.websocket.api>1.0</javax.websocket.api>
 
                 <gmaven.runtime.version>${maven.gmaven.plugin.version}</gmaven.runtime.version>
+                <!--<gmaven.runtime.number.version>1.7</gmaven.runtime.number.version>-->
+                <gmaven.runtime.number.version>2.0</gmaven.runtime.number.version>
                 <maven.groovy.plugin.version>1.5</maven.groovy.plugin.version>
                 <jspc.compiler.tomcat6.version>2.0-alpha-3</jspc.compiler.tomcat6.version>
                 <!--<izpack.version>5.0.0-rc4</izpack.version> buggy version-->
@@ -1652,6 +1654,9 @@
 
                 <build.timestamp>${maven.build.timestamp}</build.timestamp>
                 <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+
+				<documentation.output.directory>${project.build.directory}/docs</documentation.output.directory>
+				<groovydoc.directory.name>groovydocs</groovydoc.directory.name>
 
                 <!-- Plugin version definitions -->
                 <maven.project.version>3.0-alpha-2</maven.project.version>
@@ -1765,7 +1770,8 @@
                 <maven.buildmetadata.plugin.version>1.1.5</maven.buildmetadata.plugin.version>
                 <maven.license.plugin.version>1.10.b1</maven.license.plugin.version>
                 <maven.sonar.report.plugin.version>2.2.1</maven.sonar.report.plugin.version>
-                <maven.gmaven.plugin.version>1.5</maven.gmaven.plugin.version>
+                <maven.gmaven.plugin.version>2.0</maven.gmaven.plugin.version>
+                <maven.gmavenplus.plugin.version>1.5</maven.gmavenplus.plugin.version>
                 <maven.verifier.plugin.version>1.1</maven.verifier.plugin.version>
                 <maven.tattletale.plugin.version>1.2.0.Beta2</maven.tattletale.plugin.version>
                 <maven.animal.sniffer.plugin.version>1.10</maven.animal.sniffer.plugin.version>
@@ -1791,6 +1797,7 @@
                 <maven.axistools.plugin.version>1.4</maven.axistools.plugin.version>
                 <maven.enforcer.plugin.version>1.4.1</maven.enforcer.plugin.version>
                 <maven.enforcer.no.package.cycles.plugin.version>1.0.5</maven.enforcer.no.package.cycles.plugin.version>
+                <maven.enforcer.extra.plugin.version>1.0-beta-3</maven.enforcer.extra.plugin.version>
                 <maven.bees.plugin.version>1.3.2</maven.bees.plugin.version>
                 <maven.doap.plugin.version>1.2</maven.doap.plugin.version>
                 <!--<maven.antlr3.plugin.version>3.1.1.2</maven.antlr3.plugin.version>-->
@@ -2964,6 +2971,7 @@
                                                                           <!-- <uniqueVersions>true</uniqueVersions> -->
                                                                         </requireUpperBoundDeps>
                                                                         <NoPackageCyclesRule implementation="de.andrena.tools.nopackagecycles.NoPackageCyclesRule"></NoPackageCyclesRule>
+                                                                        <banCircularDependencies />
                                                                         <!--
 																		<versionTxtRule implementation="org.eclipse.jetty.toolchain.enforcer.rules.VersionTxtRule" />
 																		<versionOsgiRule implementation="org.eclipse.jetty.toolchain.enforcer.rules.RequireOsgiCompatibleVersionRule" />
@@ -2998,6 +3006,11 @@
                                                 <artifactId>no-package-cycles-enforcer-rule</artifactId>
                                                 <version>${maven.enforcer.no.package.cycles.plugin.version}</version>
                                             </dependency>
+											<dependency>
+												<groupId>org.codehaus.mojo</groupId>
+												<artifactId>extra-enforcer-rules</artifactId>
+												<version>${maven.enforcer.extra.plugin.version}</version>
+											</dependency>
 											<dependency>
 												<groupId>org.eclipse.jetty.toolchain</groupId>
 												<artifactId>jetty-build-support</artifactId>
@@ -3325,7 +3338,7 @@
                                   <dependencies>
                                     <dependency>
                                       <groupId>org.codehaus.gmaven.runtime</groupId>
-                                      <artifactId>gmaven-runtime-1.7</artifactId>
+                                      <artifactId>gmaven-runtime-${gmaven.runtime.number.version}</artifactId>
                                       <version>${gmaven.runtime.version}</version>
 
                                       <exclusions>
@@ -3361,41 +3374,66 @@
                                     </execution>
                                   </executions>
                                   -->
-                                <executions>
-                                    <execution>
-                                        <id>groovy compile</id>
-                                        <goals>
-                                            <goal>compile</goal>
-                                        </goals>
-                                        <configuration>
-                                            <sources>
-                                                <fileset>
-                                                    <directory>${basedir}/src/main/groovy</directory>
-                                                    <includes>
-                                                        <include>**/*.groovy</include>
-                                                    </includes>
-                                                </fileset>
-                                            </sources>
-                                        </configuration>
-                                    </execution>
-                                    <execution>
-                                        <id>groovy test compile</id>
-                                        <goals>
-                                            <goal>testCompile</goal>
-                                        </goals>
-                                        <configuration>
-                                            <sources>
-                                                <fileset>
-                                                    <directory>${basedir}/src/test/groovy</directory>
-                                                    <includes>
-                                                        <include>**/*.groovy</include>
-                                                    </includes>
-                                                </fileset>
-                                            </sources>
-                                        </configuration>
-                                    </execution>
-                                </executions>
+									<executions>
+										<execution>
+											<id>groovy compile</id>
+											<goals>
+												<goal>compile</goal>
+											</goals>
+											<configuration>
+												<sources>
+													<fileset>
+														<directory>${basedir}/src/main/groovy</directory>
+														<includes>
+															<include>**/*.groovy</include>
+														</includes>
+													</fileset>
+												</sources>
+											</configuration>
+										</execution>
+										<execution>
+											<id>groovy test compile</id>
+											<goals>
+												<goal>testCompile</goal>
+											</goals>
+											<configuration>
+												<sources>
+													<fileset>
+														<directory>${basedir}/src/test/groovy</directory>
+														<includes>
+															<include>**/*.groovy</include>
+														</includes>
+													</fileset>
+												</sources>
+											</configuration>
+										</execution>
+									</executions>
                                 </plugin>
+								<!-- groovydoc -->
+								<plugin>
+									<groupId>org.codehaus.gmavenplus</groupId>
+									<artifactId>gmavenplus-plugin</artifactId>
+									<version>${maven.gmavenplus.plugin.version}</version>
+									<dependencies>
+										<dependency>
+											<groupId>org.codehaus.groovy</groupId>
+											<artifactId>groovy-all</artifactId>
+											<version>${groovy.version}</version>
+										</dependency>
+									</dependencies>
+									<configuration>
+										<groovydocJavaSources>false</groovydocJavaSources>
+										<groovydocOutputDirectory>${documentation.output.directory}/${groovydoc.directory.name}</groovydocOutputDirectory>
+									</configuration>
+									<executions>
+										<execution>
+											<phase>prepare-package</phase>
+											<goals>
+												<goal>groovydoc</goal>
+											</goals>
+										</execution>
+									</executions>
+								</plugin>
                                 <plugin>
                                     <groupId>org.codehaus.mojo</groupId>
                                     <artifactId>selenium-maven-plugin</artifactId>
