@@ -22,7 +22,7 @@ sudo lsof -i -P -n | grep jstatd
 
 jps -l -m -v rmi://localhost:2020
 jps -l -m -v rmi://localhost:55841
-#give 
+#give
 #9015 /usr/local/eclipse/eclipse-luna
 #jps -l -m -v rmi://10.25.40.139:2020
 jstat -gcutil -t 9015 1s 30
@@ -40,11 +40,11 @@ jconsole -J-DsocksProxyHost=localhost -J-DsocksProxyPort=9696
 #Remote process
 #inside jvisualvm
 sudo jvisualvm
-#Tools -> Options -> network 
+#Tools -> Options -> network
 #Manuel proxy settings
 #socket proxy -> localhost
 #port -> 9696
-#no proxy hosts -> clear 
+#no proxy hosts -> clear
 #inside visualVM add jstatsd connection -> default : 1099
 #service:jmx:rmi:///jndi/rmi://mgrv062.misys.global.ad:9194/jmxrmi
 
@@ -63,3 +63,9 @@ sudo jvisualvm
 -Dcom.sun.management.jmxremote.port=1099
 -Djetty.jmxrmihost=localhost
 -Djetty.jmxrmiport=1099
+
+#Eclipse Memory Analyzer
+#https://www.eclipse.org/mat/
+#There's a few ways to get a heap dump for a JVM process, but I use jmap:
+jmap -dump:live,format=b,file=heapdump.hprof -F 8152
+#Then you can open the heapdump.hprof file with the Memory Analyzer

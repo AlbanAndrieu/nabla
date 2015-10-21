@@ -1742,6 +1742,7 @@
                 <maven.scala.plugin.version>3.2.2</maven.scala.plugin.version>
                 <maven.hotdeploy.plugin.version>0.3.3</maven.hotdeploy.plugin.version>
                 <maven.cli.plugin.version>1.0.11</maven.cli.plugin.version>
+                <maven.jaxrs.analyzer.plugin.version>0.5</maven.jaxrs.analyzer.plugin.version>
                 <maven.frontend.plugin.version>0.0.22</maven.frontend.plugin.version> <!-- 0.0.20 does not work with maven 3.3.3 --> <!-- 0.0.24 issue with native package libxslt -->
                 <maven.shade.plugin.version>2.4.1</maven.shade.plugin.version>
                 <maven.rar.plugin.version>2.4</maven.rar.plugin.version>
@@ -1942,6 +1943,21 @@
                                                                         <ignore></ignore>
                                                                     </action>
                                                                 </pluginExecution>
+																<pluginExecution>
+																		<pluginExecutionFilter>
+																			<groupId>com.sebastian-daschner</groupId>
+																			<artifactId>jaxrs-analyzer-maven-plugin</artifactId>
+																			<versionRange>
+																				[${maven.jaxrs.analyzer.plugin.version},)
+																			</versionRange>
+																			<goals>
+																				<goal>analyze-jaxrs</goal>
+																			</goals>
+																		</pluginExecutionFilter>
+																		<action>
+																			<ignore></ignore>
+																		</action>
+																</pluginExecution>
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.jacoco</groupId>
@@ -2802,6 +2818,22 @@
                                     <artifactId>maven-cli-plugin</artifactId>
                                     <version>${maven.cli.plugin.version}</version>
                                 </plugin>
+								<plugin>
+									<groupId>com.sebastian-daschner</groupId>
+									<artifactId>jaxrs-analyzer-maven-plugin</artifactId>
+									<version>${maven.jaxrs.analyzer.plugin.version}</version>
+									<executions>
+										<execution>
+											<goals>
+												<goal>analyze-jaxrs</goal>
+											</goals>
+											<configuration>
+												<backend>plaintext</backend>
+												<deployedDomain>localhost</deployedDomain>
+											</configuration>
+										</execution>
+									</executions>
+								</plugin>
                                 <plugin>
                                     <groupId>com.github.eirslett</groupId>
                                     <artifactId>frontend-maven-plugin</artifactId>
