@@ -122,6 +122,7 @@ Plugins on Marketplace are :
  * Do not install (it failed with maven integration plugin)
  * Bytecode Visualizer
  * Sourcecode Visualizer
+ * Memory Analyzer
 
 SonarQube 3.4.0
 If plugins not found on Eclipse Marketplace, go to : Help > Install New Software...
