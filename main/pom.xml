@@ -2738,6 +2738,7 @@
                                                         <updateReleaseInfo>true</updateReleaseInfo>
                                                 </configuration>
                                         </plugin>
+                                        <!--
                                         <plugin>
                                                 <groupId>org.apache.rat</groupId>
                                                 <artifactId>apache-rat-plugin</artifactId>
@@ -2767,6 +2768,8 @@
                                                                 <exclude>**/.sass-cache/**/*</exclude>
                                                                 <exclude>**/.settings/**/*</exclude>
                                                                 <exclude>**/.tmp/**/*</exclude>
+                                                                <exclude>**/dist/**/*</exclude>
+                                                                <exclude>**/scripts/**/*</exclude>
                                                                 <exclude>**/build/**/*</exclude>
                                                                 <exclude>**/*.checkstyle</exclude>
                                                                 <exclude>**/*.springBean</exclude>
@@ -2783,7 +2786,6 @@
                                                         </excludes>
                                                 </configuration>
                                         </plugin>
-                                        <!--
                                         -->
                                         <plugin>
                                                 <groupId>org.apache.maven.plugins</groupId>
