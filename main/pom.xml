@@ -1042,10 +1042,10 @@
 						<sonar.groovy.jacoco.itReportPath>${jacoco.outputDir}/${jacoco.out.it.file}</sonar.groovy.jacoco.itReportPath>
 						-->
 
-						<!--<jacoco.agent>${project.build.directory}/org.jacoco.agent-${jacoco.version}-runtime.jar</jacoco.agent>-->
-						<jacoco.agent>-javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${jacoco.agent.version}/org.jacoco.agent-${jacoco.agent.version}-runtime.jar=destfile=${sonar.jacoco.itReportPath}</jacoco.agent>
-
 						<jacoco.skip.instrument>true</jacoco.skip.instrument>
+						<jacoco.agent>-javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${jacoco.agent.version}/org.jacoco.agent-${jacoco.agent.version}-runtime.jar=destfile=${sonar.jacoco.itReportPath}</jacoco.agent>-->
+						<!--<jacoco.agent>-javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${jacoco.agent.version}/org.jacoco.agent-${jacoco.agent.version}-runtime.jar=output=tcpserver</jacoco.agent>-->
+
 					</properties>
 					<dependencies>
 						<dependency>
@@ -1058,6 +1058,13 @@
 							<groupId>org.jacoco</groupId>
 							<artifactId>org.jacoco.core</artifactId>
 							<version>${jacoco.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.jacoco</groupId>
+							<artifactId>org.jacoco.agent</artifactId>
+							<classifier>runtime</classifier>
+							<version>${jacoco.agent.version}</version>
 							<scope>test</scope>
 						</dependency>
 						<!--
