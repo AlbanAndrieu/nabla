@@ -57,3 +57,7 @@ uname -r
 #remove old kernel
 dpkg -l | awk '{print $2}' | grep -E "linux-(image|headers)-$(uname -r | cut -d- -f1).*" | grep -v $(uname -r | sed -r -e 's:-[a-z]+.*::')
 #sudo apt-get purge $(dpkg -l | awk '{print $2}' | grep -E "linux-(image|headers)-$(uname -r | cut -d- -f1).*" | grep -v $(uname -r | sed -r -e 's:-[a-z]+.*::'))
+
+#delete mail
+#http://apple.stackexchange.com/questions/28745/how-do-i-delete-all-terminal-mail
+#: > /var/mail/$USER

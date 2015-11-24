@@ -1756,7 +1756,7 @@
                 <maven.javadoc.plugin.version>2.10.3</maven.javadoc.plugin.version>
                 <maven.jxr.plugin.version>2.5</maven.jxr.plugin.version>
                 <maven.pmd.plugin.version>3.5</maven.pmd.plugin.version>
-                <maven.project.info.reports.plugin.version>2.8</maven.project.info.reports.plugin.version>
+                <maven.project.info.reports.plugin.version>2.8.1</maven.project.info.reports.plugin.version>
                 <!--<maven.resources.plugin.version>2.7</maven.resources.plugin.version> Mark invalid -->
                 <maven.resources.plugin.version>2.6</maven.resources.plugin.version>
                 <maven.site.old.plugin.version>2.3</maven.site.old.plugin.version>
