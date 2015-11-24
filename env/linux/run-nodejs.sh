@@ -273,3 +273,10 @@ ll /usr/local/lib/node_modules/protractor/selenium/selenium-server-standalone-2.
 
 /usr/bin/google-chrome --version
 /usr/bin/chromium-browser --version
+
+#For chrome Secure Shell extensionupda
+sudo su - root
+npm install -g devtools-terminal
+devtools-terminal --install --id=leakmhneaibbdapdoienlkifomjceknl
+
+sudo npm install -g gulp

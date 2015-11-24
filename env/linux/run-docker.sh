@@ -102,3 +102,9 @@ gksudo baobab
 sudo docker images --no-trunc| grep none | awk '{print $3}' | xargs -r sudo docker rmi
 
 ll /var/lib/docker/tmp/docker-build*/Downloads
+
+----------
+
+https://github.com/kwk/docker-registry-frontend
+
+sudo docker pull konradkleine/docker-registry-frontend
