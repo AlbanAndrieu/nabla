@@ -24,6 +24,7 @@ sudo service zabbix-agent stop
 sudo service supervisor stop
 sudo service mon stop
 sudo service mongod stop
+sudo service nginx stop
 
 #sudo service lightdm stop
 
@@ -54,3 +55,8 @@ sudo service autofs stop
 #sudo apt-get remove clamav
 
 sudo service --status-all
+
+sudo ps -edf | grep chrome
+sudo ps -edf | grep firefox
+sudo ps -edf | grep npm
+sudo ps -edf | grep selenium

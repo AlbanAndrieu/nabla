@@ -421,3 +421,15 @@ sudo modinfo btrfs
 sudo rm /etc/apt/sources.list.d/pdffs-precise-virt-trusty.list
 #sudo rm /etc/apt/sources.list.d/get_docker_io_ubuntu.list
 sudo apt-get update
+
+#backup / save
+#http://www.hascode.com/snippets
+dpkg --get-selections > installed-packages
+#dpkg --set-selections < installed-packages
+#dselect
+
+#perf monitoring
+sudo apt-get install iperf
+
+#list hardware
+sudo lshw
