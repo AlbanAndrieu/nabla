@@ -37,6 +37,7 @@ sudo service lightdm stop
 sudo service avahi-daemon stop
 sudo sh -c "echo manual > /etc/init/avahi-daemon.override"
 sudo service memcached stop
+sudo service clamav-freshclam stop
 
 sudo update-rc.d -f webmin remove
 sudo update-rc.d -f usermin remove
@@ -53,6 +54,7 @@ sudo update-rc.d -f tomcat7 remove
 sudo update-rc.d -f elasticsearch remove
 sudo update-rc.d -f logstash remove
 sudo update-rc.d -f logstash-web remove
+#sudo rm /etc/init.d/logstash-web
 sudo update-rc.d -f collectd remove
 sudo update-rc.d -f docker remove
 sudo update-rc.d -f apache2 remove
@@ -66,3 +68,8 @@ sudo update-rc.d -f ansible-tower remove
 sudo update-rc.d -f redis-server remove
 sudo update-rc.d -f private-bower remove
 sudo update-rc.d -f mongod remove
+sudo update-rc.d -f nis remove
+sudo update-rc.d -f cfengine2 remove
+sudo update-rc.d -f cfengine3 remove
+sudo update-rc.d -f selenium-standalone remove
+sudo update-rc.d -f clamav-freshclam remove

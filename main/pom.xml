@@ -772,15 +772,30 @@
 							<artifactId>pitest-maven</artifactId>
 							<version>${maven.pitest.plugin.version}</version>
 						</plugin>
-                        <!--
-                                <plugin> <groupId>org.codehaus.mojo</groupId>
-                                <artifactId>jboss-packaging-maven-plugin</artifactId> <executions>
-                                <execution> <id>buildsar</id> <phase>deploy</phase> <goals>
-                                <goal>sar</goal> </goals> <configuration>
-                                <deploymentDescriptorFile>${pom.basedir}/xml/jboss-service.xml</deploymentDescriptorFile>
-                                </configuration> </execution> </executions> </plugin>
-                        -->
-
+						<!-- make sure our code doesn't have 1.6 dependencies except where we know it see * http://mojo.codehaus.org/animal-sniffer/index.html * http://weblogs.java.net/blog/kohsuke/archive/2008/11/compiling_with.html -->
+						<!--
+						<plugin>
+							<groupId>org.codehaus.mojo</groupId>
+							<artifactId>animal-sniffer-maven-plugin</artifactId>
+							<version>${maven.animal.sniffer.plugin.version}</version>
+							<executions>
+								<execution>
+									<id>check-java-api</id>
+									<phase>test</phase>
+									<goals>
+										<goal>check</goal>
+									</goals>
+									<configuration>
+										<signature>
+											<groupId>org.codehaus.mojo.signature</groupId>
+											<artifactId>java15</artifactId>
+											<version>1.0</version>
+										</signature>
+									</configuration>
+								</execution>
+							</executions>
+						</plugin>
+						-->
                 </plugins>
         </build>
 
@@ -903,6 +918,7 @@
 						</plugins>
 					</build>
 				</profile>
+				<!--
 				<profile>
 					<id>config</id>
 					<activation>
@@ -932,6 +948,7 @@
 						</plugins>
 					</build>
 				</profile>
+				-->
 				<profile>
 				    <activation>
 				        <file>
@@ -1025,8 +1042,10 @@
 						<sonar.groovy.jacoco.itReportPath>${jacoco.outputDir}/${jacoco.out.it.file}</sonar.groovy.jacoco.itReportPath>
 						-->
 
-						<!--<jacoco.agent>${project.build.directory}/org.jacoco.agent-${jacoco.version}-runtime.jar</jacoco.agent>-->
+						<jacoco.skip.instrument>true</jacoco.skip.instrument>
 						<jacoco.agent>-javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${jacoco.agent.version}/org.jacoco.agent-${jacoco.agent.version}-runtime.jar=destfile=${sonar.jacoco.itReportPath}</jacoco.agent>
+						<!--<jacoco.agent>-javaagent:${settings.localRepository}/org/jacoco/org.jacoco.agent/${jacoco.agent.version}/org.jacoco.agent-${jacoco.agent.version}-runtime.jar=output=tcpserver</jacoco.agent>-->
+
 					</properties>
 					<dependencies>
 						<dependency>
@@ -1039,6 +1058,13 @@
 							<groupId>org.jacoco</groupId>
 							<artifactId>org.jacoco.core</artifactId>
 							<version>${jacoco.version}</version>
+							<scope>test</scope>
+						</dependency>
+						<dependency>
+							<groupId>org.jacoco</groupId>
+							<artifactId>org.jacoco.agent</artifactId>
+							<classifier>runtime</classifier>
+							<version>${jacoco.agent.version}</version>
 							<scope>test</scope>
 						</dependency>
 						<!--
@@ -1151,21 +1177,18 @@
 									  <append>true</append>
 									</configuration>
 								  </execution>
-								  <!--
+
 								  <execution>
-								 	 <id>pre-test</id>
-								 	 <goals>
-								 	 <goal>prepare-agent</goal>
-								 	 </goals>
+								  	<id>jacoco-instrument</id>
+								  	<phase>test</phase>
+								  	<goals>
+								  		<goal>instrument</goal>
+								  	</goals>
+								  	<configuration>
+								  		<skip>${jacoco.skip.instrument}</skip>
+								  	</configuration>
 								  </execution>
-								  <execution>
-								 	 <id>post-test</id>
-								 	 <phase>test</phase>
-								 	 <goals>
-								 	 <goal>report</goal>
-								 	 </goals>
-								  </execution>
-								  -->
+
 								</executions>
 								<configuration>
 								  <!-- The destination file for the code coverage report has to be set to the same value
@@ -2722,6 +2745,7 @@
                                                         <updateReleaseInfo>true</updateReleaseInfo>
                                                 </configuration>
                                         </plugin>
+                                        <!--
                                         <plugin>
                                                 <groupId>org.apache.rat</groupId>
                                                 <artifactId>apache-rat-plugin</artifactId>
@@ -2740,10 +2764,22 @@
                                                                 <exclude>**/target/**/*</exclude>
                                                                 <exclude>**/target-eclipse/**/*</exclude>
                                                                 <exclude>**/lib/**/*</exclude>
-                                                                <!--
+                                                                <exclude>**/.node_cache/**/*</exclude>
+                                                                <exclude>**/.grunt/**/*</exclude>
+                                                                <exclude>**/.git/**/*</exclude>
+                                                                <exclude>**/.bower/**/*</exclude>
+                                                                <exclude>**/node_modules/**/*</exclude>
+                                                                <exclude>**/node/**/*</exclude>
+                                                                <exclude>**/bower_components/**/*</exclude>
+                                                                <exclude>**/.node_tmp/**/*</exclude>
+                                                                <exclude>**/.sass-cache/**/*</exclude>
+                                                                <exclude>**/.settings/**/*</exclude>
+                                                                <exclude>**/.tmp/**/*</exclude>
+                                                                <exclude>**/dist/**/*</exclude>
+                                                                <exclude>**/scripts/**/*</exclude>
+                                                                <exclude>**/build/**/*</exclude>
                                                                 <exclude>**/*.checkstyle</exclude>
                                                                 <exclude>**/*.springBean</exclude>
-                                                                -->
                                                                 <exclude>**/*.bat</exclude>
                                                                 <exclude>**/cobertura.ser</exclude>
                                                                 <exclude>**/derby.log</exclude>
@@ -2753,39 +2789,6 @@
                                                                 <exclude>**/*.iws</exclude>
                                                                 <exclude>**/.*</exclude>
                                                                 <exclude>**/pom.*</exclude>
-                                                                <exclude>**/eclipse-classes/**/*</exclude>
-                                                        </excludes>
-                                                </configuration>
-                                        </plugin>
-                                        <!--
-                                        <plugin>
-                                                <groupId>org.codehaus.mojo</groupId>
-                                                <artifactId>rat-maven-plugin</artifactId>
-                                                <version>${maven.rat.plugin.version}</version>
-                                                <executions>
-                                                        <execution>
-                                                                <phase>verify</phase>
-                                                                <goals>
-                                                                        <goal>check</goal>
-                                                                </goals>
-                                                        </execution>
-                                                </executions>
-                                                <configuration>
-                                                        <reportFile>${project.build.directory}/${project.build.finalName}.rat</reportFile>
-                                                        <excludes>
-                                                                <exclude>**/target/**/*</exclude>
-                                                                <exclude>**/target-eclipse/**/*</exclude>
-                                                                <exclude>**/lib/**/*</exclude>
-                                                                <exclude>**/*.checkstyle</exclude>
-                                                                <exclude>**/*.springBean</exclude>
-                                                                <exclude>**/*.bat</exclude>
-                                                                <exclude>**/cobertura.ser</exclude>
-                                                                <exclude>**/derby.log</exclude>
-                                                                <exclude>**/camel-ftp/res/**/*</exclude>
-                                                                <exclude>**/*.iml</exclude>
-                                                                <exclude>**/*.ipr</exclude>
-                                                                <exclude>**/*.iws</exclude>
-                                                                <exclude>**/.*</exclude>
                                                                 <exclude>**/eclipse-classes/**/*</exclude>
                                                         </excludes>
                                                 </configuration>

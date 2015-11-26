@@ -6,3 +6,8 @@
 #https://www.mozilla.org/en-US/plugincheck/
 
 vlc --open http://mafreebox.freebox.fr/freeboxtv/playlist.m3u
+
+pip install -U yturl
+
+#import
+vlc "$(yturl 'https://www.youtube.com/watch?v=aKflhTrRh2k')"

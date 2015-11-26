@@ -1017,6 +1017,7 @@
 				<sonar.javascript.forceZeroCoverage>true</sonar.javascript.forceZeroCoverage>
 				<sonar.javascript.lcov.reportPath>${basedir}/target/lcov-karma.info</sonar.javascript.lcov.reportPath>
 				<sonar.javascript.lcov.itReportPath>${basedir}/target/lcov.info</sonar.javascript.lcov.itReportPath>
+				<sonar.dependencyCheck.reportPath>${basedir}/target/dependency-check-report.xml</sonar.dependencyCheck.reportPath>
 
                 <!--<sonar.groovy.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.groovy.cobertura.reportPath>-->
                 <sonar.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.cobertura.reportPath>
@@ -1436,13 +1437,20 @@
                 <xmlunit.version>1.5</xmlunit.version>
                 <jsonassert.version>1.2.3</jsonassert.version>
                 <wiser.version>1.2</wiser.version>
-                <scala.version>2.11.4</scala.version> <!-- for gatling to work -->
+                <scala.version>2.11.7</scala.version> <!-- for gatling to work -->
                 <scala.suffix>_2.11</scala.suffix>
+                <scala.short.version>2.11</scala.short.version>
+                <json4s.version>3.3.0.RC2</json4s.version>
                 <!--
-                <scala.version>2.11.4</scala.version>
-                <scala.suffix>_2.11</scala.suffix>
-                -->
-                <akka.version>2.3.7</akka.version>
+				<scala.dep.version>${scala-short.version}.6</scala.dep.version>
+				<scala.lib.version>${scala-short.version}.6</scala.lib.version>
+				-->
+				<scalatest.version>2.1.3</scalatest.version>
+                <!--<akka.version>2.3.7</akka.version>-->
+                <akka.version>2.4.0</akka.version>
+				<protobuf.version>2.5.0</protobuf.version>
+				<netty.version>3.8.0.Final</netty.version>
+				<gatling.uncommons.maths.version>1.2.3</gatling.uncommons.maths.version>
 
                 <google.api.client.version>1.0.10-alpha</google.api.client.version>
                 <gwt.version>2.5.1</gwt.version> <!-- OK see http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
@@ -1477,7 +1485,7 @@
                 <saucelabs.selenium.version>2.6</saucelabs.selenium.version>
                 <saucelabs.junit.version>2.1.10</saucelabs.junit.version>
                 <fitnesse.version>20150814</fitnesse.version>
-                <gatling.version>1.5.6</gatling.version>
+                <gatling.version>2.1.7</gatling.version>
                 <newrelic.version>3.20.0</newrelic.version>
                 <!--<webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
                 <!--<webdriver.firefox.bin>/usr/lib/firefox/firefox</webdriver.firefox.bin>--> <!-- warning overrided in customs/pom.xml depending on architecture -->
@@ -1583,7 +1591,7 @@
                 <jsr311.api.version>1.1.1</jsr311.api.version>
                 <!--<wsdl4j.version>1.6.3</wsdl4j.version>-->
                 <wsdl4j.version>1.6.2</wsdl4j.version> <!-- works with cxf 2.7.14 -->
-                <groovy.version>2.3.7</groovy.version>
+                <groovy.version>2.4.5</groovy.version>
                 <http.builder.version>0.6</http.builder.version>
                 <groovy.eclipse.compiler.version>2.9.2-01</groovy.eclipse.compiler.version>
                 <groovy.eclipse.batch.version>2.4.3-01</groovy.eclipse.batch.version>
@@ -1603,8 +1611,8 @@
                 <jettison.version>1.1</jettison.version>
                 <jersey1.version>1.19</jersey1.version>
                 <!--<jersey.version>2.11</jersey.version>-->
-                <jersey.version>2.21</jersey.version>
-                <jersey.bom.version>2.21</jersey.bom.version>
+                <jersey.version>2.22</jersey.version>
+                <jersey.bom.version>${jersey.version}</jersey.bom.version>
                 <jetty6.version>6.1.25</jetty6.version>
                 <jetty7.version>7.6.5.v20120716</jetty7.version> <!-- 7.6.3.v20120416 TODO remove jetty 6 -->
                 <jetty8.version>8.1.15.v20140411</jetty8.version> <!-- version of jetty used by cxf 2.7.14 -->
@@ -1615,6 +1623,8 @@
                 <javax.websocket.api>1.0</javax.websocket.api>
 
                 <gmaven.runtime.version>${maven.gmaven.plugin.version}</gmaven.runtime.version>
+                <!--<gmaven.runtime.number.version>1.7</gmaven.runtime.number.version>-->
+                <gmaven.runtime.number.version>2.0</gmaven.runtime.number.version>
                 <maven.groovy.plugin.version>1.5</maven.groovy.plugin.version>
                 <jspc.compiler.tomcat6.version>2.0-alpha-3</jspc.compiler.tomcat6.version>
                 <!--<izpack.version>5.0.0-rc4</izpack.version> buggy version-->
@@ -1644,6 +1654,9 @@
 
                 <build.timestamp>${maven.build.timestamp}</build.timestamp>
                 <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
+
+				<documentation.output.directory>${project.build.directory}/docs</documentation.output.directory>
+				<groovydoc.directory.name>groovydocs</groovydoc.directory.name>
 
                 <!-- Plugin version definitions -->
                 <maven.project.version>3.0-alpha-2</maven.project.version>
@@ -1706,7 +1719,8 @@
                 <maven.native2ascii.maven.plugin.version>1.0-beta-1</maven.native2ascii.maven.plugin.version>
                 <maven.archetype.plugin.version>2.3</maven.archetype.plugin.version>
                 <maven.deploy.plugin.version>2.8.2</maven.deploy.plugin.version>
-                <maven.assembly.plugin.version>2.5.5</maven.assembly.plugin.version>
+                <maven.assembly.plugin.version>2.5.2</maven.assembly.plugin.version>
+                <!--<maven.assembly.plugin.version>2.5.5</maven.assembly.plugin.version>-->
                 <maven.changelog.plugin.version>2.3</maven.changelog.plugin.version>
                 <maven.scm.plugin.version>1.9.4</maven.scm.plugin.version>
                 <maven.checkstyle.plugin.version>2.16</maven.checkstyle.plugin.version>
@@ -1721,14 +1735,16 @@
                 <maven.properties.plugin.version>1.0-alpha-2</maven.properties.plugin.version>
                 <maven.sonar.plugin.version>2.6</maven.sonar.plugin.version>
                 <maven.gatling.plugin.version>${gatling.version}</maven.gatling.plugin.version>
+                <maven.scalatest.plugin.version>1.0</maven.scalatest.plugin.version>
                 <maven.jmeter.plugin.version>1.10.1</maven.jmeter.plugin.version>
                 <maven.jmeter.graph.plugin.version>0.1.0</maven.jmeter.graph.plugin.version>
                 <maven.jmeter.analysis.plugin.version>1.0.6</maven.jmeter.analysis.plugin.version>
                 <maven.scala.plugin.version>3.2.2</maven.scala.plugin.version>
                 <maven.hotdeploy.plugin.version>0.3.3</maven.hotdeploy.plugin.version>
                 <maven.cli.plugin.version>1.0.11</maven.cli.plugin.version>
+                <maven.jaxrs.analyzer.plugin.version>0.5</maven.jaxrs.analyzer.plugin.version>
                 <maven.frontend.plugin.version>0.0.22</maven.frontend.plugin.version> <!-- 0.0.20 does not work with maven 3.3.3 --> <!-- 0.0.24 issue with native package libxslt -->
-                <maven.shade.plugin.version>2.4</maven.shade.plugin.version>
+                <maven.shade.plugin.version>2.4.1</maven.shade.plugin.version>
                 <maven.rar.plugin.version>2.4</maven.rar.plugin.version>
                 <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
                 <maven.ear.plugin.version>2.9.1</maven.ear.plugin.version>
@@ -1740,7 +1756,7 @@
                 <maven.javadoc.plugin.version>2.10.3</maven.javadoc.plugin.version>
                 <maven.jxr.plugin.version>2.5</maven.jxr.plugin.version>
                 <maven.pmd.plugin.version>3.5</maven.pmd.plugin.version>
-                <maven.project.info.reports.plugin.version>2.8</maven.project.info.reports.plugin.version>
+                <maven.project.info.reports.plugin.version>2.8.1</maven.project.info.reports.plugin.version>
                 <!--<maven.resources.plugin.version>2.7</maven.resources.plugin.version> Mark invalid -->
                 <maven.resources.plugin.version>2.6</maven.resources.plugin.version>
                 <maven.site.old.plugin.version>2.3</maven.site.old.plugin.version>
@@ -1755,9 +1771,11 @@
                 <maven.buildmetadata.plugin.version>1.1.5</maven.buildmetadata.plugin.version>
                 <maven.license.plugin.version>1.10.b1</maven.license.plugin.version>
                 <maven.sonar.report.plugin.version>2.2.1</maven.sonar.report.plugin.version>
-                <maven.gmaven.plugin.version>1.5</maven.gmaven.plugin.version>
+                <maven.gmaven.plugin.version>2.0</maven.gmaven.plugin.version>
+                <maven.gmavenplus.plugin.version>1.5</maven.gmavenplus.plugin.version>
                 <maven.verifier.plugin.version>1.1</maven.verifier.plugin.version>
                 <maven.tattletale.plugin.version>1.2.0.Beta2</maven.tattletale.plugin.version>
+                <maven.animal.sniffer.plugin.version>1.10</maven.animal.sniffer.plugin.version>
                 <maven.h2.plugin.version>1.0</maven.h2.plugin.version>
                 <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
                 <maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
@@ -1768,6 +1786,7 @@
                 <maven.idea.plugin.version>2.3-20100704</maven.idea.plugin.version>
                 <maven.cargo.maven2.plugin.version>1.4.15</maven.cargo.maven2.plugin.version>
                 <!--<maven.cargo.maven2.plugin.version>1.4.11</maven.cargo.maven2.plugin.version>-->
+                <maven.mem.tracker.maven.plugin.version>1.0.0</maven.mem.tracker.maven.plugin.version>
                 <maven.apt.plugin.version>1.0-alpha-5</maven.apt.plugin.version>
                 <maven.tomcat7.plugin.version>2.2</maven.tomcat7.plugin.version>
                 <maven.jetty.mortbay.plugin.version>${jetty.version}</maven.jetty.mortbay.plugin.version> <!-- TODO remove or 7.0.0.pre5-->
@@ -1779,6 +1798,7 @@
                 <maven.axistools.plugin.version>1.4</maven.axistools.plugin.version>
                 <maven.enforcer.plugin.version>1.4.1</maven.enforcer.plugin.version>
                 <maven.enforcer.no.package.cycles.plugin.version>1.0.5</maven.enforcer.no.package.cycles.plugin.version>
+                <maven.enforcer.extra.plugin.version>1.0-beta-3</maven.enforcer.extra.plugin.version>
                 <maven.bees.plugin.version>1.3.2</maven.bees.plugin.version>
                 <maven.doap.plugin.version>1.2</maven.doap.plugin.version>
                 <!--<maven.antlr3.plugin.version>3.1.1.2</maven.antlr3.plugin.version>-->
@@ -1923,6 +1943,21 @@
                                                                         <ignore></ignore>
                                                                     </action>
                                                                 </pluginExecution>
+																<pluginExecution>
+																		<pluginExecutionFilter>
+																			<groupId>com.sebastian-daschner</groupId>
+																			<artifactId>jaxrs-analyzer-maven-plugin</artifactId>
+																			<versionRange>
+																				[${maven.jaxrs.analyzer.plugin.version},)
+																			</versionRange>
+																			<goals>
+																				<goal>analyze-jaxrs</goal>
+																			</goals>
+																		</pluginExecutionFilter>
+																		<action>
+																			<ignore></ignore>
+																		</action>
+																</pluginExecution>
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.jacoco</groupId>
@@ -2516,10 +2551,31 @@
                                 </plugin>
 
                                 <plugin>
-                                    <groupId>com.excilys.ebi.gatling</groupId>
+                                    <!--<groupId>com.excilys.ebi.gatling</groupId>-->
+                                    <groupId>io.gatling</groupId>
                                     <artifactId>gatling-maven-plugin</artifactId>
                                     <version>${maven.gatling.plugin.version}</version>
                                 </plugin>
+
+								<!-- enable scalatest -->
+								<plugin>
+									<groupId>org.scalatest</groupId>
+									<artifactId>scalatest-maven-plugin</artifactId>
+									<version>${maven.scalatest.plugin.version}</version>
+									<configuration>
+										<reportsDirectory>${project.build.directory}/surefire-reports</reportsDirectory>
+										<junitxml>.</junitxml>
+										<filereports>WDF TestSuite.txt</filereports>
+									</configuration>
+									<executions>
+										<execution>
+											<id>test</id>
+											<goals>
+												<goal>test</goal>
+											</goals>
+										</execution>
+									</executions>
+								</plugin>
 
                                 <!-- https://blog.codecentric.de/en/2014/01/automating-jmeter-tests-maven-jenkins/-->
                                 <!--
@@ -2711,6 +2767,7 @@
                     </configuration>
                 </plugin>
                 -->
+								<!-- Allow proper editing in IDEs and display warnings for feature and deprecation etc, etc -->
                                 <plugin>
                                     <groupId>net.alchim31.maven</groupId>
                                     <artifactId>scala-maven-plugin</artifactId>
@@ -2761,10 +2818,32 @@
                                     <artifactId>maven-cli-plugin</artifactId>
                                     <version>${maven.cli.plugin.version}</version>
                                 </plugin>
+								<plugin>
+									<groupId>com.sebastian-daschner</groupId>
+									<artifactId>jaxrs-analyzer-maven-plugin</artifactId>
+									<version>${maven.jaxrs.analyzer.plugin.version}</version>
+									<executions>
+										<execution>
+											<goals>
+												<goal>analyze-jaxrs</goal>
+											</goals>
+											<configuration>
+												<backend>plaintext</backend>
+												<deployedDomain>localhost</deployedDomain>
+											</configuration>
+										</execution>
+									</executions>
+								</plugin>
                                 <plugin>
                                     <groupId>com.github.eirslett</groupId>
                                     <artifactId>frontend-maven-plugin</artifactId>
                                     <version>${maven.frontend.plugin.version}</version>
+									<configuration>
+										<nodeVersion>v${node.version}</nodeVersion>
+										<npmVersion>${npm.version}</npmVersion>
+										<!-- <nodeDownloadRoot>http://home.nabla.mobi/html/download/nodejs/</nodeDownloadRoot>
+											<npmDownloadRoot>http://home.nabla.mobi/html/download/npm/-/</npmDownloadRoot> -->
+									</configuration>
                                 </plugin>
                                 <plugin>
                                         <groupId>org.apache.maven.plugins</groupId>
@@ -2924,6 +3003,7 @@
                                                                           <!-- <uniqueVersions>true</uniqueVersions> -->
                                                                         </requireUpperBoundDeps>
                                                                         <NoPackageCyclesRule implementation="de.andrena.tools.nopackagecycles.NoPackageCyclesRule"></NoPackageCyclesRule>
+                                                                        <banCircularDependencies />
                                                                         <!--
 																		<versionTxtRule implementation="org.eclipse.jetty.toolchain.enforcer.rules.VersionTxtRule" />
 																		<versionOsgiRule implementation="org.eclipse.jetty.toolchain.enforcer.rules.RequireOsgiCompatibleVersionRule" />
@@ -2958,6 +3038,11 @@
                                                 <artifactId>no-package-cycles-enforcer-rule</artifactId>
                                                 <version>${maven.enforcer.no.package.cycles.plugin.version}</version>
                                             </dependency>
+											<dependency>
+												<groupId>org.codehaus.mojo</groupId>
+												<artifactId>extra-enforcer-rules</artifactId>
+												<version>${maven.enforcer.extra.plugin.version}</version>
+											</dependency>
 											<dependency>
 												<groupId>org.eclipse.jetty.toolchain</groupId>
 												<artifactId>jetty-build-support</artifactId>
@@ -3055,6 +3140,28 @@
                                       <artifactId>tattletale-maven</artifactId>
                                       <version>${maven.tattletale.plugin.version}</version>
                                 </plugin>
+								<plugin>
+									<!-- make sure our code doesn't have 1.6 dependencies except where we know it see * http://mojo.codehaus.org/animal-sniffer/index.html * http://weblogs.java.net/blog/kohsuke/archive/2008/11/compiling_with.html -->
+									<groupId>org.codehaus.mojo</groupId>
+									<artifactId>animal-sniffer-maven-plugin</artifactId>
+									<version>${maven.animal.sniffer.plugin.version}</version>
+									<executions>
+										<execution>
+											<id>check-java-api</id>
+											<phase>test</phase>
+											<goals>
+												<goal>check</goal>
+											</goals>
+											<configuration>
+												<signature>
+													<groupId>org.codehaus.mojo.signature</groupId>
+													<artifactId>java15</artifactId>
+													<version>1.0</version>
+												</signature>
+											</configuration>
+										</execution>
+									</executions>
+								</plugin>
                                 <!-- Global test exclusions -->
                                 <plugin>
                                         <groupId>org.apache.maven.plugins</groupId>
@@ -3263,7 +3370,7 @@
                                   <dependencies>
                                     <dependency>
                                       <groupId>org.codehaus.gmaven.runtime</groupId>
-                                      <artifactId>gmaven-runtime-1.7</artifactId>
+                                      <artifactId>gmaven-runtime-${gmaven.runtime.number.version}</artifactId>
                                       <version>${gmaven.runtime.version}</version>
 
                                       <exclusions>
@@ -3299,41 +3406,66 @@
                                     </execution>
                                   </executions>
                                   -->
-                                <executions>
-                                    <execution>
-                                        <id>groovy compile</id>
-                                        <goals>
-                                            <goal>compile</goal>
-                                        </goals>
-                                        <configuration>
-                                            <sources>
-                                                <fileset>
-                                                    <directory>${basedir}/src/main/groovy</directory>
-                                                    <includes>
-                                                        <include>**/*.groovy</include>
-                                                    </includes>
-                                                </fileset>
-                                            </sources>
-                                        </configuration>
-                                    </execution>
-                                    <execution>
-                                        <id>groovy test compile</id>
-                                        <goals>
-                                            <goal>testCompile</goal>
-                                        </goals>
-                                        <configuration>
-                                            <sources>
-                                                <fileset>
-                                                    <directory>${basedir}/src/test/groovy</directory>
-                                                    <includes>
-                                                        <include>**/*.groovy</include>
-                                                    </includes>
-                                                </fileset>
-                                            </sources>
-                                        </configuration>
-                                    </execution>
-                                </executions>
+									<executions>
+										<execution>
+											<id>groovy compile</id>
+											<goals>
+												<goal>compile</goal>
+											</goals>
+											<configuration>
+												<sources>
+													<fileset>
+														<directory>${basedir}/src/main/groovy</directory>
+														<includes>
+															<include>**/*.groovy</include>
+														</includes>
+													</fileset>
+												</sources>
+											</configuration>
+										</execution>
+										<execution>
+											<id>groovy test compile</id>
+											<goals>
+												<goal>testCompile</goal>
+											</goals>
+											<configuration>
+												<sources>
+													<fileset>
+														<directory>${basedir}/src/test/groovy</directory>
+														<includes>
+															<include>**/*.groovy</include>
+														</includes>
+													</fileset>
+												</sources>
+											</configuration>
+										</execution>
+									</executions>
                                 </plugin>
+								<!-- groovydoc -->
+								<plugin>
+									<groupId>org.codehaus.gmavenplus</groupId>
+									<artifactId>gmavenplus-plugin</artifactId>
+									<version>${maven.gmavenplus.plugin.version}</version>
+									<dependencies>
+										<dependency>
+											<groupId>org.codehaus.groovy</groupId>
+											<artifactId>groovy-all</artifactId>
+											<version>${groovy.version}</version>
+										</dependency>
+									</dependencies>
+									<configuration>
+										<groovydocJavaSources>false</groovydocJavaSources>
+										<groovydocOutputDirectory>${documentation.output.directory}/${groovydoc.directory.name}</groovydocOutputDirectory>
+									</configuration>
+									<executions>
+										<execution>
+											<phase>prepare-package</phase>
+											<goals>
+												<goal>groovydoc</goal>
+											</goals>
+										</execution>
+									</executions>
+								</plugin>
                                 <plugin>
                                     <groupId>org.codehaus.mojo</groupId>
                                     <artifactId>selenium-maven-plugin</artifactId>
@@ -4462,7 +4594,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                             <contextPath>/nabla</contextPath>
                                         </webApp>
                                         -->
-                                        <useTestClasspath>true</useTestClasspath>
+                                        <!--<useTestClasspath>true</useTestClasspath>-->
                                         <httpConnector>
                                             <!--host>localhost</host-->
                                             <port>${jetty.port}</port>
@@ -4483,6 +4615,28 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                         </systemProperties>
                                         -->
                                     </configuration>
+									<dependencies>
+										<dependency>
+											<groupId>org.eclipse.jetty</groupId>
+											<artifactId>jetty-client</artifactId>
+											<version>${jetty9.version}</version>
+										</dependency>
+										<dependency>
+											<groupId>org.eclipse.jetty</groupId>
+											<artifactId>jetty-servlets</artifactId>
+											<version>${jetty9.version}</version>
+										</dependency>
+										<dependency>
+											<groupId>org.eclipse.jetty</groupId>
+											<artifactId>jetty-http</artifactId>
+											<version>${jetty9.version}</version>
+										</dependency>
+										<dependency>
+											<groupId>org.eclipse.jetty</groupId>
+											<artifactId>jetty-rewrite</artifactId>
+											<version>${jetty9.version}</version>
+										</dependency>
+									</dependencies>
                                 </plugin>
                                 <!-- TODO already using jetty-maven-plugin -->
                                 <!-- please use instead org.eclipse.jetty -->
@@ -4937,6 +5091,20 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                     <artifactId>cargo-maven2-plugin</artifactId>
                                     <version>${maven.cargo.maven2.plugin.version}</version>
                                 </plugin>
+								<plugin>
+									<groupId>com.sinapsi.memtracker</groupId>
+									<artifactId>mem-tracker-maven-plugin</artifactId>
+									<version>${maven.mem.tracker.maven.plugin.version}</version>
+									<executions>
+										<execution>
+											<id>integration-test</id>
+											<goals>
+												<goal>track</goal>
+											</goals>
+											<phase>integration-test</phase>
+										</execution>
+									</executions>
+								</plugin>
                                 <plugin>
                                     <groupId>com.edugility</groupId>
                                     <artifactId>h2-maven-plugin</artifactId>
@@ -5830,13 +5998,20 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                           <type>zip</type>
                         </dependency>
 
+						<dependency>
+							<groupId>io.gatling</groupId>
+							<artifactId>gatling-charts</artifactId>
+							<version>${gatling.version}</version>
+						</dependency>
                         <dependency>
-                            <groupId>com.excilys.ebi.gatling.highcharts</groupId>
+                            <!--<groupId>com.excilys.ebi.gatling.highcharts</groupId>-->
+                            <groupId>io.gatling.highcharts</groupId>
                             <artifactId>gatling-charts-highcharts</artifactId>
                             <version>${gatling.version}</version>
                         </dependency>
                         <dependency>
-                            <groupId>com.excilys.ebi.gatling</groupId>
+                            <!--<groupId>com.excilys.ebi.gatling</groupId>-->
+                            <groupId>io.gatling</groupId>
                             <artifactId>gatling-app</artifactId>
                             <version>${gatling.version}</version>
                             <exclusions>
@@ -5846,11 +6021,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 </exclusion>
                             </exclusions>
                         </dependency>
+                        <!--
                         <dependency>
                             <groupId>com.excilys.ebi.gatling</groupId>
                             <artifactId>gatling-recorder</artifactId>
                             <version>${gatling.version}</version>
                         </dependency>
+                        -->
 
                         <dependency>
                             <groupId>org.glassfish.main.extras</groupId>
@@ -6667,6 +6844,16 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <artifactId>scala-compiler</artifactId>
                             <version>${scala.version}</version>
                         </dependency>
+						<dependency>
+							<groupId>org.scala-lang</groupId>
+							<artifactId>scala-reflect</artifactId>
+							<version>${scala.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.json4s</groupId>
+							<artifactId>json4s-jackson_${scala.short.version}</artifactId>
+							<version>${json4s.version}</version>
+						</dependency>
                         <!--
                           groovy-all-1.5.4 provided by Seam-2.1.2, seam-2.2.0 and seam-2.2.1 root POM
                           does not work with the gmaven-1.2 and 1.3 plugin, must use groovy-1.7.x.
@@ -7706,6 +7893,12 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <scope>test</scope>
                         </dependency>
 
+						<dependency>
+							<groupId>org.scalatest</groupId>
+							<artifactId>scalatest_${scala.short.version}</artifactId>
+							<version>${scalatest.version}</version>
+						</dependency>
+
                         <!-- openejb embedded container -->
                         <dependency>
                           <groupId>org.apache.openejb</groupId>
@@ -8088,6 +8281,22 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <scope>test</scope>
                         </dependency>
 
+						<dependency>
+							<groupId>com.google.protobuf</groupId>
+							<artifactId>protobuf-java</artifactId>
+							<version>${protobuf.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>io.netty</groupId>
+							<artifactId>netty</artifactId>
+							<version>${netty.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>io.gatling.uncommons.maths</groupId>
+							<artifactId>uncommons-maths</artifactId>
+							<version>${gatling.uncommons.maths.version}</version>
+						</dependency>
+
                         <!-- akka-->
                         <dependency>
                                 <groupId>com.typesafe.akka</groupId>
@@ -8104,6 +8313,38 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <artifactId>akka-remote${scala.suffix}</artifactId>
                                 <version>${akka.version}</version>
                         </dependency>
+						<dependency>
+							<groupId>com.typesafe.akka</groupId>
+							<artifactId>akka-osgi${scala.suffix}</artifactId>
+							<version>${akka.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>com.typesafe.akka</groupId>
+							<artifactId>akka-cluster${scala.suffix}</artifactId>
+							<version>${akka.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>com.typesafe.akka</groupId>
+							<artifactId>akka-slf4j${scala.suffix}</artifactId>
+							<version>${akka.version}</version>
+							<exclusions>
+								<exclusion>
+									<groupId>org.slf4j</groupId>
+									<artifactId>slf4j-api</artifactId>
+								</exclusion>
+							</exclusions>
+						</dependency>
+						<dependency>
+							<groupId>com.typesafe.akka</groupId>
+							<artifactId>akka-camel${scala.suffix}</artifactId>
+							<version>${akka.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>com.typesafe.akka</groupId>
+							<artifactId>akka-testkit${scala.suffix}</artifactId>
+							<version>${akka.version}</version>
+							<scope>test</scope>
+						</dependency>
 
                         <!-- Axis2 Dependencies -->
                         <!-- TODO Update to 1.3 or later breaks webservice template code -->

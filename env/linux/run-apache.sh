@@ -59,6 +59,7 @@ sudo ufw status
 sudo iptables -A INPUT -p tcp -m tcp --dport 7070 -j ACCEPT
 netstat -an | grep 7070
 netstat -tlnp | grep 7070
+netstat -tlpn | grep clam
 nmap -v -sV -PN albandri
 sudo lsof -i :7070
 sudo lsof -i tcp:443
