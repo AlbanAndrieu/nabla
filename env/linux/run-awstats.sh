@@ -12,7 +12,7 @@ sudo chown -R www-data:www-data /var/lib/awstats/
 cd /var/lib/awstats
 rm *
 cd /var/log/apache*
-for i in `ls -tr access.log.*.gz` 
+for i in `ls -tr access.log.*.gz`
 do
  echo "File processed: $i"
  zcat $i | /usr/lib/cgi-bin/awstats.pl -config=home.nabla.mobi -update -LogFile=-
@@ -22,4 +22,8 @@ chmod 755 /var/log/apache2/
 
 chgrp -R www-data /var/log/apache2/
 
+#cpan -i Geo::IP
+
 http://www.home.nabla.mobi/cgi-bin/awstats.pl?config=home.nabla.mobi
+
+cd /usr/share/awstats/

@@ -27,6 +27,10 @@ sudo service mongod stop
 sudo service nginx stop
 
 #sudo service lightdm stop
+#if mouse get stuck
+#http://superuser.com/questions/72112/mouse-clicks-suddenly-stopped-working-in-ubuntu
+#sudo apt-get remove flashplugin-nonfree flashplugin-installer
+#metacity --replace
 
 sudo service slapd stop
 sudo service memcached stop
