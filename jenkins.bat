@@ -6,6 +6,7 @@ call mvn validate -Dnabla -Psample,arq-jbossas-managed > validate-nabla.log 2>&1
 REM call mvn clean -Dnabla -Psample,arq-jbossas-managed -amd andromda-database-cartridge > clean-nabla.log 2>&1
 call mvn versions:display-dependency-updates -Psample,arq-jbossas-managed > dependency-updates.log 2>&1
 call mvn versions:display-plugin-updates -Psample,arq-jbossas-managed > plugin-updates.log 2>&1
+call mvn versions:update-parent "-DparentVersion=1.0.0-SNAPSHOT"
 call mvn dependency:tree -Psample,arq-jbossas-managed > dependency-tree.log 2>&1
 call mvn dependency:resolve-plugins -Psample,arq-jbossas-managed > dependency-tree.log 2>&1
 call mvn dependency:build-classpath -Psample,arq-jbossas-managed > dependency-classpath.log 2>&1

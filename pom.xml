@@ -623,6 +623,17 @@
                  <updatePolicy>daily</updatePolicy>
              </snapshots>
         </pluginRepository>
+        <!-- for https://github.com/kongchen/swagger-maven-plugin/blob/master/README.md -->
+		<pluginRepository>
+			<id>sonatype-snapshot</id>
+			<url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+			<releases>
+			  <enabled>false</enabled>
+			</releases>
+			<snapshots>
+			  <enabled>true</enabled>
+			</snapshots>
+		</pluginRepository>
     </pluginRepositories>
 </project>
 
