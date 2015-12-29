@@ -433,3 +433,7 @@ sudo apt-get install iperf
 
 #list hardware
 sudo lshw
+
+#usb issue
+#http://ubuntuforums.org/archive/index.php/t-1448092.html
+sudo apt-get remove usbmount
