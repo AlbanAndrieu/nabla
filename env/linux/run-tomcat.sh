@@ -50,7 +50,7 @@ sudo gedit /etc/init.d/tomcat7
 add before catalina_sh
 #JAVA_HOME="/usr/lib/jvm/jdk1.7.0"
 JAVA_HOME="/usr/lib/jvm/java-1.7.0-openjdk-i386"
-add before # OS specific support.  
+add before # OS specific support.
 JAVA_OPTS="-Djava.awt.headless=true -Dfile.encoding=UTF-8 -server -Xms1536m -Xmx1536m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=256m -XX:MaxPermSize=256m -XX:+DisableExplicitGC -XX:+CMSClassUnloadingEnabled -XX:+CMSPermGenSweepingEnabled -Dnabla.config=/var/lib/tomcat7/webapps/nabla.properties"
 #TODO : or do it in /etc/default/tomcat7
 
@@ -76,3 +76,7 @@ sudo chmod -R 755 ${CATALINA_HOME}/.java
 
 #inside ${CATALINA_HOME}/bin/catalina.sh
 export JAVA_OPTS="$JAVA_OPTS -Djava.util.prefs.systemRoot=${CATALINA_HOME}/.java -Djava.util.prefs.userRoot=${CATALINA_HOME}/.java/.userPrefs"
+
+#switch from java7 to java 8
+sudo nano /etc/default/tomcat7
+JAVA_HOME=/usr/lib/jvm/java-8-oracle

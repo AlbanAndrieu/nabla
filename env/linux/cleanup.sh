@@ -35,7 +35,7 @@ find ~/.thumbnails -type f -atime +7 -exec rm {} \;
 #find . -type f -name '*~' | xargs rm -r $1
 find . -type f -name '*\.log' | xargs rm -r $1
 find . -type d -name '.svn' | xargs rm -r $1
-find /jenkins -type d -name 'workspace' | grep -v 'builds' | xargs rm -r $1
+sudo find /jenkins -type d -name 'workspace' | grep -v 'builds' | xargs sudo rm -r $1
 
 #find ~/ -name '*~' -print0
 find ~/ -name '*~' -type f

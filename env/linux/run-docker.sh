@@ -108,3 +108,30 @@ ll /var/lib/docker/tmp/docker-build*/Downloads
 https://github.com/kwk/docker-registry-frontend
 
 sudo docker pull konradkleine/docker-registry-frontend
+
+#Removing need of sudo
+sudo groupadd docker
+sudo gpasswd -a ${USER} docker
+sudo service docker restart      # Ubuntu >= 14.04
+# sudo service docker.io restart # Ubuntu < 14.04
+
+#Accessing the in house repo
+wget http://server/download/docker/ca.crt
+sudo cp ca.crt /usr/local/share/ca-certificates
+sudo update-ca-certificates
+sudo service docker restart
+sudo docker run server:5000/hello-world
+
+docker pull server:5000/nabla/jdk8
+docker pull server:5000/nabla/oracle
+docker pull server:5000/nabla/sybase
+docker pull server:5000/nabla/nabla
+
+#http://developerblog.redhat.com/2014/09/30/overview-storage-scalability-docker/
+
+#https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/
+#--storage-driver=overlay
+
+#https://github.com/docker/compose
+sudo pip install docker-compose
+docker-compose --version

@@ -1,3 +1,5 @@
+#sudo apt-get install ocaml ocaml-native-compilers camlp4-extra opam
+
 #http://clang-analyzer.llvm.org/installation.html
 cd /workspace
 sudo svn co http://llvm.org/svn/llvm-project/llvm/trunk llvm

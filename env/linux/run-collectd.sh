@@ -17,3 +17,4 @@ sudo /usr/sbin/collectdmon -P /var/run/collectd.pid -- -C /etc/collectd/collectd
 
 #log
 sudo tail -f /var/log/upstart/collectd.log
+
