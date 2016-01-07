@@ -53,3 +53,21 @@ sudo ln -s /usr/lib/jni/libswt-* ~/.swt/lib/linux/x86_64/
 2. Java8 Support: http://download.eclipse.org/eclipse/updates/4.3-P-builds/
 3. Java 8 Facets: http://download.eclipse.org/webtools/patches/drops/R3.5.2/P-3.5.2-20140329045715/repository
 4. New m2e milestone: http://download.eclipse.org/technology/m2e/milestones/1.5  (https://bugs.eclipse.org/bugs/show_bug.cgi?id=420848)
+
+#http://stackoverflow.com/questions/14791843/eclipse-add-tomcat-7-blank-server-name
+cd /usr/local/eclipse/eclipse-luna-workspace-visma/.metadata/.plugins/org.eclipse.core.runtime/.settings
+rm -Rf org.eclipse.wst.server.core.prefs org.eclipse.jst.server.tomcat.core.prefs
+
+cd /usr/share/tomcat7
+sudo service tomcat7 stop
+sudo update-rc.d tomcat7 disable
+sudo ln -s /var/lib/tomcat7/conf conf
+sudo ln -s /etc/tomcat7/policy.d/03catalina.policy conf/catalina.policy
+sudo ln -s /var/log/tomcat7 log
+sudo chmod -R 777 /usr/share/tomcat7/conf
+sudo ln -s /var/lib/tomcat7/common common
+sudo ln -s /var/lib/tomcat7/server server
+sudo ln -s /var/lib/tomcat7/shared shared
+
+#http://gridlab.dimes.unical.it/lackovic/eclipse-tomcat-ubuntu-jersey/
+

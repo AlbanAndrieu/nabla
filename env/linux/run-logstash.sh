@@ -92,9 +92,16 @@ curl -XPUT 'localhost:9200/_settings' -d '
 #install monitoring plugins
 #http://www.elastichq.org/support_plugin.html
 cd /usr/share/elasticsearch/bin
-sudo ./plugin -install royrusso/elasticsearch-HQ
+sudo ./plugin  remove royrusso/elasticsearch-HQ
+sudo ./plugin install royrusso/elasticsearch-HQ
 echo http://localhost:9200/_plugin/HQ/
+
+tail -f /var/log/elasticsearch/elasticsearch.log
 
 #redis
 sudo service redis-server start
 tail -f /var/log/redis/redis-server.log
+
+#disable_dynamic issue
+nano /etc/elasticsearch/elasticsearch.yml
+#script.disable_dynamic: true

@@ -1799,6 +1799,7 @@
                 <maven.jetty.mortbay.plugin.version>${jetty.version}</maven.jetty.mortbay.plugin.version> <!-- TODO remove or 7.0.0.pre5-->
                 <!--<maven.jetty.eclipse.plugin.version>9.3.0.M1</maven.jetty.eclipse.plugin.version>-->
                 <maven.jetty.eclipse.plugin.version>${jetty9.version}</maven.jetty.eclipse.plugin.version>
+                <maven.jrebel.plugin.version>1.1.5</maven.jrebel.plugin.version>
                 <maven.jboss.as.plugin.version>7.7.Final</maven.jboss.as.plugin.version>
                 <maven.ant.plugin.version>2.4</maven.ant.plugin.version>
                 <maven.jalopy.plugin.version>1.0-alpha-1</maven.jalopy.plugin.version>
@@ -4655,7 +4656,8 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                     <artifactId>jetty-maven-plugin</artifactId>
                                     <version>${maven.jetty.eclipse.plugin.version}</version>
                                     <configuration>
-                                        <scanIntervalSeconds>10</scanIntervalSeconds>
+                                        <!--<scanIntervalSeconds>10</scanIntervalSeconds>-->
+                                        <scanIntervalSeconds>0</scanIntervalSeconds> <!-- for jrebel -->
                                         <!--
                                         <webApp>
                                             <contextPath>/nabla</contextPath>
@@ -4713,7 +4715,8 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                         <version>${maven.jetty.mortbay.plugin.version}</version>
                                         <configuration>
                                                 <contextPath>/nabla</contextPath>
-                                                <scanIntervalSeconds>3</scanIntervalSeconds>
+                                                <!--<scanIntervalSeconds>10</scanIntervalSeconds>-->
+                                        <scanIntervalSeconds>0</scanIntervalSeconds> <!-- for jrebel -->
                                                 <connectors>
                                                   <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
                                                     <port>${jetty.port}</port>
@@ -4736,6 +4739,20 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                                 </scanTargetPatterns>
                                         </configuration>
                                 </plugin>
+								<plugin>
+									<groupId>org.zeroturnaround</groupId>
+									<artifactId>jrebel-maven-plugin</artifactId>
+									<version>${maven.jrebel.plugin.version}</version>
+									<executions>
+										<execution>
+										<id>generate-rebel-xml</id>
+										<phase>process-resources</phase>
+										<goals>
+											<goal>generate</goal>
+										</goals>
+										</execution>
+									</executions>
+								</plugin>
                                 <plugin>
                                     <groupId>org.codehaus.mojo</groupId>
                                     <artifactId>exec-maven-plugin</artifactId>
