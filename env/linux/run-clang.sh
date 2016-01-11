@@ -1,4 +1,5 @@
 #sudo apt-get install ocaml ocaml-native-compilers camlp4-extra opam
+sudo apt-get install clang
 
 #http://clang-analyzer.llvm.org/installation.html
 cd /workspace
