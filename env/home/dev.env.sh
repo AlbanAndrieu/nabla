@@ -323,7 +323,7 @@ if [ 1 -eq 1 ] ; then
     echo "DEBUG JAVA_OPTS=${JAVA_OPTS}"
   fi
 
-  export JMX_DEFAULT_DEBUG_PORT="9193"
+  #export JMX_DEFAULT_DEBUG_PORT="9193"
   if [ -n "$JMX_DEFAULT_DEBUG_PORT" ]
   then
     #On your remote server (the one you want to get statistics
@@ -380,7 +380,7 @@ export PATH=${M2}:$PATH
 #-Xms24g -Xmx24g -Xmn6g -XX:MaxPermSize=512M -XX:+UseParallelOldGC -XX:ParallelGCThreads=16
 #Add MaxPermSize for andromda
 #for java 8 PermSize and MaxPermSize can be removed
-MAVEN_OPTS="-Xms256m -Xmx512m -Dcom.sun.management.jmxremote"
+MAVEN_OPTS="-Xms256m -Xmx512m"
 #https://developer.atlassian.com/docs/advanced-topics/working-with-maven/colour-coding-your-maven-output
 export MAVEN_COLOR=true
 
