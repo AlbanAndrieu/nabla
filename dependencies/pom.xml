@@ -1190,7 +1190,7 @@
                 <ant.trax.version>1.7.0</ant.trax.version>
                 <ant.contrib.version>20020829</ant.contrib.version>
                 <c3p0.version>0.8.5.2</c3p0.version>
-                <jacoco.version>0.7.5.201505241946</jacoco.version>
+                <jacoco.version>0.7.4.201502262128</jacoco.version>
                 <jacoco.agent.version>${jacoco.version}</jacoco.agent.version>
 
                 <jdbc.derby.version>10.10.1.1</jdbc.derby.version>
