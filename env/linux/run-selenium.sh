@@ -57,7 +57,7 @@ xwd -root -display :99 | convert xwd:- capture.png
 #http://stackoverflow.com/questions/7106994/jenkins-cant-launch-selenium-tests-timed-out-waiting-for-profile-to-be-created/7154404#7154404
 firefox -P
 #create profile Selenium
-chmod -R 777 /workspace/users/albandri10/.mozilla
+sudo chmod -R 777 /workspace/users/albandri10/.mozilla
 
 #Open up Firefox profile manager : $ firefox -ProfileManager
 #Create a new profile, called Selenium
@@ -180,7 +180,7 @@ sudo ldconfig
 #In order to fix issue:
 #ubuntu firefox is already running error
 cd ~/.mozilla
-find . -name '.parentlock' -exec rm {} ;
+find . -name '.parentlock' -exec rm {} \;
 
 #start by hand
 cd /jenkins

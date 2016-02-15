@@ -1384,7 +1384,7 @@
 
                 <!-- Testing dependency versions -->
                 <cargo.version>1.0</cargo.version>
-                <cargo.core.uberjar.version>1.4.18-SNAPSHOT</cargo.core.uberjar.version>
+                <cargo.core.uberjar.version>1.4.18</cargo.core.uberjar.version>
                 <!-- NOT needed instead remove jmock-junit4 because it does not work with jacoco
                 <jmock.version>2.6.0</jmock.version>
                 -->
@@ -1410,15 +1410,21 @@
                 <bean.matchers.version>0.8.1</bean.matchers.version>
                 <!--<org.jboss.arquillian.version>1.1.0.Final</org.jboss.arquillian.version>--> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
                 <!--OK<org.jboss.arquillian.version>1.0.0.CR7</org.jboss.arquillian.version>-->
-                <org.jboss.arquillian.version>1.1.8.Final</org.jboss.arquillian.version>
+                <org.jboss.arquillian.version>1.1.9.Final</org.jboss.arquillian.version>
                 <!-- NOK <org.jboss.arquillian.version>1.1.4.Final</org.jboss.arquillian.version> NOK with 1.1.4.Final java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
                 <!-- NOK with 1.1.0.Final <org.jboss.arquillian.bom.version>${org.jboss.arquillian.version}</org.jboss.arquillian.bom.version>-->
                 <org.jboss.arquillian.bom.version>${org.jboss.arquillian.version}</org.jboss.arquillian.bom.version>
                 <!--<org.jboss.shrinkwrap.bom.version>2.0.0</org.jboss.shrinkwrap.bom.version>--> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
                 <!--<org.jboss.shrinkwrap.bom.version>2.1.1</org.jboss.shrinkwrap.bom.version>-->
-                <org.jboss.shrinkwrap.resolver.bom.version>1.1.0-alpha-3</org.jboss.shrinkwrap.resolver.bom.version>
+                <version.shrinkwrap_shrinkwrap>1.2.2</version.shrinkwrap_shrinkwrap>
+                <org.jboss.shrinkwrap.bom.version>${version.shrinkwrap_shrinkwrap}</org.jboss.shrinkwrap.bom.version>
+                <!--<org.jboss.shrinkwrap.resolver.bom.version>1.1.0-alpha-3</org.jboss.shrinkwrap.resolver.bom.version>-->
+                <version.shrinkwrap_resolver>2.1.1</version.shrinkwrap_resolver>
+                <org.jboss.shrinkwrap.resolver.bom.version>${version.shrinkwrap_resolver}</org.jboss.shrinkwrap.resolver.bom.version>
                 <org.jboss.shrinkwrap.resolver.version>${org.jboss.shrinkwrap.resolver.bom.version}</org.jboss.shrinkwrap.resolver.version>
-                <org.jboss.shrinkwrap.descriptors.bom.version>1.2.0-alpha-2</org.jboss.shrinkwrap.descriptors.bom.version>
+                <!--<org.jboss.shrinkwrap.descriptors.bom.version>1.2.0-alpha-2</org.jboss.shrinkwrap.descriptors.bom.version>-->
+                <version.shrinkwrap_descriptors>2.0.0-alpha-7</version.shrinkwrap_descriptors>
+                <org.jboss.shrinkwrap.descriptors.bom.version>${version.shrinkwrap_descriptors}</org.jboss.shrinkwrap.descriptors.bom.version>
                 <!-- WARNING shrinkwrap-descriptors-spi 2.0.0 with DescriptorImporterBase class and shrinkwrap-descriptors-api-base with DescriptorImporter interface are incompatible with shrinkwrap-descriptors-api 0.1.7 DescriptorImporter interface because the latter lacks the fromStream method. -->
                 <!--<org.jboss.arquillian.junit.version>1.0.0.Alpha5</org.jboss.arquillian.junit.version>-->
                 <!--<org.jboss.arquillian.junit.version>${org.jboss.arquillian.bom.version}</org.jboss.arquillian.junit.version>-->
@@ -5492,6 +5498,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 
                          <!-- Override dependency resolver with latest version.
                          This must go *BEFORE* the Arquillian BOM. -->
+						<dependency>
+							<groupId>org.jboss.shrinkwrap</groupId>
+							<artifactId>shrinkwrap-bom</artifactId>
+							<version>${org.jboss.shrinkwrap.bom.version}</version>
+							<type>pom</type>
+							<scope>import</scope>
+						</dependency>
                         <dependency>
                             <groupId>org.jboss.shrinkwrap.resolver</groupId>
                             <artifactId>shrinkwrap-resolver-bom</artifactId>

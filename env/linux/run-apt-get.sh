@@ -115,13 +115,6 @@ sudo nano /etc/ssh/sshd_config
 #Append
 ForwardX11Trusted yes
 
-#ubuntu login loop issue
-http://askubuntu.com/questions/314362/ubuntu-13-04-login-loop
-rm ~/.Xauthority
-rm ~/.profile
-sudo apt-get install --reinstall xorg
-sudo reboot
-
 more /etc/rc.local
 
 ls /etc/rc?.d

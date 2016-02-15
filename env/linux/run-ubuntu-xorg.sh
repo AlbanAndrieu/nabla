@@ -19,13 +19,13 @@ sudo apt-get install ubuntu-desktop
 #Remove everything to do with the Nvidia proprietary drivers.
 sudo nvidia-settings --uninstall
 sudo apt-get remove --purge nvidia*
-Start from scratch.
+#Start from scratch.
 sudo apt-get remove --purge xserver-xorg-video-nouveau xserver-xorg-video-nv xserver-xorg-video-all
 Reinstall all the things!
 sudo apt-get install nvidia-common
 sudo apt-get install xserver-xorg-video-nouveau
 sudo apt-get install --reinstall libgl1-mesa-glx libgl1-mesa-dri xserver-xorg-core
-Reconfigure the X server.
+#Reconfigure the X server.
 sudo dpkg-reconfigure xserver-xorg
 
 #http://news.softpedia.com/news/How-to-Install-The-Latest-Nvidia-Driver-on-Ubuntu-12-04-295542.shtml
@@ -49,7 +49,7 @@ sudo apt-get install compiz-plugins-extra
 sudo apt-get install mesa-util
 glxinfo | grep OpenGL
 #check you video hardware
-lshw -c video
+sudo lshw -c video
 
 
 sudo hwinfo --framebuffer
@@ -77,9 +77,16 @@ sudo dpkg-reconfigure xserver-xorg
 sudo update-alternatives --remove gl_conf /usr/lib/nvidia-current/ld.so.conf
 
 #login whith your user
+
+#ubuntu login loop issue
+#http://askubuntu.com/questions/314362/ubuntu-13-04-login-loop
+rm ~/.Xauthority
+rm ~/.profile
 rm .config/monitors.xml
 rm /etc/X11/xorg.conf
-rm .Xauthority
+sudo apt-get install --reinstall xorg
+sudo reboot
+
 sudo service lightdm start
 
 #X does not display
@@ -87,5 +94,36 @@ xhost + #temporary fix
 /usr/bin/xhost +albandri
 
 #enter
-#nautilus
+#check graphic
+nautilus
 #unity
+
+#login failed due to ATI driver issue
+#check you video hardware
+sudo lshw -c video
+
+#product: Juniper XT [FirePro V5800]
+
+#download http://support.amd.com/en-us/download/workstation?os=Linux+x86_64#catalyst-pro
+#wget http://www2.ati.com/drivers/firepro/15.201.2401-linux-retail_end_user.zip
+scp 15.201.2401-linux-retail_end_user.zip kdeveloper@10.25.40.85:~
+
+#as root
+unzip 15.201.2401-linux-retail_end_user.zip
+cd fglrx-15.201.2401
+./check.sh
+./amd-driver-installer-15.201.2401-x86.x86_64.run
+
+reboot
+apt-get -f install#download http://support.amd.com/en-us/download/workstation?os=Linux+x86_64#catalyst-pro
+#wget http://www2.ati.com/drivers/firepro/15.201.2401-linux-retail_end_user.zip
+scp 15.201.2401-linux-retail_end_user.zip kdeveloper@10.25.40.85:~
+
+#as root
+unzip 15.201.2401-linux-retail_end_user.zip
+cd fglrx-15.201.2401
+./check.sh
+./amd-driver-installer-15.201.2401-x86.x86_64.run
+
+reboot
+apt-get -f install
