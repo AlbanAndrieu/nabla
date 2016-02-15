@@ -1,4 +1,7 @@
 
+#deprecated
+#mvn eclipse:eclipse -DdownloadSources=true -DdowlonloadJavadocs=true -Dmaven.test.skip=true
+
 sudo chown -R albandri:albandri /eclipse-j2ee/
 
 ##http://www.comoke.com/index.php/2012/06/install-eclipse-in-launcher-ubuntu-12-04-unity/
@@ -71,3 +74,6 @@ sudo ln -s /var/lib/tomcat7/shared shared
 
 #http://gridlab.dimes.unical.it/lackovic/eclipse-tomcat-ubuntu-jersey/
 
+#Add maven overlay connector
+#http://stackoverflow.com/questions/8491308/how-to-handle-maven-war-overlays-in-eclipse
+#https://dzone.com/articles/mavens-war-overlay-what-are
