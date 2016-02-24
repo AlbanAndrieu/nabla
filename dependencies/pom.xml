@@ -1273,7 +1273,7 @@
                 <jsf.version>1.2_15</jsf.version>
                 <jsf.api.version>${jsf.version}</jsf.api.version>
                 <jsf.impl.version>${jsf.version}</jsf.impl.version>
-                <sun.jsf.version>2.2.12</sun.jsf.version>
+                <sun.jsf.version>2.2.13</sun.jsf.version>
                 <ajax4jsf.version>1.0.6</ajax4jsf.version>
                 <aspectj.version>1.7.1</aspectj.version> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
                 <aspectj.weaver.version>1.6.4</aspectj.weaver.version>
@@ -1348,7 +1348,7 @@
                 <jbpm.version>3.3.1.GA</jbpm.version>
                 <ibatis.version>2.3.0</ibatis.version>
                 <javax.ejb.api.version>3.0</javax.ejb.api.version>
-                <javax.mail.version>1.4.5</javax.mail.version>
+                <javax.mail.version>1.4.7</javax.mail.version>
                 <jpa.version>1.0</jpa.version>
                 <jstl.version>1.2</jstl.version>
                 <log4j.version>1.2.17</log4j.version>
@@ -1547,9 +1547,9 @@
                 <!--<xerces.version>2.10.0</xerces.version> TODO add dependency batik to avoid java.lang.NoClassDefFoundError: org/w3c/dom/ElementTraversal -->
                 <tomcat.version>6.0.29</tomcat.version>
 
-                <logback.version>1.0.13</logback.version>
+                <logback.version>1.1.5</logback.version>
                 <log4jdbc.remix.version>0.2.7</log4jdbc.remix.version>
-                <slf4j.version>1.7.13</slf4j.version>
+                <slf4j.version>1.7.16</slf4j.version>
                 <commons.dbcp>1.2.2</commons.dbcp>
 
                 <blazeds.version>3.2.0.3978</blazeds.version>
@@ -1603,7 +1603,7 @@
                 <jsr311.api.version>1.1.1</jsr311.api.version>
                 <!--<wsdl4j.version>1.6.3</wsdl4j.version>-->
                 <wsdl4j.version>1.6.2</wsdl4j.version> <!-- works with cxf 2.7.14 -->
-                <groovy.version>2.4.5</groovy.version>
+                <groovy.version>2.4.6</groovy.version>
                 <http.builder.version>0.6</http.builder.version>
                 <groovy.eclipse.compiler.version>2.9.2-01</groovy.eclipse.compiler.version>
                 <!--<groovy.eclipse.batch.version>2.3.7-01</groovy.eclipse.batch.version>-->
@@ -7527,13 +7527,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <!--<scope>runtime</scope>-->
                             <!--<scope>compile</scope>-->
                         </dependency>
+                        <!-- TODO removed old API -->
                         <dependency>
                                 <groupId>javax.servlet</groupId>
                                 <artifactId>jstl</artifactId>
                                 <version>${jstl.version}</version>
-                                <!--<scope>runtime</scope>-->
-                                <!--<scope>compile</scope>-->
                         </dependency>
+                        <!-- TODO removed old API -->
                         <dependency>
                                 <groupId>javax.servlet</groupId>
                                 <artifactId>jsp-api</artifactId>
@@ -9641,6 +9641,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         <groupId>org.slf4j</groupId>
                         <artifactId>slf4j-api</artifactId>
                         <version>${slf4j.version}</version>
+		            <exclusions>
+		                <!-- circular dependency -->
+		                <exclusion>
+		                    <groupId>ch.qos.logback</groupId>
+		                    <artifactId>logback-classic</artifactId>
+		                </exclusion>
+		            </exclusions>                           
                     </dependency>
                     <dependency>
                         <groupId>org.slf4j</groupId>
@@ -9690,6 +9697,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         <artifactId>logback-classic</artifactId>
                         <version>${logback.version}</version>
                         <scope>runtime</scope>
+		            <exclusions>
+		                <!-- circular dependency -->
+		                <exclusion>
+		                    <groupId>org.slf4j</groupId>
+            			    <artifactId>slf4j-api</artifactId>
+		                </exclusion>
+		            </exclusions>                        
                     </dependency>
                     <dependency>
                         <groupId>org.lazyluke</groupId>
