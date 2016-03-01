@@ -42,11 +42,17 @@ node-gyp rebuild
 --------------------------------------------------------------------
 
 # Note the new setup script name for Node.js v0.12
-curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
+#curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
+curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
 
 # Then install with:
 sudo apt-get install -y nodejs
 
+#if you have such issue after npm -version
+#bash: /usr/local/bin/npm: No such file or directory
+hash -r
 npm -version
 2.11.3
 /usr/bin/node  --version
+
+
