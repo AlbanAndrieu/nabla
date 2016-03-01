@@ -7547,19 +7547,25 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <version>${jsp.api.version}</version>
                                 <scope>provided</scope>
                         </dependency>
+                        <!-- TODO remove not needed anymore old impl
                         <dependency>
                                 <groupId>javax.faces</groupId>
                                 <artifactId>jsf-api</artifactId>
                                 <version>${jsf.api.version}</version>
                                 <scope>provided</scope>
+                                -->
                                 <!-- <scope>compile</scope> compile needed for jetty -->
+                                <!--
                         </dependency>
+                        -->
+                        <!-- TODO remove not needed anymore old impl
                         <dependency>
                                 <groupId>javax.faces</groupId>
                                 <artifactId>jsf-impl</artifactId>
                                 <version>${jsf.impl.version}</version>
                                 <scope>provided</scope>
                         </dependency>
+                        -->
                         <dependency>
                             <groupId>com.sun.faces</groupId>
                             <artifactId>jsf-api</artifactId>
