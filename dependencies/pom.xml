@@ -1486,8 +1486,8 @@
 
                 <!-- check compatibility http://selenium.googlecode.com/git/java/CHANGELOG -->
                 <!--<selenium.version>2.37.1</selenium.version>-->
-                <selenium.version>2.48.2</selenium.version>
-                <!--<selenium.version>2.52.0</selenium.version>--><!-- Same as Jenkins version -->
+                <!--<selenium.version>2.48.2</selenium.version>-->
+                <selenium.version>2.53.0</selenium.version><!-- Same as Jenkins version -->
                 <!--<selenium.driver.version>2.9.0</selenium.driver.version>-->
                 <selenium.driver.version>${selenium.version}</selenium.driver.version>
                 <selenium.safari.driver.version>${selenium.version}</selenium.safari.driver.version>
@@ -3242,7 +3242,7 @@
                                         <groupId>org.apache.maven.plugins</groupId>
                                         <artifactId>maven-surefire-plugin</artifactId>
                                         <version>${maven.surefire.plugin.version}</version>
-                                        <inherited>true</inherited>
+                                        <!--<inherited>true</inherited>-->
                                         <configuration>
                                                 <!-- Enable or disable JUnit tests -->
                                                 <skipTests>${maven.test.ut.skip}</skipTests>
@@ -3328,11 +3328,11 @@
                                                   </property>
                                                   <jboss.version>${server.version}</jboss.version>
                                                 </systemProperties>
+                                                <!--
                                                 <excludes>
                                                     <exclude>**/*ITest*</exclude>
                                                     <exclude>**/*STest*</exclude>
                                                 </excludes>
-                                                <!--
                                                 <excludes>
                                                         <exclude implementation="java.lang.String">**/Abstract*.*</exclude>
                                                 </excludes>
