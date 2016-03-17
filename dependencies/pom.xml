@@ -1795,7 +1795,7 @@
                 <maven.tattletale.plugin.version>1.2.0.Beta2</maven.tattletale.plugin.version>
                 <maven.animal.sniffer.plugin.version>1.14</maven.animal.sniffer.plugin.version>
                 <maven.h2.plugin.version>1.0</maven.h2.plugin.version>
-                <maven.surefire.plugin.version>2.18.1</maven.surefire.plugin.version>
+                <maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
                 <maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
                 <maven.sablecc.plugin.version>2.2</maven.sablecc.plugin.version>
                 <maven.taglist.plugin.version>2.4</maven.taglist.plugin.version>
@@ -7547,7 +7547,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <version>${jsp.api.version}</version>
                                 <scope>provided</scope>
                         </dependency>
-                        <!-- TODO remove not needed anymore old impl
+                        <!-- TODO remove not needed anymore old impl 
                         <dependency>
                                 <groupId>javax.faces</groupId>
                                 <artifactId>jsf-api</artifactId>
