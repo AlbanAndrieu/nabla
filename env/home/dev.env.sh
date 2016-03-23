@@ -380,7 +380,7 @@ export PATH=${M2}:$PATH
 #-Xms24g -Xmx24g -Xmn6g -XX:MaxPermSize=512M -XX:+UseParallelOldGC -XX:ParallelGCThreads=16
 #Add MaxPermSize for andromda
 #for java 8 PermSize and MaxPermSize can be removed
-MAVEN_OPTS="-Xms256m -Xmx512m"
+MAVEN_OPTS="-Xms256m -Xmx1024m"
 #https://developer.atlassian.com/docs/advanced-topics/working-with-maven/colour-coding-your-maven-output
 export MAVEN_COLOR=true
 
