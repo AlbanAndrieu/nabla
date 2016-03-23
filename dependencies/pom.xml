@@ -3330,15 +3330,14 @@
                                                   </property>
                                                   <jboss.version>${server.version}</jboss.version>
                                                 </systemProperties>
-                                                <!--
                                                 <excludes>
                                                     <exclude>**/*ITest*</exclude>
                                                     <exclude>**/*STest*</exclude>
+                                                    <exclude>**/weld/**</exclude>
+													<exclude>**/jbossas/**</exclude>
+													<exclude>**/*HibernateEnumType*</exclude>
+                                                    <!--<exclude implementation="java.lang.String">**/Abstract*.*</exclude>-->
                                                 </excludes>
-                                                <excludes>
-                                                        <exclude implementation="java.lang.String">**/Abstract*.*</exclude>
-                                                </excludes>
-                                                -->
                                         </configuration>
 
                                         <!--
@@ -7549,7 +7548,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <version>${jsp.api.version}</version>
                                 <scope>provided</scope>
                         </dependency>
-                        <!-- TODO remove not needed anymore old impl 
+                        <!-- TODO remove not needed anymore old impl
                         <dependency>
                                 <groupId>javax.faces</groupId>
                                 <artifactId>jsf-api</artifactId>

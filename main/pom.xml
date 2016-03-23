@@ -1111,6 +1111,8 @@
 								  <excludes>
 									<exclude>**/*ITest*</exclude>
 									<exclude>**/*STest*</exclude>
+									<exclude>**/weld/**</exclude>
+									<exclude>**/jbossas/**</exclude>
 									<exclude>**/*HibernateEnumType*</exclude>
 								  </excludes>
 								  <systemPropertyVariables>
@@ -1616,6 +1618,8 @@
 								<excludes>
 									<exclude>**/*ITest*</exclude>
 									<exclude>**/*STest*</exclude>
+									<exclude>**/weld/**</exclude>
+									<exclude>**/jbossas/**</exclude>
 									<exclude>**/*HibernateEnumType*</exclude>
 								</excludes>
 								<systemPropertyVariables>
