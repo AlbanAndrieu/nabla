@@ -1351,7 +1351,6 @@
                 <javax.mail.version>1.4.7</javax.mail.version>
                 <jpa.version>1.0</jpa.version>
                 <jstl.version>1.2</jstl.version>
-                <log4j.version>1.2.17</log4j.version>
                 <oscache.version>2.3</oscache.version>
                 <shale.version>1.0.4</shale.version>
                 <sitemesh.version>2.2.1</sitemesh.version>
@@ -1494,6 +1493,7 @@
                 <selenium.firefox.driver.version>${selenium.version}</selenium.firefox.driver.version>
                 <selenium.android.driver.version>2.39.0</selenium.android.driver.version>
                 <selenium.iphone.driver.version>2.39.0</selenium.iphone.driver.version>
+                <selenium.htmlunit.version>2.52.0</selenium.htmlunit.version>
                 <saucelabs.selenium.version>2.6</saucelabs.selenium.version>
                 <saucelabs.junit.version>2.1.10</saucelabs.junit.version>
                 <fitnesse.version>20150814</fitnesse.version>
@@ -1547,9 +1547,11 @@
                 <!--<xerces.version>2.10.0</xerces.version> TODO add dependency batik to avoid java.lang.NoClassDefFoundError: org/w3c/dom/ElementTraversal -->
                 <tomcat.version>6.0.29</tomcat.version>
 
-                <logback.version>1.1.5</logback.version>
                 <log4jdbc.remix.version>0.2.7</log4jdbc.remix.version>
+                <!-- see http://repo1.maven.org/maven2/org/slf4j/slf4j-parent/1.7.16/slf4j-parent-1.7.16.pom for compliance with log4j and logback version -->
                 <slf4j.version>1.7.16</slf4j.version>
+                <log4j.version>1.2.17</log4j.version>
+                <logback.version>1.1.5</logback.version>
                 <commons.dbcp>1.2.2</commons.dbcp>
 
                 <blazeds.version>3.2.0.3978</blazeds.version>
@@ -5663,7 +5665,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         <dependency>
                             <groupId>org.seleniumhq.selenium</groupId>
                             <artifactId>selenium-htmlunit-driver</artifactId>
-                            <version>${selenium.driver.version}</version>
+                            <version>${selenium.htmlunit.version}</version>
                             <scope>test</scope>
                         </dependency>
                         <dependency>
