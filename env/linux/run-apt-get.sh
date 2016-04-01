@@ -435,3 +435,7 @@ sudo lshw
 #usb issue
 #http://ubuntuforums.org/archive/index.php/t-1448092.html
 sudo apt-get remove usbmount
+
+#Ubuntu 14 things todo
+#http://itsfoss.com/things-to-do-after-installing-ubuntu-14-04/
+sudo apt-get install software-center*
