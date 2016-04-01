@@ -11,8 +11,8 @@ wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | s
 #sudo apt-get install virtualbox-guest-additions-iso
 
 sudo apt-get update
-sudo apt-get install virtualbox-4.3
 sudo apt-get install dkms
+sudo apt-get install virtualbox-5.0
 
 sudo mkdir -p /workspace/virtualbox/$USER/.VirtualBox
 sudo chown -R albandri:albandri /workspace/virtualbox/$USER
@@ -25,10 +25,20 @@ mkdir -p /workspace/virtualbox/$USER/VirtualBox\ VMs
 #rm -rf ~/VirtualBox \ VMs
 ln -s /workspace/virtualbox/$USER/VirtualBox\ VMs ~/VirtualBox\ VMs
 
-#install oracle vm virtualbox extension pack
-wget http://download.virtualbox.org/virtualbox/4.3.10/Oracle_VM_VirtualBox_Extension_Pack-4.3.10-93012.vbox-extpack
 sudo mkdir -p /local/virtualbox/Windows7/Shared
 #Log in with user: User/Kondor_123
+
+#install oracle vm virtualbox extension pack
+cd ~/.VirtualBox
+
+#wget http://download.virtualbox.org/virtualbox/4.3.10/Oracle_VM_VirtualBox_Extension_Pack-4.3.10-93012.vbox-extpack
+wget http://download.virtualbox.org/virtualbox/5.0.16/Oracle_VM_VirtualBox_Extension_Pack-5.0.16-105871.vbox-extpack
+
+#fix issue with Extension Pack
+sudo VBoxManage extpack uninstall 'Oracle VM VirtualBox Extension Pack'
+sudo VBoxManage extpack cleanup
+#sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-4.3.30.vbox-extpack
+sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-5.0.16-105871.vbox-extpack
 
 #convert vdi to vmdk
 vboxmanage internalcommands converttoraw OpenSolaris.vdi OpenSolaris.raw
@@ -66,8 +76,9 @@ VBoxManage startvm "vagrant-windows-2012" --type headless
 yum install binutils qt gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel dkms
 yum install VirtualBox-4.3
 
-#fix issue with Extension Pack
-cd ~/.VirtualBox
-sudo VBoxManage extpack uninstall 'Oracle VM VirtualBox Extension Pack'
-sudo VBoxManage extpack cleanup
-sudo VBoxManage extpack install  Oracle_VM_VirtualBox_Extension_Pack-4.3.30.vbox-extpack
+#webcam
+vboxmanage list usbhost
+sudo apt-get install gnome-system-tools
+sudo usermod -aG vboxusers albandri
+groups
+sudo service vboxdrv restart

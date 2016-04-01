@@ -4,14 +4,16 @@
 #http://docs.codehaus.org/display/SONAR/Running+SonarQube+as+a+Service+on+Linux
 
 #sudo wget http://dist.sonar.codehaus.org/sonarqube-4.0.zip
-sudo wget http://dist.sonar.codehaus.org/sonarqube-4.5.1.zip
+#sudo wget http://dist.sonar.codehaus.org/sonarqube-4.5.5.zip
+sudo wget https://sonarsource.bintray.com/Distribution/sonarqube/sonarqube-5.4.zip
 #unzip sonarqube-4.0.zip -d sonar-4.0
-unzip sonarqube-4.5.1.zip
+#sudo unzip sonarqube-4.5.5.zip
+sudo unzip sonarqube-5.4.zip
 
-ln -s sonarqube-4.5.1 sonar
+sudo ln -s sonarqube-5.4 sonar
 sudo ln -s /workspace/sonar/bin/linux-x86-32/sonar.sh /usr/bin/sonar
 cd /etc/init.d
-sudo nano  /etc/init.d/sonar
+sudo nano /etc/init.d/sonar
 ------------------
 #!/bin/sh
 #

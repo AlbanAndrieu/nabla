@@ -265,3 +265,53 @@ sudo nano /etc/hosts
 sudo apt-get remove apache2-mpm-prefork
 
 sudo service apache2 restart
+
+#Apache version
+apache2 -v
+Server version: Apache/2.4.7 (Ubuntu)
+
+#http://askubuntu.com/questions/184365/setting-servertokens-and-serversignature-in-apache
+
+cd /etc/apache2/conf-enabled/security.conf
+#ServerTokens Prod
+#ServerSignature Off
+
+#Add security options
+sudo a2enmod headers
+
+#below does not work
+#sudo nano /etc/apache2/ports.conf
+
+#below does not work
+Header unset Server
+Header unset X-Powered-By
+
+sudo nano /etc/apache2/apache2.conf
+<IfModule mod_headers.c>
+    Header unset ETag
+    Header set X-Frame-Options: deny
+    Header set X-XSS-Protection: "1; mode=block"
+    Header set X-Content-Type-Options: nosniff
+    Header set X-WebKit-CSP: "default-src 'self'"
+    Header set X-Permitted-Cross-Domain-Policies: "master-only"
+    Header always unset Date
+    Header always unset Connection
+    Header always unset Keep-Alive
+    Header always unset Server
+    Header always unset X-Powered-By
+    Header always set ProcessingTime "%D"
+#    Header always set Server albandri
+</IfModule>
+
+<IfModule security2_module>
+    SecRuleEngine on
+    ServerTokens Full
+    SecServerSignature "Microsoft-IIS/6.0"
+</IfModule>
+
+#http://askubuntu.com/questions/452042/why-is-my-apache-not-working-after-upgrading-to-ubuntu-14-04
+#fix Config variable ${APACHE_LOCK_DIR} is not defined
+source /etc/apache2/envvars
+#check for more issues
+/usr/sbin/apache2 -V
+sudo chmod 660 /var/log/apache2/modsec_audit.log
