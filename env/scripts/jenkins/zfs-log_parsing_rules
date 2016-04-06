@@ -1,0 +1,35 @@
+ok /Warning: Permanently added/
+ok /unlink .*warning.*/
+ok /cp: cannot stat/
+
+#ansible
+ok /^Searching for Suckit rootkit/
+error /INFECTED/
+warning /^\[ANSIBLE/
+warning /Permission denied/
+
+#security
+warning /Warning: \/sbin\/init INFECTED/
+
+# match line starting with 'error ', case-insensitive
+error /(?i)^error /
+error /An error occured while updating fs: /
+error /ERROR:/
+error /FAILED/
+error /ERROR :/
+error /Invalid or corrupt jarfile/
+
+# list of warnings here...
+warning /[Ww]arning/
+warning /WARNING/
+warning /recv-/
+
+# create a quick access link to lines in the report containing 'INFO'
+info /INFO/
+info /TODO/
+
+# each line containing 'BUILD' represents the start of a section for grouping er
+rors and warnings found after the line.
+# also creates a quick access link.
+#start /showtree/
+start /====/
