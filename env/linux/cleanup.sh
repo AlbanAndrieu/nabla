@@ -24,6 +24,21 @@
 \rm -Rf ~/.config/google-chrome/History*
 #nabla
 \rm -Rf ~/env/config/setEnvFiles.list.txt
+
+#Fix issue sendmail-largeboxes
+#http://unix.stackexchange.com/questions/134136/how-to-access-and-manage-a-large-mailbox-11-gb
+#sudo rm /var/spool/mail/BOGUS.jenkins.N4Af
+#sudo rm /var/spool/mail/BOGUS.www-data.GOLf
+#sudo rm /var/spool/mail/mon
+#sudo rm /var/spool/mail/www-data
+#sudo rm /var/spool/mail/nobody
+#sudo rm /var/spool/mail/nagios
+#sudo rm /var/spool/mail/mail
+#ll /var/spool/mail/
+
+#\rm -Rf /jenkins/xvfb-*.fbdir/
+#\rm -Rf /jenkins/workspace
+
 find ~/.thumbnails -type f -atime +7 -exec rm {} \;
 
 #find /var/log -type f -name '*.log' -exec chmod 664 {} \;

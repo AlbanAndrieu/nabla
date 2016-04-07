@@ -1,14 +1,6 @@
 #http://doc.ubuntu-fr.org/rootkit
 
-#https://cisofy.com/documentation/lynis/#installation
-
-sudo apt-get install lynis
-sudo lynis --check-update
-sudo lynis --version
-
-sudo lynis --check-all -Q
-
-sudo apt-get install rkhunter 
+sudo apt-get install rkhunter
 sudo rkhunter --update
 sudo rkhunter --version
 
@@ -19,10 +11,17 @@ sudo chkrootkit --version
 
 sudo chkrootkit -q
 
+#Warning: Hidden directory found
+#http://askubuntu.com/questions/1537/rkhunter-warning-about-etc-java-etc-udev-etc-initramfs
+#Add Uncomment
+#ALLOWHIDDENDIR="/etc/.java"
+#ALLOWHIDDENDIR="/dev/.udev"
+#ALLOWHIDDENDIR="/dev/.initramfs"
+
 sudo apt-get install tiger
 sudo tiger --version
 
-sudo tiger 
+sudo tiger
 
 #check for bad block
 sudo apt-get install e2fsprogs

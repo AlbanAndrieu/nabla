@@ -1,3 +1,29 @@
+#https://guide.ubuntu-fr.org/server/certificates-and-security.html
+
+#https://howto.biapy.com/en/debian-gnu-linux/servers/http/create-a-ssl-tls-certificate-on-debian
+apt-get install openssl ssl-cert
+
+
+#http://superuser.com/questions/104146/add-permanent-ssl-certificate-exception-in-chrome-linux
+#http://wiki.cacert.org/FAQ/BrowserClients
+
+scm-git-eur.misys.global.ad.crt
+
+wget -O cacert-root.crt "http://www.cacert.org/certs/root.crt"
+wget -O cacert-class3.crt "http://www.cacert.org/certs/class3.crt"
+
+certutil -d sql:$HOME/.pki/nssdb -A -t TC -n "CAcert.org" -i cacert-root.crt
+certutil -d sql:$HOME/.pki/nssdb -A -t TC -n "CAcert.org Class 3" -i cacert-class3.crt
+
+certutil -L -d  sql:$HOME/.pki/nssdb
+
+sudo certutil -d sql:$HOME/.pki/nssdb -A -t P -n "Stash" -i scm-git-eur.misys.global.ad.crt
+sudo certutil -d sql:$HOME/.pki/nssdb -A -t TC -n "Stash" -i scm-git-eur.misys.global.ad.crt
+#http://blog.tkassembled.com/410/adding-a-certificate-authority-to-the-trusted-list-in-ubuntu/
+#certutil -d sql:$HOME/.pki/nssdb -A -n "Stash" -i scm-git-eur.misys.global.ad.crt -t P,P,P
+#certutil -d sql:$HOME/.pki/nssdb -A -n 'Stash' -i scm-git-eur.misys.global.ad.crt -t TCP,TCP,TCP
+
+
 #https://help.ubuntu.com/community/OpenSSL#SSL%20Certificates
 sudo apt-cache search libssl | grep SSL
 openssl version
@@ -14,6 +40,12 @@ cp ~/Downloads/FR1CSLALM0010.crt .
 cat ~/Downloads/FR1CSLALM0010.crt | grep 'BEGIN.* CERTIFICATE' | wc -l
 sudo update-ca-certificates
 less /etc/ssl/certs/ca-certificates.crt
+
+#or
+cd ~/Downloads
+sudo cp scm-git-eur.misys.global.ad.crt /usr/share/ca-certificates/
+sudo dpkg-reconfigure ca-certificates
+ask
 
 #https://confluence.atlassian.com/kb/unable-to-connect-to-ssl-services-due-to-pkix-path-building-failed-779355358.html
 TEST :
