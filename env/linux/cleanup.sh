@@ -3,6 +3,7 @@
 #http://doc.ubuntu-fr.org/nettoyer_ubuntu
 \rm -Rf /usr/share/tomcat6/.m2/repository/
 \rm -Rf ~/.m2/repository/
+\rm -Rf ~/.repository
 \rm -Rf ~/.cache/*
 #\rm -Rf ~/.eclipse/*
 \rm -Rf ~/.cpan/*
@@ -15,15 +16,29 @@
 \rm -Rf ~/.node_cache
 \rm -Rf ~/.node_tmp
 \rm -Rf ~/.node-gyp
+#\rm -Rf ~/.npm
+\rm -Rf ~/.ievms
+\rm -Rf ~/.jenkins
+\rm -Rf ~/.sonar
 \rm -Rf ~/tmp
 \rm -f ~/*.db
 #empty trash
 \rm -rf ~/.local/share/Trash/*
+\rm -rf ~/.local/share/wineprefixes/*
 #google chrome
 #\rm -rf ~/.config/google-chrome/Default/Web\ Data
 \rm -Rf ~/.config/google-chrome/History*
+\rm -Rf ~/.config/variety/Downloaded/*/
 #nabla
 \rm -Rf ~/env/config/setEnvFiles.list.txt
+#https://askubuntu.com/questions/177312/filesystem-filling-up-due-to-large-uvcydnctrl-udev-log-file
+\rm -Rf /var/log/uvcdynctrl-udev.log
+\rm -Rf /var/log/elasticsearch/elasticsearch.log*
+\rm -Rf /var/lib/mongodb/journal/*
+\rm -Rf /var/lib/mongodb/local.*
+\rm -Rf /var/lib/mongodb/nabla-*
+\rm -Rf /var/lib/redis/*.rdb
+\rm -Rf /var/lib/collectd/rrd/*
 
 #Fix issue sendmail-largeboxes
 #http://unix.stackexchange.com/questions/134136/how-to-access-and-manage-a-large-mailbox-11-gb
@@ -36,9 +51,6 @@
 #sudo rm /var/spool/mail/mail
 #ll /var/spool/mail/
 
-#\rm -Rf /jenkins/xvfb-*.fbdir/
-#\rm -Rf /jenkins/workspace
-
 find ~/.thumbnails -type f -atime +7 -exec rm {} \;
 
 #find /var/log -type f -name '*.log' -exec chmod 664 {} \;
@@ -50,11 +62,23 @@ find ~/.thumbnails -type f -atime +7 -exec rm {} \;
 #find . -type f -name '*~' | xargs rm -r $1
 find . -type f -name '*\.log' | xargs rm -r $1
 find . -type d -name '.svn' | xargs rm -r $1
-sudo find /jenkins -type d -name 'workspace' | grep -v 'builds' | xargs sudo rm -r $1
+#sudo find /jenkins -type d -name 'workspace' | grep -v 'builds' | xargs sudo rm -r $1
+#todo remove /jenkins/jobs/nabla-servers-bower-sample-nightly/htmlreports/GC_Report
+#AND
+#/jenkins/jobs/nabla-servers-bower-sample-nightly/htmlreports/HAR_Report
+#\rm -Rf /jenkins-slave
+#\rm -Rf /jenkins/xvfb-*.fbdir/
+#\rm -Rf /jenkins/workspace-tmp
+#\rm -Rf /var/lib/elasticsearch/elasticsearch/nodes/
+#https://community.spiceworks.com/topic/783490-webm-files-in-virtualbox-are-they-safe-to-delete
+\rm -Rf ~/VirtualBox VMs/**/*.webm
 
 #find ~/ -name '*~' -print0
 find ~/ -name '*~' -type f
 find ~/ -name '*~' -type f -print0 | xargs -0 rm
+
+#http://www.insanitybit.com/2012/07/17/removing-zeitgeist-sped-up-unity-2/
+sudo apt-get purge zeitgeist zeitgeist-datahub rhythmbox-plugin-zeitgeist
 
 sudo apt-get autoclean
 sudo apt-get autoremove

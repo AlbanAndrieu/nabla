@@ -24,6 +24,6 @@ Copyright (C) Ian Ventura-Whiting 2009
 sslscan --no-failed mgrvkenvi031.misys.global.ad:19097
 
 Use instead command :
-openssl s_client -connect mgrvkenvi031.misys.global.ad:19084 -tls1_0
+openssl s_client -connect mgrvkenvi031.misys.global.ad:19084 -tls1
 openssl s_client -connect mgrvkenvi031.misys.global.ad:19084 -tls1_1
 openssl s_client -connect mgrvkenvi031.misys.global.ad:19084 -tls1_2
