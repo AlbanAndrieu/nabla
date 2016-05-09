@@ -28,6 +28,7 @@ sudo service ansible-tower stop
 sudo service redis-server stop
 sudo service private-bower stop
 sudo service mongod stop
+sudo service teamviewerd stop
 
 sudo service slapd stop
 sudo service snmpd stop
@@ -68,6 +69,7 @@ sudo update-rc.d -f ansible-tower remove
 sudo update-rc.d -f redis-server remove
 sudo update-rc.d -f private-bower remove
 sudo update-rc.d -f mongod remove
+sudo update-rc.d -f teamviewerd remove
 sudo update-rc.d -f nis remove
 sudo update-rc.d -f cfengine2 remove
 sudo update-rc.d -f cfengine3 remove

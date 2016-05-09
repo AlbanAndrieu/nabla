@@ -418,6 +418,7 @@ sudo modinfo btrfs
 #remove
 sudo rm /etc/apt/sources.list.d/pdffs-precise-virt-trusty.list
 #sudo rm /etc/apt/sources.list.d/get_docker_io_ubuntu.list
+sudo rm /etc/apt/sources.list.d/ntop.list
 sudo apt-get update
 
 #backup / save

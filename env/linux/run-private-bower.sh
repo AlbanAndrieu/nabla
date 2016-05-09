@@ -43,6 +43,7 @@ npm install --save bower-registry-client
 
 #log
 less /service/private-bower/log/private-bower/current
+#http://bower:9042/logtail/private-bower
 
 #TODO start private-bower as daemontools
 #http://cr.yp.to/daemontools.html
