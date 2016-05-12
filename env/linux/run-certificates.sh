@@ -4,7 +4,7 @@ First try on workstation to create new certificate for this server
 
 #1 - I first prepared my wnvironement
 #Doing : https://howto.biapy.com/en/debian-gnu-linux/servers/http/create-a-ssl-tls-certificate-on-debian
-apt-get install openssl ssl-cert
+sudo apt-get install openssl ssl-cert
 
 mkdir --parent '/etc/ssl/private'
 mkdir --parent '/etc/ssl/requests'
@@ -17,7 +17,7 @@ mkdir --parent '/etc/ssl/configs'
 addgroup --system 'ssl-cert'
 chown -R root:ssl-cert '/etc/ssl/private'
 chmod 710 '/etc/ssl/private'
-chmod 440 '/etc/ssl/private/'*
+chmod 440 '/etc/ssl/private/'
 
 SSL_KEY_NAME="$(command hostname --fqdn)"
 
@@ -50,7 +50,7 @@ fi
 SSL_COUNTRY="fr"
 SSL_PROVINCE="IleDeFrance"
 SSL_CITY="Paris"
-SSL_EMAIL="FRBM@misys.com"
+SSL_EMAIL="alban.andrieu@free.fr"
 
 echo "# SSL CSR informations.
 SSL_COUNTRY=\"${SSL_COUNTRY}\"
@@ -128,7 +128,7 @@ sudo certutil -d sql:$HOME/.pki/nssdb -A -t TC -n "Stash" -i scm-git-eur.misys.g
 #http://blog.tkassembled.com/410/adding-a-certificate-authority-to-the-trusted-list-in-ubuntu/
 #certutil -d sql:$HOME/.pki/nssdb -A -n "Stash" -i scm-git-eur.misys.global.ad.crt -t P,P,P
 #certutil -d sql:$HOME/.pki/nssdb -A -n 'Stash' -i scm-git-eur.misys.global.ad.crt -t TCP,TCP,TCP
-
+sudo certutil -D -n Stash -d sql:$HOME/.pki/nssdb
 
 #https://help.ubuntu.com/community/OpenSSL#SSL%20Certificates
 sudo apt-cache search libssl | grep SSL
@@ -165,7 +165,6 @@ less /etc/ssl/certs/ca.pem
 
 #http://www.herongyang.com/Cryptography/OpenSSL-Certificate-Path-Validation-Tests.html
 
-
 This problem is common, you need to ask to your provider for the:
 
 Root CA
@@ -182,7 +181,6 @@ java -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.debug=tr
 #Ubuntu
 #http://superuser.com/questions/437330/how-do-you-add-a-certificate-authority-ca-to-ubuntu
 cd /usr/local/share/ca-certificates
-sudo cp ~/Downloads/FR1CSLALM0010.crt .
 sudo cp /etc/ssl/requests/certnew.cer albandri.crt
 sudo cp ~/Downloads/UK1VSWCERT01-CA.cer UK1VSWCERT01-CA.crt
 #~ #count the number of certificate in a file

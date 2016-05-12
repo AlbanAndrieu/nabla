@@ -9,8 +9,7 @@
 \rm -Rf ~/.cpan/*
 \rm -Rf ~/.svn/*
 \rm -Rf ~/.thunderbird/*
-\rm -Rf ~/.mozilla/*
-\rm -Rf ~/.config/*
+#\rm -Rf ~/.mozilla/*
 \rm -Rf ~/.fonts
 \rm -Rf ~/.gem
 \rm -Rf ~/.node_cache
@@ -22,9 +21,11 @@
 \rm -Rf ~/.sonar
 \rm -Rf ~/tmp
 \rm -f ~/*.db
+#\rm -Rf  ~/.vagrant.d/boxes
 #empty trash
 \rm -rf ~/.local/share/Trash/*
 \rm -rf ~/.local/share/wineprefixes/*
+#\rm -Rf ~/.config/*
 #google chrome
 #\rm -rf ~/.config/google-chrome/Default/Web\ Data
 \rm -Rf ~/.config/google-chrome/History*
@@ -32,8 +33,8 @@
 #nabla
 \rm -Rf ~/env/config/setEnvFiles.list.txt
 #https://askubuntu.com/questions/177312/filesystem-filling-up-due-to-large-uvcydnctrl-udev-log-file
-\rm -Rf /var/log/uvcdynctrl-udev.log
-\rm -Rf /var/log/elasticsearch/elasticsearch.log*
+sudo \rm -Rf /var/log/uvcdynctrl-udev.log
+sudo \rm -Rf /var/log/elasticsearch/elasticsearch.log*
 \rm -Rf /var/lib/mongodb/journal/*
 \rm -Rf /var/lib/mongodb/local.*
 \rm -Rf /var/lib/mongodb/nabla-*
@@ -67,6 +68,8 @@ find . -type d -name '.svn' | xargs rm -r $1
 #AND
 #/jenkins/jobs/nabla-servers-bower-sample-nightly/htmlreports/HAR_Report
 #\rm -Rf /jenkins-slave
+\rm -Rf /jenkins/maven-repositories/0/org/owasp
+\rm -Rf /jenkins-slave/maven-repositories/0/org/owasp
 #\rm -Rf /jenkins/xvfb-*.fbdir/
 #\rm -Rf /jenkins/workspace-tmp
 #\rm -Rf /var/lib/elasticsearch/elasticsearch/nodes/
