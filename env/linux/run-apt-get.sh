@@ -416,9 +416,11 @@ lsmod
 sudo modinfo btrfs
 
 #remove
-sudo rm /etc/apt/sources.list.d/pdffs-precise-virt-trusty.list
 #sudo rm /etc/apt/sources.list.d/get_docker_io_ubuntu.list
-sudo rm /etc/apt/sources.list.d/ntop.list
+sudo rm -f /etc/apt/sources.list.d/pdffs-precise-virt-trusty.list
+sudo rm -f /etc/apt/sources.list.d/ntop.list
+sudo rm -f /etc/apt/sources.list.d/dl_google_com_linux_chrome_deb.list*
+sudo rm -f /etc/apt/sources.list.d/google-chrome.list
 sudo apt-get update
 
 #backup / save
