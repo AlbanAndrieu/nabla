@@ -314,4 +314,5 @@ sudo nano /etc/apache2/apache2.conf
 source /etc/apache2/envvars
 #check for more issues
 /usr/sbin/apache2 -V
-sudo chmod 660 /var/log/apache2/modsec_audit.log
+#sudo chmod 660 /var/log/apache2/modsec_audit.log
+sudo chmod 664 /var/log/apache2/modsec_audit.log
