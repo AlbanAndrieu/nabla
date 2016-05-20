@@ -22,6 +22,7 @@ git config --global branch.master.rebase true
 git config --global branch.autosetuprebase always
 #git config --global merge.tool kdiff3
 git config --global merge.tool meld
+git config --global push.default simple
 git config --list
 
 git config --local user.email "alban.andrieu@free.fr"

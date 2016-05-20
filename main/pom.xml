@@ -99,6 +99,8 @@
                 <hudson.port>8070</hudson.port>
                 <tomcat.port>8280</tomcat.port> <!-- jenkins cargo 8281,8282 -->
                 <jetty.port>9090</jetty.port> <!-- jenkins cargo 9090,9091 -->
+                <!--<jetty.http.port>${jetty.port}</jetty.http.port>-->
+                <jetty.ssl.port>9443</jetty.ssl.port> <!-- 8443 is used by zap see jetty-ssl.xml in src/main/config/demo-base/etc -->
                 <jetty.stop.port>19097</jetty.stop.port>
                 <!--<jenkins.port>${tomcat.port}</jenkins.port>  http://localhost:8280/jenkins/ -->
                 <jenkins.port>8380</jenkins.port>
