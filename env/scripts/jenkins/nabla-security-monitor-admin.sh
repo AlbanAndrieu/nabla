@@ -27,10 +27,11 @@ echo ""
 
 #for /usr/sbin/apache2 -V
 source /etc/apache2/envvars
-/usr/sbin/apache2 -V
+#sudo chmod 664 /var/log/apache2/modsec_audit.log
+sudo /usr/sbin/apache2 -V
 
 #Verify if the mod_security module was loaded.
-apachectl -M | grep --color security
+/usr/sbin/apachectl -M | grep --color security
 
 echo ""
 echo "################### BENCKMARK APACHE ###################"
@@ -43,7 +44,7 @@ echo "################### OPENSSL VERSION ###################"
 echo ""
 
 openssl version
-#Warning openssl must be OpenSSL 1.0.1f 6 Jan 2014 otherwise check for ls1_1 and ls1_2 will not work
+#openssl must be OpenSSL 1.0.1f 6 Jan 2014 otherwise check for ls1_1 and ls1_2 will not work
 
 OPENSSL_OPTIONS="-quiet -ign_eof -CAfile /etc/ssl/certs/ca-certificates.crt"
 
