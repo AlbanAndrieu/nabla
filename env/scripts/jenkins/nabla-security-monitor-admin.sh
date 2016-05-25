@@ -26,7 +26,7 @@ echo "################### APACHE ###################"
 echo ""
 
 #for /usr/sbin/apache2 -V
-source /etc/apache2/envvars
+sudo source /etc/apache2/envvars
 #sudo chmod 664 /var/log/apache2/modsec_audit.log
 sudo /usr/sbin/apache2 -V
 

@@ -97,7 +97,8 @@
                 <jboss.htpp.debug.port>8181</jboss.htpp.debug.port> <!-- in Eclipse Local Monitor Port 8181 and Port 8180 -->
 
                 <hudson.port>8070</hudson.port>
-                <tomcat.port>8280</tomcat.port> <!-- jenkins cargo 8281,8282 -->
+                <tomcat.ssl.port>8444</tomcat.ssl.port> <!-- jenkins cargo 8281,8282 -->
+                <tomcat.port>8280</tomcat.port>
                 <jetty.port>9090</jetty.port> <!-- jenkins cargo 9090,9091 -->
                 <!--<jetty.http.port>${jetty.port}</jetty.http.port>-->
                 <jetty.ssl.port>9443</jetty.ssl.port> <!-- 8443 is used by zap see jetty-ssl.xml in src/main/config/demo-base/etc -->
