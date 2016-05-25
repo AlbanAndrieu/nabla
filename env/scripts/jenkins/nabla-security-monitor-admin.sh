@@ -30,7 +30,7 @@ source /etc/apache2/envvars
 /usr/sbin/apache2 -V
 
 #Verify if the mod_security module was loaded.
-sudo chmod 664 /var/log/apache2/modsec_audit.log
+sudo chmod 666 /var/log/apache2/modsec_audit.log
 /usr/sbin/apachectl -M | grep --color security
 
 echo ""
