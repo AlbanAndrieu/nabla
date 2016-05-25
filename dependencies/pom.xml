@@ -1038,6 +1038,7 @@
                 <sonar.host.url>http://home.nabla.mobi:9000</sonar.host.url>
                 <sonar.build-stability.url>Jenkins:$BUILD_URL/..</sonar.build-stability.url>
                 <sonar.github.oauth>06895b871e3f2775b7497e809222be22770d0c05</sonar.github.oauth>
+                <sonar.branch>master</sonar.branch>
 
                 <!--<sonar.exclusions>file:/generated/,**/generated/**</sonar.exclusions>-->
                 <!-- see http://docs.codehaus.org/display/SONAR/Narrowing+the+Focus

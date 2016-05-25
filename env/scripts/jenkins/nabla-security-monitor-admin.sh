@@ -156,7 +156,7 @@ echo ""
 echo "################### CHECK SSL CIPHERS ###################"
 echo ""
 
-nmap -sT -PN -p ${TARGET_PORT} ${TARGET_SERVER} --script ssl-enum-ciphers.nse
+nmap -sT -PN -p ${TARGET_PORT} ${TARGET_SERVER} --script ssl-cert,ssl-enum-ciphers
 
 echo ""
 echo "################### CHECK POODLE ###################"
@@ -187,10 +187,11 @@ echo ""
 echo "################### LYNIS ###################"
 echo ""
 
-sudo /usr/local/lynis/2.2.0/lynis --check-update
-sudo /usr/local/lynis/2.2.0/lynis --version
+#TODO use /usr/local/lynis/2.2.0/lynis
+sudo lynis --check-update
+sudo lynis --version
 
-sudo /usr/local/lynis/2.2.0/lynis --check-all -Q
+sudo lynis --check-all -Q
 
 echo ""
 echo "################### RKHUNTER ###################"
