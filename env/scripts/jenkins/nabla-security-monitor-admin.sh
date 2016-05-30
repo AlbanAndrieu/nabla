@@ -18,7 +18,7 @@ if [ -n "${TARGET_URL}" ]; then
   echo "TARGET_URL is defined"
 else
   echo "Undefined build parameter: TARGET_URL, use the default one"
-  export TARGET_URL=visma
+  export TARGET_URL="visma/"
 fi
 
 echo ""
@@ -37,7 +37,7 @@ echo ""
 echo "################### BENCKMARK APACHE ###################"
 echo ""
 
-ab -n 10 -c 5 http://${TARGET_SERVER}/
+ab -n 10 -c 5 http://localhost:7070/
 
 echo ""
 echo "################### OPENSSL VERSION ###################"
@@ -72,7 +72,7 @@ echo ""
 for method in TEST CONNECT COPY DELETE GET HEAD LOCK MKCOL MOVE OPTIONS POST PROPPATCH PROPFIND PUT TRACE UNLOCK ;
 do
   printf "%-10s " $method ;
-  printf "$method /${TARGET_URL} HTTP/1.1\nHost: ${TARGET_SERVER}\n\n" | openssl s_client -connect ${TARGET_SERVER}:${TARGET_PORT} ${OPENSSL_OPTIONS} 2> /dev/null | grep "HTTP/1.1"
+  printf "$method /${TARGET_URL} HTTP/1.1\nHost: ${TARGET_SERVER}\n\n" | openssl s_client -connect ${TARGET_SERVER}:8444 ${OPENSSL_OPTIONS} 2> /dev/null | grep "HTTP/1.1"
   #&& echo "Port is open on ${TARGET_SERVER}:${TARGET_PORT} for $method" || echo "Port is closed on ${TARGET_SERVER}:${TARGET_PORT} for $method"
 
 done
@@ -93,15 +93,15 @@ echo ""
 echo "################### CHECK Diffie-Hellman STRENGTH ###################"
 echo ""
 
-#openssl-1.0.2 s_client -connect mgrvkenvi031.misys.global.ad:19084 -cipher kEDH
+#openssl-1.0.2 s_client -connect ${TARGET_SERVER}:${TARGET_PORT} -cipher kEDH
 
 echo ""
 echo "################### URLS CHECK ###################"
 echo ""
 
 #TODO
-nmap -sV -p80,443,8280,8443,9443 --script http-methods nabla.freeboxos.fr
-nmap -sV -p80,443,8280,8443,9443 --script http-methods --script-args http.url-path='/visma/rest/ping' localhost
+nmap -sV -p80,443,7070,8280,8443,8444,9443 --script http-methods nabla.freeboxos.fr
+nmap -sV -p80,443,7070,8280,8443,8444,9443 --script http-methods --script-args http.url-path='/visma/rest/ping' localhost
 
 #apache check
 echo "#######################"
@@ -113,25 +113,35 @@ openssl s_client -connect ${TARGET_SERVER}:443 -tls1_1 2> /dev/null && echo ERRO
 echo "---- TLS 1.2 ----"
 openssl s_client -connect ${TARGET_SERVER}:443 -tls1_2 2> /dev/null && echo OK
 
+#ZaProxy check
+echo "#######################"
+echo "ZaProxy check"
+echo "---- TLS 1 ----"
+openssl s_client -connect ${TARGET_SERVER}:8443 -tls1 2> /dev/null && echo ERROR
+echo "---- TLS 1.1 ----"
+openssl s_client -connect ${TARGET_SERVER}:8443 -tls1_1 2> /dev/null && echo ERROR
+echo "---- TLS 1.2 ----"
+openssl s_client -connect ${TARGET_SERVER}:8443 -tls1_2 2> /dev/null && echo OK
+
 #tomcat check
 echo "#######################"
 echo "Tomcat check"
 echo "---- TLS 1 ----"
-openssl s_client -connect ${TARGET_SERVER}:8280 -tls1 2> /dev/null && echo ERROR
+openssl s_client -connect ${TARGET_SERVER}:8444 -tls1 2> /dev/null && echo ERROR
 echo "---- TLS 1.1 ----"
-openssl s_client -connect ${TARGET_SERVER}:8280 -tls1_1 2> /dev/null && echo ERROR
+openssl s_client -connect ${TARGET_SERVER}:8444 -tls1_1 2> /dev/null && echo ERROR
 echo "---- TLS 1.2 ----"
-openssl s_client -connect ${TARGET_SERVER}:8280 -tls1_2 2> /dev/null && echo OK
+openssl s_client -connect ${TARGET_SERVER}:8444 -tls1_2 2> /dev/null && echo OK
 
 #jetty check
 echo "#######################"
 echo "Jetty check"
 echo "---- TLS 1 ----"
-openssl s_client -connect ${TARGET_SERVER}:9090 -tls1 2> /dev/null && echo ERROR
+openssl s_client -connect ${TARGET_SERVER}:9443 -tls1 2> /dev/null && echo ERROR
 echo "---- TLS 1.1 ----"
-openssl s_client -connect ${TARGET_SERVER}:9090 -tls1_1 2> /dev/null && echo ERROR
+openssl s_client -connect ${TARGET_SERVER}:9443 -tls1_1 2> /dev/null && echo ERROR
 echo "---- TLS 1.2 ----"
-openssl s_client -connect ${TARGET_SERVER}:9090 -tls1_2 2> /dev/null && echo OK
+openssl s_client -connect ${TARGET_SERVER}:9443 -tls1_2 2> /dev/null && echo OK
 
 #TODO sonar jenkins
 
@@ -140,11 +150,13 @@ curl --version
 
 echo "#######################"
 echo "Apache check"
+curl -k -I --stderr /dev/null https://${TARGET_SERVER}:7070 | head -1 | cut -d' ' -f2
 curl -k -I --stderr /dev/null https://${TARGET_SERVER}:443 | head -1 | cut -d' ' -f2
 
 echo "#######################"
 echo "Tomcat check"
-curl -k -I -o /dev/null --silent --head --write-out 'kgr return is : %{http_code}\n' https://${TARGET_SERVER}:8280/visma/
+curl -k -I -o /dev/null --silent --head --write-out 'vsima return is : %{http_code}\n' https://${TARGET_SERVER}:8280/${TARGET_URL}
+curl -k -I -o /dev/null --silent --head --write-out 'vsima return is : %{http_code}\n' https://${TARGET_SERVER}:8444/${TARGET_URL}
 
 echo ""
 echo "################### CHECK OPEN PORTS ###################"
@@ -156,7 +168,7 @@ echo ""
 echo "################### CHECK SSL CIPHERS ###################"
 echo ""
 
-nmap -sT -PN -p ${TARGET_PORT} ${TARGET_SERVER} --script ssl-cert,ssl-enum-ciphers
+nmap -sT -PN -p 8444 ${TARGET_SERVER} --script ssl-cert,ssl-enum-ciphers
 
 echo ""
 echo "################### CHECK POODLE ###################"
