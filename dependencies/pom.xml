@@ -5430,11 +5430,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                      </dependency>
                    </dependencies>
                   </plugin>
+                  <!--
                   <plugin>
                     <groupId>com.cloudbees</groupId>
                     <artifactId>bees-maven-plugin</artifactId>
                     <version>${maven.bees.plugin.version}</version>
                   </plugin>
+                  -->
                 </plugins>
         </build>
         <dependencyManagement>
@@ -9657,13 +9659,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         <groupId>org.slf4j</groupId>
                         <artifactId>slf4j-api</artifactId>
                         <version>${slf4j.version}</version>
-		            <exclusions>
-		                <!-- circular dependency -->
-		                <exclusion>
-		                    <groupId>ch.qos.logback</groupId>
-		                    <artifactId>logback-classic</artifactId>
-		                </exclusion>
-		            </exclusions>
+						<exclusions>
+							<!-- circular dependency -->
+							<exclusion>
+								<groupId>ch.qos.logback</groupId>
+								<artifactId>logback-classic</artifactId>
+							</exclusion>
+						</exclusions>
                     </dependency>
                     <dependency>
                         <groupId>org.slf4j</groupId>
@@ -9842,6 +9844,15 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                                 <groupId>jaxen</groupId>
                                 <artifactId>jaxen</artifactId>
                             </exclusion>
+							<!-- http://jira.codehaus.org/browse/JAXEN-217 -->
+							<exclusion>
+							  <groupId>maven-plugins</groupId>
+							  <artifactId>maven-cobertura-plugin</artifactId>
+							</exclusion>
+							<exclusion>
+							  <groupId>maven-plugins</groupId>
+							  <artifactId>maven-findbugs-plugin</artifactId>
+							</exclusion>
                         </exclusions>
                     </dependency>
                     <dependency>
