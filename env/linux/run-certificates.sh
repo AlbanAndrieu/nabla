@@ -80,8 +80,17 @@ ${SSL_EMAIL}
 
 "
 
-cat "/etc/ssl/requests/${SSL_KEY_NAME}.csr"
+#CSR with SAN
+openssl req -new -sha256 \
+    -key "/etc/ssl/private/${SSL_KEY_NAME}.key" \
+    -subj "/C=FR/ST=IleDeFrance/O=Misys, Inc./CN=${SSL_KEY_NAME}" \
+    -reqexts SAN \
+    -config <(cat /etc/ssl/openssl.cnf \
+        <(printf "[SAN]\nsubjectAltName=DNS:${SSL_KEY_NAME},DNS:albandri,DNS:mgrvkenvi031.misys.global.ad,DNS:mgrvkenvi031")) \
+    -out "/etc/ssl/requests/${SSL_KEY_NAME}.csr"
 
+cat "/etc/ssl/requests/${SSL_KEY_NAME}.csr"
+openssl req -in ${SSL_KEY_NAME}.csr -text -noout
 
 #3 - Obtaining the public key from certification authority
 
@@ -214,3 +223,12 @@ java -Djavax.net.ssl.trustStore=/etc/pki/java/cacerts -Djavax.net.debug=true SSL
 #sudo keytool -import -alias FR1CSLALM0010 -file /files/sonar/sonarqube-4.5.5/FR1CSLALM0010.crt -keystore /files/sonar/sonarqube-4.5.5/bin/linux-x86-64/cacerts -storepass changeit
 sudo keytool -import -alias FR1CSLALM0010 -file /files/sonar/sonarqube-4.5.5/FR1CSLALM0010.crt -keystore /etc/pki/java/cacerts -storepass changeit
 sudo keytool -import -alias FR1CSLALM0010 -file /files/sonar/sonarqube-4.5.5/FR1CSLALM0010.crt -keystore /usr/java/jre1.8.0_77/lib/security/cacerts -storepass changeit
+
+#On Ubuntu
+#http://blog.chmouel.com/2010/06/03/connecting-to-self-signed-ssl-certificate-from-java-on-debian-ubuntu/
+#On ubuntu sudo update-ca-certificates should add your certificate to the java keystore, you can check it with the command (Enter for Password) :
+keytool -list -v -keystore /etc/ssl/certs/java/cacerts
+ls -lrta $JAVA_HOME/jre/lib/security/
+
+keytool -list -keystore  /etc/ssl/certs/java/cacerts -alias debian:uk1vswcert01-ca.pem
+keytool -list -keystore  /etc/ssl/certs/java/cacerts -alias debian:uk1vswcert01-ca-4.pem

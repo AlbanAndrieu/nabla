@@ -12,3 +12,6 @@
 
 #RECX Security Analyzer
 #https://chrome.google.com/webstore/detail/recx-security-analyser/ljafjhbjenhgcgnikniijchkngljgjda/related?hl=en
+
+#[ubuntu] Bizarre Chromium/Chrome black screen problem
+#Click drop-down menu on top-right corner –> click “Settings” –> click “Show advanced settings…” on the bottom –> scroll to the bottom, and uncheck “Use hardware acceleration when available”.

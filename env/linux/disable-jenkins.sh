@@ -24,7 +24,6 @@ sudo service postgresql stop
 sudo service nginx stop
 sudo service varnish stop
 sudo service gearman-job-server stop
-sudo service ansible-tower stop
 sudo service redis-server stop
 #sudo service private-bower stop
 sudo service mongod stop
@@ -37,6 +36,8 @@ sudo service lightdm stop
 sudo service avahi-daemon stop
 sudo sh -c "echo manual > /etc/init/avahi-daemon.override"
 sudo service memcached stop
+
+sudo service ansible-tower stop
 
 #sudo update-rc.d -f webmin remove
 sudo update-rc.d -f usermin remove
