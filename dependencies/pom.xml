@@ -1838,7 +1838,7 @@
                 <maven.sql.plugin.version>1.5</maven.sql.plugin.version>
                 <maven.org.liquibase.plugin.version>3.4.1</maven.org.liquibase.plugin.version>
                 <maven.torque.plugin.version>3.3-RC2</maven.torque.plugin.version>
-                <maven.exec.plugin.version>1.4.0</maven.exec.plugin.version>
+                <maven.exec.plugin.version>1.5.0</maven.exec.plugin.version>
                 <maven.gwt.plugin.version>${gwt.version}</maven.gwt.plugin.version>
                 <maven.jacoco.gwt.plugin.version>0.5.4.201202141554</maven.jacoco.gwt.plugin.version>
                 <maven.vaadin.plugin.version>7.6.0.alpha1</maven.vaadin.plugin.version>
@@ -5616,6 +5616,17 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<groupId>org.owasp.appsensor</groupId>
 							<artifactId>appsensor-core</artifactId>
 							<version>${appsensor.core.version}</version>
+							<!-- below duplicated with org.glassfish.hk2:hk2-api from jersey -->
+							<exclusions>
+								<exclusion>
+									<groupId>javax.inject</groupId>
+									<artifactId>javax.inject</artifactId>
+								</exclusion>
+								<exclusion>
+									<groupId>aopalliance</groupId>
+									<artifactId>aopalliance</artifactId>
+								</exclusion>
+							</exclusions>
 						</dependency>
 
                         <dependency>

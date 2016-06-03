@@ -25,6 +25,9 @@ git config --global merge.tool meld
 git config --global push.default simple
 git config --list
 
+#for Windows
+git config --global http.sslVerify false
+
 git config --local user.email "alban.andrieu@free.fr"
 git config --local user.name "Alban Andrieu"
 git config --local -l
