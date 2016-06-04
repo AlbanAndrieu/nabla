@@ -1065,6 +1065,8 @@
                 <sonar.issue.ignore.block.e2.endBlockRegexp>License 1.0</sonar.issue.ignore.block.e2.endBlockRegexp>
 
                 <sonar.skippedModules>cartridges</sonar.skippedModules>
+                <sonar.pdf.username>admin</sonar.pdf.username>
+                <sonar.pdf.password>microsoft</sonar.pdf.password>
 
                 <!-- TODO move to profile jmeter -->
                 <cargo.host>localhost</cargo.host>

@@ -27,6 +27,7 @@ sudo service gearman-job-server stop
 sudo service redis-server stop
 #sudo service private-bower stop
 sudo service mongod stop
+sudo service teamviewerd stop
 
 sudo service slapd stop
 sudo service snmpd stop
