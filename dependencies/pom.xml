@@ -191,6 +191,7 @@
                 </build>
             </profile>
             <!-- This profile houses the m2e config for bypassed maven plugins, activated by m2e -->
+            <!-- https://stackoverflow.com/questions/7409823/m2e-lifecycle-mapping-not-found -->
             <profile>
                   <id>m2e</id>
                   <activation>
@@ -201,7 +202,6 @@
                   <build>
                     <plugins>
                       <plugin>
-                        <!--<groupId>org.maven.ide.eclipse</groupId>-->
                         <groupId>org.eclipse.m2e</groupId>
                         <artifactId>lifecycle-mapping</artifactId>
                         <version>${lifecycle.mapping.version}</version>
@@ -1798,7 +1798,7 @@
                 <maven.buildmetadata.plugin.version>1.1.5</maven.buildmetadata.plugin.version>
                 <maven.license.plugin.version>1.10.b1</maven.license.plugin.version>
                 <maven.sonar.report.plugin.version>2.2.1</maven.sonar.report.plugin.version>
-                <maven.gmaven.plugin.version>2.0</maven.gmaven.plugin.version>
+                <maven.gmaven.plugin.version>1.5</maven.gmaven.plugin.version>
                 <maven.gmavenplus.plugin.version>1.5</maven.gmavenplus.plugin.version>
                 <maven.verifier.plugin.version>1.1</maven.verifier.plugin.version>
                 <maven.tattletale.plugin.version>1.2.0.Beta2</maven.tattletale.plugin.version>
