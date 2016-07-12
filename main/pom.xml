@@ -803,6 +803,7 @@
         </build>
 
         <profiles>
+				<!--
                 <profile>
                         <id>default-tools.jar</id>
                         <activation>
@@ -817,10 +818,10 @@
                                         <version>${jdkVersion}</version>
                                         <scope>system</scope>
                                         <systemPath>${java.home}/lib/tools.jar</systemPath>
-                                        <!-- <systemPath>C:\Program Files (x86)\Java\jdk1.5.0_22\lib\tools.jar</systemPath> -->
                                 </dependency>
                         </dependencies>
                 </profile>
+                -->
                 <profile>
                         <id>eclipse-folders</id>
                         <properties>

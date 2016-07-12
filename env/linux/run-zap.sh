@@ -62,10 +62,11 @@ ant lite-release
 #git clone https://code.google.com/p/zap-maven-plugin/
 git clone https://github.com/javabeanz/zap-maven-plugin.git
 
+#TODO no more needed since I switch to ZaProxy Jenkins plugin
 #grunt
-npm install async --save-dev
-npm install request --save-dev
-npm install grunt-zaproxy --save-dev
+#npm install async --save-dev
+#npm install request --save-dev
+#npm install grunt-zaproxy --save-dev
 
 #jenkins
 #add PATH
@@ -77,6 +78,17 @@ npm install grunt-zaproxy --save-dev
 #sudo su - jenkins
 #source /etc/profile
 
-sudo nano /etc/init/jenkins.conf
-export ZAPROXY_HOME=/zapSource/build/zap
-export PATH=$PATH:$ZAPROXY_HOME
+#TODO no more needed since I switch to ZaProxy Jenkins plugin
+#sudo nano /etc/init/jenkins.conf
+#export ZAPROXY_HOME=/zapSource/build/zap
+#export PATH=$PATH:$ZAPROXY_HOME
+
+sudo apt-get install phantomjs
+#sudo apt-get install adobe-flashplugin
+sudo apt-get install chromium-chromedriver
+#below needed for protractor tests
+#sudo apt-get install google-chrome-stable
+
+#for zap
+/usr/bin/phantomjs --version || true
+/usr/lib/chromium-browser/chromedriver --version || true
