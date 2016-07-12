@@ -441,4 +441,8 @@ sudo apt-get remove usbmount
 
 #Ubuntu 14 things todo
 #http://itsfoss.com/things-to-do-after-installing-ubuntu-14-04/
+#http://www.webupd8.org/2014/04/10-things-to-do-after-installing-ubuntu.html
 sudo apt-get install software-center*
+
+#disable hud service
+sudo chmod -x /usr/lib/x86_64-linux-gnu/hud/hud-service

@@ -442,6 +442,9 @@ export ZAPROXY_HOME=${DRIVE_PATH}/workspace/divers/zaproxy-read-only/build/zap
 #JMETER
 export JMETER_HOME=${DRIVE_PATH}/usr/share/jmeter
 
+#PHANTOMJS
+export PHANTOMJS_BIN=`which phantomjs`
+
 if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
 then
   #ln -s ${DRIVE_PATH}/MagicDraw\ UML\ 16.5 /MagicDrawUML16.5

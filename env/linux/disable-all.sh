@@ -4,6 +4,7 @@ sudo service webmin stop
 sudo service usermin stop
 sudo service jetty stop
 sudo service jenkins stop
+sudo service selenium_hub stop
 sudo service sonar stop
 sudo service rabbitmq-server stop
 sudo service jboss stop
@@ -28,22 +29,30 @@ sudo service ansible-tower stop
 sudo service redis-server stop
 sudo service private-bower stop
 sudo service mongod stop
+sudo service nis stop
 sudo service teamviewerd stop
 
 sudo service slapd stop
 sudo service snmpd stop
 sudo service iscsitarget stop
+sudo service nmbd stop
 sudo service smbd stop
+sudo service samba stop
 sudo service lightdm stop
 sudo service avahi-daemon stop
 sudo sh -c "echo manual > /etc/init/avahi-daemon.override"
 sudo service memcached stop
 sudo service clamav-freshclam stop
+sudo service clamav-daemon stop
+sudo service cups stop
+sudo service cups-browsed stop
+sudo service ypbind stop
 
 sudo update-rc.d -f webmin remove
 sudo update-rc.d -f usermin remove
 sudo update-rc.d -f jetty remove
 sudo update-rc.d -f jenkins remove
+sudo update-rc.d -f selenium_hub remove
 sudo update-rc.d -f sonar remove
 sudo update-rc.d -f rabbitmq-server remove
 sudo update-rc.d -f jboss remove

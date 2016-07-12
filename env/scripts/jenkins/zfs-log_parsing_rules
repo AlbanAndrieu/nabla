@@ -18,6 +18,8 @@ error /ERROR:/
 error /FAILED/
 error /ERROR :/
 error /Invalid or corrupt jarfile/
+#NPM
+error /Cannot find module/
 
 # list of warnings here...
 warning /[Ww]arning/

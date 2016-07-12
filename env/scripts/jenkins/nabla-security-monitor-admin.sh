@@ -89,9 +89,9 @@ echo ""
 
 echo | openssl s_client -connect ${TARGET_SERVER}:${TARGET_PORT} -cipher 'ALL:!RC4' -no_ssl2 -no_tls1_1 -no_tls1_2 && echo ERROR
 
-echo ""
-echo "################### CHECK Diffie-Hellman STRENGTH ###################"
-echo ""
+#echo ""
+#echo "################### CHECK Diffie-Hellman STRENGTH ###################"
+#echo ""
 
 #openssl-1.0.2 s_client -connect ${TARGET_SERVER}:${TARGET_PORT} -cipher kEDH
 
@@ -155,8 +155,14 @@ curl -k -I --stderr /dev/null https://${TARGET_SERVER}:443 | head -1 | cut -d' '
 
 echo "#######################"
 echo "Tomcat check"
-curl -k -I -o /dev/null --silent --head --write-out 'vsima return is : %{http_code}\n' https://${TARGET_SERVER}:8280/${TARGET_URL}
-curl -k -I -o /dev/null --silent --head --write-out 'vsima return is : %{http_code}\n' https://${TARGET_SERVER}:8444/${TARGET_URL}
+curl -k -I -o /dev/null --silent --head --write-out 'visma return is : %{http_code}\n' https://${TARGET_SERVER}:8280/${TARGET_URL}
+curl -k -I -o /dev/null --silent --head --write-out 'visma return is : %{http_code}\n' https://${TARGET_SERVER}:8444/${TARGET_URL}
+
+echo ""
+echo "################### NMAP TOP 100 ###################"
+echo ""
+
+awk '$2~/tcp$/' /usr/share/nmap/nmap-services | sort -r -k3 | head -n 100
 
 echo ""
 echo "################### CHECK OPEN PORTS ###################"
@@ -168,7 +174,8 @@ echo ""
 echo "################### CHECK SSL CIPHERS ###################"
 echo ""
 
-nmap -sT -PN -p 8444 ${TARGET_SERVER} --script ssl-cert,ssl-enum-ciphers
+nmap -sT -PN -p 443 ${TARGET_SERVER} --script ssl-cert,ssl-enum-ciphers
+#nmap --script ssl-enum-ciphers -p 443 ${TARGET_SERVER
 
 echo ""
 echo "################### CHECK POODLE ###################"

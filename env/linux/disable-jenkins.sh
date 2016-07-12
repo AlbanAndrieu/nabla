@@ -4,11 +4,12 @@ sudo service webmin stop
 sudo service usermin stop
 sudo service jetty stop
 #sudo service jenkins stop
+#sudo service selenium_hub stop
 #sudo service sonar stop
 sudo service rabbitmq-server stop
 #sudo service jboss stop
 sudo service zabbix-agent stop
-sudo service supervisor stop
+sudo service supervisord stop
 sudo service mon stop
 #sudo service tomcat7 stop
 sudo service elasticsearch stop
@@ -27,16 +28,22 @@ sudo service gearman-job-server stop
 sudo service redis-server stop
 #sudo service private-bower stop
 sudo service mongod stop
+sudo service nis stop
 sudo service teamviewerd stop
+sudo service conky stop
 
 sudo service slapd stop
 sudo service snmpd stop
-sudo service iscsitarget stop
+#sudo service iscsitarget stop
+sudo service nmbd stop
 sudo service smbd stop
 sudo service lightdm stop
 sudo service avahi-daemon stop
 sudo sh -c "echo manual > /etc/init/avahi-daemon.override"
 sudo service memcached stop
+sudo service cups stop
+sudo service cups-browsed stop
+sudo service ypbind stop
 
 sudo service ansible-tower stop
 
@@ -44,12 +51,12 @@ sudo service ansible-tower stop
 sudo update-rc.d -f usermin remove
 #sudo update-rc.d -f jetty remove
 #sudo update-rc.d -f jenkins remove
+#sudo update-rc.d -f selenium_hub remove
 #sudo update-rc.d -f sonar remove
 #sudo update-rc.d -f rabbitmq-server remove
 #sudo update-rc.d -f jboss remove
 sudo update-rc.d -f zabbix-agent remove
-sudo update-rc.d -f supervisor remove
-#sudo update-rc.d -f supervisord remove
+sudo update-rc.d -f supervisord remove
 sudo update-rc.d -f mon remove
 #sudo update-rc.d -f tomcat7 remove
 sudo update-rc.d -f elasticsearch remove
@@ -68,3 +75,6 @@ sudo update-rc.d -f ansible-tower remove
 sudo update-rc.d -f redis-server remove
 #sudo update-rc.d -f private-bower remove
 sudo update-rc.d -f mongod remove
+sudo update-rc.d -f nis remove
+sudo update-rc.d -f teamviewerd remove
+sudo update-rc.d -f conky remove
