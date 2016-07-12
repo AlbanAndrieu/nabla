@@ -44,6 +44,7 @@ sudo sh -c "echo manual > /etc/init/avahi-daemon.override"
 sudo service memcached stop
 sudo service clamav-freshclam stop
 sudo service clamav-daemon stop
+sudo service osspd stop
 sudo service cups stop
 sudo service cups-browsed stop
 sudo service ypbind stop
@@ -53,6 +54,7 @@ sudo update-rc.d -f usermin remove
 sudo update-rc.d -f jetty remove
 sudo update-rc.d -f jenkins remove
 sudo update-rc.d -f selenium_hub remove
+sudo update-rc.d -f selenium-standalone remove
 sudo update-rc.d -f sonar remove
 sudo update-rc.d -f rabbitmq-server remove
 sudo update-rc.d -f jboss remove
@@ -82,5 +84,10 @@ sudo update-rc.d -f teamviewerd remove
 sudo update-rc.d -f nis remove
 sudo update-rc.d -f cfengine2 remove
 sudo update-rc.d -f cfengine3 remove
-sudo update-rc.d -f selenium-standalone remove
+sudo update-rc.d -f memcached remove
 sudo update-rc.d -f clamav-freshclam remove
+sudo update-rc.d -f clamav-daemon remove
+sudo update-rc.d -f osspd remove
+sudo update-rc.d -f cups remove
+sudo update-rc.d -f cups-browsed remove
+sudo update-rc.d -f ypbind remove

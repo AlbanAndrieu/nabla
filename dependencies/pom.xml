@@ -1868,6 +1868,7 @@
 				<maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
                 <maven.codenarc.plugin.version>0.22-1</maven.codenarc.plugin.version>
                 <maven.dependency.check.plugin.version>1.3.3</maven.dependency.check.plugin.version>
+                <maven.whitesource.plugin.version>3.1.7</maven.whitesource.plugin.version>
                 <maven.versioneye.plugin.version>3.9.2</maven.versioneye.plugin.version>
                 <maven.selenium.plugin.version>2.3</maven.selenium.plugin.version>
                 <maven.wro4j.plugin.version>1.7.9</maven.wro4j.plugin.version>
@@ -4355,6 +4356,15 @@
                                         <apiKey>b61c27b9c7842af2f2a4</apiKey>
                                     </configuration>
                                 </plugin>
+                                <plugin>
+                                    <groupId>org.whitesource</groupId>
+									<artifactId>whitesource-maven-plugin</artifactId>
+                                    <version>${maven.whitesource.plugin.version}</version>
+                                    <configuration>
+                                        <orgToken>27651afa-9e00-4c57-9f0e-7df9358e6750</orgToken>
+                                    </configuration>
+                                </plugin>
+
                                 <plugin>
                                         <groupId>org.codehaus.mojo</groupId>
                                         <artifactId>dashboard-maven-plugin</artifactId>
