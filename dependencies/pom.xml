@@ -1393,7 +1393,7 @@
 
                 <!-- Testing dependency versions -->
                 <cargo.version>1.0</cargo.version>
-                <cargo.core.uberjar.version>1.4.18</cargo.core.uberjar.version>
+                <cargo.core.uberjar.version>1.4.18-SNAPSHOT</cargo.core.uberjar.version>
                 <!--<cargo.core.uberjar.version>1.4.19</cargo.core.uberjar.version> ERROR-->
                 <!-- NOT needed instead remove jmock-junit4 because it does not work with jacoco
                 <jmock.version>2.6.0</jmock.version>

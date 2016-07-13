@@ -67,6 +67,12 @@ VBoxManage metrics list "vagrant-windows-2012"
 VBoxManage debugvm "vagrant-windows-2012" osinfo
 VBoxManage startvm "vagrant-windows-2012" --type headless
 
+#Connect doing
+#from outside host
+#ssh -p 2233 vagrant@albandri
+#from inside host
+#ssh -p 22 vagrant@192.168.11.33
+
 #man documentation
 #https://www.virtualbox.org/manual/ch08.html
 

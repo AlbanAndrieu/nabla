@@ -1,4 +1,6 @@
 
+VBoxManage list webcams
+
 #Prevent gvfs from starting
 apt-get install gconf2
 gconftool-2 --type Boolean --set /apps/nautilus/preferences/media_automount  false

@@ -189,6 +189,12 @@ else
 fi
 nmap -sV --version-light --script ssl-poodle -p ${TARGET_PORT} ${TARGET_SERVER}
 
+#echo ""
+#echo "################### CHECK AUTO LOGIN ###################"
+#echo ""
+#
+#curl -i -v -k --data "username=admin&password=microsoft" http://localhost:9090/rest-service-fecru/auth/login
+
 echo ""
 echo "################### LOG output check ###################"
 echo ""
