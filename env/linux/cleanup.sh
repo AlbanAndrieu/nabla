@@ -18,6 +18,9 @@
 #\rm -Rf ~/.npm
 \rm -Rf ~/.ievms
 \rm -Rf ~/.jenkins
+#\rm -Rf /jenkins/config-history/*
+#\rm -Rf /var/lib/jenkins/tools/hudson.model.JDK/*
+#\rm -Rf /var/lib/jenkins/tools/*
 \rm -Rf ~/.sonar
 \rm -Rf ~/tmp
 \rm -f ~/*.db
@@ -40,6 +43,8 @@ sudo \rm -Rf /var/log/elasticsearch/elasticsearch.log*
 \rm -Rf /var/lib/mongodb/nabla-*
 \rm -Rf /var/lib/redis/*.rdb
 \rm -Rf /var/lib/collectd/rrd/*
+\rm -Rf /workspace/jboss-as-7.1.1.Final/standalone/data/content*
+#\rm -Rf /backup/jenkins/thin/*
 
 #Fix issue sendmail-largeboxes
 #http://unix.stackexchange.com/questions/134136/how-to-access-and-manage-a-large-mailbox-11-gb
@@ -85,7 +90,7 @@ sudo apt-get purge zeitgeist zeitgeist-datahub rhythmbox-plugin-zeitgeist
 
 sudo apt-get autoclean
 sudo apt-get autoremove
-sudo dpkg -P `dpkg -l | grep "^rc" | tr -s ' ' | cut -d ' ' -f 2`
+#sudo dpkg -P `dpkg -l | grep "^rc" | tr -s ' ' | cut -d ' ' -f 2`
 sudo apt-get --purge remove tex.\*-doc$
 
 #Removed useless local file

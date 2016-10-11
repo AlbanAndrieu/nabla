@@ -1,5 +1,5 @@
 #!/bin/bash
-# This file is managed by Ansible, all changes will be lost
+# Ansible managed: /workspace/users/albandri10/env/ansible-nabla/roles/alban.andrieu.shell/templates/dev.env.sh.j2 modified on 2016-10-05 14:24:35 by albandri on albandri-laptop-misys
 
 ####################
 ### READ ARGUMENTS
@@ -173,6 +173,9 @@ export SYBASE_HOME=${DRIVE_PATH}/Sybase/${SYBASE_OCS}/
 export ORACLE_VERSION=10.2.0
 export ORACLE_HOME=${DRIVE_PATH}/oraclexe/app/oracle/product/${ORACLE_VERSION}/server
 
+export SNYK_TOKEN=c89235c8-165b-47f1-8a67-c6b39292bda4
+#snyk auth $SNYK_TOKEN
+
 ###
 # Alias
 ###
@@ -297,17 +300,20 @@ export JRE_HOME=${JAVA_HOME}/jre
 PATH=${JAVA_HOME}/bin:${PATH}
 export PATH
 
-export JAVA_OPTS="-Xms256m -Xmx1548m"
+#export JAVA_OPTS="-Xms256m -Xmx1548m"
 
 if [ -z "$JAVA_OPTS" ]
 then
 
   echo "Enable : -Xms256m -Xmx1548m"
 
-
   JAVA_OPTS="${JAVA_OPTS} -Xms256m -Xmx1548m"
   #JAVA_OPTS="${JAVA_OPTS} -XX:PermSize=430m -XX:MaxPermSize=430m -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000"
   JAVA_OPTS="${JAVA_OPTS} -Djava.awt.headless=true "
+  #For Jenkins
+  JAVA_OPTS="${JAVA_OPTS} -Dakka.test.timefactor=2"
+  #JAVA_OPTS="${JAVA_OPTS} -Djava.security.egd=file:/dev/urandom"
+  JAVA_OPTS="${JAVA_OPTS} -Djava.io.tmpdir=${WORKSPACE}/target/tmp" # tmp get full
 
   echo "DEFAULT JAVA_OPTS=${JAVA_OPTS}"
 fi
@@ -362,6 +368,61 @@ POLICY
 
   fi
 
+  #YOURKIT_HOME
+  export YOURKIT_HOME="${DRIVE_PATH}/TODO"
+
+  if [ -n "$YOURKIT_HOME" ]
+  then
+    echo "Enable : ${YOURKIT_HOME}"
+
+    #rm -Rf yjp-*
+    #wget https://www.yourkit.com/download/yjp-2015-build-15082.zip
+    #unzip yjp-2015-build-15082.zip
+    #rm -f yjp-2015-build-15082.zip
+
+    YOURKIT_AGENT_ARCH="${ARCH}-x86-64"
+    YOURKIT_AGENT="${YOURKIT_HOME}/bin/${YOURKIT_AGENT_ARCH}/libyjpagent.so"
+    JAVA_OPTS="-agentpath:${YOURKIT_AGENT}=disablestacktelemetry,disableexceptiontelemetry,delay=10000,sessionname=Tomcat ${JAVA_OPTS}"
+
+    echo "DEBUG YOURKIT JAVA_OPTS=${JAVA_OPTS}"
+  fi
+
+  #JREBEL
+  export JREBEL_HOME="${DRIVE_PATH}/TODO"
+
+  if [ -n "$JREBEL_HOME" ]
+  then
+    echo "Enable : ${JREBEL_HOME}"
+
+    #rm -Rf jrebel*
+    #wget http://dl.zeroturnaround.com/jrebel-stable-nosetup.zip
+    #unzip jrebel-stable-nosetup.zip
+    JAVAAGENT_JREBEL_OPTS="\"${JREBEL_HOME}/jrebel.jar\""
+    JAVA_OPTS="${JAVA_OPTS} -javaagent:\"${JAVAAGENT_JREBEL_OPTS}\" -Drebel.remoting_plugin=true"
+
+    echo "DEBUG JAVAAGENT_JREBEL_OPTS=${JAVAAGENT_JREBEL_OPTS}"
+  fi
+
+  if [ -n "$JACOCO_AGENT_HOME" ]
+  then
+    echo "Enable : ${JACOCO_AGENT_HOME}"
+
+    #rm -Rf org.jacoco*
+    #wget http://central.maven.org/maven2/org/jacoco/org.jacoco.agent/${JACOCO_AGENT_VERSION}/org.jacoco.agent-${JACOCO_AGENT_VERSION}.jar
+
+    if [ -z "$JACOCO_AGENT_VERSION" ]
+    then
+      JACOCO_AGENT_VERSION="0.7.4.201502262128"
+    fi
+    JACOCO_AGENT_REPORT_FILE="destfile=\"${SRV_LOG_DIR}jacoco.exec\""
+    #Can also be output=tcpserver
+
+    JAVAAGENT_JACOCO_OPTS="\"${JACOCO_AGENT_HOME}/org.jacoco.agent-${JACOCO_AGENT_VERSION}-runtime.jar\"=${JACOCO_AGENT_REPORT_FILE}"
+    JAVA_OPTS="${JAVA_OPTS} -javaagent:${JAVAAGENT_JACOCO_OPTS}"
+
+    echo "DEBUG JAVAAGENT_JACOCO_OPTS=${JAVAAGENT_JACOCO_OPTS}"
+  fi
+
   # ---- DripStat arguments
   #DS_JAR=/usr/share/tomcat7/dripstat/dripstat.jar;
   #export DS_JAR
@@ -380,14 +441,23 @@ export PATH=${M2}:$PATH
 #-Xms24g -Xmx24g -Xmn6g -XX:MaxPermSize=512M -XX:+UseParallelOldGC -XX:ParallelGCThreads=16
 #Add MaxPermSize for andromda
 #for java 8 PermSize and MaxPermSize can be removed
-MAVEN_OPTS="-Xms256m -Xmx1024m"
+MAVEN_OPTS="-Xms256m -Xmx512m"
 #https://developer.atlassian.com/docs/advanced-topics/working-with-maven/colour-coding-your-maven-output
 export MAVEN_COLOR=true
 
 # -Djava.awt.headless=true
+#see viewer tool https://github.com/chewiebug/GCViewer
+#java -jar target/gcviewer-1.35-SNAPSHOT.jar gc.log export gc.png
+#jps
+#jmap -histolive PID
+#jmap -dump:live,format=b,file=heap.hprof  PID
+#sudo jmap -heap $(pgrep -u jenkins java)
+#jhat heap.hprof
 if [ 1 -eq 1 ] ; then
   #with gc info dump in file gc.log -XX:+PrintGCDetails -Xloggc:gc.log
-  MAVEN_OPTS="${MAVEN_OPTS} -XX:+PrintGCDetails -Xloggc:gc.log"
+  MAVEN_OPTS="${MAVEN_OPTS} -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:gc.log -XX:+HeapDumpOnOutOfMemoryError"
+  #Add jitwatch https://github.com/AdoptOpenJDK/jitwatch/wiki/Instructions
+  MAVEN_OPTS="${MAVEN_OPTS} -XX:+UnlockDiagnosticVMOptions -XX:+TraceClassLoading -XX:+LogCompilation -XX:LogFile=hotspot.log"
 fi
 export MAVEN_OPTS
 export M2_REPO=${DRIVE_PATH}/repo

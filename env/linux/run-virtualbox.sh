@@ -35,6 +35,7 @@ cd ~/.VirtualBox
 wget http://download.virtualbox.org/virtualbox/5.0.16/Oracle_VM_VirtualBox_Extension_Pack-5.0.16-105871.vbox-extpack
 
 #fix issue with Extension Pack
+sudo VBoxManage list extpacks
 sudo VBoxManage extpack uninstall 'Oracle VM VirtualBox Extension Pack'
 sudo VBoxManage extpack cleanup
 #sudo VBoxManage extpack install Oracle_VM_VirtualBox_Extension_Pack-4.3.30.vbox-extpack
@@ -66,6 +67,10 @@ VBoxManage modifyvm "vagrant-windows-2012" --natpf1 "udp-port3306,udp,,3306,,330
 VBoxManage metrics list "vagrant-windows-2012"
 VBoxManage debugvm "vagrant-windows-2012" osinfo
 VBoxManage startvm "vagrant-windows-2012" --type headless
+
+#http://www.vleeuwen.net/2012/12/virtualbox-snapshots-using-the-cli
+VBoxManage snapshot vagrant-windows-2012 take snap-12092016-1 -desc "stable"
+VBoxManage snapshot vagrant-windows-2012 list
 
 #Connect doing
 #from outside host
