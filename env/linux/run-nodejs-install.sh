@@ -55,4 +55,15 @@ npm -version
 2.11.3
 /usr/bin/node  --version
 
+--------------------------------------------------------------------
 
+#sudo apt-get install nodejs npm
+#Node updater
+#sudo npm cache clean -f
+#sudo npm install -g n
+#sudo n stable
+#/usr/local/n/versions/node/6.4.0
+#/usr/bin/node --version
+#Switch to new version
+#sudo ln -sf /usr/local/n/versions/node/6.4.0/ /usr/bin/node
+#

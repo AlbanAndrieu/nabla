@@ -86,6 +86,7 @@ npm install -g selenium-webdriver
 npm install -g grunt-contrib-compress
 npm install -g angular
 #if it failed try as non root user whitout -g option
+npm install nsp --global
 
 npm install -g doctor
 npm install -g yo

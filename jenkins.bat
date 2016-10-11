@@ -6,7 +6,8 @@ call mvn validate -Dnabla -Psample > validate-nabla.log 2>&1
 REM call mvn clean -Dnabla -Psample -amd andromda-database-cartridge > clean-nabla.log 2>&1
 call mvn versions:display-dependency-updates -Psample > dependency-updates.log 2>&1
 call mvn versions:display-plugin-updates -Psample > plugin-updates.log 2>&1
-call mvn versions:update-parent "-DparentVersion=1.0.0-SNAPSHOT"
+call mvn versions:update-parent -DparentVersion=1.0.0-SNAPSHOT
+call mvn versions:set -DnewVersion=1.0.0-SNAPSHOT
 call mvn dependency:tree -Psample > dependency-tree.log 2>&1
 call mvn dependency:resolve-plugins -Psample > dependency-tree.log 2>&1
 call mvn dependency:build-classpath -Psample > dependency-classpath.log 2>&1
@@ -35,6 +36,7 @@ call mvn versioneye:create
 call mvn versioneye:update
 call mvn jdeps:jdeps
 call mvn javancss:report -Psample > javancss.log
+call mvn whitesource:update -Psample > whitesource.log
 
 call mvn -B -U -e -Dsurefire.useFile=false install pmd:pmd pmd:cpd checkstyle:checkstyle findbugs:findbugs codenarc:codenarc cobertura:cobertura -Psample,jacoco,mutation,run-its,upstream -Djacoco.outputDir=${WORKSPACE}/target > jenkins.log 2>&1
 REM karma start ${WORKSPACE}/code/riskinsight/webapp/src/main/webapp/karma.jenkins.conf.js

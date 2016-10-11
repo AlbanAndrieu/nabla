@@ -115,6 +115,8 @@ sudo nano /etc/ssh/sshd_config
 #Append
 ForwardX11Trusted yes
 
+less /var/log/boot.log
+
 more /etc/rc.local
 
 ls /etc/rc?.d
@@ -328,11 +330,24 @@ wget http://synergy-project.org/files/packages/synergy-1.4.17-r2055-Linux-x86_64
 #opencl
 #https://software.intel.com/en-us/articles/opencl-drivers#philinux
 #http://develnoter.blogspot.co.uk/2012/05/installing-opencl-in-ubuntu-1204.html
-cd /workspace
-wget http://registrationcenter.intel.com/irc_nas/4181/intel_sdk_for_ocl_applications_2014_ubuntu_4.4.0.117_x64.tgz
-tar zxvf intel_sdk_for_ocl_applications_2014_ubuntu_4.4.0.117_x64.tgz
-./install-cpu.sh
-ll /usr/lib/x86_64-linux-gnu/libOpenCL.so
+#NOK below
+#wget http://registrationcenter.intel.com/irc_nas/4181/intel_sdk_for_ocl_applications_2014_ubuntu_4.4.0.117_x64.tgz
+#tar zxvf intel_sdk_for_ocl_applications_2014_ubuntu_4.4.0.117_x64.tgz
+#./install-cpu.sh
+#ll /usr/lib/x86_64-linux-gnu/libOpenCL.so
+
+cd ~/Downloads/
+wget http://registrationcenter-download.intel.com/akdlm/irc_nas/9019/opencl_runtime_16.1_x64_ubuntu_5.2.0.10002.tgz
+cd opencl_runtime_16.1_x64_ubuntu_5.2.0.10002
+sudo sh install.sh
+
+ll /etc/X11/xorg.conf
+Section "Device"
+    Identifier     "Device0"
+    Driver         "nvidia"
+    VendorName     "NVIDIA Corporation"
+    Option         "Interactive" "off"
+EndSection
 
 #You can check OpenCL devices on Ubuntu systems with utility "clinfo" (get it from apt):
 sudo apt-get install clinfo
@@ -432,8 +447,16 @@ dpkg --get-selections > installed-packages
 #perf monitoring
 sudo apt-get install iperf
 
+#https://askubuntu.com/questions/31618/how-can-i-find-my-hardware-details
 #list hardware
-sudo lshw
+#Video
+sudo lspci -nnk | grep VGA -A1
+#Ausio
+sudo lspci -v | grep -A7 -i "audio"
+#Network
+sudo lspci -nnk | grep net -A2
+sudo lshw -short
+#sudo apt-get install hardinfo
 
 #usb issue
 #http://ubuntuforums.org/archive/index.php/t-1448092.html
@@ -446,3 +469,7 @@ sudo apt-get install software-center*
 
 #disable hud service
 sudo chmod -x /usr/lib/x86_64-linux-gnu/hud/hud-service
+
+#enable automatic security upgrade
+sudo apt-get install unattended-upgrades
+sudo dpkg-reconfigure unattended-upgrades

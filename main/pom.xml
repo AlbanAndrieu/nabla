@@ -126,6 +126,7 @@
 				<crowd.port>8095</crowd.port><!-- http://localhost:8095/crowd/ -->
 				<chronon.port>8032</chronon.port>
 				<pitest.port>8092</pitest.port>
+				<eclipse.port>2924</pitest.eclipse>
 
                 <apache-continuum.version>1.2.3</apache-continuum.version>
 

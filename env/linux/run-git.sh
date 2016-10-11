@@ -32,6 +32,10 @@ git config --local user.email "alban.andrieu@free.fr"
 git config --local user.name "Alban Andrieu"
 git config --local -l
 
+#for maven
+git config --global maven-scm.maildomain nabla.mobi
+git config --global maven-scm.forceUsername true
+
 git remote --verbose
 
 

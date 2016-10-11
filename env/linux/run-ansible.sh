@@ -2,6 +2,9 @@
 
 #install ansible using apt (BUT instead use pip in order to have a more recent version of ansible)
 sudo add-apt-repository ppa:rquillo/ansible
+#For the older version 1.9 we use this
+sudo apt-add-repository --remove ppa:ansible/ansible -y
+sudo add-apt-repository ppa:ansible/ansible-1.9
 sudo apt-get install ansible
 #sudo apt-get --reinstall install ansible
 #sudo apt-cache showpkg ansible
@@ -15,7 +18,7 @@ sudo pip install --upgrade pip
 #Red hat installation
 #https://www.digitalocean.com/community/tutorials/how-to-set-up-python-2-7-6-and-3-3-3-on-centos-6-4
 subscription-manager list --available --all
-yum update -y
+yum update -y --skip-broken
 sudo sh -c 'wget -qO- http://people.redhat.com/bkabrda/scl_python27.repo >> /etc/yum.repos.d/scl.repo'
 yum search python27
 yum install python27
@@ -62,7 +65,7 @@ ansible --version
 #install python version of ansible
 #it go inside /usr/local/bin
 sudo pip uninstall ansible
-sudo pip install ansible --upgrade
+sudo pip install ansible==1.9.6
 #pip install https://pypi.python.org/packages/source/a/ansible/ansible-1.7.1.tar.gz
 #install ansible devel version
 sudo pip install https://github.com/ansible/ansible/archive/devel.zip
@@ -94,7 +97,7 @@ ssh-add ~/.ssh/OpenSSH_RSA_4096
 
 ansible all -m ping --ask-pass
 #ansible albandri -m setup -u tomcat -k
- 
+
 #as root
 ansible-playbook site.yml --list-hosts
 ansible-playbook -i hosts site.yml -vvvv
@@ -115,7 +118,7 @@ ansible -m setup albandri | grep eth0
 ansible -m setup localhost
 ansible -m setup dantooine -i hosts-dantooine -vvvv -u root
 ansible -m setup zone -i hosts -vvvv -u root --ask-pass -e 'ansible_python_interpreter=/usr/local/bin/python2.7'
- 
+
 #jenkins
 #https://blog.trifork.com/2013/04/02/ansible-example-playbook-to-setup-jenkins-slave/
 
@@ -135,7 +138,7 @@ https://localhost/
 #http://damonoverboe.org/post/ansible-and-windows-basic-set-up
 #http://docs.ansible.com/list_of_windows_modules.html
 
-#see run-xrdp.sh 
+#see run-xrdp.sh
 #in order to fix error:
 #IndexError: tuple index out of range
 sudo pip install https://github.com/diyan/pywinrm/archive/df049454a9309280866e0156805ccda12d71c93a.zip --upgrade
@@ -147,7 +150,7 @@ ansible windows -i hosts -m win_ping --ask-vault-pass
 #list info
 ansible -i hosts GDNCSWMGRQA0015.misys.global.ad -m setup
 
-#On windows enable ping 
+#On windows enable ping
 #cmd
 netsh advfirewall firewall add rule name="All ICMP V4" protocol=icmpv4:any,any dir=in action=allow
 netsh advfirewall firewall add rule Profile=public name="Allow WinRM HTTPS" dir=in localport=5986 protocol=TCP action=allow
@@ -166,7 +169,7 @@ easy_install ansigenome
 git clone https://github.com/nickjj/ansigenome
 
 #sudo ansigenome config
-cd ~/env/ansible/roles 
+cd ~/env/ansible/roles
 ansigenome scan
 less ~/.ansigenome.conf
 ansigenome gendoc -f md

@@ -21,6 +21,9 @@ curl -X DELETE "http://localhost:5678/packages/test?access_token=password"
 #for bower private
 curl -X POST http://localhost:5678/removePackage -d '{"name":"test"}' -H "Content-Type: application/json" --header "Auth-Key:123456"
 
+#Refresh
+curl -X POST http://localhost:5678/refresh
+
 ll ~/.m2/bowerRepository.json
 ll ~/.m2/bowerRepositoryPublic.json
 
@@ -52,6 +55,10 @@ cd /service/private-bower/
 sudo /command/svstat .
 .: up (pid 32259) 54601 seconds
 #http://www.wolframalpha.com/input/?i=54601%20seconds%20ago
+
+#Start private-bower
+cd /home/bower/private-bower
+nohup node /usr/local/node/lib/node_modules/private-bower/bin/private-bower --config private-bower.json >> private-bower.log 2>&1
 
 To read status:
 
