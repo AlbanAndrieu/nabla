@@ -473,3 +473,7 @@ sudo chmod -x /usr/lib/x86_64-linux-gnu/hud/hud-service
 #enable automatic security upgrade
 sudo apt-get install unattended-upgrades
 sudo dpkg-reconfigure unattended-upgrades
+
+#systemd
+sudo update-rc.d -f nexus remove
+sudo systemctl enable nexus.service
