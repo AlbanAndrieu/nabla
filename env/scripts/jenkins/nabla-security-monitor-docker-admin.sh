@@ -23,10 +23,3 @@ sudo docker run -it --net host --pid host --cap-add audit_control \
     docker/docker-bench-security
 
 echo ########### Check ubuntu security #######
-
-#See https://github.com/GovReady/ubuntu-scap
-#sudo apt-get install libopenscap8
-#cd /workspace/users/albandri30/
-git clone https://github.com/GovReady/ubuntu-scap.git
-cd ubuntu-scap
-./run_tests.sh
