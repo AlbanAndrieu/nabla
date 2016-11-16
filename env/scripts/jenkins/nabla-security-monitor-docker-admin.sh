@@ -1,6 +1,9 @@
-#!/bin/bash
+#!/bin/bash -xv
 
 echo ########### Check Docker disk space usage #######
+
+#Thre reference
+sudo docker history hello-world:latest
 
 sudo docker ps -a -s
 
@@ -8,10 +11,9 @@ echo ########### Check Docker images tree #######
 
 #See https://github.com/justone/dockviz
 alias dockviz="sudo docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
-dockviz images -t
-
-dockviz containers -d | dot -Tpng -o containers.png
-dockviz images --dot --only-labelled | dot -Tpng -o images.png
+sudo docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz images -t
+sudo docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz containers -d | dot -Tpng -o containers.png
+sudo docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz images --dot --only-labelled | dot -Tpng -o images.png
 
 echo ########### Check Docker security #######
 
