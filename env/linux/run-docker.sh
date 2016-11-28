@@ -136,3 +136,9 @@ docker exec –ti /bin/bash
 #https://github.com/docker/compose
 sudo pip install docker-compose
 docker-compose --version
+
+#Install docker-machine
+#https://www.digitalocean.com/community/tutorials/how-to-provision-and-manage-remote-docker-hosts-with-docker-machine-on-ubuntu-16-04
+#as root
+curl -L https://github.com/docker/machine/releases/download/v0.8.2/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine && \
+  chmod +x /usr/local/bin/docker-machine
