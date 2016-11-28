@@ -1,5 +1,5 @@
 #!/bin/bash
-# Ansible managed: /workspace/users/albandri10/env/ansible-nabla/roles/alban.andrieu.shell/templates/dev.env.sh.j2 modified on 2016-10-05 14:24:35 by albandri on albandri-laptop-misys
+# Ansible managed: /workspace/users/albandri10/env/ansible-nabla/roles/alban.andrieu.shell/templates/dev.env.sh.j2 modified on 2016-10-17 10:25:51 by albandri on albandri-laptop-misys
 
 ####################
 ### READ ARGUMENTS
@@ -74,7 +74,7 @@ then
 fi
 export SVN_EDITOR=${EDITOR}
 
-export PATH=/usr/local/bin:/usr/sbin:/usr/bin:/bin
+export PATH=/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
 if [ -d "${HOME}/bin" ] ; then
     PATH="${HOME}/bin:$PATH"
 fi
@@ -86,6 +86,9 @@ if [ -d "${DRIVE_PATH}/cygwin/bin" ] ; then
 fi
 if [ -d "${HOME}/.linuxbrew/bin" ] ; then
     PATH="${HOME}/.linuxbrew/bin:$PATH"
+fi
+if [ -d "${HOME}/.git-radar" ] ; then
+    PATH="${HOME}/.git-radar/:$PATH"
 fi
 
 export PROJECT_MAJOR_VERSION=${PROJECT_VERSION}
@@ -369,7 +372,7 @@ POLICY
   fi
 
   #YOURKIT_HOME
-  export YOURKIT_HOME="${DRIVE_PATH}/TODO"
+  export YOURKIT_HOME=""
 
   if [ -n "$YOURKIT_HOME" ]
   then
@@ -388,7 +391,7 @@ POLICY
   fi
 
   #JREBEL
-  export JREBEL_HOME="${DRIVE_PATH}/TODO"
+  export JREBEL_HOME=""
 
   if [ -n "$JREBEL_HOME" ]
   then
@@ -441,7 +444,7 @@ export PATH=${M2}:$PATH
 #-Xms24g -Xmx24g -Xmn6g -XX:MaxPermSize=512M -XX:+UseParallelOldGC -XX:ParallelGCThreads=16
 #Add MaxPermSize for andromda
 #for java 8 PermSize and MaxPermSize can be removed
-MAVEN_OPTS="-Xms256m -Xmx512m"
+MAVEN_OPTS="-Xms256m -Xmx1024m"
 #https://developer.atlassian.com/docs/advanced-topics/working-with-maven/colour-coding-your-maven-output
 export MAVEN_COLOR=true
 
@@ -455,9 +458,10 @@ export MAVEN_COLOR=true
 #jhat heap.hprof
 if [ 1 -eq 1 ] ; then
   #with gc info dump in file gc.log -XX:+PrintGCDetails -Xloggc:gc.log
-  MAVEN_OPTS="${MAVEN_OPTS} -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:gc.log -XX:+HeapDumpOnOutOfMemoryError"
+  #MAVEN_OPTS="${MAVEN_OPTS} -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:gc.log -XX:+HeapDumpOnOutOfMemoryError"
   #Add jitwatch https://github.com/AdoptOpenJDK/jitwatch/wiki/Instructions
-  MAVEN_OPTS="${MAVEN_OPTS} -XX:+UnlockDiagnosticVMOptions -XX:+TraceClassLoading -XX:+LogCompilation -XX:LogFile=hotspot.log"
+  #MAVEN_OPTS="${MAVEN_OPTS} -XX:+UnlockDiagnosticVMOptions -XX:+TraceClassLoading -XX:+LogCompilation -XX:LogFile=hotspot.log"
+  MAVEN_OPTS="${MAVEN_OPTS}"
 fi
 export MAVEN_OPTS
 export M2_REPO=${DRIVE_PATH}/repo
@@ -637,12 +641,12 @@ export LD_LIBRARY_PATH=${PROJECT_TARGET_PATH}/lib/${ARCH}/opt:${PROJECT_TARGET_P
 # Alias
 ##
 #rm ~/.gitconfig.lock
-git config --global alias.co checkout
-git config --global alias.br branch
-git config --global alias.ci commit
-git config --global alias.st status
-git config --global alias.unstage 'reset HEAD --'
-git config --global alias.last 'log -1 HEAD'
+#git config --global alias.co checkout
+#git config --global alias.br branch
+#git config --global alias.ci commit
+#git config --global alias.st status
+#git config --global alias.unstage 'reset HEAD --'
+#git config --global alias.last 'log -1 HEAD'
 
 alias cde="cd ${PROJECT_DEV}/${PROJECT_EXTRACTION}"
 alias cdr="cd ${PROJECT_DEV}"
@@ -723,7 +727,8 @@ alias setWorkspace="source ${WORKSPACE_ENV}/scripts/setWorkspace.sh"
 #git config --global http.sslVerify false
 export GIT_SSL_NO_VERIFY=true
 
-source ${WORKSPACE_ENV}/home/.git-completion.bash
+#source ${WORKSPACE_ENV}/home/.git-completion.bash
+source ${WORKSPACE_ENV}/home/.git-prompt.sh
 
 #see source ~/.git-prompt.sh in .bashrc
 source ${WORKSPACE_ENV}/home/.novarc
