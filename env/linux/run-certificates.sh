@@ -30,7 +30,7 @@ SSL_KEY_NAME="$(command hostname --fqdn)"
 #    -nodes -out "/etc/ssl/certificates/${SSL_KEY_NAME}.crt" -keyout "/etc/ssl/private/${SSL_KEY_NAME}.key"
 #rm "${CONF_FILE}"
 #
-#ll /etc/ssl/private/albandri.misys.global.ad.key
+#ll /etc/ssl/private/albandri.nabla.mobi.key
 #
 #chown root:ssl-cert "/etc/ssl/private/${SSL_KEY_NAME}.key"
 #chmod 440 "/etc/ssl/private/${SSL_KEY_NAME}.key"
@@ -63,8 +63,8 @@ openssl genrsa -out "/etc/ssl/private/${SSL_KEY_NAME}.key" 2048
 chown root:ssl-cert "/etc/ssl/private/${SSL_KEY_NAME}.key"
 chmod 440 "/etc/ssl/private/${SSL_KEY_NAME}.key"
 
-openssl rsa -in /etc/ssl/private/albandri.misys.global.ad.key -text -noout
-openssl rsa -in /etc/ssl/private/albandri.misys.global.ad.key -pubout -out albandri.misys.global.ad.pem
+openssl rsa -in /etc/ssl/private/albandri.nabla.mobi.key -text -noout
+openssl rsa -in /etc/ssl/private/albandri.nabla.mobi.key -pubout -out albandri.nabla.mobi.pem
 
 #CSR
 openssl req -new \
@@ -86,7 +86,7 @@ openssl req -new -sha256 \
     -subj "/C=FR/ST=IleDeFrance/O=Misys, Inc./CN=${SSL_KEY_NAME}" \
     -reqexts SAN \
     -config <(cat /etc/ssl/openssl.cnf \
-        <(printf "[SAN]\nsubjectAltName=DNS:${SSL_KEY_NAME},DNS:albandri,DNS:mgrvkenvi031.misys.global.ad,DNS:mgrvkenvi031")) \
+        <(printf "[SAN]\nsubjectAltName=DNS:${SSL_KEY_NAME},DNS:albandri,DNS:albdnri.nabla.mobi,DNS:albdnri")) \
     -out "/etc/ssl/requests/${SSL_KEY_NAME}.csr"
 
 cat "/etc/ssl/requests/${SSL_KEY_NAME}.csr"
@@ -100,11 +100,12 @@ certnew-der.p7b
 certnew-bin.cer
 certnew-bin.p7b
 #https://www.sslshopper.com/ssl-converter.html
-openssl x509 -inform der -in certnew-der.cer -out albandri.pem
+#I would need to Convert certificate from DER to PEM format.
+openssl x509 -inform DER -outform PEM -in certnew-der.cer -out albandri.pem
 #for sonar
 
 #4 - export certificat to pkcs12
-openssl pkcs12 -export -in certnew-bin.cer -inkey /etc/ssl/private/albandri.misys.global.ad.key -out albandri.pkcs12 -name albandri
+openssl pkcs12 -export -in certnew-bin.cer -inkey /etc/ssl/private/albandri.nabla.mobi.key -out albandri.pkcs12 -name albandri
 #5 - export certificat to jks
 keytool -importkeystore -srckeystore albandri.pkcs12 -srcstoretype pkcs12 -destkeystore albandri.jks -deststoretype JKS
 
@@ -122,7 +123,7 @@ sonar.web.https.keystoreType=JKS
 #http://superuser.com/questions/104146/add-permanent-ssl-certificate-exception-in-chrome-linux
 #http://wiki.cacert.org/FAQ/BrowserClients
 
-scm-git-eur.misys.global.ad.crt
+stash.nabla.mobi.crt
 
 wget -O cacert-root.crt "http://www.cacert.org/certs/root.crt"
 wget -O cacert-class3.crt "http://www.cacert.org/certs/class3.crt"
@@ -132,11 +133,11 @@ certutil -d sql:$HOME/.pki/nssdb -A -t TC -n "CAcert.org Class 3" -i cacert-clas
 
 certutil -L -d  sql:$HOME/.pki/nssdb
 
-sudo certutil -d sql:$HOME/.pki/nssdb -A -t P -n "Stash" -i scm-git-eur.misys.global.ad.crt
-sudo certutil -d sql:$HOME/.pki/nssdb -A -t TC -n "Stash" -i scm-git-eur.misys.global.ad.crt
+sudo certutil -d sql:$HOME/.pki/nssdb -A -t P -n "Stash" -i stash.nabla.mobi.crt
+sudo certutil -d sql:$HOME/.pki/nssdb -A -t TC -n "Stash" -i stash.nabla.mobi.crt
 #http://blog.tkassembled.com/410/adding-a-certificate-authority-to-the-trusted-list-in-ubuntu/
-#certutil -d sql:$HOME/.pki/nssdb -A -n "Stash" -i scm-git-eur.misys.global.ad.crt -t P,P,P
-#certutil -d sql:$HOME/.pki/nssdb -A -n 'Stash' -i scm-git-eur.misys.global.ad.crt -t TCP,TCP,TCP
+#certutil -d sql:$HOME/.pki/nssdb -A -n "Stash" -i stash.nabla.mobi.crt -t P,P,P
+#certutil -d sql:$HOME/.pki/nssdb -A -n 'Stash' -i stash.nabla.mobi.crt -t TCP,TCP,TCP
 sudo certutil -D -n Stash -d sql:$HOME/.pki/nssdb
 
 #https://help.ubuntu.com/community/OpenSSL#SSL%20Certificates
@@ -146,24 +147,24 @@ openssl -h enc
 openssl ciphers -v
 openssl speed
 
-sudo keytool -import -alias ca -file ~/Downloads/FR1CSLALM0010.crt -keystore cacerts -storepass changeit
+sudo keytool -import -alias ca -file ~/Downloads/crowd.crt -keystore cacerts -storepass changeit
 
 #https://confluence.atlassian.com/kb/unable-to-connect-to-ssl-services-due-to-pkix-path-building-failed-779355358.html
 TEST :
 wget https://confluence.atlassian.com/kb/files/779355358/SSLPoke.class
-java -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.debug=true SSLPoke fr1cslalm0010 443
+java -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.debug=true SSLPoke crowd 443
 
-openssl x509 -noout -fingerprint -in ~/Downloads/FR1CSLALM0010.crt
+openssl x509 -noout -fingerprint -in ~/Downloads/crowd.crt
 #as root
-openssl x509 -noout -hash -in /home/albandri/Downloads/FR1CSLALM0010.crt
-ln -s /home/albandri/Downloads/FR1CSLALM0010.crt `openssl x509 -hash -noout -in /home/albandri/Downloads/FR1CSLALM0010.crt`.0
-#openssl verify -CApath <ssl-base-dir>certs /home/albandri/Downloads/FR1CSLALM0010.crt
-openssl verify -CAfile /home/albandri/Downloads/FR1CSLALM0010.crt /home/albandri/Downloads/FR1CSLALM0010.crt
-openssl verify -CApath /usr/lib/ssl/certs /home/albandri/Downloads/FR1CSLALM0010.crt
-openssl verify /home/albandri/Downloads/FR1CSLALM0010.crt
+openssl x509 -noout -hash -in /home/albandri/Downloads/crowd.crt
+ln -s /home/albandri/Downloads/crowd.crt `openssl x509 -hash -noout -in /home/albandri/Downloads/crowd.crt`.0
+#openssl verify -CApath <ssl-base-dir>certs /home/albandri/Downloads/crowd.crt
+openssl verify -CAfile /home/albandri/Downloads/crowd.crt /home/albandri/Downloads/crowd.crt
+openssl verify -CApath /usr/lib/ssl/certs /home/albandri/Downloads/crowd.crt
+openssl verify /home/albandri/Downloads/crowd.crt
 
-openssl s_client -connect fr1cslalm0010:443 -CApath /etc/ssl/certs
-openssl s_client -connect fr1cslalm0010:443 -showcerts
+openssl s_client -connect crowd:443 -CApath /etc/ssl/certs
+openssl s_client -connect crowd:443 -showcerts
 openssl s_client -connect google.com:443 -showcerts
 
 #http://blog.donovan-jimenez.com/2011/03/adding-new-trusted-certificate-on.html
@@ -182,7 +183,7 @@ Intermediate CA
 cd $JAVA_HOME/jre/lib/security/
 cacerts -> /etc/ssl/certs/java/cacerts
 
-java -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.debug=true SSLPoke fr1cslalm0010 443
+java -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.debug=true SSLPoke crowd 443
 
 #Add certificates
 #http://kb.kerio.com/product/kerio-connect/server-configuration/ssl-certificates/adding-trusted-root-certificates-to-the-server-1605.html
@@ -193,7 +194,7 @@ cd /usr/local/share/ca-certificates
 sudo cp /etc/ssl/requests/certnew.cer albandri.crt
 sudo cp ~/Downloads/UK1VSWCERT01-CA.cer UK1VSWCERT01-CA.crt
 #~ #count the number of certificate in a file
-cat ~/Downloads/FR1CSLALM0010.crt | grep 'BEGIN.* CERTIFICATE' | wc -l
+cat ~/Downloads/crowd.crt | grep 'BEGIN.* CERTIFICATE' | wc -l
 sudo update-ca-certificates
 less /etc/ssl/certs/ca-certificates.crt
 
@@ -216,13 +217,13 @@ cp /files/sonar/sonarqube-4.5.5/*.crt  /etc/pki/ca-trust/source/anchors/
 update-ca-trust extract
 
 cd /files/sonar/sonarqube-4.5.5
-java -Djavax.net.ssl.trustStore=/files/sonar/sonarqube-4.5.5/bin/linux-x86-64/cacerts -Djavax.net.debug=true SSLPoke fr1cslalm0010 443
-java -Djavax.net.ssl.trustStore=/etc/pki/java/cacerts -Djavax.net.debug=true SSLPoke fr1cslalm0010 443
+java -Djavax.net.ssl.trustStore=/files/sonar/sonarqube-4.5.5/bin/linux-x86-64/cacerts -Djavax.net.debug=true SSLPoke crowd 443
+java -Djavax.net.ssl.trustStore=/etc/pki/java/cacerts -Djavax.net.debug=true SSLPoke crowd 443
 
-#sudo keytool -import -alias FR1CSLALM0010 -file /files/sonar/sonarqube-4.5.5/FR1CSLALM0010.crt -keystore cacerts -storepass changeit
-#sudo keytool -import -alias FR1CSLALM0010 -file /files/sonar/sonarqube-4.5.5/FR1CSLALM0010.crt -keystore /files/sonar/sonarqube-4.5.5/bin/linux-x86-64/cacerts -storepass changeit
-sudo keytool -import -alias FR1CSLALM0010 -file /files/sonar/sonarqube-4.5.5/FR1CSLALM0010.crt -keystore /etc/pki/java/cacerts -storepass changeit
-sudo keytool -import -alias FR1CSLALM0010 -file /files/sonar/sonarqube-4.5.5/FR1CSLALM0010.crt -keystore /usr/java/jre1.8.0_77/lib/security/cacerts -storepass changeit
+#sudo keytool -import -alias crowd -file /files/sonar/sonarqube-4.5.5/crowd.crt -keystore cacerts -storepass changeit
+#sudo keytool -import -alias crowd -file /files/sonar/sonarqube-4.5.5/crowd.crt -keystore /files/sonar/sonarqube-4.5.5/bin/linux-x86-64/cacerts -storepass changeit
+sudo keytool -import -alias crowd -file /files/sonar/sonarqube-4.5.5/crowd.crt -keystore /etc/pki/java/cacerts -storepass changeit
+sudo keytool -import -alias crowd -file /files/sonar/sonarqube-4.5.5/crowd.crt -keystore /usr/java/jre1.8.0_77/lib/security/cacerts -storepass changeit
 
 #On Ubuntu
 #http://blog.chmouel.com/2010/06/03/connecting-to-self-signed-ssl-certificate-from-java-on-debian-ubuntu/
@@ -232,3 +233,6 @@ ls -lrta $JAVA_HOME/jre/lib/security/
 
 keytool -list -keystore  /etc/ssl/certs/java/cacerts -alias debian:uk1vswcert01-ca.pem
 keytool -list -keystore  /etc/ssl/certs/java/cacerts -alias debian:uk1vswcert01-ca-4.pem
+
+#get root CA
+openssl s_client -connect google.com:443 < /dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > ca.crt

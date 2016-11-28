@@ -65,7 +65,7 @@ ansible --version
 #install python version of ansible
 #it go inside /usr/local/bin
 sudo pip uninstall ansible
-sudo pip install ansible==1.9.6
+sudo pip2 install ansible==2.1.1
 #pip install https://pypi.python.org/packages/source/a/ansible/ansible-1.7.1.tar.gz
 #install ansible devel version
 sudo pip install https://github.com/ansible/ansible/archive/devel.zip
