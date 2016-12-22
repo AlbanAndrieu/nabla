@@ -14,8 +14,11 @@ PS1='\[\e[1;32m\][\u\[\e[m\]@\[\e[1;33m\]\h\[\e[1;34m\] \w]\[\e[1;36m\] $(__git_
 git config --global user.email "alban.andrieu@misys.com"
 git config --global user.name "Andrieu, Alban"
 git config --global core.autocrlf input
-git config --global credential.helper 'cache --timeout=86400' # 86400 seconds is 24 hours
+#git config --global credential.helper 'cache --timeout=86400' # 86400 seconds is 24 hours
 #git config --global credential.helper 'cache --timeout=3600' # 1 hour
+git config --unset credential.helper
+git config --global credential.helper store
+
 git config --global help.autocorrect 1
 git config --global color.ui auto
 git config --global branch.master.rebase true
@@ -25,6 +28,7 @@ git config --global merge.tool meld
 git config --global push.default simple
 git config --globa merge.renamelimit 10000
 git config --global --list
+#git config --global http.postBuffer 157286400
 
 #for Windows
 git config --global http.sslVerify false

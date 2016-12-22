@@ -93,6 +93,11 @@ sudo service lightdm start
 xhost + #temporary fix
 /usr/bin/xhost +albandri
 
+#https://unix.stackexchange.com/questions/110558/su-with-error-x11-connection-rejected-because-of-wrong-authentication
+standarduser@localhost:~$ xauth list | grep unix`echo $DISPLAY | cut -c10-12` > /tmp/xauth
+standarduser@localhost:~$ sudo su
+root@localhost:~$ xauth add `cat /tmp/xauth`
+
 #enter
 #check graphic
 nautilus

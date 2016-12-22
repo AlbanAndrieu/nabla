@@ -93,3 +93,34 @@ sudo apt-get install gnome-system-tools
 sudo usermod -aG vboxusers albandri
 groups
 sudo service vboxdrv restart
+
+#ubuntu 16.04
+
+sudo apt-get install gcc-5 g++-5
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 50 --slave /usr/bin/g++ g++ /usr/bin/g++-5
+sudo apt-get install gcc-6 g++-6
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 50 --slave /usr/bin/g++ g++ /usr/bin/g++-6
+
+sudo update-alternatives --config gcc
+
+http://ubuntuhandbook.org/index.php/2016/07/install-linux-kernel-4-7-ubuntu-16-04/
+
+sudo dpkg -i *.deb
+
+
+sudo apt-get install mokutil
+sudo mokutil --disable-validation
+
+sudo modprobe vboxdrv
+sudo apt-get --reinstall install virtualbox-dkms
+
+openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=Descriptive name/"
+sudo /usr/src/linux-headers-$(uname -r)/scripts/sign-file sha256 ./MOK.priv ./MOK.der $(modinfo -n vboxdrv)
+sudo mokutil --import MOK.der
+
+sudo apt install virtualbox-qt
+
+sudo service virtualbox status
+#vagrant up --provider=virtualbox
+
+#https://www.vagrantup.com/downloads.html

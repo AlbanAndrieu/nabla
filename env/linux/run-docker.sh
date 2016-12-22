@@ -133,12 +133,50 @@ docker exec –ti /bin/bash
 #https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/
 #--storage-driver=overlay
 
+ docker build . -t docker/nabla/visma:latest
+
 #https://github.com/docker/compose
 sudo pip install docker-compose
 docker-compose --version
+
+docker-compose -f docker-compose-latest.yml up -d
+
+docker stats $(docker ps --format '{{.Names}}')
 
 #Install docker-machine
 #https://www.digitalocean.com/community/tutorials/how-to-provision-and-manage-remote-docker-hosts-with-docker-machine-on-ubuntu-16-04
 #as root
 curl -L https://github.com/docker/machine/releases/download/v0.8.2/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine && \
   chmod +x /usr/local/bin/docker-machine
+
+#Doc See https://github.com/wsargent/docker-cheat-sheet
+#Checking container logs
+docker logs frcargo
+#Copying log files to the local file system
+docker cp frcargo:/home/fusionrisk/FR_Cargo/data/log/server.log .
+#Copying files to the container while it is running
+docker cp input.csv frcargo:/tmp/
+#Executing a command on a running container
+docker exec -it frcargo /bin/bash
+#docker exec -u 0 -it frcargo env TERM=xterm-256color bash -l
+
+#https://blog.docker.com/2013/07/docker-desktop-your-desktop-over-ssh-running-inside-of-a-docker-container/
+
+#network
+#See https://examples.javacodegeeks.com/devops/docker/configuring-dns-docker/
+docker network ls
+ip address show label docker0
+docker network inspect albandri30_default
+docker network inspect centos_default
+
+#Fix audit AVC apparmor="DENIED" operation="open" profile="/usr/sbin/cupsd"
+#https://askubuntu.com/questions/645636/apparmor-with-cupsd-denied-in-logs
+
+#See https://doc.ubuntu-fr.org/apparmor
+sudo apt-get install apparmor-utils
+#sudo aa-complain cupsd
+#sudo aa-enforce cupsd
+
+#See https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_example_managing_the_memory_shares_of_a_container
+systemd-cgls
+systemd-cgtop
