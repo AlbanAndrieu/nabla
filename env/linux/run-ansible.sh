@@ -174,4 +174,5 @@ ansigenome scan
 less ~/.ansigenome.conf
 ansigenome gendoc -f md
 
-
+#https://docs.ansible.com/ansible-container/
+sudo pip install ansible-container
