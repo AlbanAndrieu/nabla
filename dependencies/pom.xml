@@ -1797,8 +1797,8 @@
                 <maven.resources.plugin.version>3.0.1</maven.resources.plugin.version>
                 <maven.site.old.plugin.version>2.3</maven.site.old.plugin.version>
                 <!--<maven.site.plugin.version>${maven.site.old.plugin.version}</maven.site.plugin.version>-->
-                <!--<maven.site.plugin.version>3.4</maven.site.plugin.version>-->
-                <maven.site.plugin.version>3.5.1</maven.site.plugin.version>
+                <maven.site.plugin.version>3.4</maven.site.plugin.version>
+                <!--<maven.site.plugin.version>3.5.1</maven.site.plugin.version> TODO issue-->
                 <!--
                 <maven.site.github.plugin.version>0.7</maven.site.github.plugin.version>
                 <maven.downloads.github.plugin.version>0.6</maven.downloads.github.plugin.version>
