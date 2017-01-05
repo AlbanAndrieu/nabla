@@ -27,13 +27,10 @@ sudo chmod 755 chromedriver
 wget http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
 #or /var/lib/jenkins/selenium-server-standalone-2.29.0.jar
 
-sudo apt-get install chromium-chromedriver
-cd /var/lib/
-sudo ln -s /usr/lib/chromium-browser/chromedriver /var/lib/chromedriver
+#sudo apt-get install chromium-chromedriver
 ls /var/lib/chromedriver
 sudo mkdir selenium
-cd /var/lib/selenium
-sudo ln -s /workspace/selenium-server-standalone-2.46.0.jar selenium.jar
+sudo ln -s /workspace/selenium-server-standalone-3.0.1.jar selenium-server-standalone-3.0.1.jar
 ls /var/lib/selenium/selenium.jar
 
 # Now we have to set the DISPLAY env variable so Firefox and Chrome know where to open the browser.
@@ -190,3 +187,8 @@ export DISPLAY=localhost:99.0 && java -jar /jenkins/selenium-server-standalone-2
 
 http://home.nabla.mobi:4444/grid/console
 http://home.nabla.mobi:5555/wd/hub/static/resource/hub.html
+
+cd /usr/local/lib
+#from http://www.seleniumhq.org/download/
+wget https://goo.gl/Br1P0Z selenium-html-runner-3.0.1.jar
+sudo ln -s selenium-html-runner-3.0.1.jar selenium-server-standalone.jar
