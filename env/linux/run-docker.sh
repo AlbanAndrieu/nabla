@@ -139,7 +139,8 @@ docker exec –ti /bin/bash
 sudo pip install docker-compose
 docker-compose --version
 
-docker-compose -f docker-compose-latest.yml up -d
+docker-compose -f docker-compose-logstash.yml up -d
+docker-compose -f docker-compose-logstash.yml ps
 
 docker stats $(docker ps --format '{{.Names}}')
 

@@ -80,3 +80,12 @@ export JAVA_OPTS="$JAVA_OPTS -Djava.util.prefs.systemRoot=${CATALINA_HOME}/.java
 #switch from java7 to java 8
 sudo nano /etc/default/tomcat7
 JAVA_HOME=/usr/lib/jvm/java-8-oracle
+
+#Add https
+#https://dzone.com/articles/setting-ssl-tomcat-5-minutes
+cd $JAVA_HOME/bin
+keytool -genkey -alias tomcat -keyalg RSA
+#changeit
+#Is CN=Alban Andrieu, OU=Nabla, O=Nabla, L=Paris, ST=IleDeFrance, C=FR correct?
+#keystore created in /workspace/users/albandri10/.keystore
+keytool -list -keystore /workspace/users/albandri10/.keystore

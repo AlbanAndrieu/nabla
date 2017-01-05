@@ -92,3 +92,9 @@ sudo apt-get install chromium-chromedriver
 #for zap
 /usr/bin/phantomjs --version || true
 /usr/lib/chromium-browser/chromedriver --version || true
+
+-addoninstallall
+#-installdir %ZAPROXY_HOME%
+
+#https://gist.github.com/caspyin/2288960
+curl -i -v -k ${SERVER_URL}${SERVER_CONTEXT} --data "username=test&password=microsoft" 

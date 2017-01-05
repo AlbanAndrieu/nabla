@@ -43,4 +43,8 @@ git config --global maven-scm.forceUsername true
 
 git remote --verbose
 
-
+#list old branch
+git gc
+git fetch --tags
+git remote prune origin
+for branch in `git branch -r --merged | grep -v '\*\|master\|develop\|release'`; do echo -e `git show --format="%ci %cr %an" $branch | head -n 1` \\t$branch; done | sort -r

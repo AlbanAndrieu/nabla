@@ -1192,8 +1192,8 @@
                 <javax.activation.version>1.1.1</javax.activation.version>
                 <antlr.version>2.7.7</antlr.version>
                 <org.antlr.version>3.5.2</org.antlr.version>
-                <org.jdom.version>1.1.1</org.jdom.version>
-                <jdom.version>${org.jdom.version}</jdom.version>
+                <org.jdom.version>1.1.3</org.jdom.version>
+                <!-- necessary to force the relocation to org.jdom <jdom.version>${org.jdom.version}</jdom.version>-->
                 <ant.version>1.9.4</ant.version>
                 <!--<ant.nodeps.version>${ant.version}</ant.nodeps.version>-->
                 <ant.trax.version>1.7.0</ant.trax.version>
