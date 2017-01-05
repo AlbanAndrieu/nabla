@@ -105,3 +105,16 @@ tail -f /var/log/redis/redis-server.log
 #disable_dynamic issue
 nano /etc/elasticsearch/elasticsearch.yml
 #script.disable_dynamic: true
+
+#see stagemonitor https://github.com/stagemonitor/stagemonitor/wiki/Step-2%3A-Request-Analysis-Dashboard#using-the-kibana-dashboard
+
+curl -X PUT http://localhost:9200/kibana-int/dashboard/collectd-overview -T /workspace/users/albandri10/env/ansible-nabla/roles/alban.andrieu.logstash-settings/files/collectd-overview.json
+#http://localhost:9200/.kibana
+#curl -X PUT http://localhost:9200/kibana-int/dashboard/youdashboardname -d '{
+#  // Your kibana dashboard here
+#}'
+
+wget https://gist.githubusercontent.com/shreyu86/8b9bb29d758d4ec5ce7c/raw/35d5c67181214fe65924d4f8147bcff8df73b3da/logstash.conf
+docker run -d --name logstash --link es:elasticsearch logstash -v /tmp/logstash.conf:./logstash.conf logstash logstash -f ./logstash.conf
+LOGSTASH_ADDRESS=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' logstash)
+

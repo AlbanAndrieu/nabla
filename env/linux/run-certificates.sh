@@ -20,6 +20,7 @@ chmod 710 '/etc/ssl/private'
 chmod 440 '/etc/ssl/private/'
 
 SSL_KEY_NAME="$(command hostname --fqdn)"
+SSL_KEY_NAME="nabla.freeboxos.fr"
 
 #CONF_FILE="$(command mktemp)"
 #sed \
@@ -60,11 +61,12 @@ SSL_EMAIL=\"${SSL_EMAIL}\"" \
     > '/etc/ssl/csr-informations'
 
 openssl genrsa -out "/etc/ssl/private/${SSL_KEY_NAME}.key" 2048
+#openssl genrsa -out "/etc/pki/tls/private/${SSL_KEY_NAME}.key" 2048
 chown root:ssl-cert "/etc/ssl/private/${SSL_KEY_NAME}.key"
 chmod 440 "/etc/ssl/private/${SSL_KEY_NAME}.key"
 
-openssl rsa -in /etc/ssl/private/albandri.nabla.mobi.key -text -noout
-openssl rsa -in /etc/ssl/private/albandri.nabla.mobi.key -pubout -out albandri.nabla.mobi.pem
+openssl rsa -in /etc/ssl/private/${SSL_KEY_NAME}.key -text -noout
+openssl rsa -in /etc/ssl/private/${SSL_KEY_NAME}.key -pubout -out ${SSL_KEY_NAME}.pem
 
 #CSR
 openssl req -new \
@@ -86,7 +88,7 @@ openssl req -new -sha256 \
     -subj "/C=FR/ST=IleDeFrance/O=Misys, Inc./CN=${SSL_KEY_NAME}" \
     -reqexts SAN \
     -config <(cat /etc/ssl/openssl.cnf \
-        <(printf "[SAN]\nsubjectAltName=DNS:${SSL_KEY_NAME},DNS:albandri,DNS:albdnri.nabla.mobi,DNS:albdnri")) \
+        <(printf "[SAN]\nsubjectAltName=DNS:${SSL_KEY_NAME},DNS:nabla.mobi,DNS:home.nabla.mobi,DNS:alban-andrieu.fr,DNS:alban-andrieu.com,DNS:alban-andrieu.eu,DNS:bababou.fr,DNS:bababou.eu,IP:82.231.208.223,IP:192.168.0.29,IP:127.0.0.1")) \
     -out "/etc/ssl/requests/${SSL_KEY_NAME}.csr"
 
 cat "/etc/ssl/requests/${SSL_KEY_NAME}.csr"
@@ -105,7 +107,7 @@ openssl x509 -inform DER -outform PEM -in certnew-der.cer -out albandri.pem
 #for sonar
 
 #4 - export certificat to pkcs12
-openssl pkcs12 -export -in certnew-bin.cer -inkey /etc/ssl/private/albandri.nabla.mobi.key -out albandri.pkcs12 -name albandri
+openssl pkcs12 -export -in ${SSL_KEY_NAME}.pem -inkey /etc/ssl/private/${SSL_KEY_NAME}.key -out ${SSL_KEY_NAME}.pkcs12 -name ${SSL_KEY_NAME}
 #5 - export certificat to jks
 keytool -importkeystore -srckeystore albandri.pkcs12 -srcstoretype pkcs12 -destkeystore albandri.jks -deststoretype JKS
 
@@ -236,3 +238,63 @@ keytool -list -keystore  /etc/ssl/certs/java/cacerts -alias debian:uk1vswcert01-
 
 #get root CA
 openssl s_client -connect google.com:443 < /dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > ca.crt
+
+#freebox
+#http://blogmotion.fr/internet/lets-encrypt-freebox-https-14299
+
+#https://certbot.eff.org/#ubuntutrusty-apache
+#sudo apt-get install python-letsencrypt-apache
+#sudo apt install letsencrypt
+#cd /usr/local/sbin
+#sudo wget https://dl.eff.org/certbot-auto
+#sudo chmod a+x /usr/local/sbin/certbot-auto
+#/usr/local/sbin/certbot-auto certonly --apache -d nabla.freeboxos.fr 
+/var/log/letsencrypt/letsencrypt.log
+
+#Saving debug log to /var/log/letsencrypt/letsencrypt.log          
+#Starting new HTTPS connection (1): acme-v01.api.letsencrypt.org   
+#Obtaining a new certificate                                       
+#Performing the following challenges:                              
+#tls-sni-01 challenge for nabla.freeboxos.fr                       
+#Waiting for verification...                                       
+#Cleaning up challenges                                            
+#Generating key (2048 bits):                                       
+#/etc/letsencrypt/keys/0000_key-certbot.pem                        
+#Creating CSR: /etc/letsencrypt/csr/0000_csr-certbot.pem 
+#
+#- Congratulations! Your certificate and chain have been saved at
+#   /etc/letsencrypt/live/nabla.freeboxos.fr-0001/fullchain.pem. Your
+#   cert will expire on 2017-04-03. To obtain a new or tweaked version
+#   of this certificate in the future, simply run certbot-auto again.
+#   To non-interactively renew *all* of your certificates, run
+#   "certbot-auto renew"
+# - If you like Certbot, please consider supporting our work by:
+#
+#   Donating to ISRG / Let's Encrypt:   https://letsencrypt.org/donate
+#   Donating to EFF:                    https://eff.org/donate-le
+
+/etc/apache2/sites-enabled/default-ssl.conf
+#/etc/letsencrypt/live/nabla.freeboxos.fr-0001/cert.pem
+#/etc/letsencrypt/live/nabla.freeboxos.fr-0001/privkey.pem
+service apache2 restart
+tail -f /var/log/apache2/error.log
+
+#letsencrypt \
+#    certonly \
+#    --config ~/.config/letsencrypt/letsencrypt.conf \
+#    --csr /etc/ssl/requests/nabla.freeboxos.fr.csr \
+#    --cert-path /etc/ssl/nabla.freeboxos.fr/nabla.freeboxos.fr.pem \
+#    --chain-path /etc/ssl/nabla.freeboxos.fr/chain.pem \
+#    --fullchain-path /etc/ssl/nabla.freeboxos.fr/cert+chain.pem \
+#    --authenticator letsencrypt-ssh:ssh \
+#    --letsencrypt-ssh:ssh-server albandri@home.nabla.mobi \
+#    --domains nabla.mobi,www.nabla.mobi,home.nabla.mobi,nabla.freeboxos.fr,alban-andrieu.fr,alban-andrieu.com,alban-andrieu.eu,bababou.fr,bababou.eu
+#    
+#nano ~/.config/letsencrypt/letsencrypt.conf
+#config-dir = /home/albandri/.config/letsencrypt
+#work-dir = /home/albandri/.local/share/letsencrypt
+#logs-dir = /home/albandri/.local/share/letsencrypt
+#email = alban.andrieu@free.fr
+#non-interactive
+#agree-tos
+    
