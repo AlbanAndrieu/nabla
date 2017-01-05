@@ -60,6 +60,8 @@ sudo ln -s /usr/lib/jni/libswt-* ~/.swt/lib/linux/x86_64/
 #http://stackoverflow.com/questions/14791843/eclipse-add-tomcat-7-blank-server-name
 cd /usr/local/eclipse/eclipse-luna-workspace-visma/.metadata/.plugins/org.eclipse.core.runtime/.settings
 rm -Rf org.eclipse.wst.server.core.prefs org.eclipse.jst.server.tomcat.core.prefs
+rm -Rf /usr/local/eclipse/neon-4.6/p2/org.eclipse.equinox.p2.repository/cache/
+sudo chown -R albandri:albandri /usr/local/eclipse/neon-4.6/
 
 cd /usr/share/tomcat7
 sudo service tomcat7 stop
@@ -77,3 +79,4 @@ sudo ln -s /var/lib/tomcat7/shared shared
 #Add maven overlay connector
 #http://stackoverflow.com/questions/8491308/how-to-handle-maven-war-overlays-in-eclipse
 #https://dzone.com/articles/mavens-war-overlay-what-are
+
