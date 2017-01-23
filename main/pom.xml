@@ -2473,6 +2473,24 @@
                                                         </dependency>
                                                 </dependencies>
                                         </plugin>
+<!-- TODO
+										<plugin>
+												<groupId>com.github.github</groupId>
+												<artifactId>site-maven-plugin</artifactId>
+												<version>${maven.site.github.plugin.version}</version>
+												<configuration>
+													<message>Creating site for ${project.name} ${project.version}</message>
+												</configuration>                                   
+												<executions>
+													<execution>
+														<goals>
+															<goal>site</goal>
+														</goals>
+														<phase>site</phase>
+													</execution>
+												</executions>                                             
+										</plugin>
+-->
                                         <plugin>
                                                 <groupId>org.apache.maven.plugins</groupId>
                                                 <artifactId>maven-dependency-plugin</artifactId>
@@ -2507,7 +2525,32 @@
 													</dependency>
 												</dependencies>
                                         </plugin>
-
+<!-- TODO
+										<plugin>
+											<groupId>com.google.code.sortpom</groupId>
+											<artifactId>maven-sortpom-plugin</artifactId>
+											<version>${maven.sortpom.plugin.version}</version>
+											<configuration>
+												<predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
+												<sortDependencies>scope,groupId,artifactId</sortDependencies>
+												<sortPlugins>groupId,artifactId</sortPlugins>
+												<lineSeparator>\n</lineSeparator>
+												<encoding>${project.build.sourceEncoding}</encoding>
+												<sortProperties>true</sortProperties>
+												<keepBlankLines>true</keepBlankLines>
+												<nrOfIndentSpace>-1</nrOfIndentSpace>
+												<verifyFail>Stop</verifyFail>
+											</configuration>
+											<executions>
+												<execution>
+													<goals>
+														<goal>verify</goal>
+													</goals>
+													<phase>verify</phase>
+												</execution>
+											</executions>
+										</plugin>
+-->
                                         <!-- Delete code coverage database when 'mvn clean' is executed -->
                                         <plugin>
                                                 <groupId>org.codehaus.mojo</groupId>
