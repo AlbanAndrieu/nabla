@@ -1755,6 +1755,7 @@
                 <maven.changelog.plugin.version>2.3</maven.changelog.plugin.version>
                 <maven.scm.plugin.version>1.9.5</maven.scm.plugin.version>
                 <maven.checkstyle.plugin.version>2.17</maven.checkstyle.plugin.version>
+                <maven.sortpom.plugin.version>2.5.0</maven.sortpom.plugin.version>
                 <maven.clean.plugin.version>3.0.0</maven.clean.plugin.version>
                 <!--<maven.compiler.plugin.version>3.3</maven.compiler.plugin.version>-->
                 <!--<maven.compiler.plugin.version>3.2</maven.compiler.plugin.version> issue with jpamodelgen-->
@@ -1798,9 +1799,9 @@
                 <maven.site.old.plugin.version>2.3</maven.site.old.plugin.version>
                 <!--<maven.site.plugin.version>${maven.site.old.plugin.version}</maven.site.plugin.version>-->
                 <maven.site.plugin.version>3.4</maven.site.plugin.version>
-                <!--<maven.site.plugin.version>3.5.1</maven.site.plugin.version> TODO issue-->
+                <!--<maven.site.plugin.version>3.5.1</maven.site.plugin.version> TODO issue-->                
+                <maven.site.github.plugin.version>0.9</maven.site.github.plugin.version>
                 <!--
-                <maven.site.github.plugin.version>0.7</maven.site.github.plugin.version>
                 <maven.downloads.github.plugin.version>0.6</maven.downloads.github.plugin.version>
                 -->
                 <!--<maven.source.plugin.version>2.4</maven.source.plugin.version>-->
@@ -3214,12 +3215,15 @@
                                         <artifactId>downloads-maven-plugin</artifactId>
                                         <version>${maven.downloads.github.plugin.version}</version>
                                 </plugin>
+                                -->
                                 <plugin>
                                         <groupId>com.github.github</groupId>
                                         <artifactId>site-maven-plugin</artifactId>
                                         <version>${maven.site.github.plugin.version}</version>
+										<configuration>
+											<message>Creating site for ${project.name} ${project.version}</message>
+										</configuration>                                   
                                 </plugin>
-                                -->
                                 <plugin>
                                         <groupId>org.apache.maven.plugins</groupId>
                                         <artifactId>maven-resources-plugin</artifactId>
@@ -3279,8 +3283,12 @@
 											<configuration>
 												<signature>
 													<groupId>org.codehaus.mojo.signature</groupId>
+													<!--
 													<artifactId>java15</artifactId>
 													<version>1.0</version>
+													-->
+													<artifactId>java16</artifactId>
+													<version>1.1</version>
 												</signature>
 											</configuration>
 										</execution>
@@ -4528,7 +4536,23 @@
 											-->
                                         </dependencies>
                                 </plugin>
-
+								<plugin>
+									<groupId>com.google.code.sortpom</groupId>
+									<artifactId>maven-sortpom-plugin</artifactId>
+									<version>${maven.sortpom.plugin.version}</version>
+									<configuration>
+										<predefinedSortOrder>recommended_2008_06</predefinedSortOrder>
+										<sortDependencies>scope,groupId,artifactId</sortDependencies>
+										<sortPlugins>groupId,artifactId</sortPlugins>
+										<lineSeparator>\n</lineSeparator>
+										<encoding>${project.build.sourceEncoding}</encoding>
+										<sortProperties>true</sortProperties>
+										<keepBlankLines>true</keepBlankLines>
+										<nrOfIndentSpace>-1</nrOfIndentSpace>
+										<verifyFail>Stop</verifyFail>
+									</configuration>
+								</plugin>
+			
                                 <plugin>
                                     <groupId>org.codehaus.mojo</groupId>
                                     <artifactId>dbunit-maven-plugin</artifactId>
