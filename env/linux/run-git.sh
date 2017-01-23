@@ -48,3 +48,27 @@ git gc
 git fetch --tags
 git remote prune origin
 for branch in `git branch -r --merged | grep -v '\*\|master\|develop\|release'`; do echo -e `git show --format="%ci %cr %an" $branch | head -n 1` \\t$branch; done | sort -r
+git tag -d LATEST_SUCCESSFULL
+git push --delete origin LATEST_SUCCESSFULL
+
+#See https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History
+#https://help.github.com/articles/changing-author-info/
+#alban.andrieu@free.fr
+#root@localhost
+git filter-branch --env-filter '
+OLD_EMAIL="root@localhost"
+CORRECT_NAME="Andrieu, Alban"
+CORRECT_EMAIL="alban.andrieu@free.fr"
+if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+then
+    export GIT_COMMITTER_NAME="$CORRECT_NAME"
+    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+fi
+if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
+then
+    export GIT_AUTHOR_NAME="$CORRECT_NAME"
+    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+fi
+' --tag-name-filter cat -- --branches --tags
+
+#git push --force --tags origin 'refs/heads/*'

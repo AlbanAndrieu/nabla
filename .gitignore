@@ -58,6 +58,7 @@ deps/openssl/openssl.xml
 
 # Compiled
 target/
+target-eclipse/
 test-output/
 
 # Eclipse
@@ -66,7 +67,6 @@ test-output/
 .project
 .settings
 .metadata
-target/
 
 # IDEA
 .idea
