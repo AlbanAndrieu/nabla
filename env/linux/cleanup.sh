@@ -75,11 +75,21 @@ find . -type d -name '.svn' | xargs rm -r $1
 #\rm -Rf /jenkins-slave
 \rm -Rf /jenkins/maven-repositories/0/org/owasp
 \rm -Rf /jenkins-slave/maven-repositories/0/org/owasp
+\rm -Rf /kgr-mvn/Jenkins-slave/workspace
+\rm -Rf /kgr-mvn/Jenkins-slave-uat/workspace
 #\rm -Rf /jenkins/xvfb-*.fbdir/
 #\rm -Rf /jenkins/workspace-tmp
 #\rm -Rf /var/lib/elasticsearch/elasticsearch/nodes/
 #https://community.spiceworks.com/topic/783490-webm-files-in-virtualbox-are-they-safe-to-delete
 \rm -Rf ~/VirtualBox VMs/**/*.webm
+
+#https://doc.ubuntu-fr.org/ecryptfs
+#cd ~/Private
+#ecryptfs-umount-private
+#chmod 700 ~/Private
+#NEVER rm -rf ~/Private ~/.Private ~/.ecryptfs
+#NEVER rm -rf /home/.ecryptfs
+#sudo apt-get remove ecryptfs-utils libecryptfs0
 
 #find ~/ -name '*~' -print0
 find ~/ -name '*~' -type f

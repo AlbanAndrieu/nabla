@@ -28,3 +28,8 @@
 #less
 
 #https://gist.github.com/thbkrkr/3194275
+
+#See http://tipsonubuntu.com/2015/03/27/install-sublime-text-2-3-ubuntu-15-04/
+#sudo add-apt-repository -y ppa:webupd8team/sublime-text-2
+sudo add-apt-repository -y ppa:webupd8team/sublime-text-3
+sudo apt-get install sublime-text-installer

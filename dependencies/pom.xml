@@ -1875,7 +1875,7 @@
 				<!-- http://stackoverflow.com/questions/30459260/jacoco-sonarqube-incompatible-version-1007 -->
 				<maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
                 <maven.codenarc.plugin.version>0.22-1</maven.codenarc.plugin.version>
-                <maven.dependency.check.plugin.version>1.4.3</maven.dependency.check.plugin.version>
+                <maven.dependency.check.plugin.version>1.4.5</maven.dependency.check.plugin.version>
                 <maven.whitesource.plugin.version>3.2.2</maven.whitesource.plugin.version>
                 <maven.versioneye.plugin.version>3.9.2</maven.versioneye.plugin.version>
                 <maven.selenium.plugin.version>2.3</maven.selenium.plugin.version>

@@ -1,5 +1,5 @@
 #!/bin/bash
-# Ansible managed: /workspace/users/albandri10/env/ansible-nabla/roles/alban.andrieu.shell/templates/dev.env.sh.j2 modified on 2016-10-17 10:25:51 by albandri on albandri-laptop-misys
+# Ansible managed
 
 ####################
 ### READ ARGUMENTS
@@ -74,7 +74,7 @@ then
 fi
 export SVN_EDITOR=${EDITOR}
 
-export PATH=/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export PATH=/usr/local/bin:/usr/sbin:/sbin:/usr/bin:/bin
 if [ -d "${HOME}/bin" ] ; then
     PATH="${HOME}/bin:$PATH"
 fi
