@@ -7,8 +7,10 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/linuxbrew/go/in
 
 /workspace/users/albandri10/.linuxbrew/bin/brew doctor
 
-echo 'export PATH="/workspace/users/albandri10/.linuxbrew/bin:$PATH"' >> ~/.bash_profile
+echo 'export PATH="${HOME}/.linuxbrew/bin:$PATH"' >> ~/.bash_profile
 
-/workspace/users/albandri10/.linuxbrew/bin/brew install michaeldfallen/formula/git-radar
+${HOME}/.linuxbrew/bin/brew install michaeldfallen/formula/git-radar
+
+cd ~ && git clone https://github.com/michaeldfallen/git-radar .git-radar
 
 export PS1="$PS1\$(git-radar --bash --fetch)"

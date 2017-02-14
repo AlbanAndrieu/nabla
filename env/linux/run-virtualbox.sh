@@ -103,7 +103,8 @@ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 50 --slave /u
 
 sudo update-alternatives --config gcc
 
-http://ubuntuhandbook.org/index.php/2016/07/install-linux-kernel-4-7-ubuntu-16-04/
+#http://ubuntuhandbook.org/index.php/2016/07/install-linux-kernel-4-7-ubuntu-16-04/
+sudo apt-get install linux-image-extra-4.8.0-34-generic linux-image-extra-virtual
 
 sudo dpkg -i *.deb
 

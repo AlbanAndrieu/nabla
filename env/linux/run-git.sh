@@ -29,7 +29,10 @@ git config --global push.default simple
 git config --globa merge.renamelimit 10000
 git config --global --list
 #git config --global http.postBuffer 157286400
-
+#See https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#Formatting-and-Whitespace
+#git config --global core.whitespace trailing-space,-space-before-tab,indent-with-non-tab,tab-in-indent,cr-at-eol
+git config --global core.whitespace trailing-space,-space-before-tab,indent-with-non-tab,cr-at-eol
+    
 #for Windows
 git config --global http.sslVerify false
 
@@ -53,13 +56,13 @@ git push --delete origin LATEST_SUCCESSFULL
 
 #See https://git-scm.com/book/en/v2/Git-Tools-Rewriting-History
 #https://help.github.com/articles/changing-author-info/
-#alban.andrieu@free.fr
+#alban.andrieu@nabla.mobi
 #root@localhost
-git filter-branch --env-filter '
-OLD_EMAIL="root@localhost"
+git filter-branch -f --env-filter '
+OLD_EMAIL="alban.andrieu@nabla.mobi"
 CORRECT_NAME="Andrieu, Alban"
 CORRECT_EMAIL="alban.andrieu@free.fr"
-if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" -o "$GIT_COMMITTER_EMAIL" = "alban.andrieu@free.fr" -o "$GIT_COMMITTER_EMAIL" = "alban.andrieu@misys.com" -o "$GIT_COMMITTER_EMAIL" = "alban.andrieu@mysis.com" ]
 then
     export GIT_COMMITTER_NAME="$CORRECT_NAME"
     export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
@@ -71,4 +74,5 @@ then
 fi
 ' --tag-name-filter cat -- --branches --tags
 
+#Apply changes
 #git push --force --tags origin 'refs/heads/*'
