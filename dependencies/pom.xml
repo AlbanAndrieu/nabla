@@ -1413,6 +1413,7 @@
                 <jsp.api.version>2.2.1-b03</jsp.api.version>
                 <!--<junit.version>4.12</junit.version> does not work in visma -->
                 <junit.version>4.11</junit.version>
+                <concurrent.junit.version>1.0.0</concurrent.junit.version>
                 <jcip.annotations.version>1.0-1</jcip.annotations.version>
                 <gridgain.version>6.5.6</gridgain.version>
                 <gridgain.platform.version>${gridgain.version}test</gridgain.platform.version>
@@ -1616,10 +1617,9 @@
                 <jsr311.api.version>1.1.1</jsr311.api.version>
                 <!--<wsdl4j.version>1.6.3</wsdl4j.version>-->
                 <wsdl4j.version>1.6.2</wsdl4j.version> <!-- works with cxf 2.7.14 -->
-                <groovy.version>2.4.6</groovy.version>
+                <groovy.version>2.4.8</groovy.version> <!--  groovy-eclipse 2.9.2 only support 2.4.8 -->
                 <http.builder.version>0.6</http.builder.version>
                 <groovy.eclipse.compiler.version>2.9.2-01</groovy.eclipse.compiler.version>
-                <!--<groovy.eclipse.batch.version>2.3.7-01</groovy.eclipse.batch.version>-->
                 <groovy.eclipse.batch.version>2.4.3-01</groovy.eclipse.batch.version>
                 <!-- The groovy dependency (groovy-all -> groovy.version) version should match the compiler version -->
                 <gluegen.rt.main.version>2.0-rc11</gluegen.rt.main.version>
@@ -1783,7 +1783,7 @@
                 <maven.rar.plugin.version>2.4</maven.rar.plugin.version>
                 <maven.install.plugin.version>2.5.2</maven.install.plugin.version>
                 <!--<maven.ear.plugin.version>2.9.1</maven.ear.plugin.version>-->
-                <maven.ear.plugin.version>3.01</maven.ear.plugin.version>
+                <maven.ear.plugin.version>2.10.1</maven.ear.plugin.version>
                 <!--<maven.jboss.plugin.version>1.4.1</maven.jboss.plugin.version>--> <!-- only version 1.4.1 supports hard deploying multiple files -->
                 <maven.jboss.plugin.version>1.5.1</maven.jboss.plugin.version>
                 <maven.jboss.packaging.plugin.version>2.2</maven.jboss.packaging.plugin.version>
@@ -5844,6 +5844,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                             <type>jar</type>
                             <scope>test</scope>
                         </dependency>
+                        <!-- Concurrent JUnit -->
+						<dependency>
+							<groupId>com.vmlens</groupId>
+							<artifactId>concurrent-junit</artifactId>
+							<version>${concurrent.junit.version}</version>
+							<scope>test</scope>
+						</dependency>
                         <!-- in order to use @net.jcip.annotations.NotThreadSafe in junit test -->
                         <dependency>
                             <groupId>com.github.stephenc.jcip</groupId>
