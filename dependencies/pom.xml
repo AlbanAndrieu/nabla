@@ -144,7 +144,7 @@
                             <version>${maven.surefire.plugin.version}</version>
                             <inherited>true</inherited>
                             <configuration>
-                                <argLine> -Xms256m -Xmx512m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=5000</argLine>
+                                <argLine>-Xms256m -Xmx512m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=5000</argLine>
                             </configuration>
                         </plugin>
                     </plugins>
@@ -163,8 +163,7 @@
                             <version>${maven.surefire.plugin.version}</version>
                             <inherited>true</inherited>
                             <configuration>
-                                <argLine> -Xms256m -Xmx512m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=5000,suspend=n -Dsuppress.jrisk.properties.logging=true
-                                </argLine>
+                                <argLine>-Xms256m -Xmx512m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=5000,suspend=n -Dsuppress.jrisk.properties.logging=true</argLine>
                             </configuration>
                         </plugin>
                     </plugins>
@@ -183,8 +182,7 @@
                             <version>${maven.surefire.plugin.version}</version>
                             <inherited>true</inherited>
                             <configuration>
-                                <argLine> -Xms256m -Xmx512m -agentlib:yjpagent -Dsuppress.jrisk.properties.logging=true
-                                </argLine>
+                                <argLine>-Xms256m -Xmx512m -agentlib:yjpagent -Dsuppress.jrisk.properties.logging=true</argLine>
                             </configuration>
                         </plugin>
                     </plugins>
@@ -3313,6 +3311,7 @@
                                                 <configFailurePolicy>continue</configFailurePolicy>
                                                 <!-- Enable or disable Stop maven -->
                                                 <testFailureIgnore>${maven.test.failure.skip}</testFailureIgnore>
+                                                <rerunFailingTestsCount>3</rerunFailingTestsCount>
                                                 <useSystemClassLoader>true</useSystemClassLoader>
                                                 <useManifestOnlyJar>false</useManifestOnlyJar>
                                                 <!-- shows total/fail/error summaries on stdout: -->
