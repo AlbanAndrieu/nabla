@@ -44,6 +44,7 @@ sudo \rm -Rf /var/log/elasticsearch/elasticsearch.log*
 \rm -Rf /var/lib/redis/*.rdb
 \rm -Rf /var/lib/collectd/rrd/*
 \rm -Rf /workspace/jboss-as-7.1.1.Final/standalone/data/content*
+\rm -Rf /jenkins/maven-repositories/0/
 #\rm -Rf /backup/jenkins/thin/*
 
 #Fix issue sendmail-largeboxes

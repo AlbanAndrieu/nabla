@@ -233,7 +233,8 @@ export BOOST_VERSION=1.41.0
 export GETTEXT_VERSION=0.17
 export XERCES_VERSION=2.8.0
 export XML2_VERSION=2.7.2
-export TIBRV_VERSION=7.2.x
+export TIBCO_VERSION=8.4
+export TIBRV_VERSION=8.4
 
 if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
 then
@@ -284,7 +285,7 @@ fi
 if [ -d "${DDS_ROOT}" ] ; then
     PATH="${DDS_ROOT}:$PATH"
 fi
-export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}:${ACE_ROOT}/tao:${ACE_ROOT}/lib:${ACE_ROOT}/TAO/orbsvcs:${MPC_ROOT}:${CIAO_ROOT}:${DANCE_ROOT}:${DDS_ROOT}
+export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:${ACE_ROOT}/tao:${ACE_ROOT}/lib:${ACE_ROOT}/TAO/orbsvcs:${MPC_ROOT}:${CIAO_ROOT}:${DANCE_ROOT}:${DDS_ROOT}
 
 # JAVA
 #JDK_HOME=/usr/lib/jvm/ia32-java-6-sun-1.6.0.06/
@@ -556,16 +557,16 @@ else
 fi
 
 # TIBCO
-if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
-then
-  export TIBCO_HOME=${DRIVE_PATH}/Tibco/Tibrv
-  export PATH=${TIBCO_HOME}/bin:${PATH}
-fi
+export TIBCO_HOME${DRIVE_PATH}=/home/albandri/tibco
+export TIBRV_HOME=${DRIVE_PATH}/home/albandri/tibco/tibrv/${TIBRV_VERSION}
+export PATH=${TIBRV_HOME}/bin:${PATH}
+
+export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}:${TIBRV_HOME}/lib
 
 # WINDOWS
 if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
 then
-  export PATH=$PATH:${DRIVE_PATH}/Windows/system32:${DRIVE_PATH}/Windows
+  export PATH=${PATH}:${DRIVE_PATH}/Windows/system32:${DRIVE_PATH}/Windows
 fi
 
 #AWS EC2
