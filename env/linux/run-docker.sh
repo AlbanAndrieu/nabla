@@ -1,4 +1,4 @@
-
+#!/bin/bash -xe
 ---------------
 
 #See http://philpep.org/blog/integration-continue-avec-jenkins-et-docker
