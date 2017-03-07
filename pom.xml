@@ -342,7 +342,7 @@
         <repository>
             <id>smartics</id>
             <name>Smartics Repository</name>
-            <url>http://www.smartics.eu/nexus/content/groups/public-group</url>
+            <url>https://www.smartics.eu/nexus/content/repositories/public</url>
             <releases>
                 <enabled>true</enabled>
             </releases>
