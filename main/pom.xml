@@ -2427,11 +2427,13 @@
                                                                         </configuration>
                                                                 </plugin>
 
+																<!--
 																<plugin>
 																	<groupId>de.smartics.maven.plugin</groupId>
 																	<artifactId>maven-buildmetadata-plugin</artifactId>
 																	<version>${maven.buildmetadata.plugin.version}</version>
 																</plugin>
+																-->
 																<!--
 																<plugin>
 																  <groupId>org.codehaus.sonar-plugins</groupId>
@@ -2686,11 +2688,13 @@
                                                 </executions>
                                         </plugin>
                                         -->
+                                        <!--
 										<plugin>
 										  <groupId>de.smartics.maven.plugin</groupId>
 										  <artifactId>maven-buildmetadata-plugin</artifactId>
 										  <version>${maven.buildmetadata.plugin.version}</version>
 										</plugin>
+										-->
                                 </plugins>
                         </build>
                 </profile>

@@ -2494,6 +2494,7 @@
                                                                             <ignore></ignore>
                                                                     </action>
                                                                 </pluginExecution>
+                                                                <!--
                                                                 <pluginExecution>
                                                                   <pluginExecutionFilter>
                                                                     <groupId>de.smartics.maven.plugin</groupId>
@@ -2507,6 +2508,7 @@
                                                                     <ignore></ignore>
                                                                   </action>
                                                                 </pluginExecution>
+                                                                -->
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.apache.felix</groupId>
@@ -3462,7 +3464,7 @@
                                         </executions>
                                 </plugin>
 
-                <!-- dectivate : validation error in eclipse and does not work with maven-bundle-plugin
+								<!-- dectivate : validation error in eclipse and does not work with maven-bundle-plugin
                                 <plugin>
                                   <groupId>de.smartics.maven.plugin</groupId>
                                   <artifactId>maven-buildmetadata-plugin</artifactId>
