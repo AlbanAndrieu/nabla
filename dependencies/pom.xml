@@ -1773,8 +1773,8 @@
                 <maven.sonar.plugin.version>3.2</maven.sonar.plugin.version>
                 <maven.gatling.plugin.version>${gatling.version}</maven.gatling.plugin.version>
                 <maven.scalatest.plugin.version>1.0</maven.scalatest.plugin.version>
-                <maven.jmeter.plugin.version>1.10.1</maven.jmeter.plugin.version>-->
-                <!--<maven.jmeter.plugin.version>2.1.0</maven.jmeter.plugin.version>  -->              
+                <maven.jmeter.plugin.version>1.10.1</maven.jmeter.plugin.version>
+                <!--<maven.jmeter.plugin.version>2.1.0</maven.jmeter.plugin.version> -->              
                 <maven.jmeter.graph.plugin.version>0.1.0</maven.jmeter.graph.plugin.version>
                 <maven.jmeter.analysis.plugin.version>1.0.6</maven.jmeter.analysis.plugin.version>
                 <maven.scala.plugin.version>3.2.2</maven.scala.plugin.version>
