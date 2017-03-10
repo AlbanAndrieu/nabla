@@ -1130,8 +1130,8 @@
                 <jfreechart-demo.version>1.0.13</jfreechart-demo.version>
                 <junitperf.version>1.9.1</junitperf.version>
                 <!-- Test Coverage/Sonar - Clover - Do not change this version without checking if everything is working well -->
-                <!--<clover.version>3.3.0</clover.version>-->
-                <clover.version>4.0.6</clover.version>                
+                <clover.version>3.3.0</clover.version>-->
+                <!--<clover.version>4.0.6</clover.version>-->            
                 <dbunit.version>2.4.9</dbunit.version>
                 <testng.version>6.9.6</testng.version>
                 <cucumber.version>1.2.4</cucumber.version>
@@ -1247,7 +1247,7 @@
                 <!-- <jboss.logging.version>3.1.0.GA</jboss.logging.version>--><!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
                 <jboss.logging.version>3.1.2.GA</jboss.logging.version>
                 <jboss.common.core.version>2.2.20.GA</jboss.common.core.version>
-                <jbossws.framework.version>3.0.2-GA</jbossws.framework.version>
+                <jbossws.framework.version>3.0.1-GA</jbossws.framework.version>
                 <jbossws.client.version>2.0.1.SP2</jbossws.client.version>
                 <el.api.version>2.2.1-b04</el.api.version>
                 <el.ri.version>1.0</el.ri.version>
