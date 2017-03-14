@@ -1,4 +1,5 @@
 #!/bin/bash
+set -xv
 
 if [ -n "${TARGET_SERVER}" ]; then
   echo "TARGET_SERVER is defined"

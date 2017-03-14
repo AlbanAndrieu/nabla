@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+set -xv
 
 service jenkins stop
 service selenium_hub stop

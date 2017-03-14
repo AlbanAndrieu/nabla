@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+set -xv
 
 sudo service webmin stop
 sudo service usermin stop

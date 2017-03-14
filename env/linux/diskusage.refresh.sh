@@ -1,4 +1,6 @@
 #!/bin/bash
+set -xv
+
 
 #http://www.howtoforge.com/how-to-monitor-hard-drive-usage-in-ubuntu-server-using-the-visual-philesight-cgi-script
 #grant db sudo chmod 777 /usr/lib/philesightdb
