@@ -1,11 +1,11 @@
-#!/bin/bash -xv
-
+#!/bin/bash
+set -xv
 
 echo ""
 echo "################### RKHUNTER ###################"
 echo ""
 
-sudo rkhunter --update
-sudo rkhunter --version
+sudo -t rkhunter --update
+sudo -t rkhunter --version
 
-sudo rkhunter --checkall --report-warnings-only
+sudo -t rkhunter --checkall --report-warnings-only

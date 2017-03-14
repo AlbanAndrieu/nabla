@@ -1,12 +1,13 @@
-#!/bin/bash -xv
+#!/bin/bash
+set -xv
 
 echo ""
 echo "################### CHROOTKIT ###################"
 echo ""
 
-sudo chkrootkit -V
+sudo -t chkrootkit -V
 
-sudo chkrootkit -q
+sudo -t chkrootkit -q
 
 #sudo tiger --version
 

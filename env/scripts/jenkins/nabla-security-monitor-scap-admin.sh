@@ -1,4 +1,5 @@
 #!/bin/bash
+set -xv
 
 echo ########### Check ubuntu security #######
 
