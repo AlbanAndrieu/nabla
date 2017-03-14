@@ -1,11 +1,12 @@
 #!/bin/bash
+set -xv
 
 echo ""
 echo "################### LYNIS ###################"
 echo ""
 
 #TODO use /usr/local/lynis/2.2.0/lynis
-sudo lynis --check-update
-sudo lynis --version
+sudo -t lynis --check-update
+sudo -t lynis --version
 
-sudo lynis --check-all -Q
+sudo -t lynis --check-all -Q

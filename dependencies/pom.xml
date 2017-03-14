@@ -1275,6 +1275,7 @@
                 <guava.version>14.0.1</guava.version>
                 <!-- WARNING 16.0-rc1 does not work with selenium -->
                 <!--<guava.version>17.0</guava.version> does not work in visma -->
+                <owasp.java.html.sanitizer.version>20160924.1</owasp.java.html.sanitizer.version>
                 <jarjar.version>0.6</jarjar.version>
                 <acegi.version>1.0.5</acegi.version>
                 <acegijsf.version>1.1.2</acegijsf.version>
@@ -9923,6 +9924,11 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                         <artifactId>guava</artifactId>
                         <version>${guava.version}</version>
                     </dependency>
+                    <dependency>
+                        <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
+                        <artifactId>owasp-java-html-sanitizer</artifactId>
+                        <version>${owasp.java.html.sanitizer.version}</version>
+                    </dependency>                    
                     <dependency>
                         <groupId>com.sun.xml.ws</groupId>
                         <artifactId>jaxws-rt</artifactId>

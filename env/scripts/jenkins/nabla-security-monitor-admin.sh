@@ -1,4 +1,5 @@
 #!/bin/bash
+set -xv
 
 if [ -n "${TARGET_SERVER}" ]; then
   echo "TARGET_SERVER is defined"
@@ -25,7 +26,7 @@ echo ""
 echo "################### LOG output check ###################"
 echo ""
 
-sudo head -n 1000 /var/log/tomcat7/catalina.out || exit 1
+sudo -t head -n 1000 /var/log/tomcat7/catalina.out || exit 1
 #sudo tail -n 1000 /var/log/tomcat7/catalina.out || exit 1
 
 echo ""
@@ -38,13 +39,13 @@ echo ""
 echo "################### LOGWATCH ###################"
 echo ""
 
-sudo logwatch
+sudo -t logwatch
 
 echo ""
 echo "################### USERS' CONNECT TIMES ###################"
 echo ""
 
-sudo ac -d -p
+sudo -t ac -d -p
 
 echo ""
 echo "################### COMMANDS BY USER ###################"
@@ -64,7 +65,7 @@ echo ""
 echo "################### COMMANDS BY FREQUENCY OF EXECUTION ###################"
 echo ""
 
-sudo sa | awk '{print $1, $6}' | sort -n | head -n -1 | sort -nr
+sudo -t sa | awk '{print $1, $6}' | sort -n | head -n -1 | sort -nr
 
 sudo logwatch
 
@@ -72,20 +73,20 @@ echo ""
 echo "################### HARDWARE ###################"
 echo ""
 
-sudo lshw
+sudo -t lshw
 
 echo ""
 echo "################### WORKSPACE FILES SIZE ###################"
 echo ""
 
-sudo du -cks /workspace/* | sort -gr
+sudo -t du -cks /workspace/* | sort -gr
 
 echo ""
 echo "################### FAIL 2 BAN ###################"
 echo ""
 
-sudo fail2ban-client status
-sudo fail2ban-client status ssh
-sudo fail2ban-client status apache
-sudo fail2ban-client status apache-modevasive
-sudo fail2ban-client status apache-modevasive
+sudo -t fail2ban-client status
+sudo -t fail2ban-client status ssh
+sudo -t fail2ban-client status apache
+sudo -t fail2ban-client status apache-modevasive
+sudo -t fail2ban-client status apache-modevasive
