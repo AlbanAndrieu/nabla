@@ -150,6 +150,9 @@ docker stats $(docker ps --format '{{.Names}}')
 curl -L https://github.com/docker/machine/releases/download/v0.8.2/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine && \
   chmod +x /usr/local/bin/docker-machine
 
+#Docker completion
+sudo wget https://raw.githubusercontent.com/docker/machine/master/contrib/completion/bash/docker-machine-prompt.bash -O /etc/bash_completion.d/docker-machine-prompt.bash
+
 #Doc See https://github.com/wsargent/docker-cheat-sheet
 #Checking container logs
 docker logs frcargo

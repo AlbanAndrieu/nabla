@@ -295,7 +295,7 @@ then
   ln -s ${DRIVE_PATH}/Program\ Files\ \(x86\) /ProgramFilesx86
   #export JAVA_HOME="/ProgramFilesx86/Java/jdk1.5.0_22"
 fi
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
+export JAVA_HOME=/usr/lib/jvm/java-9-oracle/
 
 export JRE_HOME=${JAVA_HOME}/jre
 #export JDK_HOME JRE_HOME JAVA_HOME
@@ -316,6 +316,11 @@ then
   JAVA_OPTS="${JAVA_OPTS} -Djava.awt.headless=true "
   #For Jenkins
   JAVA_OPTS="${JAVA_OPTS} -Dakka.test.timefactor=2"
+  #Turn off jvmstat instrumentation https://stackoverflow.com/questions/76327/how-can-i-prevent-java-from-creating-hsperfdata-files
+  #JAVA_OPTS="${JAVA_OPTS} -XX:-UsePerfData"
+  #Fix GZip issue
+  #JAVA_OPTS="-Dsun.zip.disableMemoryMapping=true"
+  #Use better entropie unlimited random
   #JAVA_OPTS="${JAVA_OPTS} -Djava.security.egd=file:/dev/urandom"
   JAVA_OPTS="${JAVA_OPTS} -Djava.io.tmpdir=${WORKSPACE}/target/tmp" # tmp get full
 
@@ -557,12 +562,12 @@ else
 fi
 
 # TIBCO
-export TIBCO_HOME${DRIVE_PATH}=/home/albandri/tibco
+TIBRV_VERSION=8.4
+export TIBCO_HOME=${DRIVE_PATH}/home/albandri/tibco
 export TIBRV_HOME=${DRIVE_PATH}/home/albandri/tibco/tibrv/${TIBRV_VERSION}
 export PATH=${TIBRV_HOME}/bin:${PATH}
-
 export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}:${TIBRV_HOME}/lib
-
+  
 # WINDOWS
 if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
 then
@@ -728,11 +733,13 @@ alias setWorkspace="source ${WORKSPACE_ENV}/scripts/setWorkspace.sh"
 #git config --global http.sslVerify false
 export GIT_SSL_NO_VERIFY=true
 
-#source ${WORKSPACE_ENV}/home/.git-completion.bash
-source ${WORKSPACE_ENV}/home/.git-prompt.sh
-
 #see source ~/.git-prompt.sh in .bashrc
-source ${WORKSPACE_ENV}/home/.novarc
+#source ${WORKSPACE_ENV}/home/.git-completion.bash
+#source ${WORKSPACE_ENV}/home/.git-prompt.sh
+source ${HOME}/.git-prompt.sh
+
+#source ${WORKSPACE_ENV}/home/.novarc
+source ${HOME}/.novarc
 
 alias replace="${WORKSPACE_ENV}/scripts/replace.pl"
 alias svndi="svn di --diff-cmd=svndiff"
