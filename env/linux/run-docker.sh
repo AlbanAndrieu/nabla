@@ -122,6 +122,8 @@ sudo update-ca-certificates
 sudo service docker restart
 sudo docker run server:5000/hello-world
 
+#Redhat DTR
+#docker pull registry.access.redhat.com/rhel7/rhel
 docker pull server:5000/nabla/jdk8
 docker pull server:5000/nabla/oracle
 docker pull server:5000/nabla/sybase

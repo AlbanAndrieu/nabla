@@ -1272,9 +1272,10 @@
                 <guice.version>4.1.0</guice.version>
                 <jsr305.version>3.0.0</jsr305.version>
                 <joda.time.version>2.3</joda.time.version>
-                <guava.version>14.0.1</guava.version>
+                <!--<guava.version>14.0.1</guava.version>-->
                 <!-- WARNING 16.0-rc1 does not work with selenium -->
                 <!--<guava.version>17.0</guava.version> does not work in visma -->
+                <guava.version>18.0</guava.version>
                 <owasp.java.html.sanitizer.version>20160924.1</owasp.java.html.sanitizer.version>
                 <jarjar.version>0.6</jarjar.version>
                 <acegi.version>1.0.5</acegi.version>
@@ -1885,6 +1886,7 @@
 				<maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
                 <maven.codenarc.plugin.version>0.22-1</maven.codenarc.plugin.version>
                 <maven.dependency.check.plugin.version>1.4.5</maven.dependency.check.plugin.version>
+                <maven.directory.plugin>0.1</maven.directory.plugin>
                 <maven.whitesource.plugin.version>3.2.3</maven.whitesource.plugin.version>
                 <maven.versioneye.plugin.version>3.11.1</maven.versioneye.plugin.version>
                 <maven.selenium.plugin.version>2.3</maven.selenium.plugin.version>
@@ -1994,6 +1996,19 @@
 																		<ignore></ignore>
 																	</action>
 																</pluginExecution>
+																<pluginExecution>
+																	<pluginExecutionFilter>
+																		<groupId>org.commonjava.maven.plugins</groupId>
+																		<artifactId>directory-maven-plugin</artifactId>
+																		<versionRange>[${maven.directory.plugin},)</versionRange>
+																		<goals>
+																			<goal>highest-basedir</goal>
+																		</goals>
+																	</pluginExecutionFilter>
+																	<action>
+																		<ignore></ignore>
+																	</action>
+																</pluginExecution>																
                                                                 <pluginExecution>
                                                                     <pluginExecutionFilter>
                                                                         <groupId>org.owasp</groupId>
