@@ -76,3 +76,7 @@ fi
 
 #Apply changes
 #git push --force --tags origin 'refs/heads/*'
+
+git commit --amend --author="Andrieu, Alban <alban.andrieu@free.fr>"
+#http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html
+git rebase -i HEAD~4

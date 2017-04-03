@@ -41,6 +41,9 @@ sudo service smbd stop
 sudo service lightdm stop
 sudo service avahi-daemon stop
 sudo sh -c "echo manual > /etc/init/avahi-daemon.override"
+#sudo apt-get remove avahi-daemon
+#Bug avahi-daemon (3907): VmData 8982528 exceed data ulimit 4194304. Update limits or use boot option ignore_rlimit_data
+#See https://patchwork.kernel.org/patch/8096761/
 sudo service memcached stop
 sudo service cups stop
 sudo service cups-browsed stop
