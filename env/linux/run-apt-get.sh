@@ -436,6 +436,12 @@ sudo lshw -short
 #http://ubuntuforums.org/archive/index.php/t-1448092.html
 sudo apt-get remove usbmount
 
+#https://www.reddit.com/r/Ubuntu/comments/3rwhye/why_is_avahidaemon_still_included_in_default/
+#sudo apt-get remove avahi-daemon
+
+#Configuration file /lib/systemd/system/tomcat7.service is marked executable
+sudo chmod 644 /lib/systemd/system/tomcat7.service
+
 #Ubuntu 14 things todo
 #http://itsfoss.com/things-to-do-after-installing-ubuntu-14-04/
 #http://www.webupd8.org/2014/04/10-things-to-do-after-installing-ubuntu.html

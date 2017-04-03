@@ -1,6 +1,9 @@
 #!/bin/bash
 set -xv
 
+echo "install bleachbit"
+sudo apt-get install bleachbit
+
 #http://doc.ubuntu-fr.org/nettoyer_ubuntu
 \rm -Rf /usr/share/tomcat6/.m2/repository/
 \rm -Rf ~/.m2/repository/

@@ -186,8 +186,8 @@ alias status="svn status -u"
 alias Grep="find . -name '*.[jch]*' -exec grep -n \!* {} + -o -name '.svn' -prune -type f"
 alias hGrep="find . -name '*.h' -exec grep -n \!* {} + -o -name '.svn' -prune -type f"
 alias myGrep="find . -name '*.*' -exec grep -n \!* {} + -o -name '.svn' -prune -type f"
-echo "find . -type d -name ".svn"  -print | xargs rm -Rf"
-echo "find . -name 'pom.xml' | xargs grep SNAPSHOT"
+#echo "find . -type d -name ".svn"  -print | xargs rm -Rf"
+#echo "find . -name 'pom.xml' | xargs grep SNAPSHOT"
 
 ###
 # THIRDPARTIES
@@ -295,7 +295,7 @@ then
   ln -s ${DRIVE_PATH}/Program\ Files\ \(x86\) /ProgramFilesx86
   #export JAVA_HOME="/ProgramFilesx86/Java/jdk1.5.0_22"
 fi
-export JAVA_HOME=/usr/lib/jvm/java-9-oracle/
+export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
 
 export JRE_HOME=${JAVA_HOME}/jre
 #export JDK_HOME JRE_HOME JAVA_HOME
@@ -304,14 +304,14 @@ export JRE_HOME=${JAVA_HOME}/jre
 PATH=${JAVA_HOME}/bin:${PATH}
 export PATH
 
-#export JAVA_OPTS="-Xms256m -Xmx1548m"
+export JAVA_OPTS="-Xms256m -Xmx1548m"
 
 if [ -z "$JAVA_OPTS" ]
 then
 
   echo "Enable : -Xms256m -Xmx1548m"
 
-  JAVA_OPTS="${JAVA_OPTS} -Xms256m -Xmx1548m"
+  #JAVA_OPTS="${JAVA_OPTS} -Xms256m -Xmx1548m"
   #JAVA_OPTS="${JAVA_OPTS} -XX:PermSize=430m -XX:MaxPermSize=430m -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000"
   JAVA_OPTS="${JAVA_OPTS} -Djava.awt.headless=true "
   #For Jenkins
@@ -322,7 +322,7 @@ then
   #JAVA_OPTS="-Dsun.zip.disableMemoryMapping=true"
   #Use better entropie unlimited random
   #JAVA_OPTS="${JAVA_OPTS} -Djava.security.egd=file:/dev/urandom"
-  JAVA_OPTS="${JAVA_OPTS} -Djava.io.tmpdir=${WORKSPACE}/target/tmp" # tmp get full
+  #JAVA_OPTS="${JAVA_OPTS} -Djava.io.tmpdir=${WORKSPACE}/target/tmp" # tmp get full
 
   echo "DEFAULT JAVA_OPTS=${JAVA_OPTS}"
 fi
