@@ -1,3 +1,5 @@
+#See https://zaproxy.blogspot.fr/
+
 #Add zap proxy configuration with firefox
 #https://code.google.com/p/zaproxy/wiki/HelpStartProxies
 
@@ -90,11 +92,29 @@ sudo apt-get install chromium-chromedriver
 #sudo apt-get install google-chrome-stable
 
 #for zap
+/usr/bin/firefox --version || true
 /usr/bin/phantomjs --version || true
 /usr/lib/chromium-browser/chromedriver --version || true
 
+#https://github.com/zaproxy/zap-core-help/wiki/HelpCmdline
 -addoninstallall
 #-installdir %ZAPROXY_HOME%
+-dir ZAP_D-2017-01-16
+#https://github.com/zaproxy/zap-core-help/wiki/HelpAddonsSeleniumIntro
+-config ajaxSpider.browserId=htmlunit
+-config rules.csrf.ignorelist=login-form
+#-config rules.csrf.ignorelist="search,login,login-form"
+
+-addonlist
+#-addonupdate
+-addoninstall soap -addoninstall openapi
+#ascanrulesAlpha v18
+#pscanrules v18
+#directorylistv2_3_lc v3
+#ascanrulesBeta v21
+#pscanrulesBeta v15
+#spiderAjax v17
+#selenium v9
 
 #https://gist.github.com/caspyin/2288960
 curl -i -v -k ${SERVER_URL}${SERVER_CONTEXT} --data "username=test&password=microsoft" 
