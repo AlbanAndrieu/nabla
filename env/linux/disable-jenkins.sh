@@ -82,3 +82,5 @@ sudo update-rc.d -f mongod remove
 sudo update-rc.d -f nis remove
 sudo update-rc.d -f teamviewerd remove
 sudo update-rc.d -f conky remove
+sudo update-rc.d -f cups remove
+sudo update-rc.d -f cups-browsed remove
