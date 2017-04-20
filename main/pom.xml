@@ -964,13 +964,15 @@
 				    <build>
 				         <pluginManagement>
 				             <plugins>
+								  <!-- say to maven to use groovy-eclipse-compiler in order to compile groovy files -->
 				                  <plugin>
 									   <groupId>org.apache.maven.plugins</groupId>
 				                       <artifactId>maven-compiler-plugin</artifactId>
 				                       <version>${maven.compiler.plugin.version}</version>
 				                       <configuration>
-				                           <compilerId>groovy-eclipse-compiler</compilerId>
+				                           <compilerId>groovy-eclipse-compiler</compilerId>				                           
 				                           <compilerVersion>${maven.compiler.source}</compilerVersion>
+				                           <!--<verbose>true</verbose>-->
 				                           <source>${maven.compiler.source}</source>
 				                           <target>${maven.compiler.target}</target>
 				                           <showDeprecation>true</showDeprecation>
