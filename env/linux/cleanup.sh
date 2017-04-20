@@ -8,7 +8,9 @@ sudo apt-get install bleachbit
 \rm -Rf /usr/share/tomcat6/.m2/repository/
 \rm -Rf ~/.m2/repository/
 \rm -Rf ~/.repository
+#\rm -Rf ~/.cache/upstart
 \rm -Rf ~/.cache/*
+#\rm -Rf ~/.aspera
 #\rm -Rf ~/.eclipse/*
 \rm -Rf ~/.cpan/*
 \rm -Rf ~/.svn/*

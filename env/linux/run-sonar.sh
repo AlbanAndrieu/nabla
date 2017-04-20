@@ -138,6 +138,11 @@ mvn -Dsonargraph.prepareForSonar=true -Dsonargraph.license=<license-path> (or -D
 -Dsonar.scm.enabled=false -Dsonar.scm-stats.enabled=false -Dissueassignplugin.enabeld=false -Dsonar.pitest.mode=skip -Dsonar.scm.user.secured=false -Dsonar.branch=${SONAR_BRANCH}
 #-Dsonar.preview.excludePlugins=buildstability,devcockpit,pdfreport,report,scmactivity,views,jira,buildbreaker,scmstats
 
+-Dsonar.scm.provider=git
+#-Dsonar.scm.provider=svn
+#-Dsonar.projectVersion=jenkins-${env.BUILD_NUMBER}
+-Dsonar.links.ci=${env.BUILD_URL}
+                                                
 #-Dsonar.issuesReport.console.enable=true 
 #-Dsonar.issuesReport.html.enable=true
 
