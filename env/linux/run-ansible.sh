@@ -64,11 +64,12 @@ ansible --version
 
 #install python version of ansible
 #it go inside /usr/local/bin
-sudo pip uninstall ansible
-sudo pip2 install ansible==2.1.1
-#pip install https://pypi.python.org/packages/source/a/ansible/ansible-1.7.1.tar.gz
+sudo pip2 uninstall ansible
+sudo pip2 install ansible==2.3.0.0
+sudo pip2 install docker-compose==1.12.0
+sudo pip2 install docker==2.2.1
 #install ansible devel version
-sudo pip install https://github.com/ansible/ansible/archive/devel.zip
+#sudo pip install https://github.com/ansible/ansible/archive/devel.zip
 
 which ansible
 ansible --version

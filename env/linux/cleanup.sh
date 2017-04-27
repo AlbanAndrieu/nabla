@@ -24,6 +24,7 @@ sudo apt-get install bleachbit
 #\rm -Rf ~/.npm
 \rm -Rf ~/.ievms
 \rm -Rf ~/.jenkins
+\rm -Rf /jenkins/.m2/.repository
 #\rm -Rf /jenkins/config-history/*
 #\rm -Rf /var/lib/jenkins/tools/hudson.model.JDK/*
 #\rm -Rf /var/lib/jenkins/tools/*
@@ -50,7 +51,6 @@ sudo \rm -Rf /var/log/elasticsearch/elasticsearch.log*
 \rm -Rf /var/lib/redis/*.rdb
 \rm -Rf /var/lib/collectd/rrd/*
 \rm -Rf /workspace/jboss-as-7.1.1.Final/standalone/data/content*
-\rm -Rf /jenkins/maven-repositories/0/
 #\rm -Rf /backup/jenkins/thin/*
 
 #Fix issue sendmail-largeboxes
@@ -80,10 +80,10 @@ find . -type d -name '.svn' | xargs rm -r $1
 #AND
 #/jenkins/jobs/nabla-servers-bower-sample-nightly/htmlreports/HAR_Report
 #\rm -Rf /jenkins-slave
-\rm -Rf /jenkins/maven-repositories/0/org/owasp
+\rm -Rf /jenkins/maven-repositories/0/
+#\rm -Rf /jenkins/maven-repositories/0/org/owasp
 \rm -Rf /jenkins-slave/maven-repositories/0/org/owasp
-\rm -Rf /kgr-mvn/Jenkins-slave/workspace
-\rm -Rf /kgr-mvn/Jenkins-slave-uat/workspace
+\rm -Rf /jenkins-slave/workspacej
 #\rm -Rf /jenkins/xvfb-*.fbdir/
 #\rm -Rf /jenkins/workspace-tmp
 #\rm -Rf /var/lib/elasticsearch/elasticsearch/nodes/
