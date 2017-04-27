@@ -1434,7 +1434,8 @@
                 <bean.matchers.version>0.8.1</bean.matchers.version>
                 <!--<org.jboss.arquillian.version>1.1.0.Final</org.jboss.arquillian.version>--> <!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
                 <!--OK<org.jboss.arquillian.version>1.0.0.CR7</org.jboss.arquillian.version>-->
-                <org.jboss.arquillian.version>1.1.9.Final</org.jboss.arquillian.version>
+                <org.jboss.arquillian.version>1.1.8.Final</org.jboss.arquillian.version>
+                <!--<org.jboss.arquillian.version>1.1.9.Final</org.jboss.arquillian.version>-->
                 <!-- NOK <org.jboss.arquillian.version>1.1.4.Final</org.jboss.arquillian.version> NOK with 1.1.4.Final java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
                 <!-- NOK with 1.1.0.Final <org.jboss.arquillian.bom.version>${org.jboss.arquillian.version}</org.jboss.arquillian.bom.version>-->
                 <org.jboss.arquillian.bom.version>${org.jboss.arquillian.version}</org.jboss.arquillian.bom.version>
@@ -3071,17 +3072,16 @@
                                         <artifactId>maven-release-plugin</artifactId>
                                         <version>${maven.release.plugin.version}</version>
                                         <configuration>
-                                                <!-- TODO use with GIT
+                                                <!-- TODO use with GIT -->
                                                 <pushChanges>false</pushChanges>
                                                 <localCheckout>true</localCheckout>
-                                                -->
                                                 <useReleaseProfile>true</useReleaseProfile>
                                                 <autoVersionSubmodules>true</autoVersionSubmodules>
                                                 <useReleaseProfile>true</useReleaseProfile>
                                                 <arguments>-Prelease</arguments>
                                                 <preparationGoals>clean install</preparationGoals>
-                                                <tagBase>https://alban.googlecode.com/svn/mavenrepo/releases</tagBase>
-                                                <tagNameFormat>@{project.version}</tagNameFormat>
+                                                <!--<tagBase>https://alban.googlecode.com/svn/mavenrepo/releases</tagBase>-->
+                                                <tagNameFormat>v@{project.version}</tagNameFormat>
                                                 <checkModificationExcludes>
                                                     <checkModificationExclude>**/*.log</checkModificationExclude>
                                                 </checkModificationExcludes>
@@ -4203,7 +4203,7 @@
                                                 <additionalparam>-types</additionalparam>
                                                 <additionalparam>-visibility</additionalparam>
                                                 <additionalparam>-collpackages</additionalparam>
-                                                <additionalparam>--allow-script-in-comments</additionalparam>
+                                                <!--<additionalparam>--allow-script-in-comments</additionalparam>-->
 
 												<links>
 													<link>http://docs.oracle.com/javase/8/docs/api/</link>
