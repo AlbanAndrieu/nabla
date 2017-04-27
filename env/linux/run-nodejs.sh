@@ -80,7 +80,7 @@ npm install -g karma-ng-scenario
 npm install -g karma-ng-html2js-preprocessor
 npm install -g karma-coverage
 npm install -g karma-jasmine
-npm install -g phantomjs
+npm install -g phantomjs@2.1.1
 npm install -g karma-phantomjs-launcher
 npm install -g selenium-webdriver
 npm install -g grunt-contrib-compress
@@ -162,7 +162,6 @@ npm test : start the Karma unit test runner
 npm run protractor : run the Protractor end 2 end tests
 npm run update-webdriver : install the drivers needed by Protractor
 
-
 #Upgrade node
 #http://stackoverflow.com/questions/8191459/how-to-update-node-js
 #as root
@@ -170,6 +169,7 @@ npm cache clean -f
 npm install -g n
 n stable
 node -v
+/usr/local/bin/node -v
 
 #update clean up npm repo
 sudo chown -R albandri:albandri  ~/.npm

@@ -1,22 +1,28 @@
-/usr/bin/nodejs --version
 
+#On Ubuntu 14.04
 sudo apt-get --purge remove node
 sudo apt-get --purge remove nodejs
 
 /usr/bin/nodejs --version
-
 /usr/local/bin/node --version
 
 sudo rm -rf /usr/local/{lib/node{,/.npm,_modules},bin,share/man}/{npm*,node*,man1/node*}
 
+#On Ubuntu 16.04 (you can reinstall it (but I would use Upgrade node in run-nodejs.sh instead)
 sudo apt-get install nodejs
 
 /usr/bin/nodejs --version
 
+echo $NODE_PATH
+
+ll /usr/bin/node
+sudo rm /usr/bin/node
+sudo ln -s /usr/local/n/versions/node/7.8.0/bin/node /usr/bin/node
+
 sudo npm remove  -g node-gyp
 sudo npm install -g node-gyp@2.0.2
 node-gyp --version
-#v1.0.2
+#v2.0.2
 #sudo npm install -g gyp
 
 git clone https://github.com/bsuh/node_xslt.git
