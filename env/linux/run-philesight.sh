@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://zevv.nl/play/code/philesight/
 #http://searchingtechdata.net/page/3/
 #for ubuntu 12

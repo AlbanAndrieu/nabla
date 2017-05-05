@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #See https://fahdshariff.blogspot.fr/2012/08/analysing-java-core-dump.html
 cat /proc/sys/kernel/core_pattern
 

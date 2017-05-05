@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://public.kitware.com/Wiki/CDash:Installation
 
 sudo svn co http://www.kitware.com/svn/CDash/Release-2-0-2 CDash

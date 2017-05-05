@@ -1,3 +1,5 @@
+#!/bin/bash
+set -xv
 
 #See https://www.rigs-it.net/index.php/product/sonarqube-integration.html
 

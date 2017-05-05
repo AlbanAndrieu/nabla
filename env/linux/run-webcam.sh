@@ -1,3 +1,5 @@
+#!/bin/bash
+set -xv
 
 VBoxManage list webcams
 

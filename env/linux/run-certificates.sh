@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://guide.ubuntu-fr.org/server/certificates-and-security.html
 
 First try on workstation to create new certificate for this server
@@ -125,22 +128,43 @@ sonar.web.https.keystoreType=JKS
 #http://superuser.com/questions/104146/add-permanent-ssl-certificate-exception-in-chrome-linux
 #http://wiki.cacert.org/FAQ/BrowserClients
 
-stash.nabla.mobi.crt
+#Install certutil
+sudo apt-get install libnss3-tools
 
-wget -O cacert-root.crt "http://www.cacert.org/certs/root.crt"
-wget -O cacert-class3.crt "http://www.cacert.org/certs/class3.crt"
+##### Chrome
+# Find nssdb directory.
+$ find $HOME -name nssdb 
+ 
+# Make a backup.
+$ cp $HOME/.pki/nssdb-directory{,.orig}
 
-certutil -d sql:$HOME/.pki/nssdb -A -t TC -n "CAcert.org" -i cacert-root.crt
-certutil -d sql:$HOME/.pki/nssdb -A -t TC -n "CAcert.org Class 3" -i cacert-class3.crt
+certutil -A -i /usr/local/share/ca-certificates/nabla.crt -n nabla -t "C,," -d sql:$HOME/.pki/nssdb/
 
-certutil -L -d  sql:$HOME/.pki/nssdb
+##### Firefox
+# Find cert8.db and key3.db files.
+$ find $HOME -name cert8.db
+$ find $HOME -name key3.db
+ 
+# Make a backup.
+cp $HOME/firefox-profile-directory/cert8.db{,.orig}
+cp $HOME/firefox-profile-directory/key3.db{,.orig}
 
-sudo certutil -d sql:$HOME/.pki/nssdb -A -t P -n "Stash" -i stash.nabla.mobi.crt
-sudo certutil -d sql:$HOME/.pki/nssdb -A -t TC -n "Stash" -i stash.nabla.mobi.crt
-#http://blog.tkassembled.com/410/adding-a-certificate-authority-to-the-trusted-list-in-ubuntu/
-#certutil -d sql:$HOME/.pki/nssdb -A -n "Stash" -i stash.nabla.mobi.crt -t P,P,P
-#certutil -d sql:$HOME/.pki/nssdb -A -n 'Stash' -i stash.nabla.mobi.crt -t TCP,TCP,TCP
-sudo certutil -D -n Stash -d sql:$HOME/.pki/nssdb
+certutil -A -i /usr/local/share/ca-certificates/nabla.crt -n nabla -t "C,," -d $HOME/firefox-profile-directory/
+
+#wget -O cacert-root.crt "http://www.cacert.org/certs/root.crt"
+#wget -O cacert-class3.crt "http://www.cacert.org/certs/class3.crt"
+#
+#certutil -d sql:$HOME/.pki/nssdb -A -t TC -n "CAcert.org" -i cacert-root.crt
+#certutil -d sql:$HOME/.pki/nssdb -A -t TC -n "CAcert.org Class 3" -i cacert-class3.crt
+#
+#certutil -L -d  sql:$HOME/.pki/nssdb
+#
+#sudo certutil -d sql:$HOME/.pki/nssdb -A -t P -n "Stash" -i stash.nabla.mobi.crt
+#sudo certutil -d sql:$HOME/.pki/nssdb -A -t TC -n "Stash" -i stash.nabla.mobi.crt
+##http://blog.tkassembled.com/410/adding-a-certificate-authority-to-the-trusted-list-in-ubuntu/
+##certutil -d sql:$HOME/.pki/nssdb -A -n "Stash" -i stash.nabla.mobi.crt -t P,P,P
+##certutil -d sql:$HOME/.pki/nssdb -A -n 'Stash' -i stash.nabla.mobi.crt -t TCP,TCP,TCP
+#sudo certutil -D -n Stash -d sql:$HOME/.pki/nssdb
 
 #https://help.ubuntu.com/community/OpenSSL#SSL%20Certificates
 sudo apt-cache search libssl | grep SSL

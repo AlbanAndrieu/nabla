@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #release
 sudo dhclient -v -r wlan1
 #renew

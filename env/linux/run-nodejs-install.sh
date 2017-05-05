@@ -1,3 +1,5 @@
+#!/bin/bash
+set -xv
 
 #On Ubuntu 14.04
 sudo apt-get --purge remove node

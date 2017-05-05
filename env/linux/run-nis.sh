@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://doc.ubuntu-fr.org/nis
 sudo apt-get install portmap 
 sudo apt-get install nis

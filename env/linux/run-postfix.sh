@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://doc.ubuntu-fr.org/postfix
 sudo apt-get install postfix procmail sasl2-bin
 

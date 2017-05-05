@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 sudo apt-get install tomcat7 tomcat7-docs tomcat7-examples tomcat7-admin
 
 #http://doc.ubuntu-fr.org/tomcat

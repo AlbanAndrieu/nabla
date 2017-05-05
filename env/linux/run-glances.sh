@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://github.com/nicolargo/glances
 pip install --upgrade pip
 pip install glances

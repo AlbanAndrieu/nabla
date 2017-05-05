@@ -1,3 +1,5 @@
+#!/bin/bash
+set -xv
 
 OpenId
 http://www.google.com/a/cpanel/nabla.mobi/SetupIdp

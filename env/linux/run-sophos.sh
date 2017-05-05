@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://www.bleepingcomputer.com/forums/t/578679/sophos-antivirus-for-linux/
 savscan -h
 sudo /opt/sophos-av/bin/savlog --today

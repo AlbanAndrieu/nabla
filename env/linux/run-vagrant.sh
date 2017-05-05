@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://docs.vagrantup.com/v2/why-vagrant/index.html
 #http://www.synbioz.com/blog/vagrant_et_la_virtualisation_pour_faciliter_le_developpement
 

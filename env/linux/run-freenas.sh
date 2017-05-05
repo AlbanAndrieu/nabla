@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #GUI
 user : root
 

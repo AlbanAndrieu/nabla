@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://www.virtualbox.org/wiki/Linux_Downloads
 
 sudo nano /etc/apt/sources.list

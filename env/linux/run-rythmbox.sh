@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://doc.ubuntu-fr.org/rhythmbox
 #edit and add radio
 #~/.local/share/rhythmbox/rhythmdb.xml

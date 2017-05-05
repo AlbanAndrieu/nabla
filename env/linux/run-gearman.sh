@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://www.slideshare.net/taehuncho/gearman-1
 #gearman.org/getting-started/
 #NOT up to date sudo apt-get install gearman-job-server

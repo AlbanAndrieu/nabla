@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 sudo apt-get install gcc cpp g++ automake1.9 autoconf libtool flex bison python-software-properties
 
 #On Ubuntu 14 node must be uninstall

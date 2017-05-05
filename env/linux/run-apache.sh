@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #Remove everything
 #sudo apt-get purge apache2*
 sudo apt-get remove apache2

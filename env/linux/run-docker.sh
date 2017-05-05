@@ -1,5 +1,7 @@
-#!/bin/bash -xe
----------------
+#!/bin/bash
+set -xv
+
+#---------------
 
 #See http://philpep.org/blog/integration-continue-avec-jenkins-et-docker
 sudo docker info

@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://github.com/iSECPartners/sslyze
 sudo su - root
 pip install nassl

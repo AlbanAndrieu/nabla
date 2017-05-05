@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://github.com/llaera/slowloris.pl
 #https://www.youtube.com/watch?v=enTei0bVCpo
 

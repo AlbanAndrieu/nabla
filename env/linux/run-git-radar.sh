@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://github.com/michaeldfallen/git-radar
 
 #http://brew.sh/linuxbrew/

@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://github.com/OWASP/O-Saft
 
 sudo apt-get install libssl-dev

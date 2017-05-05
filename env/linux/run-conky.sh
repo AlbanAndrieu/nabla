@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://doc.ubuntu-fr.org/conky
 
 sudo add-apt-repository ppa:norsetto/ppa

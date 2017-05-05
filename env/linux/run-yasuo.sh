@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #See https://github.com/0xsauby/yasuo
 sudo gem install ruby-nmap net-http-persistent mechanize text-table
 cd ${WORSPACE}

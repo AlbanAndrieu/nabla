@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://bbc-news.github.io/wraith/
 #https://github.com/BBC-News/wraith/
 

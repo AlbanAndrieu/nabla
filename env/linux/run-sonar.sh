@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://docs.codehaus.org/display/SONAR/Installing
 #http://doc.ubuntu-fr.org/sonar
 

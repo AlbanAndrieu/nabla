@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://vpscoupons.co/configuring-ufw-firewall-on-ubuntu-12-04/
 
 sudo ufw enable

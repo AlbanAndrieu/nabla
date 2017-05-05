@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://filsbak.free.fr/index.php?app=tutoriels&ctrl=index&act=view&id=1
 
 sudo service elasticsearch status

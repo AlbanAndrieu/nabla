@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://maxolasersquad.blogspot.no/2013/10/install-keepasshttp-on-ubuntu.html
 
 sudo apt-add-repository ppa:jtaylor/keepass

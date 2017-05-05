@@ -1,3 +1,5 @@
+#!/bin/bash
+set -xv
 
 #MD5 check
 openssl md5 target/test-sources.jar
