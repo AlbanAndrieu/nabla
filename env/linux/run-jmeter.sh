@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://arodrigues.developpez.com/tutoriels/java/performance/developper-plan-test-avec-jmeter/
 
 #http://jmeter-plugins.org/wiki/WebDriverTutorial/

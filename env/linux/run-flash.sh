@@ -1,3 +1,5 @@
+#!/bin/bash
+set -xv
 
 -DflashPlayer.command=${flashplayer executable}
 whereis flash

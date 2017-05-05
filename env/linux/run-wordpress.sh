@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #deactivate pagespeed
 
 sudo nano /etc/apache2/mods-available/pagespeed.conf

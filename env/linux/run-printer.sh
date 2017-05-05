@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #smb://parvswprint01/PRINT-PAR-M3-C
 #Xerox 2700 XES Foomatic/xes (recommended)
 

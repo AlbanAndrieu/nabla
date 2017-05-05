@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #check scripts/svn-merge-meld.sh or scripts/svn-merge-meld.py
 #check .subversion/config
 

@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://www.varnish-cache.org/docs/3.0/tutorial/advanced_backend_servers.html#health-checks
 sudo apt-get install varnish
 

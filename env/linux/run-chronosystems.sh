@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #download 
 #http://chrononsystems.com/products/chronon-recording-server
 wget http://chrononsystems.com/downloads/recordingserver-3.20.1.187.zip

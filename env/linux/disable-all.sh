@@ -49,6 +49,7 @@ sudo service osspd stop
 sudo service cups stop
 sudo service cups-browsed stop
 sudo service ypbind stop
+sudo service apt-cacher-ng stop
 
 sudo update-rc.d -f webmin remove
 sudo update-rc.d -f usermin remove

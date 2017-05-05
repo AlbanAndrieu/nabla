@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://tutoriels.itaapy.com/wiki/tutoriel-git/
 
 sudo apt-get install git-core git-doc git-email gitweb gitk

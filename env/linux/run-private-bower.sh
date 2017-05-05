@@ -1,3 +1,5 @@
+#!/bin/bash
+set -xv
 
 #Install private bower
 #https://github.com/Hacklone/private-bower/blob/master/README.md

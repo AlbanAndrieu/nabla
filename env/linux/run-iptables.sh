@@ -1,3 +1,5 @@
+#!/bin/bash
+set -xv
 
 sudo iptables -A INPUT -p tcp -m tcp --dport 4444 -j ACCEPT
 sudo iptables -A INPUT -p tcp -i eth0 --dport 7779 -j ACCEPT

@@ -1,4 +1,5 @@
 #!/bin/bash
+set -xv
 [[ -n "$DEBUG" ]] &&  set -x
 
 #install jetty 6

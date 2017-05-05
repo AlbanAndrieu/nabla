@@ -1,3 +1,5 @@
+#!/bin/bash
+set -xv
 
 cd /workspace
 sudo mkdir fitnesse

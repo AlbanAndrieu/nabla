@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #disable rhnplugin
 # grep enable /etc/yum/pluginconf.d/rhnplugin.conf 
 enabled = 0

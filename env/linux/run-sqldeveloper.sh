@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://askubuntu.com/questions/458554/how-to-install-sql-developer-on-ubuntu-14-04
 
 sudo unzip sqldeveloper-*-no-jre.zip -d /opt/

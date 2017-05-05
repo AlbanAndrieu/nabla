@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://www.yourkit.com/download/
 #http://www.yourkit.com/download/yjp-2014-build-14116-linux.tar.bz2
 #Unpack: tar xfj <archive name>.tar.bz2

@@ -1,3 +1,5 @@
+#!/bin/bash
+#set -xv
 
 #webmin
 
@@ -292,25 +294,6 @@ sudo apt-get install randomize-lines
 
 #http://blog.retep.org/2012/07/05/whoopsie-how-to-disable-it-on-ubuntu-12-04-or-mint-13/
 sudo apt-get remove whoopsie
-
-#messaging
-#http://mylinuxbook.com/how-to-get-pidgin-working-with-gtalk/
-sudo apt-get install pidgin pidgin-sipe pidgin-skype
-#add my google account
-#Username alban.andrieu
-#Domain nabla.mobi
-#Resource home
-#In advanced tab
-#Connection security Use old-style SSL
-#Connect port 5223
-#Connect server  talk.google.com
-#add my misys account
-#Protocol Office Communicator
-#Username alban.andrieu@misys.com
-#Login alban.andrieu@misys.com
-#add my Skype account
-#Username alban.andrieu
-#Local Alias Alban Andrieu
 
 #SVN
 #sudo apt-get install python-nautilus python-configobj python-gtk2 python-glade2 python-svn python-dbus python-dulwich subversion meld

@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://www.zabbix.com/download.php
 #See video https://www.youtube.com/watch?v=S_9XMcuYk5Q
 #Download VMware / VirtualBox (.vmdk)

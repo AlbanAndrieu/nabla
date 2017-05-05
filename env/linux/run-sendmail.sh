@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 sudo gedit /etc/ssmtp/ssmtp.conf
 
 --------------------------

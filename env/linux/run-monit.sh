@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://mmonit.com/monit/
 #http://mmonit.com/screenshots/
 #http://localhost:3737/

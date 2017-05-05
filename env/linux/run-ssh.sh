@@ -1,3 +1,5 @@
+#!/bin/bash
+set -xv
 
 sudo apt-get purge openssh-server openssh-client
 sudo apt-get install openssh-server openssh-client

@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://saucelabs.com/java
 
 #Junit C:\sauce-tutorial> mvn archetype:generate -DarchetypeRepository=http://repository-saucelabs.forge.cloudbees.com/release -DarchetypeGroupId=com.saucelabs -DarchetypeArtifactId=quickstart-webdriver-junit -DarchetypeVersion=2.0.5 -DsauceUserName=nabla -DsauceAccessKey=5655798f-14ba-4bc6-9d11-8d039a2517c0

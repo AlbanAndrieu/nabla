@@ -1,3 +1,5 @@
+#!/bin/bash
+set -xv
 
 #https://cisofy.com/documentation/lynis/#installation
 

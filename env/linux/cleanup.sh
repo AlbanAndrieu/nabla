@@ -83,7 +83,7 @@ find . -type d -name '.svn' | xargs rm -r $1
 \rm -Rf /jenkins/maven-repositories/0/
 #\rm -Rf /jenkins/maven-repositories/0/org/owasp
 \rm -Rf /jenkins-slave/maven-repositories/0/org/owasp
-\rm -Rf /jenkins-slave/workspacej
+\rm -Rf /jenkins-slave/workspace
 #\rm -Rf /jenkins/xvfb-*.fbdir/
 #\rm -Rf /jenkins/workspace-tmp
 #\rm -Rf /var/lib/elasticsearch/elasticsearch/nodes/

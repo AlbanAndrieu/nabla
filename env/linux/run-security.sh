@@ -1,3 +1,5 @@
+#!/bin/bash
+set -xv
 
 #TODO disable webcam
 #https://askubuntu.com/questions/528422/enabling-disabling-camera-from-terminal
