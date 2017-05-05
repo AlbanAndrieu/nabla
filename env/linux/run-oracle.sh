@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://blog.whitehorses.nl/2014/03/18/installing-java-oracle-11g-r2-express-edition-and-sql-developer-on-ubuntu-64-bit/
 
 sudo apt-get install alien libaio1 unixodbc

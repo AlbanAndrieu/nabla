@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://github.com/nemerosa/ontrack
 wget https://github.com/nemerosa/ontrack/releases/download/2.13.13/ontrack.jar
 

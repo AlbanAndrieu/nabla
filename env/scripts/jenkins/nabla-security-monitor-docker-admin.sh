@@ -1,10 +1,16 @@
 #!/bin/bash
-set -xv
+#set -xv
+
+red='\e[0;31m'
+green='\e[0;32m'
+NC='\e[0m' # No Color
 
 echo ########### Check Docker disk space usage #######
 
-#Thre reference
-docker history hello-world:latest
+#The reference
+#docker history hello-world:latest
+
+docker run docker/whalesay cowsay boo
 
 docker ps -a -s
 
@@ -26,3 +32,5 @@ docker run -it --net host --pid host --cap-add audit_control \
     docker/docker-bench-security
 
 echo ########### Check ubuntu security #######
+
+exit 0

@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 sudo service newrelic-sysmond status
 
 #install java agent

@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://www.labelmedia.co.uk/blog/posts/setting-up-selenium-server-on-a-headless-jenkins-ci-build-machine.html
 sudo apt-get install xvfb
 

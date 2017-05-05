@@ -60,7 +60,7 @@ fi
 
 if [ -z "$PROJECT_EXTRACTION" ]
 then
-  export PROJECT_EXTRACTION=cpp
+  export PROJECT_EXTRACTION=nabla-cpp
 fi
 
 if [ -z "$TERM" ]

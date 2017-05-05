@@ -1,3 +1,5 @@
+#!/bin/bash
+set -xv
 
 #Fix broken package
 #remove xorg

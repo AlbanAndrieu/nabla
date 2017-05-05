@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://doc.ubuntu-fr.org/trafic
 
 sudo apt-get install wireshark

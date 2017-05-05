@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://doc.ubuntu-fr.org/vnc
 #https://www.digitalocean.com/community/articles/how-to-setup-vnc-for-ubuntu-12
 

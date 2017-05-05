@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://www.mediawiki.org/wiki/Continuous_integration/Zuul
 #https://www.npmjs.org/package/zuul
 #http://ci.openstack.org/zuul/

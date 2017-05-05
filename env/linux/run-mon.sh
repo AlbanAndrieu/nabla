@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://www.debianhelp.co.uk/mon.htm
 sudo apt-get install mon 
 

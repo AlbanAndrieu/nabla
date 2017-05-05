@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://doc.ubuntu-fr.org/owncloud
 #install owncloud inside ubuntu
 dans env/script/mountall.sh

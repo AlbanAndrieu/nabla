@@ -1,3 +1,5 @@
+#!/bin/bash
+set -xv
 
 #opencl
 #https://software.intel.com/en-us/articles/opencl-drivers#philinux

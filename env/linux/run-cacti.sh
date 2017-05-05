@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://fr.wikipedia.org/wiki/Cacti
 #http://doc.ubuntu-fr.org/cacti
 

@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+on+Ubuntu
 
 #Add in software source :

@@ -71,6 +71,7 @@ service memcached stop
 service cups stop
 service cups-browsed stop
 service ypbind stop
+service apt-cacher-ng stop
 
 service ansible-tower stop
 

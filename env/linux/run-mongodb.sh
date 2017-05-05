@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://www.mongodb.org/downloads
 
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv 7F0CEB10

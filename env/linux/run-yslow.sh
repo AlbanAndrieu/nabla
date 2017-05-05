@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #as root
 
 npm install phantomjs -g

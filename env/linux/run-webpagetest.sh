@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://developers.google.com/speed/pagespeed/?hl=fr
 
 #Apache

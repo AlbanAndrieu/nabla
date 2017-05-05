@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://www.haka-security.org/hakabana.html
 
 sudo dpkg -i elasticsearch-5.1.1.deb

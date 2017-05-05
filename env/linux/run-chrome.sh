@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #Add DevTools terminal
 #https://chrome.google.com/webstore/detail/devtools-terminal/leakmhneaibbdapdoienlkifomjceknl?hl=en
 

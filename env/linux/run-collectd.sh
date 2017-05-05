@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://www.elastic.co/blog/logstash-collectd-input-plugin/
 
 #ansible

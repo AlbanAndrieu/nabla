@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://doc.ubuntu-fr.org/mysql
 
 #http://doc.ubuntu-fr.org/lamp

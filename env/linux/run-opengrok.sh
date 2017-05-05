@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://github.com/OpenGrok/OpenGrok/wiki/How-to-install-OpenGrok
 
 cd /workspace

@@ -1,3 +1,5 @@
+#!/bin/bash
+set -xv
 
 #https://securitychecklist.org/
 openssl s_client -showcerts -connect mgrvkenvi031.misys.global.ad:19084 |& grep '^Server public key'

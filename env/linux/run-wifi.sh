@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 sudo ifconfig
 
 sudo ifconfig wlan1 down

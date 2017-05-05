@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://www.youtube.com/watch?v=DM_UQVVVtoY
 #http://www.debuntu.org/ldap-server-and-linux-ldap-clients
 

@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://www.ntop.org/products/traffic-analysis/ntop/
 
 #See http://localhost:3000/

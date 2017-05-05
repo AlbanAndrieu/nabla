@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #Check jenkins job docker-scap-admin
 #git clone https://github.com/GovReady/ubuntu-scap.git || true
 #cd ubuntu-scap || true

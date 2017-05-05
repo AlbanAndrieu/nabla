@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 sudo service crowd start
 http://localhost:8095/crowd/
 #user : Alban Andrieu

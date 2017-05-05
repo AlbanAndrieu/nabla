@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://ericreboisson.developpez.com/tutoriels/install-subversion/
 lance  svn
 #svnserve -d

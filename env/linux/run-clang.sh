@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #sudo apt-get install ocaml ocaml-native-compilers camlp4-extra opam
 sudo apt-get install clang
 

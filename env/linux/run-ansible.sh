@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://blog.trifork.com/2013/03/26/ansible-next-generation-configuration-management/
 
 #install ansible using apt (BUT instead use pip in order to have a more recent version of ansible)

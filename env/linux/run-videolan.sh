@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://www.videolan.org/doc/vlc-user-guide/fr/ch07.html
 
 #sudo apt-get install mozilla-plugin-vlc

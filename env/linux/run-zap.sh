@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #See https://zaproxy.blogspot.fr/
 
 #Add zap proxy configuration with firefox

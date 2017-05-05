@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://help.ubuntu.com/community/EC2StartersGuide
 sudo apt-get install ec2-api-tools
 #copy key pair and ceritificat to

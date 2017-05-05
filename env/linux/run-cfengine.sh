@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #https://cfengine.com/inside/myspace
 
 #http://cfengine.com/cfengine-linux-distros

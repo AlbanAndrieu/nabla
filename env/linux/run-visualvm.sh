@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://visualvm.java.net/
 #https://java.net/projects/visualvm/downloads/download/release138/visualvm_138.zip
 

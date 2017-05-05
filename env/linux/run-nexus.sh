@@ -1,3 +1,6 @@
+#!/bin/bash
+set -xv
+
 #http://www.sonatype.org/nexus/
 
 sudo cp nexus-2.2-01-bundle.tar.gz /workspace

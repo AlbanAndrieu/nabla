@@ -1,3 +1,5 @@
+#!/bin/bash
+set -xv
 
 #reinstall wine
 sudo add-apt-repository ppa:ubuntu-wine/ppa
