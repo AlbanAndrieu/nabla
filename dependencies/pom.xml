@@ -1579,7 +1579,7 @@
                 <!-- see http://repo1.maven.org/maven2/org/slf4j/slf4j-parent/1.7.16/slf4j-parent-1.7.16.pom for compliance with log4j and logback version -->
                 <slf4j.version>1.7.16</slf4j.version>
                 <log4j.version>1.2.17</log4j.version>
-                <logback.version>1.1.5</logback.version>
+                <logback.version>1.1.7</logback.version>
                 <commons.dbcp>1.2.2</commons.dbcp>
 
                 <blazeds.version>3.2.0.3978</blazeds.version>
@@ -1633,7 +1633,7 @@
                 <jsr311.api.version>1.1.1</jsr311.api.version>
                 <!--<wsdl4j.version>1.6.3</wsdl4j.version>-->
                 <wsdl4j.version>1.6.2</wsdl4j.version> <!-- works with cxf 2.7.14 -->
-                <groovy.version>2.4.8</groovy.version> <!--  groovy-eclipse 2.9.2 only support 2.4.8 -->
+                <groovy.version>2.4.11</groovy.version> <!--  groovy-eclipse 2.9.2 only support 2.4.8 -->
                 <http.builder.version>0.6</http.builder.version>
                 <groovy.eclipse.compiler.version>2.9.2-01</groovy.eclipse.compiler.version>
                 <groovy.eclipse.batch.version>2.4.3-01</groovy.eclipse.batch.version>
@@ -4217,7 +4217,7 @@
                                                 <additionalparam>-types</additionalparam>
                                                 <additionalparam>-visibility</additionalparam>
                                                 <additionalparam>-collpackages</additionalparam>
-                                                <!--<additionalparam>--allow-script-in-comments</additionalparam>-->
+                                                <!--<additionalparam>allow-script-in-comments</additionalparam>-->
 
 												<links>
 													<link>http://docs.oracle.com/javase/8/docs/api/</link>

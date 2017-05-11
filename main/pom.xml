@@ -2146,7 +2146,7 @@
 																				<additionalparam>-types</additionalparam>
 																				<additionalparam>-visibility</additionalparam>
 																				<additionalparam>-collpackages</additionalparam>
-																				<!--<additionalparam>--allow-script-in-comments</additionalparam>-->
+																				<!--<additionalparam>allow-script-in-comments</additionalparam>-->
                                                                         </configuration>
                                                                         <!--
 																		<dependencies>
