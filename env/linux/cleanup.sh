@@ -1,9 +1,10 @@
 #!/bin/bash
 set -xv
 
-echo "install bleachbit"
+echo "Install bleachbit"
 sudo apt-get install bleachbit
 
+echo "Start cleaning"
 #http://doc.ubuntu-fr.org/nettoyer_ubuntu
 \rm -Rf /usr/share/tomcat6/.m2/repository/
 \rm -Rf ~/.m2/repository/
@@ -23,12 +24,6 @@ sudo apt-get install bleachbit
 \rm -Rf ~/.node-gyp
 #\rm -Rf ~/.npm
 \rm -Rf ~/.ievms
-\rm -Rf ~/.jenkins
-\rm -Rf /jenkins/.m2/.repository
-#\rm -Rf /jenkins/config-history/*
-#\rm -Rf /var/lib/jenkins/tools/hudson.model.JDK/*
-#\rm -Rf /var/lib/jenkins/tools/*
-\rm -Rf ~/.sonar
 \rm -Rf ~/tmp
 \rm -f ~/*.db
 #\rm -Rf  ~/.vagrant.d/boxes
@@ -51,18 +46,8 @@ sudo \rm -Rf /var/log/elasticsearch/elasticsearch.log*
 \rm -Rf /var/lib/redis/*.rdb
 \rm -Rf /var/lib/collectd/rrd/*
 \rm -Rf /workspace/jboss-as-7.1.1.Final/standalone/data/content*
-#\rm -Rf /backup/jenkins/thin/*
 
-#Fix issue sendmail-largeboxes
-#http://unix.stackexchange.com/questions/134136/how-to-access-and-manage-a-large-mailbox-11-gb
-#sudo rm /var/spool/mail/BOGUS.jenkins.N4Af
-#sudo rm /var/spool/mail/BOGUS.www-data.GOLf
-#sudo rm /var/spool/mail/mon
-#sudo rm /var/spool/mail/www-data
-#sudo rm /var/spool/mail/nobody
-#sudo rm /var/spool/mail/nagios
-#sudo rm /var/spool/mail/mail
-#ll /var/spool/mail/
+./cleanup-jenkins.sh
 
 find ~/.thumbnails -type f -atime +7 -exec rm {} \;
 
@@ -70,25 +55,16 @@ find ~/.thumbnails -type f -atime +7 -exec rm {} \;
 
 #\rm -Rf workspace-cpp
 #\rm -Rf workspace-j2ee
-#\rm -Rf hudson
 
 #find . -type f -name '*~' | xargs rm -r $1
 find . -type f -name '*\.log' | xargs rm -r $1
 find . -type d -name '.svn' | xargs rm -r $1
-#sudo find /jenkins -type d -name 'workspace' | grep -v 'builds' | xargs sudo rm -r $1
-#todo remove /jenkins/jobs/nabla-servers-bower-sample-nightly/htmlreports/GC_Report
-#AND
-#/jenkins/jobs/nabla-servers-bower-sample-nightly/htmlreports/HAR_Report
-#\rm -Rf /jenkins-slave
-\rm -Rf /jenkins/maven-repositories/0/
-#\rm -Rf /jenkins/maven-repositories/0/org/owasp
-\rm -Rf /jenkins-slave/maven-repositories/0/org/owasp
-\rm -Rf /jenkins-slave/workspace
-#\rm -Rf /jenkins/xvfb-*.fbdir/
-#\rm -Rf /jenkins/workspace-tmp
+
 #\rm -Rf /var/lib/elasticsearch/elasticsearch/nodes/
 #https://community.spiceworks.com/topic/783490-webm-files-in-virtualbox-are-they-safe-to-delete
 \rm -Rf ~/VirtualBox VMs/**/*.webm
+
+echo "End cleaning"
 
 #https://doc.ubuntu-fr.org/ecryptfs
 #cd ~/Private
@@ -125,3 +101,15 @@ dpkg -l | awk '{print $2}' | grep -E "linux-(image|headers)-$(uname -r | cut -d-
 #delete mail
 #http://apple.stackexchange.com/questions/28745/how-do-i-delete-all-terminal-mail
 #: > /var/mail/$USER
+#Fix issue sendmail-largeboxes
+#http://unix.stackexchange.com/questions/134136/how-to-access-and-manage-a-large-mailbox-11-gb
+#sudo rm /var/spool/mail/BOGUS.jenkins.N4Af
+#sudo rm /var/spool/mail/BOGUS.www-data.GOLf
+#sudo rm /var/spool/mail/mon
+#sudo rm /var/spool/mail/www-data
+#sudo rm /var/spool/mail/nobody
+#sudo rm /var/spool/mail/nagios
+#sudo rm /var/spool/mail/mail
+#ll /var/spool/mail/
+
+exit 0

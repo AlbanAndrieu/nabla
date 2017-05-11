@@ -54,6 +54,8 @@ git gc
 git fetch --tags
 git remote prune origin
 for branch in `git branch -r --merged | grep -v '\*\|master\|develop\|release'`; do echo -e `git show --format="%ci %cr %an" $branch | head -n 1` \\t$branch; done | sort -r
+#Massive change in config.xml
+#find /jenkins/jobs -type f -name "config.xml" -exec sed -i 's/<name>nabla.jenkins<\/name>/<name>nabla jenkins<\/name>/g' {} +
 git tag -d LATEST_SUCCESSFULL
 git push --delete origin LATEST_SUCCESSFULL
 

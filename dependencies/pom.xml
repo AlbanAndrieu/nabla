@@ -1667,7 +1667,7 @@
                 <gmaven.runtime.version>${maven.gmaven.plugin.version}</gmaven.runtime.version>
                 <!--<gmaven.runtime.number.version>1.7</gmaven.runtime.number.version>-->
                 <gmaven.runtime.number.version>2.0</gmaven.runtime.number.version>
-                <maven.groovy.plugin.version>1.5</maven.groovy.plugin.version>
+                <maven.groovy.plugin.version>2.0</maven.groovy.plugin.version>
                 <jspc.compiler.tomcat6.version>2.0-alpha-3</jspc.compiler.tomcat6.version>
                 <!--<izpack.version>5.0.0-rc4</izpack.version> buggy version-->
 				<!-- <izpack.version>5.0.6</izpack.version> OK -->
@@ -1999,7 +1999,7 @@
 																	<pluginExecutionFilter>
 																		<groupId>org.zeroturnaround</groupId>
 																		<artifactId>jrebel-maven-plugin</artifactId>
-																		<versionRange>[${maven.jrebel.plugin.version},)</versionRange>
+																		<versionRange>[0.0,)</versionRange>
 																		<goals>
 																			<goal>generate</goal>
 																		</goals>
@@ -2012,7 +2012,7 @@
 																	<pluginExecutionFilter>
 																		<groupId>com.github.kongchen</groupId>
 																		<artifactId>swagger-maven-plugin</artifactId>
-																		<versionRange>[${maven.swagger.plugin.version},)</versionRange>
+																		<versionRange>[0.0,)</versionRange>
 																		<goals>
 																			<goal>generate</goal>
 																		</goals>
@@ -2025,7 +2025,7 @@
 																	<pluginExecutionFilter>
 																		<groupId>org.commonjava.maven.plugins</groupId>
 																		<artifactId>directory-maven-plugin</artifactId>
-																		<versionRange>[${maven.directory.plugin},)</versionRange>
+																		<versionRange>[0.0,)</versionRange>
 																		<goals>
 																			<goal>highest-basedir</goal>
 																		</goals>
@@ -2038,7 +2038,7 @@
                                                                     <pluginExecutionFilter>
                                                                         <groupId>org.owasp</groupId>
                                                                         <artifactId>dependency-check-maven</artifactId>
-                                                                        <versionRange>[${maven.dependency.check.plugin.version},)</versionRange>
+                                                                        <versionRange>[0.0,)</versionRange>
                                                                         <goals>
                                                                             <goal>check</goal>
                                                                         </goals>
@@ -2051,7 +2051,7 @@
 																		<pluginExecutionFilter>
 																			<groupId>com.sebastian-daschner</groupId>
 																			<artifactId>jaxrs-analyzer-maven-plugin</artifactId>
-																			<versionRange>[${maven.jaxrs.analyzer.plugin.version},)</versionRange>
+																			<versionRange>[0.0,)</versionRange>
 																			<goals>
 																				<goal>analyze-jaxrs</goal>
 																			</goals>
@@ -2064,7 +2064,7 @@
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.jacoco</groupId>
                                                                                 <artifactId>jacoco-maven-plugin</artifactId>
-                                                                                <versionRange>[${maven.jacoco.plugin.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>prepare-agent</goal>
                                                                                 </goals>
@@ -2077,7 +2077,7 @@
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>net.alchim31.maven</groupId>
                                                                                 <artifactId>scala-maven-plugin</artifactId>
-                                                                                <versionRange>[${maven.scala.plugin.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>compile</goal>
                                                                                         <goal>testCompile</goal>
@@ -2086,12 +2086,12 @@
                                                                         <action>
                                                                                 <ignore />
                                                                         </action>
-                                                                </pluginExecution>
+                                                                </pluginExecution>                                                            
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.apache.maven.plugins</groupId>
                                                                                 <artifactId>maven-antrun-plugin</artifactId>
-                                                                                <versionRange>[${maven.antrun.plugin.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>run</goal>
                                                                                 </goals>
@@ -2111,7 +2111,7 @@
                                                                     <pluginExecutionFilter>
                                                                         <groupId>com.mobilvox.ossi.mojo</groupId>
                                                                         <artifactId>maven-js-plugin</artifactId>
-                                                                        <versionRange>[${maven.js.plugin.version},)</versionRange>
+                                                                        <versionRange>[0.0,)</versionRange>
                                                                         <goals>
                                                                             <goal>compress-custom</goal>
                                                                         </goals>
@@ -2124,7 +2124,7 @@
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.codehaus.mojo</groupId>
                                                                                 <artifactId>aspectj-maven-plugin</artifactId>
-                                                                                <versionRange>[${maven.aspectj.plugin.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>test-compile</goal>
                                                                                         <goal>compile</goal>
@@ -2138,7 +2138,7 @@
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.jvnet.jaxb2.maven2</groupId>
                                                                                 <artifactId>maven-jaxb2-plugin</artifactId>
-                                                                                <versionRange>[${maven.jaxb2.plugin.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>generate</goal>
                                                                                 </goals>
@@ -2151,7 +2151,7 @@
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.andromda.maven.plugins</groupId>
                                                                                 <artifactId>andromda-cartridge-plugin</artifactId>
-                                                                                <versionRange>[${andromda.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>test</goal>
                                                                                 </goals>
@@ -2164,7 +2164,7 @@
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.andromda.maven.plugins</groupId>
                                                                                 <artifactId>andromda-maven-plugin</artifactId>
-                                                                                <versionRange>[${andromda.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>run</goal>
                                                                                 </goals>
@@ -2177,7 +2177,7 @@
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.andromda.maven.plugins</groupId>
                                                                                 <artifactId>andromdapp-maven-plugin</artifactId>
-                                                                                <versionRange>[${andromda.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>generate</goal>
                                                                                         <goal>clean-structure</goal>
@@ -2194,9 +2194,7 @@
                                                                     <pluginExecutionFilter>
                                                                         <groupId>org.apache.maven.plugins</groupId>
                                                                         <artifactId>maven-compiler-plugin</artifactId>
-                                                                        <versionRange>
-                                                                            [${maven.compiler.plugin.version},)
-                                                                        </versionRange>
+                                                                        <versionRange>[0.0,)</versionRange>
                                                                         <goals>
                                                                             <goal>testCompile</goal>
                                                                             <goal>compile</goal>
@@ -2207,12 +2205,13 @@
                                                                     </action>
                                                                 </pluginExecution>
                                                                 -->
-                                                                <!-- eclipse has now a m2e connector -->
+                                                                <!-- eclipse has now a m2e connector 
+                                                                got to https://marketplace.eclipse.org/content/m2e-connector-maven-dependency-plugin -->
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.apache.maven.plugins</groupId>
                                                                                 <artifactId>maven-dependency-plugin</artifactId>
-                                                                                <versionRange>[${maven.dependency.plugin.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>copy</goal>
                                                                                         <goal>unpack</goal>
@@ -2227,7 +2226,7 @@
                                                                     <pluginExecutionFilter>
                                                                         <groupId>org.apache.maven.plugins</groupId>
                                                                         <artifactId>maven-dependency-plugin</artifactId>
-                                                                        <versionRange>[${maven.dependency.plugin.version},)</versionRange>
+                                                                        <versionRange>[0.0,)</versionRange>
                                                                         <goals>
                                                                             <goal>copy-dependencies</goal>
                                                                         </goals>
@@ -2240,7 +2239,7 @@
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.andromda.maven.plugins</groupId>
                                                                                 <artifactId>andromda-bootstrap-plugin</artifactId>
-                                                                                <versionRange>[${andromda.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>run</goal>
                                                                                 </goals>
@@ -2253,7 +2252,7 @@
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.codehaus.mojo</groupId>
                                                                                 <artifactId>hibernate3-maven-plugin</artifactId>
-                                                                                <versionRange>[${hibernate3.maven.plugin.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>hbm2ddl</goal>
                                                                                 </goals>
@@ -2266,7 +2265,7 @@
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.codehaus.mojo</groupId>
                                                                                 <artifactId>sql-maven-plugin</artifactId>
-                                                                                <versionRange>[${maven.sql.plugin.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>execute</goal>
                                                                                 </goals>
@@ -2279,7 +2278,7 @@
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.liquibase</groupId>
                                                                                 <artifactId>liquibase-maven-plugin</artifactId>
-                                                                                <versionRange>[${maven.org.liquibase.plugin.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>dbDoc</goal>
                                                                                         <goal>update</goal>
@@ -2293,7 +2292,7 @@
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.codehaus.mojo</groupId>
                                                                                 <artifactId>properties-maven-plugin</artifactId>
-                                                                                <versionRange>[${maven.properties.plugin.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>read-project-properties</goal>
                                                                                         <goal>write-active-profile-properties</goal>
@@ -2307,7 +2306,7 @@
                                                                     <pluginExecutionFilter>
                                                                         <groupId>org.apache.maven.plugins</groupId>
                                                                         <artifactId>maven-shade-plugin</artifactId>
-                                                                        <versionRange>[${maven.shade.plugin.version},)</versionRange>
+                                                                        <versionRange>[0.0,)</versionRange>
                                                                         <goals>
                                                                             <goal>shade</goal>
                                                                         </goals>
@@ -2318,9 +2317,24 @@
                                                                 </pluginExecution>
                                                                 <pluginExecution>
                                                                         <pluginExecutionFilter>
+                                                                               <groupId>org.codehaus.mojo</groupId>
+                                                                                <artifactId>groovy-maven-plugin</artifactId>
+                                                                                <versionRange>[0.0,)</versionRange>
+                                                                                <goals>
+                                                                                        <goal>execute</goal>
+                                                                                        <goal>testCompile</goal>
+                                                                                        <goal>compile</goal>
+                                                                                </goals>
+                                                                        </pluginExecutionFilter>
+                                                                        <action>
+                                                                                <ignore></ignore>
+                                                                        </action>
+                                                                </pluginExecution>                                                                
+                                                                <pluginExecution>
+                                                                        <pluginExecutionFilter>
                                                                                 <groupId>org.codehaus.gmaven</groupId>
                                                                                 <artifactId>gmaven-plugin</artifactId>
-                                                                                <versionRange>[${maven.gmaven.plugin.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>execute</goal>
                                                                                         <goal>testCompile</goal>
@@ -2335,7 +2349,7 @@
                                                                     <pluginExecutionFilter>
                                                                         <groupId>org.sonatype.flexmojos</groupId>
                                                                         <artifactId>flexmojos-maven-plugin</artifactId>
-                                                                        <versionRange>[${maven.flexmojos.plugin.version},)</versionRange>
+                                                                        <versionRange>[0.0,)</versionRange>
                                                                         <goals>
                                                                             <goal>compile-swf</goal>
                                                                             <goal>test-compile</goal>
@@ -2349,7 +2363,7 @@
                                                                     <pluginExecutionFilter>
                                                                         <groupId>org.codehaus.mojo</groupId>
                                                                         <artifactId>apt-maven-plugin</artifactId>
-                                                                        <versionRange>[${maven.apt.plugin.version},)</versionRange>
+                                                                        <versionRange>[0.0,)</versionRange>
                                                                         <goals>
                                                                             <goal>process</goal>
                                                                             <goal>test-process</goal>
@@ -2363,7 +2377,7 @@
                                                                     <pluginExecutionFilter>
                                                                         <groupId>org.apache.maven.plugins</groupId>
                                                                         <artifactId>maven-javadoc-plugin</artifactId>
-                                                                        <versionRange>[${maven.javadoc.plugin.version},)</versionRange>
+                                                                        <versionRange>[0.0,)</versionRange>
                                                                         <goals>
                                                                             <goal>javadoc</goal>
                                                                         </goals>
@@ -2376,7 +2390,7 @@
                                                                     <pluginExecutionFilter>
                                                                         <groupId>org.apache.maven.plugins</groupId>
                                                                         <artifactId>maven-enforcer-plugin</artifactId>
-                                                                        <versionRange>[${maven.enforcer.plugin.version},)</versionRange>
+                                                                        <versionRange>[0.0,)</versionRange>
                                                                         <goals>
                                                                             <goal>enforce</goal>
                                                                         </goals>
@@ -2389,7 +2403,7 @@
                                                                     <pluginExecutionFilter>
                                                                         <groupId>org.codehaus.mojo.jspc</groupId>
                                                                         <artifactId>jspc-maven-plugin</artifactId>
-                                                                        <versionRange>[${maven.jspc.plugin.version},)</versionRange>
+                                                                        <versionRange>[0.0,)</versionRange>
                                                                         <goals>
                                                                             <goal>compile</goal>
                                                                             <goal>process-sources</goal>
@@ -2403,7 +2417,7 @@
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>com.ctp.seam.maven</groupId>
                                                                                 <artifactId>maven-hotdeploy-plugin</artifactId>
-                                                                                <versionRange>[${maven.hotdeploy.plugin.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>compile</goal>
                                                                                 </goals>
@@ -2416,7 +2430,7 @@
                                                                     <pluginExecutionFilter>
                                                                             <groupId>org.apache.cxf</groupId>
                                                                             <artifactId>cxf-java2ws-plugin</artifactId>
-                                                                            <versionRange>[${cxf.version},)</versionRange>
+                                                                            <versionRange>[0.0,)</versionRange>
                                                                             <goals>
                                                                                 <goal>java2ws</goal>
                                                                             </goals>
@@ -2430,7 +2444,7 @@
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.codehaus.mojo</groupId>
                                                                                 <artifactId>build-helper-maven-plugin</artifactId>
-                                                                                <versionRange>[${maven.build.helper.plugin.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>add-source</goal>
                                                                                         <goal>add-test-source</goal>
@@ -2446,7 +2460,7 @@
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>com.googlecode.maven-java-formatter-plugin</groupId>
                                                                                 <artifactId>maven-java-formatter-plugin</artifactId>
-                                                                                <versionRange>[${maven.java.formatter.plugin.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>format</goal>
                                                                                 </goals>
@@ -2459,7 +2473,7 @@
                                                                         <pluginExecutionFilter>
                                                                           <groupId>org.codehaus.mojo</groupId>
                                                                           <artifactId>gwt-maven-plugin</artifactId>
-                                                                          <versionRange>[${maven.gwt.plugin.version},)</versionRange>
+                                                                          <versionRange>[0.0,)</versionRange>
                                                                           <goals>
                                                                             <goal>resources</goal>
                                                                             <goal>compile</goal>
@@ -2473,7 +2487,7 @@
                                                                     <pluginExecutionFilter>
                                                                         <groupId>com.vaadin</groupId>
                                                                         <artifactId>vaadin-maven-plugin</artifactId>
-                                                                        <versionRange>[${maven.vaadin.plugin.version},)</versionRange>
+                                                                        <versionRange>[0.0,)</versionRange>
                                                                         <goals>
                                                                             <goal>update-widgetset</goal>
                                                                         </goals>
@@ -2486,7 +2500,7 @@
                                                                   <pluginExecutionFilter>
                                                                     <groupId>net.kindleit</groupId>
                                                                     <artifactId>maven-gae-plugin</artifactId>
-                                                                    <versionRange>[${maven.gae.plugin.version},)</versionRange>
+                                                                    <versionRange>[0.0,)</versionRange>
                                                                     <goals>
                                                                       <goal>unpack</goal>
                                                                     </goals>
@@ -2500,7 +2514,7 @@
                                                                   <pluginExecutionFilter>
                                                                     <groupId>org.bsc.maven</groupId>
                                                                     <artifactId>maven-processor-plugin</artifactId>
-                                                                    <versionRange>[${maven.processor.plugin.version},)</versionRange>
+                                                                    <versionRange>[0.0,)</versionRange>
                                                                     <goals>
                                                                       <goal>process</goal>
                                                                     </goals>
@@ -2526,7 +2540,7 @@
                                                                     <pluginExecutionFilter>
                                                                             <groupId>org.codehaus.mojo</groupId>
                                                                             <artifactId>xml-maven-plugin</artifactId>
-                                                                            <versionRange>[${maven.xml.plugin.version},)</versionRange>
+                                                                            <versionRange>[0.0,)</versionRange>
                                                                             <goals>
                                                                                     <goal>transform</goal>
                                                                             </goals>
@@ -2540,7 +2554,7 @@
                                                                   <pluginExecutionFilter>
                                                                     <groupId>de.smartics.maven.plugin</groupId>
                                                                     <artifactId>maven-buildmetadata-plugin</artifactId>
-                                                                    <versionRange>[${maven.buildmetadata.plugin.version},)</versionRange>
+                                                                    <versionRange>[0.0,)</versionRange>
                                                                     <goals>
                                                                       <goal>provide-buildmetadata</goal>
                                                                     </goals>
@@ -2554,7 +2568,7 @@
                                                                         <pluginExecutionFilter>
                                                                                 <groupId>org.apache.felix</groupId>
                                                                                 <artifactId>maven-bundle-plugin</artifactId>
-                                                                                <versionRange>[${maven.bundle.plugin.version},)</versionRange>
+                                                                                <versionRange>[0.0,)</versionRange>
                                                                                 <goals>
                                                                                         <goal>manifest</goal>
                                                                                 </goals>
@@ -2567,7 +2581,7 @@
                                                                     <pluginExecutionFilter>
                                                                         <groupId>org.jboss.errai</groupId>
                                                                         <artifactId>jacoco-gwt-maven-plugin</artifactId>
-                                                                        <versionRange>[${maven.jacoco.gwt.plugin.version},)</versionRange>
+                                                                        <versionRange>[0.0,)</versionRange>
                                                                         <goals>
                                                                             <goal>prepare-agent</goal>
                                                                         </goals>
@@ -2580,7 +2594,7 @@
                                                                     <pluginExecutionFilter>
                                                                         <groupId>org.apache.cxf</groupId>
                                                                         <artifactId>cxf-codegen-plugin</artifactId>
-                                                                        <versionRange>[${cxf.version},)</versionRange>
+                                                                        <versionRange>[0.0,)</versionRange>
                                                                         <goals>
                                                                             <goal>wsdl2java</goal>
                                                                         </goals>
@@ -2593,7 +2607,7 @@
                                                                     <pluginExecutionFilter>
                                                                         <groupId>org.owasp</groupId>
                                                                         <artifactId>dependency-check-maven</artifactId>
-                                                                        <versionRange>[${maven.dependency.check.plugin.version},)</versionRange>
+                                                                        <versionRange>[0.0,)</versionRange>
                                                                         <goals>
                                                                             <goal>check</goal>
                                                                         </goals>
@@ -2606,7 +2620,7 @@
                                                                     <pluginExecutionFilter>
                                                                         <groupId>com.github.eirslett</groupId>
                                                                         <artifactId>frontend-maven-plugin</artifactId>
-                                                                        <versionRange>[${maven.frontend.plugin.version},)</versionRange>
+                                                                        <versionRange>[0.0,)</versionRange>
                                                                         <goals>
                                                                             <goal>install-node-and-npm</goal>
                                                                             <goal>npm</goal>
