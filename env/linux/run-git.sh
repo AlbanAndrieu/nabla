@@ -14,7 +14,7 @@ nano .bashrc
 source ~/.git-prompt.sh
 PS1='\[\e[1;32m\][\u\[\e[m\]@\[\e[1;33m\]\h\[\e[1;34m\] \w]\[\e[1;36m\] $(__git_ps1 " (%s)") \$\[\e[1;37m\] '
 
-git config --global user.email "alban.andrieu@misys.com"
+git config --global user.email "alban.andrieu@free.fr"
 git config --global user.name "Andrieu, Alban"
 git config --global core.autocrlf input
 #git config --global credential.helper 'cache --timeout=86400' # 86400 seconds is 24 hours
