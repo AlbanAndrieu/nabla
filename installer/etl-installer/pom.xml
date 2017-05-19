@@ -24,6 +24,11 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
     <app.subpath>${project.artifactId}-${project.version}</app.subpath>
     <app.version>${project.version}</app.version>
       
+    <izpack.version>5.0.0</izpack.version>
+    <izpack.compiler.version>${izpack.version}</izpack.compiler.version>
+    <izpack.standalone.compiler.version>4.3.5</izpack.standalone.compiler.version>
+    <maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
+          
     <download.dir>${project.build.directory}/downloads</download.dir>
 
     <groovy.version>1.5.6</groovy.version>
