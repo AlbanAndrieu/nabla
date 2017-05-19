@@ -1675,8 +1675,14 @@
 				<izpack.version>5.0.10</izpack.version>				
                 <izpack.compiler.version>${izpack.version}</izpack.compiler.version>
                 <izpack.standalone.compiler.version>4.3.5</izpack.standalone.compiler.version>
+                <!--
                 <node.version>0.10.32</node.version>
                 <npm.version>2.7.1</npm.version>
+                -->
+                
+                <npm.version>4.2.0</npm.version>
+		<node.version>7.8.0</node.version>
+                <yarn.version>0.16.1</yarn.version>
 
                 <jaxws.rt.version>2.2.8</jaxws.rt.version>
                 <jaxws.tools.version>2.2.5</jaxws.tools.version>
@@ -1892,7 +1898,7 @@
                 <maven.pitest.plugin.version>1.1.11</maven.pitest.plugin.version>
                 <maven.cxx.plugin.version>0.0.5-SNAPSHOT</maven.cxx.plugin.version>
                 <maven.pax.plugin.version>1.6.0</maven.pax.plugin.version>
-                <maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
+                <maven.izpack.plugin.version>5.1.0</maven.izpack.plugin.version>
                 <!--TODO <maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>-->
 				<!-- http://stackoverflow.com/questions/30459260/jacoco-sonarqube-incompatible-version-1007 -->
 				<maven.jacoco.plugin.version>${jacoco.version}</maven.jacoco.plugin.version>
@@ -3007,8 +3013,10 @@
 									<configuration>
 										<nodeVersion>v${node.version}</nodeVersion>
 										<npmVersion>${npm.version}</npmVersion>
+										<yarnVersion>v${yarn.version}</yarnVersion>
 										<!-- <nodeDownloadRoot>http://home.nabla.mobi/html/download/nodejs/</nodeDownloadRoot>
-											<npmDownloadRoot>http://home.nabla.mobi/html/download/npm/-/</npmDownloadRoot> -->
+											<npmDownloadRoot>http://home.nabla.mobi/html/download/npm/-/</npmDownloadRoot>
+											<yarnDownloadRoot>http://home.nabla.mobi/html/download//yarn/</yarnDownloadRoot> -->
 									</configuration>
                                 </plugin>
                                 <plugin>
