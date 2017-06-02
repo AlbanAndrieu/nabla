@@ -60,7 +60,8 @@ sudo ln -s /usr/lib/jni/libswt-* ~/.swt/lib/linux/x86_64/
 4. New m2e milestone: http://download.eclipse.org/technology/m2e/milestones/1.5  (https://bugs.eclipse.org/bugs/show_bug.cgi?id=420848)
 
 #http://stackoverflow.com/questions/14791843/eclipse-add-tomcat-7-blank-server-name
-cd /usr/local/eclipse/eclipse-luna-workspace-visma/.metadata/.plugins/org.eclipse.core.runtime/.settings
+#cd /usr/local/eclipse/eclipse-luna-workspace-visma/.metadata/.plugins/org.eclipse.core.runtime/.settings
+cd ~/workspace/.metadata/.plugins/org.eclipse.core.runtime/.settings
 rm -Rf org.eclipse.wst.server.core.prefs org.eclipse.jst.server.tomcat.core.prefs
 rm -Rf /usr/local/eclipse/neon-4.6/p2/org.eclipse.equinox.p2.repository/cache/
 sudo chown -R albandri:albandri /usr/local/eclipse/neon-4.6/

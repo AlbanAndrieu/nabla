@@ -1,66 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
-	<parent>
-		<groupId>com.nabla.project</groupId>
-		<artifactId>installer</artifactId>
-		<version>1.0.1-SNAPSHOT</version>
-	</parent>
-
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>etl-installer</artifactId>
-	<name>Nabla ETL Installer</name>
-	<packaging>izpack-jar</packaging>
-	<description>Nabla ETL Installer</description>
-
-<!-- TODO http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it/izpack-tomcat/ 
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>installer</artifactId>
+    <groupId>com.nabla.project</groupId>
+    <version>1.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>etl-installer</artifactId>
+  <packaging>izpack-jar</packaging>
+  <name>Nabla ETL Installer</name>
+  <description>Nabla ETL Installer</description>
+  <!-- TODO http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it/izpack-tomcat/ 
 http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it/sample/pom.xml
 -->
-
   <properties>
     <app.group>${project.groupId}</app.group>
     <app.title>${project.name}</app.title>
     <app.subpath>${project.artifactId}-${project.version}</app.subpath>
     <app.version>${project.version}</app.version>
-      
     <izpack.version>5.0.0</izpack.version>
     <izpack.compiler.version>${izpack.version}</izpack.compiler.version>
     <izpack.standalone.compiler.version>4.3.5</izpack.standalone.compiler.version>
     <maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
-          
     <download.dir>${project.build.directory}/downloads</download.dir>
-
     <groovy.version>1.5.6</groovy.version>
     <gant.version>1.3.0</gant.version>
     <scriptom.version>1.5.4</scriptom.version>
     <graphicsbuilder.version>0.5.1</graphicsbuilder.version>
     <jidebuilder.version>1.0</jidebuilder.version>
     <svg-salamander.version>1.0</svg-salamander.version>
-    
     <message.archive>jidebuilder-${project.version}.jar</message.archive>
-
     <groovy.bin.archive>groovy-binary-${groovy.version}.zip</groovy.bin.archive>
     <groovy.bin.url>http://dist.codehaus.org/groovy/distributions/${groovy.bin.archive}</groovy.bin.url>
-
     <groovy.docs.archive>groovy-docs-${groovy.version}.zip</groovy.docs.archive>
     <groovy.docs.url>http://dist.codehaus.org/groovy/distributions/${groovy.docs.archive}</groovy.docs.url>
-
     <gant.archive>gant-${gant.version}_groovy-${groovy.version}.zip</gant.archive>
     <gant.url>http://dist.codehaus.org/gant/distributions/${gant.archive}</gant.url>
-
     <scriptom.archive>scriptom-${scriptom.version}.zip</scriptom.archive>
     <scriptom.url>http://docs.codehaus.org/download/attachments/24576222/${scriptom.archive}?version=1</scriptom.url>
-
     <graphicsbuilder.archive>graphicsbuilder-${graphicsbuilder.version}.zip</graphicsbuilder.archive>
     <graphicsbuilder.url>http://docs.codehaus.org/download/attachments/12190076/${graphicsbuilder.archive}</graphicsbuilder.url>
-
     <jidebuilder.archive>jidebuilder-${jidebuilder.version}.jar</jidebuilder.archive>
     <jidebuilder.url>http://svn.codehaus.org/groovy-contrib/jidebuilder/trunk/dist/jidebuilder-${jidebuilder.version}.jar</jidebuilder.url>
-
     <svg-salamander.archive>svg-salamander-${svg-salamander.version}.jar</svg-salamander.archive>
     <svg-salamander.url>http://docs.codehaus.org/download/attachments/34701376/svg-salamander-${svg-salamander.version}.jar</svg-salamander.url>
-
     <groovy.binary.zip>${download.dir}/${groovy.bin.archive}</groovy.binary.zip>
     <groovy.docs.zip>${download.dir}/${groovy.docs.archive}</groovy.docs.zip>
     <gant.zip>${download.dir}/${gant.archive}</gant.zip>
@@ -68,11 +51,8 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
     <graphicsbuilder.zip>${download.dir}/${graphicsbuilder.archive}</graphicsbuilder.zip>
     <svg-salamander.jar>${download.dir}/svg-salamander-${svg-salamander.version}.jar</svg-salamander.jar>
     <jidebuilder.jar>${download.dir}/jidebuilder-${jidebuilder.version}.jar</jidebuilder.jar>
-
   </properties>
-  
   <dependencies>
-
     <!-- this will override the one in the plugin -->
     <dependency>
       <groupId>org.codehaus.izpack</groupId>
@@ -80,21 +60,16 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
       <!-- dont want to download this artifact when retrieve the installer as transitive dependency -->
       <optional>true</optional>
     </dependency>
-    
-		<dependency>
-			<groupId>org.jboss.tools.gwt.kitchensink</groupId>
-			<artifactId>gwt-kitchensink</artifactId>
-			<version>${target.version}</version>
-			<type>war</type>
-		</dependency>    
+    <dependency>
+      <groupId>org.jboss.tools.gwt.kitchensink</groupId>
+      <artifactId>gwt-kitchensink</artifactId>
+      <version>${target.version}</version>
+      <type>war</type>
+    </dependency>
   </dependencies>
-
   <build>
-
     <defaultGoal>package</defaultGoal>
-
-    <plugins>      
-      
+    <plugins>
       <!--  fetch resource files from the orignal Ant build project -->
       <!--
       <plugin>
@@ -119,14 +94,13 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
         </executions>
       </plugin>
       -->
-
       <!-- fetch and unpack all dependent bundles into staging area -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <version>${maven.dependency.plugin.version}</version>
         <executions>
-            <!--
+          <!--
           <execution>
             <id>unpack-bundle-dependencies</id>
             <phase>process-resources</phase>
@@ -173,8 +147,7 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
                 -->
           <!-- izpack can't match include="scriptcom*.jar"
             so, split into separate bin and lib directories -->
-
-	  <!--
+          <!--
           <execution>
             <id>unpack-scriptom-dlls</id>
             <phase>process-resources</phase>
@@ -217,7 +190,6 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
             </configuration>
           </execution>
 	  -->
-
           <execution>
             <id>copy-jars-dependencies</id>
             <phase>process-resources</phase>
@@ -239,7 +211,7 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
                   <version>${log4j.version}</version>
                   <type>jar</type>
                   <outputDirectory>${staging.dir}/lib</outputDirectory>
-                </artifactItem>                
+                </artifactItem>
                 <!--
                 <artifactItem>
                   <groupId>izpack.demo</groupId>
@@ -261,7 +233,6 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
           </execution>
         </executions>
       </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
@@ -284,22 +255,12 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
           </execution>
         </executions>
       </plugin>
-
       <!-- http://docs.codehaus.org/display/IZPACK/IzPack+Maven+Plugin+Reference -->
       <plugin>
         <groupId>org.codehaus.izpack</groupId>
         <artifactId>izpack-maven-plugin</artifactId>
         <version>${maven.izpack.plugin.version}</version>
         <extensions>true</extensions>
-        <!-- common configuration by all executions -->
-        <configuration>
-          <!--<descriptor>${basedir}/src/main/izpack/install.xml</descriptor>-->
-          <izpackBasedir>${staging.dir}</izpackBasedir>
-          <finalName>NABLAInstaller</finalName>
-          <enableOverrideArtifact>true</enableOverrideArtifact>
-          <mkdirs>true</mkdirs>
-        </configuration>
-
         <executions>
           <execution>
             <id>standard-installer</id>
@@ -309,6 +270,14 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
             </goals>
           </execution>
         </executions>
+        <!-- common configuration by all executions -->
+        <configuration>
+          <!--<descriptor>${basedir}/src/main/izpack/install.xml</descriptor>-->
+          <izpackBasedir>${staging.dir}</izpackBasedir>
+          <finalName>NABLAInstaller</finalName>
+          <enableOverrideArtifact>true</enableOverrideArtifact>
+          <mkdirs>true</mkdirs>
+        </configuration>
       </plugin>
     </plugins>
   </build>

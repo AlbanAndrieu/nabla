@@ -38,6 +38,11 @@ git config --global core.whitespace trailing-space,-space-before-tab,indent-with
     
 #for Windows
 git config --global http.sslVerify false
+git config --system core.longpaths true
+git config --global pack.packsizelimit 2g
+git config --system core.autocrlf false
+#git config core.ignoreStat true
+#git config core.fscache true
 
 git config --local user.email "alban.andrieu@free.fr"
 git config --local user.name "Andrieu, Alban"
@@ -82,6 +87,23 @@ fi
 #Apply changes
 #git push --force --tags origin 'refs/heads/*'
 
-git commit --amend --author="Andrieu, Alban <alban.andrieu@free.fr>"
 #http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html
+#https://github.com/ginatrapani/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit
 git rebase -i HEAD~4
+git push origin branch-name --force
+git commit --amend --author="Andrieu, Alban <alban.andrieu@free.fr>"
+
+#git config --global alias.squash '!f(){ git reset --soft HEAD~${1} && git commit --edit -m"$(git log --format=%B --reverse HEAD..HEAD@{1})"; };f'
+#git squash 2
+
+#fatal: Not a valid object name HEAD
+#git symbolic-ref HEAD
+#git symbolic-ref HEAD refs/heads/my-branch
+
+#See hook https://dzone.com/articles/an-in-depth-look-at-git-hooks
+cp hook/* .git/hooks
+#chmod +x prepare-commit-msg
+
+#JIRA
+#https://pypi.python.org/pypi/jira/
+#https://github.com/pycontribs/jira

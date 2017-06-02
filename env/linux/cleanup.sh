@@ -30,6 +30,7 @@ echo "Start cleaning"
 #empty trash
 \rm -rf ~/.local/share/Trash/*
 \rm -rf ~/.local/share/wineprefixes/*
+\rm -rf ~/.local/share/gvfs-metadata/*
 #\rm -Rf ~/.config/*
 #google chrome
 #\rm -rf ~/.config/google-chrome/Default/Web\ Data
