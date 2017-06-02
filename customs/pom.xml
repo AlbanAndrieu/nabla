@@ -1,194 +1,194 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>dependencies</artifactId>
-    <groupId>com.nabla.project</groupId>
-    <version>1.0.1-SNAPSHOT</version>
-    <relativePath>../dependencies/pom.xml</relativePath>
-  </parent>
-  <groupId>com.nabla.project</groupId>
-  <artifactId>customs</artifactId>
-  <packaging>pom</packaging>
-  <name>Customs</name>
-  <description>The Customs pom file is a superpom to centralize all third parties</description>
-  <!--<url>http://maven.nabla.mobi/dependencies/customs</url>-->
-  <url>${JOB_URL}</url>
-  <scm>
-    <connection>scm:git:git://github.com/AlbanAndrieu/nabla-customs.git</connection>
-    <developerConnection>scm:git:git@github.com:AlbanAndrieu/nabla-customs.git</developerConnection>
-    <tag>HEAD</tag>
-    <url>https://github.com/AlbanAndrieu/nabla-customs</url>
-  </scm>
-  <issueManagement>
-    <system>GitHub Issues</system>
-    <url>https://github.com/AlbanAndrieu/nabla-customs/issues</url>
-  </issueManagement>
-  <ciManagement>
-    <system>Jenkins</system>
-    <url>${JOB_URL}</url>
-  </ciManagement>
-  <profiles>
-    <profile>
-      <!-- site light for jenkins -->
-      <id>jenkins</id>
-      <activation>
-        <property>
-          <name>BUILD_NUMBER</name>
-        </property>
-      </activation>
-      <properties>
-        <invoker.skip>true</invoker.skip>
-        <maven.test.skip>false</maven.test.skip>
-        <!-- TODO <maven.test.failure.skip>false</maven.test.failure.skip>-->
-        <maven.test.failure.skip>true</maven.test.failure.skip>
-        <lastModifiedCheck>true</lastModifiedCheck>
-        <!-- for mvn site to work with andromda-cartridge-plugin -->
-        <surefire.useFile>true</surefire.useFile>
-      </properties>
-    </profile>
-    <!-- ================= PLATFORM DEPENDENT CONFIGURATION ======= -->
-    <profile>
-      <id>linux-x86</id>
-      <activation>
-        <os>
-          <name>linux</name>
-          <family>unix</family>
-          <arch>i386</arch>
-        </os>
-      </activation>
-      <properties>
-        <platform>linux</platform>
-        <webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>
-        <webdriver.firefox.bin>/usr/lib/firefox/firefox</webdriver.firefox.bin>
-        <!--
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>dependencies</artifactId>
+		<groupId>com.nabla.project</groupId>
+		<version>1.0.1-SNAPSHOT</version>
+		<relativePath>../dependencies/pom.xml</relativePath>
+	</parent>
+	<groupId>com.nabla.project</groupId>
+	<artifactId>customs</artifactId>
+	<packaging>pom</packaging>
+	<name>Customs</name>
+	<description>The Customs pom file is a superpom to centralize all third parties</description>
+	<!--<url>http://maven.nabla.mobi/dependencies/customs</url>-->
+	<url>${JOB_URL}</url>
+	<scm>
+		<connection>scm:git:git://github.com/AlbanAndrieu/nabla-customs.git</connection>
+		<developerConnection>scm:git:git@github.com:AlbanAndrieu/nabla-customs.git</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://github.com/AlbanAndrieu/nabla-customs</url>
+	</scm>
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/AlbanAndrieu/nabla-customs/issues</url>
+	</issueManagement>
+	<ciManagement>
+		<system>Jenkins</system>
+		<url>${JOB_URL}</url>
+	</ciManagement>
+	<profiles>
+		<profile>
+			<!-- site light for jenkins -->
+			<id>jenkins</id>
+			<activation>
+				<property>
+					<name>BUILD_NUMBER</name>
+				</property>
+			</activation>
+			<properties>
+				<invoker.skip>true</invoker.skip>
+				<lastModifiedCheck>true</lastModifiedCheck>
+				<!-- TODO <maven.test.failure.skip>false</maven.test.failure.skip>-->
+				<maven.test.failure.skip>true</maven.test.failure.skip>
+				<maven.test.skip>false</maven.test.skip>
+				<!-- for mvn site to work with andromda-cartridge-plugin -->
+				<surefire.useFile>true</surefire.useFile>
+			</properties>
+		</profile>
+		<!-- ================= PLATFORM DEPENDENT CONFIGURATION ======= -->
+		<profile>
+			<id>linux-x86</id>
+			<activation>
+				<os>
+					<name>linux</name>
+					<family>unix</family>
+					<arch>i386</arch>
+				</os>
+			</activation>
+			<properties>
+				<platform>linux</platform>
+				<webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>
+				<webdriver.firefox.bin>/usr/lib/firefox/firefox</webdriver.firefox.bin>
+				<!--
     		    <nabla.sourceDirectory>${env.PROJECT_DEV}</nabla.sourceDirectory>
     		    <nabla.objDirectory>${env.PROJECT_TARGET_PATH}</nabla.objDirectory>
     		    <nabla.thirdparty>${env.PROJECT_THIRDPARTY_PATH}</nabla.thirdparty>
     		    <java.home>${env.JAVA_HOME}/jre</java.home>
     		    <j2ee.home>${env.JAVA_HOME}/jre</j2ee.home>
     		            -->
-      </properties>
-    </profile>
-    <profile>
-      <id>linux-x86_64</id>
-      <activation>
-        <os>
-          <name>linux</name>
-          <family>unix</family>
-          <arch>amd64</arch>
-        </os>
-      </activation>
-      <properties>
-        <platform>linux</platform>
-        <webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>
-        <webdriver.firefox.bin>/usr/lib/firefox/firefox</webdriver.firefox.bin>
-        <!--
+			</properties>
+		</profile>
+		<profile>
+			<id>linux-x86_64</id>
+			<activation>
+				<os>
+					<name>linux</name>
+					<family>unix</family>
+					<arch>amd64</arch>
+				</os>
+			</activation>
+			<properties>
+				<platform>linux</platform>
+				<webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>
+				<webdriver.firefox.bin>/usr/lib/firefox/firefox</webdriver.firefox.bin>
+				<!--
     		    <nabla.sourceDirectory>${env.PROJECT_DEV}</nabla.sourceDirectory>
     		    <nabla.objDirectory>${env.PROJECT_TARGET_PATH}</nabla.objDirectory>
     		    <nabla.thirdparty>${env.PROJECT_THIRDPARTY_PATH}</nabla.thirdparty>
     		    <java.home>${env.JAVA_HOME}/jre</java.home>
     		    <j2ee.home>${env.JAVA_HOME}/jre</j2ee.home>
     		            -->
-      </properties>
-    </profile>
-    <profile>
-      <id>solaris-sparc</id>
-      <activation>
-        <os>
-          <name>SunOS</name>
-          <family>unix</family>
-          <arch>sparc</arch>
-        </os>
-      </activation>
-      <properties>
-        <platform>solaris</platform>
-        <webdriver.chrome.driver>TODO</webdriver.chrome.driver>
-        <webdriver.firefox.bin>TODO</webdriver.firefox.bin>
-        <!--
+			</properties>
+		</profile>
+		<profile>
+			<id>solaris-sparc</id>
+			<activation>
+				<os>
+					<name>SunOS</name>
+					<family>unix</family>
+					<arch>sparc</arch>
+				</os>
+			</activation>
+			<properties>
+				<platform>solaris</platform>
+				<webdriver.chrome.driver>TODO</webdriver.chrome.driver>
+				<webdriver.firefox.bin>TODO</webdriver.firefox.bin>
+				<!--
     		    <nabla.sourceDirectory>${env.PROJECT_DEV}</nabla.sourceDirectory>
     		    <nabla.objDirectory>${env.PROJECT_TARGET_PATH}</nabla.objDirectory>
     		    <nabla.thirdparty>${env.PROJECT_THIRDPARTY_PATH}</nabla.thirdparty>
     		    <java.home>${env.JAVA_HOME}/jre</java.home>
     		    <j2ee.home>${env.JAVA_HOME}/jre</j2ee.home>
     		            -->
-      </properties>
-    </profile>
-    <profile>
-      <id>solaris-x86</id>
-      <activation>
-        <os>
-          <name>SunOS</name>
-          <family>unix</family>
-          <arch>x86</arch>
-        </os>
-      </activation>
-      <properties>
-        <platform>solaris</platform>
-        <webdriver.chrome.driver>TODO</webdriver.chrome.driver>
-        <webdriver.firefox.bin>TODO</webdriver.firefox.bin>
-        <!--
+			</properties>
+		</profile>
+		<profile>
+			<id>solaris-x86</id>
+			<activation>
+				<os>
+					<name>SunOS</name>
+					<family>unix</family>
+					<arch>x86</arch>
+				</os>
+			</activation>
+			<properties>
+				<platform>solaris</platform>
+				<webdriver.chrome.driver>TODO</webdriver.chrome.driver>
+				<webdriver.firefox.bin>TODO</webdriver.firefox.bin>
+				<!--
     		    <nabla.sourceDirectory>${env.PROJECT_DEV}</nabla.sourceDirectory>
     		    <nabla.objDirectory>${env.PROJECT_TARGET_PATH}</nabla.objDirectory>
     		    <nabla.thirdparty>${env.PROJECT_THIRDPARTY_PATH}</nabla.thirdparty>
     		    <java.home>${env.JAVA_HOME}/jre</java.home>
     		    <j2ee.home>${env.JAVA_HOME}/jre</j2ee.home>
     		    -->
-      </properties>
-    </profile>
-    <profile>
-      <id>macosx</id>
-      <activation>
-        <os>
-          <name>mac os x</name>
-          <family>unix</family>
-        </os>
-      </activation>
-    </profile>
-    <profile>
-      <id>win32</id>
-      <activation>
-        <!--<jdk>${jdkVersion}</jdk>-->
-        <os>
-          <!--<name>Windows XP</name>-->
-          <family>windows</family>
-          <arch>x86</arch>
-        </os>
-      </activation>
-      <properties>
-        <platform>mac</platform>
-        <webdriver.chrome.driver>"C:\chromedriver\chromedriver.exe"</webdriver.chrome.driver>
-        <webdriver.firefox.bin>"C:\Program Files\Mozilla Firefox\firefox.exe"</webdriver.firefox.bin>
-        <!--
+			</properties>
+		</profile>
+		<profile>
+			<id>macosx</id>
+			<activation>
+				<os>
+					<name>mac os x</name>
+					<family>unix</family>
+				</os>
+			</activation>
+		</profile>
+		<profile>
+			<id>win32</id>
+			<activation>
+				<!--<jdk>${jdkVersion}</jdk>-->
+				<os>
+					<!--<name>Windows XP</name>-->
+					<family>windows</family>
+					<arch>x86</arch>
+				</os>
+			</activation>
+			<properties>
+				<platform>mac</platform>
+				<webdriver.chrome.driver>"C:\chromedriver\chromedriver.exe"</webdriver.chrome.driver>
+				<webdriver.firefox.bin>"C:\Program Files\Mozilla Firefox\firefox.exe"</webdriver.firefox.bin>
+				<!--
     		    <nabla.sourceDirectory>K:\users\${nabla.workspace}/nabla.sourceDirectory>
     		    <nabla.objDirectory>O:\users\${nabla.workspace}</nabla.objDirectory>
     		    <nabla.thirdparty>T:\thirdparty</nabla.thirdparty>
     		    <java.home>${env.JAVA_HOME}</java.home>
     		    <j2ee.home>${env.JAVA_HOME}</j2ee.home>
     		    -->
-      </properties>
-    </profile>
-    <profile>
-      <id>win64</id>
-      <activation>
-        <!--<jdk>${jdkVersion}</jdk>-->
-        <os>
-          <family>windows</family>
-          <arch>amd64</arch>
-        </os>
-      </activation>
-      <properties>
-        <platform>windows</platform>
-        <webdriver.chrome.driver>"C:\chromedriver\chromedriver.exe"</webdriver.chrome.driver>
-        <webdriver.firefox.bin>"C:\Program Files\Mozilla Firefox\firefox.exe"</webdriver.firefox.bin>
-        <!--
+			</properties>
+		</profile>
+		<profile>
+			<id>win64</id>
+			<activation>
+				<!--<jdk>${jdkVersion}</jdk>-->
+				<os>
+					<family>windows</family>
+					<arch>amd64</arch>
+				</os>
+			</activation>
+			<properties>
+				<platform>windows</platform>
+				<webdriver.chrome.driver>"C:\chromedriver\chromedriver.exe"</webdriver.chrome.driver>
+				<webdriver.firefox.bin>"C:\Program Files\Mozilla Firefox\firefox.exe"</webdriver.firefox.bin>
+				<!--
     		    <nabla.sourceDirectory>K:\users\${nabla.workspace}</nabla.sourceDirectory>
     		    <nabla.objDirectory>O:\users\${nabla.workspace}</nabla.objDirectory>
     		    <nabla.thirdparty>T:\thirdparty</nabla.thirdparty>
     		    <java.home>${env.JAVA_HOME}</java.home>
     		    <j2ee.home>${env.JAVA_HOME}</j2ee.home>
     		            -->
-      </properties>
-    </profile>
-  </profiles>
+			</properties>
+		</profile>
+	</profiles>
 </project>
