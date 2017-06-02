@@ -10,7 +10,7 @@ sudo apt-get update
 sudo apt-get install ubuntu-zfs
 sudo apt-get install zfs-fuse
 
-zpool upgrade -v
+sudo zpool upgrade -v
 
 sudo apt-get install debootstrap ubuntu-zfs
 sudo apt-get install --no-install-recommends linux-image-generic linux-headers-generic
@@ -28,6 +28,7 @@ sudo zpool create -o ashift=9 apool /dev/disk/by-id/ata-WDC_WD10EALX-759BA1_WD-W
 sudo zfs create apool/ROOT
 sudo zfs create apool/ROOT/ubuntu-albandri
 sudo zpool status dpool
+sudo zdb
 
 sudo zfs create -o mountpoint=/mnt/backup dpool/backup
 sudo zfs create -o mountpoint=/mnt/jenkins dpool/jenkins
@@ -60,3 +61,13 @@ swap -a /dev/zvol/dsk/rpool/swap
 
 #issue Load the module manually by running 'insmod <location>/zfs.ko' as root
 sudo apt-get install --reinstall zfs-dkms
+
+#cleaning
+#sudo apt remove zfs.doc
+sudo apt install zfsutils-linux
+
+#Cheat sheet
+#http://thegeekdiary.com/solaris-zfs-command-line-reference-cheat-sheet/
+#http://www.unixarena.com/2012/07/zfs-quick-command-reference-with.html
+
+#https://askubuntu.com/questions/404172/zpools-dont-automatically-mount-after-boot

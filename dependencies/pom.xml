@@ -8215,6 +8215,7 @@
             <excludes>**/clover/**/*</excludes>
           </configuration>
         </plugin>
+        <!-- DEPRECATED, use sortpom-maven-plugin
         <plugin>
           <groupId>com.google.code.sortpom</groupId>
           <artifactId>maven-sortpom-plugin</artifactId>
@@ -8231,6 +8232,7 @@
             <verifyFail>Stop</verifyFail>
           </configuration>
         </plugin>
+        -->
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>dbunit-maven-plugin</artifactId>

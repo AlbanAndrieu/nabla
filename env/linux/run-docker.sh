@@ -137,7 +137,7 @@ docker exec –ti /bin/bash
 #https://docs.docker.com/engine/userguide/storagedriver/overlayfs-driver/
 #--storage-driver=overlay
 
- docker build . -t docker/nabla/visma:latest
+docker build . -t docker/nabla/visma:latest
 
 #https://github.com/docker/compose
 sudo pip install docker-compose
