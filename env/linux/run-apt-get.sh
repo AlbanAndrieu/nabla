@@ -440,3 +440,8 @@ sudo dpkg-reconfigure unattended-upgrades
 #systemd
 sudo update-rc.d -f nexus remove
 sudo systemctl enable nexus.service
+
+#Speed up https://itsfoss.com/speed-up-ubuntu-1310/
+sudo nano /etc/default/grub
+#And change GRUB_TIMEOUT=10 to GRUB_TIMEOUT=2
+sudo update-grub
