@@ -1,39 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-
-	<parent>
-		<groupId>com.nabla.project</groupId>
-		<artifactId>installer</artifactId>
-		<version>1.0.1-SNAPSHOT</version>
-	</parent>
-
-	<modelVersion>4.0.0</modelVersion>
-	<artifactId>visma-installer</artifactId>
-	<name>Nabla Visma Installer</name>
-	<packaging>izpack-jar</packaging>
-	<description>Nabla Visma Installer</description>
-
-<!-- TODO http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it/izpack-tomcat/
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <parent>
+    <artifactId>installer</artifactId>
+    <groupId>com.nabla.project</groupId>
+    <version>1.0.1-SNAPSHOT</version>
+  </parent>
+  <artifactId>visma-installer</artifactId>
+  <packaging>izpack-jar</packaging>
+  <name>Nabla Visma Installer</name>
+  <description>Nabla Visma Installer</description>
+  <!-- TODO http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it/izpack-tomcat/
 http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it/sample/pom.xml
 -->
-
   <properties>
     <app.group>${project.groupId}</app.group>
     <app.title>${project.name}</app.title>
     <app.subpath>${project.artifactId}-${project.version}</app.subpath>
     <app.version>${project.version}</app.version>
-
     <download.dir>${project.build.directory}/downloads</download.dir>
     <izpack.version>5.0.0</izpack.version>
     <izpack.compiler.version>${izpack.version}</izpack.compiler.version>
     <izpack.standalone.compiler.version>4.3.5</izpack.standalone.compiler.version>
     <maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
-
   </properties>
-
   <dependencies>
-
     <!-- this will override the one in the plugin -->
     <dependency>
       <groupId>org.codehaus.izpack</groupId>
@@ -42,13 +33,9 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
       <optional>true</optional>
     </dependency>
   </dependencies>
-
   <build>
-
     <defaultGoal>package</defaultGoal>
-
     <plugins>
-
       <!--  fetch resource files from the orignal Ant build project -->
       <!--
       <plugin>
@@ -73,14 +60,13 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
         </executions>
       </plugin>
       -->
-
       <!-- fetch and unpack all dependent bundles into staging area -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-dependency-plugin</artifactId>
         <version>${maven.dependency.plugin.version}</version>
         <executions>
-            <!--
+          <!--
           <execution>
             <id>unpack-bundle-dependencies</id>
             <phase>process-resources</phase>
@@ -127,8 +113,7 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
                 -->
           <!-- izpack can't match include="scriptcom*.jar"
             so, split into separate bin and lib directories -->
-
-	  <!--
+          <!--
           <execution>
             <id>unpack-scriptom-dlls</id>
             <phase>process-resources</phase>
@@ -171,27 +156,26 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
             </configuration>
           </execution>
 	  -->
-	  <!-- start app using java -jar target/dependency/jetty-runner.jar target/*.war -port 9090 -->
-			<execution>
-				<id>copy-jars-runner</id>
-				<phase>process-resources</phase>
-				<goals>
-					<goal>copy</goal>
-				</goals>
-				<configuration>
-					<artifactItems>
-						<artifactItem>
-							<groupId>org.mortbay.jetty</groupId>
-							<artifactId>jetty-runner</artifactId>
-							<version>${jetty.runner.version}</version>
-							<destFileName>jetty-runner.jar</destFileName>
-							<type>jar</type>
-							<outputDirectory>${staging.dir}/jars</outputDirectory>
-						</artifactItem>
-					</artifactItems>
-				</configuration>
-			</execution>
-
+          <!-- start app using java -jar target/dependency/jetty-runner.jar target/*.war -port 9090 -->
+          <execution>
+            <id>copy-jars-runner</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.mortbay.jetty</groupId>
+                  <artifactId>jetty-runner</artifactId>
+                  <version>${jetty.runner.version}</version>
+                  <destFileName>jetty-runner.jar</destFileName>
+                  <type>jar</type>
+                  <outputDirectory>${staging.dir}/jars</outputDirectory>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
           <execution>
             <id>copy-jars-dependencies</id>
             <phase>process-resources</phase>
@@ -207,7 +191,7 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
                   <type>war</type>
                   <outputDirectory>${staging.dir}/jars</outputDirectory>
                 </artifactItem>
-                 <artifactItem>
+                <artifactItem>
                   <groupId>com.nabla.project.sample.interview.visma</groupId>
                   <artifactId>core</artifactId>
                   <version>${target.version}</version>
@@ -228,7 +212,6 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
           </execution>
         </executions>
       </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
@@ -251,23 +234,12 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
           </execution>
         </executions>
       </plugin>
-
       <!-- http://docs.codehaus.org/display/IZPACK/IzPack+Maven+Plugin+Reference -->
       <plugin>
         <groupId>org.codehaus.izpack</groupId>
         <artifactId>izpack-maven-plugin</artifactId>
         <version>${maven.izpack.plugin.version}</version>
         <extensions>true</extensions>
-        <!-- common configuration by all executions -->
-        <configuration>
-          <!--<descriptor>${basedir}/src/main/izpack/install.xml</descriptor>-->
-          <izpackBasedir>${staging.dir}</izpackBasedir>
-          <finalName>VISMAInstaller</finalName>
-          <enableOverrideArtifact>true</enableOverrideArtifact>
-          <mkdirs>true</mkdirs>
-          <!--<kind>web</kind>-->
-        </configuration>
-
         <executions>
           <execution>
             <id>standard-installer</id>
@@ -277,6 +249,15 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
             </goals>
           </execution>
         </executions>
+        <!-- common configuration by all executions -->
+        <configuration>
+          <!--<descriptor>${basedir}/src/main/izpack/install.xml</descriptor>-->
+          <izpackBasedir>${staging.dir}</izpackBasedir>
+          <finalName>VISMAInstaller</finalName>
+          <enableOverrideArtifact>true</enableOverrideArtifact>
+          <mkdirs>true</mkdirs>
+          <!--<kind>web</kind>-->
+        </configuration>
       </plugin>
     </plugins>
   </build>

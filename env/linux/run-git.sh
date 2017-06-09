@@ -29,6 +29,7 @@ git config --global branch.autosetuprebase always
 #git mergetool --tool-help
 #git config --global merge.tool kdiff3
 git config --global merge.tool meld
+#git config --global difftool.prompt false
 git config --global push.default simple
 git config --globa merge.renamelimit 10000
 git config --global --list
@@ -36,9 +37,14 @@ git config --global --list
 #See https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#Formatting-and-Whitespace
 #git config --global core.whitespace trailing-space,-space-before-tab,indent-with-non-tab,tab-in-indent,cr-at-eol
 git config --global core.whitespace trailing-space,-space-before-tab,indent-with-non-tab,cr-at-eol
-    
+
 #for Windows
 git config --global http.sslVerify false
+git config --system core.longpaths true
+git config --global pack.packsizelimit 2g
+git config --system core.autocrlf false
+#git config core.ignoreStat true
+#git config core.fscache true
 
 git config --local user.email "alban.andrieu@free.fr"
 git config --local user.name "Andrieu, Alban"
@@ -83,6 +89,37 @@ fi
 #Apply changes
 #git push --force --tags origin 'refs/heads/*'
 
-git commit --amend --author="Andrieu, Alban <alban.andrieu@free.fr>"
 #http://gitready.com/advanced/2009/02/10/squashing-commits-with-rebase.html
+#https://github.com/ginatrapani/todo.txt-android/wiki/Squash-All-Commits-Related-to-a-Single-Issue-into-a-Single-Commit
 git rebase -i HEAD~4
+git push origin branch-name --force
+git commit --amend --author="Andrieu, Alban <alban.andrieu@free.fr>"
+
+#git config --global alias.squash '!f(){ git reset --soft HEAD~${1} && git commit --edit -m"$(git log --format=%B --reverse HEAD..HEAD@{1})"; };f'
+#git squash 2
+
+#fatal: Not a valid object name HEAD
+#git symbolic-ref HEAD
+#git symbolic-ref HEAD refs/heads/my-branch
+
+#See hook https://dzone.com/articles/an-in-depth-look-at-git-hooks
+cp hook/* .git/hooks
+#chmod +x prepare-commit-msg
+
+#disable meld
+git diff --no-ext-diff
+
+#JIRA
+#https://pypi.python.org/pypi/jira/
+#https://github.com/pycontribs/jira
+#https://jira.readthedocs.io/en/master/examples.html#transitions
+
+#See http://pre-commit.com/#advanced
+sudo pip install pre-commit
+#pre-commit install
+pre-commit autoupdate
+sudo pip install pre-commit-hooks
+
+#pre-commit run --all-files
+pre-commit run
+#git diff-tree --no-commit-id --name-only -r $REVISION | xargs pre-commit run --files

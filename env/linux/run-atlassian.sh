@@ -40,7 +40,7 @@ cd /workspace/atlassian-crowd-2.5.2
 gedit build.properties
 ./build.sh
 
-./start_crowd.sh 
+./start_crowd.sh
 
 #https://confluence.atlassian.com/display/CROWD/Setting+Crowd+to+Run+Automatically+and+Use+an+Unprivileged+System+User+on+UNIX
 cd /etc/init.d
@@ -60,12 +60,12 @@ TODO https://confluence.atlassian.com/display/CROWD/Installing+Crowd+and+CrowdID
 sudo apt-get -y install autoconf libtool apache2-threaded-dev libsvn-dev libcurl4-gnutls-dev libxml2-dev apache2-mpm-worker libapache2-svn
 Enter your password when prompted.
 Enter the following commands:
-wget https://studio.plugins.atlassian.com/svn/CWDAPACHE/tags/2.0.2/mod_authnz_crowd-2.0.2.tar.gz 
-tar xzf mod_authnz_crowd-2.0.2.tar.gz 
+wget https://studio.plugins.atlassian.com/svn/CWDAPACHE/tags/2.0.2/mod_authnz_crowd-2.0.2.tar.gz
+tar xzf mod_authnz_crowd-2.0.2.tar.gz
 cd mod_authnz_crowd-2.0.2
-autoreconf --install 
-./configure 
-make 
+autoreconf --install
+./configure
+make
 sudo make install
 Enter your password if prompted.
 Everything you need should now be installed and Apache should restart. If Apache fails to start, check the /var/log/apache2/error.log file.
@@ -78,9 +78,9 @@ crowd user/pass alban.andrieu@nabla.mobi/microsoft
 
 JIRA
 See where JIRA will be installed and the settings that will be used.
-Installation Directory: /opt/atlassian/jira 
-Home Directory: /var/atlassian/application-data/jira 
-HTTP Port: 8082 
+Installation Directory: /opt/atlassian/jira
+Home Directory: /var/atlassian/application-data/jira
+HTTP Port: 8082
 RMI Port: 8006
 
 JIRA mySQL database : user jira pass microsoft
@@ -97,16 +97,16 @@ jira user/pass alban.andrieu@nabla.mobi/microsoft
 admin/microsoft
 
 #start
-as root 
+as root
 cd /opt/atlassian/jira/
 ./startup.sh
 
 CONFLUENCE
 See where Confluence will be installed and the settings that will be used.
-Installation Directory: /opt/atlassian/confluence 
-Home Directory: /var/atlassian/application-data/confluence 
-HTTP Port: 8090 
-RMI Port: 8000 
+Installation Directory: /opt/atlassian/confluence
+Home Directory: /var/atlassian/application-data/confluence
+HTTP Port: 8090
+RMI Port: 8000
 
 CREATE DATABASE confluence;
 GRANT ALL PRIVILEGES ON confluence.* TO 'confluence'@'localhost' IDENTIFIED BY 'microsoft';
@@ -115,8 +115,8 @@ confluence user/pass alban.andrieu@nabla.mobi/microsoft
 admin/microsoft
 
 #start
-as root 
-cd /opt/atlassian/confluence 
+as root
+cd /opt/atlassian/confluence
 ./startup.sh
 
 fisheye
@@ -125,7 +125,7 @@ FISHEYE_INST="/workspace/fisheye-2.10.2"
 cd /workspace/fecru-2.10.2
 as albandri
 ./bin/start.sh
-http://localhost:8060/ 
+http://localhost:8060/
 
 SET GLOBAL storage_engine = 'InnoDB';
 CREATE DATABASE fisheye CHARACTER SET utf8 COLLATE utf8_bin;
@@ -148,3 +148,4 @@ sudo touch -a ${INSTALL_BASE}/atlassian-crowd-openid-server.log
 #sudo mkdir ${INSTALL_BASE}/database
 sudo chown -R ${CROWD_USER} ${INSTALL_BASE}/{database,atlassian-crowd-openid-server.log}
 
+exit 0

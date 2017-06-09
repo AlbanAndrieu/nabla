@@ -6,17 +6,24 @@ green='\e[0;32m'
 NC='\e[0m' # No Color
 
 if [ -n "${TARGET_SLAVE}" ]; then
-  echo -e "TARGET_SLAVE is defined \u061F"
+  echo -e "TARGET_SLAVE is defined \u1F44D"
 else
   echo -e "${red} \u00BB Undefined build parameter: TARGET_SLAVE, use the default one ${NC}"
   export TARGET_SLAVE=albandri.misys.global.ad
 fi
 
 if [ -n "${DRY_RUN}" ]; then
-  echo -e "DRY_RUN is defined \u061F"
+  echo -e "DRY_RUN is defined \u1F44D"
 else
   echo -e "${red} \u00BB Undefined build parameter: DRY_RUN, use the default one ${NC}"
   export DRY_RUN="--check"
+fi
+
+if [ -n "${TARGET_USER}" ]; then
+  echo -e "TARGET_USER is defined \u1F44D"
+else
+  echo -e "${red} \u00BB Undefined build parameter: TARGET_USER, use the default one ${NC}"
+  export TARGET_USER="jenkins"
 fi
 
 lsb_release -a
@@ -25,6 +32,20 @@ echo -e " ======= Running on ${TARGET_SLAVE} \u00A1 ${NC}"
 echo "USER : $USER"
 echo "HOME : $HOME"
 echo "WORKSPACE : $WORKSPACE"
+
+echo -e "${red} Find stale processes ${NC}"
+
+find /proc -maxdepth 1 -user ${TARGET_USER} -type d -mmin +200 -exec basename {} \; | xargs ps -edf
+echo -e "${red} Killing stale grunt processes ${NC}"
+find /proc -maxdepth 1 -user ${TARGET_USER} -type d -mmin +200 -exec basename {} \; | xargs ps | grep grunt | awk '{ print $1 }' | sudo xargs kill
+echo -e "${red} Killing stale google/chrome processes ${NC}"
+find /proc -maxdepth 1 -user ${TARGET_USER} -type d -mmin +200 -exec basename {} \; | xargs ps | grep google/chrome | awk '{ print $1 }' | sudo xargs kill
+echo -e "${red} Killing stale chromedriver processes ${NC}"
+find /proc -maxdepth 1 -user ${TARGET_USER} -type d -mmin +200 -exec basename {} \; | xargs ps | grep chromedriver | awk '{ print $1 }' | sudo xargs kill
+echo -e "${red} Killing stale selenium processes ${NC}"
+find /proc -maxdepth 1 -user ${TARGET_USER} -type d -mmin +200 -exec basename {} \; | xargs ps | grep selenium | awk '{ print $1 }' | sudo xargs kill
+echo -e "${red} Killing stale zaproxy processes ${NC}"
+find /proc -maxdepth 1 -user ${TARGET_USER} -type d -mmin +200 -exec basename {} \; | xargs ps | grep ZAPROXY | awk '{ print $1 }' | sudo xargs kill
 
 echo -e "${red} Configure workstation ${NC}"
 
@@ -100,6 +121,15 @@ else
   echo -e "${green} Ansible done. $? ${NC}"  
 fi
 
+echo -e "${green} Ansible server summary ${NC}"
+mkdir out
+#ansible -i staging -m setup --user=root --tree out/ all
+ansible -i production -m setup --user=root --tree out/ all
+ansible-cmdb -i ./production out/ > overview.html
+sudo cp overview.html /var/www/html/
+#scp overview.html root@kgrdb01:/var/www/html
+echo -e "${green} Ansible server summary done. $? ${NC}"  
+
 cd ${WORKSPACE}/Scripts/shell
 
 shellcheck *.sh -f checkstyle > checkstyle-result.xml || true
@@ -108,5 +138,12 @@ echo -e "${green} shell check for shell done. $? ${NC}"
 cd ${WORKSPACE}/Scripts/release
 shellcheck *.sh -f checkstyle > checkstyle-result.xml || true
 echo -e "${green} shell check for release done. $? ${NC}"
+
+cd ${WORKSPACE}/Scripts/Python
+
+pylint **/*.py
+echo -e "${green} pyhton check for shell done. $? ${NC}"
+
+#pyreverse -o png -p Pyreverse pylint/pyreverse/
 
 exit 0
