@@ -28,6 +28,7 @@ git config --global branch.master.rebase true
 git config --global branch.autosetuprebase always
 #git config --global merge.tool kdiff3
 git config --global merge.tool meld
+#git config --global difftool.prompt false
 git config --global push.default simple
 git config --globa merge.renamelimit 10000
 git config --global --list
@@ -35,7 +36,7 @@ git config --global --list
 #See https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#Formatting-and-Whitespace
 #git config --global core.whitespace trailing-space,-space-before-tab,indent-with-non-tab,tab-in-indent,cr-at-eol
 git config --global core.whitespace trailing-space,-space-before-tab,indent-with-non-tab,cr-at-eol
-    
+
 #for Windows
 git config --global http.sslVerify false
 git config --system core.longpaths true
@@ -104,6 +105,20 @@ git commit --amend --author="Andrieu, Alban <alban.andrieu@free.fr>"
 cp hook/* .git/hooks
 #chmod +x prepare-commit-msg
 
+#disable meld
+git diff --no-ext-diff
+
 #JIRA
 #https://pypi.python.org/pypi/jira/
 #https://github.com/pycontribs/jira
+#https://jira.readthedocs.io/en/master/examples.html#transitions
+
+#See http://pre-commit.com/#advanced
+sudo pip install pre-commit
+#pre-commit install
+pre-commit autoupdate
+sudo pip install pre-commit-hooks
+
+#pre-commit run --all-files
+pre-commit run
+#git diff-tree --no-commit-id --name-only -r $REVISION | xargs pre-commit run --files
