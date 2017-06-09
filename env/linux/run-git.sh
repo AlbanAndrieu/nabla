@@ -116,10 +116,10 @@ git diff --no-ext-diff
 
 #See http://pre-commit.com/#advanced
 sudo pip install pre-commit
+sudo pip install pre-commit-hooks
 #pre-commit install
 pre-commit autoupdate
-sudo pip install pre-commit-hooks
 
-#pre-commit run --all-files
-pre-commit run
-#git diff-tree --no-commit-id --name-only -r $REVISION | xargs pre-commit run --files
+pre-commit run --all-files
+#pre-commit run
+
