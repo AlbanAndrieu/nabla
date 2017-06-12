@@ -26,6 +26,7 @@ git config --global help.autocorrect 1
 git config --global color.ui auto
 git config --global branch.master.rebase true
 git config --global branch.autosetuprebase always
+#git mergetool --tool-help
 #git config --global merge.tool kdiff3
 git config --global merge.tool meld
 #git config --global difftool.prompt false
@@ -115,10 +116,10 @@ git diff --no-ext-diff
 
 #See http://pre-commit.com/#advanced
 sudo pip install pre-commit
+sudo pip install pre-commit-hooks
 #pre-commit install
 pre-commit autoupdate
-sudo pip install pre-commit-hooks
 
-#pre-commit run --all-files
-pre-commit run
-#git diff-tree --no-commit-id --name-only -r $REVISION | xargs pre-commit run --files
+pre-commit run --all-files
+#pre-commit run
+

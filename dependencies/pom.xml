@@ -947,8 +947,8 @@
 		<!-- see http://repo1.maven.org/maven2/org/slf4j/slf4j-parent/1.7.16/slf4j-parent-1.7.16.pom for compliance with log4j and logback version -->
 		<slf4j.version>1.7.16</slf4j.version>
 		<sonar.branch>master</sonar.branch>
-		<sonar.build-stability.password.secured>admin</sonar.build-stability.password.secured>
 		<sonar.build-stability.url>Jenkins:$BUILD_URL/..</sonar.build-stability.url>
+		<sonar.build-stability.password.secured>admin</sonar.build-stability.password.secured>		
 		<sonar.build-stability.username.secured>microsoft</sonar.build-stability.username.secured>
 		<!-- The system property jacoco.outputDir needs to be override on the command line
                 with an absolute path if you want to merge results from all modules.
@@ -987,10 +987,11 @@
 				I'm facing the same issue. If it can help, here a workaround: in Jenkins > Manage Jenkins > Configure Global Security, grant Anonymous user to read both Overall and Job.
 				-->
 		<sonar.github.oauth>06895b871e3f2775b7497e809222be22770d0c05</sonar.github.oauth>
-		<sonar.groovy.codenarc.reportPath>target/CodeNarcReport.xml</sonar.groovy.codenarc.reportPath>
-		<sonar.host.url>http://home.nabla.mobi:9000</sonar.host.url>
+		<sonar.groovy.codenarc.reportPath>target/CodeNarcReport.xml</sonar.groovy.codenarc.reportPath>		
 		<!--<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath> -->
-		<sonar.host.url>http://home.nabla.mobi:9000</sonar.host.url>
+		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+		<!--<sonar.host.url>http://home.nabla.mobi:9000</sonar.host.url>-->
+		<sonar.login>50cb615252d00e68f3678b321335a8d1f13a9145</sonar.login>
 		<!--<sonar.sources>src/main/java,src/main/js,src/main/webapp,src/generated/java,src/generated/js, **/web.xml, **/*.xhtml</sonar.sources>-->
 		<!-- DO NOT SET below sonar properties for all projects
 				<sonar.sources>src/main,app</sonar.sources>
@@ -1025,25 +1026,26 @@
 		<sonar.javascript.forceZeroCoverage>true</sonar.javascript.forceZeroCoverage>
 		<sonar.javascript.lcov.itReportPath>${basedir}/target/lcov.info</sonar.javascript.lcov.itReportPath>
 		<sonar.javascript.lcov.reportPath>${basedir}/target/lcov-karma.info</sonar.javascript.lcov.reportPath>
-		<!--<sonar.jdbc.driver>com.mysql.jdbc.Driver</sonar.jdbc.driver>-->
-		<sonar.jdbc.driver>org.h2.Driver</sonar.jdbc.driver>
-		<sonar.jdbc.password>sonar</sonar.jdbc.password>
 		<!--<sonar.language>java</sonar.language>-->
 		<!--
                 <jetty.context.path.to.replace>jetty.context.path</jetty.context.path.to.replace>
                 <jetty.context.path>/nabla</jetty.context.path>
                 -->
 		<!--<sonar.jdbc.url>jdbc:mysql://home.nabla.mobi:3306/sonar</sonar.jdbc.url>-->
+		<!--<sonar.jdbc.driver>com.mysql.jdbc.Driver</sonar.jdbc.driver>-->
+		
+		<!--
+		<sonar.jdbc.driver>org.h2.Driver</sonar.jdbc.driver>
+		<sonar.jdbc.password>sonar</sonar.jdbc.password>		
 		<sonar.jdbc.url>jdbc:h2:tcp://home.nabla.mobi:9092/sonar</sonar.jdbc.url>
 		<sonar.jdbc.username>sonar</sonar.jdbc.username>
-		<!--<sonar.login>TODO</sonar.login>-->
-		<!--<sonar.password></sonar.password>-->
+		<sonar.pdf.password>microsoft</sonar.pdf.password>
+		<sonar.pdf.username>admin</sonar.pdf.username>
+		-->
+		<!--<sonar.skippedModules>cartridges</sonar.skippedModules>-->
 		<!--<sonar.projectVersion>jenkins-${env.BUILD_NUMBER}</sonar.projectVersion>-->
 		<sonar.links.ci>${env.BUILD_URL}</sonar.links.ci>
 		<sonar.links.scm>https://github.com/AlbanAndrieu</sonar.links.scm>
-		<sonar.pdf.password>microsoft</sonar.pdf.password>
-		<!--<sonar.skippedModules>cartridges</sonar.skippedModules>-->
-		<sonar.pdf.username>admin</sonar.pdf.username>
 		<sonar.pitest.mode>reuseReport</sonar.pitest.mode>
 		<sonar.pitest.reportsDirectory>target/pit-reports</sonar.pitest.reportsDirectory>
 		<spark.version>4.6.b.23201</spark.version>

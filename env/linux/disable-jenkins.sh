@@ -1,6 +1,14 @@
 #!/bin/bash
 set -xv
 
+sudo service --status-all
+
+#sudo apt-get install rcconf
+sudo rcconf
+
+#slow boot
+#sudo systemd-analyze
+
 sudo service webmin stop
 sudo service usermin stop
 sudo service jetty stop
@@ -10,7 +18,7 @@ sudo service jetty stop
 sudo service rabbitmq-server stop
 #sudo service jboss stop
 sudo service zabbix-agent stop
-sudo service supervisord stop
+sudo service supervisor stop
 sudo service mon stop
 #sudo service tomcat7 stop
 sudo service elasticsearch stop
@@ -48,8 +56,58 @@ sudo service memcached stop
 sudo service cups stop
 sudo service cups-browsed stop
 sudo service ypbind stop
-
+sudo service clamav-daemon stop
+sudo service clamav-freshclam stop
+sudo service crowd stop
+sudo service xrdp stop
+sudo service webmin stop
+#udiskd ok
+sudo service libvirt-bin stop
+#sudo apt-get remove qemu-kvm libvirt-bin
+sudo service rwhod stop
+#sudo apt-get remove rwhod
+#sudo apt-get remove pm2
+#sudo npm remove pm2 -g
+#ll /etc/.pm2
+#rtkit ok
+sudo service samba stop
+sudo service postfix stop
+#sudo auditctl -a exit,always -F path=/etc/passwd -F perm=wa
+sudo auditctl -l
+sudo service auditd stop
+#sudo killall colord
 sudo service ansible-tower stop
+sudo service vnstat stop
+#sudo apt-get remove vnstat
+sudo service sysstat stop
+#sudo apt-get remove sysstat
+sudo service statsd stop
+#sudo apt-get remove statsd
+sudo service kerneloops-daemon stop
+#sudo apt-get remove kerneloops-daemon
+#https://doc.ubuntu-fr.org/bluetooth#desactiver_le_bluetooth_au_demarrage_d_ubuntu
+sudo service bluetooth stop
+sudo service saned stop
+#sudo apt-get remove sane
+sudo service snmpd stop
+#sudo apt-get remove snmp
+sudo service speech-dispatcher stop
+#sudo apt-get speech-dispatcher
+sudo service virtualbox stop
+#sudo apt-get virtualbox
+sudo service zfs-mount stop
+sudo service zfs-share stop
+#SCSI target
+#tgtd ok
+#acpid ok
+sudo service pulseaudio stop
+sudo killall pulseaudio
+sudo service console-kit-deamon stop
+#sudo apt-get remove consolekit
+##sudo apt-get remove dbus-x11 consolekit
+#sudo apt-get remove cfengine-community
+#sudo apt-get remove heartbeat
+sudo apt-get remove kgrb5
 
 #sudo update-rc.d -f webmin remove
 sudo update-rc.d -f usermin remove
@@ -84,3 +142,11 @@ sudo update-rc.d -f teamviewerd remove
 sudo update-rc.d -f conky remove
 sudo update-rc.d -f cups remove
 sudo update-rc.d -f cups-browsed remove
+sudo update-rc.d -f pm2-init.sh remove
+sudo update-rc.d -f bluetooth remove
+sudo update-rc.d -f cfengine3 remove
+#sudo update-rc.d -f clamav-freshclam remove
+#sudo update-rc.d -f clamav-daemon remove
+sudo update-rc.d -f crowd remove
+sudo update-rc.d -f xrdp remove
+sudo update-rc.d -f webmin remove
