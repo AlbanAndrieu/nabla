@@ -30,6 +30,7 @@ sudo service docker.io stop
 #sudo service apache2 stop
 sudo service ChrononController stop
 sudo service postgresql stop
+#sudo apt-get remove postgresql
 #sudo service mysql stop
 sudo service nginx stop
 sudo service varnish stop

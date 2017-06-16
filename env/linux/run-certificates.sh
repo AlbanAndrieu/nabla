@@ -17,13 +17,13 @@ mkdir --parent '/etc/ssl/certificates'
 mkdir --parent '/etc/ssl/authorities'
 mkdir --parent '/etc/ssl/configs'
 
-addgroup --system 'ssl-cert'
-chown -R root:ssl-cert '/etc/ssl/private'
-chmod 710 '/etc/ssl/private'
-chmod 440 '/etc/ssl/private/'
+sudo addgroup --system 'ssl-cert'
+sudo chown -R root:ssl-cert '/etc/ssl/private'
+sudo chmod 710 '/etc/ssl/private'
+sudo chmod 440 '/etc/ssl/private/'
 
-SSL_KEY_NAME="$(command hostname --fqdn)"
-SSL_KEY_NAME="nabla.freeboxos.fr"
+#SSL_KEY_NAME="$(command hostname --fqdn)"
+export SSL_KEY_NAME="nabla.freeboxos.fr"
 
 #CONF_FILE="$(command mktemp)"
 #sed \
@@ -88,14 +88,14 @@ ${SSL_EMAIL}
 #CSR with SAN
 openssl req -new -sha256 \
     -key "/etc/ssl/private/${SSL_KEY_NAME}.key" \
-    -subj "/C=FR/ST=IleDeFrance/O=Misys, Inc./CN=${SSL_KEY_NAME}" \
+    -subj "/C=FR/ST=IleDeFrance/O=Nabla, Inc./CN=${SSL_KEY_NAME}" \
     -reqexts SAN \
     -config <(cat /etc/ssl/openssl.cnf \
         <(printf "[SAN]\nsubjectAltName=DNS:${SSL_KEY_NAME},DNS:nabla.mobi,DNS:home.nabla.mobi,DNS:alban-andrieu.fr,DNS:alban-andrieu.com,DNS:alban-andrieu.eu,DNS:bababou.fr,DNS:bababou.eu,IP:82.231.208.223,IP:192.168.0.29,IP:127.0.0.1")) \
     -out "/etc/ssl/requests/${SSL_KEY_NAME}.csr"
 
 cat "/etc/ssl/requests/${SSL_KEY_NAME}.csr"
-openssl req -in ${SSL_KEY_NAME}.csr -text -noout
+openssl req -in /etc/ssl/requests/${SSL_KEY_NAME}.csr -text -noout
 
 #3 - Obtaining the public key from certification authority
 
@@ -263,6 +263,8 @@ keytool -list -keystore  /etc/ssl/certs/java/cacerts -alias debian:uk1vswcert01-
 #get root CA
 openssl s_client -connect google.com:443 < /dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > ca.crt
 
+#https://www.ericluwj.com/2017/02/23/install-free-lets-encrypt-ssl-certificate-in-webmin.html
+
 #freebox
 #http://blogmotion.fr/internet/lets-encrypt-freebox-https-14299
 
@@ -272,8 +274,11 @@ openssl s_client -connect google.com:443 < /dev/null | sed -ne '/-BEGIN CERTIFIC
 #cd /usr/local/sbin
 #sudo wget https://dl.eff.org/certbot-auto
 #sudo chmod a+x /usr/local/sbin/certbot-auto
-#/usr/local/sbin/certbot-auto certonly --apache -d nabla.freeboxos.fr 
-/var/log/letsencrypt/letsencrypt.log
+#/usr/local/sbin/certbot-auto certonly --apache -d nabla.freeboxos.fr,nabla.mobi,home.nabla.mobi,alban-andrieu.fr,alban-andrieu.com,alban-andrieu.eu,bababou.fr,bababou.eu
+/usr/local/sbin/certbot-auto certonly --renew-by-default --apache -d nabla.freeboxos.fr
+#/usr/local/sbin/certbot-auto certonly --renew-by-default --apache -d nabla.freeboxos.fr,nabla.mobi,home.nabla.mobi,alban-andrieu.fr,alban-andrieu.com,alban-andrieu.eu,bababou.fr,bababou.eu
+
+tail -f /var/log/letsencrypt/letsencrypt.log
 
 #Saving debug log to /var/log/letsencrypt/letsencrypt.log          
 #Starting new HTTPS connection (1): acme-v01.api.letsencrypt.org   
@@ -298,6 +303,7 @@ openssl s_client -connect google.com:443 < /dev/null | sed -ne '/-BEGIN CERTIFIC
 #   Donating to EFF:                    https://eff.org/donate-le
 
 /etc/apache2/sites-enabled/default-ssl.conf
+#TODO in webmin replace /etc/webmin/miniserv.pem by
 #/etc/letsencrypt/live/nabla.freeboxos.fr-0001/cert.pem
 #/etc/letsencrypt/live/nabla.freeboxos.fr-0001/privkey.pem
 service apache2 restart
@@ -322,3 +328,7 @@ tail -f /var/log/apache2/error.log
 #non-interactive
 #agree-tos
     
+ln -s /etc/webmin/miniserv.pem /etc/ssl/private/miniserv.pem
+#sudo chmod 640 /etc/ssl/private/ssl-cert-snakeoil.key
+ll /etc/ssl/private/ssl-cert-snakeoil.key
+ln -s /etc/letsencrypt/keys/0001_key-certbot.pem 0001_key-certbot.pem
