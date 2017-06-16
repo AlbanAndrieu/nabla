@@ -175,9 +175,9 @@
 		<bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
 		<c3p0.version>0.8.5.2</c3p0.version>
 		<camel.version>2.13.0</camel.version>
+		<cargo.core.uberjar.version>1.4.18-SNAPSHOT</cargo.core.uberjar.version>
 		<!--<cargo.core.uberjar.version>1.4.19</cargo.core.uberjar.version> ERROR-->
 		<cargo.core.uberjar.version>1.6.3</cargo.core.uberjar.version>
-		<cargo.core.uberjar.version>1.4.18-SNAPSHOT</cargo.core.uberjar.version>
 		<!-- TODO move to profile jmeter -->
 		<cargo.host>localhost</cargo.host>
 		<cargo.port>80</cargo.port>
@@ -513,6 +513,7 @@
 		<jfreechart-demo.version>1.0.13</jfreechart-demo.version>
 		<!--<jfreechart.version>1.0.7</jfreechart.version>-->
 		<jfreechart.version>1.0.13</jfreechart.version>
+		<jline.version>2.14.4</jline.version>
 		<jmdns.version>1.0</jmdns.version>
 		<!-- googlecode.jmockit moved to org.jmockit -->
 		<jmockit.version>1.19</jmockit.version>
@@ -677,8 +678,8 @@
 		<maven.pax.plugin.version>1.6.0</maven.pax.plugin.version>
 		<maven.pitest.plugin.version>1.2.0</maven.pitest.plugin.version>
 		<maven.plexus.util.plugin.version>1.1</maven.plexus.util.plugin.version>
-		<maven.plugin.api.plugin.version>${maven.version}</maven.plugin.api.plugin.version>
 		<maven.plugin.api.plugin.version>2.0</maven.plugin.api.plugin.version>
+		<maven.plugin.api.plugin.version>${maven.version}</maven.plugin.api.plugin.version>
 		<maven.plugin.plugin.plugin.version>3.5</maven.plugin.plugin.plugin.version>
 		<maven.pmd.plugin.version>3.6</maven.pmd.plugin.version>
 		<maven.processor.plugin.version>2.2.4</maven.processor.plugin.version>
@@ -947,8 +948,8 @@
 		<!-- see http://repo1.maven.org/maven2/org/slf4j/slf4j-parent/1.7.16/slf4j-parent-1.7.16.pom for compliance with log4j and logback version -->
 		<slf4j.version>1.7.16</slf4j.version>
 		<sonar.branch>master</sonar.branch>
+		<sonar.build-stability.password.secured>admin</sonar.build-stability.password.secured>
 		<sonar.build-stability.url>Jenkins:$BUILD_URL/..</sonar.build-stability.url>
-		<sonar.build-stability.password.secured>admin</sonar.build-stability.password.secured>		
 		<sonar.build-stability.username.secured>microsoft</sonar.build-stability.username.secured>
 		<!-- The system property jacoco.outputDir needs to be override on the command line
                 with an absolute path if you want to merge results from all modules.
@@ -987,11 +988,9 @@
 				I'm facing the same issue. If it can help, here a workaround: in Jenkins > Manage Jenkins > Configure Global Security, grant Anonymous user to read both Overall and Job.
 				-->
 		<sonar.github.oauth>06895b871e3f2775b7497e809222be22770d0c05</sonar.github.oauth>
-		<sonar.groovy.codenarc.reportPath>target/CodeNarcReport.xml</sonar.groovy.codenarc.reportPath>		
+		<sonar.groovy.codenarc.reportPath>target/CodeNarcReport.xml</sonar.groovy.codenarc.reportPath>
 		<!--<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath> -->
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
-		<!--<sonar.host.url>http://home.nabla.mobi:9000</sonar.host.url>-->
-		<sonar.login>50cb615252d00e68f3678b321335a8d1f13a9145</sonar.login>
 		<!--<sonar.sources>src/main/java,src/main/js,src/main/webapp,src/generated/java,src/generated/js, **/web.xml, **/*.xhtml</sonar.sources>-->
 		<!-- DO NOT SET below sonar properties for all projects
 				<sonar.sources>src/main,app</sonar.sources>
@@ -1033,7 +1032,7 @@
                 -->
 		<!--<sonar.jdbc.url>jdbc:mysql://home.nabla.mobi:3306/sonar</sonar.jdbc.url>-->
 		<!--<sonar.jdbc.driver>com.mysql.jdbc.Driver</sonar.jdbc.driver>-->
-		
+
 		<!--
 		<sonar.jdbc.driver>org.h2.Driver</sonar.jdbc.driver>
 		<sonar.jdbc.password>sonar</sonar.jdbc.password>		
@@ -1046,6 +1045,8 @@
 		<!--<sonar.projectVersion>jenkins-${env.BUILD_NUMBER}</sonar.projectVersion>-->
 		<sonar.links.ci>${env.BUILD_URL}</sonar.links.ci>
 		<sonar.links.scm>https://github.com/AlbanAndrieu</sonar.links.scm>
+		<!--<sonar.host.url>http://home.nabla.mobi:9000</sonar.host.url>-->
+		<sonar.login>50cb615252d00e68f3678b321335a8d1f13a9145</sonar.login>
 		<sonar.pitest.mode>reuseReport</sonar.pitest.mode>
 		<sonar.pitest.reportsDirectory>target/pit-reports</sonar.pitest.reportsDirectory>
 		<spark.version>4.6.b.23201</spark.version>
@@ -1087,9 +1088,9 @@
 		<tapestry.version>4.1.3</tapestry.version>
 		<target.dir>target</target.dir>
 		<!-- default value that can be overrided -->
-		<target.version>${project.version}</target.version>
-		<!-- default value that can be overrided -->
 		<target.version>RELEASE</target.version>
+		<!-- default value that can be overrided -->
+		<target.version>${project.version}</target.version>
 		<tattletale-destination-directory>${project.build.directory}/site/tattletale</tattletale-destination-directory>
 		<tattletale-source-directory>${project.build.directory}/tattletale-source</tattletale-source-directory>
 		<testng.version>6.9.6</testng.version>
@@ -7283,6 +7284,11 @@
 						</execution>
 					</executions>
 					<dependencies>
+						<dependency>
+							<groupId>jline</groupId>
+							<artifactId>jline</artifactId>
+							<version>${jline.version}</version>
+						</dependency>
 						<dependency>
 							<groupId>org.codehaus.groovy</groupId>
 							<artifactId>groovy-all</artifactId>
