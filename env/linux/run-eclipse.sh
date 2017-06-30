@@ -83,3 +83,19 @@ sudo ln -s /var/lib/tomcat7/shared shared
 #http://stackoverflow.com/questions/8491308/how-to-handle-maven-war-overlays-in-eclipse
 #https://dzone.com/articles/mavens-war-overlay-what-are
 
+
+#In eclipse preferences javadoc
+#/usr/share/doc/
+
+#cd ~
+#wget https://sourceforge.net/projects/xdoclet/files/xdoclet/1.2.3/xdoclet-src-1.2.3.tgz/download
+#tar -xvf xdoclet-src-1.2.3.tgz
+#cd xdoclet-src-1.2.3
+#ant
+
+cdr
+wget https://sourceforge.net/projects/xdoclet/files/xdoclet/1.2.3/xdoclet-lib-1.2.3.zip/download
+unzip xdoclet-lib-1.2.3.zip
+
+#In eclipse preferences java EE xdoclet
+#/workspace/users/albandri30/xdoclet-1.2.3
