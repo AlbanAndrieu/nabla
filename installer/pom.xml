@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <artifactId>deploy</artifactId>
-    <groupId>com.nabla.project</groupId>
-    <version>1.0.1-SNAPSHOT</version>
-    <relativePath>../deploy/pom.xml</relativePath>
-  </parent>
-  <artifactId>installer</artifactId>
-  <packaging>pom</packaging>
-  <name>Nabla Installer</name>
-  <description>The Installer pom file is a superpom to centralize installation</description>
-  <url>${JOB_URL}</url>
-  <modules>
-    <module>etl-installer</module>
-    <module>visma-installer</module>
-  </modules>
-  <scm>
-    <connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/installer</connection>
-    <developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/installer</developerConnection>
-    <tag>HEAD</tag>
-    <url>https://alban.googlecode.com/svn/${project.svn.path}/installer</url>
-  </scm>
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>deploy</artifactId>
+		<groupId>com.nabla.project</groupId>
+		<version>1.0.1-SNAPSHOT</version>
+		<relativePath>../deploy/pom.xml</relativePath>
+	</parent>
+	<artifactId>installer</artifactId>
+	<packaging>pom</packaging>
+	<name>Nabla Installer</name>
+	<description>The Installer pom file is a superpom to centralize installation</description>
+	<url>${JOB_URL}</url>
+	<modules>
+		<module>etl-installer</module>
+		<module>visma-installer</module>
+	</modules>
+	<scm>
+		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/installer</connection>
+		<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/installer</developerConnection>
+		<tag>HEAD</tag>
+		<url>https://alban.googlecode.com/svn/${project.svn.path}/installer</url>
+	</scm>
 </project>

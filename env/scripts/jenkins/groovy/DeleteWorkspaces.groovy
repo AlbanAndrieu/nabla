@@ -2,7 +2,8 @@
 
 def hi = hudson.model.Hudson.instance;
 for(Node in hudson.model.Hudson.instance.slaves) {
-  if(Node.getDisplayName().contains(<slave name>)) {
+  //if(Node.getDisplayName().contains(<slave name>)) {
+  if("nabla".equals(node) || "test".equals(node)) {
         Node.computer.setTemporarilyOffline(true);
     try {
         hi.getItems(hudson.model.Job).each {
@@ -27,10 +28,10 @@ for(Node in hudson.model.Hudson.instance.slaves) {
                             }
                             continue;
                         }
-                        d.deleteRecursive();                   
+                        d.deleteRecursive();
                         }
                       }
-            }       
+            }
         }
     } catch (Exception e) {
         println(e.getMessage());

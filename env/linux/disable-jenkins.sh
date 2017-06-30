@@ -16,6 +16,7 @@ sudo service jetty stop
 #sudo service selenium_hub stop
 #sudo service sonar stop
 sudo service rabbitmq-server stop
+#sudo apt-get remove rabbitmq-server
 #sudo service jboss stop
 sudo service zabbix-agent stop
 sudo service supervisor stop
@@ -31,6 +32,7 @@ sudo service docker.io stop
 sudo service ChrononController stop
 sudo service postgresql stop
 #sudo service mysql stop
+#sudo apt-get remove mysql-server mysql-client
 sudo service nginx stop
 sudo service varnish stop
 sudo service gearman-job-server stop
@@ -48,12 +50,13 @@ sudo service nmbd stop
 sudo service smbd stop
 sudo service lightdm stop
 sudo service avahi-daemon stop
-sudo sh -c "echo manual > /etc/init/avahi-daemon.override"
+#sudo sh -c "echo manual > /etc/init/avahi-daemon.override"
 #sudo apt-get remove avahi-daemon
 #Bug avahi-daemon (3907): VmData 8982528 exceed data ulimit 4194304. Update limits or use boot option ignore_rlimit_data
 #See https://patchwork.kernel.org/patch/8096761/
 sudo service memcached stop
 sudo service cups stop
+#sudo apt-get remove cups
 sudo service cups-browsed stop
 sudo service ypbind stop
 sudo service clamav-daemon stop
@@ -73,9 +76,10 @@ sudo service rwhod stop
 sudo service samba stop
 sudo service postfix stop
 #sudo auditctl -a exit,always -F path=/etc/passwd -F perm=wa
-sudo auditctl -l
+#sudo auditctl -l
 sudo service auditd stop
-#sudo killall colord
+sudo killall colord
+#ansible-tower removed when postgresql removed
 sudo service ansible-tower stop
 sudo service vnstat stop
 #sudo apt-get remove vnstat
@@ -92,7 +96,7 @@ sudo service saned stop
 sudo service snmpd stop
 #sudo apt-get remove snmp
 sudo service speech-dispatcher stop
-#sudo apt-get speech-dispatcher
+#sudo apt-get remove speech-dispatcher
 sudo service virtualbox stop
 #sudo apt-get virtualbox
 sudo service zfs-mount stop
@@ -107,7 +111,7 @@ sudo service console-kit-deamon stop
 ##sudo apt-get remove dbus-x11 consolekit
 #sudo apt-get remove cfengine-community
 #sudo apt-get remove heartbeat
-sudo apt-get remove kgrb5
+#sudo apt-get remove kgrb5
 
 #sudo update-rc.d -f webmin remove
 sudo update-rc.d -f usermin remove
