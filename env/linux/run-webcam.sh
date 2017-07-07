@@ -10,11 +10,17 @@ gconftool-2 --type Boolean --set /apps/nautilus/preferences/media_automount  fal
 #Disable webcam
 #https://askubuntu.com/questions/528422/enabling-disabling-camera-from-terminal
 sudo modprobe -r uvcvideo
+#AND Maybe http://ubuntuforums.org/showthread.php?t=1340168
+#sudo aptitude remove gvfs -P
+
 #sudo modprobe -r videodev
 #Enable webcam
 sudo modprobe uvcvideo
 
 lsof | grep video0
+
+#TODO disable wifi
+#firmware-iwlwifi
 
 #http://ubuntuforums.org/showthread.php?t=1340168
 #sudo aptitude remove gvfs -P
