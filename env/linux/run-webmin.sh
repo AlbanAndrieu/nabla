@@ -7,7 +7,7 @@ sudo apt-get install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-r
 wget http://prdownloads.sourceforge.net/webadmin/webmin_1.630_all.deb
 dpkg --install webmin_1.630_all.deb
 
-#check out git code 
+#check out git code
 #see http://www.webmin.com/git.html
 git clone git://github.com/webmin/webmin.git /usr/local/webadmin
 cd /usr/local/webadmin
@@ -21,3 +21,20 @@ http://PTXMZ0087:10000/
 
 #mon
 #change /var/www/cgi-bin/mon.cgi by /usr/lib/cgi-bin/mon.cgi
+
+#Install virtualmin
+
+sudo apt-get remove --purge libapache2-mod-fcgid
+sudo rm -rf /var/lib/apache2/fcgid/
+sudo apt-get install libapache2-mod-fcgid
+ls -lah /var/lib/apache2/fcgid/
+
+#See http://www.webmin.com/vinstall.html
+wget http://software.virtualmin.com/gpl/scripts/install.sh
+chmod +x install.sh
+sudo ./install.sh
+
+#See http://www.webmin.com/cinstall-kvm.html
+wget http://cloudmin.virtualmin.com/gpl/scripts/cloudmin-kvm-debian-install.sh
+chmod +x cloudmin-kvm-debian-install.sh
+sudo ./cloudmin-kvm-debian-install.sh

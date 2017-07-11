@@ -7,3 +7,8 @@ set -xv
 #http://askubuntu.com/questions/205342/how-do-i-downgrade-to-subversion-1-6
 #sudo apt-get remove libsvn1 subversion
 #sudo apt-get remove subversion
+
+#remove default user
+rm -rf ~/.subversion/auth
+
+exit 0
