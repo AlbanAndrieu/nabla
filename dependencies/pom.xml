@@ -573,6 +573,7 @@
 		<maven.cargo.maven2.plugin.version>${cargo.core.uberjar.version}</maven.cargo.maven2.plugin.version>
 		<maven.changelog.plugin.version>2.3</maven.changelog.plugin.version>
 		<maven.changes.plugin.version>2.12</maven.changes.plugin.version>
+		<maven.checkmarx.plugin.version>8.41.0</maven.checkmarx.plugin.version>
 		<maven.checkstyle.plugin.version>2.17</maven.checkstyle.plugin.version>
 		<maven.classpath.fitnesse.version>1.7</maven.classpath.fitnesse.version>
 		<maven.clean.plugin.version>3.0.0</maven.clean.plugin.version>
@@ -672,6 +673,7 @@
 		<maven.mem.tracker.maven.plugin.version>1.0.0</maven.mem.tracker.maven.plugin.version>
 		<maven.minify.plugin.version>1.3.5.1</maven.minify.plugin.version>
 		<maven.native2ascii.maven.plugin.version>1.0-beta-1</maven.native2ascii.maven.plugin.version>
+		<maven.nexus.staging.plugin.version>1.1</maven.nexus.staging.plugin.version>
 		<maven.one.plugin.version>1.3</maven.one.plugin.version>
 		<maven.org.liquibase.plugin.version>3.5.3</maven.org.liquibase.plugin.version>
 		<maven.patch.plugin.version>1.2</maven.patch.plugin.version>
@@ -6247,19 +6249,6 @@
 								</pluginExecution>
 								<pluginExecution>
 									<pluginExecutionFilter>
-										<groupId>org.owasp</groupId>
-										<artifactId>dependency-check-maven</artifactId>
-										<versionRange>[0.0,)</versionRange>
-										<goals>
-											<goal>check</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<ignore></ignore>
-									</action>
-								</pluginExecution>
-								<pluginExecution>
-									<pluginExecutionFilter>
 										<groupId>com.github.eirslett</groupId>
 										<artifactId>frontend-maven-plugin</artifactId>
 										<versionRange>[0.0,)</versionRange>
@@ -6275,6 +6264,18 @@
 								</pluginExecution>
 							</pluginExecutions>
 						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.sonatype.plugins</groupId>
+					<artifactId>nexus-staging-maven-plugin</artifactId>
+					<version>${maven.nexus.staging.plugin.version}</version>
+					<extensions>true</extensions>
+					<configuration>
+						<!-- The Base URL of Nexus instance where we want to stage -->
+						<nexusUrl>http://home.nabla.mobi:8081/nexus</nexusUrl>
+						<!-- The server "id" element from settings to use authentication from -->
+						<serverId>local-nexus</serverId>
 					</configuration>
 				</plugin>
 				<plugin>
@@ -6912,6 +6913,9 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
 					<version>${maven.site.plugin.version}</version>
+					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
 				</plugin>
 				<!--
                                 <plugin>
@@ -7005,9 +7009,11 @@
 					<version>${maven.surefire.plugin.version}</version>
 					<!--<inherited>true</inherited>-->
 					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
 						<!-- Enable or disable JUnit tests -->
 						<skipTests>${maven.test.ut.skip}</skipTests>
 						<linkXRef>true</linkXRef>
+						<!--<argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>-->
 						<!--<argLine>-Xms64m -Xmx256m -XX:MaxPermSize=256m -Djava.awt.headless=true -XX:-UseSplitVerifier -XX:ReservedCodeCacheSize=128m</argLine>-->
 						<runOrder>random</runOrder>
 						<!-- more log <argLine>-verbose:class</argLine>-->
@@ -8082,6 +8088,35 @@
 					</configuration>
 				</plugin>
 				<plugin>
+					<groupId>com.checkmarx.maven</groupId>
+					<artifactId>checkmarx-maven-plugin</artifactId>
+					<version>${maven.checkmarx.plugin.version}</version>
+					<configuration>
+						<!--
+						<url>http://localhost</url>
+						<username>user@org</username>
+						<password>Org123456</password>             
+						<highSeveritiesThreshold>1</highSeveritiesThreshold>
+						<mediumSeveritiesThreshold>20</mediumSeveritiesThreshold>
+						<lowSeveritiesThreshold>30</lowSeveritiesThreshold>
+						-->
+						<isIncrementalScan>false</isIncrementalScan>
+						<preset>all</preset>
+						<!--
+						<fileExclusions>file1, file2</fileExclusions>
+						<folderExclusions></folderExclusions>
+						<fullTeamPath>CxServer\SP</fullTeamPath>
+						-->
+						<generatePDFReport>true</generatePDFReport>
+						<isSynchronous>true</isSynchronous>
+						<!--
+						<outputDirectory>c:\users\tmp</outputDirectory>
+						<projectName>Project 22 (Maven)</projectName>
+						-->
+						<scanTimeoutInMinutes>10</scanTimeoutInMinutes>
+					</configuration>
+				</plugin>
+				<plugin>
 					<groupId>com.versioneye</groupId>
 					<artifactId>versioneye-maven-plugin</artifactId>
 					<version>${maven.versioneye.plugin.version}</version>
@@ -8905,6 +8940,8 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						</execution>
 					</executions>
 					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
+						<!--<argLine>-Dfile.encoding=${project.build.sourceEncoding}</argLine>-->
 						<!--<argLine>${failsafe.argLine}</argLine>-->
 						<skipTests>${maven.test.skip}</skipTests>
 						<skipITs>${maven.test.it.skip}</skipITs>
@@ -8966,6 +9003,9 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 					<groupId>org.codehaus.cargo</groupId>
 					<artifactId>cargo-maven2-plugin</artifactId>
 					<version>${maven.cargo.maven2.plugin.version}</version>
+					<configuration>
+						<skip>${maven.test.skip}</skip>
+					</configuration>
 				</plugin>
 				<plugin>
 					<groupId>com.sinapsi.memtracker</groupId>
@@ -9178,6 +9218,18 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
                   </plugin>
                   -->
 			<plugin>
+				<groupId>org.sonatype.plugins</groupId>
+				<artifactId>nexus-staging-maven-plugin</artifactId>
+				<version>${maven.nexus.staging.plugin.version}</version>
+				<extensions>true</extensions>
+				<configuration>
+					<!-- The Base URL of Nexus instance where we want to stage -->
+					<nexusUrl>http://home.nabla.mobi:8081/nexus</nexusUrl>
+					<!-- The server "id" element from settings to use authentication from -->
+					<serverId>local-nexus</serverId>
+				</configuration>
+			</plugin>
+			<plugin>
 				<groupId>com.googlecode.maven-java-formatter-plugin</groupId>
 				<artifactId>maven-java-formatter-plugin</artifactId>
 				<version>${maven.java.formatter.plugin.version}</version>
@@ -9253,7 +9305,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						<version>${maven.surefire.plugin.version}</version>
 						<inherited>true</inherited>
 						<configuration>
-							<argLine>-Xms256m -Xmx512m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=5000</argLine>
+							<argLine>-Xms256m -Xmx512m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=5000 -Dfile.encoding=${project.build.sourceEncoding}</argLine>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -9272,7 +9324,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						<version>${maven.surefire.plugin.version}</version>
 						<inherited>true</inherited>
 						<configuration>
-							<argLine>-Xms256m -Xmx512m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=5000,suspend=n -Dsuppress.jrisk.properties.logging=true</argLine>
+							<argLine>-Xms256m -Xmx512m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address=5000,suspend=n -Dsuppress.jrisk.properties.logging=true -Dfile.encoding=${project.build.sourceEncoding}</argLine>
 						</configuration>
 					</plugin>
 				</plugins>
@@ -9291,7 +9343,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						<version>${maven.surefire.plugin.version}</version>
 						<inherited>true</inherited>
 						<configuration>
-							<argLine>-Xms256m -Xmx512m -agentlib:yjpagent -Dsuppress.jrisk.properties.logging=true</argLine>
+							<argLine>-Xms256m -Xmx512m -agentlib:yjpagent -Dsuppress.jrisk.properties.logging=true -Dfile.encoding=${project.build.sourceEncoding}</argLine>
 						</configuration>
 					</plugin>
 				</plugins>
