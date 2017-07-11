@@ -133,17 +133,17 @@ sudo apt-get install libnss3-tools
 
 ##### Chrome
 # Find nssdb directory.
-$ find $HOME -name nssdb 
+find $HOME -name nssdb 
  
 # Make a backup.
-$ cp $HOME/.pki/nssdb-directory{,.orig}
+cp $HOME/.pki/nssdb{,.orig}
 
 certutil -A -i /usr/local/share/ca-certificates/nabla.crt -n nabla -t "C,," -d sql:$HOME/.pki/nssdb/
 
 ##### Firefox
 # Find cert8.db and key3.db files.
-$ find $HOME -name cert8.db
-$ find $HOME -name key3.db
+find $HOME -name cert8.db
+find $HOME -name key3.db
  
 # Make a backup.
 cp $HOME/firefox-profile-directory/cert8.db{,.orig}
@@ -218,11 +218,17 @@ java -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.debug=tr
 #http://superuser.com/questions/437330/how-do-you-add-a-certificate-authority-ca-to-ubuntu
 cd /usr/local/share/ca-certificates
 sudo cp /etc/ssl/requests/certnew.cer albandri.crt
-sudo cp ~/Downloads/UK1VSWCERT01-CA.cer UK1VSWCERT01-CA.crt
+#openssl s_client -showcerts -connect nabla.freeboxos.fr:443 </dev/null 2>/dev/null |openssl x509 -outform PEM | tee ~/Downloads/docker.pem
+sudo cp ~/Downloads/*.crt . 
 #~ #count the number of certificate in a file
-cat ~/Downloads/crowd.crt | grep 'BEGIN.* CERTIFICATE' | wc -l
+#cat ~/Downloads/crowd.crt | grep 'BEGIN.* CERTIFICATE' | wc -l
 sudo update-ca-certificates
+#sudo dpkg-reconfigure ca-certificates
 less /etc/ssl/certs/ca-certificates.crt
+
+#Test it
+openssl s_client -connect nabla.freeboxos.fr:443 -CApath /etc/ssl/certs
+openssl s_client -showcerts -connect nabla.freeboxos.fr:443
 
 #RedHat 5
 #cat UK1VSWCERT01-CA.crt >> /etc/pki/tls/certs/ca-bundle.crt
