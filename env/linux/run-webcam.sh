@@ -42,3 +42,24 @@ gsettings set org.gnome.desktop.media-handling automount-open "false"
 #gsettings set org.gnome.desktop.media-handling automount-open "true"
 
 gphoto2 --auto-detect
+
+#identify webcam
+lsusb -v
+
+#install webcam security tool
+sudo apt-get install motion
+cd ~
+mkdir .motion
+sudo cp /etc/motion/motion.conf ~/.motion/motion.conf
+cd ~/Dropbox
+ln -s /var/lib/motion motion
+
+sudo motion
+
+#echo "http://localhost:8081 http://localhost:8080"
+#todo 8081 TO 8082 AND 8080 TO 8083
+echo "http://localhost:8082 http://localhost:8083"
+
+
+sudo apt-get install wput
+#on_picture_save wput ftp://user@password@server %f

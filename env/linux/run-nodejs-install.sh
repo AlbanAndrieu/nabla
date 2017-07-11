@@ -27,41 +27,10 @@ node-gyp --version
 #v2.0.2
 #sudo npm install -g gyp
 
-git clone https://github.com/bsuh/node_xslt.git
-cd node_xslt
-
-grep parallel /usr/lib/node_modules/npm/node_modules/node-gyp/lib/configure.js
-grep parallel /usr/lib/node_modules/node-gyp/lib/configure.js
-#in workspace
-find . -name 'configure.js' | xargs grep parallel
-#comment parallel
-
-#export NODE_PATH=$NODE_PATH:${WORKSPACE}/lib/node_modules
-export NODE_PATH=$NODE_PATH:./lib/node_modules
-#export PATH=./:./node/:/workspace/users/albandri10/.linuxbrew/bin:/workspace/users/albandri10/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games
-export PATH=./:./node:$PATH
-#./ is needed for grunt yslow_test that require phantomjs
-
 node_modules/node-gyp/bin/node-gyp.js --version
 ./node/npm/bin/node-gyp-bin/node-gyp --version
 #v2.0.1
 node-gyp rebuild
-
---------------------------------------------------------------------
-
-# Note the new setup script name for Node.js v0.12
-#curl -sL https://deb.nodesource.com/setup_0.12 | sudo bash -
-curl -sL https://deb.nodesource.com/setup_4.x | sudo -E bash -
-
-# Then install with:
-sudo apt-get install -y nodejs
-
-#if you have such issue after npm -version
-#bash: /usr/local/bin/npm: No such file or directory
-hash -r
-npm -version
-2.11.3
-/usr/bin/node  --version
 
 --------------------------------------------------------------------
 
@@ -75,3 +44,13 @@ npm -version
 #Switch to new version
 #sudo ln -sf /usr/local/n/versions/node/6.4.0/ /usr/bin/node
 #
+
+#Upgrade node
+#http://stackoverflow.com/questions/8191459/how-to-update-node-js
+#as root
+npm cache clean -f
+npm install -g n
+n stable
+node -v
+/usr/local/bin/node -v
+
