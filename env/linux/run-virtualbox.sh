@@ -128,3 +128,14 @@ sudo service virtualbox status
 #vagrant up --provider=virtualbox
 
 #https://www.vagrantup.com/downloads.html
+
+#VM Screen Resolution
+sudo apt-get install hwinfo
+sudo hwinfo --framebuffer | grep 1280x1024
+sudo vim /etc/default/grub
+#Uncomment #GRUB_GFXMODE="some value", and change it to your resolution, also add GRUB_GFXPAYLOAD_LINUX line, like in the example below. Modify GRUB_CMDLINE_LINUX_DEFAULT to reflect the video mode chosen.
+GRUB_CMDLINE_LINUX_DEFAULT="video=0x0345"
+GRUB_GFXMODE=1280x1024x24
+GRUB_GFXPAYLOAD_LINUX=1280x1024x24
+sudo update-grub
+sudo reboot
