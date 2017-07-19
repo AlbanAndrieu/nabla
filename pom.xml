@@ -569,7 +569,8 @@
 					<!-- <url>scp://${site.server}/${home.dir}/fullsite/site-deploy</url>
                         <url>file:/var/www/docs</url> -->
 					<!--<url>file://${deploy.dir}</url> -->
-					<url>file:/tmp</url>
+					<!--<url>file:/tmp</url>-->
+					<url>ftp://home.nabla.mobi:8021/maven</url>
 				</site>
 			</distributionManagement>
 		</profile>
@@ -608,7 +609,7 @@
 					<id>webdav</id>
 					<name>Project Website</name>
 					<!--<url>ftp://www.nabla.mobi/maven</url>-->
-					<url>dav:http://home.nabla.mobi:8087/maven/todo</url>
+					<url>dav:http://home.nabla.mobi:8087/maven/</url>
 				</site>
 			</distributionManagement>
 			<!-- <properties> <repositoryId>server-snapshots</repositoryId> <url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
@@ -617,7 +618,7 @@
                 </properties> -->
 			<properties>
 				<repositoryId>nexus-releases</repositoryId>
-				<url>http://home.nabla.mobi:8081/nexus/content/repositories/releases</url>
+				<url>http://home.nabla.mobi:8085/nexus/content/repositories/releases</url>
 			</properties>
 		</profile>
 	</profiles>
