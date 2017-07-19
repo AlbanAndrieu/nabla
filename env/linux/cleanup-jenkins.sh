@@ -20,7 +20,7 @@ echo "Start cleaning jenkins"
 \rm -Rf /jenkins-slave/workspace
 #\rm -Rf /jenkins/xvfb-*.fbdir/
 rm -f /jenkins/audit.log.*
-rm -f /jenkins/ *.out
+rm -f /jenkins/*.out
 rm -f /jenkins/logs/tasks/*.log*
 rm -Rf /etc/init.d/slave.jar*
 #\rm -Rf /jenkins/workspace-tmp

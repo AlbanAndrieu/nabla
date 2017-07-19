@@ -60,12 +60,18 @@ firefly-1696_7-amd64
 http://sourceforge.net/projects/freenas/files/FreeNAS-8.3.1/RELEASE-p2/x64/
 
 #minidlna
+#TODO fix issue http://forums.freenas.org/index.php?threads/minidlna-automatic-scan-fix.9312/
+#http://www.durindel.fr/utilisation-avancee-de-freenas#etape3
+echo 'minidlna_enable="YES"' >> /etc/rc.conf
+#https://sites.google.com/site/mesnasmesdonneesetmoi/synology-dsm-3-1-sur-un-ds411j/freebox-player
+
 #install minidlna by hand
 #http://www.durindel.fr/informatique/tuto-freenas-9-3-installer-des-plugins-plex-et-minidlna
 http://192.168.0.47:8200
 http://192.168.0.2:8200/
 service minidlna onestart
 
+tail -f var/log/minidlna.log
 tail -f /mnt/dpool/jail/software/var/log/minidlna.log
 #rm -Rf /mnt/dpool/jail/software/var/db/minidlna/files.db
 #check issue http://forums.freenas.org/threads/mount-point-connects-to-empty-folders-cannot-get-minidlna-to-scan-media.11196/
@@ -75,7 +81,7 @@ tail -f /mnt/dpool/jail/software/var/log/minidlna.log
 
 #Firefly
 #do redirect to jail
-http://192.168.0.47:3689/
+http://192.168.0.46:3689/
 http://home.nabla.mobi:3689/index.html
 
 #transmission
@@ -108,10 +114,6 @@ API KEY : 04617d4e3dd945cd83d79555064f71d0
 http://192.168.0.21:8090/
 API KEY : 750d7c4d76786e8851c65795e2ec59de
 
-#minidlna
-#TODO fix issue http://forums.freenas.org/index.php?threads/minidlna-automatic-scan-fix.9312/
-#http://www.durindel.fr/utilisation-avancee-de-freenas#etape3
-
 #sabnzbd_1
 https://home.nabla.mobi:9090/sabnzbd/
 https://sabnzbd_1:9090/sabnzbd/
@@ -120,6 +122,9 @@ http://192.168.0.3:8080/sabnzbd/wizard/
 API KEY : eb516be6908cd047b0d48c96f2bf59ba
 NZB Key : beac1fd2af932dffdf1bb931f6c345e9
 #Change the "Completed Download Folder" folder setting in SAB's folder settings to remove slash.
+
+#madsonic
+http://192.168.0.22:4040/
 
 #subsonic
 #install subsonic 4.9 (5.2 is not working)
@@ -157,6 +162,11 @@ Songkick API KEY : nd1We7dFW2RqxPw8
 http://192.168.0.9:5075/
 API KEY : ab00y7qye6u84lx4eqhwd0yh1wp423
 
+#owncloud
+http://home.nabla.mobi:83/
+http://192.168.0.10
+user : admin
+
 #LazyLibrarian
 #http://192.168.0.7:5299/home
 
@@ -174,7 +184,7 @@ sudo mount -t nfs 192.168.0.46:/mnt/dpool/media /media -o user=albandri
 sudo umount /media/ftp
 sudo umount /media/photo
 sudo umount /media/music
-sudo umount /media/photo
+sudo umount /media/video
 sudo umount /image
 sudo umount /archive
 sudo umount /jenkins-tmp
@@ -182,14 +192,21 @@ sudo umount /workspace-tmp
 sudo umount /workspace/users/albandri10
 
 #sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/ftp /media/ftp -o user=albandri
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/ftp /media/ftp 
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/photo /media/photo 
+sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/download /media/download
+sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/ftp /media/ftp
+sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/movie /media/movie
 sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/music /media/music
+sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/photo /media/photo
+sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/serie /media/serie
+sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/torrentfile /media/torrentfile
 sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/video /media/video
+sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/webdav /media/webdav
 sudo mount -t zfs 192.168.0.46:/mnt/dpool/image /image 
 sudo mount -t nfs 192.168.0.46:/mnt/dpool/archive /archive
 sudo mount -t nfs 192.168.0.46:/mnt/dpool/backup /backup
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/jenkins /jenkins
+sudo mount -t nfs 192.168.0.46:/mnt/dpool/jenkins /media/jenkins
+rsync -anv /jenkins/ /media/jenkins
+sudo mount -t nfs 192.168.0.46:/mnt/dpool/jenkins-slave /jenkins-slave
 sudo mount -t nfs 192.168.0.46:/mnt/dpool/workspace /workspace-tmp
 #sudo mount -t nfs 192.168.0.46:/mnt/dpool/workspace/users/albandri10 /workspace/users/albandri10
 
@@ -235,8 +252,6 @@ ssh root@192.168.0.46
 jls
 #jexec 1 /bin/tcsh
 jexec 9
-pkg_add -r ftp://ftp.freebsd.org/pub/FreeBSD/ports/i386/packages-8.3-release/java/openjdk-7.2.13.tbz
-java -version
 
 #http://orw.se/blog/index.php/install-java-on-freenas-7-3/
 setenv PACKAGESITE ftp://ftp.freebsd.org/pub/FreeBSD/ports/i386/packages-8.3-release/Latest/
@@ -253,8 +268,6 @@ pkg_add -v -r libtasn1
 
 pkg_add -v -r subversion
 pkg_add -v -r wget
-
-pkg_add -v -r openjdk7
 
 http://doc.freenas.org/index.php/Plugins#Accessing_the_Plugins_Jail
 
@@ -304,13 +317,15 @@ jexec 1 /bin/tcsh /mnt/dpool/jail/software/usr/local/bin/java --version
 
 #install apache
 http://forums.freenas.org/threads/howto-install-apache-under-jail-with-freenas-8-3.10594/
-cd /usr/ports/www/apache22
-cat /usr/local/etc/apache22/httpd.conf | grep Listen
-echo 'apache22_enable="YES"' >> /etc/rc.conf
+pkg install apache24
+pkg install apachetop
+cd /usr/ports/www/apache24
+cat /usr/local/etc/apache24/httpd.conf | grep Listen
+echo 'apache24_enable="YES"' >> /etc/rc.conf
 
 #as non jail
 #start apache 
-/usr/local/etc/rc.d/apache22 start
+/usr/local/etc/rc.d/apache24 start
 
 less /var/log/httpd-error.log
 see http://192.168.0.47/
@@ -398,10 +413,6 @@ Require all granted
 http://forums.freenas.org/threads/owncloud-setup.9177/
 #cd /usr/ports/www/owncloud/ && make install clean
 
-pkg_add -v -r maven3
-pkg_add -v -r apache-ant
-pkg_add -v -r geany -f
-
 <?php
 $CONFIG = array(
 "datadirectory" => '/usr/local/www/owncloud/data',
@@ -469,6 +480,9 @@ chown -R www:www /usr/local/www/owncloud/apps2
 mkdir /usr/pbi/minidlna-amd64/media
 /usr/local/www/owncloud
 
+#tomcat
+pkg install tomcat7
+
 #jenkins
 #https://wiki.jenkins.io/display/JENKINS/Installing+Jenkins+inside+a+FreeNAS+jail
 #http://www.slideshare.net/iXsystems/jenkins-bhyve
@@ -494,28 +508,52 @@ To make it permanent, you need the following lines in /etc/fstab:
 #Install Jenkins
 #https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+inside+a+FreeNAS+jail
 
+pkg_add -r jenkins
+http://192.168.0.23:8380/
+http://home.nabla.mobi:8381/
+/usr/local/etc/rc.d/jenkins onestart
+edit /usr/local/etc/rc.d/jenkins
+/usr/local/etc/rc.d/jenkins stop
+#--ajp13ListenAddress=192.168.0.14 --ajp13Port=8009
+#REMOVE --prefix=/jenkins for jenkins apps on android
+: ${jenkins_args="--webroot=${jenkins_home}/war --httpListenAddress=0.0.0.0 --httpPort=8380 --prefix=/"}
 echo 'jenkins_enable="YES"' >> /etc/rc.conf
+
+tail -f /var/log/jenkins.log
+tail -f /mnt/dpool/jail/software/var/log/httpd-access.log
+
 cd /usr/local/etc/rc.d/
 edit jenkins
 service jenkins restart
-http://home.nabla.mobi:8380/jenkins
+http://home.nabla.mobi:8380/
 192.168.0.23
 tail -f /var/log/jenkins.log
 
 user : admin
 pass : 
 
+id jenkins
+
+#in jail
+edit /etc/group
+
+#sudo usermod -u 117 jenkins
+#pw useradd -n jenkins -u 117 -d /nonexistent -s /usr/sbin/nologin
+#pw userdel jenkins
+pw groupadd -n jenkins -g 131
+pw useradd -n jenkins -u 117 -d /usr/local/jenkins -s /usr/local/bin/bash
+#pw groupmod -g 131 jenkins
+pw groupmod jenkins -m jenkins
+
+pw usermod jenkins -G wheel
+
+chown -R jenkins:jenkins /var/run/jenkins
+
 #add ssh to jail 
 #http://doc.freenas.org/index.php/Adding_Jails
 edit /etc/rc.conf
 #sshd_enable="YES"
 service sshd start
-
-adduser
-#slave
-#other group wheel
-#microsoft
-pw usermod jenkins -G wheel
 
 #jenkins user add rsa key in freenas
 [jenkins@freenas ~/.ssh]$ ssh-keygen -t rsa                                     
@@ -570,6 +608,19 @@ portsnap fetch && portsnap extract
 cd /usr/ports/java/openjdk7
 make clean install
 
+pkg install openjdk
+
+
+#jdk8
+cd /usr/ports/java/openjdk8
+make clean install
+
+pkg install openjdk8
+
+ls -lrta /usr/local/openjdk8
+
+java -version
+
 #freenas
 ssh jenkins@192.168.0.46
 ssh-keyscan -t rsa 192.168.0.29 >> /mnt/dpool/jenkins/.ssh/known_hosts
@@ -584,21 +635,6 @@ ssh -v jenkins@192.168.0.29
 portsnap fetch && portsnap extract
 
 -----------------------------------------------------
-#????? below was not working
-pkg_add -r jenkins
-http://192.168.0.23:8380/jenkins
-http://home.nabla.mobi:8381/jenkin
-/usr/local/etc/rc.d/jenkins onestart
-vi /usr/local/etc/rc.d/jenkins
-/usr/local/etc/rc.d/jenkins stop
-#--ajp13ListenAddress=192.168.0.14 --ajp13Port=8009
-: ${jenkins_args="--webroot=${jenkins_home}/war --httpListenAddress=0.0.0.0 --httpPort=8380 --prefix=/jenkins"}
-echo 'jenkins_enable="YES"' >> /etc/rc.conf
-
-tail -f /var/log/jenkins.log
-tail -f /mnt/dpool/jail/software/var/log/httpd-access.log
-http://192.168.0.14:8380/jenkins/
-
 #shorty error
 http://www.macintom.com/wp/2012/06/13/owncloud-bug-lors-de-lactivation-dune-application-owncloud-ne-fonctionne-plus/
 UPDATE  `oc_appconfig` SET  `configvalue` =  "no" WHERE  `appid` =  "shorty" AND  `configkey` =  "enabled"
@@ -623,30 +659,49 @@ cd /usr/ports/devel/jenkins/ && make install clean
 ll /usr/ports/distfiles/jenkins/1.525/jenkins.war
 cd /usr/local/share/jenkins/
 
-pkg_add -v -r selenium
+pkg install selenium
 /usr/local/www/selenium
 
-pkg_add -v -r ruby
-pkg_add -v -r gtksourceview
-/var/db/pkg/gtksourceview-1.8.5_7
+cd /usr/ports/graphics/graphviz/ && make install clean
+pkg install graphviz
+pkg install gcc
 
-pkg_delete openjdk-7.2.13
-pkg_delete openjdk6-b24_4
-openjdk6-b24_4
+#-Wl,-rpath=/usr/local/lib/gcc5
+
+pkg install scons
+pkg install cmake
+pkg install doxygen
+pkg install clang38
+pkg install node
+pkg install npm
+pkg install firefox
+pkg install chromium
+pkg install hs-ShellCheck
+
+#pkg_add -v -r maven3
+#cd /usr/ports/devel/maven3/ && make install clean
+pkg install maven3
+#cd /usr/ports/devel/maven33/ && make install clean
+pkg install maven33
+
+mvn --version
+
+pkg install bash
+ln -s /usr/local/bin/bash /bin/bash
+
+pkg install ruby
+pkg install devel/ruby-gems
+#pkg_add -v -r gtksourceview
 
 #SSH
 ssh -i OpenSSH_RSA_4096 albandri@freenas
 
 #http://doc.freenas.org/index.php/Plugins
 
-#jdk8
-pkg_add -v -r libffi
-cd /usr/ports/java/openjdk8
-make clean install
-
-ls -lrta /usr/local/openjdk8
-
 #nexus
+http://home.nabla.mobi:8085/nexus/
+http://192.168.0.24:8081/nexus
+
 pkg install nexus2-oss
 ======================================================================
 Message from nexus2-oss-2.14.0:

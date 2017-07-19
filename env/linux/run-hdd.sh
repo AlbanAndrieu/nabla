@@ -32,4 +32,13 @@ lspci -vv | grep -i raids
 
 #ls -lah /dev/cciss/
 
+#https://help.ubuntu.com/lts/serverguide/iscsi-initiator.html
+sudo apt-get install open-iscsi
+sudo nano /etc/iscsi/iscsid.conf
+#uncomment
+node.startup = automatic
+
+sudo iscsiadm -m discovery -t st -p 192.168.0.46
+sudo iscsiadm -m node --login
+
 exit 0
