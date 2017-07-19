@@ -49,7 +49,7 @@
 			</snapshots>
 			<id>nexus-releases</id>
 			<name>Nexus Release Repository</name>
-			<url>http://home.nabla.mobi:8081/nexus/content/repositories/releases</url>
+			<url>http://home.nabla.mobi:8085/nexus/content/repositories/releases</url>
 		</repository>
 		<repository>
 			<releases>
@@ -62,15 +62,9 @@
 			</snapshots>
 			<id>nexus-snapshots</id>
 			<name>Nexus Snapshot Repository</name>
-			<url>http://home.nabla.mobi:8081/nexus/content/repositories/snapshots</url>
+			<url>http://home.nabla.mobi:8085/nexus/content/repositories/snapshots</url>
 		</repository>
-		<!-- <repository> <id>nabla-releases</id> <name>Nabla Release Repository</name>
-            <url>http://alban.googlecode.com/svn/mavenrepo/releases</url> <snapshots>
-            <enabled>false</enabled> </snapshots> <releases> <enabled>true</enabled>
-            </releases> </repository> <repository> <id>nabla-snapshots</id> <name>Nabla
-            Snapshot Repository</name> <url>http://alban.googlecode.com/svn/mavenrepo/snapshots</url>
-            <snapshots> <enabled>true</enabled> <updatePolicy>daily</updatePolicy> <checksumPolicy>ignore</checksumPolicy>
-            </snapshots> <releases> <enabled>false</enabled> </releases> </repository> -->
+		<!--
 		<repository>
 			<releases>
 				<enabled>true</enabled>
@@ -95,6 +89,7 @@
 			<name>Openqa Snapshot Repository</name>
 			<url>http://nexus.openqa.org/content/repositories/snapshots</url>
 		</repository>
+		 -->
 		<repository>
 			<snapshots>
 				<enabled>false</enabled>
@@ -148,6 +143,7 @@
 			<name>JBoss Snapshot Repository</name>
 			<url>http://snapshots.jboss.org/maven2</url>
 		</repository>
+		<!-- MOVED
 		<repository>
 			<releases>
 				<enabled>true</enabled>
@@ -157,8 +153,9 @@
 			</snapshots>
 			<id>andromda</id>
 			<name>AndroMDA Maven 2.x Repository</name>
-			<url>http://andromda.org/maven2</url>
+			<url>https://oss.sonatype.org/content/groups/public</url>
 		</repository>
+		-->
 		<repository>
 			<releases>
 				<enabled>true</enabled>
@@ -192,6 +189,7 @@
 			<name>Flexmojos Repository</name>
 			<url>http://repository.sonatype.org/content/groups/flexgroup/</url>
 		</repository>
+		<!--
 		<repository>
 			<releases>
 				<enabled>true</enabled>
@@ -203,6 +201,7 @@
 			<name>Open cast project Repository</name>
 			<url>http://repository.opencastproject.org/nexus/content/repositories/public/</url>
 		</repository>
+		-->
 		<repository>
 			<releases>
 				<enabled>true</enabled>
@@ -285,7 +284,7 @@
 				<enabled>false</enabled>
 			</snapshots>
 			<id>nexus-releases</id>
-			<url>http://home.nabla.mobi:8081/nexus/content/repositories/releases</url>
+			<url>http://home.nabla.mobi:8085/nexus/content/repositories/releases</url>
 		</pluginRepository>
 		<pluginRepository>
 			<releases>
@@ -295,11 +294,8 @@
 				<enabled>true</enabled>
 			</snapshots>
 			<id>nexus-snapshots</id>
-			<url>http://home.nabla.mobi:8081/nexus/content/repositories/snapshots</url>
+			<url>http://home.nabla.mobi:8085/nexus/content/repositories/snapshots</url>
 		</pluginRepository>
-		<!-- <pluginRepository> <id>nabla-plugins</id> <url>http://alban.googlecode.com/svn/mavenrepo/releases</url>
-            <snapshots> <enabled>false</enabled> </snapshots> <releases> <enabled>true</enabled>
-            </releases> </pluginRepository> -->
 		<pluginRepository>
 			<releases>
 				<enabled>true</enabled>
@@ -587,22 +583,17 @@
                     </plugin> </plugins> -->
 			</build>
 			<distributionManagement>
-				<!-- <repository> <id>server-releases</id> <name>External Staging Repository</name>
-                    <url>svn:https://alban.googlecode.com/svn/mavenrepo/releases</url> </repository> -->
-				<!-- <snapshotRepository> <id>server-snapshots</id> <name>External Snapshot
-                    Repository</name> <url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
-                    </snapshotRepository> -->
 				<repository>
 					<uniqueVersion>true</uniqueVersion>
 					<id>nexus-releases</id>
 					<name>Nexus Staging Repository</name>
-					<url>http://home.nabla.mobi:8081/nexus/content/repositories/releases</url>
+					<url>http://home.nabla.mobi:8085/nexus/content/repositories/releases</url>
 				</repository>
 				<snapshotRepository>
 					<uniqueVersion>false</uniqueVersion>
 					<id>nexus-snapshots</id>
 					<name>Nexus Snapshot Repository</name>
-					<url>http://home.nabla.mobi:8081/nexus/content/repositories/snapshots</url>
+					<url>http://home.nabla.mobi:8085/nexus/content/repositories/snapshots</url>
 				</snapshotRepository>
 				<site>
 					<!--<id>website</id>-->
