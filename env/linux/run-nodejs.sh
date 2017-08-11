@@ -83,7 +83,8 @@ npm install -g karma-ng-scenario
 npm install -g karma-ng-html2js-preprocessor
 npm install -g karma-coverage
 npm install -g karma-jasmine
-npm install -g phantomjs@2.1.1
+#npm install -g phantomjs@2.1.1
+npm install -g phantomjs-prebuilt
 npm install -g karma-phantomjs-launcher
 npm install -g selenium-webdriver
 npm install -g grunt-contrib-compress
