@@ -2,6 +2,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<!-- @version $Revision: $ $Date: $ $Author: $ $State: $ -->
+    <!-- @formatter:off -->
 	<parent>
 		<artifactId>users</artifactId>
 		<groupId>com.nabla</groupId>
@@ -132,7 +133,7 @@
 		<!-- APPFUSE settings -->
 		<amp.genericCore>true</amp.genericCore>
 		<!-- BEGIN of Thirdparties versions stick to project recommandations -->
-		<andromda.version>3.6-SNAPSHOT</andromda.version>
+		<andromda.version>3.5-SNAPSHOT</andromda.version>
 		<annogen.version>0.1.0</annogen.version>
 		<ant.contrib.version>20020829</ant.contrib.version>
 		<!--<ant.nodeps.version>${ant.version}</ant.nodeps.version>-->
@@ -531,7 +532,7 @@
 		<jsp.api.version>2.2.1-b03</jsp.api.version>
 		<jsp.version>2.0</jsp.version>
 		<jspc.compiler.tomcat6.version>2.0-alpha-3</jspc.compiler.tomcat6.version>
-		<jsr305.version>3.0.0</jsr305.version>
+		<jsr305.version>3.0.1</jsr305.version>
 		<!-- works with cxf 2.7.14 -->
 		<jsr311.api.version>1.1.1</jsr311.api.version>
 		<jstl.version>1.2</jstl.version>
@@ -985,6 +986,8 @@
                 http://docs.codehaus.org/display/SONAR/Switch+Off+Violations+Plugin -->
 		<!--**/*.xhtml, **/*.html-->
 		<sonar.exclusions>test/**, src/test/**, **/generated/**, **/pom.xml, **/bower_components/**, **/node_modules/**, **/node/**, **/libs/**, **/lib/**, **/docs/**, **/*.cache.html, **/*.nocache.js, **/*.min.js, **/*.min.css, **/*.gwt.xml, **/web.xml, **/web-jsf.xml, **/faces-config.xml, **/*.as, **/logback.xml, **/log4j.xml, , **/jetty-*.xml, **/Gruntfile.js, **/lcov-report/**</sonar.exclusions>
+		<sonar.global.exclusions>**/generated/**</sonar.global.exclusions>
+		<sonar.jacoco.excludes>**/generated/**,**/*.less,**/*.css</sonar.jacoco.excludes>
 		<!-- Issue
 				Jenkins Sonar Job : CI URL: Jenkins Received 404 when trying to access
 				I'm facing the same issue. If it can help, here a workaround: in Jenkins > Manage Jenkins > Configure Global Security, grant Anonymous user to read both Overall and Job.

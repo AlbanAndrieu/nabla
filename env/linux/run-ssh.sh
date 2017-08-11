@@ -29,3 +29,6 @@ ssh-keyscan 192.168.0.18 >> ~/.ssh/known_hosts
 As jenkins@albandri-laptop-work aka 192.168.0.19 (wifi) or 192.168.0.18 (ehternet)
 ssh-keyscan 192.168.0.29 >> ~/.ssh/known_hosts
 cat .ssh/id_rsa.pub | ssh jenkins@192.168.0.29 'cat >> .ssh/authorized_keys'
+
+#Permissions for '.ssh/id_rsa' are too open
+chmod 400 ~/.ssh/id_rsa*

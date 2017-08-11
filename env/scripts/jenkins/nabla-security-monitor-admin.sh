@@ -26,8 +26,8 @@ echo ""
 echo "################### LOG output check ###################"
 echo ""
 
-sudo -t head -n 1000 /var/log/tomcat7/catalina.out || exit 1
-#sudo tail -n 1000 /var/log/tomcat7/catalina.out || exit 1
+#sudo -t head -n 1000 /var/log/tomcat7/catalina.out || exit 1
+sudo tail -n 1000 /var/log/tomcat7/catalina.out || exit 1
 
 echo ""
 echo "################### SECURITY/ROOTKIT ###################"
