@@ -22,7 +22,7 @@ user : root
 
 #http://download.freenas.org/9.2.1.5/RELEASE/x64/
 
-#to see 
+#to see
 #http://www.durindel.fr/utilisation-avancee-de-freenas
 #http://www.durindel.fr/informatique/tutoriel-configuration-de-freenas
 #TODO
@@ -141,9 +141,9 @@ pkg_add -r -v http://ftp.urc.ac.ru/pub/OS/FreeBSD/packages-7/Latest/lame.tbz
 pkg_add -v -r flac
 pkg_add -v -r ffmpeg
 
-./usr/local/share/subsonic                                                      
-./usr/local/etc/subsonic                                                        
-./usr/local/etc/rc.d/subsonic 
+./usr/local/share/subsonic
+./usr/local/etc/subsonic
+./usr/local/etc/rc.d/subsonic
 /usr/pbi/subsonic-amd64/etc/subsonic
 #user admin
 
@@ -175,7 +175,7 @@ user : admin
 #or
 #/usr/pbi/plexmediaserver-amd64/plexdata/Plex Media Server/Preferences.xml
 #and add the attribute
-#disableRemoteSecurity="1" 
+#disableRemoteSecurity="1"
 #http://192.168.0.15:32400/web/index.html
 
 #mount by hand
@@ -268,6 +268,41 @@ pkg_add -v -r libtasn1
 
 pkg_add -v -r subversion
 pkg_add -v -r wget
+
+pkg_add -v -r openjdk7
+
+pkg install ansible
+#for Xvfb
+pkg install xorg-vfbserver
+#/usr/local/bin/Xvfb
+
+pkg install firefox
+
+npm install -g bower
+npm install -g nsp
+#npm install -g phantomjs-prebuilt
+
+pkg install phantomjs
+
+pkg install wildfly10
+Extracting wildfly10-10.1.0: 100%
+Message from wildfly10-10.1.0:
+To make WildFly bind to all interfaces add this to rc.conf:
+
+wildfly10_args="-Djboss.bind.address=0.0.0.0"
+echo '-Djboss.bind.address=0.0.0.0' >> /etc/rc.conf
+
+See
+
+        https://community.jboss.org/wiki/JBossProperties
+
+for additional startup properties.
+
+To change JVM args, edit appropriate standalone.conf.
+
+To add the initial admin user:
+
+/usr/local/wildfly10/bin/add-user.sh
 
 http://doc.freenas.org/index.php/Plugins#Accessing_the_Plugins_Jail
 
@@ -365,12 +400,12 @@ fetch http://sourceforge.net/projects/phpmyadmin/files/phpMyAdmin/4.0.5/phpMyAdm
 tar -zxvf phpMyAdmin-4.0.5-english.tar.gz
 
 ln -s /app/phpMyAdmin /usr/local/www/phpMyAdmin
-http://192.168.0.47/phpMyAdmin/ 
+http://192.168.0.47/phpMyAdmin/
 
 cd /usr/ports/databases/phpmyadmin/
 make config
 make install clean
- 
+
 #install php5
 http://forums.freenas.org/threads/installing-apache-2-2-mysql-5-5-php-5-4-11-into-plugin-jail.11519/
 /usr/local/etc/rc.d/apache22 stop
@@ -378,7 +413,7 @@ http://forums.freenas.org/threads/installing-apache-2-2-mysql-5-5-php-5-4-11-int
 php -v
 
 cd /usr/ports/lang/php5 && make config
-make install clean 
+make install clean
 
 #--enable-zip for owncloud
 cd /usr/ports/lang/php5-extensions && make config
@@ -461,13 +496,13 @@ mv /mnt/dpool/workspace/os/freenas/ /mnt/dpool/owncloud/apps2
 
 dans le jail
 chown -R www:www /usr/local/www/owncloud/apps2
- 
+
 #NOK mkdir /usr/pbi/minidlna-amd64/media
 /usr/local/www/owncloud
 
 #dans le jail
 chown -R www:www /usr/local/www/owncloud/apps2
- 
+
 #mount point app
 /mnt/dpool/owncloud/apps2
 /usr/local/www/owncloud/apps2
@@ -475,8 +510,8 @@ chown -R www:www /usr/local/www/owncloud/apps2
 #mount point media
 /mnt/dpool/media
 /usr/local/www/owncloud/data
- 
- 
+
+
 mkdir /usr/pbi/minidlna-amd64/media
 /usr/local/www/owncloud
 
@@ -488,22 +523,22 @@ pkg install tomcat7
 #http://www.slideshare.net/iXsystems/jenkins-bhyve
 pkg install devel/jenkins-lts
 #pkg install /devel/jenkins
-======================================================================          
-                                                                                
-This OpenJDK implementation requires fdescfs(5) mounted on /dev/fd and          
-procfs(5) mounted on /proc.                                                     
-                                                                                
-If you have not done it yet, please do the following:                           
-                                                                                
-        mount -t fdescfs fdesc /dev/fd                                          
-        mount -t procfs proc /proc                                              
-                                                                                
-To make it permanent, you need the following lines in /etc/fstab:               
-                                                                                
-        fdesc   /dev/fd         fdescfs         rw      0       0               
-        proc    /proc           procfs          rw      0       0               
-                                                                                
-====================================================================== 
+======================================================================
+
+This OpenJDK implementation requires fdescfs(5) mounted on /dev/fd and
+procfs(5) mounted on /proc.
+
+If you have not done it yet, please do the following:
+
+        mount -t fdescfs fdesc /dev/fd
+        mount -t procfs proc /proc
+
+To make it permanent, you need the following lines in /etc/fstab:
+
+        fdesc   /dev/fd         fdescfs         rw      0       0
+        proc    /proc           procfs          rw      0       0
+
+======================================================================
 
 #Install Jenkins
 #https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+inside+a+FreeNAS+jail
@@ -530,7 +565,7 @@ http://home.nabla.mobi:8380/
 tail -f /var/log/jenkins.log
 
 user : admin
-pass : 
+pass :
 
 id jenkins
 
@@ -551,24 +586,38 @@ chown -R jenkins:jenkins /var/run/jenkins
 
 #add ssh to jail 
 #http://doc.freenas.org/index.php/Adding_Jails
-edit /etc/rc.conf
-#sshd_enable="YES"
+#edit /etc/rc.conf
+echo 'sshd_enable="YES"' >> /etc/rc.conf
 service sshd start
 
 #jenkins user add rsa key in freenas
-[jenkins@freenas ~/.ssh]$ ssh-keygen -t rsa                                     
-Generating public/private rsa key pair.                                         
-Enter file in which to save the key (/mnt/dpool/jenkins/.ssh/id_rsa):           
-Enter passphrase (empty for no passphrase):                                     
-Enter same passphrase again:                                                    
-Your identification has been saved in /mnt/dpool/jenkins/.ssh/id_rsa.           
-Your public key has been saved in /mnt/dpool/jenkins/.ssh/id_rsa.pub.           
-The key fingerprint is:                                                         
-37:41:20:f6:8e:c8:aa:23:b7:45:82:7e:df:46:b2:7a jenkins@freenas.local           
+[jenkins@freenas ~/.ssh]$ ssh-keygen -t rsa
+Generating public/private rsa key pair.
+Enter file in which to save the key (/mnt/dpool/jenkins/.ssh/id_rsa):
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
+Your identification has been saved in /mnt/dpool/jenkins/.ssh/id_rsa.
+Your public key has been saved in /mnt/dpool/jenkins/.ssh/id_rsa.pub.
+The key fingerprint is:
+37:41:20:f6:8e:c8:aa:23:b7:45:82:7e:df:46:b2:7a jenkins@freenas.local
 
 less ~/.ssh/id_rsa.pub
 ssh-rsa KEY jenkins@freenas.local
 ssh-rsa KEY jenkins@albandri
+
+#freenas
+ssh jenkins@192.168.0.46
+ssh-keyscan -t rsa 192.168.0.29 >> /mnt/dpool/jenkins/.ssh/known_hosts
+#in the jail
+ssh-keyscan -t rsa 192.168.0.29 >> ~/.ssh/known_hosts
+
+#from jenkins master as jenkins user (su - jenkins)
+cat .ssh/id_rsa.pub | ssh jenkins@192.168.0.26 'cat >> .ssh/authorized_keys'
+
+#jenkins_2 jail
+ssh -v jenkins@192.168.0.26
+#albandri
+ssh -v jenkins@192.168.0.29
 
 #
 /usr/sbin/freebsd-update && freebsd-update install
@@ -584,7 +633,7 @@ pkg update -f
 /usr/sbin/portsnap update
 
 To update ports it's enough just to run
-# portsnap fetch extract 
+# portsnap fetch extract
 for the first time (yes, it downloads and extracts ~60MB for the first time) and
 # portsnap fetch update
 thereafter (it downloads only deltas and it's really fast).
@@ -594,9 +643,9 @@ That's was step #1. Next if you run
 it shows all your outdated packages (installed ports).
 Then read /usr/ports/UPDATING and update your installed ports starting from the most important such as gettext, perl, python and similar. I don't use -a option whatsoever: it's troublesome (with exception of pkg_delete -a :))
 When you have all the installed ports up-to-date the troubles are unlikely.
-The last step is installation itself. It could be done by 
+The last step is installation itself. It could be done by
 # cd /usr/ports/<pkg_group>/<package> && make install clean
-but it also could be done by 
+but it also could be done by
 # pkg_add -r <package> if you accept default configs and the up-to-date packages were created already and could be found in a repository corresponding your distribution:
 ftp://ftp.freebsd.org/pub/FreeBSD/ports/<ARCH>/packages-N-distro/Latest/
 I use both methods depending on current situation.
@@ -871,26 +920,26 @@ extension=pdo_mysql.so
 
 ****************************************************************************
 Message from zoneminder-1.30.4:
-ZoneMinder is a free, open source Closed-circuit television software 
-application developed for Unix-like operating systems which supports 
-IP, USB and Analog cameras. 
+ZoneMinder is a free, open source Closed-circuit television software
+application developed for Unix-like operating systems which supports
+IP, USB and Analog cameras.
 
 New installs
 ============
 
-ZoneMinder requires a MySQL (or MySQL forks) database backend and 
+ZoneMinder requires a MySQL (or MySQL forks) database backend and
 a http server, capable to execute PHP and CGI scripts.
 
-To simplify things, we assume, that you use MySQL and NGINX on 
+To simplify things, we assume, that you use MySQL and NGINX on
 the same server.
 
 1. Preliminary steps
 
 1.1 Install databases/mysql56-server or newer
     pkg install databases/mysql56-server
-    
+
     -----------------------------
-    
+
 Message from mysql56-server-5.6.36:
 *****************************************************************************
 
@@ -911,16 +960,16 @@ future.  If you do not want to move your my.cnf to the new location then
 you must set "mysql_optfile" in /etc/rc.conf to "/var/db/mysql/my.cnf".
 
 
----------------------------------    
-    
-	You may choose your favourite method - ports or packages here. 
+---------------------------------
+
+	You may choose your favourite method - ports or packages here.
 	FreeBSD default setting use STRICT_TRANS_TABLES sql_mode. It's mandatory to disable it. Edit your my.cnf accordingly
 
 	The following SQL mode should be compatible with ZM:
 		sql_mode= NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION
 
-	ZoneMinder use very simple queries, however it tends to write to 
-	the database quite a lot depending on your capture mode and number 
+	ZoneMinder use very simple queries, however it tends to write to
+	the database quite a lot depending on your capture mode and number
 	of cameras. So tweak your MySQL instance accordantly
 
 	Now, enable and start MySQL
@@ -928,10 +977,10 @@ you must set "mysql_optfile" in /etc/rc.conf to "/var/db/mysql/my.cnf".
 		echo 'mysql_enable="YES"' >> /etc/rc.conf
 		service mysql-server onestart
 
-1.2 Install www/nginx 
-	We provide an example for an HTTP install, however, you should use 
-	HTTPS if you plan to expose your installation to the public. There 
-	are plenty guides how to do it and security/letsencrypt.sh is a 
+1.2 Install www/nginx
+	We provide an example for an HTTP install, however, you should use
+	HTTPS if you plan to expose your installation to the public. There
+	are plenty guides how to do it and security/letsencrypt.sh is a
 	good way to get a valid SSL certificate.
 
 	Your server block should include the following:
@@ -947,7 +996,7 @@ you must set "mysql_optfile" in /etc/rc.conf to "/var/db/mysql/my.cnf".
 						fastcgi_pass    unix:/var/run/fcgiwrap/fcgiwrap.sock;
 				}
 
-				location ~ \.php$ { 
+				location ~ \.php$ {
 						include fastcgi_params;
 						fastcgi_param   SCRIPT_FILENAME  $document_root$fastcgi_script_name;
 						fastcgi_pass    unix:/var/run/php-fpm.sock;
@@ -958,24 +1007,24 @@ you must set "mysql_optfile" in /etc/rc.conf to "/var/db/mysql/my.cnf".
 				}
 		}
 
-1.2.1 ZoneMinder has it's own authentication system, however it's recommend to use NGINX basic 
+1.2.1 ZoneMinder has it's own authentication system, however it's recommend to use NGINX basic
 	auth over HTTPS if you don't need fine grain control to ZoneMinder components.
 
-1.2.2 If you choose ZoneMinder authentication, it's recommended to prohibit access to 
+1.2.2 If you choose ZoneMinder authentication, it's recommended to prohibit access to
 	image and events folder as it's possible to guess file names inside it.
 
         location ~ ^/(?:images|events)/ {
                 deny all;
         }
-        
+
 	Enable and start NGINX
 		sysrc nginx_enable="YES"
 		service nginx start
 
-1.3 Install www/fcgiwrap 
-	As NGINX lacks it's own CGI wrapper, we need external one. Please 
-	note that ZoneMinder's montage page use simultaneous access to all 
-	cameras, so you need to use at least as many fcgiwrap workers as 
+1.3 Install www/fcgiwrap
+	As NGINX lacks it's own CGI wrapper, we need external one. Please
+	note that ZoneMinder's montage page use simultaneous access to all
+	cameras, so you need to use at least as many fcgiwrap workers as
 	your number of cameras. The following example assumes you have 4.
 
 	Enable and start FcgiWrap
@@ -983,7 +1032,7 @@ you must set "mysql_optfile" in /etc/rc.conf to "/var/db/mysql/my.cnf".
 		sysrc fcgiwrap_user="www"
 		sysrc fcgiwrap_flags="-c 4"
 
-1.4 PHP is installed as a dependency to ZoneMinder. However, you should 
+1.4 PHP is installed as a dependency to ZoneMinder. However, you should
 	tweak some of it's settings.
 	Edit /usr/local/etc/php-fpm.conf and set
 
@@ -992,12 +1041,12 @@ you must set "mysql_optfile" in /etc/rc.conf to "/var/db/mysql/my.cnf".
 		listen.group = www
 		env[PATH] = /usr/local/bin:/usr/bin:/bin
 
-	If you want to set another path for the socket file, make sure you 
-	change it in your NGINX config well. The env[PATH] needs to be set 
-	to locate the zip utility as ZoneMinder's export functions rely on 
-	exec(). Sorry, chroot folks. 
+	If you want to set another path for the socket file, make sure you
+	change it in your NGINX config well. The env[PATH] needs to be set
+	to locate the zip utility as ZoneMinder's export functions rely on
+	exec(). Sorry, chroot folks.
 
-	PHP throws warning if date.timezone option is not set. The best place 
+	PHP throws warning if date.timezone option is not set. The best place
 	to do it is to create new ini file in /usr/local/etc/php with overrides
 
 		date.timezone = "UTC"
@@ -1006,13 +1055,13 @@ you must set "mysql_optfile" in /etc/rc.conf to "/var/db/mysql/my.cnf".
 		sysrc php_fpm_enable="YES"
 		service php-fpm start
 
-1.5 ZoneMinder constantly keeps the last N frames from its cameras to 
-	preserve them when alarm occurs. This can be a performance hog if 
+1.5 ZoneMinder constantly keeps the last N frames from its cameras to
+	preserve them when alarm occurs. This can be a performance hog if
 	placed on spindle drive. The best practice is put it on tmpfs.
-	See https://www.freebsd.org/cgi/man.cgi?query=tmpfs for more 
+	See https://www.freebsd.org/cgi/man.cgi?query=tmpfs for more
 	information.
 
-	ZoneMinder will use /tmp for default. If you plan to change it, see 
+	ZoneMinder will use /tmp for default. If you plan to change it, see
 	ZM_PATH_MAP setting.
 
 	Mapping /tmp to tmpfs is actually a recommended step under FreeBSD.
@@ -1020,8 +1069,8 @@ you must set "mysql_optfile" in /etc/rc.conf to "/var/db/mysql/my.cnf".
 
 		tmpfs			/tmp		tmpfs	rw,nosuid,mode=01777	0	0
 
-	The size of temporary files depends on your number of cameras 
-	number and frames you plan to keep. My 12 3Mbit cameras with 25 
+	The size of temporary files depends on your number of cameras
+	number and frames you plan to keep. My 12 3Mbit cameras with 25
 	last frames consumes 6 GB.
 
 2. ZoneMinder installation
@@ -1029,14 +1078,14 @@ you must set "mysql_optfile" in /etc/rc.conf to "/var/db/mysql/my.cnf".
 	Connect to MySQL under root and create zm user and populate database.
 
 	mysql -u root -p
-	
+
 		CREATE DATABASE zm;
 		GRANT ALL PRIVILEGES ON zm.* TO 'zmuser'@'localhost' IDENTIFIED BY 'zmpass';
 		FLUSH PRIVILEGES;
 		quit;
-	
+
 	mysql -u root -p zm < /usr/local/share/zoneminder/db/zm_create.sql
-	
+
 2.1 If you have chosen to change the ZoneMinder MySQL credentials to something
 	other than zmuser/zmpass then you must now edit /usr/local/etc/zm.conf. Change
 	ZM_DB_USER and ZM_DB_PASS to the values you created in the previous step.
@@ -1053,6 +1102,6 @@ Upgrades
 
 2. Upgrade database
 	sudo -u www zmupdate.pl
-	
+
 3. Start ZoneMinder
 	service zoneminder start

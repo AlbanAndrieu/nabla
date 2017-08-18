@@ -41,4 +41,10 @@ node.startup = automatic
 sudo iscsiadm -m discovery -t st -p 192.168.0.46
 sudo iscsiadm -m node --login
 
+
+#See encrypted diks
+#https://community.linuxmint.com/tutorial/view/2191#appc
+modprobe dm-crypt
+sudo update-grub
+#Windows using BitLocker/TPM and Linux using dm-crypt with LUKS Enxtension
 exit 0
