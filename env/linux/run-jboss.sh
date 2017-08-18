@@ -3,6 +3,9 @@ set -xv
 
 #https://www.digitalocean.com/community/articles/how-to-install-jboss-on-ubuntu-12-10-64bit
 
+#on freenas
+pkg install wildfly10
+
 #as jenkins user
 /workspace/jboss-as-7.1.1.Final/bin/standalone.sh
 #check
@@ -27,6 +30,9 @@ Realm (ManagementRealm) : ManagementRealm
 Username : admin
 Password : microsoft
 Re-enter Password : microsoft
+
+#To represent the user add the following to the server-identities definition <sec
+#ret value="bWljcm9zb2Z0"
 
 cd /etc/init.d
 sudo chmod 755 ./jboss
