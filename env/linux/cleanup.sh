@@ -6,6 +6,8 @@ sudo apt-get install bleachbit
 
 echo "Start cleaning"
 #http://doc.ubuntu-fr.org/nettoyer_ubuntu
+\rm -Rf /usr/local/sonar/.local
+\rm -Rf /usr/local/sonar/Downloads/*
 \rm -Rf /usr/share/tomcat6/.m2/repository/
 \rm -Rf ~/.m2/repository/
 \rm -Rf ~/.repository

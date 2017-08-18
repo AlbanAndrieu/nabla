@@ -133,7 +133,7 @@
 		<!-- APPFUSE settings -->
 		<amp.genericCore>true</amp.genericCore>
 		<!-- BEGIN of Thirdparties versions stick to project recommandations -->
-		<andromda.version>3.5-SNAPSHOT</andromda.version>
+		<andromda.version>3.6-SNAPSHOT</andromda.version>
 		<annogen.version>0.1.0</annogen.version>
 		<ant.contrib.version>20020829</ant.contrib.version>
 		<!--<ant.nodeps.version>${ant.version}</ant.nodeps.version>-->
@@ -628,7 +628,7 @@
 		<maven.gwt.plugin.version>${gwt.version}</maven.gwt.plugin.version>
 		<maven.h2.plugin.version>1.0</maven.h2.plugin.version>
 		<maven.help.plugin.version>2.2</maven.help.plugin.version>
-		<maven.hotdeploy.plugin.version>0.3.3</maven.hotdeploy.plugin.version>
+		<!--<maven.hotdeploy.plugin.version>0.3.3</maven.hotdeploy.plugin.version>-->
 		<maven.idea.plugin.version>2.3-20100704</maven.idea.plugin.version>
 		<maven.install.plugin.version>2.5.2</maven.install.plugin.version>
 		<maven.invoker.plugin.version>2.0.0</maven.invoker.plugin.version>
@@ -679,7 +679,7 @@
 		<maven.org.liquibase.plugin.version>3.5.3</maven.org.liquibase.plugin.version>
 		<maven.patch.plugin.version>1.2</maven.patch.plugin.version>
 		<maven.pax.plugin.version>1.6.0</maven.pax.plugin.version>
-		<maven.pitest.plugin.version>1.2.0</maven.pitest.plugin.version>
+		<maven.pitest.plugin.version>1.2.2</maven.pitest.plugin.version>
 		<maven.plexus.util.plugin.version>1.1</maven.plexus.util.plugin.version>
 		<maven.plugin.api.plugin.version>${maven.version}</maven.plugin.api.plugin.version>
 		<maven.plugin.api.plugin.version>2.0</maven.plugin.api.plugin.version>
@@ -723,7 +723,7 @@
 		<!--<maven.source.plugin.version>2.4</maven.source.plugin.version>-->
 		<maven.source.plugin.version>3.0.1</maven.source.plugin.version>
 		<maven.sql.plugin.version>1.5</maven.sql.plugin.version>
-		<maven.surefire.plugin.version>2.19.1</maven.surefire.plugin.version>
+		<maven.surefire.plugin.version>2.20</maven.surefire.plugin.version>
 		<maven.surefire.report.plugin.version>${maven.surefire.plugin.version}</maven.surefire.report.plugin.version>
 		<!--<maven.jaxrs.analyzer.plugin.version>0.14</maven.jaxrs.analyzer.plugin.version> String index out of range -->
 		<maven.swagger.plugin.version>3.1.3</maven.swagger.plugin.version>
@@ -6560,11 +6560,13 @@
 						</execution>
 					</executions>
 				</plugin>
+				<!--
 				<plugin>
 					<groupId>com.ctp.seam.maven</groupId>
 					<artifactId>maven-hotdeploy-plugin</artifactId>
 					<version>${maven.hotdeploy.plugin.version}</version>
 				</plugin>
+				-->
 				<plugin>
 					<groupId>org.twdata.maven</groupId>
 					<artifactId>maven-cli-plugin</artifactId>

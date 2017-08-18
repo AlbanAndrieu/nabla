@@ -261,9 +261,13 @@ pkg install ansible
 pkg install xorg-vfbserver
 #/usr/local/bin/Xvfb
 
+pkg install firefox
+
 npm install -g bower
 npm install -g nsp
-npm install -g phantomjs-prebuilt
+#npm install -g phantomjs-prebuilt
+
+pkg install phantomjs
 
 pkg install wildfly10
 Extracting wildfly10-10.1.0: 100%
