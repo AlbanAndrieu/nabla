@@ -1,6 +1,9 @@
 cls
 
 call setenv.bat
+
+call mvn enforcer:display-info
+
 call mvn validate -Psample > validate.log 2>&1
 call mvn validate -Dnabla -Psample > validate-nabla.log 2>&1
 REM call mvn clean -Dnabla -Psample -amd andromda-database-cartridge > clean-nabla.log 2>&1
