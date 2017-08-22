@@ -176,9 +176,9 @@
 		<bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
 		<c3p0.version>0.8.5.2</c3p0.version>
 		<camel.version>2.13.0</camel.version>
-		<cargo.core.uberjar.version>1.4.18-SNAPSHOT</cargo.core.uberjar.version>
 		<!--<cargo.core.uberjar.version>1.4.19</cargo.core.uberjar.version> ERROR-->
 		<cargo.core.uberjar.version>1.6.3</cargo.core.uberjar.version>
+		<cargo.core.uberjar.version>1.4.18-SNAPSHOT</cargo.core.uberjar.version>
 		<!-- TODO move to profile jmeter -->
 		<cargo.host>localhost</cargo.host>
 		<cargo.port>80</cargo.port>
@@ -681,8 +681,8 @@
 		<maven.pax.plugin.version>1.6.0</maven.pax.plugin.version>
 		<maven.pitest.plugin.version>1.2.2</maven.pitest.plugin.version>
 		<maven.plexus.util.plugin.version>1.1</maven.plexus.util.plugin.version>
-		<maven.plugin.api.plugin.version>2.0</maven.plugin.api.plugin.version>
 		<maven.plugin.api.plugin.version>${maven.version}</maven.plugin.api.plugin.version>
+		<maven.plugin.api.plugin.version>2.0</maven.plugin.api.plugin.version>
 		<maven.plugin.plugin.plugin.version>3.5</maven.plugin.plugin.plugin.version>
 		<maven.pmd.plugin.version>3.6</maven.pmd.plugin.version>
 		<maven.processor.plugin.version>2.2.4</maven.processor.plugin.version>
@@ -950,6 +950,7 @@
 		<sitemesh.version>2.2.1</sitemesh.version>
 		<!-- see http://repo1.maven.org/maven2/org/slf4j/slf4j-parent/1.7.16/slf4j-parent-1.7.16.pom for compliance with log4j and logback version -->
 		<slf4j.version>1.7.16</slf4j.version>
+		<!-- -Dsonar.scm.enabled=false -Dsonar.scm-stats.enabled=false -Dissueassignplugin.enabeld=false -Dsonar.pitest.mode=skip -Dsonar.scm.user.secured=false -->
 		<sonar.branch>master</sonar.branch>
 		<sonar.build-stability.password.secured>admin</sonar.build-stability.password.secured>
 		<sonar.build-stability.url>Jenkins:$BUILD_URL/..</sonar.build-stability.url>
@@ -987,6 +988,7 @@
 		<!--**/*.xhtml, **/*.html-->
 		<sonar.exclusions>test/**, src/test/**, **/generated/**, **/pom.xml, **/bower_components/**, **/node_modules/**, **/node/**, **/libs/**, **/lib/**, **/docs/**, **/*.cache.html, **/*.nocache.js, **/*.min.js, **/*.min.css, **/*.gwt.xml, **/web.xml, **/web-jsf.xml, **/faces-config.xml, **/*.as, **/logback.xml, **/log4j.xml, , **/jetty-*.xml, **/Gruntfile.js, **/lcov-report/**</sonar.exclusions>
 		<sonar.findbugs.excludesFilters>*/generated/**</sonar.findbugs.excludesFilters>
+		<!--<sonar.jacoco.excludes>**/generated/**,**/*.less,**/*.css</sonar.jacoco.excludes>-->
 		<!-- Issue
 				Jenkins Sonar Job : CI URL: Jenkins Received 404 when trying to access
 				I'm facing the same issue. If it can help, here a workaround: in Jenkins > Manage Jenkins > Configure Global Security, grant Anonymous user to read both Overall and Job.
@@ -1056,6 +1058,7 @@
 
 		<sonar.pitest.mode>reuseReport</sonar.pitest.mode>
 		<sonar.pitest.reportsDirectory>target/pit-reports</sonar.pitest.reportsDirectory>
+		<sonar.scm.disabled>true</sonar.scm.disabled>
 		<spark.version>4.6.b.23201</spark.version>
 		<!--<spring2.version>2.5.6.SEC03</spring2.version>-->
 		<!-- TODO remove because it is still required in ~/databases/sample/dao/business/test -->
@@ -1095,9 +1098,9 @@
 		<tapestry.version>4.1.3</tapestry.version>
 		<target.dir>target</target.dir>
 		<!-- default value that can be overrided -->
-		<target.version>RELEASE</target.version>
-		<!-- default value that can be overrided -->
 		<target.version>${project.version}</target.version>
+		<!-- default value that can be overrided -->
+		<target.version>RELEASE</target.version>
 		<tattletale-destination-directory>${project.build.directory}/site/tattletale</tattletale-destination-directory>
 		<tattletale-source-directory>${project.build.directory}/tattletale-source</tattletale-source-directory>
 		<testng.version>6.9.6</testng.version>
