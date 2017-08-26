@@ -6899,11 +6899,11 @@
 							<id>make-assembly</id>
 							<!-- this is used for inheritance merges -->
 							<phase>package</phase>
-							<!-- append to the packaging phase. -->
+							<!-- append to the packaging phase.
 							<goals>
 								<goal>directory-inline</goal>
-								<!-- goals == mojos -->
 							</goals>
+							-->
 						</execution>
 					</executions>
 					<dependencies>
