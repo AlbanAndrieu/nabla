@@ -645,8 +645,7 @@
 		<maven.jaxb.plugin.version>1.1.1</maven.jaxb.plugin.version>
 		<maven.jaxb2.plugin.version>0.11.0</maven.jaxb2.plugin.version>
 		<!--<maven.jaxrs.analyzer.plugin.version>0.14</maven.jaxrs.analyzer.plugin.version> String index out of range -->
-		<!--<maven.jaxrs.analyzer.plugin.version>0.9</maven.jaxrs.analyzer.plugin.version>-->
-		<maven.jaxrs.analyzer.plugin.version>0.15</maven.jaxrs.analyzer.plugin.version>
+		<maven.jaxrs.analyzer.plugin.version>0.9</maven.jaxrs.analyzer.plugin.version>
 		<maven.jaxws.plugin.version>2.2</maven.jaxws.plugin.version>
 		<maven.jboss.as.plugin.version>7.9.Final</maven.jboss.as.plugin.version>
 		<maven.jboss.packaging.plugin.version>2.2</maven.jboss.packaging.plugin.version>
@@ -681,8 +680,8 @@
 		<maven.pax.plugin.version>1.6.0</maven.pax.plugin.version>
 		<maven.pitest.plugin.version>1.2.2</maven.pitest.plugin.version>
 		<maven.plexus.util.plugin.version>1.1</maven.plexus.util.plugin.version>
-		<maven.plugin.api.plugin.version>${maven.version}</maven.plugin.api.plugin.version>
 		<maven.plugin.api.plugin.version>2.0</maven.plugin.api.plugin.version>
+		<maven.plugin.api.plugin.version>${maven.version}</maven.plugin.api.plugin.version>
 		<maven.plugin.plugin.plugin.version>3.5</maven.plugin.plugin.plugin.version>
 		<maven.pmd.plugin.version>3.8</maven.pmd.plugin.version>
 		<maven.processor.plugin.version>3.3.1</maven.processor.plugin.version>
@@ -1098,9 +1097,9 @@
 		<tapestry.version>4.1.3</tapestry.version>
 		<target.dir>target</target.dir>
 		<!-- default value that can be overrided -->
-		<target.version>${project.version}</target.version>
-		<!-- default value that can be overrided -->
 		<target.version>RELEASE</target.version>
+		<!-- default value that can be overrided -->
+		<target.version>${project.version}</target.version>
 		<tattletale-destination-directory>${project.build.directory}/site/tattletale</tattletale-destination-directory>
 		<tattletale-source-directory>${project.build.directory}/tattletale-source</tattletale-source-directory>
 		<testng.version>6.9.6</testng.version>
