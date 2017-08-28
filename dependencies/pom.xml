@@ -176,9 +176,9 @@
 		<bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
 		<c3p0.version>0.8.5.2</c3p0.version>
 		<camel.version>2.13.0</camel.version>
-		<cargo.core.uberjar.version>1.4.18-SNAPSHOT</cargo.core.uberjar.version>
 		<!--<cargo.core.uberjar.version>1.4.19</cargo.core.uberjar.version> ERROR-->
 		<cargo.core.uberjar.version>1.6.4</cargo.core.uberjar.version>
+		<!--<cargo.core.uberjar.version>1.4.18-SNAPSHOT</cargo.core.uberjar.version>-->
 		<!-- TODO move to profile jmeter -->
 		<cargo.host>localhost</cargo.host>
 		<cargo.port>80</cargo.port>
@@ -619,7 +619,7 @@
 		<maven.gae.plugin.version>0.7.3</maven.gae.plugin.version>
 		<maven.gatling.plugin.version>${gatling.version}</maven.gatling.plugin.version>
 		<maven.gmaven.plugin.version>1.5</maven.gmaven.plugin.version>
-		<maven.gmavenplus.plugin.version>2.0</maven.gmavenplus.plugin.version>
+		<maven.gmavenplus.plugin.version>1.5</maven.gmavenplus.plugin.version>
 		<maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
 		<maven.groovy.plugin.version>1.5</maven.groovy.plugin.version>
 		<maven.grunt.plugin.version>1.5.1</maven.grunt.plugin.version>
@@ -646,8 +646,7 @@
 		<maven.jaxb.plugin.version>1.1.1</maven.jaxb.plugin.version>
 		<maven.jaxb2.plugin.version>0.11.0</maven.jaxb2.plugin.version>
 		<!--<maven.jaxrs.analyzer.plugin.version>0.14</maven.jaxrs.analyzer.plugin.version> String index out of range -->
-		<!--<maven.jaxrs.analyzer.plugin.version>0.9</maven.jaxrs.analyzer.plugin.version>-->
-		<maven.jaxrs.analyzer.plugin.version>0.15</maven.jaxrs.analyzer.plugin.version>
+		<maven.jaxrs.analyzer.plugin.version>0.9</maven.jaxrs.analyzer.plugin.version>
 		<maven.jaxws.plugin.version>2.2</maven.jaxws.plugin.version>
 		<maven.jboss.as.plugin.version>7.9.Final</maven.jboss.as.plugin.version>
 		<maven.jboss.packaging.plugin.version>2.2</maven.jboss.packaging.plugin.version>
@@ -6901,11 +6900,11 @@
 							<id>make-assembly</id>
 							<!-- this is used for inheritance merges -->
 							<phase>package</phase>
-							<!-- append to the packaging phase. -->
+							<!-- append to the packaging phase.
 							<goals>
 								<goal>directory-inline</goal>
-								<!-- goals == mojos -->
 							</goals>
+							-->
 						</execution>
 					</executions>
 					<dependencies>

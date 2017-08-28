@@ -113,6 +113,8 @@ sudo service console-kit-deamon stop
 #sudo apt-get remove cfengine-community
 #sudo apt-get remove heartbeat
 #sudo apt-get remove kgrb5
+sudo service nexus stop
+sudo service sonar stop
 
 #sudo update-rc.d -f webmin remove
 sudo update-rc.d -f usermin remove
