@@ -69,4 +69,3 @@ sudo npm install -g gm
 #sudo npm install -g casperjs
 #deprecated npm install grunt-phantomcss-gitdiff --save-dev
 npm install grunt-resemble-cli --save-dev
-

@@ -79,7 +79,7 @@ typedef double ACE_timer_t;
 #elif defined (__sun)
    typedef offset_t ACE_LOFF_T;
 #elif defined (__CYGWIN__)
-   typedef loff_t ACE_LOFF_T;   
+   typedef loff_t ACE_LOFF_T;
 #elif defined (WIN32)
    typedef __int64  ACE_LOFF_T;
 #elif (defined (ACE_VXWORKS) && (ACE_VXWORKS <= 0x670)) || \

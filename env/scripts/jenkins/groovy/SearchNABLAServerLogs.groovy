@@ -6,7 +6,7 @@ for(item in Hudson.instance.items) {
                   File f = new File(Run.getRootDir().getAbsolutePath() + "<logs subdirectory>");
                   if(f.exists() && f.isDirectory()) {
                     for(File in f.listFiles()) {
-                      for(String in File.readLines()) {                       
+                      for(String in File.readLines()) {
                       if(String.contains("<search string>")) {
                         println("Expression found in file " + File.getAbsolutePath() +" for build #"+Run.getNumber());
                         println(String);
@@ -14,7 +14,7 @@ for(item in Hudson.instance.items) {
                     }
                   }
                 }
-            }  
+            }
       }
   }
 }

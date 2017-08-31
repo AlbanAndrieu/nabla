@@ -10,7 +10,7 @@
 	<packaging>izpack-jar</packaging>
 	<name>Nabla ETL Installer</name>
 	<description>Nabla ETL Installer</description>
-	<!-- TODO http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it/izpack-tomcat/ 
+	<!-- TODO http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it/izpack-tomcat/
 http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it/sample/pom.xml
 -->
 	<properties>

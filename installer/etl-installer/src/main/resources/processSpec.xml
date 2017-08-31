@@ -27,7 +27,7 @@
     </executefile>
   </job>
   -->
-  
+
   <job name="Add file associations">
     <os family="windows" />
     <executeForPack name="File associations" />
@@ -47,4 +47,3 @@
   </job>
 
 </processing>
-

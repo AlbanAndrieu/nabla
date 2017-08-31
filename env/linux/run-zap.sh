@@ -120,4 +120,4 @@ sudo apt-get install chromium-chromedriver
 #selenium v9
 
 #https://gist.github.com/caspyin/2288960
-curl -i -v -k ${SERVER_URL}${SERVER_CONTEXT} --data "username=test&password=microsoft" 
+curl -i -v -k ${SERVER_URL}${SERVER_CONTEXT} --data "username=test&password=microsoft"

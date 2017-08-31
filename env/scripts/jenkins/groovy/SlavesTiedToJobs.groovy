@@ -4,11 +4,11 @@ for(Node in hudson.model.Hudson.instance.slaves) {
       nonExcl.add(Node.getDisplayName());
     }
   }
- 
+
 for(item in Hudson.instance.items) {
   Label lbl = item.assignedLabel;
   println ("Job: ${item.getDisplayName()} (${lbl}) can run on following slaves: " );
- 
+
   if(lbl != null) {
     for(Node in lbl.getNodes()) {
       println Node.getDisplayName();
@@ -20,5 +20,5 @@ for(item in Hudson.instance.items) {
       println ('<none>');
     }
   }
- 
+
 }

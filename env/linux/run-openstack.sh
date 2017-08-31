@@ -14,23 +14,23 @@ sudo apt-get dist-upgrade
 
 #remove havana version
 sudo apt-get remove keystone python-keystone python-keystoneclient python-nova python-novaclient
-sudo apt-get remove rabbitmq-server glance glance-api 
+sudo apt-get remove rabbitmq-server glance glance-api
 sudo apt-get remove cinder-api cinder-common cinder-scheduler cinder-volume
 sudo apt-get autoremove
 
-#install first package 
+#install first package
 apt-get install -y keystone
-#check right version 
+#check right version
 dpkg -s keystone
 
  2012.1|2012.1.*) os_dist='essex';;
  2012.2|2012.2.*) os_dist='folsom';;
  2013.1|2013.1.*) os_dist='grizzly';;
- 
+
 sudo apt-get install kvm libvirt-bin virtinst mysql-server python-mysqldb
 sudo apt-get install -y vlan bridge-utils
 sudo apt-get install ntp
-sudo apt-get install tgt open-iscsi open-iscsi-utils lvm2 
+sudo apt-get install tgt open-iscsi open-iscsi-utils lvm2
 sudo apt-get install rabbitmq-server memcached python-memcache
 
 sudo apt-get install keystone python-keystone python-keystoneclient
@@ -39,7 +39,7 @@ sudo apt-get install glance glance-api python-glanceclient glance-common glance-
 sudo apt-get install nova-conductor
 sudo apt-get install nova-api nova-cert nova-common nova-compute nova-compute-kvm nova-doc nova-network nova-objectstore nova-scheduler novnc nova-consoleauth nova-volume python-nova python-novaclient
 #sudo apt-get install nova-novncproxy
-sudo apt-get install python-novaclient python-nova-adminclient 
+sudo apt-get install python-novaclient python-nova-adminclient
 sudo apt-get install apache2 libapache2-mod-wsgi openstack-dashboard-ubuntu-theme python-django-horizon
 
 sudo apt-get install libnss-myhostname
@@ -106,10 +106,10 @@ iface br1 inet manual
 ----------------------------------------------------------
 #show disk
 sudo lshw -C disk
-        
+
 #iSCSI
 sudo apt-get install tgt open-iscsi open-iscsi-utils lvm2
-#change node.startup = automatic in 
+#change node.startup = automatic in
 sudo nano /etc/iscsi/iscsid.conf
 sudo /etc/init.d/open-iscsi restart
 
@@ -131,7 +131,7 @@ lrwxrwxrwx 1 root root 9 May  1 19:02 /dev/disk/by-path/ip-192.168.0.46:3260-isc
 lrwxrwxrwx 1 root root 9 May  1 19:02 /dev/disk/by-path/ip-192.168.0.46:3260-iscsi-iqn.2011-03.org.example.istgt:albandri-lun-0 -> ../../sdb
 lrwxrwxrwx 1 root root 9 May  1 19:02 /dev/disk/by-path/ip-192.168.0.46:3260-iscsi-iqn.2011-03.org.example.istgt:albandri-lun-1 -> ../../sdc
 
-#create LVM volume. Warning, respect naming with nova-volumes 
+#create LVM volume. Warning, respect naming with nova-volumes
 #sudo pvcreate /dev/sdb
 sudo pvcreate /dev/disk/by-path/ip-192.168.0.46:3260-iscsi-iqn.2011-03.org.example.istgt:albandri-lun-0
 #sudo vgcreate cinder-volumes /dev/sdb
@@ -140,28 +140,28 @@ sudo vgcreate cinder-volumes /dev/disk/by-path/ip-192.168.0.46:3260-iscsi-iqn.20
 ls /dev/mapper
 sudo fdisk -lu
 sudo blkid /dev/sdb
-/dev/sdb: UUID="k0JoAu-6i9x-yxBS-QwXA-LStw-hpGF-YPI2PD" TYPE="LVM2_member" 
+/dev/sdb: UUID="k0JoAu-6i9x-yxBS-QwXA-LStw-hpGF-YPI2PD" TYPE="LVM2_member"
 
 #load necessary module
 sudo modprobe dm-mod
 #Scan your system for LVM volumes and identify in the output the volume group name that has your Fedora volume
 sudo vgscan
 sudo vgchange -ay nova-volumes
-#Find the logical volume 
+#Find the logical volume
 sudo lvs
 sudo pvs
-  PV         VG           Fmt  Attr PSize   PFree  
+  PV         VG           Fmt  Attr PSize   PFree
   /dev/sdb   nova-volumes lvm2 a--  100.00g 100.00g
 sudo vgs
-  VG           #PV #LV #SN Attr   VSize   VFree  
+  VG           #PV #LV #SN Attr   VSize   VFree
   nova-volumes   1   0   0 wz--n- 100.00g 100.00g
 
-sudo lvdisplay /dev/nova-volumes  
+sudo lvdisplay /dev/nova-volumes
 #manual mount
 sudo mkdir /mnt/openstack
 #TODO
 #sudo mount /dev/sdb/nova-volumes /mnt/openstack
-#sudo umount /mnt/openstack 
+#sudo umount /mnt/openstack
 sudo mount /dev/VolGroup00/LogVol00 /mnt/fcroot -o ro,user
 ----------------------------------------------------------
 
@@ -192,12 +192,12 @@ compute_port = 8774
 verbose = True
 debug = True
 log_config = /etc/keystone/logging.conf
-   
+
 [sql]
 connection = mysql://keystone:microsoft@192.168.0.29:3306/keystone
 idle_timeout = 200
-      
-#Création du compte administrateur      
+
+#Création du compte administrateur
 keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ user-create --name=admin --pass=microsoft --email=alban.andrieu@nabla.mobi
 +----------+----------------------------------+
 | Property |              Value               |
@@ -218,7 +218,7 @@ keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ user-create --
 |   name   |              glance              |
 +----------+----------------------------------+
 #Création du compte interne du service Nova
-keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ user-create --name=nova --pass=microsoft --email=nova@example.com   
+keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ user-create --name=nova --pass=microsoft --email=nova@example.com
 +----------+----------------------------------+
 | Property |              Value               |
 +----------+----------------------------------+
@@ -227,7 +227,7 @@ keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ user-create --
 |    id    | 534c3d8fe3144409bb44b02486a066ee |
 |   name   |               nova               |
 +----------+----------------------------------+
-#Rôle admin   
+#Rôle admin
 keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ role-create --name=admin
 +----------+----------------------------------+
 | Property |              Value               |
@@ -280,7 +280,7 @@ keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ tenant-create 
 |     name    |             service              |
 +-------------+----------------------------------+
 #Définition des rôles
-keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ user-role-add --user-id 68527a3fb83446d3bab47ce30d500dbc --role-id 08c2bc49148747f6bcdc3e23144213cc --tenant_id 9f9f573069df4318a54d8b406e2611c9   
+keystone --token ADMIN --endpoint http://192.168.0.29:35357/v2.0/ user-role-add --user-id 68527a3fb83446d3bab47ce30d500dbc --role-id 08c2bc49148747f6bcdc3e23144213cc --tenant_id 9f9f573069df4318a54d8b406e2611c9
 
 keystone user-role-add --user `keystone user-list | awk '/ admin / { print $2 }'` --role `keystone role-list | awk '/ KeystoneAdmin / { print $2 }'` --tenant_id `keystone tenant-list | awk '/ admin / { print $2 }'`
 keystone user-role-add --user `keystone user-list | awk '/ admin / { print $2 }'` --role `keystone role-list | awk '/ KeystoneServiceAdmin / { print $2 }'` --tenant_id `keystone tenant-list | awk '/ admin / { print $2 }'`
@@ -348,9 +348,9 @@ export SERVICE_ENDPOINT=http://localhost:5000/v2.0/
 export SERVICE_TOKEN=ADMIN
 nano .novarc
 export OS_NO_CACHE=1
-export OS_TENANT_NAME=admin 
-export OS_USERNAME=admin 
-export OS_PASSWORD=microsoft 
+export OS_TENANT_NAME=admin
+export OS_USERNAME=admin
+export OS_PASSWORD=microsoft
 export OS_AUTH_URL="http://localhost:5000/v2.0/"
 keystone user-list
 
@@ -418,7 +418,7 @@ sudo nano /etc/glance/glance-scrubber.conf
 sql_connection = mysql://glance:microsoft@192.168.0.29:3306/glance
 sql_idle_timeout = 3600
 
-sudo nano /etc/glance/glance-registry-paste.ini 
+sudo nano /etc/glance/glance-registry-paste.ini
 admin_tenant_name = service
 admin_user = glance
 admin_password = microsoft
@@ -452,7 +452,7 @@ x-openstack-request-id: req-d11c95c3-1e16-4365-9cef-3a05574730d7
 Added new image with ID: 73be1172-63ea-40a2-abef-59b937fe3d50
 
 glance index
-ID                                   Name                           Disk Format          Container Format     Size          
+ID                                   Name                           Disk Format          Container Format     Size
 ------------------------------------ ------------------------------ -------------------- -------------------- --------------
 73be1172-63ea-40a2-abef-59b937fe3d50 Ubuntu 12.04 cloudimg amd64    qcow2                ovf                       255328768
 
@@ -675,7 +675,7 @@ initctl list | grep nova
 #sudo update-rc.d nova-volume disable
 ll /etc/init/nova-volume.conf
 #get the file nova-volume.conf
- 
+
 sudo nova-manage db sync
 
 #for a in libvirt-bin nova-conductor nova-network nova-compute nova-api nova-objectstore nova-scheduler nova-volume nova-cert nova-consoleauth novnc; do sudo service "$a" stop; done
@@ -683,8 +683,8 @@ sudo nova-manage db sync
 
 sudo nova-manage service list
 
-#TODO missing 
-nova-volume 
+#TODO missing
+nova-volume
 
 #TODO
 #Images disques
@@ -829,4 +829,3 @@ sudo su - root
 #cd /devel/albandri/openstack_grizzly_install
 cd /workspace/openstack_grizzly_install
 ./setup.sh allinone
-

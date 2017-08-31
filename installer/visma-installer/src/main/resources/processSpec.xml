@@ -26,7 +26,7 @@
       <arg>cd /d $INSTALL_PATH\bin &amp; copy groovyw.exe graphicsPad.exe &amp; copy groovy.exe svg2groovy.exe</arg>
     </executefile>
   </job>
-  
+
   <job name="Add file associations">
     <os family="windows" />
     <executeForPack name="File associations" />
@@ -36,7 +36,7 @@
     </executefile>
   </job>
   -->
-  
+
   <!-- ProcessPanel is not needed in Unix, but it's difficult to hide it.
        So print a message. rather than leaving a blank panel. -->
   <job name="Export path">
@@ -47,4 +47,3 @@
   </job>
 
 </processing>
-

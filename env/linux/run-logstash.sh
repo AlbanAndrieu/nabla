@@ -120,4 +120,3 @@ curl -X PUT http://localhost:9200/kibana-int/dashboard/collectd-overview -T /wor
 wget https://gist.githubusercontent.com/shreyu86/8b9bb29d758d4ec5ce7c/raw/35d5c67181214fe65924d4f8147bcff8df73b3da/logstash.conf
 docker run -d --name logstash --link es:elasticsearch logstash -v /tmp/logstash.conf:./logstash.conf logstash logstash -f ./logstash.conf
 LOGSTASH_ADDRESS=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' logstash)
-

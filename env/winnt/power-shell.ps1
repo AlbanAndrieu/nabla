@@ -18,9 +18,9 @@ Get-Command -?
 
 Set-Location C:\workpace\users\albandri10
 
-Get-ChildItem 
-Get-ChildItem | 
-    Where-Object { $_.Length -gt 10kb } | 
+Get-ChildItem
+Get-ChildItem |
+    Where-Object { $_.Length -gt 10kb } |
         Sort-Object Length |
             Format-Table -Property Name, Length -AutoSize
 
@@ -34,14 +34,14 @@ Get-PSDrive
 
 Clear-Host
 Set-Location env:
-Get-ChildItem 
+Get-ChildItem
 
 Clear-Host
 Get-ChildItem | Format-Table -Property Name, Value -AutoSize
 
 Clear-Host
 Set-Location alias:
-Get-ChildItem 
+Get-ChildItem
 
 Clear-Host
 Get-PSSnapin
@@ -60,20 +60,20 @@ Get-PSDrive
 
 Clear-Host
 Set-Location SQLSERVER:
-Get-ChildItem 
+Get-ChildItem
 Get-ChildItem | Select-Object PSChildName
 
 Clear-Host
 Set-Location SQL
-Get-ChildItem 
+Get-ChildItem
 
 Clear-Host
 Set-Location FL-WS-CON-RC01
-Get-ChildItem 
+Get-ChildItem
 
 Clear-Host
 Set-Location DEFAULT
-Get-ChildItem 
+Get-ChildItem
 
 Clear-Host
 Set-Location Databases
