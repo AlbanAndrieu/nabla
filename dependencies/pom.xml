@@ -239,8 +239,8 @@
 		<displaytag.version>1.2</displaytag.version>
 		<documentation.output.directory>${project.build.directory}/docs</documentation.output.directory>
 		<dom4j.version>1.6.1</dom4j.version>
-		<doxia.version>1.7</doxia.version>
 		<doxia.module.twiki.version>${doxia.version}</doxia.module.twiki.version>
+		<doxia.version>1.7</doxia.version>
 		<!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 		<!--<drools.version>6.2.0.CR4</drools.version>-->
 		<drools.api.version>5.1.1</drools.api.version>
@@ -708,7 +708,7 @@
 		<!--<maven.shade.plugin.version>2.4.3</maven.shade.plugin.version>-->
 		<maven.shade.plugin.version>3.0.0</maven.shade.plugin.version>
 		<maven.shared.jar.version>1.0</maven.shared.jar.version>
-		<maven.site.github.plugin.version>0.12</maven.site.github.plugin.version>		
+		<maven.site.github.plugin.version>0.12</maven.site.github.plugin.version>
 		<maven.site.old.plugin.version>2.3</maven.site.old.plugin.version>
 		<!--<maven.site.plugin.version>${maven.site.old.plugin.version}</maven.site.plugin.version>-->
 		<!--<maven.site.plugin.version>3.5.1</maven.site.plugin.version> TODO issue-->
@@ -6923,9 +6923,6 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
 					<version>${maven.site.plugin.version}</version>
-					<configuration>
-						<encoding>${project.build.sourceEncoding}</encoding>
-					</configuration>
 					<dependencies>
 						<dependency>
 							<groupId>org.apache.maven.doxia</groupId>
@@ -6933,6 +6930,9 @@
 							<version>${doxia.version}</version>
 						</dependency>
 					</dependencies>
+					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
 				</plugin>
 				<!--
                                 <plugin>
