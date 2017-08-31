@@ -6,7 +6,7 @@ sudo apt-get install ec2-api-tools
 #copy key pair and ceritificat to
 scp * albandri@albandri:.ec2
 cd .ec2
-chmod go-rwx ~/.ec2/*.pem 
+chmod go-rwx ~/.ec2/*.pem
 
 gedit .bashrc
 #add
@@ -60,7 +60,7 @@ ec2-authorize default -p 143
 ec2-authorize default -p 53
 ec2-authorize default -p 53 -P udp
 
-#TODO 
+#TODO
 remove
 cert-73R73RRLJU3L4UKIECW56GR6TOLDCGGF.pem
 pk-73R73RRLJU3L4UKIECW56GR6TOLDCGGF.pem

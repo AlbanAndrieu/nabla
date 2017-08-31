@@ -13,7 +13,7 @@ sudo gedit /etc/ssmtp/ssmtp.conf
 #root=postmaster
 root=noreply@nabla.mobi
 
-# The place where the mail goes. The actual machine name is required no 
+# The place where the mail goes. The actual machine name is required no
 # MX records are consulted. Commonly mailhosts are named mail.domain.com
 #mailhub=mail
 mailhub=smtp.gmail.com:587
@@ -63,4 +63,3 @@ A challenge password []:microsoft
 An optional company name []:Nabla
 
 sudo openssl ca -out ./postfixclient.pem -infiles postfixclient.csr
-

@@ -11,27 +11,27 @@
 	-->
 
   	<xsl:output omit-xml-declaration="yes" indent="no"/>
-  	
+
   	<xsl:param name="generationDirectory" select=" './' "/>
-  		
+
   	<xsl:template match="/">
-	   <xsl:result-document href="{nabla:filepath_to_uri( $generationDirectory )}/helpMapping.properties">  	  	
+	   <xsl:result-document href="{nabla:filepath_to_uri( $generationDirectory )}/helpMapping.properties">
   	   <xsl:apply-templates/>
-	   </xsl:result-document>    	   
+	   </xsl:result-document>
   	</xsl:template>
-  	
-  	<xsl:template match="worksheetgroup">	
+
+  	<xsl:template match="worksheetgroup">
   	    	<xsl:value-of select="'&#10;'"/>
   	    	<xsl:text># </xsl:text>
   	    	<xsl:value-of select="@id"/>
   	    	<xsl:text> worksheetgroup help</xsl:text>
   	    	<xsl:value-of select="'&#10;'"/>
-  	    	<xsl:apply-templates/>   	
+  	    	<xsl:apply-templates/>
   	</xsl:template>
-  	
+
   	<xsl:template match="worksheet">
   	    	<xsl:value-of select="@id"/><xsl:text>=</xsl:text><xsl:value-of select="@olh"/>
-  	    	<xsl:value-of select="'&#10;'"/>	    
+  	    	<xsl:value-of select="'&#10;'"/>
   	</xsl:template>
-	
+
 </xsl:stylesheet>

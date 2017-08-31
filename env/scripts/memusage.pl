@@ -14,7 +14,7 @@ sub manageCommandLineOptions()
 {
 	getopts('l:', \%_OPTS);
 
-	$_OPTS{l} = 6 if(!defined($_OPTS{l}) || $_OPTS{l} < 6 ); 
+	$_OPTS{l} = 6 if(!defined($_OPTS{l}) || $_OPTS{l} < 6 );
 	$_OPTS{l} +=1;
 }
 
@@ -32,24 +32,24 @@ sub getProcessUsage()
 		chomp;
 		s/^\s*//;
 		my @l = split('\s+', $_ );
-		
+
 		push (@{$process->{procs}}, { pid=> $l[0], user=>$l[1], command=>$l[2], mem=>$l[3], size=>$l[4], rss=>$l[5] });
 
 		if( defined( $process->{sum} ) )
 		{
-			$process->{sum}->{cnt}  += 1; 
+			$process->{sum}->{cnt}  += 1;
 			$process->{sum}->{mem}  += $l[3];
 			$process->{sum}->{size} += $l[4];
 			$process->{sum}->{rss}  += $l[5];
 		}
 		else
 		{
-			$process->{sum}->{cnt}  = 1; 
+			$process->{sum}->{cnt}  = 1;
 			$process->{sum}->{mem}  = $l[3];
 			$process->{sum}->{size} = $l[4];
 			$process->{sum}->{rss}  = $l[5];
 		}
-	}	
+	}
 	close(CMD);
 
 	return $process
@@ -64,7 +64,7 @@ sub getFreeMem()
 	open(MEM, "free -m|") or die "cannot execute free command";
 	while(<MEM>)
 	{
-		if(m/^Mem:/ ) 
+		if(m/^Mem:/ )
 		{
 			chomp;
 			my @l = split('\s+', $_);
@@ -101,7 +101,3 @@ foreach ( @{$procs->{procs}} )
 }
 printf("%-6s %-15s %-5s %-10s %-10s %-20s\n", "", "", '-'x5, '-'x10, '-'x10, "" );
 printf("%-6s %-15s %-5s %-10s %-10s %-20s\n", "", "", $procs->{sum}->{mem}, $procs->{sum}->{size}, $procs->{sum}->{rss}, "" );
-
-
-
-

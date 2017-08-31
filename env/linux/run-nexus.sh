@@ -54,7 +54,7 @@ sudo update-rc.d -f nexus remove
 sudo update-rc.d nexus defaults 10 90
 sudo service nexus start
 
-java -jar /workspace/users/albandri10/Downloads/application-check-1.21.3.jar 
+java -jar /workspace/users/albandri10/Downloads/application-check-1.21.3.jar
 
 sudo nano ./bin/jsw/conf/wrapper.conf
 #change "wrapper.startup.timeout" and "wrapper.ping.timeout to 500
@@ -77,7 +77,7 @@ cd /workspace/sonatype-work/nexus/plugin-repository
 sudo chown nexus:nexus nexus-npm-repository-plugin-0.0.2-SNAPSHOT-bundle.zip
 sudo jar xf  nexus-npm-repository-plugin-0.0.2-SNAPSHOT-bundle.zip
 sudo chown -R nexus:nexus /workspace/sonatype-work/nexus/plugin-repository/nexus-npm-repository-plugin-0.0.2-SNAPSHOT
- 
+
  #inside nexus use http://registry.npmjs.org/ without the s
- 
-npm config set registry http://home.nabla.mobi:8081/nexus/content/npm/registry.npmjs.org/ 
+
+npm config set registry http://home.nabla.mobi:8081/nexus/content/npm/registry.npmjs.org/

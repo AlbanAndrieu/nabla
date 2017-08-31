@@ -36,7 +36,7 @@ endif
 
 if (! $?DRIVE_PATH) then
   echo "ERROR: Set DRIVE_PATH environment variable!"
-  setenv DRIVE_PATH 
+  setenv DRIVE_PATH
 endif
 
 if (! $?PROJECT_HOME) then
@@ -131,17 +131,17 @@ endif
 # Cleaning LD_LIBRARY_PATH LIBPATH and CLASSPATH
 ##
 if (! $?KEEP_ENV) then
-  
+
   if ($?CLASSPATH) then
 #    echo 'Cleaning $CLASSPATH: '${CLASSPATH}
     setenv CLASSPATH ""
-  endif  
-  
+  endif
+
   if ($?LD_LIBRARY_PATH) then
 #    echo 'Cleaning $LD_LIBRARY_PATH: '${LD_LIBRARY_PATH}
     setenv LD_LIBRARY_PATH ""
   endif
-  
+
   if ($?LIBPATH) then
 #    echo 'Cleaning $LIBPATH: '${LIBPATH}
     setenv LIBPATH ""
@@ -162,7 +162,7 @@ alias Grep "find . -type d -name '.svn' -prune -o -type f -name '*.[jch]*' -exec
 alias hGrep "find . -type d -name '.svn' -prune -o -type f -name '*.h' -exec grep -n \!* {} /dev/null \;"
 
 ###
-# THIRDPARTIES 
+# THIRDPARTIES
 ###
 
 setenv ORB_VERSION 1_5a
@@ -177,7 +177,7 @@ setenv SYBASE ${SYBASE_HOME}/${SYBASE_VERSION}/${ARCH}
 setenv ORACLE_VERSION 10.2.0
 #setenv ORACLE_HOME ${DRIVE_PATH}/oraclexe
 setenv ORACLE_HOME ${DRIVE_PATH}/oraclexe/app/oracle/product/${ORACLE_VERSION}/server
-      
+
 setenv CPPUNIT_VERSION 1.12.0
 
 setenv CORBA_ROOT ${PROJECT_THIRDPARTY_PATH}/tao
@@ -240,7 +240,7 @@ setenv SCONS_DIR /usr/lib/scons/SCons
 setenv SCONS_PATH /usr/lib/scons/SCons/Script
 if ( $SCONS_PATH == "" ) then
   echo "WARNING: Set SCONS_PATH environment variable not defined!"
-else  
+else
   setenv PATH ${SCONS_PATH}:${PATH}
 endif
 
@@ -275,7 +275,7 @@ if ( "1" == "1" ) then
 endif
 setenv PATH ${PATH}:${M2}
 
-# ANT 
+# ANT
 setenv ANT_HOME /usr/share/ant
 setenv ANT_OPTS "-Xmx512m"
 setenv PATH ${PATH}:${ANT_HOME}/bin
@@ -352,7 +352,7 @@ set LIB_LINK_DIR="${PROJECT_DEV}/lib/${ARCH}"
 #    default:
 #      setenv LD_LIBRARY_PATH ""
 #    breaksw
-# endsw 
+# endsw
 
 #setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/tibrv
 #setenv LD_LIBRARY_PATH ${LD_LIBRARY_PATH}:${LIB_LINK_DIR}/sybase
@@ -503,15 +503,15 @@ endsw
 
 setenv DISPLAY :0.0
 setenv LC_CTYPE en_US.UTF-8
-    
+
 /usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`/usr/games/fortune -s`"
 #setenv CONKY_HOME "${PROJECT_HOME}/albandri10/.conky"
 #if ( -d $CONKY_HOME ) then
 #  ~/.conky/conky-startup.sh &
 #else
-#  echo "Conky is not installed"  
+#  echo "Conky is not installed"
 #endif
-    
+
 echo "PATH is ${PATH}"
 
 #exit 0

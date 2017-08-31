@@ -11,7 +11,7 @@ sudo apt-get update
 
 #install gearman
 sudo apt-get install gearman-job-server gearman-tools
-#for older ubuntu version 
+#for older ubuntu version
 #https://github.com/tripsta/gearman-php-prototype/blob/master/README.md
 #follow process
 #curl -L https://launchpad.net/gearmand/1.0/1.0.6/+download/gearmand-1.0.6.tar.gz > gearmand-1.0.6.tar.gz
@@ -32,7 +32,7 @@ sudo apt-get install gearman-job-server gearman-tools
 # start gearman
 gearmand -d &
 
-# check gearmand running 
+# check gearmand running
 ps auxw | grep [g]earmand
 
 # check germand listening for jobs on tcp port 4730
@@ -51,7 +51,7 @@ sudo apt-get install libmemcached-dev
 sudo apt-get install sqlite3
 sudo apt-get install mysql-server mysql-client
 sudo apt-get install cloog-ppl
-sudo apt-get install mpi-default-bin mpi-default-dev 
+sudo apt-get install mpi-default-bin mpi-default-dev
 sudo apt-get install povray
 sudo apt-cache search libuuid
 #sudo apt-get install libuuid1
@@ -68,7 +68,7 @@ sudo make install
 
 #https://wiki.jenkins-ci.org/display/JENKINS/Gearman+Plugin
 
-sudo apt-get install php5-dev 
+sudo apt-get install php5-dev
 sudo apt-get install libgearman-dev
 
 wget http://pecl.php.net/package/gearman

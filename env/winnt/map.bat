@@ -1,9 +1,9 @@
 cls
 REM En tant que root
- 
+
 REM Demonter le path
 REM umount f <path>
- 
+
 REM remonter les map
 REM automount -v
 

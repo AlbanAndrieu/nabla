@@ -10,7 +10,7 @@ lance  svn
 svnadmin create "C:\svn_repos"
 svnserve --daemon --root "C:\svn_repos"
 svn mkdir svn://localhost/project
-svn mkdir svn://localhost/project/trunk 
+svn mkdir svn://localhost/project/trunk
 
 svn://localhost:3690
 svn://localhost/

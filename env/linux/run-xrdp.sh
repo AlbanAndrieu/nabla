@@ -41,7 +41,7 @@ rm -Rf ~/.freerdp
 
 #http://askubuntu.com/questions/157723/cannot-rdp-to-windows-7-with-remmina-on-12-04
 #When I edited the connection properties, I looked on the "advanced" tab and changed the security from "negotiate" to "TLS", and voila, everything works.
-#Strangely, "negotiate" still works on the laptop, but at least I'm back in business with my bigger monitor 
+#Strangely, "negotiate" still works on the laptop, but at least I'm back in business with my bigger monitor
 
 #Save configuration
 #~/.remmina

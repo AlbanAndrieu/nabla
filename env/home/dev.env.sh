@@ -568,7 +568,7 @@ export TIBCO_HOME=${DRIVE_PATH}/home/albandri/tibco
 export TIBRV_HOME=${DRIVE_PATH}/home/albandri/tibco/tibrv/${TIBRV_VERSION}
 export PATH=${TIBRV_HOME}/bin:${PATH}
 export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}:${TIBRV_HOME}/lib
-  
+
 # WINDOWS
 if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
 then

@@ -80,7 +80,7 @@ goto end
 :warn_and_exit
 echo Machine OS cannot be determined.
 
-:end  
+:end
 ECHO The script is finished!
 ECHO If you don't see any errors, you can close this window.
 ECHO Any error messages can be posted on https://forums.dropbox.com/topic.php?id=93098

@@ -14,5 +14,3 @@ start)
 #  killall jetty-runner
 #;;
 esac
-
-

@@ -1,4 +1,4 @@
-#!/bin/bash 
+#!/bin/bash
 set -xv
 
 # Generating zones/zfs informations

@@ -4,13 +4,13 @@ set -xv
 #http://doc.ubuntu-fr.org/trafic
 
 sudo apt-get install wireshark
-sudo dpkg-reconfigure wireshark-common 
+sudo dpkg-reconfigure wireshark-common
 sudo usermod -a -G wireshark $USER
 sudo reboot
 #Ubuntu desktop
 #gnome-session-quit --logout --no-prompt
 #Ubuntu server
-#pkill -KILL -u $USER 
+#pkill -KILL -u $USER
 
 #http://www.dickson.me.uk/2012/09/17/installing-wireshark-on-ubuntu-12-04-lts/
 

@@ -5,9 +5,9 @@
 #	Nabla Installation Script
 #	Publisher		: Nabla LTD.
 #	Author			:
-#	Updated By		: 
+#	Updated By		:
 #	Last Updated		:
-#	Reason			: 
+#	Reason			:
 #
 #=========================================================================
 JV_OK=1

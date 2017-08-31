@@ -26,16 +26,16 @@
 	<properties>
 	  <download.dir>${project.build.directory}/downloads</download.dir>
 	  <staging.dir>${project.build.directory}/staging</staging.dir>
-	      
+
 	  <sybase.driver.jar>jconn3.jar</sybase.driver.jar>
-	  <sybase.driver.url>http://alban.googlecode.com/svn/repo/jar/dbdriver/${sybase.driver.jar}</sybase.driver.url>    
+	  <sybase.driver.url>http://alban.googlecode.com/svn/repo/jar/dbdriver/${sybase.driver.jar}</sybase.driver.url>
 	</properties>
-    
+
         <build>
-        
+
           <defaultGoal>package</defaultGoal>
-            
-          <plugins>        
+
+          <plugins>
             <!--  fetch resource files from the orignal Ant build project -->
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
@@ -55,8 +55,8 @@
                   </configuration>
                 </execution>
               </executions>
-            </plugin>   
-          
+            </plugin>
+
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-antrun-plugin</artifactId>
@@ -75,10 +75,10 @@
                         usetimestamp="yes" />
                     </tasks>
                   </configuration>
-                </execution>        
+                </execution>
               </executions>
             </plugin>
-        
+
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-install-plugin</artifactId>
@@ -105,5 +105,5 @@
               </executions>
             </plugin>
           </plugins>
-        </build>      
+        </build>
 </project>

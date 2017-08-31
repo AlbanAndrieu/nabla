@@ -65,7 +65,7 @@ if [ ! -r setEnvFiles.list.txt ]; then
   cat setEnvFiles.list.txt
 
 else
-  
+
   echo "Use .j2 list in `pwd`/setEnvFiles.list.txt"
 
 fi

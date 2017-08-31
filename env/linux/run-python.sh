@@ -2,7 +2,7 @@
 set -xv
 
 #disable rhnplugin
-# grep enable /etc/yum/pluginconf.d/rhnplugin.conf 
+# grep enable /etc/yum/pluginconf.d/rhnplugin.conf
 enabled = 0
 #enabled = 1
 
@@ -17,7 +17,7 @@ cd Python-2.7.3 # go into directory
 make # build
 su # or 'sudo su' if there is no root user
 make altinstall
-#make install #do not do it 
+#make install #do not do it
 
 ln -s /usr/local/bin/python2.7 /usr/bin/python2.7
 

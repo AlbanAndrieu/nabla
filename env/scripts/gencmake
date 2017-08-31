@@ -211,19 +211,19 @@ class Generator
         "  DESTINATION #{@include_location}/#{@project.projectName}\n" +
         "  PERMISSIONS OWNER_READ GROUP_READ WORLD_READ OWNER_WRITE" +
         "  )\n\n" +
-        
-        "# add install target:\n" +        
+
+        "# add install target:\n" +
         "INSTALL(TARGETS #{@project.projectName}\n" +
         "  EXPORT  myproj-install\n" +
         "  RUNTIME DESTINATION bin\n" +
         "  LIBRARY DESTINATION lib\n" +
         "  ARCHIVE DESTINATION lib" +
         "  )\n\n" +
-        
+
         "EXPORT(TARGETS #{@project.projectName}\n" +
         "       FILE ${EXPORT_FILE}" +
         "  )"
-        
+
     end
 
     def generate()
@@ -341,4 +341,3 @@ else
     my_generator = Generator.new(my_project)
 end
 my_generator.generate
-
