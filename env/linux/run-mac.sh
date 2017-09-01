@@ -24,10 +24,12 @@ ansible-galaxy install -r requirements.yml
 ansible-playbook main.yml -i inventory -K
 
 #Download Mac port from https://www.macports.org/install.php
-sudo port -v selfupdate
+sudo /opt/local/bin/port -v selfupdate
 
-port list | grep wget
+sudo port list | grep wget
 sudo port -t install wget
+sudo port install openssl
+#sudo port install xorg-server
 
 #See https://github.com/geerlingguy/mac-dev-playbook
 git clone https://github.com/geerlingguy/mac-dev-playbook

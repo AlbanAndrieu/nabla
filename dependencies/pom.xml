@@ -239,8 +239,8 @@
 		<displaytag.version>1.2</displaytag.version>
 		<documentation.output.directory>${project.build.directory}/docs</documentation.output.directory>
 		<dom4j.version>1.6.1</dom4j.version>
-		<doxia.version>1.7</doxia.version>
 		<doxia.module.twiki.version>${doxia.version}</doxia.module.twiki.version>
+		<doxia.version>1.7</doxia.version>
 		<!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 		<!--<drools.version>6.2.0.CR4</drools.version>-->
 		<drools.api.version>5.1.1</drools.api.version>
@@ -681,7 +681,6 @@
 		<maven.pax.plugin.version>1.6.0</maven.pax.plugin.version>
 		<maven.pitest.plugin.version>1.2.2</maven.pitest.plugin.version>
 		<maven.plexus.util.plugin.version>1.1</maven.plexus.util.plugin.version>
-		<maven.plugin.api.plugin.version>2.0</maven.plugin.api.plugin.version>
 		<maven.plugin.api.plugin.version>${maven.version}</maven.plugin.api.plugin.version>
 		<maven.plugin.plugin.plugin.version>3.5</maven.plugin.plugin.plugin.version>
 		<maven.pmd.plugin.version>3.8</maven.pmd.plugin.version>
@@ -1099,9 +1098,8 @@
 		<tapestry.version>4.1.3</tapestry.version>
 		<target.dir>target</target.dir>
 		<!-- default value that can be overrided -->
-		<target.version>RELEASE</target.version>
-		<!-- default value that can be overrided -->
 		<target.version>${project.version}</target.version>
+		<!--<target.version>RELEASE</target.version>-->
 		<tattletale-destination-directory>${project.build.directory}/site/tattletale</tattletale-destination-directory>
 		<tattletale-source-directory>${project.build.directory}/tattletale-source</tattletale-source-directory>
 		<testng.version>6.9.6</testng.version>
@@ -6924,9 +6922,6 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-site-plugin</artifactId>
 					<version>${maven.site.plugin.version}</version>
-					<configuration>
-						<encoding>${project.build.sourceEncoding}</encoding>
-					</configuration>
 					<dependencies>
 						<dependency>
 							<groupId>org.apache.maven.doxia</groupId>
@@ -6934,6 +6929,9 @@
 							<version>${doxia.version}</version>
 						</dependency>
 					</dependencies>
+					<configuration>
+						<encoding>${project.build.sourceEncoding}</encoding>
+					</configuration>
 				</plugin>
 				<!--
                                 <plugin>
