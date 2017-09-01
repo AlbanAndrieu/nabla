@@ -7,7 +7,7 @@ sudo ufw enable
 sudo ufw default deny incoming
 sudo ufw default allow outgoing
 sudo ufw allow 5900
-sudo ufw allow ssh 
+sudo ufw allow ssh
 
 sudo ufw status
 sudo ufw app list
@@ -35,4 +35,4 @@ sudo ufw allow 25/tcp
 
 #sudo ufw allow from 207.46.232.182
 
-sudo chmod 755 /etc/X11/xinit/xinitrc 
+sudo chmod 755 /etc/X11/xinit/xinitrc

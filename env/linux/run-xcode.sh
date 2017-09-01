@@ -25,7 +25,7 @@ brew install https://github.com/oclint/oclint/releases/download/v0.12/oclint-0.1
 brew upgrade oclint
 
 brew install xctool
- 
+
 brew untap michaeldfallen/formula
- 
+
 exit 0

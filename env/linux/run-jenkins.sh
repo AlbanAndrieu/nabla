@@ -10,7 +10,7 @@ set -xv
 #A simple remove of the offending 2.5 package made jenkins happy again.
 #sudo apt-get remove libservlet2.5-java
 #/etc/init.d/jenkins restart
-#or 
+#or
 #sudo service tomcat6 restart
 #sudo service jenkins restart
 
@@ -59,7 +59,7 @@ JENKINS_ARGS="$JENKINS_ARGS --prefix=$PREFIX"
 #sudo ln -s /home/kgr_mvn/bin/flashplayer flashplayer
 #sudo ln -s /home/kgr_mvn/bin/flashplayerdebugger flashplayerdebugger
 #sudo ln -s /home/kgr_mvn/bin/xvfb-run xvfb-run
-#sudo -u tomcat6 flashplayer 
+#sudo -u tomcat6 flashplayer
 
 export MAVEN_OPTS="-Xms256m -Xmx1024m -XX:PermSize=80M -XX:MaxPermSize=256M -XX:-UseGCOverheadLimit"
 
@@ -73,9 +73,9 @@ java -jar /usr/share/jenkins/jenkins.war --httpPort=8081 --ajp13Port=8010
 #wget http://albandri:8280/jenkins/backup/backup
 #http://home.nabla.mobi:8080/
 
-#check memory 
+#check memory
 #http://blog.cloudbees.com/2013/09/health-check-up-for-your-jenkins.html?mkt_tok=3RkMMJWWfF9wsRonvanBZKXonjHpfsX%2F7uwqUbHr08Yy0EZ5VunJEUWy24MIRdQ%2FcOedCQkZHblFnVwASa2lV7oNr6QP
-ssh -X jenkins@myserver jconsole 
+ssh -X jenkins@myserver jconsole
 
 #monitoring
 https://home.nabla.mobi/jenkins/monitoring?

@@ -133,8 +133,8 @@ sudo apt-get install libnss3-tools
 
 ##### Chrome
 # Find nssdb directory.
-find $HOME -name nssdb 
- 
+find $HOME -name nssdb
+
 # Make a backup.
 cp $HOME/.pki/nssdb{,.orig}
 
@@ -144,7 +144,7 @@ certutil -A -i /usr/local/share/ca-certificates/nabla.crt -n nabla -t "C,," -d s
 # Find cert8.db and key3.db files.
 find $HOME -name cert8.db
 find $HOME -name key3.db
- 
+
 # Make a backup.
 cp $HOME/firefox-profile-directory/cert8.db{,.orig}
 cp $HOME/firefox-profile-directory/key3.db{,.orig}
@@ -219,7 +219,7 @@ java -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.debug=tr
 cd /usr/local/share/ca-certificates
 sudo cp /etc/ssl/requests/certnew.cer albandri.crt
 #openssl s_client -showcerts -connect nabla.freeboxos.fr:443 </dev/null 2>/dev/null |openssl x509 -outform PEM | tee ~/Downloads/docker.pem
-sudo cp ~/Downloads/*.crt . 
+sudo cp ~/Downloads/*.crt .
 #~ #count the number of certificate in a file
 #cat ~/Downloads/crowd.crt | grep 'BEGIN.* CERTIFICATE' | wc -l
 sudo update-ca-certificates
@@ -286,16 +286,16 @@ openssl s_client -connect google.com:443 < /dev/null | sed -ne '/-BEGIN CERTIFIC
 
 tail -f /var/log/letsencrypt/letsencrypt.log
 
-#Saving debug log to /var/log/letsencrypt/letsencrypt.log          
-#Starting new HTTPS connection (1): acme-v01.api.letsencrypt.org   
-#Obtaining a new certificate                                       
-#Performing the following challenges:                              
-#tls-sni-01 challenge for nabla.freeboxos.fr                       
-#Waiting for verification...                                       
-#Cleaning up challenges                                            
-#Generating key (2048 bits):                                       
-#/etc/letsencrypt/keys/0000_key-certbot.pem                        
-#Creating CSR: /etc/letsencrypt/csr/0000_csr-certbot.pem 
+#Saving debug log to /var/log/letsencrypt/letsencrypt.log
+#Starting new HTTPS connection (1): acme-v01.api.letsencrypt.org
+#Obtaining a new certificate
+#Performing the following challenges:
+#tls-sni-01 challenge for nabla.freeboxos.fr
+#Waiting for verification...
+#Cleaning up challenges
+#Generating key (2048 bits):
+#/etc/letsencrypt/keys/0000_key-certbot.pem
+#Creating CSR: /etc/letsencrypt/csr/0000_csr-certbot.pem
 #
 #- Congratulations! Your certificate and chain have been saved at
 #   /etc/letsencrypt/live/nabla.freeboxos.fr-0001/fullchain.pem. Your
@@ -325,7 +325,7 @@ tail -f /var/log/apache2/error.log
 #    --authenticator letsencrypt-ssh:ssh \
 #    --letsencrypt-ssh:ssh-server albandri@home.nabla.mobi \
 #    --domains nabla.mobi,www.nabla.mobi,home.nabla.mobi,nabla.freeboxos.fr,alban-andrieu.fr,alban-andrieu.com,alban-andrieu.eu,bababou.fr,bababou.eu
-#    
+#
 #nano ~/.config/letsencrypt/letsencrypt.conf
 #config-dir = /home/albandri/.config/letsencrypt
 #work-dir = /home/albandri/.local/share/letsencrypt
@@ -333,7 +333,7 @@ tail -f /var/log/apache2/error.log
 #email = alban.andrieu@free.fr
 #non-interactive
 #agree-tos
-    
+
 ln -s /etc/webmin/miniserv.pem /etc/ssl/private/miniserv.pem
 #sudo chmod 640 /etc/ssl/private/ssl-cert-snakeoil.key
 ll /etc/ssl/private/ssl-cert-snakeoil.key

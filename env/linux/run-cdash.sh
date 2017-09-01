@@ -5,17 +5,17 @@ set -xv
 
 sudo svn co http://www.kitware.com/svn/CDash/Release-2-0-2 CDash
 
-https://code.google.com/apis/console 
+https://code.google.com/apis/console
 
 Product name: 	Nabla
 Google account: 	alban.andrieu@nabla.mobi
 Home page URL: 	nabla.mobi
- 
-Client ID: 	
+
+Client ID:
 837653203266.apps.googleusercontent.com
-Email address: 	
+Email address:
 837653203266@developer.gserviceaccount.com
-Client secret: 	
+Client secret:
 PuWFTkmtjfsiLKZi6NwWLoNe
 Redirect URIs: 	https://www.nabla.mobi/oauth2callback
 JavaScript origins: 	https://www.nabla.mobi

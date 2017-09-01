@@ -1,7 +1,7 @@
 [INFO] Scanning for projects...
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
-[INFO] 
+[INFO]
 [INFO] Maven Build Tools Configuration for quality metrics
 [INFO] AndroMDA Maven Site Plugins
 [INFO] Nabla Site Skin
@@ -41,16 +41,16 @@
 [INFO] AndroMDA Gui Cartridge
 [INFO] AndroMDA Seam Cartridge
 [WARNING] Could not transfer metadata org.apache.maven.plugins:maven-help-plugin/maven-metadata.xml from/to server-forge-release (dav:https://repository-nabla.forge.cloudbees.com/release): No connector available to access repository server-forge-release (dav:https://repository-nabla.forge.cloudbees.com/release) of type default using the available factories WagonRepositoryConnectorFactory
-[INFO]                                                                         
+[INFO]
 [INFO] ------------------------------------------------------------------------
 [INFO] Building Users 1.0
 [INFO] ------------------------------------------------------------------------
 [WARNING] Could not transfer metadata org.apache.maven.plugins/maven-metadata.xml from/to server-forge-release (dav:https://repository-nabla.forge.cloudbees.com/release): No connector available to access repository server-forge-release (dav:https://repository-nabla.forge.cloudbees.com/release) of type default using the available factories WagonRepositoryConnectorFactory
 [WARNING] Could not transfer metadata org.codehaus.mojo/maven-metadata.xml from/to server-forge-release (dav:https://repository-nabla.forge.cloudbees.com/release): No connector available to access repository server-forge-release (dav:https://repository-nabla.forge.cloudbees.com/release) of type default using the available factories WagonRepositoryConnectorFactory
 [WARNING] Failure to transfer org.apache.maven.plugins:maven-help-plugin/maven-metadata.xml from dav:https://repository-nabla.forge.cloudbees.com/release was cached in the local repository, resolution will not be reattempted until the update interval of server-forge-release has elapsed or updates are forced. Original error: Could not transfer metadata org.apache.maven.plugins:maven-help-plugin/maven-metadata.xml from/to server-forge-release (dav:https://repository-nabla.forge.cloudbees.com/release): No connector available to access repository server-forge-release (dav:https://repository-nabla.forge.cloudbees.com/release) of type default using the available factories WagonRepositoryConnectorFactory
-[INFO] 
+[INFO]
 [INFO] --- maven-help-plugin:2.1.1:effective-pom (default-cli) @ users ---
-[INFO] 
+[INFO]
 Effective POMs, after inheritance, interpolation, and profiles are applied:
 
 <?xml version="1.0" encoding="UTF-8"?>
@@ -509,7 +509,7 @@ Effective POMs, after inheritance, interpolation, and profiles are applied:
 
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary:
-[INFO] 
+[INFO]
 [INFO] Maven Build Tools Configuration for quality metrics  SKIPPED
 [INFO] AndroMDA Maven Site Plugins ....................... SKIPPED
 [INFO] Nabla Site Skin ................................... SKIPPED

@@ -20,7 +20,7 @@ cd /workspace/Zabbix_2.2_x86_64-2.2.2
 ifconfig
 dhcpcd eth1
 
-#check inet addresse 
+#check inet addresse
 #http://10.0.0.45/zabbix/
 
 #Configuration files are placed in /etc/zabbix

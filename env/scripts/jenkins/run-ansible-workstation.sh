@@ -94,7 +94,7 @@ ansible -m setup ${TARGET_SLAVE} -i staging -vvvv
 # check quality
 #ansible-lint workstation.yml
 
-# check syntax 
+# check syntax
 ansible-playbook -i staging -c local -v workstation.yml --limit ${TARGET_SLAVE} -vvvv --syntax-check
 RC=$?
 if [ ${RC} -ne 0 ]; then
@@ -118,7 +118,7 @@ else
   #--extra-vars "jenkins_username=${JENKINS_USERNAME} jenkins_password=${JENKINS_PASSWORD}"
   #./setup.sh | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
 
-  echo -e "${green} Ansible done. $? ${NC}"  
+  echo -e "${green} Ansible done. $? ${NC}"
 fi
 
 echo -e "${green} Ansible server summary ${NC}"
@@ -128,7 +128,7 @@ ansible -i production -m setup --user=root --tree out/ all
 ansible-cmdb -i ./production out/ > overview.html
 sudo cp overview.html /var/www/html/
 #scp overview.html root@kgrdb01:/var/www/html
-echo -e "${green} Ansible server summary done. $? ${NC}"  
+echo -e "${green} Ansible server summary done. $? ${NC}"
 
 cd ${WORKSPACE}/Scripts/shell
 

@@ -19,7 +19,7 @@ print<<HELP
 
   Specify files from the command line:
     foo\@bar:~\$ ./pwin2lin.pl myPuttySessions.reg /home/foo/.putty
- 
+
 HELP
 }
 
@@ -36,7 +36,7 @@ my $puttyPath = "";
 
 if($#ARGV + 1) { # If any command line arguments are specified try to parse
   if($ARGV[0] eq "--help") {
-    &help(); 
+    &help();
     exit;
   } elsif($ARGV[0] && $ARGV[1]) {
     $winRegFile = $ARGV[0];
@@ -52,7 +52,7 @@ if($#ARGV + 1) { # If any command line arguments are specified try to parse
   print "Specify the path and file to convert:\n";
   $winRegFile = <STDIN>;
   chomp $winRegFile;
-  
+
   print "Specify the path to store the converted sessions:\n";
   $puttyPath = <STDIN>;
   chomp $puttyPath;
@@ -72,8 +72,8 @@ my $linesLen = scalar @lines;
 my $i = 0;
 while($i < $linesLen) {
   chomp $lines[$i];
-  if($lines[$i] =~ 
-m/^\[HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\Sessions\\(.+)\]/) 
+  if($lines[$i] =~
+m/^\[HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\Sessions\\(.+)\]/)
 {
     my $hostname = $1;
     $i++;
@@ -91,7 +91,7 @@ m/^\[HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\Sessions\\(.+)\]/)
         } else {
           $dec = hex($dec);
         }
-        
+
         $lines[$i] =~ s/dword:.+/$dec/g;
       }
       $lines[$i] =~ s/^Font\=.+/FontName=server:fixed/g;
@@ -103,7 +103,7 @@ m/^\[HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\Sessions\\(.+)\]/)
       $i++;
     }
     close HOST;
-  } elsif($lines[$i] =~ 
+  } elsif($lines[$i] =~
 m/\[HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\SshHostKeys\]/) {
     $i++;
     open SSH, ">$puttyPath/sshhostkeys" or die $!;
@@ -117,4 +117,3 @@ m/\[HKEY_CURRENT_USER\\Software\\SimonTatham\\PuTTY\\SshHostKeys\]/) {
   }
   $i++;
 }
-

@@ -21,7 +21,7 @@ sudo iptables -t nat -A PREROUTING -p all -d 0.0.0.0/0 -j nova-network-PREROUTIN
 2    nova-network-PREROUTING  all  --  0.0.0.0/0            0.0.0.0/0
 
 #local forward
-ssh -L '*:4444:localhost:4444' mybox 
+ssh -L '*:4444:localhost:4444' mybox
 
 netstat -an | grep 8080
 netstat -tlnp | grep 8080

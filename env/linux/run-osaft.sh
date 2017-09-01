@@ -22,4 +22,3 @@ o-saft.pl +check your.tld
 o-saft.tcl
 
 #DOES NOT WORK
-
