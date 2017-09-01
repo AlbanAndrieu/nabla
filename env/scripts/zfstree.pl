@@ -45,7 +45,7 @@ Options:
     --help              brief help message
     --pool [pool]       pool name to displays the zfs tree (dpool is used by default)
     --dataset [dataset] specify the dataset root of the tree (dpool is used by default)
- 
+
 EOT
     exit 0;
 }
@@ -65,28 +65,28 @@ sub build_tree {
     my @zfs_list = @_;
     ZFS_LIST:
     for my $item (@zfs_list){
-        
+
         chomp $item;
         my ($name, $origin) = $item =~ /^(.+)\t(.+)$/;
 
-        # It this is a snapshot, we consider the volume as the origin 
+        # It this is a snapshot, we consider the volume as the origin
         my ($volume) = $name =~ /^([^\@]+)\@.+/;
         $origin = $volume if defined $volume;
-        
+
         # if no reported origin, the origin is the pool
         $origin = $pool if $origin eq '-';
 
         s/^\Q$pool\E\/(.+)/$1/ for ($name, $origin);
-        
+
         # We create the Tree::Simple nodes and store them in a hashmap in
-        # order to avoid parsing the tree to know if a node already exists 
+        # order to avoid parsing the tree to know if a node already exists
         for my $node_name ( $origin, $name ){
             $node_for{$node_name} = Tree::Simple->new($node_name)
                 if !defined $node_for{$node_name};
         }
-        
-        # Finally, we register the relationship 
-        $node_for{$origin}->addChild($node_for{$name})  
+
+        # Finally, we register the relationship
+        $node_for{$origin}->addChild($node_for{$name})
             if $origin ne $name;
     }
 }
@@ -94,18 +94,18 @@ sub build_tree {
 # We post process the ascii tree
 sub print_report {
     my @lines = @_;
-    
+
     ASCII_REPORT:
     for my $i (0..$#lines){
         # We split the the "graphic" part and the fs name
         my($treelines, $dashes, $fs) = $lines[$i] =~ /^(.+)(---)(.+)$/;
         my $properties_cmd;
-        
+
         if(!defined $fs){
             $fs = $lines[$i];
             $treelines = $dashes = '';
         }
-        
+
         $properties_cmd = "zfs get -H -o property,value all $pool/$fs";
 
         # We colorize nodes according to their type
@@ -113,16 +113,16 @@ sub print_report {
         # Red  : official, persistent
         # Blue : snapshots
         print $treelines, $dashes, $lines[$i]=~/kzone/? GREEN :
-              $lines[$i]=~/\@/           ?         BLUE   : RED,   
+              $lines[$i]=~/\@/           ?         BLUE   : RED,
               $fs, RESET, "\n";
-              
+
         # datasets are annotated using zfs user properties
         # We retrieve them in order to annotate tree
         # properties have the prefix 'nabla:'
         # Available: changelog, usage, owner
         # usage and owner are useful for zones description
         my @properties = reverse sort grep /nabla:/, `$properties_cmd`;
-        
+
         ## Here we do not want the tree lines to be continued for
         ## comments if the node has no remaining sibling
         # Then, we read the n+1 line of ascii tree view output
@@ -142,7 +142,7 @@ sub print_report {
             $next_treelines =~ s/./ /g; # Replacing all characters with spaces
             $next_treelines .= ' ' x 8;
         }
-         
+
         for my $property (@properties){
             chomp $property;
             my( $name, $value) = split "\t", $property;
@@ -155,8 +155,8 @@ sub print_report {
                 }
             }
         }
-        
-        # height line = 2 
+
+        # height line = 2
         print defined $next_treelines?"$next_treelines\n":"\n\n\n";
     }
 }

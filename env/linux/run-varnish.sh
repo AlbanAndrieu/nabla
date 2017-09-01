@@ -15,7 +15,7 @@ DAEMON_OPTS="-a :82,:443 \
              -f /etc/varnish/default.vcl \
              -S /etc/varnish/secret \
              -s malloc,256m"
-             
+
 #               -T localhost:6082 \
 #               -f /etc/varnish/default.vcl \
 #               -p thread_pools=4 \
@@ -24,16 +24,16 @@ DAEMON_OPTS="-a :82,:443 \
 #               -p lru_interval=1800 \
 #               -h classic,169313 \
 #               -p connect_timeout=600 \
-#               -s malloc,2G"             
-             
+#               -s malloc,2G"
+
 sudo nano /etc/varnish/default.vcl
-             
+
 # This is a basic VCL configuration file for varnish.  See the vcl(7)
 # man page for details on VCL syntax and semantics.
-# 
+#
 # Default backend definition.  Set this to point to your content
 # server.
-# 
+#
 backend default {
     .host = "127.0.0.1";
     .port = "8280";
@@ -43,10 +43,10 @@ backend default {
          .timeout = 1s;
 #         .connect_timeout = 600s;
 #         .first_byte_timeout = 600s;
-#         .between_bytes_timeout = 600s;         
+#         .between_bytes_timeout = 600s;
 #         .window = 5;
          .threshold = 3;
-    }    
+    }
 }
 backend apache {
     .host = "127.0.0.1";
@@ -57,10 +57,10 @@ backend apache {
          .timeout = 1s;
 #         .connect_timeout = 600s;
 #         .first_byte_timeout = 600s;
-#         .between_bytes_timeout = 600s;         
+#         .between_bytes_timeout = 600s;
 #         .window = 5;
          .threshold = 3;
-    }    
+    }
 }
 backend jboss {
     .host = "127.0.0.1";
@@ -71,10 +71,10 @@ backend jboss {
          .timeout = 1s;
 #         .connect_timeout = 600s;
 #         .first_byte_timeout = 600s;
-#         .between_bytes_timeout = 600s;         
+#         .between_bytes_timeout = 600s;
 #         .window = 5;
          .threshold = 3;
-    }    
+    }
 }
 
 backend jboss_console {
@@ -86,10 +86,10 @@ backend jboss_console {
          .timeout = 1s;
 #         .connect_timeout = 600s;
 #         .first_byte_timeout = 600s;
-#         .between_bytes_timeout = 600s;         
+#         .between_bytes_timeout = 600s;
 #         .window = 5;
          .threshold = 3;
-    }    
+    }
 }
 
 # Define the list of backends (web servers).
@@ -116,12 +116,12 @@ director default_director round-robin {
 sub vcl_recv {
   if (req.url ~ "^/jenkins/") {
     set req.backend = default_director;
-  } 
+  }
 
   if (req.url ~ "^/console/") {
     set req.backend = jboss_console;
-  } 
-  
+  }
+
   if (req.url ~ "^/jboss/") {
     set req.backend = jboss;
   } else {
@@ -175,7 +175,7 @@ cat /etc/init.d/varnish
 cat /etc/default/varnish
 
 #log
-varnishlog 
+varnishlog
 varnishstat
 
 sudo service varnish stop

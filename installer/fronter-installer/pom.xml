@@ -14,7 +14,7 @@
 	<packaging>izpack-jar</packaging>
 	<description>Nabla fronter Installer</description>
 
-<!-- TODO http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it/izpack-tomcat/ 
+<!-- TODO http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it/izpack-tomcat/
 http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it/sample/pom.xml
 -->
 
@@ -23,11 +23,11 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
     <app.title>${project.name}</app.title>
     <app.subpath>${project.artifactId}-${project.version}</app.subpath>
     <app.version>${project.version}</app.version>
-      
+
     <download.dir>${project.build.directory}/downloads</download.dir>
 
   </properties>
-  
+
   <dependencies>
 
     <!-- this will override the one in the plugin -->
@@ -36,15 +36,15 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
       <artifactId>izpack-standalone-compiler</artifactId>
       <!-- dont want to download this artifact when retrieve the installer as transitive dependency -->
       <optional>true</optional>
-    </dependency> 
+    </dependency>
   </dependencies>
 
   <build>
 
     <defaultGoal>package</defaultGoal>
 
-    <plugins>      
-      
+    <plugins>
+
       <!--  fetch resource files from the orignal Ant build project -->
       <!--
       <plugin>
@@ -69,7 +69,7 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
         </executions>
       </plugin>
       -->
-		
+
       <!-- fetch and unpack all dependent bundles into staging area -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -187,7 +187,7 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
 					</artifactItems>
 				</configuration>
 			</execution>
-				
+
           <execution>
             <id>copy-jars-dependencies</id>
             <phase>process-resources</phase>
@@ -209,15 +209,15 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
                   <version>${target.version}</version>
                   <type>jar</type>
                   <outputDirectory>${staging.dir}/lib</outputDirectory>
-                </artifactItem>     
-                <!--                    
+                </artifactItem>
+                <!--
                 <artifactItem>
                   <groupId>log4j</groupId>
                   <artifactId>log4j</artifactId>
                   <version>${log4j.version}</version>
                   <type>jar</type>
                   <outputDirectory>${staging.dir}/lib</outputDirectory>
-                </artifactItem>                                                
+                </artifactItem>
                 -->
               </artifactItems>
             </configuration>

@@ -82,4 +82,3 @@ export JETTY_VERSION=9.3.3.v20150827
 java -cp ./target/cargo/installs/jetty-distribution-${JETTY_VERSION}/jetty-distribution-${JETTY_VERSION}/lib/jetty-util-$JETTY_VERSION.jar org.eclipse.jetty.util.security.Password Kondor_123
 OBF:1e3b1l181kn01rpg1xmk1xmq1rp61kjm1kxu1e1z
 MD5:7509264c65c3e400d2e5c9d7280c9786
-

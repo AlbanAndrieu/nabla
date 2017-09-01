@@ -1,7 +1,7 @@
 #!/bin/sh
 
 if [ $# -lt 2 ]
-then 
+then
   echo "usage: $0 <user_properties_file> <path_to_set> [--keepsuffix] [--userdev] [--targetfile <file>]"
   exit 1
 fi
@@ -46,7 +46,7 @@ TARGET_FILE=""
 while [ "$3" != "" ]; do
 
     case "$3" in
-            
+
         "--keepsuffix") REPLACE_REMOVE_OPT=""; ;;
         "--userdev") USER_COMMON_PROPERTIES="./profiles/commonUser.dev.properties"; ;;
         "--targetfile")
@@ -55,7 +55,7 @@ while [ "$3" != "" ]; do
           ;;
 
     esac
-    
+
     shift
 done
 

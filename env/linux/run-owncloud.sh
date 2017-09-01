@@ -54,7 +54,7 @@ $CONFIG = array (
 );
 
 
-#for google drive 
+#for google drive
 https://cloud.google.com/console#/project
 
 less /owncloud/data/albandri/mount.json
@@ -80,7 +80,7 @@ ssh owncloud@192.168.0.13
 su -
 
 #owncloud change default port
-edit /usr/pbi/owncloud-amd64/etc/apache22/httpd.conf 
+edit /usr/pbi/owncloud-amd64/etc/apache22/httpd.conf
 service apache22 restart
 
 cd /usr/pbi/owncloud-amd64/www/owncloud
@@ -145,8 +145,8 @@ fi
 cd /usr/pbi/owncloud-amd64/www/apache22/data
 
 less /usr/pbi/owncloud-amd64/www/apache22/data
-less etc/apache22/extra/httpd-ssl.conf  
-tail -f /var/log/httpd-error.log 
+less etc/apache22/extra/httpd-ssl.conf
+tail -f /var/log/httpd-error.log
 
 #fix permisssion bug
 cd /usr/pbi/owncloud-amd64/www/owncloud
@@ -190,7 +190,6 @@ davs://home.nabla.mobi/owncloud/remote.php/webdav
 #http://software.opensuse.org/download/package?project=isv:ownCloud:desktop&package=owncloud-client
 sudo sh -c "echo 'deb http://download.opensuse.org/repositories/isv:/ownCloud:/desktop/xUbuntu_12.10/ /' >> /etc/apt/sources.list.d/owncloud-client.list"
 wget http://download.opensuse.org/repositories/isv:ownCloud:desktop/xUbuntu_13.10/Release.key
-sudo apt-key add - < Release.key  
+sudo apt-key add - < Release.key
 sudo apt-get update
 sudo apt-get install owncloud-client
-

@@ -4,7 +4,7 @@
 <!-- the log configuration file for the AndroMDA project -->
 
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/" debug="true">
-    
+
     <!-- ============================================
           Append error messages to a local error log
          ============================================ -->
@@ -45,7 +45,7 @@
          <param name="ConversionPattern" value="PROJECT - %d{yyyy/MM/dd HH:mm:ss}  %-5p [%t] %c{2} - %m%n"/>
       </layout>
    </appender>
-   
+
     <!-- ==================
           Limit categories
          ================== -->
@@ -69,7 +69,7 @@
     <category name="de.plushnikov.doctorjim">
         <priority value="ERROR" />
     </category>
-   
+
     <category name="org.andromda">
         <priority value="ERROR" />
     </category>
@@ -87,16 +87,16 @@
         <priority value="INFO" />
     </category>
     -->
-    
+
     <!-- this produce a lot of output in debug mode -->
     <category name="org.andromda.namespaces">
         <priority value="INFO" />
     </category>
-    
+
     <category name="org.andromda.utils.beautifier.core.JavaImportBeautifierImpl">
         <priority value="ERROR" />
     </category>
-    
+
     <category name="org.andromda.core.configuration">
         <priority value="INFO" />
     </category>
@@ -127,8 +127,8 @@
 
     <category name="org.andromda.cartridges.gui">
         <priority value="DEBUG" />
-    </category>        
-    
+    </category>
+
     <!-- =========================
           Setup the Root category
          ========================= -->

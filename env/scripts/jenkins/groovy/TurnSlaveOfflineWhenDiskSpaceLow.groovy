@@ -1,7 +1,7 @@
 import hudson.model.*;
 import hudson.node_monitors.DiskSpaceMonitor;
 import java.math.BigDecimal;
-  
+
 def thr = Thread.currentThread()
 def computer = thr?.executable.getBuiltOn().toComputer()
 def space = DiskSpaceMonitor.DESCRIPTOR.get(computer);

@@ -30,4 +30,3 @@ sudo mkdir /workspace-tmp
 
 echo "Mount freenas NABLA directories"
 #less /var/log/syslog | grep -i nfs
-

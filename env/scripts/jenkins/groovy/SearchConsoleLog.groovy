@@ -7,7 +7,7 @@ for(item in Hudson.instance.items) {
                   if(logFile.contains("<search phrase>")) {
                     println("Search phrase found in build #" + Run.getNumber());
                 }
-            } 
+            }
       }
   }
 }

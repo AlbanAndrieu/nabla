@@ -13,4 +13,4 @@ http://jmeter-plugins.org/wiki/PerfMonAgent/
 
 #Run jmeter
 cd /workspace/users/albandri30/nabla-project-interview-visma/gui
-/usr/local/jmeter/apache-jmeter-2.12/bin/jmeter -n -t src/test/jmeter/jmeter.jmx -l outputFile.jtl 
+/usr/local/jmeter/apache-jmeter-2.12/bin/jmeter -n -t src/test/jmeter/jmeter.jmx -l outputFile.jtl

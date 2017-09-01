@@ -56,4 +56,3 @@ sudo vagrant plugin uninstall vagrant-lxc
 sudo vagrant plugin uninstall vagrant-vbguest
 sudo vagrant plugin list
 sudo vagrant plugin update
-

@@ -4,8 +4,8 @@
                      xmlns:izpack="http://izpack.org/schema/installation"
                      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                      xsi:schemaLocation="http://izpack.org/schema/installation http://izpack.org/schema/5.0/izpack-installation-5.0.xsd">
-                
-  <!-- http://izpack.org/documentation/installation-files.html#the-installer-requirements-element-installerrequirements -->     
+
+  <!-- http://izpack.org/documentation/installation-files.html#the-installer-requirements-element-installerrequirements -->
   <variables>
     <variable name="appGroup" value="${app.group}"/>
     <variable name="appTitle" value="${app.title}"/>
@@ -42,11 +42,11 @@
     <modifier key="headingPanelCounterPos" value="inHeading"/>
   </guiprefs>
 
-  
+
   <locale>
     <langpack iso3="eng"/>
     <!--<langpack iso3="fra"/>-->
-  </locale>  
+  </locale>
 
   <resources>
     <!-- groovy.png is the wrong shape for Installer.image, which is
@@ -80,12 +80,12 @@
   		<value>false</value>
   	</condition>
   </conditions>
-	  
+
   <panels>
     <panel classname="HelloPanel"/>
     <panel classname="HTMLInfoPanel"/>
     <panel classname="HTMLLicencePanel"/>
-    <panel classname="TargetPanel"/> 
+    <panel classname="TargetPanel"/>
     <!--<panel classname="InstallationGroupPanel" condition="no.further.step.available.nabla"/>-->
     <panel classname="PacksPanel"/>
     <!--<panel classname="UserPathPanel"/>-->
@@ -98,20 +98,20 @@
     <panel classname="UserInputPanel" id="jdbc.connection.parameters">
       <validator classname="JdbcConnectionValidator" />
     </panel>
-    -->    
+    -->
     <panel classname="SummaryPanel"/>
     <panel classname="InstallPanel"/>
     <panel classname="ProcessPanel"/>
-    <panel classname="ShortcutPanel" /> 
+    <panel classname="ShortcutPanel" />
     <panel classname="FinishPanel"/>
   </panels>
 
-<!--    
+<!--
   <listeners>
     <listener installer="SummaryLoggerInstallerListener">
       <os family="windows"/>
     </listener>
-    
+
     <listener installer="RegistryInstallerListener"
               uninstaller="RegistryUninstallerListener">
       <os family="windows"/>
@@ -143,11 +143,11 @@
 	targetdir="$INSTALL_PATH/Uninstaller" os="windows" />
       <parsable targetfile="$INSTALL_PATH/Uninstaller/pre-uninstall.bat" os="windows" />
       <executable targetfile="$INSTALL_PATH/Uninstaller/pre-uninstall.bat" os="windows" stage="uninstall" />
-      
+
       <file src="resources/run.sh" targetdir="$INSTALL_PATH" os="unix"/>
       <file src="resources/install.sh" targetdir="$INSTALL_PATH" os="unix"/>
       <!--<parsable targetfile="$INSTALL_PATH/install.sh" os="unix"/>-->
-      
+
       <file src="resources/run.bat" targetdir="$INSTALL_PATH" os="windows"/>
       <file src="resources/install.bat" targetdir="$INSTALL_PATH" os="windows"/>
       <!--<parsable targetfile="$INSTALL_PATH/bat.bat" os="windows"/>-->
@@ -155,8 +155,8 @@
 
       <fileset dir="jars" targetdir="$INSTALL_PATH/bin" override="true">
       </fileset>
-      <fileset dir="lib" targetdir="$INSTALL_PATH/lib" override="true">    
-      </fileset>        
+      <fileset dir="lib" targetdir="$INSTALL_PATH/lib" override="true">
+      </fileset>
     </pack>
 
     <pack name="File associations" required="no">
@@ -172,7 +172,7 @@
       </fileset>
     </pack>
     -->
-    
+
     <!-- TODO
     <pack name="Maven site" required="no">
       <description>Maven site is generated static HTML documentation for the open source fronter software (it include Javadoc).</description>
@@ -186,7 +186,7 @@
     -->
 
   </packs>
-  
+
   <!-- The native libraries to add. This is required for creating shortcuts on Windows -->
   <native type="izpack" name="ShellLink.dll"/>
   <native type="3rdparty" name="COIOSHelper.dll" stage="both">

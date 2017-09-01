@@ -201,7 +201,7 @@ sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/serie /media/serie
 sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/torrentfile /media/torrentfile
 sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/video /media/video
 sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/webdav /media/webdav
-sudo mount -t zfs 192.168.0.46:/mnt/dpool/image /image 
+sudo mount -t zfs 192.168.0.46:/mnt/dpool/image /image
 sudo mount -t nfs 192.168.0.46:/mnt/dpool/archive /archive
 sudo mount -t nfs 192.168.0.46:/mnt/dpool/backup /backup
 sudo mount -t nfs 192.168.0.46:/mnt/dpool/jenkins /media/jenkins
@@ -359,7 +359,7 @@ cat /usr/local/etc/apache24/httpd.conf | grep Listen
 echo 'apache24_enable="YES"' >> /etc/rc.conf
 
 #as non jail
-#start apache 
+#start apache
 /usr/local/etc/rc.d/apache24 start
 
 less /var/log/httpd-error.log
@@ -584,7 +584,7 @@ pw usermod jenkins -G wheel
 
 chown -R jenkins:jenkins /var/run/jenkins
 
-#add ssh to jail 
+#add ssh to jail
 #http://doc.freenas.org/index.php/Adding_Jails
 #edit /etc/rc.conf
 echo 'sshd_enable="YES"' >> /etc/rc.conf

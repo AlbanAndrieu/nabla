@@ -1,7 +1,7 @@
 [INFO] Scanning for projects...
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Build Order:
-[INFO] 
+[INFO]
 [INFO] Maven Build Tools Configuration for quality metrics
 [INFO] AndroMDA Maven Site Plugins
 [INFO] Nabla Site Skin
@@ -41,17 +41,17 @@
 [INFO] AndroMDA Gui Cartridge
 [INFO] AndroMDA Seam Cartridge
 [WARNING] Could not transfer metadata org.apache.maven.plugins:maven-help-plugin/maven-metadata.xml from/to server-forge-release (dav:https://repository-nabla.forge.cloudbees.com/release): No connector available to access repository server-forge-release (dav:https://repository-nabla.forge.cloudbees.com/release) of type default using the available factories WagonRepositoryConnectorFactory
-[INFO]                                                                         
+[INFO]
 [INFO] ------------------------------------------------------------------------
 [INFO] Building Users 1.0
 [INFO] ------------------------------------------------------------------------
 [WARNING] Could not transfer metadata org.apache.maven.plugins/maven-metadata.xml from/to server-forge-release (dav:https://repository-nabla.forge.cloudbees.com/release): No connector available to access repository server-forge-release (dav:https://repository-nabla.forge.cloudbees.com/release) of type default using the available factories WagonRepositoryConnectorFactory
 [WARNING] Could not transfer metadata org.codehaus.mojo/maven-metadata.xml from/to server-forge-release (dav:https://repository-nabla.forge.cloudbees.com/release): No connector available to access repository server-forge-release (dav:https://repository-nabla.forge.cloudbees.com/release) of type default using the available factories WagonRepositoryConnectorFactory
 [WARNING] Failure to transfer org.apache.maven.plugins:maven-help-plugin/maven-metadata.xml from dav:https://repository-nabla.forge.cloudbees.com/release was cached in the local repository, resolution will not be reattempted until the update interval of server-forge-release has elapsed or updates are forced. Original error: Could not transfer metadata org.apache.maven.plugins:maven-help-plugin/maven-metadata.xml from/to server-forge-release (dav:https://repository-nabla.forge.cloudbees.com/release): No connector available to access repository server-forge-release (dav:https://repository-nabla.forge.cloudbees.com/release) of type default using the available factories WagonRepositoryConnectorFactory
-[INFO] 
+[INFO]
 [INFO] --- maven-help-plugin:2.1.1:active-profiles (default-cli) @ users ---
-[INFO] 
-Active Profiles for Project 'com.nabla.project:build-tools:jar:1.0': 
+[INFO]
+Active Profiles for Project 'com.nabla.project:build-tools:jar:1.0':
 
 The following profiles are active:
 
@@ -59,7 +59,7 @@ The following profiles are active:
 
 
 
-Active Profiles for Project 'com.nabla.project:maven:pom:1.0': 
+Active Profiles for Project 'com.nabla.project:maven:pom:1.0':
 
 The following profiles are active:
 
@@ -67,7 +67,7 @@ The following profiles are active:
 
 
 
-Active Profiles for Project 'com.nabla.project:skin:jar:1.0': 
+Active Profiles for Project 'com.nabla.project:skin:jar:1.0':
 
 The following profiles are active:
 
@@ -76,7 +76,7 @@ The following profiles are active:
 
 
 
-Active Profiles for Project 'com.nabla:users:pom:1.0': 
+Active Profiles for Project 'com.nabla:users:pom:1.0':
 
 The following profiles are active:
 
@@ -84,7 +84,7 @@ The following profiles are active:
 
 
 
-Active Profiles for Project 'com.nabla.project:dependencies:pom:1.0': 
+Active Profiles for Project 'com.nabla.project:dependencies:pom:1.0':
 
 The following profiles are active:
 
@@ -92,7 +92,7 @@ The following profiles are active:
 
 
 
-Active Profiles for Project 'com.nabla.project:databases:pom:1.0': 
+Active Profiles for Project 'com.nabla.project:databases:pom:1.0':
 
 The following profiles are active:
 
@@ -100,7 +100,7 @@ The following profiles are active:
 
 
 
-Active Profiles for Project 'com.nabla.project:main:pom:1.0': 
+Active Profiles for Project 'com.nabla.project:main:pom:1.0':
 
 The following profiles are active:
 
@@ -109,7 +109,7 @@ The following profiles are active:
 
 
 
-Active Profiles for Project 'com.nabla.project:servers:pom:1.0': 
+Active Profiles for Project 'com.nabla.project:servers:pom:1.0':
 
 The following profiles are active:
 
@@ -118,13 +118,13 @@ The following profiles are active:
 
 
 
-Active Profiles for Project 'com.nabla.project:customs:pom:1.0': 
+Active Profiles for Project 'com.nabla.project:customs:pom:1.0':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'com.nabla.project:project:pom:1.0': 
+Active Profiles for Project 'com.nabla.project:project:pom:1.0':
 
 The following profiles are active:
 
@@ -132,7 +132,7 @@ The following profiles are active:
 
 
 
-Active Profiles for Project 'com.nabla.project:uml:pom:1.0': 
+Active Profiles for Project 'com.nabla.project:uml:pom:1.0':
 
 The following profiles are active:
 
@@ -140,163 +140,163 @@ The following profiles are active:
 
 
 
-Active Profiles for Project 'com.nabla.project.uml:nabla:pom:1.0': 
+Active Profiles for Project 'com.nabla.project.uml:nabla:pom:1.0':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.metafacades:metafacades:pom:1.0': 
+Active Profiles for Project 'org.andromda.metafacades:metafacades:pom:1.0':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.metafacades:uml2:pom:1.0': 
+Active Profiles for Project 'org.andromda.metafacades:uml2:pom:1.0':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.metafacades:andromda-metafacades-uml:jar:3.4': 
+Active Profiles for Project 'org.andromda.metafacades:andromda-metafacades-uml:jar:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.profiles:profiles:pom:3.4': 
+Active Profiles for Project 'org.andromda.profiles:profiles:pom:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.profiles.uml2:uml2:pom:3.4': 
+Active Profiles for Project 'org.andromda.profiles.uml2:uml2:pom:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-datatype:xml.zip:3.4': 
+Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-datatype:xml.zip:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-messaging:xml.zip:3.4': 
+Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-messaging:xml.zip:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-meta:xml.zip:3.4': 
+Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-meta:xml.zip:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-persistence:xml.zip:3.4': 
+Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-persistence:xml.zip:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-presentation:xml.zip:3.4': 
+Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-presentation:xml.zip:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-process:xml.zip:3.4': 
+Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-process:xml.zip:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-service:xml.zip:3.4': 
+Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-service:xml.zip:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-webservice:xml.zip:3.4': 
+Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-webservice:xml.zip:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-xml:xml.zip:3.4': 
+Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-xml:xml.zip:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile:xml.zip:3.4': 
+Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile:xml.zip:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-gui:xml.zip:3.4': 
+Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-gui:xml.zip:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-backend:xml.zip:3.4': 
+Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-backend:xml.zip:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-test:xml.zip:3.4': 
+Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-test:xml.zip:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-shared:xml.zip:3.4': 
+Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-shared:xml.zip:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-seam:xml.zip:3.4': 
+Active Profiles for Project 'org.andromda.profiles.uml2:andromda-profile-seam:xml.zip:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.cartridges:cartridges:pom:1.0': 
+Active Profiles for Project 'org.andromda.cartridges:cartridges:pom:1.0':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.cartridges:andromda-database-cartridge:jar:3.4': 
+Active Profiles for Project 'org.andromda.cartridges:andromda-database-cartridge:jar:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.cartridges:andromda-ejb3-cartridge:jar:3.4': 
+Active Profiles for Project 'org.andromda.cartridges:andromda-ejb3-cartridge:jar:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.cartridges:andromda-gui-cartridge-components:jar:3.4': 
+Active Profiles for Project 'org.andromda.cartridges:andromda-gui-cartridge-components:jar:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.cartridges:andromda-gui-cartridge:jar:3.4': 
+Active Profiles for Project 'org.andromda.cartridges:andromda-gui-cartridge:jar:3.4':
 
 There are no active profiles.
 
 
 
-Active Profiles for Project 'org.andromda.cartridges:andromda-seam-cartridge:jar:3.4': 
+Active Profiles for Project 'org.andromda.cartridges:andromda-seam-cartridge:jar:3.4':
 
 There are no active profiles.
 
@@ -304,7 +304,7 @@ There are no active profiles.
 
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary:
-[INFO] 
+[INFO]
 [INFO] Maven Build Tools Configuration for quality metrics  SKIPPED
 [INFO] AndroMDA Maven Site Plugins ....................... SKIPPED
 [INFO] Nabla Site Skin ................................... SKIPPED

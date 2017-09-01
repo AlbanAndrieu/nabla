@@ -32,7 +32,7 @@ if [ `id -u` -ne 0 ]; then
 	echo "You need root privileges to run this script"
 	exit 1
 fi
- 
+
 # Make sure tomcat is started with system locale
 if [ -r /etc/default/locale ]; then
 	. /etc/default/locale
@@ -51,7 +51,7 @@ fi
 TOMCAT6_USER=tomcat6
 TOMCAT6_GROUP=tomcat6
 
-# this is a work-around until there is a suitable runtime replacement 
+# this is a work-around until there is a suitable runtime replacement
 # for dpkg-architecture for arch:all packages
 # this function sets the variable OPENJDKS
 find_openjdks()
@@ -234,7 +234,7 @@ case "$1" in
 	log_daemon_msg "Stopping $DESC" "$NAME"
 
 	set +e
-	if [ -f "$CATALINA_PID" ]; then 
+	if [ -f "$CATALINA_PID" ]; then
 		start-stop-daemon --stop --pidfile "$CATALINA_PID" \
 			--user "$TOMCAT6_USER" \
 			--retry=TERM/20/KILL/5 >/dev/null

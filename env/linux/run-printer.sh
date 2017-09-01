@@ -7,9 +7,9 @@ set -xv
 #I downloaded driver from : http://www.support.xerox.com/support/phaser-4622/downloads/enus.html?operatingSystem=linux&fileLanguage=en
 #sudo xeroxprtmgr
 #Following the documentation from :
-#http://users.wfu.edu/yipcw/wfu/xerox/ubuntu/ 
- 
-sudo apt-get install apparmor-utils 
+#http://users.wfu.edu/yipcw/wfu/xerox/ubuntu/
+
+sudo apt-get install apparmor-utils
 #sudo apt-get cups-ipp-utils python-cups
 #sudo apt-get xeroxprtdrv
 

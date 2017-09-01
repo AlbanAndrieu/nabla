@@ -48,7 +48,7 @@ echo ARCH : ${ARCH} - MACHINE : ${MACHINE}
 
 setenv PROJECT_USER albandri
 setenv PROJECT_VERSION 10
-setenv DRIVE_PATH 
+setenv DRIVE_PATH
 setenv PROJECT_HOME ${DRIVE_PATH}/workspace/users
 
 setenv WORKSPACE_ENV ${PROJECT_HOME}/${PROJECT_USER}${PROJECT_VERSION}/env

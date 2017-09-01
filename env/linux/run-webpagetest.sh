@@ -36,7 +36,7 @@ find . -name "*.jpg" -exec mogrify -format png {} \;
 convert image.png image.jpg
 # compression
 convert image.png -quality 95 image.jpg
-#mogrify -format jpg *.png  
+#mogrify -format jpg *.png
 
 #http://www.howtogeek.com/109369/how-to-quickly-resize-convert-modify-images-from-the-linux-terminal/
 convert image.png -resize 200x200 image.png

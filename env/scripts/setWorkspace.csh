@@ -144,7 +144,7 @@ if ( ${GENERATION_MODE} != "user" ) then
   if ( -f ~/.cshrc.local ) then
     set LOCAL_CSHRC="source ~/.cshrc.local"
   endif
-  
+
   # Set workspace environement variables
   echo "get environment variables from ${ENV_DIR}/home/dev.env.csh"
   ( source ${ENV_DIR}/home/dev.env.csh \
@@ -171,7 +171,7 @@ endif
 #################################
 if ( ! ${?MAVEN_DIR} ) then
 
-  if ( ${?M2_HOME} ) then 
+  if ( ${?M2_HOME} ) then
     set MAVEN_DIR=$M2_HOME
   else
     exit 1

@@ -47,7 +47,7 @@ sub loadTokens() {
   $tokenfile = $_[0];
   logger($LL_DEBUG, "Working one file: $tokenfile");
   open(TOKEN_FILE, $tokenfile);
-  
+
   while(<TOKEN_FILE>) {
     $_ =~ s/\n$//;
     if($_ =~ /^#/ || $_ =~ /^\s*$/ || $_ =~ /^---/) {
@@ -69,7 +69,7 @@ sub loadTokens() {
     }
     logger($LL_WARNING, "LoadTokens from $tokenfile: Canot parse $_");
   }
-  
+
   close(TOKEN_FILE);
 }
 
@@ -110,7 +110,7 @@ sub str_replace {
 	if (! defined $subject) { return -1; }
 	my $count = shift;
 	if (! defined $count) { $count = -1; }
-	
+
 	my ($i,$pos) = (0,0);
 	while ( (my $idx = index( $subject, $search, $pos )) != -1 )
 	{
@@ -118,7 +118,7 @@ sub str_replace {
 		$pos=$idx+length($replace);
 		if ($count>0 && ++$i>=$count) { last; }
 	}
-	
+
 	return $subject;
 }
 
@@ -138,7 +138,7 @@ sub replaceTokens() {
 
 sub replaceTokensInFile() {
   my $file_in = shift;
-  
+
     if( ! -r $file_in) {
       logger($LL_WARNING, "File $file_in can't be read");
       next;
@@ -146,7 +146,7 @@ sub replaceTokensInFile() {
       $file_out = $file_in;
       $file_out =~ s/$REMOVED_EXTENSION$/$ADDED_EXTENSION/;
       $file_res = $file_out;
-      
+
       if(-e $file_out) {
         $overwrite_done=1;
         $file_out = "$file_out.replace";
@@ -157,7 +157,7 @@ sub replaceTokensInFile() {
             $file_res = $file_out;
         }
       }
-      
+
       if ($file_in ne $file_res) {
         $tolog = sprintf("Input file:     %-30s\n      Tokenfree file: %-30s", $file_in, $file_res);
         logger($LL_INFO, $tolog);
@@ -177,7 +177,7 @@ sub replaceTokensInFile() {
       close IN;
       close OUT;
       chmod $mode, $file_out ;
-      
+
       if ($OVERWRITE == 1 && $overwrite_done == 1 ) {
         move($file_out,$file_res);
       }

@@ -44,12 +44,12 @@
 								<cargo.remote.username>${cargo.remote.user}</cargo.remote.username>
 								<cargo.remote.password>${cargo.remote.password}</cargo.remote.password>
 								<cargo.logging>high</cargo.logging>
-								<!-- 
-								<cargo.jvmargs> 
-								-Dnabla.config=${basedir}/src/main/resources 
+								<!--
+								<cargo.jvmargs>
+								-Dnabla.config=${basedir}/src/main/resources
 								-Dnabla.data=${basedir}/src/test/resources/data -->
 								<!-- -agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005 -->
-								<!-- 
+								<!--
 								</cargo.jvmargs>
 								 -->
 							</properties>
@@ -70,8 +70,8 @@
 				</plugin>
 			</plugins>
 		</pluginManagement>
-		
-	<plugins>	
+
+	<plugins>
 		<!-- Allow this web application to be started with the command : 'mvn tomcat7:run' -->
 		<plugin>
 			<groupId>org.apache.tomcat.maven</groupId>
@@ -99,7 +99,7 @@
 					<groupId>com.nabla.project.servers.sample</groupId>
 					<artifactId>jsf-simple</artifactId>
 					<version>${project.version}</version>
-					<type>war</type>    
+					<type>war</type>
 				</dependency>
 				<dependency>
 					<groupId>${jdbc.groupId}</groupId>
@@ -108,7 +108,7 @@
 					<scope>runtime</scope>
 				</dependency>
 			</dependencies>
-		</plugin>					
-      </plugins>		
+		</plugin>
+      </plugins>
 	</build>
 </project>
