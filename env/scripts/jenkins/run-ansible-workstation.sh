@@ -95,7 +95,7 @@ ansible -m setup ${TARGET_SLAVE} -i staging -vvvv
 #ansible-lint workstation.yml
 
 # check syntax
-ansible-playbook -i staging -c local -v workstation.yml --limit ${TARGET_SLAVE} -vvvv --syntax-check
+ansible-playbook -i staging -c local -v workstation.yml --limit ${TARGET_SLAVE} -vvvv --syntax-check --become-method=sudo
 RC=$?
 if [ ${RC} -ne 0 ]; then
   echo ""
@@ -106,14 +106,14 @@ else
 fi
 
 # test ansible
-ansible-playbook -i staging workstation.yml -vvvv --limit ${TARGET_SLAVE} ${DRY_RUN}
+ansible-playbook -i staging workstation.yml -vvvv --limit ${TARGET_SLAVE} ${DRY_RUN} --become-method=sudo
 RC=$?
 if [ ${RC} -ne 0 ]; then
   echo -e "${red} Sorry, playboook failed ${NC}"
   #exit 1
 else
   echo -e "${green} playboook first try succeed. ${NC}"
-  ansible-playbook -i staging workstation.yml -vvvv --limit ${TARGET_SLAVE} ${DRY_RUN} | grep -q 'unreachable=0.*failed=0' && (echo 'Main test: pass' && exit 0) || (echo 'Main test: fail' && exit 1)
+  ansible-playbook -i staging workstation.yml -vvvv --limit ${TARGET_SLAVE} ${DRY_RUN} --become-method=sudo | grep -q 'unreachable=0.*failed=0' && (echo 'Main test: pass' && exit 0) || (echo 'Main test: fail' && exit 1)
   #./setup.sh
   #--extra-vars "jenkins_username=${JENKINS_USERNAME} jenkins_password=${JENKINS_PASSWORD}"
   #./setup.sh | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)

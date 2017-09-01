@@ -694,6 +694,7 @@
 		<maven.rar.plugin.version>2.4</maven.rar.plugin.version>
 		<maven.rat.plugin.version>1.0-alpha-3</maven.rat.plugin.version>
 		<maven.release.plugin.version>2.5.3</maven.release.plugin.version>
+		<maven.scm.provider.jgit.version>1.9.5</maven.scm.provider.jgit.version>
 		<maven.remote.resources.plugin.version>1.5</maven.remote.resources.plugin.version>
 		<maven.replacer.plugin.version>1.4.1</maven.replacer.plugin.version>
 		<maven.repository.plugin.version>2.4</maven.repository.plugin.version>
@@ -6745,7 +6746,17 @@
 							<checkModificationExclude>**/*.log</checkModificationExclude>
 						</checkModificationExcludes>
 						<!--<allowTimestampedSnapshots>true</allowTimestampedSnapshots>-->
+						<providerImplementations>
+							<git>jgit</git>
+						</providerImplementations>
 					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>org.apache.maven.scm</groupId>
+							<artifactId>maven-scm-provider-jgit</artifactId>
+							<version>${maven.scm.provider.jgit.version}</version>
+						</dependency>
+					</dependencies>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -7961,6 +7972,17 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-scm-plugin</artifactId>
 					<version>${maven.scm.plugin.version}</version>
+					<configuration>
+						<providerImplementations>
+							<git>jgit</git>
+						</providerImplementations>
+					</configuration>
+					<dependencies>
+					<dependency>
+						<groupId>org.apache.maven.scm</groupId>
+						<artifactId>maven-scm-provider-jgit</artifactId>
+						<version>${maven.scm.provider.jgit.version}</version>
+					</dependency>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
