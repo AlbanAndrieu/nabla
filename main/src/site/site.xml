@@ -65,8 +65,6 @@
 		  <item name="Tattletale Report" href="tattletale/index.html"/>
 		</menu>
 
-		<footer>
-		  <div class="row span16">All other marks mentioned (not @project.name@) may be trademarks or registered trademarks of their respective owners.</div>
-		</footer>
+        <footer/>
     </body>
 </project>
