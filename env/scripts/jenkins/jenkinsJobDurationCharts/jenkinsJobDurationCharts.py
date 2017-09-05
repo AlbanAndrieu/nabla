@@ -28,7 +28,7 @@ for job in jobs:
                 buildTimes[number] = duration
 
     # load values from url
-    url = 'http://home.nabla.mobi:7072/jenkins/job/' + \
+    url = 'http://home.nabla.mobi:8381/job/' + \
         job + '/api/json?tree=builds[number,duration]'
     print 'Reading data from ' + url
     response = urllib.urlopen(url)
