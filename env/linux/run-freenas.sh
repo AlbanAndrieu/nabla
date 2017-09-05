@@ -272,6 +272,11 @@ pkg_add -v -r wget
 pkg_add -v -r openjdk7
 
 pkg install ansible
+
+pkg install python
+pkg install py27-pip
+pip install pygal
+
 #for Xvfb
 pkg install xorg-vfbserver
 #/usr/local/bin/Xvfb
