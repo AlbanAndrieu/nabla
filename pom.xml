@@ -15,8 +15,8 @@
 		<maven>3.0.4</maven>
 	</prerequisites>
 	<scm>
-		<connection>scm:git:git@github.com:AlbanAndrieu/nabla.git</connection>
-		<developerConnection>scm:git:git@github.com:AlbanAndrieu/nabla.git</developerConnection>
+		<connection>scm:git:ssh://git@github.com/AlbanAndrieu/nabla.git</connection>
+		<developerConnection>scm:git:ssh://git@github.com/AlbanAndrieu/nabla.git</developerConnection>
 		<url>https://github.com/AlbanAndrieu/nabla</url>
 	</scm>
 	<issueManagement>

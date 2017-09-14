@@ -695,7 +695,7 @@
 		<maven.rat.plugin.version>1.0-alpha-3</maven.rat.plugin.version>
 		<maven.release.plugin.version>2.5.3</maven.release.plugin.version>
 		<maven.remote.resources.plugin.version>1.5</maven.remote.resources.plugin.version>
-		<maven.replacer.plugin.version>1.5.3</maven.replacer.plugin.version>
+		<maven.replacer.plugin.version>1.4.1</maven.replacer.plugin.version>
 		<maven.repository.plugin.version>2.4</maven.repository.plugin.version>
 		<!--<maven.resources.plugin.version>2.7</maven.resources.plugin.version> Mark invalid -->
 		<maven.resources.plugin.version>2.6</maven.resources.plugin.version>
@@ -8836,31 +8836,8 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 				<!--
                                 <plugin>
                                     <groupId>com.google.code.maven-replacer-plugin</groupId>
-                                    <artifactId>replacer</artifactId>
+                                    <artifactId>maven-replacer-plugin</artifactId>
                                     <version>${maven.replacer.plugin.version}</version>
-                                    <executions>
-                                        <execution>
-                                            <phase>prepare-package</phase>
-                                            <goals>
-                                                <goal>replace</goal>
-                                            </goals>
-                                        </execution>
-                                    </executions>
-                                    <configuration>
-                                        <ignoreMissingFile>false</ignoreMissingFile>
-                                        <includes>
-                                            <include>target/**/production/config.js</include>
-                                            <include>target/**/jetty-web.xml</include>
-                                            <include>target/**/urlrewrite.xml</include>
-                                            <include>target/**/index.html</include>
-                                        </includes>
-                                        <replacements>
-                                            <replacement>
-                                                <token>${jetty.context.path.to.replace}</token>
-                                                <value>${jetty.context.path}</value>
-                                            </replacement>
-                                        </replacements>
-                                    </configuration>
                                 </plugin>
                                 -->
 				<plugin>
