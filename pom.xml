@@ -15,7 +15,7 @@
 		<maven>3.0.4</maven>
 	</prerequisites>
 	<scm>
-		<connection>scm:git:git://github.com/AlbanAndrieu/nabla.git</connection>
+		<connection>scm:git:git@github.com:AlbanAndrieu/nabla.git</connection>
 		<developerConnection>scm:git:git@github.com:AlbanAndrieu/nabla.git</developerConnection>
 		<url>https://github.com/AlbanAndrieu/nabla</url>
 	</scm>
@@ -600,13 +600,9 @@
 					<id>webdav</id>
 					<name>Project Website</name>
 					<!--<url>ftp://www.nabla.mobi/maven</url>-->
-					<url>dav:http://home.nabla.mobi:8087/maven/</url>
+					<url>dav:http://home.nabla.mobi:8087/nabla/</url>
 				</site>
 			</distributionManagement>
-			<!-- <properties> <repositoryId>server-snapshots</repositoryId> <url>svn:https://alban.googlecode.com/svn/mavenrepo/snapshots</url>
-                </properties> -->
-			<!-- <properties> <repositoryId>server-forge-release</repositoryId> <url>dav:https://repository-nabla.forge.cloudbees.com/release</url>
-                </properties> -->
 			<properties>
 				<repositoryId>nexus-releases</repositoryId>
 				<url>http://home.nabla.mobi:8085/nexus/content/repositories/releases</url>
