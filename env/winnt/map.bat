@@ -12,8 +12,10 @@ NET USE J: /delete /yes
 
 NET USE I: \\ptxsnas01\project\dev_obj\users\albandri10
 NET USE J: \\ptxsnas02\project\dev\users\albandri10
+NET USE Y: \\fr1svmnas12\kgrkgl\_src\
+NET USE X: \\fr1svmnas12\kgr-release
 
-REM KZONE
+REM ZONE
 NET USE Q: /delete /yes
 NET USE Q: \\PTXSVKGR175\kzone-export
 

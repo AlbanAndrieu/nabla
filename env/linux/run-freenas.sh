@@ -277,6 +277,10 @@ pkg install python
 pkg install py27-pip
 pip install pygal
 
+cd /usr/ports/security/openssh-askpass/ && make install clean
+#pkg install OpenSSH-askpass
+ls /usr/local/bin/ssh-askpass
+
 #for Xvfb
 pkg install xorg-vfbserver
 #/usr/local/bin/Xvfb

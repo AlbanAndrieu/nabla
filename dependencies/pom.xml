@@ -695,7 +695,7 @@
 		<maven.rat.plugin.version>1.0-alpha-3</maven.rat.plugin.version>
 		<maven.release.plugin.version>2.5.3</maven.release.plugin.version>
 		<maven.remote.resources.plugin.version>1.5</maven.remote.resources.plugin.version>
-		<maven.replacer.plugin.version>1.4.1</maven.replacer.plugin.version>
+		<maven.replacer.plugin.version>1.5.3</maven.replacer.plugin.version>
 		<maven.repository.plugin.version>2.4</maven.repository.plugin.version>
 		<!--<maven.resources.plugin.version>2.7</maven.resources.plugin.version> Mark invalid -->
 		<maven.resources.plugin.version>2.6</maven.resources.plugin.version>
@@ -6731,6 +6731,7 @@
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-release-plugin</artifactId>
 					<version>${maven.release.plugin.version}</version>
+					<!--
 					<dependencies>
 						<dependency>
 							<groupId>org.apache.maven.scm</groupId>
@@ -6738,24 +6739,26 @@
 							<version>${maven.scm.provider.jgit.version}</version>
 						</dependency>
 					</dependencies>
+					-->
 					<configuration>
-						<!-- TODO use with GIT -->
-						<pushChanges>false</pushChanges>
+						<!--<pushChanges>false</pushChanges>-->
 						<localCheckout>true</localCheckout>
 						<useReleaseProfile>true</useReleaseProfile>
 						<autoVersionSubmodules>true</autoVersionSubmodules>
 						<useReleaseProfile>true</useReleaseProfile>
 						<arguments>-Prelease</arguments>
-						<preparationGoals>clean install</preparationGoals>
+						<!--<preparationGoals>clean install</preparationGoals>-->
 						<!--<tagBase>https://alban.googlecode.com/svn/mavenrepo/releases</tagBase>-->
 						<tagNameFormat>v@{project.version}</tagNameFormat>
 						<checkModificationExcludes>
 							<checkModificationExclude>**/*.log</checkModificationExclude>
 						</checkModificationExcludes>
 						<!--<allowTimestampedSnapshots>true</allowTimestampedSnapshots>-->
+						<!--
 						<providerImplementations>
 							<git>jgit</git>
 						</providerImplementations>
+						-->
 					</configuration>
 				</plugin>
 				<plugin>

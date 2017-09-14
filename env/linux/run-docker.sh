@@ -143,8 +143,8 @@ docker build . -t docker/nabla/visma:latest
 sudo pip install docker-compose
 docker-compose --version
 
-docker-compose -f docker-compose-logstash.yml up -d
-docker-compose -f docker-compose-logstash.yml ps
+docker-compose -f docker-compose-logstash.yml -p TEST up -d
+docker-compose -f docker-compose-logstash.yml -p TEST ps
 
 docker stats $(docker ps --format '{{.Names}}')
 

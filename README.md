@@ -144,6 +144,7 @@ Plugins links are :
  * m2e-scala - http://alchim31.free.fr/m2e-scala/update-site/
  * yourkit - http://www.yourkit.com/download/yjp2014_for_eclipse/
  * C++ Plugins
+ * NOK not a free solution - C++ linticator (go to : http://linticator.com/projects/linticator/wiki/Installation) - http://linticator.com/update/v0/
  * Install usefull plugins.
 
 Go to menu and click : Help > Eclipse Marketplace...
