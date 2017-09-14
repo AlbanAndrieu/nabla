@@ -18,6 +18,8 @@ NET USE X: \\fr1svmnas12\kgr-release
 REM ZONE
 NET USE Q: /delete /yes
 NET USE Q: \\PTXSVKGR175\kzone-export
+NET USE W: /delete /yes
+NET USE W: \\mgrvkenvi031\kzone-export
 
 NET USE U: \\ptxsnasext13\HomeWin$\alban.andrieu
 
