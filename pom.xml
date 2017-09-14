@@ -9,7 +9,6 @@
 	<!-- This element provides a basic description of your project -->
 	<description>Users</description>
 	<!--<url>http://www.maven.nabla.mobi</url>-->
-	<!--<url>${JOB_URL}</url>-->
 	<url>https://github.com/AlbanAndrieu/nabla</url>
 	<prerequisites>
 		<maven>3.0.4</maven>

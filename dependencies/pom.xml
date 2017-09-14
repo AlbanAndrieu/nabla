@@ -17,7 +17,7 @@
 	<inceptionYear>2012</inceptionYear>
 	<organization>
 		<name>Nabla Software</name>
-		<url>http://code.google.com/p/alban</url>
+		<url>http://home.nabla.mobi/</url>
 	</organization>
 	<licenses>
 		<license>
@@ -78,16 +78,6 @@
 	<prerequisites>
 		<maven>3.2.2</maven>
 	</prerequisites>
-	<!--http://blog.fastconnect.fr/?p=275 -->
-	<scm>
-		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}</connection>
-		<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}</developerConnection>
-		<!-- <connection>scm:${scm.base}/users/${project.svn.path}/</connection>
-                        <developerConnection>scm:${scm.base}/users/${project.svn.path}/</developerConnection>
-                        <url>${scm.base}/users/${kplustp.workspace}/#dirlist</url> -->
-		<tag>HEAD</tag>
-		<url>https://alban.googlecode.com/svn/${project.svn.path}</url>
-	</scm>
 	<issueManagement>
 		<!--
                 <system>bugzilla</system>
@@ -96,7 +86,7 @@
                 <url>http://code.google.com/p/alban/issues/list</url>
                 -->
 		<system>GitHub</system>
-		<url>https://github.com/AlbanAndrieu/ansible-nabla/issues</url>
+		<url>https://github.com/AlbanAndrieu/nabla/issues</url>
 	</issueManagement>
 	<ciManagement>
 		<!--

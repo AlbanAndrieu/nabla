@@ -11,21 +11,17 @@
 	<packaging>pom</packaging>
 	<name>Nabla Main</name>
 	<description>The Main pom file is a superpom to centralize all third parties</description>
-	<!--<url>http://maven.nabla.mobi/dependencies/customs/main</url>-->
-	<url>https://github.com/AlbanAndrieu/nabla-main</url>
+	<!--
 	<scm>
 		<connection>scm:git:git://github.com/AlbanAndrieu/nabla-main.git</connection>
 		<developerConnection>scm:git:git@github.com:AlbanAndrieu/nabla-main.git</developerConnection>
 		<url>https://github.com/AlbanAndrieu/nabla-main</url>
 	</scm>
-	<issueManagement>
-		<system>GitHub Issues</system>
-		<url>https://github.com/AlbanAndrieu/nabla-main/issues</url>
-	</issueManagement>
 	<ciManagement>
 		<system>Jenkins</system>
 		<url>${JOB_URL}</url>
 	</ciManagement>
+	-->
 	<!-- ================= Default Properties ================= -->
 	<properties>
 		<apache-continuum.version>1.2.3</apache-continuum.version>
@@ -1825,13 +1821,11 @@
 								<artifactId>maven-default-skin</artifactId>
 								<version>${maven.default.skin.version}</version>
 							</dependency>
-							<!--
 							<dependency>
 									<groupId>com.nabla.project</groupId>
 									<artifactId>skin</artifactId>
 									<version>1.0.1-SNAPSHOT</version>
 							</dependency>
-							-->
 							<dependency>
 								<groupId>org.apache.maven.doxia</groupId>
 								<artifactId>doxia-module-twiki</artifactId>
