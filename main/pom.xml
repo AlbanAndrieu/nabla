@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>customs</artifactId>
 		<groupId>com.nabla.project</groupId>
-		<version>1.0.1-SNAPSHOT</version>
+		<version>1.0.0</version>
 		<relativePath>../customs/pom.xml</relativePath>
 	</parent>
 	<artifactId>main</artifactId>
@@ -1822,9 +1822,9 @@
 								<version>${maven.default.skin.version}</version>
 							</dependency>
 							<dependency>
-									<groupId>com.nabla.project</groupId>
-									<artifactId>skin</artifactId>
-									<version>1.0.1-SNAPSHOT</version>
+								<groupId>com.nabla.project</groupId>
+								<artifactId>skin</artifactId>
+								<version>1.0.1-SNAPSHOT</version>
 							</dependency>
 							<dependency>
 								<groupId>org.apache.maven.doxia</groupId>
