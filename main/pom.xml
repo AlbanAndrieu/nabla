@@ -4,7 +4,7 @@
 	<parent>
 		<artifactId>customs</artifactId>
 		<groupId>com.nabla.project</groupId>
-		<version>1.0.0</version>
+		<version>1.0.1-SNAPSHOT</version>
 		<relativePath>../customs/pom.xml</relativePath>
 	</parent>
 	<artifactId>main</artifactId>
@@ -306,7 +306,7 @@
 						<dependency>
 							<groupId>com.nabla.project</groupId>
 							<artifactId>build-tools</artifactId>
-							<version>1.0.0</version>
+							<version>1.0.1-SNAPSHOT</version>
 						</dependency>
 					</dependencies>
 					<configuration>
@@ -546,7 +546,7 @@
 					<dependency>
 						<groupId>com.nabla.project</groupId>
 						<artifactId>build-tools</artifactId>
-						<version>1.0.0</version>
+						<version>1.0.1-SNAPSHOT</version>
 					</dependency>
 				</dependencies>
 				<configuration>
@@ -2438,7 +2438,7 @@
 							<dependency>
 								<groupId>com.nabla.project</groupId>
 								<artifactId>build-tools</artifactId>
-								<version>1.0.0</version>
+								<version>1.0.1-SNAPSHOT</version>
 							</dependency>
 						</dependencies>
 						<configuration>
