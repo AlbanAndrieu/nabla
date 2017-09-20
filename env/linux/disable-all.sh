@@ -78,6 +78,7 @@ sudo update-rc.d -f mysql remove
 sudo update-rc.d -f nginx remove
 sudo update-rc.d -f varnish remove
 sudo update-rc.d -f gearman-job-server remove
+#sudo apt-get remove gearman gearman-job-server 
 sudo update-rc.d -f ansible-tower remove
 sudo update-rc.d -f redis-server remove
 sudo update-rc.d -f private-bower remove

@@ -6,12 +6,12 @@
     <skin>
       <groupId>com.nabla.project</groupId>
       <artifactId>skin</artifactId>
-      <version>1.0</version>
+      <version>1.0.1-SNAPSHOT</version>
     </skin>
 
     <custom>
       <fluidoSkin>
-	<topBarEnabled>true</topBarEnabled>
+	  <topBarEnabled>true</topBarEnabled>
         <!--<sideBarEnabled>false</sideBarEnabled>-->
         <googleSearch>
           <sitesearch/>
@@ -37,6 +37,9 @@
       <src>images/home.png</src>
     </bannerRight>
 
+    <googleAdSenseClient/>
+    <googleAdSenseSlot/>
+    <googleAnalyticsAccountId>UA-56011797-1</googleAnalyticsAccountId>
     <!--<publishDate format="dd MMM yyyy hh:mm zzz"/>-->
 
     <body>

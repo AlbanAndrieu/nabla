@@ -2,6 +2,7 @@
 set -xv
 
 #http://doc.ubuntu-fr.org/mysql
+sudo apt install mysql-server
 
 #http://doc.ubuntu-fr.org/lamp
 #apache on http://127.0.1.1:80
@@ -44,7 +45,7 @@ sudo chmod 664 mysqld.pid
     echo "pidfile = $pidfile"
 
 #remove mysql
-sudo apt-get remove --purge mysql\*
+#See run-mysql-remove.sh
 
 #check connection from outside
 #from inside
