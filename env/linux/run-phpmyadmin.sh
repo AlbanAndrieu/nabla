@@ -1,3 +1,19 @@
+#!/bin/bash
+set -xv
+
+sudo apt-get remove --purge phpmyadmin phpldapadmin
+
+sudo apt install libapache2-mod-php5 php5-common
+sudo apt install php-mbstring php5.0-mbstring
+sudo apt-get install phpmyadmin
+
+sudo htpasswd /etc/phpmyadmin/htpasswd.setup admin
+
+sudo ln -s /etc/phpmyadmin/apache.conf  /etc/apache2/sites-available/phpmyadmin.conf & a2ensite phpmyadmin
+
+phpenmod mbstring
+php5enmod mbstring
+
 #issue
 #http://stackoverflow.com/questions/12760394/1146-table-phpmyadmin-pma-recent-doesnt-exist
 

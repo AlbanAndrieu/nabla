@@ -94,3 +94,7 @@ service autofs stop
 #ps -edf | grep npm
 #ps -edf | grep selenium
 #ps -edf | grep slave
+
+#security cleaning
+#sudo apt-get remove ftp telnet xinetd finger sysstat rusersd rwho rwhod
+#sudo apt-get remove net-tools 

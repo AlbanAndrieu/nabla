@@ -82,6 +82,7 @@ sudo update-alternatives --remove gl_conf /usr/lib/nvidia-current/ld.so.conf
 
 #ubuntu login loop issue
 #http://askubuntu.com/questions/314362/ubuntu-13-04-login-loop
+ls -d .X*
 rm ~/.Xauthority
 rm ~/.profile
 rm .config/monitors.xml
@@ -91,11 +92,16 @@ sudo reboot
 
 sudo service lightdm start
 
+ps -ef | grep '[b]in/X'
+ps -ef | grep nolisten
+
 #X does not display
 xhost + #temporary fix
 /usr/bin/xhost +albandri
 
 #https://unix.stackexchange.com/questions/110558/su-with-error-x11-connection-rejected-because-of-wrong-authentication
+xauth info
+xauth list
 standarduser@localhost:~$ xauth list | grep unix`echo $DISPLAY | cut -c10-12` > /tmp/xauth
 standarduser@localhost:~$ sudo su
 root@localhost:~$ xauth add `cat /tmp/xauth`
@@ -134,3 +140,5 @@ cd fglrx-15.201.2401
 
 reboot
 apt-get -f install
+
+#sudo aptitude install tcpd

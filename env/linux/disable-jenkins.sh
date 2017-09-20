@@ -81,13 +81,14 @@ sudo service postfix stop
 sudo service auditd stop
 sudo killall colord
 #ansible-tower removed when postgresql removed
-sudo service ansible-tower stop
+#sudo service ansible-tower stop
 sudo service vnstat stop
 #sudo apt-get remove vnstat
 sudo service sysstat stop
 #sudo apt-get remove sysstat
 sudo service statsd stop
 #sudo apt-get remove statsd
+sudo service ntp stop
 sudo service kerneloops-daemon stop
 #sudo apt-get remove kerneloops-daemon
 #https://doc.ubuntu-fr.org/bluetooth#desactiver_le_bluetooth_au_demarrage_d_ubuntu
@@ -140,6 +141,7 @@ sudo update-rc.d -f postgresql remove
 sudo update-rc.d -f nginx remove
 sudo update-rc.d -f varnish remove
 sudo update-rc.d -f gearman-job-server remove
+#sudo apt-get remove gearman gearman-job-server gearman-tools
 sudo update-rc.d -f ansible-tower remove
 sudo update-rc.d -f redis-server remove
 #sudo update-rc.d -f private-bower remove
