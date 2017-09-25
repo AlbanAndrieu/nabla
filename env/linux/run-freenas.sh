@@ -1,6 +1,9 @@
 #!/bin/bash
 set -xv
 
+#https://www.tecmint.com/things-to-do-after-installing-freebsd/
+
+
 #TODO See https://github.com/freenas/docker-images
 
 #wake on LAN

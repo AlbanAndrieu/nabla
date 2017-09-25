@@ -152,7 +152,7 @@ cd /usr/local/share/jenkins/
 pkg install selenium
 /usr/local/www/selenium
 
-cd /usr/ports/graphics/graphviz/ && make install clean
+#cd /usr/ports/graphics/graphviz/ && make install clean
 pkg install graphviz
 
 pkg install node
@@ -169,8 +169,11 @@ pkg install maven33
 
 mvn --version
 
-pkg install bash
+pkg install nano bash 
+#bash_completion
 ln -s /usr/local/bin/bash /bin/bash
+
+pkg install sudo
 
 pkg install ruby
 pkg install devel/ruby-gems
