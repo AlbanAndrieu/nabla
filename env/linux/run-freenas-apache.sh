@@ -1,5 +1,7 @@
-pkg install nano
-pkg install bash
+pkg install nano bash 
+#bash_completion
+ln -s /usr/local/bin/bash /bin/bash
+pkg install sudo
 
 ###################################
 
@@ -133,10 +135,11 @@ https://www.freebsd.org/doc/en/articles/contributing/ports-contributing.html#mai
 mysql -u root -p
 <HERE YOU TYPE YOUR MYSQL ROOT PASSWORD>
 
-mysql> create database cdash;
-mysql> create user 'cdash'@'localhost' identified by 'microsoft';
-mysql> grant all privileges on cdash.* to 'cdash'@'localhost' with grant option;
-
+create database cdash;
+create user 'cdash'@'localhost' identified by 'microsoft';
+grant all privileges on cdash.* to 'cdash'@'localhost' with grant option;
+FLUSH PRIVILEGES;
+quit;
 
 nano /usr/local/etc/apache24/httpd.conf
 

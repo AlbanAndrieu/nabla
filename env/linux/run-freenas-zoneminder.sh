@@ -288,7 +288,7 @@ you must set "mysql_optfile" in /etc/rc.conf to "/var/db/mysql/my.cnf".
 	mysql -u root -p
 
 		CREATE DATABASE zm;
-		GRANT ALL PRIVILEGES ON zm.* TO 'zmuser'@'localhost' IDENTIFIED BY 'zmpass';
+		GRANT ALL PRIVILEGES ON zm.* TO 'zmuser'@'localhost' IDENTIFIED BY 'microsoft';
 		FLUSH PRIVILEGES;
 		quit;
 
@@ -313,3 +313,6 @@ Upgrades
 
 3. Start ZoneMinder
 	service zoneminder start
+
+echo "http://192.168.0.25/zoneminder/"
+
