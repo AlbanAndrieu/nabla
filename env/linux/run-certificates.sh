@@ -68,6 +68,7 @@ openssl genrsa -out "/etc/ssl/private/${SSL_KEY_NAME}.key" 2048
 chown root:ssl-cert "/etc/ssl/private/${SSL_KEY_NAME}.key"
 chmod 440 "/etc/ssl/private/${SSL_KEY_NAME}.key"
 
+cd /etc/ssl/private/
 openssl rsa -in /etc/ssl/private/${SSL_KEY_NAME}.key -text -noout
 openssl rsa -in /etc/ssl/private/${SSL_KEY_NAME}.key -pubout -out ${SSL_KEY_NAME}.pem
 

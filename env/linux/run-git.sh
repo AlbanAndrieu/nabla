@@ -14,6 +14,8 @@ nano .bashrc
 source ~/.git-prompt.sh
 PS1='\[\e[1;32m\][\u\[\e[m\]@\[\e[1;33m\]\h\[\e[1;34m\] \w]\[\e[1;36m\] $(__git_ps1 " (%s)") \$\[\e[1;37m\] '
 
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
 git config --global user.email "alban.andrieu@free.fr"
 git config --global user.name "Andrieu, Alban"
 git config --global core.autocrlf input
@@ -46,8 +48,8 @@ git config --system core.autocrlf false
 #git config core.ignoreStat true
 #git config core.fscache true
 
-git config --local user.email "alban.andrieu@free.fr"
-git config --local user.name "Andrieu, Alban"
+git config --global user.email "alban.andrieu@free.fr"
+git config --global user.name "Andrieu, Alban"
 git config --local -l
 
 #for maven
