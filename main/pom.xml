@@ -1248,13 +1248,16 @@
 		</profile>
 		<profile>
 			<id>tattletale</id>
+			<activation>
+				<activeByDefault>false</activeByDefault>
+			</activation>
 			<!-- DO not activate by default as it is using too much heap
-					<activation>
-							<property>
-									<name>!profile.activation</name>
-							</property>
-					</activation>
-					-->
+			<activation>
+					<property>
+							<name>!profile.activation</name>
+					</property>
+			</activation>
+			-->
 			<build>
 				<plugins>
 					<plugin>

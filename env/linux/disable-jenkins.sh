@@ -132,6 +132,7 @@ sudo update-rc.d -f mon remove
 sudo update-rc.d -f elasticsearch remove
 sudo update-rc.d -f logstash remove
 sudo update-rc.d -f logstash-web remove
+#sudo apt-get remove logstash*
 sudo update-rc.d -f collectd remove
 sudo update-rc.d -f docker remove
 #sudo update-rc.d -f apache2 remove
