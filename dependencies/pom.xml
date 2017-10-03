@@ -249,6 +249,7 @@
 		<easymock.version>3.2</easymock.version>
 		<ehcache.core.version>${ehcache.version}</ehcache.core.version>
 		<ehcache.jar.version>1.5.0</ehcache.jar.version>
+		<express-jar.artifactId>ehcache</express-jar.artifactId>
 		<ehcache.terracotta.version>2.1.1</ehcache.terracotta.version>
 		<!--
 				<ehcache.version>2.5.0</ehcache.version>
