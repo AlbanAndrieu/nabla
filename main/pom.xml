@@ -2398,11 +2398,13 @@
 									<artifactId>codenarc-maven-plugin</artifactId>
 									<version>${maven.codenarc.plugin.version}</version>
 								</plugin>
+								<!-- TOO SLOW for my servers
 								<plugin>
 									<groupId>org.owasp</groupId>
 									<artifactId>dependency-check-maven</artifactId>
 									<version>${maven.dependency.check.plugin.version}</version>
 								</plugin>
+								-->
 							</reportPlugins>
 						</configuration>
 					</plugin>
