@@ -86,6 +86,13 @@ run_rc_command "$1"
 chmod +x bower
 #sudo update-rc.d bower defaults
 
+ls /usr/local/lib/node_modules/private-bower/
+
+/usr/local/lib/node_modules/private-bower/bin/private-bower    
+private-bower --config bower.conf.json
+
+ls -lrta /usr/local/lib/node_modules/private-bower/gitRepoCache
+ 
 service bower onestart
 
 http://192.168.0.28:5678/
