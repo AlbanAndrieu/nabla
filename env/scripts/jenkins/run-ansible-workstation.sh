@@ -1,51 +1,51 @@
 #!/bin/bash
 #set -xv
 
-red='\e[0;31m'
-green='\e[0;32m'
-NC='\e[0m' # No Color
+bold="\033[01m"
+underline="\033[04m"
+blink="\033[05m"
+
+black="\033[30m"
+red="\033[31m"
+green="\033[32m"
+yellow="\033[33m"
+blue="\033[34m"
+magenta="\033[35m"
+cyan="\033[36m"
+ltgray="\033[37m"
+
+NC="\033[0m"
+
+#double_arrow='\u00BB'
+double_arrow='\xC2\xBB'
+#head_skull='\u2620'
+head_skull='\xE2\x98\xA0'
+#happy_smiley='\u263A'
+happy_smiley='\xE2\x98\xBA'
+reverse_exclamation='\u00A1'
 
 if [ -n "${TARGET_SLAVE}" ]; then
-  echo -e "TARGET_SLAVE is defined \u1F44D"
+  echo -e "${green} TARGET_SLAVE is defined ${happy_smiley} ${NC}"
 else
-  echo -e "${red} \u00BB Undefined build parameter: TARGET_SLAVE, use the default one ${NC}"
+  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : TARGET_SLAVE, use the default one ${NC}"
   export TARGET_SLAVE=albandri.misys.global.ad
 fi
 
 if [ -n "${DRY_RUN}" ]; then
-  echo -e "DRY_RUN is defined \u1F44D"
+  echo -e "${green} DRY_RUN is defined ${happy_smiley} ${NC}"
 else
-  echo -e "${red} \u00BB Undefined build parameter: DRY_RUN, use the default one ${NC}"
+  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : DRY_RUN, use the default one ${NC}"
   export DRY_RUN="--check"
-fi
-
-if [ -n "${TARGET_USER}" ]; then
-  echo -e "TARGET_USER is defined \u1F44D"
-else
-  echo -e "${red} \u00BB Undefined build parameter: TARGET_USER, use the default one ${NC}"
-  export TARGET_USER="jenkins"
 fi
 
 lsb_release -a
 
-echo -e " ======= Running on ${TARGET_SLAVE} \u00A1 ${NC}"
+echo -e " ======= Running on ${TARGET_SLAVE} ${reverse_exclamation} ${NC}"
 echo "USER : $USER"
 echo "HOME : $HOME"
 echo "WORKSPACE : $WORKSPACE"
 
-echo -e "${red} Find stale processes ${NC}"
-
-find /proc -maxdepth 1 -user ${TARGET_USER} -type d -mmin +200 -exec basename {} \; | xargs ps -edf
-echo -e "${red} Killing stale grunt processes ${NC}"
-find /proc -maxdepth 1 -user ${TARGET_USER} -type d -mmin +200 -exec basename {} \; | xargs ps | grep grunt | awk '{ print $1 }' | sudo xargs kill
-echo -e "${red} Killing stale google/chrome processes ${NC}"
-find /proc -maxdepth 1 -user ${TARGET_USER} -type d -mmin +200 -exec basename {} \; | xargs ps | grep google/chrome | awk '{ print $1 }' | sudo xargs kill
-echo -e "${red} Killing stale chromedriver processes ${NC}"
-find /proc -maxdepth 1 -user ${TARGET_USER} -type d -mmin +200 -exec basename {} \; | xargs ps | grep chromedriver | awk '{ print $1 }' | sudo xargs kill
-echo -e "${red} Killing stale selenium processes ${NC}"
-find /proc -maxdepth 1 -user ${TARGET_USER} -type d -mmin +200 -exec basename {} \; | xargs ps | grep selenium | awk '{ print $1 }' | sudo xargs kill
-echo -e "${red} Killing stale zaproxy processes ${NC}"
-find /proc -maxdepth 1 -user ${TARGET_USER} -type d -mmin +200 -exec basename {} \; | xargs ps | grep ZAPROXY | awk '{ print $1 }' | sudo xargs kill
+#export ANSIBLE_DEBUG=1
 
 echo -e "${red} Configure workstation ${NC}"
 
@@ -58,7 +58,7 @@ echo "Switch to python 2.7 and ansible 2.1.1"
 
 type -p ansible-playbook > /dev/null
 if [ $? -ne 0 ]; then
-    echo -e "Oops! I cannot find ansible.  Please be sure to install ansible before proceeding."
+    echo -e "Oops! ${head_skull} I cannot find ansible. Please be sure to install ansible before proceeding."
     echo -e "For guidance on installing ansible, consult http://docs.ansible.com/intro_installation.html."
     exit 1
 fi
@@ -95,11 +95,11 @@ ansible -m setup ${TARGET_SLAVE} -i staging -vvvv
 #ansible-lint workstation.yml
 
 # check syntax
-ansible-playbook -i staging -c local -v workstation.yml --limit ${TARGET_SLAVE} -vvvv --syntax-check --become-method=sudo
+ansible-playbook -i staging -c local -v workstation.yml --limit ${TARGET_SLAVE} ${DRY_RUN} -vvvv --syntax-check --become-method=sudo
 RC=$?
 if [ ${RC} -ne 0 ]; then
   echo ""
-  echo -e "${red} Sorry, syntax-check failed ${NC}"
+  echo -e "${red} ${head_skull} Sorry, syntax-check failed ${NC}"
   exit 1
 else
   echo -e "${green} The syntax-check completed successfully. ${NC}"
@@ -109,7 +109,7 @@ fi
 ansible-playbook -i staging workstation.yml -vvvv --limit ${TARGET_SLAVE} ${DRY_RUN} --become-method=sudo
 RC=$?
 if [ ${RC} -ne 0 ]; then
-  echo -e "${red} Sorry, playboook failed ${NC}"
+  echo -e "${red} ${head_skull} Sorry, playboook failed ${NC}"
   #exit 1
 else
   echo -e "${green} playboook first try succeed. ${NC}"
@@ -122,13 +122,15 @@ else
 fi
 
 echo -e "${green} Ansible server summary ${NC}"
+rm -Rf out || true
 mkdir out
 #ansible -i staging -m setup --user=root --tree out/ all
 ansible -i production -m setup --user=root --tree out/ all
 ansible-cmdb -i ./production out/ > overview.html
-sudo cp overview.html /var/www/html/
-#scp overview.html root@kgrdb01:/var/www/html
+#sudo cp overview.html /var/www/html/
 echo -e "${green} Ansible server summary done. $? ${NC}"
+
+echo -e "${green} See http://${TARGET_SLAVE}/overview.html ${NC}"
 
 cd ${WORKSPACE}/Scripts/shell
 
