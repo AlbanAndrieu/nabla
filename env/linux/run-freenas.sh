@@ -259,20 +259,23 @@ jexec 9
 #http://orw.se/blog/index.php/install-java-on-freenas-7-3/
 setenv PACKAGESITE ftp://ftp.freebsd.org/pub/FreeBSD/ports/i386/packages-8.3-release/Latest/
 
-pkg_add -v -r compat6x-i386
-pkg_add -v -r libXaw
-pkg_add -v -r libdnet
-pkg_add -v -r libevent
-pkg_add -v -r libgcrypt
-pkg_add -v -r libidn
-pkg_add -v -r libnet11
-pkg_add -v -r libpcap
-pkg_add -v -r libtasn1
+#pkg_add -v -r compat6x-i386
+#pkg_add -v -r libXaw
+#pkg_add -v -r libdnet
+#pkg_add -v -r libevent
+#pkg_add -v -r libgcrypt
+#pkg_add -v -r libidn
+#pkg_add -v -r libnet11
+#pkg_add -v -r libpcap
+#pkg_add -v -r libtasn1
+#
+#pkg_add -v -r subversion
+#pkg_add -v -r wget
+#
+#pkg_add -v -r openjdk7
+pkg install sudo
 
-pkg_add -v -r subversion
-pkg_add -v -r wget
-
-pkg_add -v -r openjdk7
+pkg install wget
 
 pkg install ansible
 
