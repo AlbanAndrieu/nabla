@@ -14,7 +14,7 @@ if [ -n "${TARGET_USER}" ]; then
   echo -e "${green} TARGET_USER is defined ${happy_smiley} ${NC}"
 else
   echo -e "${red} \u00BB Undefined build parameter ${head_skull} : TARGET_USER, use the default one ${NC}"
-  export TARGET_USER="kgr_mvn"
+  export TARGET_USER="jenkins"
 fi
 
 echo -e "${red} Find stale processes ${NC}"

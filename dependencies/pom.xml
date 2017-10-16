@@ -8019,6 +8019,7 @@
 						</tagListOptions>
 					</configuration>
 				</plugin>
+				<!-- java.lang.OutOfMemoryError -->
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>
 					<artifactId>findbugs-maven-plugin</artifactId>
@@ -8039,7 +8040,7 @@
 						<effort>Default</effort>
 						<failOnError>false</failOnError>
 						<excludeFilterFile>project/findbugs-exclude-filters.xml</excludeFilterFile>
-						<maxHeap>1024</maxHeap>
+						<maxHeap>2048</maxHeap>
 						<timeout>1200000</timeout>
 					</configuration>
 				</plugin>
