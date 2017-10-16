@@ -80,6 +80,17 @@ pip --version
 ansible --version
 ansible-galaxy --version
 
+ansible --version|grep python
+
+#Check winrm in target host
+#winrm id
+#winrm get winrm/config
+#For oler version od Windows, please do
+#Set-Item WSMan:\localhost\Shell\MaxMemoryPerShellMB 5000
+#Set-Item WSMan:\localhost\Plugin\Microsoft.PowerShell\Quotas\MaxMemoryPerShellMB 5000
+#Restart-Service winrm
+#winrm set winrm/config/winrs '@{MaxMemoryPerShellMB="0"}'
+
 #vagrant --version
 #docker --version
 
