@@ -2,7 +2,9 @@
 set -xv
 
 #https://www.tecmint.com/things-to-do-after-installing-freebsd/
+#https://www.freshports.org/x11-servers/xorg-vfbserver/
 
+#See http://themadindian.wolfdendesign.com/?cat=5
 
 #TODO See https://github.com/freenas/docker-images
 
@@ -259,20 +261,8 @@ jexec 9
 #http://orw.se/blog/index.php/install-java-on-freenas-7-3/
 setenv PACKAGESITE ftp://ftp.freebsd.org/pub/FreeBSD/ports/i386/packages-8.3-release/Latest/
 
-#pkg_add -v -r compat6x-i386
-#pkg_add -v -r libXaw
-#pkg_add -v -r libdnet
-#pkg_add -v -r libevent
-#pkg_add -v -r libgcrypt
-#pkg_add -v -r libidn
-#pkg_add -v -r libnet11
-#pkg_add -v -r libpcap
-#pkg_add -v -r libtasn1
-#
-#pkg_add -v -r subversion
-#pkg_add -v -r wget
-#
-#pkg_add -v -r openjdk7
+pkg upgrade
+
 pkg install sudo
 
 pkg install wget
@@ -298,6 +288,12 @@ npm install -g nsp
 #npm install -g phantomjs-prebuilt
 
 pkg install phantomjs
+
+#pkg install libass
+#pkg install ffmpeg
+
+#pkg install ar-ae_fonts_mono ar-ae_fonts1_ttf croscorefonts
+pkg install xterm rxvt-unicode
 
 pkg install wildfly10
 Extracting wildfly10-10.1.0: 100%
