@@ -981,6 +981,7 @@
 		<!--**/*.xhtml, **/*.html-->
 		<sonar.exclusions>test/**, src/test/**, **/generated/**, **/pom.xml, **/bower_components/**, **/node_modules/**, **/node/**, **/libs/**, **/lib/**, **/docs/**, **/*.cache.html, **/*.nocache.js, **/*.min.js, **/*.min.css, **/*.gwt.xml, **/web.xml, **/web-jsf.xml, **/faces-config.xml, **/*.as, **/logback.xml, **/log4j.xml, , **/jetty-*.xml, **/Gruntfile.js, **/lcov-report/**</sonar.exclusions>
 		<sonar.findbugs.excludesFilters>*/generated/**</sonar.findbugs.excludesFilters>
+		<sonar.findbugs.timeout>1800000</sonar.findbugs.timeout> <!-- value in miliseconds = 30 minutes (20 minutes was not enough) -->
 		<!--<sonar.jacoco.excludes>**/generated/**,**/*.less,**/*.css</sonar.jacoco.excludes>-->
 		<!-- Issue
 				Jenkins Sonar Job : CI URL: Jenkins Received 404 when trying to access
