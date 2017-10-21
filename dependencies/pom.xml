@@ -1516,13 +1516,17 @@
 				<groupId>net.sf.ehcache</groupId>
 				<artifactId>ehcache</artifactId>
 				<version>${ehcache.version}</version>
-			</dependency>
+				<type>pom</type>
+				<scope>provided</scope>
+			</dependency>			
+			<!--
 			<dependency>
 				<groupId>net.sf.ehcache</groupId>
 				<artifactId>ehcache</artifactId>
 				<version>${ehcache.jar.version}</version>
 				<type>jar</type>
 			</dependency>
+			-->
 			<dependency>
 				<groupId>net.sf.ehcache</groupId>
 				<artifactId>ehcache-terracotta</artifactId>
@@ -4402,13 +4406,6 @@
 						<groupId>xml-apis</groupId>
 					</exclusion>
 				</exclusions>
-			</dependency>
-			<dependency>
-				<groupId>net.sf.ehcache</groupId>
-				<artifactId>ehcache</artifactId>
-				<version>${ehcache.version}</version>
-				<type>pom</type>
-				<scope>provided</scope>
 			</dependency>
 			<!-- TODO removed old API -->
 			<dependency>
