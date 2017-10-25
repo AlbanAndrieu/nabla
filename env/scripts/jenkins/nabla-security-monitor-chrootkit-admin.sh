@@ -1,14 +1,20 @@
 #!/bin/bash
-set -xv
+#set -xve
 
-echo ""
-echo "################### CHROOTKIT ###################"
-echo ""
+./step-2-0-0-build-env.sh
 
-sudo -t chkrootkit -V
+echo -e "${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${green} CHROOTKIT${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${NC}"
 
-sudo -t chkrootkit -q
+sudo chkrootkit -V
+
+sudo chkrootkit -q
 
 #sudo tiger --version
 
 #sudo tiger
+
+exit 0

@@ -1,12 +1,18 @@
 #!/bin/bash
-set -xv
+#set -xve
 
-echo ""
-echo "################### LYNIS ###################"
-echo ""
+./step-2-0-0-build-env.sh
+
+echo -e "${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${green} LYNIS${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${NC}"
 
 #TODO use /usr/local/lynis/2.2.0/lynis
-sudo -t lynis --check-update
-sudo -t lynis --version
+sudo lynis --check-update
+sudo lynis --version
 
-sudo -t lynis --check-all -Q
+sudo lynis --check-all -Q
+
+exit 0
