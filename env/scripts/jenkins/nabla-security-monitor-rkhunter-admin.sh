@@ -1,11 +1,17 @@
 #!/bin/bash
-set -xv
+#set -xve
 
-echo ""
-echo "################### RKHUNTER ###################"
-echo ""
+./step-2-0-0-build-env.sh
 
-sudo -t rkhunter --update
-sudo -t rkhunter --version
+echo -e "${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${green} RKHUNTER${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${NC}"
 
-sudo -t rkhunter --checkall --report-warnings-only
+sudo rkhunter --update
+sudo rkhunter --version
+
+sudo rkhunter --checkall --report-warnings-only
+
+exit 0

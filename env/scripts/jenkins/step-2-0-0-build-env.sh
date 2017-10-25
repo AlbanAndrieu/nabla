@@ -68,7 +68,7 @@ if [ -z "$WORKSPACE" ]; then
 fi
 
 #if [ -n "${GIT_BRANCH_NAME}" ]; then
-#  echo "${green} GIT_BRANCH_NAME is defined ${happy_smiley} ${NC}"
+#  echo -e "${green} GIT_BRANCH_NAME is defined ${happy_smiley} ${NC}"
 #else
 #  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : GIT_BRANCH_NAME, use the default one ${NC}"
 #  export GIT_BRANCH_NAME="develop"
@@ -261,14 +261,6 @@ if [ "$(uname -s)" == "SunOS" ]; then
   PATH=$JAVA_HOME/bin:$PATH; export PATH
 fi
 
-if [ -n "${TARGET_TAG}" ]; then
-  echo -e "${green} TARGET_TAG is defined ${happy_smiley} ${NC}"
-else
-  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_TAG, use the default one ${NC}"
-  export TARGET_TAG="LATEST_SUCCESSFULL"
-  #export TARGET_TAG="1.7.0.0_1"
-fi
-
 if [ -n "${RELEASE_VERSION}" ]; then
   echo -e "${green} RELEASE_VERSION is defined ${happy_smiley} ${NC}"
 else
@@ -298,6 +290,35 @@ if [[ -n "${HTTP_PROTOCOL}" ]]; then
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : HTTP_PROTOCOL, use the default one ${NC}"
   export HTTP_PROTOCOL="https://"
+fi
+
+if [ -n "${TARGET_TAG}" ]; then
+  echo -e "${green} TARGET_TAG is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_TAG, use the default one ${NC}"
+  export TARGET_TAG="LATEST_SUCCESSFULL"
+  #export TARGET_TAG="1.7.0.0_1"
+fi
+
+if [ -n "${TARGET_SERVER}" ]; then
+  echo -e "${green} TARGET_SERVER is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_SERVER, use the default one ${NC}"
+  export TARGET_SERVER=nabla.freeboxos.fr
+fi
+
+if [ -n "${TARGET_PORT}" ]; then
+  echo -e "${green} TARGET_PORT is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_PORT, use the default one ${NC}"
+  export TARGET_PORT=8280
+fi
+
+if [ -n "${TARGET_URL}" ]; then
+  echo -e "${green} TARGET_URL is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_URL, use the default one ${NC}"
+  export TARGET_URL="visma/"
 fi
 
 if [ -n "${SERVER_HOST}" ]; then
