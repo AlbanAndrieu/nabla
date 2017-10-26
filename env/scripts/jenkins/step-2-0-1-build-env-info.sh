@@ -20,6 +20,8 @@ elif [ "$(uname -s)" == "Darwin" ]; then
 elif [ "$(uname -s)" == "FreeBSD" ]; then
   freebsd-version 2>&1 || true
 elif [ "$(uname -s)" == "Linux" ]; then
+  #pinguin
+  echo -e "\U1F427"
   lsb_release 2>&1 || true
 fi
 echo "========== COMPILER =========="
