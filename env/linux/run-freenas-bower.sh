@@ -86,13 +86,19 @@ run_rc_command "$1"
 chmod +x bower
 #sudo update-rc.d bower defaults
 
-ls /usr/local/lib/node_modules/private-bower/
+cd /usr/local/lib/node_modules/private-bower/
 
-/usr/local/lib/node_modules/private-bower/bin/private-bower    
+192.168.0.28
+"publicAccessURL": "home.nabla.mobi:6789",
+
+git clone git://home.nabla.mobi:6789/nabla-styles
+git ls-remote --tags --heads git://home.nabla.mobi:6789/nabla-styles
+
+cd /usr/local/lib/node_modules/private-bower/bin/
 private-bower --config bower.conf.json
 
 ls -lrta /usr/local/lib/node_modules/private-bower/gitRepoCache
- 
+
 service bower onestart
 
 http://192.168.0.28:5678/
