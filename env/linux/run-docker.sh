@@ -1,19 +1,54 @@
 #!/bin/bash
 set -xv
 
+#See https://docs.docker.com/engine/installation/linux/docker-ce/ubuntu/#set-up-the-repository
+
 #---------------
+
+#uninstall docker
+sudo apt-get -y remove lxc-docker docker docker-engine
+
+#---------------
+
+#install docker
+sudo apt-get -y install apt-transport-https ca-certificates curl software-properties-common python-software-properties
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
+sudo apt-get update
+sudo apt-get -y install docker-ce aufs-tools
+
+#-------------
+
 
 #See http://philpep.org/blog/integration-continue-avec-jenkins-et-docker
 sudo docker info
 
-less /var/log/upstart/docker.log
-cat /etc/default/docker
+#less /var/log/upstart/docker.log
+#cat /etc/default/docker
+
+gksudo geany /etc/init/docker.conf /lib/systemd/system/docker.service /etc/systemd/system/docker.service.d/env.conf
+
 #NOK DOCKER_OPTS="-H 127.0.0.1:4243 -H unix:///var/run/docker.sock"
 #NOK DOCKER_OPTS="-H albandri.misys.global.ad:4243 -H unix:///var/run/docker.sock"
 #DOCKER_OPTS="-H tcp://82.231.208.223:4243 -H unix:///var/run/docker.sock"
 DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock"
 #DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.25.200.3"
 DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 8.8.8.8 --dns 8.8.8.4"
+
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.25.200.3 --dns 10.21.200.3 --data-root /docker --storage-driver overlay2 --disable-legacy-registry --tlsverify --tlscacert /root/pki/ca.pem --tlscert /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.pem --tlskey /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.key --label provider=albandri
+
+sudo systemctl show --property=Environment docker
+sudo systemctl daemon-reload
+sudo service docker restart
+sudo systemctl status docker
+journalctl -xe
+
+sudo docker --tlsverify ps
+
+ls -lrta ~/.docker/config.json
+
+#docker login 10.21.70.133
+docker login registry.nabla.mobi --username=mgr.jenkins
 
 if curl http://localhost:8380/jenkins 2>/dev/null | grep -iq jenkins; then echo "FAIL"; else echo "OK"; fi
 

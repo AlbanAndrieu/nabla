@@ -1,10 +1,6 @@
 #!/bin/bash
 #set -xv
 
-red='\e[0;31m'
-green='\e[0;32m'
-NC='\e[0m' # No Color
-
 #See https://doc.ubuntu-fr.org/lvm
 
 sudo lvscan
@@ -16,6 +12,10 @@ man -k ^pv
 lvm vgscan
 lvm lvs
 
+type lsblk > /dev/null 2>&1 || { echo >&2 "lsblk isn't installed. Abort!"; exit 1; }
+
+partprobe /dev/sdb
+
 #Add more disk space to VM
 #Frist add another HDD in cloud, it will be visible in VM as sdb
 #init disk for use by LVM
@@ -26,9 +26,11 @@ pvdisplay
 vgdisplay
 lvdisplay
 
+# Extends volume group. Please confirm group name.
 #add disk to volume group
 vgextend rhel_fr1cslvcacrhel71 /dev/sdb
 
+# Extends physical volume.
 #extend size of logical volume
 lvextend -l +100%FREE /dev/mapper/rhel_fr1cslvcacrhel71-root
 
