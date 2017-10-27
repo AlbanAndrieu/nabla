@@ -45,7 +45,7 @@ if [ -e '/etc/ssl/csr-informations' ]; then
     source '/etc/ssl/csr-informations'
     cat '/etc/ssl/csr-informations'
 else
-    echo "
+    echo -e "
 
 #####################
 Error: No SSL informations available."
@@ -56,7 +56,7 @@ SSL_PROVINCE="IleDeFrance"
 SSL_CITY="Paris"
 SSL_EMAIL="alban.andrieu@free.fr"
 
-echo "# SSL CSR informations.
+echo -e "# SSL CSR informations.
 SSL_COUNTRY=\"${SSL_COUNTRY}\"
 SSL_PROVINCE=\"${SSL_PROVINCE}\"
 SSL_CITY=\"${SSL_CITY}\"

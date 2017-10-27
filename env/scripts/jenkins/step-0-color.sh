@@ -26,7 +26,4 @@ head_skull='\xE2\x98\xA0'
 happy_smiley='\xE2\x98\xBA'
 nabla_logo='\xE2\x88\x87'
 
-#pinguin
-echo -e "\U1F427"
-
 #exit 0
