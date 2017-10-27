@@ -1,5 +1,5 @@
 #!/bin/bash
-#set -xv
+#set -xve
 
 source ./step-0-color.sh
 
@@ -10,7 +10,11 @@ else
   export TARGET_USER="jenkins"
 fi
 
-echo -e "${red} Find stale processes ${NC}"
+echo -e "${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${green} Find stale processes${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${NC}"
 
 find /proc -maxdepth 1 -user "${TARGET_USER}" -type d -mmin +200 -exec basename {} \; | xargs ps
 echo -e "${red} Killing stale grunt processes ${head_skull} ${NC}"

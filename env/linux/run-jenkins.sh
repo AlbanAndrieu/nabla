@@ -100,3 +100,6 @@ sudo chmod 777 sound-archive.zip
 
 # war
 /var/run/jenkins/war/
+
+# See https://wiki.jenkins.io/display/JENKINS/Configuring+Content+Security+Policy
+System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")

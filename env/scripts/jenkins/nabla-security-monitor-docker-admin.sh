@@ -1,11 +1,13 @@
 #!/bin/bash
-#set -xv
+#set -xve
 
-red='\e[0;31m'
-green='\e[0;32m'
-NC='\e[0m' # No Color
+source ./step-2-0-0-build-env.sh
 
-echo ########### Check Docker disk space usage #######
+echo -e "${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${green} Check Docker disk space usage${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${NC}"
 
 #The reference
 #docker history hello-world:latest
@@ -14,7 +16,11 @@ docker run docker/whalesay cowsay boo
 
 docker ps -a -s
 
-echo ########### Check Docker images tree #######
+echo -e "${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${green} Check Docker images tree${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${NC}"
 
 #See https://github.com/justone/dockviz
 alias dockviz="sudo docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
