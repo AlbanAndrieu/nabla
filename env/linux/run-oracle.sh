@@ -3,7 +3,25 @@ set -xv
 
 #http://blog.whitehorses.nl/2014/03/18/installing-java-oracle-11g-r2-express-edition-and-sql-developer-on-ubuntu-64-bit/
 
-sudo apt-get install alien libaio1 unixodbc
+#See https://help.ubuntu.com/community/Oracle%20Instant%20Client
+
+sudo su -
+
+apt-get install alien libaio1 unixodbc
+
+sudo alien -i oracle-instantclient12.2*-basic-*.rpm
+sudo alien -i oracle-instantclient12.2*-devel-*.rpm
+sudo alien -i oracle-instantclient12.2*-sqlplus-*.rpm
+
+echo /usr/lib/oracle/12.2/client64/lib > /etc/ld.so.conf.d/oracle.conf
+sudo ldconfig
+
+#/usr/lib/oracle/12.2/client64/bin/sqlplus --version
+
+export ORACLE_CLIENT_HOME=/usr/lib/oracle/12.2/client64
+#export ORACLE_CLIENT_HOME=/opt/oracle/instantclient_12_2
+export LD_LIBRARY_PATH=${ORACLE_CLIENT_HOME}/lib:$LD_LIBRARY_PATH
+export PATH=${ORACLE_CLIENT_HOME}/bin:$PATH
 
 #TODO
 
@@ -51,3 +69,13 @@ emctl status dbconsole
 
 #interface
 dbca
+
+#See https://github.com/oracle/docker-images
+#https://github.com/oracle/docker-images/tree/master/OracleDatabase
+
+#See https://store.docker.com/profiles/nabla/content/sub-b4503f3c-7a0b-45ed-af61-9c433c23009a
+docker pull store/oracle/database-instantclient:12.2.0.1
+#See https://store.docker.com/profiles/nabla/content/sub-2569546c-bd90-4101-872c-1a21cfdcd2a6
+docker pull store/oracle/database-enterprise:12.2.0.1
+
+exit 0

@@ -9,7 +9,7 @@ echo -e "${green} ssl encrypt renewal${NC}"
 echo -e "${magenta} ${underline}###################${NC}"
 echo -e "${NC}"
 
-certbot-auto renew
+sudo certbot-auto renew
 
 ls -lrta /var/log/letsencrypt/letsencrypt.log
 
