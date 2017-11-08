@@ -381,7 +381,8 @@ sudo apt-get apticron
 fuser -v /bin/bash
 
 #system info
-lsb_release -a
+#lsb_release -cs
+#xenial
 sudo apt-get  install lsb-core
 lsb_release -a
 lsmod
