@@ -103,3 +103,5 @@ sudo chmod 777 sound-archive.zip
 
 # See https://wiki.jenkins.io/display/JENKINS/Configuring+Content+Security+Policy
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
+
+System.setProperty("hudson.slaves.WorkspaceList", "_")
