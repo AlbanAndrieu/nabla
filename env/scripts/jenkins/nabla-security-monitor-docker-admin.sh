@@ -28,7 +28,11 @@ docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz im
 docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz containers -d | dot -Tpng -o containers.png
 docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz images --dot --only-labelled | dot -Tpng -o images.png
 
-echo ########### Check Docker security #######
+echo -e "${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${green} Check Docker security${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${NC}"
 
 docker run -it --net host --pid host --cap-add audit_control \
     -v /var/lib:/var/lib \
@@ -37,6 +41,26 @@ docker run -it --net host --pid host --cap-add audit_control \
     -v /etc:/etc --label docker_bench_security \
     docker/docker-bench-security
 
-echo ########### Check ubuntu security #######
+echo -e "${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${green} Check more Docker disk space usage${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${NC}"
+
+docker history docker/whalesay
+#docker diff todo
+
+echo -e "${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${green} Check Docke Engine${NC}"
+echo -e "${magenta} ${underline}###################${NC}"
+echo -e "${NC}"
+
+if [ -f check-config.sh ]; then
+  echo -e "Poodle file found"
+else
+  curl https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh > check-config.sh
+fi
+bash check-config.sh
 
 exit 0
