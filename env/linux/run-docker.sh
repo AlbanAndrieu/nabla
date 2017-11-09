@@ -19,14 +19,46 @@ sudo apt-get -y install docker-ce aufs-tools
 
 #-------------
 
+#Start docker by hand
+echo manual | sudo tee /etc/init/docker.override
+
+#-------------
+
+#Upgrade kernel
+sudo apt-get install --install-recommends linux-generic-hwe-16.04 xserver-xorg-hwe-16.04
+
+#-------------
+
+#Check docker
+curl https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh > check-config.sh
+bash ./check-config.sh
+
+#------------------
+
+#See https://docs.docker.com/engine/installation/linux/linux-postinstall/#specify-dns-servers-for-docker
+
+#check to see if you use dnsmasq
+ps aux |grep dnsmasq
+gksudo geany /etc/NetworkManager/NetworkManager.conf
+#Comment out the dns=dnsmasq
+sudo service network-manager restart
+sudo service docker restart
+
+#------------------
+
+#Check firewall
+sudo ufw status
 
 #See http://philpep.org/blog/integration-continue-avec-jenkins-et-docker
 sudo docker info
+sudo docker version
 
 #less /var/log/upstart/docker.log
 #cat /etc/default/docker
 
-gksudo geany /etc/init/docker.conf /lib/systemd/system/docker.service /etc/systemd/system/docker.service.d/env.conf
+#gksudo geany /etc/init/docker.conf /etc/systemd/system/docker.service.d/env.conf
+#gksudo geany /lib/systemd/system/docker.service
+systemctl cat docker.service
 
 #NOK DOCKER_OPTS="-H 127.0.0.1:4243 -H unix:///var/run/docker.sock"
 #NOK DOCKER_OPTS="-H albandri.misys.global.ad:4243 -H unix:///var/run/docker.sock"
