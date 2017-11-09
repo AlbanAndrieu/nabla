@@ -6,6 +6,16 @@ set -xv
 sudo apt-get update && sudo apt-get install -y xfonts-100dpi xfonts-75dpi xfonts-scalable xfonts-cyrillic xvfb x11-apps imagemagick firefox google-chrome-stable
 sudo apt-get install x11-apps imagemagick
 
+yum update -y \
+&& yum install \
+ipa-gothic-fonts xorg-x11-fonts-100dpi xorg-x11-fonts-75dpi xorg-x11-utils xorg-x11-fonts-cyrillicxorg-x11-fonts-Type1 xorg-x11-fonts-misc -y
+
+pacman -S mingw-w64-x86_64-freetype
+pacman -S mingw-w64-x86_64-SDL
+pacman -S mingw-w64-x86_64-SDL_ttf # for ttf fonts support, optional
+
+#See docker https://github.com/SeleniumHQ/docker-selenium
+
 cd /etc/init.d
 ln -s /workspace/users/albandri10/env/linux/bin/xvfb.sh xvfb
 sudo update-rc.d xvfb defaults
