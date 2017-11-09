@@ -51,11 +51,14 @@ sudo ufw status
 
 #See http://philpep.org/blog/integration-continue-avec-jenkins-et-docker
 sudo docker info
+sudo docker version
 
 #less /var/log/upstart/docker.log
 #cat /etc/default/docker
 
-gksudo geany /etc/init/docker.conf /lib/systemd/system/docker.service /etc/systemd/system/docker.service.d/env.conf
+#gksudo geany /etc/init/docker.conf /etc/systemd/system/docker.service.d/env.conf
+#gksudo geany /lib/systemd/system/docker.service
+systemctl cat docker.service
 
 #NOK DOCKER_OPTS="-H 127.0.0.1:4243 -H unix:///var/run/docker.sock"
 #NOK DOCKER_OPTS="-H albandri.misys.global.ad:4243 -H unix:///var/run/docker.sock"
