@@ -247,7 +247,7 @@
 				<jmock.version>2.6.0</jmock.version>
 				-->
 		<easymock.version>3.2</easymock.version>
-		<ehcache.core.version>${ehcache.version}</ehcache.core.version>
+		<ehcache.core.version>2.6.11</ehcache.core.version>
 		<ehcache.jar.version>1.5.0</ehcache.jar.version>
 		<ehcache.terracotta.version>2.1.1</ehcache.terracotta.version>
 		<!--
@@ -935,7 +935,7 @@
 		<selenium.iphone.driver.version>2.39.0</selenium.iphone.driver.version>
 		<selenium.safari.driver.version>${selenium.version}</selenium.safari.driver.version>
 		<!-- check compatibility http://selenium.googlecode.com/git/java/CHANGELOG -->
-		<selenium.version>2.53.0</selenium.version>
+		<selenium.version>3.7.1</selenium.version>
 		<servlet.api.version>2.5</servlet.api.version>
 		<shale.version>1.0.4</shale.version>
 		<shiro.version>1.2.5</shiro.version>
