@@ -144,9 +144,10 @@ vagrant ssh
 ----------------------------------
 #create your own image
 #sudo docker pull ubuntu
-sudo docker pull dockerfile/ansible
+#sudo docker pull dockerfile/ansible
+sudo docker pull nabla/ansible-jenkins-slave-docker
 
-sudo docker run -i -t 9e67d9bdac37 /bin/bash
+sudo docker run -i -t nabla/ansible-jenkins-slave-docker /bin/bash
 #do you stuff
 docker commit 44f8471b6047 jenkins-1
 sudo docker run -i -t fec8ae404140 /usr/sbin/sshd -D
