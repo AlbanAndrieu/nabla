@@ -318,9 +318,11 @@
 		<gridgain.platform.version>${gridgain.version}test</gridgain.platform.version>
 		<gridgain.version>6.5.6</gridgain.version>
 		<groovy.eclipse.batch.version>2.4.3-01</groovy.eclipse.batch.version>
+		<!--TODO <groovy.eclipse.batch.version>2.4.12-04</groovy.eclipse.batch.version>-->
+		<!--TODO <groovy.eclipse.compiler.version>2.9.2-03</groovy.eclipse.compiler.version>-->
 		<groovy.eclipse.compiler.version>2.9.2-01</groovy.eclipse.compiler.version>
 		<!-- works with cxf 2.7.14 -->
-		<groovy.version>2.4.11</groovy.version>
+		<groovy.version>2.4.12</groovy.version>
 		<groovydoc.directory.name>groovydocs</groovydoc.directory.name>
 		<!--<guava.version>14.0.1</guava.version>-->
 		<!-- WARNING 16.0-rc1 does not work with selenium -->
@@ -579,7 +581,8 @@
 		<maven.compiler.optimize>false</maven.compiler.optimize>
 		<!--<maven.compiler.plugin.version>3.3</maven.compiler.plugin.version>-->
 		<!--<maven.compiler.plugin.version>3.2</maven.compiler.plugin.version> issue with jpamodelgen-->
-		<maven.compiler.plugin.version>3.6.2</maven.compiler.plugin.version>
+		<!--<maven.compiler.plugin.version>3.6.2</maven.compiler.plugin.version> OK-->
+		<maven.compiler.plugin.version>3.7.0</maven.compiler.plugin.version>
 		<maven.compiler.source>${jdkLevel}</maven.compiler.source>
 		<maven.compiler.target>${jdkLevel}</maven.compiler.target>
 		<maven.cxx.plugin.version>0.0.5-SNAPSHOT</maven.cxx.plugin.version>
@@ -671,7 +674,7 @@
 		<maven.org.liquibase.plugin.version>3.5.3</maven.org.liquibase.plugin.version>
 		<maven.patch.plugin.version>1.2</maven.patch.plugin.version>
 		<maven.pax.plugin.version>1.6.0</maven.pax.plugin.version>
-		<maven.pitest.plugin.version>1.2.2</maven.pitest.plugin.version>
+		<maven.pitest.plugin.version>1.2.4</maven.pitest.plugin.version>
 		<maven.plexus.util.plugin.version>1.1</maven.plexus.util.plugin.version>
 		<maven.plugin.api.plugin.version>${maven.version}</maven.plugin.api.plugin.version>
 		<maven.plugin.plugin.plugin.version>3.5</maven.plugin.plugin.plugin.version>
@@ -706,7 +709,7 @@
 		<!--<maven.site.plugin.version>${maven.site.old.plugin.version}</maven.site.plugin.version>-->
 		<!--<maven.site.plugin.version>3.5.1</maven.site.plugin.version> TODO issue-->
 		<maven.site.plugin.version>3.6</maven.site.plugin.version>
-		<maven.sonar.plugin.version>3.2</maven.sonar.plugin.version>
+		<maven.sonar.plugin.version>3.3.0.603</maven.sonar.plugin.version>
 		<maven.sonar.report.plugin.version>2.2.1</maven.sonar.report.plugin.version>
 		<maven.sortpom.google.plugin.version>2.3.1</maven.sortpom.google.plugin.version>
 		<maven.sortpom.plugin.version>2.8.0</maven.sortpom.plugin.version>
@@ -981,7 +984,8 @@
 		<!--**/*.xhtml, **/*.html-->
 		<sonar.exclusions>test/**, src/test/**, **/generated/**, **/pom.xml, **/bower_components/**, **/node_modules/**, **/node/**, **/libs/**, **/lib/**, **/docs/**, **/*.cache.html, **/*.nocache.js, **/*.min.js, **/*.min.css, **/*.gwt.xml, **/web.xml, **/web-jsf.xml, **/faces-config.xml, **/*.as, **/logback.xml, **/log4j.xml, , **/jetty-*.xml, **/Gruntfile.js, **/lcov-report/**</sonar.exclusions>
 		<sonar.findbugs.excludesFilters>*/generated/**</sonar.findbugs.excludesFilters>
-		<sonar.findbugs.timeout>1800000</sonar.findbugs.timeout> <!-- value in miliseconds = 30 minutes (20 minutes was not enough) -->
+		<sonar.findbugs.timeout>1800000</sonar.findbugs.timeout>
+		<!-- value in miliseconds = 30 minutes (20 minutes was not enough) -->
 		<!--<sonar.jacoco.excludes>**/generated/**,**/*.less,**/*.css</sonar.jacoco.excludes>-->
 		<!-- Issue
 				Jenkins Sonar Job : CI URL: Jenkins Received 404 when trying to access
@@ -1512,13 +1516,6 @@
 				<artifactId>ehcache-core</artifactId>
 				<version>${ehcache.core.version}</version>
 			</dependency>
-			<dependency>
-				<groupId>net.sf.ehcache</groupId>
-				<artifactId>ehcache</artifactId>
-				<version>${ehcache.version}</version>
-				<type>pom</type>
-				<scope>provided</scope>
-			</dependency>			
 			<!--
 			<dependency>
 				<groupId>net.sf.ehcache</groupId>
@@ -1732,6 +1729,7 @@
 			<dependency>
 				<groupId>org.codehaus.groovy</groupId>
 				<artifactId>groovy-all</artifactId>
+				<!--<classifier>indy</classifier>-->
 				<version>${groovy.version}</version>
 				<exclusions>
 					<!-- groovy-all imports a lot of stuff, would be better to just use specific bits -->
@@ -4119,6 +4117,13 @@
 				<artifactId>xpp3_min</artifactId>
 				<version>${xpp3.min.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>net.sf.ehcache</groupId>
+				<artifactId>ehcache</artifactId>
+				<version>${ehcache.version}</version>
+				<type>pom</type>
+				<scope>provided</scope>
+			</dependency>
 			<!-- TODO use jboss-javaee-6.0-with-tools instead of jboss-javaee-6.0-->
 			<dependency>
 				<groupId>org.hibernate.javax.persistence</groupId>
@@ -5546,6 +5551,7 @@
 		</dependencies>
 	</dependencyManagement>
 	<repositories>
+		<!--
 		<repository>
 			<releases>
 				<enabled>true</enabled>
@@ -5572,8 +5578,34 @@
 			<url>dav:https://repository-nabla.forge.cloudbees.com/snapshot</url>
 			<layout>default</layout>
 		</repository>
+		-->
+		<repository>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>nexus-releases</id>
+			<name>Nexus Release Repository</name>
+			<url>http://home.nabla.mobi:8085/nexus/content/repositories/releases</url>
+		</repository>
+		<repository>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>ignore</checksumPolicy>
+			</snapshots>
+			<id>nexus-snapshots</id>
+			<name>Nexus Snapshot Repository</name>
+			<url>http://home.nabla.mobi:8085/nexus/content/repositories/snapshots</url>
+		</repository>
 	</repositories>
 	<pluginRepositories>
+		<!--
 		<pluginRepository>
 			<releases>
 				<enabled>true</enabled>
@@ -5594,18 +5626,39 @@
 			<id>cloudbees-public-release</id>
 			<url>http://repository-cloudbees.forge.cloudbees.com/public-release</url>
 		</pluginRepository>
+		-->
+		<pluginRepository>
+			<releases>
+				<enabled>true</enabled>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+			<id>nexus-releases</id>
+			<url>http://home.nabla.mobi:8085/nexus/content/repositories/releases</url>
+		</pluginRepository>
+		<pluginRepository>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+			<id>nexus-snapshots</id>
+			<url>http://home.nabla.mobi:8085/nexus/content/repositories/snapshots</url>
+		</pluginRepository>
 	</pluginRepositories>
 	<build>
 		<extensions>
 			<!-- WebDAV for remote deployment -->
 			<!-- sonar desactivation required -->
 			<!-- not working with maven 3 mvn site
-	  <extension>
-			  <groupId>org.apache.maven.wagon</groupId>
-			  <artifactId>wagon-webdav</artifactId>
-			  <version>${wagon.webdav.plugin.version}</version>
-	  </extension>
-	  -->
+		  <extension>
+				  <groupId>org.apache.maven.wagon</groupId>
+				  <artifactId>wagon-webdav</artifactId>
+				  <version>${wagon.webdav.plugin.version}</version>
+		  </extension>
+		  -->
 			<!-- comment to avoid basic authentication scheme selected -->
 			<extension>
 				<groupId>org.apache.maven.wagon</groupId>
@@ -5741,6 +5794,7 @@
 										<ignore></ignore>
 									</action>
 								</pluginExecution>
+								<!--
 								<pluginExecution>
 									<pluginExecutionFilter>
 										<groupId>org.apache.maven.plugins</groupId>
@@ -5750,17 +5804,16 @@
 											<goal>run</goal>
 										</goals>
 									</pluginExecutionFilter>
-									<!--
-																		<action>
-																				<ignore />
-																		</action>
-																		-->
+									<action>
+										<ignore></ignore>
+									</action>
 									<action>
 										<execute>
 											<runOnIncremental>false</runOnIncremental>
 										</execute>
 									</action>
 								</pluginExecution>
+								-->
 								<pluginExecution>
 									<pluginExecutionFilter>
 										<groupId>com.mobilvox.ossi.mojo</groupId>
@@ -5843,22 +5896,6 @@
 										<ignore></ignore>
 									</action>
 								</pluginExecution>
-								<!--
-				<pluginExecution>
-					<pluginExecutionFilter>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-compiler-plugin</artifactId>
-						<versionRange>[0.0,)</versionRange>
-						<goals>
-							<goal>testCompile</goal>
-							<goal>compile</goal>
-						</goals>
-					</pluginExecutionFilter>
-					<action>
-						<ignore></ignore>
-					</action>
-				</pluginExecution>
-				 -->
 								<!-- eclipse has now a m2e connector got to https://marketplace.eclipse.org/content/m2e-connector-maven-dependency-plugin -->
 								<pluginExecution>
 									<pluginExecutionFilter>
@@ -6200,21 +6237,6 @@
 										<ignore></ignore>
 									</action>
 								</pluginExecution>
-								<!--
-				<pluginExecution>
-				  <pluginExecutionFilter>
-					<groupId>de.smartics.maven.plugin</groupId>
-					<artifactId>maven-buildmetadata-plugin</artifactId>
-					<versionRange>[0.0,)</versionRange>
-					<goals>
-					  <goal>provide-buildmetadata</goal>
-					</goals>
-				  </pluginExecutionFilter>
-				  <action>
-					<ignore></ignore>
-				  </action>
-				</pluginExecution>
-				-->
 								<pluginExecution>
 									<pluginExecutionFilter>
 										<groupId>org.apache.felix</groupId>

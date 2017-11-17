@@ -46,6 +46,12 @@ sudo service docker restart
 
 #------------------
 
+#See https://development.robinwinslow.uk/2016/06/23/fix-docker-networking-dns/
+# DNS Issue check
+docker run busybox nslookup google.com
+
+#------------------
+
 #Check firewall
 sudo ufw status
 
@@ -67,7 +73,10 @@ DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock"
 #DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.25.200.3"
 DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 8.8.8.8 --dns 8.8.8.4"
 
-ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.25.200.3 --dns 10.21.200.3 --data-root /docker --storage-driver overlay2 --disable-legacy-registry --tlsverify --tlscacert /root/pki/ca.pem --tlscert /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.pem --tlskey /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.key --label provider=albandri
+#For Ubuntu 16.04
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --storage-driver overlay2 --disable-legacy-registry --tlsverify --tlscacert /root/pki/ca.pem --tlscert /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.pem --tlskey /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.key --label provider=albandri
+#For RedHat 7
+#ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 --dns 10.21.200.3 --dns 10.41.200.3 --disable-legacy-registry
 
 sudo systemctl show --property=Environment docker
 sudo systemctl daemon-reload
