@@ -138,7 +138,7 @@ mvn -Dsonargraph.prepareForSonar=true -Dsonargraph.license=<license-path> (or -D
 -Dsonar.analysis.mode=incremental
 -Dsonar.analysis.mode=preview
 #-Psonar,jacoco,codenarc,run-integration-test -Dsonar.forceAnalysis=true -Djacoco.outputDir=${WORKSPACE}/target
--Dsonar.scm.enabled=false -Dsonar.scm-stats.enabled=false -Dissueassignplugin.enabeld=false -Dsonar.pitest.mode=skip -Dsonar.scm.user.secured=false -Dsonar.branch=${SONAR_BRANCH}
+-Dsonar.scm.enabled=false -Dsonar.scm-stats.enabled=false -Dissueassignplugin.enabled=false -Dsonar.pitest.mode=skip -Dsonar.scm.user.secured=false -Dsonar.branch=${SONAR_BRANCH}
 #-Dsonar.preview.excludePlugins=buildstability,devcockpit,pdfreport,report,scmactivity,views,jira,buildbreaker,scmstats
 
 -Dsonar.scm.provider=git

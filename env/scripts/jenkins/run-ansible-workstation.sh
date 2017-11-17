@@ -31,11 +31,25 @@ else
   export TARGET_SLAVE=albandri.misys.global.ad
 fi
 
+if [ -n "${TARGET_PLAYBOOK}" ]; then
+  echo -e "${green} TARGET_PLAYBOOK is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : TARGET_PLAYBOOK, use the default one ${NC}"
+  export TARGET_PLAYBOOK=workstation.yml
+fi
+
 if [ -n "${DRY_RUN}" ]; then
   echo -e "${green} DRY_RUN is defined ${happy_smiley} ${NC}"
 else
   echo -e "${red} \u00BB Undefined build parameter ${head_skull} : DRY_RUN, use the default one ${NC}"
   export DRY_RUN="--check"
+fi
+
+if [ -n "${DOCKER_RUN}" ]; then
+  echo -e "${green} DOCKER_RUN is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : DOCKER_RUN, use the default one ${NC}"
+  export DOCKER_RUN=""
 fi
 
 lsb_release -a
@@ -103,10 +117,10 @@ echo -e "${green} Display setup ${NC}"
 ansible -m setup ${TARGET_SLAVE} -i staging -vvvv
 
 # check quality
-#ansible-lint workstation.yml
+#ansible-lint ${TARGET_PLAYBOOK}
 
 # check syntax
-ansible-playbook -i staging -c local -v workstation.yml --limit ${TARGET_SLAVE} ${DRY_RUN} -vvvv --syntax-check --become-method=sudo
+ansible-playbook -i staging -c local -v ${TARGET_PLAYBOOK} --limit ${TARGET_SLAVE} ${DRY_RUN} -vvvv --syntax-check --become-method=sudo
 RC=$?
 if [ ${RC} -ne 0 ]; then
   echo ""
@@ -116,20 +130,30 @@ else
   echo -e "${green} The syntax-check completed successfully. ${NC}"
 fi
 
-# test ansible
-ansible-playbook -i staging workstation.yml -vvvv --limit ${TARGET_SLAVE} ${DRY_RUN} --become-method=sudo
-RC=$?
-if [ ${RC} -ne 0 ]; then
-  echo -e "${red} ${head_skull} Sorry, playboook failed ${NC}"
-  #exit 1
-else
-  echo -e "${green} playboook first try succeed. ${NC}"
-  ansible-playbook -i staging workstation.yml -vvvv --limit ${TARGET_SLAVE} ${DRY_RUN} --become-method=sudo | grep -q 'unreachable=0.*failed=0' && (echo 'Main test: pass' && exit 0) || (echo 'Main test: fail' && exit 1)
-  #./setup.sh
-  #--extra-vars "jenkins_username=${JENKINS_USERNAME} jenkins_password=${JENKINS_PASSWORD}"
-  #./setup.sh | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
 
-  echo -e "${green} Ansible done. $? ${NC}"
+# test ansible
+if [ "${DOCKER_RUN}" == "" ]; then
+  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : DOCKER_RUN${NC}"
+  #./setup.sh
+
+  # test ansible
+  ansible-playbook -i staging ${TARGET_PLAYBOOK} -vvvv --limit ${TARGET_SLAVE} ${DRY_RUN} --become-method=sudo
+  RC=$?
+  if [ ${RC} -ne 0 ]; then
+    echo -e "${red} ${head_skull} Sorry, playboook failed ${NC}"
+    #exit 1
+  else
+    echo -e "${green} playboook first try succeed. ${NC}"
+    ansible-playbook -i staging ${TARGET_PLAYBOOK} -vvvv --limit ${TARGET_SLAVE} ${DRY_RUN} --become-method=sudo | grep -q 'unreachable=0.*failed=0' && (echo 'Main test: pass' && exit 0) || (echo 'Main test: fail' && exit 1)
+    #./setup.sh
+    #--extra-vars "jenkins_username=${JENKINS_USERNAME} jenkins_password=${JENKINS_PASSWORD}"
+    #./setup.sh | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
+
+    echo -e "${green} Ansible done. $? ${NC}"
+  fi
+
+else
+  ./build.sh
 fi
 
 echo -e "${green} Ansible server summary ${NC}"
