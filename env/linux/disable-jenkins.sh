@@ -160,3 +160,7 @@ sudo update-rc.d -f cfengine3 remove
 sudo update-rc.d -f crowd remove
 sudo update-rc.d -f xrdp remove
 sudo update-rc.d -f webmin remove
+
+#sudo apt-get remove nginx postgresql clonezilla varnish phpmyadmin
+
+exit 0

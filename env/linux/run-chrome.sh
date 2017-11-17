@@ -18,3 +18,5 @@ set -xv
 
 #[ubuntu] Bizarre Chromium/Chrome black screen problem
 #Click drop-down menu on top-right corner –> click “Settings” –> click “Show advanced settings…” on the bottom –> scroll to the bottom, and uncheck “Use hardware acceleration when available”.
+
+#See chrome://net-internals
