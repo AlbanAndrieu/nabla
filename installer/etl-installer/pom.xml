@@ -60,12 +60,14 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
 			<!-- dont want to download this artifact when retrieve the installer as transitive dependency -->
 			<optional>true</optional>
 		</dependency>
+		<!--
 		<dependency>
 			<groupId>org.jboss.tools.gwt.kitchensink</groupId>
 			<artifactId>gwt-kitchensink</artifactId>
 			<version>${target.version}</version>
 			<type>war</type>
 		</dependency>
+		-->
 	</dependencies>
 	<build>
 		<defaultGoal>package</defaultGoal>
