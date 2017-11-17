@@ -145,10 +145,9 @@ sudo a2ensite nabla
 sudo a2ensite jenkins
 sudo a2ensite gearman
 sudo a2ensite sample
-sudo a2enmod rewrite
-sudo a2enmod proxy
-sudo a2enmod ssl
-sudo a2enmod proxy_http
+
+sudo a2enmod rewrite vhost_alias expires headers mime autoindex deflate ssl
+sudo a2enmod proxy proxy_ajp proxy_http rewrite deflate headers proxy_balancer proxy_connect proxy_html
 
 #check site that are enable at
 cd /etc/apache2/sites-enabled

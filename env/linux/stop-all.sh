@@ -45,6 +45,7 @@ service logstash-web stop
 service collectd stop
 service docker stop
 service docker.io stop
+#sudo apt-get -y remove docker*
 #service apache2 stop
 service ChrononController stop
 service postgresql stop
@@ -59,6 +60,7 @@ service teamviewerd stop
 #service conky stop
 
 service slapd stop
+#sudo apt-get -y remove slapd
 service snmpd stop
 #service iscsitarget stop
 service nmbd stop
@@ -70,6 +72,7 @@ service avahi-daemon stop
 service memcached stop
 service cups stop
 service cups-browsed stop
+#sudo apt-get -y remove cups
 service ypbind stop
 service apt-cacher-ng stop
 
@@ -98,3 +101,5 @@ service autofs stop
 #security cleaning
 #sudo apt-get remove ftp telnet xinetd finger sysstat rusersd rwho rwhod
 #sudo apt-get remove net-tools 
+
+exit 0
