@@ -161,6 +161,29 @@ pkg install firefox
 pkg install chromium
 pkg install hs-ShellCheck
 
+#https://wiki.freebsd.org/Docker
+#pkg install docker
+pkg install docker-freebsd ca_root_nss
+
+ls -lrta /dev/zvol/dpool/
+#zfs create -o mountpoint=/usr/docker dpool/docker
+
+pw groupadd -n docker -g 1002
+pw usermod <you> -G operator
+
+# sysrc -f /etc/rc.conf docker_enable="YES"
+# service docker start
+
+docker -d
+#/sbin/zfs zfs get -rHp -t filesystem all dpool/jails/jenkinsslave_1
+less /var/log/docker.log
+#/usr/local/bin/docker -d -D -g "/var/lib/docker" -H unix:// -H tcp://0.0.0.0:2376 -s zfs >> "/var/lib/docker/docker.log"
+
+#See issue https://forums.freenas.org/index.php?threads/need-some-clarity-on-docker-setup.54323/
+
+#TODO
+#https://forums.freenas.org/index.php?threads/how-to-oracle-database-container.53973/
+
 #pkg_add -v -r maven3
 #cd /usr/ports/devel/maven3/ && make install clean
 pkg install maven3
