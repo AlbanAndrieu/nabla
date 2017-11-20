@@ -65,27 +65,10 @@ echo -e "${red} Configure workstation ${NC}"
 
 #todo use virtualenv
 
-echo "Switch to python 2.7 and ansible 2.1.1"
+#echo "Switch to python 2.7 and ansible 2.1.1"
 #scl enable python27 bash
 #Enable python 2.7 and switch to ansible 2.1.1
 #source /opt/rh/python27/enable
-
-type -p ansible-playbook > /dev/null
-if [ $? -ne 0 ]; then
-    echo -e "Oops! ${head_skull} I cannot find ansible. Please be sure to install ansible before proceeding."
-    echo -e "For guidance on installing ansible, consult http://docs.ansible.com/intro_installation.html."
-    exit 1
-fi
-
-# Allow exit codes to trickle through a pipe
-set -o pipefail
-
-#TIMESTAMP=$(date --utc +"%F-%T")
-
-# When using an interactive shell, force colorized ansible output
-if [ -t "0" ]; then
-    ANSIBLE_FORCE_COLOR=True
-fi
 
 echo -e "${green} Checking version ${NC}"
 
@@ -108,10 +91,10 @@ ansible --version|grep python
 #vagrant --version
 #docker --version
 
-cd ${WORKSPACE}/Scripts/ansible
+cd "${WORKSPACE}/env/scripts/jenkins"
 
 echo -e "${green} Insalling roles version ${NC}"
-ansible-galaxy install -r requirements.yml -p ./roles/ --ignore-errors
+ansible-galaxy install -r requirements.yml -p ./roles/ --ignore-errors --force
 
 echo -e "${green} Display setup ${NC}"
 ansible -m setup ${TARGET_SLAVE} -i staging -vvvv
@@ -120,6 +103,7 @@ ansible -m setup ${TARGET_SLAVE} -i staging -vvvv
 #ansible-lint ${TARGET_PLAYBOOK}
 
 # check syntax
+echo -e "${green} Starting the syntax-check. ${NC}"
 ansible-playbook -i staging -c local -v ${TARGET_PLAYBOOK} --limit ${TARGET_SLAVE} ${DRY_RUN} -vvvv --syntax-check --become-method=sudo
 RC=$?
 if [ ${RC} -ne 0 ]; then
@@ -167,16 +151,16 @@ echo -e "${green} Ansible server summary done. $? ${NC}"
 
 echo -e "${green} See http://${TARGET_SLAVE}/overview.html ${NC}"
 
-cd ${WORKSPACE}/Scripts/shell
+cd "${WORKSPACE}/env/scripts/jenkins"
 
 shellcheck *.sh -f checkstyle > checkstyle-result.xml || true
 echo -e "${green} shell check for shell done. $? ${NC}"
 
-cd ${WORKSPACE}/Scripts/release
+cd "${WORKSPACE}/env/scripts/jenkins"
 shellcheck *.sh -f checkstyle > checkstyle-result.xml || true
 echo -e "${green} shell check for release done. $? ${NC}"
 
-cd ${WORKSPACE}/Scripts/Python
+cd "${WORKSPACE}/env/scripts/jenkins"
 
 pylint **/*.py
 echo -e "${green} pyhton check for shell done. $? ${NC}"

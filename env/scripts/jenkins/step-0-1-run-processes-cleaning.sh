@@ -48,7 +48,7 @@ echo -e "${red} Killing stale almonde processes ${head_skull} ${NC}"
 find /proc -maxdepth 1 -user "${TARGET_USER}" -type d -mmin +200 -exec basename {} \; | xargs ps | grep almonde | awk '{ print $1 }'
 find /proc -maxdepth 1 -user "${TARGET_USER}" -type d -mmin +200 -exec basename {} \; | xargs ps | grep almonde | awk '{ print $1 }' | sudo xargs kill -9 || true
 echo -e "${red} Killing stale jboss processes ${head_skull} ${NC}"
-find /proc -maxdepth 1 -user ${TARGET_USER} -type d -mmin +200 -exec basename {} \; | xargs ps | grep jboss-modules | awk '{ print $1 }'
-find /proc -maxdepth 1 -user ${TARGET_USER} -type d -mmin +200 -exec basename {} \; | xargs ps | grep jboss-modules | awk '{ print $1 }' | sudo xargs kill -9 || true
+find /proc -maxdepth 1 -user "${TARGET_USER}" -type d -mmin +200 -exec basename {} \; | xargs ps | grep jboss-modules | awk '{ print $1 }'
+find /proc -maxdepth 1 -user "${TARGET_USER}" -type d -mmin +200 -exec basename {} \; | xargs ps | grep jboss-modules | awk '{ print $1 }' | sudo xargs kill -9 || true
 
 exit 0

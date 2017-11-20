@@ -24,10 +24,11 @@
 
     <!-- following appears in HelloPanel -->
     <authors>
-      <author name="nabla-dev" email="dev@nabla.mobi"/>
+      <author name="Alban Andrieu" email="alban.andrieu@nabla.mobi"/>
     </authors>
-    <url>http://nabla.mobi</url>
-    <!--<uninstaller name="remove.task" path="${INSTALL_PATH}/Uninstall" write="yes"/>-->
+    <url>http://home.nabla.mobi:8380/jenkins/job/nabla-project-interview-visma/</url>
+    <!--<webdir>http://home.nabla.mobi:7072/download/izpack</webdir>-->
+    <uninstaller name="remove.task" path="${INSTALL_PATH}/Uninstall" write="yes"/>
   </info>
 
   <guiprefs width="800" height="600" resizable="yes">
@@ -44,7 +45,7 @@
 
   <locale>
     <langpack iso3="eng"/>
-    <langpack iso3="fra"/>
+    <!--<langpack iso3="fra"/>-->
   </locale>
 
   <resources>
@@ -130,10 +131,9 @@
       <file src="resources/README-IzPack.html"
 	targetdir="$INSTALL_PATH" />
       <parsable targetfile="$INSTALL_PATH/README-IzPack.html" />
-
+      <!--
       <file src="resources/groovy.exe"
 	targetdir="$INSTALL_PATH/bin" os="windows" />
-      <!--
       <file src="resources/groovyw.exe"
 	targetdir="$INSTALL_PATH/bin" os="windows" />
       -->
@@ -221,6 +221,7 @@
     <os family="windows"/>
   </native>
 
-  <jar src="lib/log4j-1.2.17.jar" />
+   <jar src="jars/jetty-runner.jar" />
+   <!--<jar src="lib/log4j-1.2.17.jar" />-->
 
 </izpack:installation>
