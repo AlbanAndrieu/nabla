@@ -19,38 +19,10 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
 		<app.title>${project.name}</app.title>
 		<app.version>${project.version}</app.version>
 		<download.dir>${project.build.directory}/downloads</download.dir>
-		<gant.archive>gant-${gant.version}_groovy-${groovy.version}.zip</gant.archive>
-		<gant.url>http://dist.codehaus.org/gant/distributions/${gant.archive}</gant.url>
-		<gant.version>1.3.0</gant.version>
-		<gant.zip>${download.dir}/${gant.archive}</gant.zip>
-		<graphicsbuilder.archive>graphicsbuilder-${graphicsbuilder.version}.zip</graphicsbuilder.archive>
-		<graphicsbuilder.url>http://docs.codehaus.org/download/attachments/12190076/${graphicsbuilder.archive}</graphicsbuilder.url>
-		<graphicsbuilder.version>0.5.1</graphicsbuilder.version>
-		<graphicsbuilder.zip>${download.dir}/${graphicsbuilder.archive}</graphicsbuilder.zip>
-		<groovy.bin.archive>groovy-binary-${groovy.version}.zip</groovy.bin.archive>
-		<groovy.bin.url>http://dist.codehaus.org/groovy/distributions/${groovy.bin.archive}</groovy.bin.url>
-		<groovy.binary.zip>${download.dir}/${groovy.bin.archive}</groovy.binary.zip>
-		<groovy.docs.archive>groovy-docs-${groovy.version}.zip</groovy.docs.archive>
-		<groovy.docs.url>http://dist.codehaus.org/groovy/distributions/${groovy.docs.archive}</groovy.docs.url>
-		<groovy.docs.zip>${download.dir}/${groovy.docs.archive}</groovy.docs.zip>
-		<groovy.version>1.5.6</groovy.version>
 		<izpack.compiler.version>${izpack.version}</izpack.compiler.version>
 		<izpack.standalone.compiler.version>4.3.5</izpack.standalone.compiler.version>
 		<izpack.version>5.0.0</izpack.version>
-		<jidebuilder.archive>jidebuilder-${jidebuilder.version}.jar</jidebuilder.archive>
-		<jidebuilder.jar>${download.dir}/jidebuilder-${jidebuilder.version}.jar</jidebuilder.jar>
-		<jidebuilder.url>http://svn.codehaus.org/groovy-contrib/jidebuilder/trunk/dist/jidebuilder-${jidebuilder.version}.jar</jidebuilder.url>
-		<jidebuilder.version>1.0</jidebuilder.version>
 		<maven.izpack.plugin.version>${izpack.version}</maven.izpack.plugin.version>
-		<message.archive>jidebuilder-${project.version}.jar</message.archive>
-		<scriptom.archive>scriptom-${scriptom.version}.zip</scriptom.archive>
-		<scriptom.url>http://docs.codehaus.org/download/attachments/24576222/${scriptom.archive}?version=1</scriptom.url>
-		<scriptom.version>1.5.4</scriptom.version>
-		<scriptom.zip>${download.dir}/${scriptom.archive}</scriptom.zip>
-		<svg-salamander.archive>svg-salamander-${svg-salamander.version}.jar</svg-salamander.archive>
-		<svg-salamander.jar>${download.dir}/svg-salamander-${svg-salamander.version}.jar</svg-salamander.jar>
-		<svg-salamander.url>http://docs.codehaus.org/download/attachments/34701376/svg-salamander-${svg-salamander.version}.jar</svg-salamander.url>
-		<svg-salamander.version>1.0</svg-salamander.version>
 	</properties>
 	<dependencies>
 		<!-- this will override the one in the plugin -->
@@ -60,14 +32,6 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
 			<!-- dont want to download this artifact when retrieve the installer as transitive dependency -->
 			<optional>true</optional>
 		</dependency>
-		<!--
-		<dependency>
-			<groupId>org.jboss.tools.gwt.kitchensink</groupId>
-			<artifactId>gwt-kitchensink</artifactId>
-			<version>${target.version}</version>
-			<type>war</type>
-		</dependency>
-		-->
 	</dependencies>
 	<build>
 		<defaultGoal>package</defaultGoal>
@@ -192,6 +156,26 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
             </configuration>
           </execution>
 	  -->
+					<!-- start app using java -jar target/dependency/jetty-runner.jar target/*.war -port 9090 -->
+					<execution>
+						<id>copy-jars-runner</id>
+						<phase>process-resources</phase>
+						<goals>
+							<goal>copy</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>org.mortbay.jetty</groupId>
+									<artifactId>jetty-runner</artifactId>
+									<version>${jetty.runner.version}</version>
+									<destFileName>jetty-runner.jar</destFileName>
+									<type>jar</type>
+									<outputDirectory>${staging.dir}/jars</outputDirectory>
+								</artifactItem>
+							</artifactItems>
+						</configuration>
+					</execution>
 					<execution>
 						<id>copy-jars-dependencies</id>
 						<phase>process-resources</phase>
@@ -216,18 +200,11 @@ http://svn.codehaus.org/izpack-svn/izpack-maven/trunk/izpack-maven-plugin/src/it
 								</artifactItem>
 								<!--
                 <artifactItem>
-                  <groupId>izpack.demo</groupId>
-                  <artifactId>svg-salamander</artifactId>
-                  <version>${svg-salamander.version}</version>
+                  <groupId>log4j</groupId>
+                  <artifactId>log4j</artifactId>
+                  <version>${log4j.version}</version>
                   <type>jar</type>
-                  <outputDirectory>${staging.dir}/jars</outputDirectory>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>izpack.demo</groupId>
-                  <artifactId>jidebuilder</artifactId>
-                  <version>${jidebuilder.version}</version>
-                  <type>jar</type>
-                  <outputDirectory>${staging.dir}/jars</outputDirectory>
+                  <outputDirectory>${staging.dir}/lib</outputDirectory>
                 </artifactItem>
                 -->
 							</artifactItems>

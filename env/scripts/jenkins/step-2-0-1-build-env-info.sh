@@ -8,6 +8,18 @@ echo -e "Operating system name, release, version, node name, hardware name, and 
 echo "$(uname -a)" 2>&1
 echo -e "========== HOSTID =========="
 hostid 2>&1
+echo -e "========== OSTYPE =========="
+echo "OSTYPE : ${OSTYPE}"
+case "$OSTYPE" in
+  linux*)   echo "LINUX" ;;
+  darwin*)  echo "OSX" ;;
+  win*)     echo "Windows" ;;
+  cygwin*)  echo "Cygwin" ;;
+  msys*)    echo "MSYS" ;;
+  bsd*)     echo "BSD" ;;
+  solaris*) echo "SOLARIS" ;;
+  *)        echo "unknown: $OSTYPE" ;;
+esac
 echo -e "========== RELEASE =========="
 if [ "$(uname -s)" == "SunOS" ]; then
   #/usr/sbin/psrinfo -v 2>&1
@@ -46,8 +58,21 @@ elif [ "$(uname -s)" == "Linux" ]; then
   #cpp version
   clang --version  2>&1 || true
   #cl
-elif [ "$(uname -s)" == "MINGW64_NT-6.1" || "$(uname -s)" == "CYGWIN_NT-6.1" || "$(uname -s)" == "MSYS_NT-6.1" ]; then
-  echo "========== MINGW/CYGWIN/WINDOWS =========="
+#elif [ "$(uname -s)" == "MINGW64_NT-6.1" || "$(uname -s)" == "CYGWIN_NT-6.1" || "$(uname -s)" == "MSYS_NT-6.1" ]; then
+elif [ "$(echo $(uname -s) | cut -c 1-10)" == "MINGW32_NT" ]; then
+  echo "========== MINGW 32 =========="
+  echo "MSYSTEM : ${MSYSTEM}"
+  gcc --version 2>&1 || true
+elif [ "$(echo $(uname -s) | cut -c 1-10)" == "MINGW64_NT" ]; then
+  echo "========== MINGW 64 =========="
+  echo "MSYSTEM : ${MSYSTEM}"
+  gcc --version 2>&1 || true
+elif [ "$(echo $(uname -s) | cut -c 1-7)" == "MSYS_NT" ]; then
+  echo "========== MSYS =========="
+  echo "MSYSTEM : ${MSYSTEM}"
+  gcc --version 2>&1 || true
+elif [ "$(echo $(uname -s) | cut -c 1-9)" == "CYGWIN_NT" ]; then
+  echo "========== CYGWIN =========="
   echo "MSYSTEM : ${MSYSTEM}"
   gcc --version 2>&1 || true
 fi
@@ -82,6 +107,9 @@ echo "TIBRV_HOME : ${TIBRV_HOME}" 2>&1
 echo "========== DATABASE =========="
 sqlplus -V 2>&1 || true
 isql --version 2>&1 || true
+odbcinst --version 2>&1 || true
+which tsql 2>&1 || true
+which osql 2>&1 || true
 
 echo "========== JAVA =========="
 java -version 2>&1 || true
@@ -91,6 +119,9 @@ echo "========== MAVEN =========="
 echo "DISPLAY ${DISPLAY}"
 echo "BUILD_NUMBER: ${BUILD_NUMBER}"
 echo "BUILD_ID: ${BUILD_ID}"
+echo "GIT_BRANCH_NAME : ${GIT_BRANCH_NAME}"
+echo "GIT_BRANCH : ${GIT_BRANCH}"
+echo "GIT_COMMIT : ${GIT_COMMIT}"
 echo "IS_M2RELEASEBUILD: ${IS_M2RELEASEBUILD}"
 echo IS_M2RELEASEBUILD="${IS_M2RELEASEBUILD}" >> jenkins-env
 echo "========== SERVER =========="

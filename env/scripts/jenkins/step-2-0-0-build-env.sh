@@ -17,6 +17,8 @@ echo -e "${green} SCONS_OPTS : ${SCONS_OPTS} ${NC}"
 echo -e "${green} ARCH : ${ARCH} ${NC}"
 echo -e "${green} WORKSPACE_SUFFIX : ${WORKSPACE_SUFFIX} ${NC}"
 echo -e "${green} GIT_BRANCH_NAME : ${GIT_BRANCH_NAME} ${NC}"
+echo -e "${green} GIT_BRANCH : ${GIT_BRANCH} ${NC}"
+echo -e "${green} GIT_COMMIT : ${GIT_COMMIT} ${NC}"
 
 echo -e "${magenta} ${underline}PARAMETERS ${NC}"
 
@@ -59,6 +61,10 @@ if [ "$(uname -s)" == "SunOS" ]; then
   if [[ -d ${SUNSTUDIO_HOME} ]]; then
     PATH=${SUNSTUDIO_HOME}/bin:${PATH}
   fi
+  export PATH
+elif [ "$(uname -s)" == "Linux" ]; then
+  #For RedHat add /usr/sbin
+  PATH=${PATH}:/usr/sbin;
   export PATH
 fi
 
@@ -141,6 +147,14 @@ else
   export GIT_CMD
 fi
 
+if [ -n "${GIT_AUTHOR_EMAIL}" ]; then
+  echo -e "${green} GIT_CMD is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : GIT_AUTHOR_EMAIL, use the default one ${NC}"
+  GIT_AUTHOR_EMAIL="alban.andrieu@free.fr"
+  export GIT_AUTHOR_EMAIL
+fi
+
 if [ -n "${TAR}" ]; then
   echo -e "${green} TAR is defined ${happy_smiley} ${NC}"
 else
@@ -153,6 +167,8 @@ else
     TAR="/usr/bin/tar"
   elif [ "$(uname -s)" == "Linux" ]; then
     TAR="tar"
+  elif [ "$(echo $(uname -s) | cut -c 1-7)" == "MSYS_NT" ]; then
+    TAR="zip"
   else
     TAR="7z"
   fi
@@ -168,6 +184,8 @@ else
   elif [ "$(uname -s)" == "Darwin" ]; then
     WGET="/opt/local/bin/wget"
   elif [ "$(uname -s)" == "Linux" ]; then
+    WGET="wget"
+  elif [ "$(echo $(uname -s) | cut -c 1-7)" == "MSYS_NT" ]; then
     WGET="wget"
   else
     WGET="wget"
@@ -185,6 +203,8 @@ else
     MD5SUM="/usr/local/bin/md5sum"
   elif [ "$(uname -s)" == "Linux" ]; then
     MD5SUM="md5sum"
+  elif [ "$(echo $(uname -s) | cut -c 1-7)" == "MSYS_NT" ]; then
+    WGET="md5sum"
   else
     MD5SUM="md5sum"
   fi
@@ -258,7 +278,8 @@ else
 fi
 
 if [ "$(uname -s)" == "SunOS" ]; then
-  PATH=$JAVA_HOME/bin:$PATH; export PATH
+  PATH=$JAVA_HOME/bin:$PATH;
+  export PATH
 fi
 
 if [ -n "${RELEASE_VERSION}" ]; then
