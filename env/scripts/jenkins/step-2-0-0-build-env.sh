@@ -106,6 +106,34 @@ else
   export COMPILER
 fi
 
+if [ -n "${ANSIBLE_CMD}" ]; then
+  echo -e "${green} ANSIBLE_CMD is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_CMD, use the default one ${NC}"
+  export ANSIBLE_CMD="/usr/local/bin/ansible"
+fi
+
+if [ -n "${ANSIBLE_CMBD_CMD}" ]; then
+  echo -e "${green} ANSIBLE_CMBD_CMD is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_CMBD_CMD, use the default one ${NC}"
+  export ANSIBLE_CMBD_CMD="/usr/local/bin/ansible-cmdb"
+fi
+
+if [ -n "${ANSIBLE_GALAXY_CMD}" ]; then
+  echo -e "${green} ANSIBLE_GALAXY_CMD is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_GALAXY_CMD, use the default one ${NC}"
+  export ANSIBLE_GALAXY_CMD="/usr/local/bin/ansible-galaxy"
+fi
+
+if [ -n "${ANSIBLE_PLAYBOOK_CMD}" ]; then
+  echo -e "${green} ANSIBLE_PLAYBOOK_CMD is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_PLAYBOOK_CMD, use the default one ${NC}"
+  export ANSIBLE_PLAYBOOK_CMD="/usr/local/bin/ansible-playbook"
+fi
+
 if [ -n "${SCONS}" ]; then
   echo -e "${green} SCONS is defined ${happy_smiley} ${NC}"
 else
@@ -311,6 +339,14 @@ if [[ -n "${HTTP_PROTOCOL}" ]]; then
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : HTTP_PROTOCOL, use the default one ${NC}"
   export HTTP_PROTOCOL="https://"
+fi
+
+if [ -n "${TARGET_PROJECT}" ]; then
+  echo -e "${green} TARGET_PROJECT is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_PROJECT, use the default one ${NC}"
+  TARGET_PROJECT="${JOB_NAME}"
+  export TARGET_PROJECT
 fi
 
 if [ -n "${TARGET_TAG}" ]; then

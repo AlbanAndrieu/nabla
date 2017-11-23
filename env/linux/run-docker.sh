@@ -76,12 +76,13 @@ DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 8.8
 #For Ubuntu 16.04
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --storage-driver overlay2 --disable-legacy-registry --tlsverify --tlscacert /root/pki/ca.pem --tlscert /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.pem --tlskey /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.key --label provider=albandri
 #For RedHat 7
-#ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 --dns 10.21.200.3 --dns 10.41.200.3 --disable-legacy-registry
+#ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --disable-legacy-registry
 
 sudo systemctl show --property=Environment docker
 sudo systemctl daemon-reload
 sudo service docker restart
 sudo systemctl status docker
+sudo systemctl status docker.service -l
 journalctl -xe
 
 sudo docker --tlsverify ps
@@ -236,14 +237,14 @@ sudo wget https://raw.githubusercontent.com/docker/machine/master/contrib/comple
 
 #Doc See https://github.com/wsargent/docker-cheat-sheet
 #Checking container logs
-docker logs frcargo
+docker logs sandbox
 #Copying log files to the local file system
-docker cp frcargo:/home/fusionrisk/FR_Cargo/data/log/server.log .
+docker cp sandbox:/home/jenkins/.m2/settings.xml .
 #Copying files to the container while it is running
-docker cp input.csv frcargo:/tmp/
+docker cp input.csv sandbox:/tmp/
 #Executing a command on a running container
-docker exec -it frcargo /bin/bash
-#docker exec -u 0 -it frcargo env TERM=xterm-256color bash -l
+docker exec -it sandbox /bin/bash
+#docker exec -u 0 -it sandbox env TERM=xterm-256color bash -l
 
 #https://blog.docker.com/2013/07/docker-desktop-your-desktop-over-ssh-running-inside-of-a-docker-container/
 
