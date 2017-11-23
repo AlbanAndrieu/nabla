@@ -59,4 +59,9 @@ sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist
 #See http://www.cimgf.com/2015/05/26/setting-up-jenkins-ci-on-a-mac-2/
 #See https://blog.samsao.co/how-to-setup-a-jenkins-slave-running-mac-os-x-for-ios-projects-part-1-2937502ce90b
 
+#Import certificates
+/usr/libexec/java_home
+/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home
+sudo keytool -importcert -alias dev -file UK1VSWCERT01-CA-5.crt -keystore /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/security/cacerts
+
 exit 0

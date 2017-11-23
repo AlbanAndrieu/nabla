@@ -1,5 +1,6 @@
 #!/bin/bash
-#set -xv
+set -e
+#set -xve
 
 bold="\033[01m"
 underline="\033[04m"
@@ -52,6 +53,34 @@ else
   export DOCKER_RUN=""
 fi
 
+if [ -n "${ANSIBLE_CMD}" ]; then
+  echo -e "${green} ANSIBLE_CMD is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_CMD, use the default one ${NC}"
+  export ANSIBLE_CMD="/usr/local/bin/ansible"
+fi
+
+if [ -n "${ANSIBLE_CMBD_CMD}" ]; then
+  echo -e "${green} ANSIBLE_CMBD_CMD is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_CMBD_CMD, use the default one ${NC}"
+  export ANSIBLE_CMBD_CMD="/usr/local/bin/ansible-cmdb"
+fi
+
+if [ -n "${ANSIBLE_GALAXY_CMD}" ]; then
+  echo -e "${green} ANSIBLE_GALAXY_CMD is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_GALAXY_CMD, use the default one ${NC}"
+  export ANSIBLE_GALAXY_CMD="/usr/local/bin/ansible-galaxy"
+fi
+
+if [ -n "${ANSIBLE_PLAYBOOK_CMD}" ]; then
+  echo -e "${green} ANSIBLE_PLAYBOOK_CMD is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_PLAYBOOK_CMD, use the default one ${NC}"
+  export ANSIBLE_PLAYBOOK_CMD="/usr/local/bin/ansible-playbook"
+fi
+
 lsb_release -a
 
 echo -e " ======= Running on ${TARGET_SLAVE} ${reverse_exclamation} ${NC}"
@@ -70,14 +99,15 @@ echo -e "${red} Configure workstation ${NC}"
 #Enable python 2.7 and switch to ansible 2.1.1
 #source /opt/rh/python27/enable
 
+echo -e "${cyan} =========== ${NC}"
 echo -e "${green} Checking version ${NC}"
 
 python --version
 pip --version
-ansible --version
-ansible-galaxy --version
+${ANSIBLE_CMD} --version
+${ANSIBLE_GALAXY_CMD} --version
 
-ansible --version|grep python
+${ANSIBLE_CMD} --version|grep python
 
 #Check winrm in target host
 #winrm id
@@ -93,18 +123,21 @@ ansible --version|grep python
 
 cd "${WORKSPACE}/env/scripts/jenkins"
 
+echo -e "${cyan} =========== ${NC}"
 echo -e "${green} Insalling roles version ${NC}"
-ansible-galaxy install -r requirements.yml -p ./roles/ --ignore-errors --force
+${ANSIBLE_GALAXY_CMD} install -r requirements.yml -p ./roles/ --ignore-errors --force
 
+echo -e "${cyan} =========== ${NC}"
 echo -e "${green} Display setup ${NC}"
-ansible -m setup ${TARGET_SLAVE} -i staging -vvvv
+${ANSIBLE_CMD} -m setup ${TARGET_SLAVE} -i staging -vvvv
 
 # check quality
 #ansible-lint ${TARGET_PLAYBOOK}
 
 # check syntax
+echo -e "${cyan} =========== ${NC}"
 echo -e "${green} Starting the syntax-check. ${NC}"
-ansible-playbook -i staging -c local -v ${TARGET_PLAYBOOK} --limit ${TARGET_SLAVE} ${DRY_RUN} -vvvv --syntax-check --become-method=sudo
+${ANSIBLE_PLAYBOOK_CMD} -i staging -c local -v ${TARGET_PLAYBOOK} --limit ${TARGET_SLAVE} ${DRY_RUN} -vvvv --syntax-check --become-method=sudo
 RC=$?
 if [ ${RC} -ne 0 ]; then
   echo ""
@@ -114,6 +147,7 @@ else
   echo -e "${green} The syntax-check completed successfully. ${NC}"
 fi
 
+cd "${WORKSPACE}/env/scripts/jenkins"
 
 # test ansible
 if [ "${DOCKER_RUN}" == "" ]; then
@@ -121,14 +155,14 @@ if [ "${DOCKER_RUN}" == "" ]; then
   #./setup.sh
 
   # test ansible
-  ansible-playbook -i staging ${TARGET_PLAYBOOK} -vvvv --limit ${TARGET_SLAVE} ${DRY_RUN} --become-method=sudo
+  ${ANSIBLE_PLAYBOOK_CMD} -i staging ${TARGET_PLAYBOOK} -vvvv --limit ${TARGET_SLAVE} ${DRY_RUN} --become-method=sudo
   RC=$?
   if [ ${RC} -ne 0 ]; then
     echo -e "${red} ${head_skull} Sorry, playboook failed ${NC}"
     #exit 1
   else
     echo -e "${green} playboook first try succeed. ${NC}"
-    ansible-playbook -i staging ${TARGET_PLAYBOOK} -vvvv --limit ${TARGET_SLAVE} ${DRY_RUN} --become-method=sudo | grep -q 'unreachable=0.*failed=0' && (echo 'Main test: pass' && exit 0) || (echo 'Main test: fail' && exit 1)
+    ${ANSIBLE_PLAYBOOK_CMD} -i staging ${TARGET_PLAYBOOK} -vvvv --limit ${TARGET_SLAVE} ${DRY_RUN} --become-method=sudo | grep -q 'unreachable=0.*failed=0' && (echo 'Main test: pass' && exit 0) || (echo 'Main test: fail' && exit 1)
     #./setup.sh
     #--extra-vars "jenkins_username=${JENKINS_USERNAME} jenkins_password=${JENKINS_PASSWORD}"
     #./setup.sh | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
@@ -140,12 +174,24 @@ else
   ./build.sh
 fi
 
-echo -e "${green} Ansible server summary ${NC}"
+echo -e "${cyan} =========== ${NC}"
+echo -e "${green} Ansible server inventory ${NC}"
 rm -Rf out || true
 mkdir out
-#ansible -i staging -m setup --user=root --tree out/ all
-ansible -i production -m setup --user=root --tree out/ all
-ansible-cmdb -i ./production out/ > overview.html
+#${ANSIBLE_CMD} -i staging -m setup --user=root --tree out/ all
+${ANSIBLE_CMD} -i production -m setup --user=root -vvv --tree out/ all
+RC=$?
+if [ ${RC} -ne 0 ]; then
+  echo ""
+  echo -e "${red} ${head_skull} Sorry, inventory failed ${NC}"
+  exit 1
+else
+  echo -e "${green} The inventory completed successfully. ${NC}"
+fi
+
+echo -e "${cyan} =========== ${NC}"
+echo -e "${green} Ansible server inventory HTML generation ${NC}"
+${ANSIBLE_CMBD_CMD} -i ./production out/ > overview.html
 #sudo cp overview.html /var/www/html/
 echo -e "${green} Ansible server summary done. $? ${NC}"
 
@@ -153,15 +199,15 @@ echo -e "${green} See http://${TARGET_SLAVE}/overview.html ${NC}"
 
 cd "${WORKSPACE}/env/scripts/jenkins"
 
+echo -e "${cyan} =========== ${NC}"
 shellcheck *.sh -f checkstyle > checkstyle-result.xml || true
 echo -e "${green} shell check for shell done. $? ${NC}"
 
-cd "${WORKSPACE}/env/scripts/jenkins"
+echo -e "${cyan} =========== ${NC}"
 shellcheck *.sh -f checkstyle > checkstyle-result.xml || true
 echo -e "${green} shell check for release done. $? ${NC}"
 
-cd "${WORKSPACE}/env/scripts/jenkins"
-
+echo -e "${cyan} =========== ${NC}"
 pylint **/*.py
 echo -e "${green} pyhton check for shell done. $? ${NC}"
 
