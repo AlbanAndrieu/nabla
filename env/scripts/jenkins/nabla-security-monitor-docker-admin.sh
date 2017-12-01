@@ -47,8 +47,9 @@ echo -e "${green} Check more Docker disk space usage${NC}"
 echo -e "${magenta} ${underline}###################${NC}"
 echo -e "${NC}"
 
-docker history docker/whalesay
-#docker diff todo
+#docker history docker/whalesay
+docker history nabla/ansible-jenkins-slave-docker
+docker diff sandbox
 
 echo -e "${NC}"
 echo -e "${magenta} ${underline}###################${NC}"
@@ -61,6 +62,6 @@ if [ -f check-config.sh ]; then
 else
   curl https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh > check-config.sh
 fi
-bash check-config.sh
+bash check-config.sh || true
 
 exit 0

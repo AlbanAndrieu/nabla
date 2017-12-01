@@ -22,6 +22,50 @@ echo -e "${green} GIT_COMMIT : ${GIT_COMMIT} ${NC}"
 
 echo -e "${magenta} ${underline}PARAMETERS ${NC}"
 
+case "$OSTYPE" in
+  linux*)   SYSTEM=LINUX;;
+  darwin*)  SYSTEM=OSX;;
+  win*)     SYSTEM=Windows;;
+  cygwin*)  SYSTEM=Cygwin;;
+  msys*)    SYSTEM=MSYS;;
+  bsd*)     SYSTEM=BSD;;
+  solaris*) SYSTEM=SOLARIS;;
+  *)        SYSTEM=UNKNOWN;;
+esac
+echo "SYSTEM : ${SYSTEM}"
+
+if [ -f /etc/os-release ]; then
+    # freedesktop.org and systemd
+    . /etc/os-release
+    OS=$NAME
+    VER=$VERSION_ID
+elif type lsb_release >/dev/null 2>&1; then
+    # linuxbase.org
+    OS=$(lsb_release -si)
+    VER=$(lsb_release -sr)
+elif [ -f /etc/lsb-release ]; then
+    # For some versions of Debian/Ubuntu without lsb_release command
+    . /etc/lsb-release
+    OS=$DISTRIB_ID
+    VER=$DISTRIB_RELEASE
+elif [ -f /etc/debian_version ]; then
+    # Older Debian/Ubuntu/etc.
+    OS=Debian
+    VER=$(cat /etc/debian_version)
+elif [ -f /etc/SuSe-release ]; then
+    # Older SuSE/etc.
+    ...
+elif [ -f /etc/redhat-release ]; then
+    # Older Red Hat, CentOS, etc.
+    ...
+else
+    # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
+    OS=$(uname -s)
+    VER=$(uname -r)
+fi
+echo "OS : ${OS}"
+echo "VER : ${VER}"
+
 #DRY_RUN is used on UAT in order to avoid TAGING or DEPLOYING to production
 if [ -n "${DRY_RUN}" ]; then
   echo -e "${green} DRY_RUN is defined ${happy_smiley} ${NC}"
@@ -91,7 +135,69 @@ if [ -n "${ARCH}" ]; then
   echo -e "${green} ARCH is defined ${happy_smiley} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : ARCH, use default one ${NC}"
-  export ARCH="x86sol"
+
+  if [ "$(uname -s)" == "SunOS" ]; then
+    case $(uname -m) in
+    sun4v)
+        ARCH=sun4sol
+        ;;
+    i*86*)
+        ARCH=x86sol
+        ;;
+    *)
+        # leave ARCH as-is
+        ;;
+    esac
+  elif [ "$(uname -s)" == "Linux" ]; then
+    case $(uname -m) in
+    x86_64)
+        ARCH=x64linux  # or AMD64 or Intel64 or whatever
+        ;;
+    i*86)
+        ARCH=x86linux  # or IA32 or Intel32 or whatever
+        ;;
+    *)
+        # leave ARCH as-is
+        ;;
+    esac
+  else
+    ARCH="$(uname -m)"
+  fi
+  export ARCH
+fi
+
+if [ -n "${TARGET_LINUX}" ]; then
+  echo -e "${green} TARGET_LINUX is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_LINUX, use default one ${NC}"
+  export TARGET_LINUX="RH5"
+fi
+
+if [ -n "${KPLUS_VERSION}" ]; then
+  echo -e "${green} KPLUS_VERSION is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${yellow} Override KPLUS_VERSION upon you choice ${NC}"
+  #echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : KPLUS_VERSION, use default one ${NC}"
+  #export KPLUS_VERSION="P1"
+fi
+
+if [ -n "${BITS}" ]; then
+  echo -e "${green} BITS is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : BITS, use default one ${NC}"
+  case $(uname -m) in
+  x86_64)
+      BITS=64b
+      ;;
+  i*86)
+      BITS=32b
+      ;;
+  *)
+      BITS=?
+      ;;
+  esac
+  export BITS
+  #echo -e "${yellow} Override BITS ${BITS} upon you choice ${NC}"
 fi
 
 if [ -n "${COMPILER}" ]; then
@@ -109,28 +215,28 @@ fi
 if [ -n "${ANSIBLE_CMD}" ]; then
   echo -e "${green} ANSIBLE_CMD is defined ${happy_smiley} ${NC}"
 else
-  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_CMD, use the default one ${NC}"
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : ANSIBLE_CMD, use the default one ${NC}"
   export ANSIBLE_CMD="/usr/local/bin/ansible"
 fi
 
 if [ -n "${ANSIBLE_CMBD_CMD}" ]; then
   echo -e "${green} ANSIBLE_CMBD_CMD is defined ${happy_smiley} ${NC}"
 else
-  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_CMBD_CMD, use the default one ${NC}"
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : ANSIBLE_CMBD_CMD, use the default one ${NC}"
   export ANSIBLE_CMBD_CMD="/usr/local/bin/ansible-cmdb"
 fi
 
 if [ -n "${ANSIBLE_GALAXY_CMD}" ]; then
   echo -e "${green} ANSIBLE_GALAXY_CMD is defined ${happy_smiley} ${NC}"
 else
-  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_GALAXY_CMD, use the default one ${NC}"
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : ANSIBLE_GALAXY_CMD, use the default one ${NC}"
   export ANSIBLE_GALAXY_CMD="/usr/local/bin/ansible-galaxy"
 fi
 
 if [ -n "${ANSIBLE_PLAYBOOK_CMD}" ]; then
   echo -e "${green} ANSIBLE_PLAYBOOK_CMD is defined ${happy_smiley} ${NC}"
 else
-  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_PLAYBOOK_CMD, use the default one ${NC}"
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : ANSIBLE_PLAYBOOK_CMD, use the default one ${NC}"
   export ANSIBLE_PLAYBOOK_CMD="/usr/local/bin/ansible-playbook"
 fi
 
@@ -175,12 +281,20 @@ else
   export GIT_CMD
 fi
 
-if [ -n "${GIT_AUTHOR_EMAIL}" ]; then
+if [ -n "${GIT_AUTHOR_EMAIL}" -o "${GIT_AUTHOR_EMAIL}" == "null" ]; then
   echo -e "${green} GIT_CMD is defined ${happy_smiley} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : GIT_AUTHOR_EMAIL, use the default one ${NC}"
   GIT_AUTHOR_EMAIL="alban.andrieu@free.fr"
   export GIT_AUTHOR_EMAIL
+fi
+
+if [ -n "${SONAR_BRANCH}" -o "${SONAR_BRANCH}" == "null" ]; then
+  echo -e "${green} SONAR_BRANCH is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : SONAR_BRANCH, use the default one ${NC}"
+  SONAR_BRANCH="develop"
+  export SONAR_BRANCH
 fi
 
 if [ -n "${TAR}" ]; then
@@ -219,6 +333,40 @@ else
     WGET="wget"
   fi
   export WGET
+fi
+
+if [ -n "${WGET_OPTIONS}" ]; then
+  echo -e "${green} WGET_OPTIONS is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : WGET_OPTIONS, use default one ${NC}"
+  WGET_OPTIONS="--no-check-certificate"
+  export WGET_OPTIONS
+fi
+
+if [ -n "${CURL}" ]; then
+  echo -e "${green} CURL is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : CURL, use default one ${NC}"
+  if [ "$(uname -s)" == "SunOS" ]; then
+    WGET="/usr/local/bin/curl"
+  elif [ "$(uname -s)" == "Darwin" ]; then
+    WGET="/opt/local/bin/curl"
+  elif [ "$(uname -s)" == "Linux" ]; then
+    WGET="/usr/bin/curl"
+  elif [ "$(echo $(uname -s) | cut -c 1-7)" == "MSYS_NT" ]; then
+    WGET="curl"
+  else
+    WGET="curl"
+  fi
+  export CURL
+fi
+
+if [ -n "${CURL_OPTIONS}" ]; then
+  echo -e "${green} CURL_OPTIONS is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : CURL_OPTIONS, use default one ${NC}"
+  CURL_OPTIONS="-k"
+  export CURL_OPTIONS
 fi
 
 if [ -n "${MD5SUM}" ]; then
@@ -278,7 +426,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TIBRV_HOME/lib
 if [ -n "${JAVA_SSL_OPTS}" ]; then
   echo -e "${green} JAVA_SSL_OPTS is defined ${happy_smiley} ${NC}"
 else
-  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : JAVA_HOME, please override ${NC}"
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : JAVA_SSL_OPTS, please override ${NC}"
   #JAVA_SSL_OPTS="-Djavax.net.ssl.trustStore=/usr/local/share/ca-certificates/ca.crt"
   #export JAVA_SSL_OPTS
 fi
@@ -295,12 +443,15 @@ if [ -n "${JAVA_HOME}" ]; then
   echo -e "${green} JAVA_HOME is defined ${happy_smiley} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : JAVA_HOME, use the default one ${NC}"
-  JAVA_HOME=/usr/lib/jvm/java-8-oracle/
+  JAVA_HOME="/usr/bin/java"
   if [ "$(uname -s)" == "SunOS" ]; then
-    JAVA_HOME=/usr/jdk/instances/jdk1.8.0_131/
+    JAVA_HOME="/usr/jdk/instances/jdk1.8.0_131/"
   fi
   if [[ -d /dpool/jdk ]]; then
     JAVA_HOME=/dpool/jdk
+  fi
+  if [[ -d /usr/lib/jvm/java-8-oracle ]]; then
+    JAVA_HOME="/usr/lib/jvm/java-8-oracle"
   fi
   export JAVA_HOME
 fi
@@ -355,6 +506,13 @@ else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_TAG, use the default one ${NC}"
   export TARGET_TAG="LATEST_SUCCESSFULL"
   #export TARGET_TAG="1.7.0.0_1"
+fi
+
+if [ -n "${TARGET_USER}" ]; then
+  echo -e "${green} TARGET_USER is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_USER, use the default one ${NC}"
+  export TARGET_USER="jenkins"
 fi
 
 if [ -n "${TARGET_SERVER}" ]; then
