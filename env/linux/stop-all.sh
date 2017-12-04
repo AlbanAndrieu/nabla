@@ -75,6 +75,8 @@ service cups-browsed stop
 #sudo apt-get -y remove cups
 service ypbind stop
 service apt-cacher-ng stop
+#ps -edf | grep smmsp
+service sendmail stop
 
 service ansible-tower stop
 

@@ -152,6 +152,27 @@ cd /usr/local/share/jenkins/
 pkg install selenium
 /usr/local/www/selenium
 
+#To automate browsers you need one or more of these ports:
+#pkg install www/firefox
+#pkg install www/chromium
+#
+#With one or more of these complementary ports:
+#pkg install www/geckodriver
+#pkg install x11-servers/xorg-vfbserver
+#pkg install x11-fonts/xorg-fonts
+#pkg install x11-fonts/webfonts
+#pkg install x11/xauth
+#pkg install x11/xkeyboard-config
+#pkg install x11/xkbcomp
+#
+#Clients can also be found:
+#pkg install www/rubygem-selenium-webdriver
+#pkg install www/py-selenium
+#pkg install devel/p5-Test-WWW-Selenium
+
+ssh-keygen
+cat ~/.ssh/id_rsa.pub | ssh 192.168.0.23 "cat >> .ssh/authorized_keys"
+
 #cd /usr/ports/graphics/graphviz/ && make install clean
 pkg install graphviz
 
@@ -192,7 +213,7 @@ pkg install maven33
 
 mvn --version
 
-pkg install nano bash 
+pkg install nano bash
 #bash_completion
 ln -s /usr/local/bin/bash /bin/bash
 
