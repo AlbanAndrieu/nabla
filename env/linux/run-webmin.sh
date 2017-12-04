@@ -38,3 +38,12 @@ sudo ./install.sh
 wget http://cloudmin.virtualmin.com/gpl/scripts/cloudmin-kvm-debian-install.sh
 chmod +x cloudmin-kvm-debian-install.sh
 sudo ./cloudmin-kvm-debian-install.sh
+
+cd /etc/webmin
+cp miniserv.pem miniserv.pem-SAV
+ls -lrta /etc/ssl/private/
+cat /etc/ssl/private/nabla.freeboxos.fr.key /etc/ssl/private/nabla.freeboxos.fr.pem > new_miniserv.pem
+
+service webmin restart
+
+echo "https://nabla.freeboxos.fr:10000/"

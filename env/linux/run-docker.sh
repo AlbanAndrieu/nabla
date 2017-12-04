@@ -266,3 +266,10 @@ sudo apt-get install apparmor-utils
 #See https://goldmann.pl/blog/2014/09/11/resource-management-in-docker/#_example_managing_the_memory_shares_of_a_container
 systemd-cgls
 systemd-cgtop
+
+docker ps
+docker exec -it c9076828eca8 ip addr
+docker exec -it pedantic_colden sh
+
+ssh -X jenkins@172.17.0.4 -o StrictHostKeyChecking=no
+xeyes ## run an X11 demo app in the client

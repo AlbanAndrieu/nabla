@@ -10,16 +10,6 @@ echo -e "========== HOSTID =========="
 hostid 2>&1
 echo -e "========== OSTYPE =========="
 echo "OSTYPE : ${OSTYPE}"
-case "$OSTYPE" in
-  linux*)   echo "LINUX" ;;
-  darwin*)  echo "OSX" ;;
-  win*)     echo "Windows" ;;
-  cygwin*)  echo "Cygwin" ;;
-  msys*)    echo "MSYS" ;;
-  bsd*)     echo "BSD" ;;
-  solaris*) echo "SOLARIS" ;;
-  *)        echo "unknown: $OSTYPE" ;;
-esac
 echo -e "========== RELEASE =========="
 if [ "$(uname -s)" == "SunOS" ]; then
   #/usr/sbin/psrinfo -v 2>&1
@@ -151,6 +141,7 @@ if [ "$(uname -s)" == "Linux" ]; then
   /usr/lib/firefox/firefox -V || true
   /usr/bin/chromium-browser --version || true
   /opt/google/chrome/chrome --version || true
+  /usr/bin/google-chrome-stable --version || true
   echo "========== JAVASCRIPT =========="
   phantomjs --version || true
   nodejs --version || true
@@ -174,6 +165,7 @@ fi
 
 echo "========== ENV =========="
 #env is already displayed in jenkins
+printenv
 #env 2>&1
 
 echo "env.SONAR_BRANCH=\"$(printf '%s' $GIT_BRANCH | cut -d'/' -f 2-)\"" >> ${ENV_FILE}
