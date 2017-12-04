@@ -535,3 +535,18 @@ To make it permanent, you need the following lines in /etc/fstab:
         proc    /proc           procfs          rw      0       0
 
 ======================================================================
+
+#install webmin
+#See https://doxfer.webmin.com/Webmin/Installation
+
+pkg update
+pkg install webmin
+/usr/local/lib/webmin/setup.sh
+echo "webmin_enable="YES"" >> /etc/rc.conf
+/usr/local/etc/rc.d/webmin start
+
+admin
+
+echo "https://192.168.0.26:10000"
+echo "https://192.168.0.28:10000"
+echo "https://192.168.0.23:10000"

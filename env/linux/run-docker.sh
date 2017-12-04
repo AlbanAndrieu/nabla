@@ -160,7 +160,7 @@ sudo docker pull nabla/ansible-jenkins-slave-docker
 sudo docker run -i -t nabla/ansible-jenkins-slave-docker /bin/bash
 #do you stuff
 docker commit 44f8471b6047 jenkins-1
-sudo docker run -i -t fec8ae404140 /usr/sbin/sshd -D
+sudo docker run --rm -i -t fec8ae404140 /usr/sbin/sshd -D
 sudo docker kill stupefied_albattani
 
 #http://repo.jenkins-ci.org/releases/com/nirima/docker-plugin/0.6.1/

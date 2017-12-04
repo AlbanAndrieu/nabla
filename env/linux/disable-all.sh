@@ -35,6 +35,7 @@ sudo service teamviewerd stop
 
 sudo service slapd stop
 sudo service snmpd stop
+sudo service sendmail stop
 sudo service iscsitarget stop
 sudo service nmbd stop
 sudo service smbd stop
@@ -64,6 +65,7 @@ sudo update-rc.d -f zabbix-agent remove
 sudo update-rc.d -f supervisor remove
 #sudo update-rc.d -f supervisord remove
 sudo update-rc.d -f mon remove
+sudo update-rc.d -f sendmail remove
 sudo update-rc.d -f tomcat7 remove
 sudo update-rc.d -f elasticsearch remove
 sudo update-rc.d -f logstash remove
