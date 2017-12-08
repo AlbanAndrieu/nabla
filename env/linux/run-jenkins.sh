@@ -101,6 +101,12 @@ sudo chmod 777 sound-archive.zip
 # war
 /var/run/jenkins/war/
 
+#Too many open files
+#cat /proc/sys/fs/file-max
+ulimit -n
+lsof -p PID | wc -l
+ls -la /proc/PID/fd | wc -l
+
 # See https://wiki.jenkins.io/display/JENKINS/Configuring+Content+Security+Policy
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
 System.setProperty("hudson.slaves.WorkspaceList", "_")
