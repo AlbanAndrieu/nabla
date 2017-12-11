@@ -1819,11 +1819,18 @@
 							</execution>
 						</executions>
 						<dependencies>
+							<!--
 							<dependency>
 								<groupId>org.apache.maven.skins</groupId>
 								<artifactId>maven-default-skin</artifactId>
 								<version>${maven.default.skin.version}</version>
 							</dependency>
+							<dependency>
+								<groupId>org.apache.maven.skins</groupId>
+								<artifactId>maven-fluido-skin</artifactId>
+								<version>1.6</version>
+							</dependency>
+							-->
 							<dependency>
 								<groupId>com.nabla.project</groupId>
 								<artifactId>skin</artifactId>
@@ -2800,16 +2807,16 @@
 						<dependencies>
 							<!--
 							<dependency>
-									<groupId>org.apache.maven.skins</groupId>
-									<artifactId>maven-default-skin</artifactId>
-									<version>${maven.default.skin.version}</version>
+								<groupId>org.apache.maven.skins</groupId>
+								<artifactId>maven-default-skin</artifactId>
+								<version>${maven.default.skin.version}</version>
 							</dependency>
-							-->
 							<dependency>
 								<groupId>org.apache.maven.skins</groupId>
 								<artifactId>maven-fluido-skin</artifactId>
 								<version>1.6</version>
 							</dependency>
+							-->
 							<dependency>
 								<groupId>com.nabla.project</groupId>
 								<artifactId>skin</artifactId>
