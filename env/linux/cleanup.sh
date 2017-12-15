@@ -24,7 +24,7 @@ echo "Start cleaning"
 \rm -Rf ~/.node_cache
 \rm -Rf ~/.node_tmp
 \rm -Rf ~/.node-gyp
-#\rm -Rf ~/.npm
+\rm -Rf ~/.npm
 \rm -Rf ~/.ievms
 \rm -Rf ~/tmp
 \rm -f ~/*.db
@@ -114,5 +114,9 @@ dpkg -l | awk '{print $2}' | grep -E "linux-(image|headers)-$(uname -r | cut -d-
 #sudo rm /var/spool/mail/nagios
 #sudo rm /var/spool/mail/mail
 #ll /var/spool/mail/
+
+#RedHat
+#yum clean all || true
+#rm -rf /var/cache/yum
 
 exit 0
