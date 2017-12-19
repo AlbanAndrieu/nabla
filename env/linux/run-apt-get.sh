@@ -414,6 +414,7 @@ sudo lspci -v | grep -A7 -i "audio"
 #Network
 sudo lspci -nnk | grep net -A2
 sudo lshw -short
+sudo lshw -html > lshw.html
 #sudo apt-get install hardinfo
 
 #usb issue

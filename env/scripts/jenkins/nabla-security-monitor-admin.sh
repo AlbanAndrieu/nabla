@@ -78,7 +78,7 @@ echo -e "${green} HARDWARE${NC}"
 echo -e "${magenta} ${underline}###################${NC}"
 echo -e "${NC}"
 
-sudo lshw
+sudo lshw -html > lshw.html
 
 echo -e "${NC}"
 echo -e "${magenta} ${underline}###################${NC}"
