@@ -130,8 +130,11 @@ echo "ZAPROXY_HOME : ${ZAPROXY_HOME}"
 echo "env.ZAPROXY_HOME=\"${ZAPROXY_HOME}\"" >> ${ENV_FILE}
 echo "========== PORT =========="
 echo "TOMCAT_PORT : ${TOMCAT_PORT}"
+echo "env.TOMCAT_PORT=\"${TOMCAT_PORT}\"" >> ${ENV_FILE}
 echo "JETTY_PORT : ${JETTY_PORT}"
+echo "env.JETTY_PORT=\"${JETTY_PORT}\"" >> ${ENV_FILE}
 echo "CARGO_RMI_PORT : ${CARGO_RMI_PORT}"
+echo "env.CARGO_RMI_PORT=\"${CARGO_RMI_PORT}\"" >> ${ENV_FILE}
 
 echo "========== TOOLS =========="
 

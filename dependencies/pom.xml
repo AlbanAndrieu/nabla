@@ -660,6 +660,8 @@
 		<maven.jrebel.plugin.version>1.1.7</maven.jrebel.plugin.version>
 		<maven.js.plugin.version>1.3.1</maven.js.plugin.version>
 		<maven.jspc.plugin.version>2.0-alpha-3</maven.jspc.plugin.version>
+		<maven.nbm.plugin.version>3.14-bitstrings-1-SNAPSHOT</maven.nbm.plugin.version>
+		<maven.dependencypath.plugin.version>1.1.1</maven.dependencypath.plugin.version>
 		<maven.jstools.plugin.version>0.7</maven.jstools.plugin.version>
 		<maven.jxr.plugin.version>2.5</maven.jxr.plugin.version>
 		<maven.karma.plugin.version>1.8</maven.karma.plugin.version>
@@ -675,7 +677,7 @@
 		<maven.org.liquibase.plugin.version>3.5.3</maven.org.liquibase.plugin.version>
 		<maven.patch.plugin.version>1.2</maven.patch.plugin.version>
 		<maven.pax.plugin.version>1.6.0</maven.pax.plugin.version>
-		<maven.pitest.plugin.version>1.2.4</maven.pitest.plugin.version>
+		<maven.pitest.plugin.version>1.2.5</maven.pitest.plugin.version>
 		<maven.plexus.util.plugin.version>1.1</maven.plexus.util.plugin.version>
 		<maven.plugin.api.plugin.version>${maven.version}</maven.plugin.api.plugin.version>
 		<maven.plugin.plugin.plugin.version>3.5</maven.plugin.plugin.plugin.version>
@@ -5704,6 +5706,35 @@
 					<configuration>
 						<lifecycleMappingMetadata>
 							<pluginExecutions>
+								<!-- sample for some module
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.apache.maven.plugins</groupId>
+										<artifactId>maven-compiler-plugin</artifactId>
+										<versionRange>[0.0,)</versionRange>
+										<goals>
+											<goal>testCompile</goal>
+											<goal>compile</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
+								-->
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.codehaus.groovy</groupId>
+										<artifactId>groovy-eclipse-compiler</artifactId>
+										<versionRange>[0.0,)</versionRange>
+										<goals>
+											<goal>add-groovy-build-paths</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore></ignore>
+									</action>
+								</pluginExecution>
 								<pluginExecution>
 									<pluginExecutionFilter>
 										<groupId>org.zeroturnaround</groupId>
@@ -8868,6 +8899,40 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 									<version>${maven.replacer.plugin.version}</version>
 								</plugin>
 								-->
+				<plugin>
+					<groupId>org.bitstrings.maven.plugins</groupId>
+					<artifactId>dependencypath-maven-plugin</artifactId>
+					<version>${maven.dependencypath.plugin.version}</version>
+					<executions>
+						<execution>
+							<id>set-all</id>
+							<goals>
+								<goal>set</goal>
+							</goals>
+						</execution>
+						<execution>
+							<id>set-relative-builddir</id>
+							<goals>
+								<goal>set</goal>
+							</goals>
+							<configuration>
+								<propertySets>
+									<propertySet>
+										<suffix>builddir</suffix>
+										<relativeTo>${project.build.directory}</relativeTo>
+										<transitive>false</transitive>
+									</propertySet>
+								</propertySets>
+							</configuration>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.codehaus.mojo</groupId>
+					<artifactId>nbm-maven-plugin</artifactId>
+					<version>${maven.nbm.plugin.version}</version>
+					<extensions>true</extensions>
+				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo.jspc</groupId>
 					<artifactId>jspc-maven-plugin</artifactId>
