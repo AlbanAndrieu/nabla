@@ -11,7 +11,7 @@ echo -e "${NC}"
 
 sudo certbot-auto renew
 
-ls -lrta /var/log/letsencrypt/letsencrypt.log
+sudo ls -lrta /var/log/letsencrypt/letsencrypt.log
 
 echo -e "${NC}"
 echo -e "${magenta} ${underline}###################${NC}"
@@ -95,9 +95,8 @@ echo -e "${magenta} ${underline}###################${NC}"
 echo -e "${NC}"
 
 sudo fail2ban-client status
-sudo fail2ban-client status ssh
-sudo fail2ban-client status apache
-sudo fail2ban-client status apache-modevasive
-sudo fail2ban-client status apache-modevasive
+sudo fail2ban-client status sshd
+#sudo fail2ban-client status apache
+#sudo fail2ban-client status apache-modevasive
 
 exit 0
