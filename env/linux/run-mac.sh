@@ -64,4 +64,9 @@ sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist
 /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home
 sudo keytool -importcert -alias dev -file UK1VSWCERT01-CA-5.crt -keystore /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/security/cacerts
 
+#Sleep
+#http://osxdaily.com/2015/02/03/set-or-disable-sleep-due-to-mac-system-inactivity-from-the-command-line-in-os-x/
+sudo systemsetup -getcomputersleep
+sudo systemsetup -setcomputersleep Never
+
 exit 0

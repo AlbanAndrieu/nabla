@@ -22,3 +22,6 @@ set -xv
 #See chrome://net-internals
 #To disable HTS
 #See chrome://net-internals/#hsts
+
+gnome-keyring-daemon &
+/usr/bin/google-chrome
