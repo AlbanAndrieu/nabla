@@ -28,9 +28,9 @@ call mvn source:test-jar -Psample > source-test.log 2>&1
 call mvn javadoc:javadoc -Psample > javadoc.log 2>&1
 call mvn jxr:jxr -Psample > jxr.log 2>&1
 call mvn jxr:test-jxr -Psample > jxr-test.log 2>&1
-call mvn eclipse:clean -P!mda,sample > eclipse-clean.log 2>&1
-call mvn eclipse:configure-workspace -P!mda,sample > eclipse-workspace.log 2>&1
-call mvn eclipse:eclipse -P!mda,sample -DdownloadSources=true -DdownloadJavadocs=true -Peclipse-folders -Dappend.to.project.name=trunk > eclipse.log 2>&1
+REM call mvn eclipse:clean -P!mda,sample > eclipse-clean.log 2>&1
+REM call mvn eclipse:configure-workspace -P!mda,sample > eclipse-workspace.log 2>&1
+REM call mvn eclipse:eclipse -P!mda,sample -DdownloadSources=true -DdownloadJavadocs=true -Peclipse-folders -Dappend.to.project.name=trunk > eclipse.log 2>&1
 call mvn rat:check -Psample > rat.log 2>&1
 call mvn doap:generate -Psample > doap.log 2>&1
 call mvn codenarc:codenarc -Psample > codenarc.log 2>&1

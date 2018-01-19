@@ -12,3 +12,9 @@ set -xv
 sudo apt-get install vnc4server
 cd /home/albandri/.vnc
 ./startScript.sh
+
+sudo apt install xtightvncviewer
+xtightvncviewer -viewonly -quality 5 -compresslevel 9 11.22.33.44:0
+#Choose Desktop Sharing and (un)check "Allow other users to view your desktop"
+#If you would like to check previous connection to your workstation
+grep -i got .xsession-errors
