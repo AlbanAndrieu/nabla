@@ -124,8 +124,13 @@ mkdir init.groovy.d/
 #sudo defaults write /Library/Preferences/org.jenkins-ci httpsKeyStore /etc/ssl/almonde-jenkins.misys.global.ad/almonde-jenkins.misys.global.ad.jks
 #sudo defaults write /Library/Preferences/org.jenkins-ci httpsKeyStorePassword changeit
 
-
 # See https://wiki.jenkins.io/display/JENKINS/Configuring+Content+Security+Policy
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
 System.setProperty("hudson.slaves.WorkspaceList", "_")
 System.setProperty("permissive-script-security.enabled", "true")
+
+
+#Hook
+$JENKINS_URL/git/notifyCommit
+$JENKINS_URL/bitbucket-hook/
+$JENKINS_URL/bitbucket-scmsource-hook/notify/
