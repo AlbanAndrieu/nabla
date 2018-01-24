@@ -1,6 +1,9 @@
 #!/bin/bash
 #set -xv
 
+sudo apt-get install xfsprogs
+#sudo yum install xfsprogs
+
 #Show disk
 
 fdisk -l
@@ -49,13 +52,19 @@ lvm lvs
 
 type lsblk > /dev/null 2>&1 || { echo >&2 "lsblk isn't installed. Abort!"; exit 1; }
 
-sudo partprobe /dev/sdb
+#See free space
+parted /dev/sda print free
+df -Th /root
+
+#sudo partprobe /dev/sdb
+partprobe -s
+#partx -v -a /dev/sda
 
 ls -1d /sys/class/scsi_device/*/device/block/*
 #bash -c 'echo "1" > /sys/class/scsi_disk/2\:0\:2\:0/device/rescan'
 echo 1>/sys/class/block/sdb/device/rescan
 #OR
-#echo 1>/sys/class/scsi_device/X:X:X:X/device/block/device/rescan
+#echo 1>/sys/class/scsi_device/0\:0\:0\:0/device/block/sda/device/rescan
 
 pvresize /dev/sdb
 
@@ -71,7 +80,8 @@ lvdisplay
 
 # Extends volume group. Please confirm group name.
 #add disk to volume group
-vgextend rhel_fr1cslvcacrhel71 /dev/sdb
+#vgextend rhel_fr1cslvcacrhel71 /dev/sdb
+vgextend rhel_fr1cslvcacrhel71 /dev/sdc
 
 # Free disk space should be now visible in VG. Actual number of available physical extents (PE) will be smaller,
 # than expected with disk size, some of the space will be taken by metadata
@@ -83,13 +93,14 @@ lvcreate -l 12805 -n docker rhel_fr1cslvcacrhel71
 
 # Extends physical volume.
 #extend size of logical volume
-#lvextend -l +100%FREE /dev/mapper/rhel_fr1cslvcacrhel71-root
+lvextend --resizefs -l +12805 /dev/rhel_fr1cslvcacrhel71/root
 lvextend -l +100%FREE /dev/rhel_fr1cslvcacrhel71/root
 #lvextend -L +1G /dev/rhel_fr1cslvcacrhel71/docker
 lvextend --resizefs -l +12805 /dev/mapper/rhel_fr1cslvcacrhel71-docker
 #lvextend --resizefs -l +12805 /dev/rhel_fr1cslvcacrhel71/docker
 lvextend --resizefs -l +12805 /dev/rhel_fr1cslvcacrhel71/workspace
 
+xfs_info /dev/mapper/rhel_fr1cslvcacrhel71-root
 # extend size of mapped logical volume (only for xfs file system since RHEL7)
 #xfs_growfs -d /dev/mapper/rhel_fr1cslvcacrhel71-root
 xfs_growfs -d /dev/rhel_fr1cslvcacrhel71/root
@@ -107,6 +118,10 @@ sudo mount /workspace
 
 sudo mkdir /docker
 sudo mount /docker
+
+#less /etc/fstab
+/dev/rhel_fr1cslvcacrhel71/workspace       /workspace   ext4    defaults        0       2
+/dev/rhel_fr1cslvcacrhel71/docker       /docker   ext4    defaults        0       2
 
 df -h
 lsblk -o NAME,SIZE,GROUP,TYPE,FSTYPE,MOUNTPOINT
