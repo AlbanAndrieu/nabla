@@ -53,6 +53,15 @@ bash ./check-config.sh
 #check to see if you use dnsmasq
 ps aux |grep dnsmasq
 gksudo geany /etc/NetworkManager/NetworkManager.conf
+
+vim /etc/docker/daemon.json
+	{
+		"dns": ["172.17.0.1"]
+	}
+
+vim /etc/NetworkManager/dnsmasq.d/docker-bridge.conf
+	listen-address=172.17.0.1
+
 #Comment out the dns=dnsmasq
 sudo service network-manager restart
 sudo service docker restart
