@@ -2,28 +2,7 @@
 set -e
 #set -xve
 
-bold="\033[01m"
-underline="\033[04m"
-blink="\033[05m"
-
-black="\033[30m"
-red="\033[31m"
-green="\033[32m"
-yellow="\033[33m"
-blue="\033[34m"
-magenta="\033[35m"
-cyan="\033[36m"
-ltgray="\033[37m"
-
-NC="\033[0m"
-
-#double_arrow='\u00BB'
-double_arrow='\xC2\xBB'
-#head_skull='\u2620'
-head_skull='\xE2\x98\xA0'
-#happy_smiley='\u263A'
-happy_smiley='\xE2\x98\xBA'
-reverse_exclamation='\u00A1'
+source ./step-0-color.sh
 
 if [ -n "${TARGET_SLAVE}" ]; then
   echo -e "${green} TARGET_SLAVE is defined ${happy_smiley} ${NC}"
@@ -178,13 +157,12 @@ echo -e "${cyan} =========== ${NC}"
 echo -e "${green} Ansible server inventory ${NC}"
 rm -Rf out || true
 mkdir out
-#${ANSIBLE_CMD} -i staging -m setup --user=root --tree out/ all
 ${ANSIBLE_CMD} -i production -m setup --user=root -vvv --tree out/ all
 RC=$?
 if [ ${RC} -ne 0 ]; then
   echo ""
   echo -e "${red} ${head_skull} Sorry, inventory failed ${NC}"
-  exit 1
+  #exit 1
 else
   echo -e "${green} The inventory completed successfully. ${NC}"
 fi
@@ -200,15 +178,15 @@ echo -e "${green} See http://${TARGET_SLAVE}/overview.html ${NC}"
 cd "${WORKSPACE}/env/scripts/jenkins"
 
 echo -e "${cyan} =========== ${NC}"
-shellcheck *.sh -f checkstyle > checkstyle-result.xml || true
+shellcheck ./*.sh -f checkstyle > checkstyle-result.xml || true
 echo -e "${green} shell check for shell done. $? ${NC}"
 
 echo -e "${cyan} =========== ${NC}"
-shellcheck *.sh -f checkstyle > checkstyle-result.xml || true
+shellcheck ./*.sh -f checkstyle > checkstyle-result.xml || true
 echo -e "${green} shell check for release done. $? ${NC}"
 
 echo -e "${cyan} =========== ${NC}"
-pylint **/*.py
+pylint ./**/*.py
 echo -e "${green} pyhton check for shell done. $? ${NC}"
 
 #pyreverse -o png -p Pyreverse pylint/pyreverse/

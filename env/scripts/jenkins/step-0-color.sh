@@ -25,6 +25,7 @@ if [ "$(uname -s)" == "Linux" ]; then
 	export head_skull='\xE2\x98\xA0'
 	#happy_smiley='\u263A'
 	export happy_smiley='\xE2\x98\xBA'
+	export reverse_exclamation='\u00A1'
 	export nabla_logo='\xE2\x88\x87'
 fi
 
