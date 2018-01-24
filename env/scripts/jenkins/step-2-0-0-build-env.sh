@@ -3,23 +3,27 @@
 
 source ./step-0-color.sh
 
+# shellcheck disable=SC2154
 echo -e "${yellow} ${bold} WELCOME ${nabla_logo} ${NC}"
 
+# shellcheck disable=SC2154
 echo -e "${ltgray} HOSTNAME : ${HOSTNAME} ${NC}"
+# shellcheck disable=SC2154
 echo -e "${cyan} SHELL : ${SHELL} ${NC}"
 echo -e "${cyan} TERM : ${TERM} ${NC}"
 echo -e "${cyan} HOME : ${HOME} ${NC}"
 echo -e "${cyan} USER : ${USER} ${NC}"
+# shellcheck disable=SC2154
 echo -e "${blue} PATH : ${PATH} ${NC}"
 
-echo -e "${green} SCONS : ${SCONS} ${NC}"
-echo -e "${green} SCONS_OPTS : ${SCONS_OPTS} ${NC}"
+# shellcheck disable=SC2154
 echo -e "${green} ARCH : ${ARCH} ${NC}"
 echo -e "${green} WORKSPACE_SUFFIX : ${WORKSPACE_SUFFIX} ${NC}"
 echo -e "${green} GIT_BRANCH_NAME : ${GIT_BRANCH_NAME} ${NC}"
 echo -e "${green} GIT_BRANCH : ${GIT_BRANCH} ${NC}"
 echo -e "${green} GIT_COMMIT : ${GIT_COMMIT} ${NC}"
 
+# shellcheck disable=SC2154
 echo -e "${magenta} ${underline}PARAMETERS ${NC}"
 
 case "$OSTYPE" in
@@ -68,8 +72,10 @@ echo "VER : ${VER}"
 
 #DRY_RUN is used on UAT in order to avoid TAGING or DEPLOYING to production
 if [ -n "${DRY_RUN}" ]; then
+  # shellcheck disable=SC2154
   echo -e "${green} DRY_RUN is defined ${happy_smiley} : ${DRY_RUN} ${NC}"
 else
+  # shellcheck disable=SC2154
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : DRY_RUN, please override ${NC}"
 fi
 
@@ -107,7 +113,6 @@ if [ "$(uname -s)" == "SunOS" ]; then
   fi
   export PATH
 elif [ "$(uname -s)" == "Linux" ]; then
-  #For RedHat add /usr/sbin
   PATH=${PATH}:/usr/sbin;
   export PATH
 fi
@@ -193,7 +198,7 @@ else
       BITS=32
       ;;
   *)
-      BITS=?
+      BITS="?"
       ;;
   esac
   export BITS
@@ -246,6 +251,8 @@ else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : SCONS, use default one ${NC}"
   if [ "$(uname -s)" == "SunOS" ]; then
     SCONS="/usr/local/bin/scons"
+  elif [ "$(uname -s)" == "Darwin" ]; then
+    SCONS="/usr/local/bin/scons"
   else
     SCONS="/usr/bin/scons"
   fi
@@ -281,8 +288,8 @@ else
   export GIT_CMD
 fi
 
-if [ -n "${GIT_AUTHOR_EMAIL}" -o "${GIT_AUTHOR_EMAIL}" == "null" ]; then
-  echo -e "${green} GIT_CMD is defined ${happy_smiley} : ${GIT_AUTHOR_EMAIL} ${NC}"
+if [ -n "${GIT_AUTHOR_EMAIL}" -o "${GIT_AUTHOR_EMAIL}" != "null" ]; then
+  echo -e "${green} GIT_AUTHOR_EMAIL is defined ${happy_smiley} : ${GIT_AUTHOR_EMAIL} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : GIT_AUTHOR_EMAIL, use the default one ${NC}"
   GIT_AUTHOR_EMAIL="alban.andrieu@free.fr"
@@ -309,7 +316,7 @@ else
     TAR="/usr/bin/tar"
   elif [ "$(uname -s)" == "Linux" ]; then
     TAR="tar"
-  elif [ "$(echo $(uname -s) | cut -c 1-7)" == "MSYS_NT" ]; then
+  elif [ "$(uname -s | cut -c 1-7)" == "MSYS_NT" ]; then
     TAR="zip"
   else
     TAR="7z"
@@ -318,16 +325,17 @@ else
 fi
 
 if [ -n "${WGET}" ]; then
-  echo -e "${green} WGET is defined ${happy_smiley} ${NC}"
+  echo -e "${green} WGET is defined ${happy_smiley} : ${WGET} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : WGET, use default one ${NC}"
   if [ "$(uname -s)" == "SunOS" ]; then
     WGET="/opt/csw/bin/wget"
+    #/usr/sfw/bin/wget
   elif [ "$(uname -s)" == "Darwin" ]; then
     WGET="/opt/local/bin/wget"
   elif [ "$(uname -s)" == "Linux" ]; then
     WGET="wget"
-  elif [ "$(echo $(uname -s) | cut -c 1-7)" == "MSYS_NT" ]; then
+  elif [ "$(uname -s | cut -c 1-7)" == "MSYS_NT" ]; then
     WGET="wget"
   else
     WGET="wget"
@@ -353,7 +361,7 @@ else
     WGET="/opt/local/bin/curl"
   elif [ "$(uname -s)" == "Linux" ]; then
     WGET="/usr/bin/curl"
-  elif [ "$(echo $(uname -s) | cut -c 1-7)" == "MSYS_NT" ]; then
+  elif [ "$(uname -s | cut -c 1-7)" == "MSYS_NT" ]; then
     WGET="curl"
   else
     WGET="curl"
@@ -379,7 +387,7 @@ else
     MD5SUM="/usr/local/bin/md5sum"
   elif [ "$(uname -s)" == "Linux" ]; then
     MD5SUM="md5sum"
-  elif [ "$(echo $(uname -s) | cut -c 1-7)" == "MSYS_NT" ]; then
+  elif [ "$(uname -s | cut -c 1-7)" == "MSYS_NT" ]; then
     MD5SUM="md5sum"
   else
     MD5SUM="md5sum"
@@ -424,7 +432,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$TIBRV_HOME/lib
 #========================================= JAVA
 
 if [ -n "${JAVA_SSL_OPTS}" ]; then
-  echo -e "${green} JAVA_SSL_OPTS is defined ${happy_smiley} ${NC}"
+  echo -e "${green} JAVA_SSL_OPTS is defined ${happy_smiley} : ${JAVA_SSL_OPTS} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : JAVA_SSL_OPTS, please override ${NC}"
   #JAVA_SSL_OPTS="-Djavax.net.ssl.trustStore=/usr/local/share/ca-certificates/ca.crt"
@@ -443,9 +451,11 @@ if [ -n "${JAVA_HOME}" ]; then
   echo -e "${green} JAVA_HOME is defined ${happy_smiley} : ${JAVA_HOME} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : JAVA_HOME, use the default one ${NC}"
-  JAVA_HOME="/usr/bin/java"
+  JAVA_HOME="/usr"
   if [ "$(uname -s)" == "SunOS" ]; then
-    JAVA_HOME="/usr/jdk/instances/jdk1.8.0_131/"
+    JAVA_HOME="/usr/jdk/instances/jdk1.8.0_131"
+  elif [ "$(uname -s)" == "Darwin" ]; then
+    JAVA_HOME=""
   fi
   if [[ -d /dpool/jdk ]]; then
     JAVA_HOME="/dpool/jdk"
@@ -460,6 +470,26 @@ if [ "$(uname -s)" == "SunOS" ]; then
   PATH=$JAVA_HOME/bin:$PATH;
   export PATH
 fi
+
+if [ -n "${MAVEN_PATH}" ]; then
+  echo -e "${green} MAVEN_PATH is defined ${happy_smiley} : ${MAVEN_PATH} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : MAVEN_PATH, use the default one ${NC}"
+  MAVEN_PATH="/usr/local/apache-maven-3.2.1"
+  export MAVEN_PATH
+fi
+
+if [ -n "${MAVEN_OPTS}" ]; then
+  echo -e "${green} MAVEN_OPTS is defined ${happy_smiley} : ${MAVEN_OPTS} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : MAVEN_OPTS, use the default one ${NC}"
+  #MAVEN_OPTS="-XX:MaxPermSize=512m"
+  MAVEN_OPTS="-d64 -Xmx3072m -Djava.awt.headless=true -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:gc.log -XX:+HeapDumpOnOutOfMemoryError -Dsun.zip.disableMemoryMapping=true -Djava.io.tmpdir=${WORKSPACE}/target/tmp"
+  export MAVEN_OPTS
+fi
+
+#export PATH="${JAVA_HOME}/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/kgr/dev/kgr_maven/nexus/bin/jsw/linux-x86-64:/kgr-mvn/hudson/etc/init.d:/home/kgr_mvn/bin"
+export M2_HOME=""
 
 if [ -n "${RELEASE_VERSION}" ]; then
   echo -e "${green} RELEASE_VERSION is defined ${happy_smiley} : ${RELEASE_VERSION} ${NC}"
@@ -507,32 +537,11 @@ else
   export TARGET_USER="jenkins"
 fi
 
-if [ -n "${TARGET_SERVER}" ]; then
-  echo -e "${green} TARGET_SERVER is defined ${happy_smiley} ${NC}"
-else
-  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_SERVER, use the default one ${NC}"
-  export TARGET_SERVER=nabla.freeboxos.fr
-fi
-
-if [ -n "${TARGET_PORT}" ]; then
-  echo -e "${green} TARGET_PORT is defined ${happy_smiley} ${NC}"
-else
-  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_PORT, use the default one ${NC}"
-  export TARGET_PORT=8280
-fi
-
-if [ -n "${TARGET_URL}" ]; then
-  echo -e "${green} TARGET_URL is defined ${happy_smiley} ${NC}"
-else
-  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_URL, use the default one ${NC}"
-  export TARGET_URL="visma/"
-fi
-
 if [ -n "${SERVER_HOST}" ]; then
   echo -e "${green} SERVER_HOST is defined ${happy_smiley} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : SERVER_HOST, use the default one ${NC}"
-  SERVER_HOST="albandri"
+  SERVER_HOST="kgrdb01"
   export SERVER_HOST
 fi
 
@@ -664,12 +673,280 @@ else
   export H2_PORT
 fi
 
+#========================================= ALM
+
+if [ -n "${PLATFORM}" ]; then
+  echo -e "${green} PLATFORM is defined ${happy_smiley} : ${PLATFORM} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : PLATFORM, use the default one ${NC}"
+  PLATFORM=linux
+  export PLATFORM
+fi
+
+if [ -n "${AF_ARCH}" ]; then
+  echo -e "${green} AF_ARCH is defined ${happy_smiley} : ${AF_ARCH} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_ARCH, use the default one ${NC}"
+  AF_ARCH="x86_64"
+  export AF_ARCH
+fi
+
+if [ -n "${TRIPLET}" ]; then
+  echo -e "${green} TRIPLET is defined ${happy_smiley} : ${TRIPLET} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TRIPLET, use the default one ${NC}"
+  TRIPLET=${AF_ARCH}-linux-ubuntu
+  export TRIPLET
+fi
+
+if [ -n "${AF_VERSION}" ]; then
+  echo -e "${green} AF_VERSION is defined ${happy_smiley} : ${AF_VERSION} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_VERSION, use the default one ${NC}"
+  AF_VERSION=1.4.0
+  export AF_VERSION
+fi
+
+if [ -n "${AF_BRANCH}" ]; then
+  echo -e "${green} AF_BRANCH is defined ${happy_smiley} : ${AF_BRANCH} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_BRANCH, use the default one ${NC}"
+  AF_BRANCH=trunk
+  #AF_BRANCH=develop
+  export AF_BRANCH
+fi
+
+# --- We change the root of the AlmondeFactory to the Jenkins one.
+if [ -n "${AF_LOCAL_FACTORY_DIR_UNIX}" ]; then
+  echo -e "${green} AF_LOCAL_FACTORY_DIR_UNIX is defined ${happy_smiley} : ${AF_LOCAL_FACTORY_DIR_UNIX} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_LOCAL_FACTORY_DIR_UNIX, use the default one ${NC}"
+  AF_LOCAL_FACTORY_DIR_UNIX=${WORKSPACE}
+  export AF_LOCAL_FACTORY_DIR_UNIX
+fi
+
+if [ -n "${AF_LOCAL_ALF_DIR_UNIX}" ]; then
+  echo -e "${green} AF_LOCAL_ALF_DIR_UNIX is defined ${happy_smiley} : ${AF_LOCAL_ALF_DIR_UNIX} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_LOCAL_ALF_DIR_UNIX, use the default one ${NC}"
+  AF_LOCAL_ALF_DIR_UNIX=$WORKSPACE/FactoryResources
+  export AF_LOCAL_ALF_DIR_UNIX
+fi
+
+if [ -n "${AF_GNUSTEP_VERSION}" ]; then
+  echo -e "${green} AF_GNUSTEP_VERSION is defined ${happy_smiley} : ${AF_GNUSTEP_VERSION} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_GNUSTEP_VERSION, use the default one ${NC}"
+  AF_GNUSTEP_VERSION=1.24.6
+  export AF_GNUSTEP_VERSION
+fi
+
+if [ -n "${AF_PYTHON_VERSION}" ]; then
+  echo -e "${green} AF_PYTHON_VERSION is defined ${happy_smiley} : ${AF_PYTHON_VERSION} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_PYTHON_VERSION, use the default one ${NC}"
+  AF_PYTHON_VERSION=2.5.1
+  export AF_PYTHON_VERSION
+fi
+
+if [ -n "${AF_RHEL_CLANG_VERSION}" ]; then
+  echo -e "${green} AF_RHEL_CLANG_VERSION is defined ${happy_smiley} : ${AF_RHEL_CLANG_VERSION} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_RHEL_CLANG_VERSION, use the default one ${NC}"
+  AF_RHEL_CLANG_VERSION=3.4.0
+  export AF_RHEL_CLANG_VERSION
+fi
+
+if [ -n "${AF_MINGW_VERSION}" ]; then
+  echo -e "${green} AF_MINGW_VERSION is defined ${happy_smiley} : ${AF_MINGW_VERSION} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_MINGW_VERSION, use the default one ${NC}"
+  AF_MINGW_VERSION=5.1.3
+  export AF_MINGW_VERSION
+fi
+
+if [ -n "${AF_SCONS_VERSION}" ]; then
+  echo -e "${green} AF_SCONS_VERSION is defined ${happy_smiley} : ${AF_SCONS_VERSION} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_SCONS_VERSION, use the default one ${NC}"
+  AF_SCONS_VERSION=2.0.1
+  export AF_SCONS_VERSION
+fi
+
+if [ -n "${AF_BISON_VERSION}" ]; then
+  echo -e "${green} AF_BISON_VERSION is defined ${happy_smiley} : ${AF_BISON_VERSION} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_BISON_VERSION, use the default one ${NC}"
+  AF_BISON_VERSION=2.3-MSYS-1.0.11
+  export AF_BISON_VERSION
+fi
+
+if [ -n "${AF_MSYS_VERSION}" ]; then
+  echo -e "${green} AF_MSYS_VERSION is defined ${happy_smiley} : ${AF_MSYS_VERSION} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_MSYS_VERSION, use the default one ${NC}"
+  AF_MSYS_VERSION=1.0.10
+  export AF_MSYS_VERSION
+fi
+
+if [ -n "${AF_LOCAL_GNUSTEP_DIR_UNIX}" ]; then
+  echo -e "${green} AF_LOCAL_GNUSTEP_DIR_UNIX is defined ${happy_smiley} : ${AF_LOCAL_GNUSTEP_DIR_UNIX} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_LOCAL_GNUSTEP_DIR_UNIX, use the default one ${NC}"
+  AF_LOCAL_GNUSTEP_DIR_UNIX=$AF_LOCAL_RESOURCES_DIR_UNIX/GNUstep/GNUstep-$AF_GNUSTEP_VERSION-x86_64-linux-rhel7
+  export AF_LOCAL_GNUSTEP_DIR_UNIX
+fi
+
+if [ -n "${AF_LOCAL_MINGW_DIR_UNIX}" ]; then
+  echo -e "${green} AF_LOCAL_MINGW_DIR_UNIX is defined ${happy_smiley} : ${AF_LOCAL_MINGW_DIR_UNIX} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_LOCAL_MINGW_DIR_UNIX, use the default one ${NC}"
+  AF_LOCAL_MINGW_DIR_UNIX=$AF_LOCAL_RESOURCES_DIR_UNIX/MinGW/mingw-5.1.3
+  export AF_LOCAL_MINGW_DIR_UNIX
+fi
+
+if [ -n "${AF_LOCAL_PYTHON_DIR_UNIX}" ]; then
+  echo -e "${green} AF_LOCAL_PYTHON_DIR_UNIX is defined ${happy_smiley} : ${AF_LOCAL_PYTHON_DIR_UNIX} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_LOCAL_PYTHON_DIR_UNIX, use the default one ${NC}"
+  AF_LOCAL_PYTHON_DIR_UNIX=$AF_LOCAL_RESOURCES_DIR_UNIX/Python/Python-2.5.1
+  export AF_LOCAL_PYTHON_DIR_UNIX
+fi
+
+if [ -n "${AF_LOCAL_MSYS_DIR_UNIX}" ]; then
+  echo -e "${green} AF_LOCAL_MSYS_DIR_UNIX is defined ${happy_smiley} : ${AF_LOCAL_MSYS_DIR_UNIX} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_LOCAL_MSYS_DIR_UNIX, use the default one ${NC}"
+  AF_LOCAL_MSYS_DIR_UNIX=$AF_LOCAL_RESOURCES_DIR_UNIX/MSYS/msys-1.0.10
+  export AF_LOCAL_MSYS_DIR_UNIX
+fi
+
+if [ -n "${AF_REMOTE_SVN_PREFIX_URL}" ]; then
+  echo -e "${green} AF_REMOTE_SVN_PREFIX_URL is defined ${happy_smiley} : ${AF_REMOTE_SVN_PREFIX_URL} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_REMOTE_SVN_PREFIX_URL, use the default one ${NC}"
+  AF_REMOTE_SVN_PREFIX_URL=http://par-castor/svn/repos/almonde
+  export AF_REMOTE_SVN_PREFIX_URL
+fi
+
+if [ -n "${AF_BUILD_DEBUG}" ]; then
+  echo -e "${green} AF_BUILD_DEBUG is defined ${happy_smiley} : ${AF_BUILD_DEBUG} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_BUILD_DEBUG, use the default one ${NC}"
+  #Force building debug mode
+  AF_BUILD_DEBUG="skip"
+  #AF_BUILD_DEBUG="windows debug"
+  export AF_BUILD_DEBUG
+fi
+
+if [ -n "${AF_BUILD}" ]; then
+  echo -e "${green} AF_BUILD is defined ${happy_smiley} : ${AF_BUILD} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_BUILD, use the default one ${NC}"
+  #AF_BUILD="skip"
+  #coverage client
+  #windows release client ide
+  #windows debug
+  #debug
+  AF_BUILD="coverage client"
+  export AF_BUILD
+fi
+
+if [ -n "${AF_PACKAGE}" ]; then
+  echo -e "${green} AF_PACKAGE is defined ${happy_smiley} : ${AF_PACKAGE} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_PACKAGE, use the default one ${NC}"
+  #nobuildasrelease
+  #nobuildasdebug
+  AF_PACKAGE="noupdate nobuildasrelease removeOldBuilds"
+  export AF_PACKAGE
+fi
+
+if [ -n "${AF_PACKAGE_DEBUG}" ]; then
+  echo -e "${green} AF_PACKAGE_DEBUG is defined ${happy_smiley} : ${AF_PACKAGE_DEBUG} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : AF_PACKAGE_DEBUG, use the default one ${NC}"
+  #nobuildasrelease
+  #nobuildasdebug
+  AF_PACKAGE_DEBUG="noupdate nobuildasdebug removeOldBuilds"
+  export AF_PACKAGE_DEBUG
+fi
+
+if [ -n "${ALMTEST_ARCH}" ]; then
+  echo -e "${green} ALMTEST_ARCH is defined ${happy_smiley} : ${ALMTEST_ARCH} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : ALMTEST_ARCH, use the default one ${NC}"
+
+  # _MinGW
+  # _OSX
+  # _RHEL
+  # _RHEL7
+
+  ALMTEST_ARCH="_MinGW"
+  export ALMTEST_ARCH
+fi
+
+if [ -n "${ALMTEST_COV}" ]; then
+  echo -e "${green} ALMTEST_COV is defined ${happy_smiley} : ${ALMTEST_COV} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : ALMTEST_COV, use the default one ${NC}"
+  ALMTEST_COV="skip"
+  export ALMTEST_COV
+fi
+
+if [ -n "${ALMTEST_UT}" ]; then
+  echo -e "${green} ALMTEST_UT is defined ${happy_smiley} : ${ALMTEST_UT} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : ALMTEST_UT, use the default one ${NC}"
+  ALMTEST_UT="skip"
+  export ALMTEST_UT
+fi
+
+if [ -n "${ALMTEST_REDUCE}" ]; then
+  echo -e "${green} ALMTEST_REDUCE is defined ${happy_smiley} : ${ALMTEST_REDUCE} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : ALMTEST_REDUCE, use the default one ${NC}"
+#  ALMTEST_REDUCE="_REDUCE"
+  ALMTEST_REDUCE="_UT"
+  export ALMTEST_REDUCE
+fi
+
+if [[ -n "${ALMTEST_DATABASE}" ]]; then
+  echo -e "${green} ALMTEST_DATABASE is defined ${happy_smiley} : ${ALMTEST_DATABASE} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : ALMTEST_DATABASE, use the default one ${NC}"
+
+  # _Oracle
+  # _SQLServer
+
+  ALMTEST_DATABASE="_SQLServer"
+  export ALMTEST_DATABASE
+fi
+
+if [ -n "${ALMTEST_SUFFIX}" ]; then
+  echo -e "${green} ALMTEST_SUFFIX is defined ${happy_smiley} : ${ALMTEST_SUFFIX} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : ALMTEST_SUFFIX, use the default one ${NC}"
+  ALMTEST_SUFFIX="_BM"
+  export ALMTEST_SUFFIX
+fi
+
+if [ -n "${DATABASE_INSTANCE_RECREATE}" ]; then
+  echo -e "${green} DATABASE_INSTANCE_RECREATE is defined ${happy_smiley} : ${DATABASE_INSTANCE_RECREATE} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : DATABASE_INSTANCE_RECREATE, use the default one ${NC}"
+  #DATABASE_INSTANCE_RECREATE="--recreate-dbuser"
+  DATABASE_INSTANCE_RECREATE=""
+  export DATABASE_INSTANCE_RECREATE
+fi
+
 ENV_FILENAME="${WORKSPACE}/ENV_${ARCH}_VERSION.TXT"
 
 echo -e "${NC}"
 
 ./step-2-0-1-build-env-info.sh > "${ENV_FILENAME}"
 
+# shellcheck disable=SC2154
 echo -e "${black} ${blink} DONE ${NC}"
 
 #exit 0
