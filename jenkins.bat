@@ -6,7 +6,7 @@ call mvn enforcer:display-info
 
 call mvn -B validate -Psample > validate.log 2>&1
 call mvn -B validate -Dnabla -Psample > validate-nabla.log 2>&1
-REM call -B mvn clean -Dnabla -Psample -amd andromda-database-cartridge > clean-nabla.log 2>&1
+REM call mvn -B clean -Dnabla -Psample -amd andromda-database-cartridge > clean-nabla.log 2>&1
 call mvn -B versions:display-dependency-updates -Psample > dependency-updates.log 2>&1
 call mvn -B versions:display-plugin-updates -Psample > plugin-updates.log 2>&1
 call mvn -B versions:update-parent -DparentVersion=1.0.0-SNAPSHOT
@@ -20,18 +20,18 @@ call mvn -B dependency:analyze-dep-mgt -Psample > analyze-dep.log 2>&1
 call mvn -B help:effective-pom -Psample > effective.log 2>&1
 call mvn -B help:active-profiles -Psample > profile.log 2>&1
 call mvn -B initialize -Pshow-properties > properties.log 2>&1
-REM call -B mvn properties:write-active-profile-properties > profile-properties.log 2>&1
+REM call mvn -B properties:write-active-profile-properties > profile-properties.log 2>&1
 call mvn -B scm:validate -Psample > scm-validate.log 2>&1
-REM call -B mvn jalopy:format -Psample > format.log 2>&1
+REM call mvn -B jalopy:format -Psample > format.log 2>&1
 call mvn -B java-formatter:format -Psample > format.log 2>&1
 call mvn -B source:jar -Psample > source.log 2>&1
 call mvn -B source:test-jar -Psample > source-test.log 2>&1
 call mvn -B javadoc:javadoc -Psample > javadoc.log 2>&1
 call mvn -B jxr:jxr -Psample > jxr.log 2>&1
 call mvn -B jxr:test-jxr -Psample > jxr-test.log 2>&1
-call mvn -B eclipse:clean -P!mda,sample > eclipse-clean.log 2>&1
-call mvn -B eclipse:configure-workspace -P!mda,sample > eclipse-workspace.log 2>&1
-call mvn -B eclipse:eclipse -P!mda,sample -DdownloadSources=true -DdownloadJavadocs=true -Peclipse-folders -Dappend.to.project.name=trunk > eclipse.log 2>&1
+REM call mvn -B eclipse:clean -P!mda,sample > eclipse-clean.log 2>&1
+REM call mvn -B eclipse:configure-workspace -P!mda,sample > eclipse-workspace.log 2>&1
+REM call mvn -B eclipse:eclipse -P!mda,sample -DdownloadSources=true -DdownloadJavadocs=true -Peclipse-folders -Dappend.to.project.name=trunk > eclipse.log 2>&1
 call mvn -B rat:check -Psample > rat.log 2>&1
 call mvn -B doap:generate -Psample > doap.log 2>&1
 call mvn -B codenarc:codenarc -Psample > codenarc.log 2>&1

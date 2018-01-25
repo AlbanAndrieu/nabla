@@ -181,6 +181,7 @@ pkg install npm
 pkg install firefox
 pkg install chromium
 pkg install hs-ShellCheck
+pkg install lsof
 
 #https://wiki.freebsd.org/Docker
 #pkg install docker

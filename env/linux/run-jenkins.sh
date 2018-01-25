@@ -101,7 +101,36 @@ sudo chmod 777 sound-archive.zip
 # war
 /var/run/jenkins/war/
 
+#Too many open files
+#cat /proc/sys/fs/file-max
+ulimit -n
+lsof -p PID | wc -l
+ls -la /proc/PID/fd | wc -l
+
+#MacOSX
+sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist
+sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist
+tail -f /var/log/jenkins/jenkins.log
+cd /Users/Shared/Jenkins/Home
+sudo su - jenkins
+mkdir init.groovy.d/
+
+#See https://wiki.jenkins.io/display/JENKINS/Thanks+for+using+OSX+Installer
+#sudo defaults read /Library/Preferences/org.jenkins-ci
+#sudo defaults write /Library/Preferences/org.jenkins-ci heapSize 1024M
+#sudo defaults write /Library/Preferences/org.jenkins-ci httpPort -1
+#TODO sudo defaults write /Library/Preferences/org.jenkins-ci httpsPort 443
+#sudo defaults write /Library/Preferences/org.jenkins-ci httpsPort 8383
+#sudo defaults write /Library/Preferences/org.jenkins-ci httpsKeyStore /etc/ssl/almonde-jenkins.misys.global.ad/almonde-jenkins.misys.global.ad.jks
+#sudo defaults write /Library/Preferences/org.jenkins-ci httpsKeyStorePassword changeit
+
 # See https://wiki.jenkins.io/display/JENKINS/Configuring+Content+Security+Policy
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
 System.setProperty("hudson.slaves.WorkspaceList", "_")
 System.setProperty("permissive-script-security.enabled", "true")
+
+
+#Hook
+$JENKINS_URL/git/notifyCommit
+$JENKINS_URL/bitbucket-hook/
+$JENKINS_URL/bitbucket-scmsource-hook/notify/

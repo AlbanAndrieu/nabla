@@ -14,8 +14,6 @@ pacman -S mingw-w64-x86_64-freetype
 pacman -S mingw-w64-x86_64-SDL
 pacman -S mingw-w64-x86_64-SDL_ttf # for ttf fonts support, optional
 
-#See docker https://github.com/SeleniumHQ/docker-selenium
-
 cd /etc/init.d
 ln -s /workspace/users/albandri10/env/linux/bin/xvfb.sh xvfb
 sudo update-rc.d xvfb defaults
@@ -206,4 +204,7 @@ cd /usr/local/lib
 wget https://goo.gl/Br1P0Z selenium-html-runner-3.0.1.jar
 sudo ln -s selenium-html-runner-3.0.1.jar selenium-server-standalone.jar
 
-#https://github.com/SeleniumHQ/docker-selenium
+#See docker https://github.com/SeleniumHQ/docker-selenium
+sudo docker run -d -p 4444:4444 -e SE_OPTS="-debug true" --name selenium-hub selenium/hub:3.8.1-aluminum
+sudo docker run -d --link selenium-hub:hub selenium/node-chrome:3.8.1-aluminum
+sudo docker run -d --link selenium-hub:hub selenium/node-firefox:3.8.1-aluminum

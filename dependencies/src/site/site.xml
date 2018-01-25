@@ -11,7 +11,7 @@
 
     <custom>
       <fluidoSkin>
-	  <topBarEnabled>true</topBarEnabled>
+	    <topBarEnabled>true</topBarEnabled>
         <!--<sideBarEnabled>false</sideBarEnabled>-->
         <googleSearch>
           <sitesearch/>

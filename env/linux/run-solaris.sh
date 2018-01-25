@@ -2,7 +2,7 @@
 set -xv
 
 #http://jose-manuel.me/2012/02/how-to-compile-apache-2-2-x-for-solaris-64bit/
-pkginfo |grep SUNWopensslr
+pkginfo | grep SUNWopensslr
 pkginfo -l SUNWopensslr
 /usr/sfw/bin/openssl version
 pkgchk -l SUNWopenssl-libraries
@@ -19,3 +19,6 @@ patchadd /var/spool/patch/123456-07
 #le  fichier /var/sadm/install/contents
 #(gros fichier texte)
 #contient la liste de tous les fichiers installes avec les noms des packages, le chemin complet, la taille, une checksum.
+
+#zoneadm list
+zoneadm list -vc

@@ -131,8 +131,8 @@ rc4.d contains the services which runs in runlevel 4
 rc5.d contains the services which runs in runlevel 5
 rc6.d contains the services which runs in runlevel 6
 
-First one is S script (S30killprocs)---> start
-Second one is k script (K15pulseaudio)---> kill
+#First one is S script (S30killprocs)---> start
+#Second one is k script (K15pulseaudio)---> kill
 
 /etc/rc0.d:
 K05heartbeat@            K20clamav-freshclam@  K20speech-dispatcher@  K32logd@      S20sendsigs@
@@ -253,7 +253,7 @@ xhost +
 #sudo mount /dev/sda1 /media/albandri
 
 # ubuntu error messages check
-dmesg
+dmesg -T
 grep EDAC /var/log/messages*
 ifconfig eth0
 
@@ -394,6 +394,7 @@ sudo rm -f /etc/apt/sources.list.d/pdffs-precise-virt-trusty.list
 sudo rm -f /etc/apt/sources.list.d/ntop.list
 sudo rm -f /etc/apt/sources.list.d/dl_google_com_linux_chrome_deb.list*
 sudo rm -f /etc/apt/sources.list.d/google-chrome.list
+sudo rm -f /etc/apt/sources.list.d/repo_zabbix_com_zabbix_2_2_ubuntu.list
 sudo apt-get update
 
 #backup / save
@@ -414,6 +415,7 @@ sudo lspci -v | grep -A7 -i "audio"
 #Network
 sudo lspci -nnk | grep net -A2
 sudo lshw -short
+sudo lshw -html > lshw.html
 #sudo apt-get install hardinfo
 
 #usb issue
@@ -446,3 +448,10 @@ sudo systemctl enable nexus.service
 sudo nano /etc/default/grub
 #And change GRUB_TIMEOUT=10 to GRUB_TIMEOUT=2
 sudo update-grub
+
+#https://www.thegeekdiary.com/centos-rhel-7-systemd-analyze-command-to-find-booting-time-delays/
+systemd-analyze time
+systemd-analyze blame
+systemd-analyze critical-chain
+systemd-analyze plot > plot.svg
+eog plot.svg

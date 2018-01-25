@@ -1,13 +1,14 @@
 #!/bin/bash
 #set -xv
-
 #=========================================
 
 echo -e "========== OS =========="
 echo -e "Operating system name, release, version, node name, hardware name, and processor type"
-echo "$(uname -a)" 2>&1
-echo -e "========== HOSTID =========="
-hostid 2>&1
+uname -a 2>&1
+if [ "$(uname -s)" != "Darwin" ]; then
+  echo -e "========== HOSTID =========="
+  hostid 2>&1
+fi
 echo -e "========== OSTYPE =========="
 echo "OSTYPE : ${OSTYPE}"
 echo -e "========== RELEASE =========="
@@ -46,24 +47,25 @@ elif [ "$(uname -s)" == "Darwin" ]; then
   xcodebuild -version 2>&1 || true
   port version 2>&1 || true
 elif [ "$(uname -s)" == "Linux" ]; then
+#elif [ "$(uname -s | cut -c 1-5)" == "Linux" ]; then
   gcc --version 2>&1 || true
   #cpp version
   clang --version  2>&1 || true
   #cl
 #elif [ "$(uname -s)" == "MINGW64_NT-6.1" || "$(uname -s)" == "CYGWIN_NT-6.1" || "$(uname -s)" == "MSYS_NT-6.1" ]; then
-elif [ "$(echo $(uname -s) | cut -c 1-10)" == "MINGW32_NT" ]; then
+elif [ "$(uname -s | cut -c 1-10)" == "MINGW32_NT" ]; then
   echo "========== MINGW 32 =========="
   echo "MSYSTEM : ${MSYSTEM}"
   gcc --version 2>&1 || true
-elif [ "$(echo $(uname -s) | cut -c 1-10)" == "MINGW64_NT" ]; then
+elif [ "$(uname -s | cut -c 1-10)" == "MINGW64_NT" ]; then
   echo "========== MINGW 64 =========="
   echo "MSYSTEM : ${MSYSTEM}"
   gcc --version 2>&1 || true
-elif [ "$(echo $(uname -s) | cut -c 1-7)" == "MSYS_NT" ]; then
+elif [ "$(uname -s | cut -c 1-7)" == "MSYS_NT" ]; then
   echo "========== MSYS =========="
   echo "MSYSTEM : ${MSYSTEM}"
   gcc --version 2>&1 || true
-elif [ "$(echo $(uname -s) | cut -c 1-9)" == "CYGWIN_NT" ]; then
+elif [ "$(uname -s | cut -c 1-9)" == "CYGWIN_NT" ]; then
   echo "========== CYGWIN =========="
   echo "MSYSTEM : ${MSYSTEM}"
   gcc --version 2>&1 || true
@@ -91,7 +93,11 @@ if [ -n "${GIT_CMD}" ]; then
   "${GIT_CMD}" --version 2>&1 || true
 fi
 mvn --version 2>&1 || true
-brew --version 2>&1 || true
+
+if [ "$(uname -s)" == "Darwin" ]; then
+  brew --version 2>&1 || true
+fi
+
 echo "env.MSVC_VERSION=\"${MSVC_VERSION}\"" > ${ENV_FILE}
 echo "========== TIBCO =========="
 echo "TIBCO_HOME : ${TIBCO_HOME}" 2>&1
@@ -130,8 +136,11 @@ echo "ZAPROXY_HOME : ${ZAPROXY_HOME}"
 echo "env.ZAPROXY_HOME=\"${ZAPROXY_HOME}\"" >> ${ENV_FILE}
 echo "========== PORT =========="
 echo "TOMCAT_PORT : ${TOMCAT_PORT}"
+echo "env.TOMCAT_PORT=\"${TOMCAT_PORT}\"" >> ${ENV_FILE}
 echo "JETTY_PORT : ${JETTY_PORT}"
+echo "env.JETTY_PORT=\"${JETTY_PORT}\"" >> ${ENV_FILE}
 echo "CARGO_RMI_PORT : ${CARGO_RMI_PORT}"
+echo "env.CARGO_RMI_PORT=\"${CARGO_RMI_PORT}\"" >> ${ENV_FILE}
 
 echo "========== TOOLS =========="
 
@@ -153,21 +162,27 @@ if [ "$(uname -s)" == "Linux" ]; then
   echo "========== BUILD TOOLS =========="
   mvn --version || true
   docker --version || true
-  echo "========== SCM =========="
-  git --version || true
-  git config --global --list || true
-  svn --version || true
   echo "========== CPP TOOLS =========="
   openssl version || true
   echo "========== TOOLS =========="
   /sbin/ldconfig -p | grep stdc++ || true
+  #file /usr/lib/x86_64-linux-gnu/libstdc++.so.5.0.7
+  #readelf -Ws /usr/lib/x86_64-linux-gnu/libstdc++.so.5.0.7 | grep '^\([[:space:]]\+[^[:space:]]\+\)\{6\}[[:space:]]\+[[:digit:]]\+'
 fi
+
+echo "========== SCM =========="
+git --version || true
+git config --global --list || true
+svn --version || true
 
 echo "========== ENV =========="
 #env is already displayed in jenkins
 printenv
 #env 2>&1
 
+# shellcheck disable=SC2129,SC2086
 echo "env.SONAR_BRANCH=\"$(printf '%s' $GIT_BRANCH | cut -d'/' -f 2-)\"" >> ${ENV_FILE}
+# shellcheck disable=SC2129
 echo "env.RELEASE_VERSION=\"${RELEASE_VERSION}\"" >> ${ENV_FILE}
+# shellcheck disable=SC2129
 echo "env.MVN_RELEASE_VERSION=\"${MVN_RELEASE_VERSION}\"" >> ${ENV_FILE}

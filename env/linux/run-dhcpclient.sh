@@ -43,3 +43,4 @@ yptest
 
 dmesg
 service nis stop
+ipconfig /flushdns

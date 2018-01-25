@@ -39,3 +39,7 @@ REM zabbix_agentd.exe -c zabbix_agentd.conf -s
 
 #Disable Windows firewall
 #I managed to connect zabbix-agent (VM 1) to zabbix server (VM 2), but I had to disable Windows firewall. Must allow port 10050 Inbound Connection in Firewall
+
+#MacOSX
+ls -lrta  /usr/local/etc/zabbix/zabbix_agentd.conf
+zabbix_agentd
