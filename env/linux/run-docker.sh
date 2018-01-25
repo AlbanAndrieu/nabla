@@ -17,6 +17,19 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubun
 sudo apt-get update
 sudo apt-get -y install docker-ce aufs-tools
 
+##Add CentOS repo
+#sudo yum install -y yum-utils
+#sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+#Install Docker
+#
+##If needed check key - Docker CE     060A 61C5 1B55 8A7F 742B 77AA C52F EB6B 621E 9F35
+#sudo yum makecache fast
+## downgrade because of dependency issue
+#sudo yum downgrade policycoreutils-2.5-8.el7.x86_64
+#sudo yum install docker-ce
+##if it fails due to Error: Requires: container-selinux >= 2.9 install older version of docker:
+#yum install -y --setopt=obsoletes=0 docker-ce-17.03.1.ce-1.el7.centos docker-ce-selinux-17.03.1.ce-1.el7.centos
+
 #-------------
 
 #Start docker by hand
@@ -40,6 +53,15 @@ bash ./check-config.sh
 #check to see if you use dnsmasq
 ps aux |grep dnsmasq
 gksudo geany /etc/NetworkManager/NetworkManager.conf
+
+vim /etc/docker/daemon.json
+	{
+		"dns": ["172.17.0.1"]
+	}
+
+vim /etc/NetworkManager/dnsmasq.d/docker-bridge.conf
+	listen-address=172.17.0.1
+
 #Comment out the dns=dnsmasq
 sudo service network-manager restart
 sudo service docker restart
@@ -74,9 +96,11 @@ DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock"
 DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 8.8.8.8 --dns 8.8.8.4"
 
 #For Ubuntu 16.04
-ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --storage-driver overlay2 --disable-legacy-registry --tlsverify --tlscacert /root/pki/ca.pem --tlscert /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.pem --tlskey /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.key --label provider=albandri
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --storage-driver overlay2 --label provider=albandri
+#ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --storage-driver overlay2 --disable-legacy-registry --tlsverify --tlscacert /root/pki/ca.pem --tlscert /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.pem --tlskey /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.key --label provider=albandri
 #For RedHat 7
-#ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --disable-legacy-registry
+#ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock
+# --disable-legacy-registry
 
 sudo systemctl show --property=Environment docker
 sudo systemctl daemon-reload
@@ -178,7 +202,7 @@ docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs --no-run-if-empty doc
 gksudo baobab
 #cleaning
 #sudo docker rm `sudo docker ps -a | grep Exited | awk '{print $1 }'`
-#docker rmi `docker images -aq`
+#sudo docker rmi `docker images -aq`
 sudo docker images --no-trunc| grep none | awk '{print $3}' | xargs -r sudo docker rmi
 
 ll /var/lib/docker/tmp/docker-build*/Downloads

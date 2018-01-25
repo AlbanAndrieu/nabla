@@ -1754,10 +1754,12 @@
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-compiler-plugin</artifactId>
 						<version>${maven.compiler.plugin.version}</version>
+						<!--
 						<configuration>
 							<optimize>true</optimize>
 							<debug>true</debug>
 						</configuration>
+						-->
 					</plugin>
 					<!-- Automatically attach sources to build artifact as artifact-version-sources.jar
                                                 and deploy to local repository -->
@@ -1819,20 +1821,27 @@
 							</execution>
 						</executions>
 						<dependencies>
+							<!--
 							<dependency>
 								<groupId>org.apache.maven.skins</groupId>
 								<artifactId>maven-default-skin</artifactId>
 								<version>${maven.default.skin.version}</version>
 							</dependency>
 							<dependency>
-								<groupId>com.nabla.project</groupId>
-								<artifactId>skin</artifactId>
-								<version>1.0.1-SNAPSHOT</version>
+								<groupId>org.apache.maven.skins</groupId>
+								<artifactId>maven-fluido-skin</artifactId>
+								<version>1.6</version>
 							</dependency>
 							<dependency>
 								<groupId>org.apache.maven.doxia</groupId>
 								<artifactId>doxia-module-twiki</artifactId>
 								<version>${doxia.module.twiki.version}</version>
+							</dependency>
+							-->
+							<dependency>
+								<groupId>com.nabla.project</groupId>
+								<artifactId>skin</artifactId>
+								<version>1.0.1-SNAPSHOT</version>
 							</dependency>
 						</dependencies>
 						<configuration>
@@ -2800,25 +2809,25 @@
 						<dependencies>
 							<!--
 							<dependency>
-									<groupId>org.apache.maven.skins</groupId>
-									<artifactId>maven-default-skin</artifactId>
-									<version>${maven.default.skin.version}</version>
+								<groupId>org.apache.maven.skins</groupId>
+								<artifactId>maven-default-skin</artifactId>
+								<version>${maven.default.skin.version}</version>
 							</dependency>
-							-->
 							<dependency>
 								<groupId>org.apache.maven.skins</groupId>
 								<artifactId>maven-fluido-skin</artifactId>
 								<version>1.6</version>
 							</dependency>
 							<dependency>
-								<groupId>com.nabla.project</groupId>
-								<artifactId>skin</artifactId>
-								<version>1.0.1-SNAPSHOT</version>
-							</dependency>
-							<dependency>
 								<groupId>org.apache.maven.doxia</groupId>
 								<artifactId>doxia-module-twiki</artifactId>
 								<version>${doxia.module.twiki.version}</version>
+							</dependency>
+							-->
+							<dependency>
+								<groupId>com.nabla.project</groupId>
+								<artifactId>skin</artifactId>
+								<version>1.0.1-SNAPSHOT</version>
 							</dependency>
 						</dependencies>
 						<configuration>
