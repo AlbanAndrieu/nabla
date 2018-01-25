@@ -205,3 +205,5 @@ cd /usr/local/lib
 #from http://www.seleniumhq.org/download/
 wget https://goo.gl/Br1P0Z selenium-html-runner-3.0.1.jar
 sudo ln -s selenium-html-runner-3.0.1.jar selenium-server-standalone.jar
+
+#https://github.com/SeleniumHQ/docker-selenium
