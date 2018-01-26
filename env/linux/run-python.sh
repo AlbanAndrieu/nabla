@@ -60,3 +60,6 @@ rm /root/Python-2.7.3
 pip list --outdated --format=freeze
 #Upgrade all
 pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip install -U
+
+#Issue pycurl: libcurl link-time ssl backend (nss) is different from compile-time ssl backend (none/other)
+pip install --no-cache-dir --compile --ignore-installed --install-option="--with-nss" pycurl
