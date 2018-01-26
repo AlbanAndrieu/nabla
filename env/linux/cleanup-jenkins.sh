@@ -28,6 +28,9 @@ rm -f ${JENKINS_HOME}/logs/tasks/*.log*
 rm -Rf /etc/init.d/slave.jar*
 #\rm -Rf ${JENKINS_HOME}/workspace-tmp
 
+\rm -Rf /tmp/.X*-lock
+\rm -Rf /tmp/.X11-unix 
+
 find ${JENKINS_HOME}/jobs -name 'outOfOrderBuilds' -type d | xargs rm -r $1
 find ${JENKINS_HOME}/jobs -name 'htmlreports' -type d | xargs rm -r $1
 #todo remove ${JENKINS_HOME}/jobs/nabla-servers-bower-sample-nightly/htmlreports/GC_Report
