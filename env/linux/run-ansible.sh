@@ -8,7 +8,7 @@ sudo add-apt-repository ppa:rquillo/ansible
 #For the older version 1.9 we use this
 sudo apt-add-repository --remove ppa:ansible/ansible -y
 sudo add-apt-repository ppa:ansible/ansible-1.9
-sudo apt-get install ansible
+#sudo apt-get install ansible
 #sudo apt-get --reinstall install ansible
 #sudo apt-cache showpkg ansible
 #sudo dpkg -l ansible
@@ -51,12 +51,6 @@ python2.7 -V
 pip -V
 
 ansible --version
-#Red hat installation end
-
-#build yourself
-#git clone git://github.com/ansible/ansible.git
-#cd ansible
-#make debian
 
 #source /workspace/users/albandri10/ansible/hacking/env-setup
 
