@@ -6706,14 +6706,16 @@
 					<groupId>com.github.eirslett</groupId>
 					<artifactId>frontend-maven-plugin</artifactId>
 					<version>${maven.frontend.plugin.version}</version>
+					<!-- 
 					<configuration>
 						<nodeVersion>v${node.version}</nodeVersion>
 						<npmVersion>${npm.version}</npmVersion>
 						<yarnVersion>v${yarn.version}</yarnVersion>
-						<!-- <nodeDownloadRoot>http://home.nabla.mobi/html/download/nodejs/</nodeDownloadRoot>
-											<npmDownloadRoot>http://home.nabla.mobi/html/download/npm/-/</npmDownloadRoot>
-											<yarnDownloadRoot>http://home.nabla.mobi/html/download//yarn/</yarnDownloadRoot> -->
+						<nodeDownloadRoot>http://home.nabla.mobi/html/download/nodejs/</nodeDownloadRoot>
+						<npmDownloadRoot>http://home.nabla.mobi/html/download/npm/-/</npmDownloadRoot>
+						<yarnDownloadRoot>http://home.nabla.mobi/html/download//yarn/</yarnDownloadRoot>
 					</configuration>
+					-->
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
