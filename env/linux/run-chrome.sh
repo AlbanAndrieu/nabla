@@ -25,3 +25,5 @@ set -xv
 
 gnome-keyring-daemon &
 /usr/bin/google-chrome
+
+#chrome://flags/#allow-insecure-localhost
