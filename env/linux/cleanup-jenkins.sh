@@ -11,6 +11,7 @@ export JENKINS_HOME="/jenkins"
 #\rm -Rf /backup/jenkins/thin/*
 
 \rm -Rf ${JENKINS_HOME}/.m2/.repository
+\rm -Rf .npm/ .node_cache/ .node_tmp/  .tmp/ .bower/ bower_components/ node node_modules/ .sass-cache/ package-lock.json yarn.lock target/
 \rm -f /var/log/jenkins/jenkins.*.gz
 #\rm -Rf ${JENKINS_HOME}/config-history/*
 #\rm -Rf /var/lib/jenkins/tools/hudson.model.JDK/*
@@ -29,7 +30,7 @@ rm -Rf /etc/init.d/slave.jar*
 #\rm -Rf ${JENKINS_HOME}/workspace-tmp
 
 \rm -Rf /tmp/.X*-lock
-\rm -Rf /tmp/.X11-unix 
+\rm -Rf /tmp/.X11-unix
 
 find ${JENKINS_HOME}/jobs -name 'outOfOrderBuilds' -type d | xargs rm -r $1
 find ${JENKINS_HOME}/jobs -name 'htmlreports' -type d | xargs rm -r $1
