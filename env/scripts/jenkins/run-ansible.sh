@@ -1,7 +1,25 @@
 #!/bin/bash
 #set -xve
 
-source ./step-0-color.sh
+#export bold="\033[01m"
+#export underline="\033[04m"
+#export blink="\033[05m"
+
+#export black="\033[30m"
+export red="\033[31m"
+export green="\033[32m"
+#export yellow="\033[33m"
+#export blue="\033[34m"
+#export magenta="\033[35m"
+export cyan="\033[36m"
+#export ltgray="\033[37m"
+
+export NC="\033[0m"
+
+#double_arrow='\xC2\xBB'
+export head_skull='\xE2\x98\xA0'
+export happy_smiley='\xE2\x98\xBA'
+export reverse_exclamation='\u00A1'
 
 if [ -n "${TARGET_SLAVE}" ]; then
   echo -e "${green} TARGET_SLAVE is defined ${happy_smiley} ${NC}"
@@ -29,6 +47,13 @@ if [ -n "${DOCKER_RUN}" ]; then
 else
   echo -e "${red} \u00BB Undefined build parameter ${head_skull} : DOCKER_RUN, use the default one ${NC}"
   export DOCKER_RUN=""
+fi
+
+if [ -n "${ANSIBLE_INVENTORY}" ]; then
+  echo -e "${green} ANSIBLE_INVENTORY is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_INVENTORY, use the default one ${NC}"
+  export ANSIBLE_INVENTORY="staging"
 fi
 
 if [ -n "${ANSIBLE_CMD}" ]; then
@@ -59,6 +84,13 @@ else
   export ANSIBLE_PLAYBOOK_CMD="/usr/local/bin/ansible-playbook"
 fi
 
+if [ -n "${ANSIBLE_LINT_CMD}" ]; then
+  echo -e "${green} ANSIBLE_LINT_CMD is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_LINT_CMD, use the default one ${NC}"
+  export ANSIBLE_LINT_CMD="/usr/local/bin/ansible-lint"
+fi
+
 lsb_release -a
 
 echo -e " ======= Running on ${TARGET_SLAVE} ${reverse_exclamation} ${NC}"
@@ -67,8 +99,6 @@ echo "HOME : $HOME"
 echo "WORKSPACE : $WORKSPACE"
 
 sudo service tomcat8 stop || true
-
-#export ANSIBLE_DEBUG=1
 
 echo -e "${red} Configure workstation ${NC}"
 
@@ -87,7 +117,6 @@ python2.7 --version
 pip --version
 pip2.7 --version
 ${ANSIBLE_CMD} --version
-${ANSIBLE_CMD} --version | grep python
 ${ANSIBLE_GALAXY_CMD} --version
 virtualenv --version
 
@@ -100,17 +129,8 @@ docker version
 #sudo pip2.7 install -r requirements.txt
 #pip2.7 freeze > requirements.txt
 
-#Check winrm in target host
-#winrm id
-#winrm get winrm/config
-#For oler version od Windows, please do
-#Set-Item WSMan:\localhost\Shell\MaxMemoryPerShellMB 5000
-#Set-Item WSMan:\localhost\Plugin\Microsoft.PowerShell\Quotas\MaxMemoryPerShellMB 5000
-#Restart-Service winrm
-#winrm set winrm/config/winrs '@{MaxMemoryPerShellMB="0"}'
-
-if [ -d "${WORKSPACE}/env/scripts/jenkins" ]; then
-  cd "${WORKSPACE}/env/scripts/jenkins"
+if [ -d "${WORKSPACE}/ansible" ]; then
+  cd "${WORKSPACE}/ansible"
 fi
 
 echo -e "${cyan} =========== ${NC}"
@@ -119,6 +139,6 @@ ${ANSIBLE_GALAXY_CMD} install -r requirements.yml -p ./roles/ --ignore-errors --
 
 echo -e "${cyan} =========== ${NC}"
 echo -e "${green} Display setup ${NC}"
-${ANSIBLE_CMD} -m setup ${TARGET_SLAVE} -i staging -vvvv
+${ANSIBLE_CMD} -m setup ${TARGET_SLAVE} -i ${ANSIBLE_INVENTORY} -vvvv
 
 exit 0
