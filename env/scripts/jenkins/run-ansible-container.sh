@@ -1,5 +1,4 @@
 #!/bin/bash
-set -e
 #set -xve
 
 source ./run-ansible.sh
@@ -20,31 +19,12 @@ else
   echo -e "${green} The syntax-check completed successfully. ${NC}"
 fi
 
-if [ -d "${WORKSPACE}/env/scripts/jenkins" ]; then
-  cd "${WORKSPACE}/env/scripts/jenkins"
-fi
+cd "${WORKSPACE}/ansible"
 
 # test ansible
 if [ "${DOCKER_RUN}" == "" ]; then
   echo -e "${red} \u00BB Undefined build parameter ${head_skull} : DOCKER_RUN${NC}"
-  #./setup.sh
-
-  # test ansible
-  ${ANSIBLE_PLAYBOOK_CMD} -i staging ${TARGET_PLAYBOOK} -vvvv --limit ${TARGET_SLAVE} ${DRY_RUN} --become-method=sudo
-  RC=$?
-  if [ ${RC} -ne 0 ]; then
-    echo -e "${red} ${head_skull} Sorry, playboook failed ${NC}"
-    #exit 1
-  else
-    echo -e "${green} playboook first try succeed. ${NC}"
-    ${ANSIBLE_PLAYBOOK_CMD} -i staging ${TARGET_PLAYBOOK} -vvvv --limit ${TARGET_SLAVE} ${DRY_RUN} --become-method=sudo | grep -q 'unreachable=0.*failed=0' && (echo 'Main test: pass' && exit 0) || (echo 'Main test: fail' && exit 1)
-    #./setup.sh
-    #--extra-vars "jenkins_username=${JENKINS_USERNAME} jenkins_password=${JENKINS_PASSWORD}"
-    #./setup.sh | grep -q 'changed=0.*failed=0' && (echo 'Idempotence test: pass' && exit 0) || (echo 'Idempotence test: fail' && exit 1)
-
-    echo -e "${green} Ansible done. $? ${NC}"
-  fi
-
+  ./setup.sh
 else
   ./build.sh
 fi
@@ -71,19 +51,19 @@ echo -e "${green} Ansible server summary done. $? ${NC}"
 
 echo -e "${green} See http://${TARGET_SLAVE}/overview.html ${NC}"
 
-if [ -d "${WORKSPACE}/env/scripts/jenkins" ]; then
-  cd "${WORKSPACE}/env/scripts/jenkins"
-fi
+cd "${WORKSPACE}/bm/Scripts/shell"
 
 echo -e "${cyan} =========== ${NC}"
 shellcheck ./*.sh -f checkstyle > checkstyle-result.xml || true
 echo -e "${green} shell check for shell done. $? ${NC}"
 
 echo -e "${cyan} =========== ${NC}"
+cd "${WORKSPACE}/bm/Scripts/release"
 shellcheck ./*.sh -f checkstyle > checkstyle-result.xml || true
 echo -e "${green} shell check for release done. $? ${NC}"
 
 echo -e "${cyan} =========== ${NC}"
+cd "${WORKSPACE}/bm/Scripts/Python"
 pylint ./**/*.py
 echo -e "${green} pyhton check for shell done. $? ${NC}"
 

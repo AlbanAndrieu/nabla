@@ -66,3 +66,15 @@ npm ls connect
 #Upgrade npm
 #npm install -g npm
 npm install -g npm@5.5.1
+
+#publish to https://www.npmjs.com/
+npm whoami
+#npm adduser --registry=https://www.npmjs.com/
+npm adduser
+#albanandrieu
+npm login
+
+npm config ls
+
+#API : http://npm.nabla.mobi:8080/
+#GUI : https://www.npmjs.com/~albanandrieu

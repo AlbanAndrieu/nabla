@@ -27,3 +27,7 @@ gnome-keyring-daemon &
 /usr/bin/google-chrome
 
 #chrome://flags/#allow-insecure-localhost
+
+#RedHat fix
+#yum install firefox
+yum install mesa-libGLU*.i686 mesa-libGLU*.x86_64

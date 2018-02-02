@@ -91,6 +91,17 @@ vgdisplay -v rhel_fr1cslvcacrhel71
 lvcreate -l 12805 -n workspace rhel_fr1cslvcacrhel71
 lvcreate -l 12805 -n docker rhel_fr1cslvcacrhel71
 
+lvdisplay
+
+sudo mkfs -t ext4 /dev/rhel_fr1cslvcacrhel71/workspace
+sudo mkfs -t ext4 /dev/rhel_fr1cslvcacrhel71/docker
+
+sudo mkdir /workspace
+sudo mount /workspace
+
+sudo mkdir /docker
+sudo mount /docker
+
 # Extends physical volume.
 #extend size of logical volume
 lvextend --resizefs -l +12805 /dev/rhel_fr1cslvcacrhel71/root
@@ -108,18 +119,7 @@ xfs_growfs -d /dev/rhel_fr1cslvcacrhel71/root
 #extend size of filesystem
 #resize2fs /dev/rhel_fr1cslvcacrhel71/root
 
-lvdisplay
-
-sudo mkfs -t ext4 /dev/rhel_fr1cslvcacrhel71/workspace
-sudo mkfs -t ext4 /dev/rhel_fr1cslvcacrhel71/docker
-
-sudo mkdir /workspace
-sudo mount /workspace
-
-sudo mkdir /docker
-sudo mount /docker
-
-#less /etc/fstab
+#nano /etc/fstab
 /dev/rhel_fr1cslvcacrhel71/workspace       /workspace   ext4    defaults        0       2
 /dev/rhel_fr1cslvcacrhel71/docker       /docker   ext4    defaults        0       2
 

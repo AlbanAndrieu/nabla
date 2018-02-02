@@ -1,4 +1,8 @@
 
+pkg update && pkg upgrade
+portsnap fetch update
+#You must run 'portsnap extract' before running 'portsnap update'.
+
 #Install Jenkins
 #https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+inside+a+FreeNAS+jail
 
@@ -182,6 +186,21 @@ pkg install firefox
 pkg install chromium
 pkg install hs-ShellCheck
 pkg install lsof
+
+pkg install perl5
+pkg install p5-Locale-libintl
+pkg install p5-Locale-gettext
+
+portsnap fetch update
+
+pkg upgrade ruby23
+pkg install ruby23
+
+#pkg install ruby23
+cd /usr/ports/lang/phantomjs/
+#make install clean
+make DISABLE_VULNERABILITIES=yes install clean > test.log
+make reinstall
 
 #https://wiki.freebsd.org/Docker
 #pkg install docker
