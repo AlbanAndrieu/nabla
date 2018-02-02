@@ -73,5 +73,9 @@ lsvirtualenv
 
 #color
 sudo pip2.7 install ansicolors termcolor colorama
-pip freeze > requirements.txt
-pip install -r requirements.txt
+pip2.7 freeze > requirements.txt
+sudo pip2.7 install -r requirements.txt
+#sudo pip3.5 install -r requirements.txt
+sudo pip3 install -r requirements.txt
+
+#pip uninstall docker docker-py docker-compose
