@@ -15,6 +15,7 @@ hwclock --show
 systemclt status ntpd.service
 systemctl status chronyd
 systemctl stop chronyd
+systemctl disable chronyd
 #systemctl enable dhcpd.service
 #systemctl enable named.service
 systemctl enable ntpd.service
