@@ -50,6 +50,31 @@ node-gyp rebuild
 #as root
 npm cache clean -f
 npm install -g n
-n stable
+#n stable
+n 8.9.4
 node -v
 /usr/local/bin/node -v
+
+#update clean up npm repo
+#sudo chown -R albandri:albandri  ~/.npm
+npm cache clear
+#update npm
+npm update
+
+#show which dependencies is using connect
+npm ls connect
+#Upgrade npm
+#npm install -g npm
+npm install -g npm@5.5.1
+
+#publish to https://www.npmjs.com/
+npm whoami
+#npm adduser --registry=https://www.npmjs.com/
+npm adduser
+#albanandrieu
+npm login
+
+npm config ls
+
+#API : http://npm.nabla.mobi:8080/
+#GUI : https://www.npmjs.com/~albanandrieu

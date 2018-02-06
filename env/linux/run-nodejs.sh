@@ -175,17 +175,6 @@ npm test : start the Karma unit test runner
 npm run protractor : run the Protractor end 2 end tests
 npm run update-webdriver : install the drivers needed by Protractor
 
-#update clean up npm repo
-sudo chown -R albandri:albandri  ~/.npm
-npm cache clear
-#update npm
-npm update
-
-#show which dependencies is using connect
-npm ls connect
-#Upgrade npm
-npm install -g npm
-
 #Install private bower
 #https://github.com/Hacklone/private-bower/blob/master/README.md
 npm install -g private-bower
