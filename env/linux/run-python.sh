@@ -63,3 +63,15 @@ pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip instal
 
 #Issue pycurl: libcurl link-time ssl backend (nss) is different from compile-time ssl backend (none/other)
 pip install --no-cache-dir --compile --ignore-installed --install-option="--with-nss" pycurl
+
+#virtualenv
+mkvirtualenv py27 -p /usr/bin/python2.7
+mkvirtualenv py36 -p /usr/bin/python3.6
+workon py36
+
+lsvirtualenv
+
+#color
+sudo pip2.7 install ansicolors termcolor colorama
+pip freeze > requirements.txt
+pip install -r requirements.txt

@@ -6706,7 +6706,7 @@
 					<groupId>com.github.eirslett</groupId>
 					<artifactId>frontend-maven-plugin</artifactId>
 					<version>${maven.frontend.plugin.version}</version>
-					<!-- 
+					<!--
 					<configuration>
 						<nodeVersion>v${node.version}</nodeVersion>
 						<npmVersion>${npm.version}</npmVersion>
@@ -8192,7 +8192,10 @@
 						<skipRuntimeScope>true</skipRuntimeScope>
 						<skipSystemScope>true</skipSystemScope>
 						<assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
+                        <centralAnalyzerEnabled>false</centralAnalyzerEnabled>
+                        <nexusAnalyzerEnabled>false</nexusAnalyzerEnabled>
 						<!--
+						<nexusUrl>http://home.nabla.mobi:8085/nexus</nexusUrl>
 						<cveUrl12Modified>http://home.nabla.mobi/download/nist/nvdcve-Modified.xml.gz</cveUrl12Modified>
 						<cveUrl20Modified>http://home.nabla.mobi/download/nist/nvdcve-2.0-Modified.xml.gz</cveUrl20Modified>
 						<cveUrl12Base>http://home.nabla.mobi/download/nist/nvdcve-%d.xml</cveUrl12Base>
