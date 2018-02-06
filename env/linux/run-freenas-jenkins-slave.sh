@@ -65,7 +65,7 @@ ssh-rsa KEY jenkins@freenas.local
 ssh-rsa KEY jenkins@albandri
 
 #freenas
-ssh jenkins@192.168.0.46
+ssh -X jenkins@192.168.0.46
 ssh-keyscan -t rsa 192.168.0.29 >> /mnt/dpool/jenkins/.ssh/known_hosts
 #in the jail
 ssh-keyscan -t rsa 192.168.0.29 >> ~/.ssh/known_hosts
@@ -228,3 +228,7 @@ pkg install devel/ruby-gems
 ssh -i OpenSSH_RSA_4096 albandri@freenas
 
 #http://doc.freenas.org/index.php/Plugins
+
+#firefox fix
+dbus-uuidgen > /var/lib/dbus/machine-id
+#TODO pkg install libcanberra libcanberra-gtk3

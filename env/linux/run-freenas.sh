@@ -281,13 +281,23 @@ ls /usr/local/bin/ssh-askpass
 pkg install xorg-vfbserver
 #/usr/local/bin/Xvfb
 
+#See https://www.freebsd.org/doc/handbook/desktop-browsers.html
 pkg install firefox
+#pkg install firefox-esr
+pkg install chromium
 
 npm install -g bower
 npm install -g nsp
 #npm install -g phantomjs-prebuilt
+#npm i phantom@4.0.5 -g
+npm search phantomjs
 
 pkg install phantomjs
+cd /usr/ports/lang/phantomjs/ && make install clean
+
+pkg info phantomjs
+ls -lrta /usr/local/bin/phantomjs
+#ls -lrta /usr/local/lib/node_modules/
 
 #pkg install libass
 #pkg install ffmpeg
@@ -550,3 +560,4 @@ admin
 echo "https://192.168.0.26:10000"
 echo "https://192.168.0.28:10000"
 echo "https://192.168.0.23:10000"
+echo "https://192.168.0.25:10000/"
