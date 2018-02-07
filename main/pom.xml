@@ -1761,8 +1761,8 @@
 						</configuration>
 						-->
 					</plugin>
-					<!-- Automatically attach sources to build artifact as artifact-version-sources.jar
-                                                and deploy to local repository -->
+					<!-- Automatically attach sources to build artifact as artifact-version-sources.jar and deploy to local repository -->
+					<!-- Do not work on freenas
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-source-plugin</artifactId>
@@ -1772,9 +1772,7 @@
 								<id>bundle-sources</id>
 								<phase>package</phase>
 								<goals>
-									<!-- produce source artifact for main project sources -->
 									<goal>jar</goal>
-									<!-- produce source artifact for project test sources -->
 									<goal>test-jar</goal>
 								</goals>
 							</execution>
@@ -1794,6 +1792,7 @@
 							</archive>
 						</configuration>
 					</plugin>
+					-->
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-javadoc-plugin</artifactId>

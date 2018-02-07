@@ -66,6 +66,5 @@ sudo motion
 #todo 8081 TO 8082 AND 8080 TO 8083
 echo "http://localhost:8082 http://localhost:8083"
 
-
 sudo apt-get install wput
 #on_picture_save wput ftp://user@password@server %f
