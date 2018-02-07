@@ -69,7 +69,7 @@ ssh-rsa KEY jenkins@freenas.local
 ssh-rsa KEY jenkins@albandri
 
 #freenas
-ssh jenkins@192.168.0.46
+ssh -X jenkins@192.168.0.46
 ssh-keyscan -t rsa 192.168.0.29 >> /mnt/dpool/jenkins/.ssh/known_hosts
 #in the jail
 ssh-keyscan -t rsa 192.168.0.29 >> ~/.ssh/known_hosts
@@ -199,7 +199,8 @@ pkg install ruby23
 #pkg install ruby23
 cd /usr/ports/lang/phantomjs/
 #make install clean
-make DISABLE_VULNERABILITIES=yes install clean > test.log
+#make ALLOW_UNSUPPORTED_SYSTEM=true DISABLE_VULNERABILITIES=yes install clean > test.log
+make ALLOW_UNSUPPORTED_SYSTEM=true clean install > test.log
 make reinstall
 
 #https://wiki.freebsd.org/Docker
@@ -247,3 +248,7 @@ pkg install devel/ruby-gems
 ssh -i OpenSSH_RSA_4096 albandri@freenas
 
 #http://doc.freenas.org/index.php/Plugins
+
+#firefox fix
+dbus-uuidgen > /var/lib/dbus/machine-id
+#TODO pkg install libcanberra libcanberra-gtk3

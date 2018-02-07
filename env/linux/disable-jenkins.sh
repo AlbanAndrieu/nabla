@@ -1,15 +1,10 @@
 #!/bin/bash
 set -xv
 
-sudo service --status-all
-
-#sudo apt-get install rcconf
-sudo rcconf
-
 #slow boot
 #sudo systemd-analyze
 
-sudo service webmin stop
+#sudo service webmin stop
 sudo service usermin stop
 sudo service jetty stop
 #sudo service jenkins stop
@@ -64,7 +59,6 @@ sudo service clamav-daemon stop
 sudo service clamav-freshclam stop
 sudo service crowd stop
 sudo service xrdp stop
-sudo service webmin stop
 #udiskd ok
 sudo service libvirt-bin stop
 #sudo apt-get remove qemu-kvm libvirt-bin
@@ -159,8 +153,13 @@ sudo update-rc.d -f cfengine3 remove
 #sudo update-rc.d -f clamav-daemon remove
 sudo update-rc.d -f crowd remove
 sudo update-rc.d -f xrdp remove
-sudo update-rc.d -f webmin remove
+#sudo update-rc.d -f webmin remove
 
 #sudo apt-get purge nginx postgresql clonezilla varnish phpmyadmin postgresql elasticsearch cups bluetooth
+
+#sudo service --status-all
+
+#sudo apt-get install rcconf
+#sudo rcconf
 
 exit 0

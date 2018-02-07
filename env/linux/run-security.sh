@@ -1,12 +1,19 @@
 #!/bin/bash
 set -xv
 
-#TODO disable webcam
-#https://askubuntu.com/questions/528422/enabling-disabling-camera-from-terminal
-#sudo modprobe -r uvcvideo
-#sudo modprobe -r videodev
-#AND Maybe http://ubuntuforums.org/showthread.php?t=1340168
-#sudo aptitude remove gvfs -P
+#sudo apt-get install linux-firmware
 
 #TODO disable wifi
+dmesg | grep iwl
+rfkill list all
+modinfo iwlwifi
+grep [[:alnum:]] /sys/module/iwlwifi/parameters/*; lshw -c net
 #firmware-iwlwifi
+sudo rfkill block wifi
+sudo rfkill block bluetooth
+
+sudo systemctl is-enabled bluetooth
+sudo systemctl disable bluetooth
+
+sudo nano /etc/default/tlp
+#DEVICES_TO_DISABLE_ON_STARTUP="bluetooth wifi wwan"
