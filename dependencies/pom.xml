@@ -712,7 +712,7 @@
 		<!--<maven.site.plugin.version>${maven.site.old.plugin.version}</maven.site.plugin.version>-->
 		<!--<maven.site.plugin.version>3.5.1</maven.site.plugin.version> TODO issue-->
 		<maven.site.plugin.version>3.7</maven.site.plugin.version>
-		<maven.sonar.plugin.version>3.3.0.603</maven.sonar.plugin.version>
+		<maven.sonar.plugin.version>3.4.0.905</maven.sonar.plugin.version>
 		<maven.sonar.report.plugin.version>2.2.1</maven.sonar.report.plugin.version>
 		<maven.sortpom.google.plugin.version>2.3.1</maven.sortpom.google.plugin.version>
 		<maven.sortpom.plugin.version>2.8.0</maven.sortpom.plugin.version>
@@ -950,8 +950,10 @@
 		<!-- see http://repo1.maven.org/maven2/org/slf4j/slf4j-parent/1.7.16/slf4j-parent-1.7.16.pom for compliance with log4j and logback version -->
 		<slf4j.version>1.7.16</slf4j.version>
 		<!-- -Dsonar.scm.enabled=false -Dsonar.scm-stats.enabled=false -Dissueassignplugin.enabeld=false -Dsonar.pitest.mode=skip -Dsonar.scm.user.secured=false -->
+		<!--
 		<sonar.branch.name>branch-develop</sonar.branch.name>
 		<sonar.branch.target>master</sonar.branch.target>
+		-->
 		<sonar.build-stability.password.secured>admin</sonar.build-stability.password.secured>
 		<sonar.build-stability.url>Jenkins:$BUILD_URL/..</sonar.build-stability.url>
 		<sonar.build-stability.username.secured>microsoft</sonar.build-stability.username.secured>
@@ -8193,8 +8195,8 @@
 						<skipRuntimeScope>true</skipRuntimeScope>
 						<skipSystemScope>true</skipSystemScope>
 						<assemblyAnalyzerEnabled>false</assemblyAnalyzerEnabled>
-                        <centralAnalyzerEnabled>false</centralAnalyzerEnabled>
-                        <nexusAnalyzerEnabled>false</nexusAnalyzerEnabled>
+						<centralAnalyzerEnabled>false</centralAnalyzerEnabled>
+						<nexusAnalyzerEnabled>false</nexusAnalyzerEnabled>
 						<!--
 						<nexusUrl>http://home.nabla.mobi:8085/nexus</nexusUrl>
 						<cveUrl12Modified>http://home.nabla.mobi/download/nist/nvdcve-Modified.xml.gz</cveUrl12Modified>
