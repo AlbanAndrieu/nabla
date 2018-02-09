@@ -42,6 +42,8 @@ rm /root/Python-2.7.3
 # python3 -V
 
 #virtualenv py3-ansible -p /usr/local/bin/python3.6
+sudo virtualenv /opt/ansible/env36 -p /usr/bin/python3.6
+source /opt/ansible/env36/bin/activate
 
 #alternatives --list | grep -i python
 
@@ -55,6 +57,9 @@ rm /root/Python-2.7.3
 #python3 /usr/bin/ansible localhost -m ping
 
 #update-alternatives --config python
+
+#Issue AttributeError: 'module' object has no attribute 'PROTOCOL_SSLv3
+sudo easy_install --upgrade pip
 
 #Show outdated pip package
 pip list --outdated --format=freeze
@@ -73,9 +78,31 @@ lsvirtualenv
 
 #color
 sudo pip2.7 install ansicolors termcolor colorama
-pip2.7 freeze > requirements.txt
+sudo pip2.7 freeze > requirements-current-2.7.txt
 sudo pip2.7 install -r requirements.txt
-#sudo pip3.5 install -r requirements.txt
-sudo pip3 install -r requirements.txt
+
+sudo pip3.6 install ansicolors termcolor colorama
+sudo pip3.6 freeze > requirements-current-3.6.txt
+sudo pip3.6 install -r requirements-current-3.6.txt
 
 #pip uninstall docker docker-py docker-compose
+
+#Ubuntu 16 is missing pip3.6
+curl https://bootstrap.pypa.io/get-pip.py | sudo python3.6
+(pip -V && pip3 -V && pip3.6 -V) | uniq
+
+#Install docker-compose
+
+sudo pip2.7 uninstall docker
+sudo pip2.7 uninstall docker-py
+sudo pip2.7 uninstall docker-compose
+sudo pip2.7 install docker-compose==1.9.0
+
+docker-compose --version
+
+sudo pip3.6 uninstall docker
+sudo pip3.6 uninstall docker-py
+sudo pip3.6 uninstall docker-compose
+sudo pip3.6 install docker-compose==1.9.0
+
+docker-compose --version
