@@ -950,7 +950,7 @@
 		<!-- see http://repo1.maven.org/maven2/org/slf4j/slf4j-parent/1.7.16/slf4j-parent-1.7.16.pom for compliance with log4j and logback version -->
 		<slf4j.version>1.7.16</slf4j.version>
 		<!-- -Dsonar.scm.enabled=false -Dsonar.scm-stats.enabled=false -Dissueassignplugin.enabeld=false -Dsonar.pitest.mode=skip -Dsonar.scm.user.secured=false -->
-		<sonar.branch.name>develop</sonar.branch.name>
+		<sonar.branch.name>branch-develop</sonar.branch.name>
 		<sonar.branch.target>master</sonar.branch.target>
 		<sonar.build-stability.password.secured>admin</sonar.build-stability.password.secured>
 		<sonar.build-stability.url>Jenkins:$BUILD_URL/..</sonar.build-stability.url>
