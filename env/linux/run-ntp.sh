@@ -12,7 +12,7 @@ hwclock --show
 
 #On RHEL7 issue conficts between chronyd and ntpd
 #systemctl list-unit-files | grep ntpd
-systemclt status ntpd.service
+systemctl status ntpd.service
 systemctl status chronyd
 systemctl stop chronyd
 systemctl disable chronyd

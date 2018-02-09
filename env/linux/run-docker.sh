@@ -181,6 +181,8 @@ vagrant ssh
 #sudo docker pull dockerfile/ansible
 sudo docker pull nabla/ansible-jenkins-slave-docker
 
+docker run --rm nabla/ansible-jenkins-slave-docker curl http://home.nabla.mobi/html/download/README.html
+
 sudo docker run -i -t nabla/ansible-jenkins-slave-docker /bin/bash
 #do you stuff
 docker commit 44f8471b6047 jenkins-1
