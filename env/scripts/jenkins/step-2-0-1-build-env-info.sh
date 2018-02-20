@@ -1,5 +1,6 @@
 #!/bin/bash
 #set -xv
+
 #=========================================
 
 echo -e "========== OS =========="
@@ -11,6 +12,16 @@ if [ "$(uname -s)" != "Darwin" ]; then
 fi
 echo -e "========== OSTYPE =========="
 echo "OSTYPE : ${OSTYPE}"
+case "$OSTYPE" in
+  linux*)   echo "LINUX" ;;
+  darwin*)  echo "OSX" ;;
+  win*)     echo "Windows" ;;
+  cygwin*)  echo "Cygwin" ;;
+  msys*)    echo "MSYS" ;;
+  bsd*)     echo "BSD" ;;
+  solaris*) echo "SOLARIS" ;;
+  *)        echo "unknown: $OSTYPE" ;;
+esac
 echo -e "========== RELEASE =========="
 if [ "$(uname -s)" == "SunOS" ]; then
   #/usr/sbin/psrinfo -v 2>&1
@@ -47,7 +58,6 @@ elif [ "$(uname -s)" == "Darwin" ]; then
   xcodebuild -version 2>&1 || true
   port version 2>&1 || true
 elif [ "$(uname -s)" == "Linux" ]; then
-#elif [ "$(uname -s | cut -c 1-5)" == "Linux" ]; then
   gcc --version 2>&1 || true
   #cpp version
   clang --version  2>&1 || true

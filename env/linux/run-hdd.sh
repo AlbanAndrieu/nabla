@@ -60,6 +60,11 @@ df -Th /root
 partprobe -s
 #partx -v -a /dev/sda
 
+#Add more disk space to VM
+#First add another HDD in cloud, it will be visible in VM as sdb
+#init disk for use by LVM
+pvcreate /dev/sdb
+
 ls -1d /sys/class/scsi_device/*/device/block/*
 #bash -c 'echo "1" > /sys/class/scsi_disk/2\:0\:2\:0/device/rescan'
 echo 1>/sys/class/block/sdb/device/rescan
@@ -67,11 +72,6 @@ echo 1>/sys/class/block/sdb/device/rescan
 #echo 1>/sys/class/scsi_device/0\:0\:0\:0/device/block/sda/device/rescan
 
 pvresize /dev/sdb
-
-#Add more disk space to VM
-#First add another HDD in cloud, it will be visible in VM as sdb
-#init disk for use by LVM
-pvcreate /dev/sdb
 
 #display atributes of disk
 pvdisplay

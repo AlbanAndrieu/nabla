@@ -1,14 +1,11 @@
 #!/bin/bash
 #set -xve
 
-export TARGET_PLAYBOOK=docker-container.yml
-#export TARGET_SLAVE=albandri.misys.global.ad
-export TARGET_SLAVE=FR1CSLFRBM0019.misys.global.ad
+if [ -d "${WORKSPACE}/ansible" ]; then
+  cd "${WORKSPACE}/ansible"
+fi
 
 source ./run-ansible.sh
-
-# check quality
-#ansible-lint ${TARGET_PLAYBOOK}
 
 # check syntax
 echo -e "${cyan} =========== ${NC}"
@@ -23,25 +20,22 @@ else
   echo -e "${green} The syntax-check completed successfully. ${NC}"
 fi
 
-if [ -d "${WORKSPACE}/ansible" ]; then
-  cd "${WORKSPACE}/ansible"
-fi
-
 # check quality
 #${ANSIBLE_LINT_CMD} ${TARGET_PLAYBOOK}
 
 # check syntax
 #${ANSIBLE_PLAYBOOK_CMD} -i ${ANSIBLE_INVENTORY} -c local -v ${TARGET_PLAYBOOK} --limit ${TARGET_SLAVE} -vvvv --syntax-check
 
-# test ansible
+echo -e "${cyan} =========== ${NC}"
+echo -e "${green} Starting the playbook. ${NC}"
 # --ask-sudo-pass
-${ANSIBLE_PLAYBOOK_CMD} -i ${ANSIBLE_INVENTORY} -c local -v ${TARGET_PLAYBOOK} --limit ${TARGET_SLAVE} --become-method=sudo -vvvv -e 'ansible_python_interpreter=/usr/bin/python3'
+# -e 'ansible_python_interpreter=/usr/bin/python3'
+${ANSIBLE_PLAYBOOK_CMD} -i ${ANSIBLE_INVENTORY} -c local -v ${TARGET_PLAYBOOK} --limit ${TARGET_SLAVE} --become-method=sudo -vvvv
 
 #deactivate
 
 #sleep 20m
 
 docker ps
-
 
 exit 0

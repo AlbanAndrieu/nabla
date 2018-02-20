@@ -1,6 +1,10 @@
 #!/bin/bash
 #set -xve
 
+if [ -d "${WORKSPACE}/ansible" ]; then
+  cd "${WORKSPACE}/ansible"
+fi
+
 source ./run-ansible.sh
 
 # check quality
@@ -19,11 +23,8 @@ else
   echo -e "${green} The syntax-check completed successfully. ${NC}"
 fi
 
-if [ -d "${WORKSPACE}/ansible" ]; then
-  cd "${WORKSPACE}/ansible"
-fi
-
-# test ansible
+echo -e "${cyan} =========== ${NC}"
+echo -e "${green} Starting the playbook. ${NC}"
 if [ "${DOCKER_RUN}" == "" ]; then
   echo -e "${red} \u00BB Undefined build parameter ${head_skull} : DOCKER_RUN${NC}"
   ./setup.sh

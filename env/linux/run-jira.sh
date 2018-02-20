@@ -9,3 +9,5 @@ sudo apt-get update
 sudo apt-get install atlassian-plugin-sdk
 
 atlas-version
+
+curl -k -u USERNAME -H "Content-type: application/json" -H "Accept: application/json" -X GET https://jira.nabla.mobi/jira/rest/api/2/serverInfo
