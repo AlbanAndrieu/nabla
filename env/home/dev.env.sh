@@ -251,10 +251,10 @@ export CMAKE_HOME=/usr/share/cmake-2.6.4
 export CMAKE_ROOT=${CMAKE_HOME}
 
 # PYTHON 27
-export PYTHON_DIR=/usr/lib/python
+#export PYTHON_DIR=/usr/lib/python
 
 # ALIAS to python
-alias python='/usr/bin/python'
+#alias python='/usr/bin/python'
 
 # SCONS 2.2.0
 #export SCONS_DIR=${PYTHON_DIR}/Lib/site-packages/scons-2.2.0
@@ -562,12 +562,26 @@ else
   export GRAPHVIZ_HOME=/usr/share/graphviz/
 fi
 
+# ORACLE CLIENT
+export ORACLE_CLIENT_HOME=/usr/lib/oracle/12.2/client64
+#export ORACLE_CLIENT_HOME=/opt/oracle/instantclient_12_2/
+export TNS_ADMIN=/opt/oracle/instantclient_12_2/
+export LD_LIBRARY_PATH=${ORACLE_CLIENT_HOME}/lib:$LD_LIBRARY_PATH
+export PATH=${ORACLE_CLIENT_HOME}/bin:$PATH
+
+export LD_LIBRARY_PATH=/opt/oracle/instantclient_12_2:$LD_LIBRARY_PATH
+export PATH=/opt/oracle/instantclient_12_2:$PATH
+
 # TIBCO
 TIBRV_VERSION=8.4
 export TIBCO_HOME=${DRIVE_PATH}/home/albandri/tibco
 export TIBRV_HOME=${DRIVE_PATH}/home/albandri/tibco/tibrv/${TIBRV_VERSION}
 export PATH=${TIBRV_HOME}/bin:${PATH}
 export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}:${TIBRV_HOME}/lib
+
+# DOCKER
+export DOCKER_CLIENT_TIMEOUT=240
+export COMPOSE_HTTP_TIMEOUT=2000
 
 # WINDOWS
 if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]

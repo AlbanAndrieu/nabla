@@ -78,4 +78,11 @@ docker pull store/oracle/database-instantclient:12.2.0.1
 #See https://store.docker.com/profiles/nabla/content/sub-2569546c-bd90-4101-872c-1a21cfdcd2a6
 docker pull store/oracle/database-enterprise:12.2.0.1
 
+docker run --name database-enterprise -p 1521:1521 -p 5500:5500 -v /opt/oracle/scripts/startup store/oracle/database-enterprise:12.0.1
+
+docker exec -ti database-enterprise /bin/bash
+
+#connect
+/opt/oracle/instantclient_12_2/sqlplus sys/Oradoc_db1@//localhost:1521/ORCLCDB.localdomain as sysdba
+
 exit 0

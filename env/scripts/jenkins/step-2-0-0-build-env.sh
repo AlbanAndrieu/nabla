@@ -113,6 +113,7 @@ if [ "$(uname -s)" == "SunOS" ]; then
   fi
   export PATH
 elif [ "$(uname -s)" == "Linux" ]; then
+  #For RedHat add /usr/sbin
   PATH=${PATH}:/usr/sbin;
   export PATH
 fi
@@ -156,10 +157,19 @@ else
   elif [ "$(uname -s)" == "Linux" ]; then
     case $(uname -m) in
     x86_64)
-        ARCH=x64linux  # or AMD64 or Intel64 or whatever
+        ARCH=linux  # or AMD64 or Intel64 or whatever
         ;;
     i*86)
-        ARCH=x86linux  # or IA32 or Intel32 or whatever
+        ARCH=x86Linux  # or IA32 or Intel32 or whatever
+        ;;
+    *)
+        # leave ARCH as-is
+        ;;
+    esac
+  elif [ "$(uname -s)" == "FreeBSD" ]; then
+    case $(uname -m) in
+    amd64)
+        ARCH=freebsd  # or AMD64 or Intel64 or whatever
         ;;
     *)
         # leave ARCH as-is
@@ -171,19 +181,44 @@ else
   export ARCH
 fi
 
-if [ -n "${TARGET_LINUX}" ]; then
-  echo -e "${green} TARGET_LINUX is defined ${happy_smiley} : ${TARGET_LINUX} ${NC}"
+if [ -n "${CC}" ]; then
+  echo -e "${green} CC is defined ${happy_smiley} : ${CC} ${NC}"
 else
-  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_LINUX, use default one ${NC}"
-  export TARGET_LINUX="RH5"
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : CC, use default one ${NC}"
+  if [ -n "${ENABLE_CLANG}" ]; then
+    echo -e "${green} ENABLE_CLANG is defined ${happy_smiley} ${NC}"
+    export CC="/usr/bin/clang"
+  else
+    echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : ENABLE_CLANG, use default one ${NC}"
+    if [ "$(uname -s)" == "SunOS" ]; then
+      export CC="cc"
+    elif [ "$(uname -s)" == "Linux" ]; then
+      export CC="/usr/bin/gcc-6"
+    else
+      export CC="/usr/bin/gcc"
+    fi
+  fi
 fi
 
-if [ -n "${KPLUS_VERSION}" ]; then
-  echo -e "${green} KPLUS_VERSION is defined ${happy_smiley} : ${KPLUS_VERSION} ${NC}"
+if [ -n "${CXX}" ]; then
+  echo -e "${green} COMPILER is defined ${happy_smiley} : ${CXX} ${NC}"
 else
-  echo -e "${yellow} Override KPLUS_VERSION upon you choice ${NC}"
-  #echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : KPLUS_VERSION, use default one ${NC}"
-  #export KPLUS_VERSION="P1"
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : CXX, use default one ${NC}"
+  if [ -n "${ENABLE_CLANG}" ]; then
+    echo -e "${green} ENABLE_CLANG is defined ${happy_smiley} ${NC}"
+    export CXX="/usr/bin/clang++"
+    export COMPILER=${CXX}
+  else
+    echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : ENABLE_CLANG, use default one ${NC}"
+    if [ "$(uname -s)" == "SunOS" ]; then
+      export CXX="CC"
+    elif [ "$(uname -s)" == "Linux" ]; then
+      export CXX="/usr/bin/g++-6"
+    else
+      export CXX="/usr/bin/g++"
+    fi
+    export COMPILER=${CXX}
+  fi
 fi
 
 if [ -n "${BITS}" ]; then
@@ -206,15 +241,9 @@ else
 fi
 
 if [ -n "${COMPILER}" ]; then
-  echo -e "${green} COMPILER is defined ${happy_smiley} : ${COMPILER} ${NC}"
+  echo -e "${green} COMPILER is defined ${happy_smiley} : ${COMPILER} ${CC} ${CXX} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : COMPILER, use default one ${NC}"
-  if [ "$(uname -s)" == "SunOS" ]; then
-    COMPILER="CC"
-  else
-    COMPILER="gcc"
-  fi
-  export COMPILER
 fi
 
 if [ -n "${ANSIBLE_CMD}" ]; then
@@ -245,6 +274,51 @@ else
   export ANSIBLE_PLAYBOOK_CMD="/usr/local/bin/ansible-playbook"
 fi
 
+if [ -n "${SONAR_PROCESSOR}" ]; then
+  echo -e "${green} SONAR_PROCESSOR is defined ${happy_smiley} : ${SONAR_PROCESSOR} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : SONAR_PROCESSOR, use default one ${NC}"
+  SONAR_PROCESSOR=$(uname -m | sed -r 's/_+/-/g')
+  if [ "$(uname -s)" == "Linux" ]; then
+    case $(uname -m) in
+    x86_64)
+        SONAR_PROCESSOR=x86-64  # or AMD64 or Intel64 or whatever
+        ;;
+    i*86)
+        SONAR_PROCESSOR=x86-32  # or IA32 or Intel32 or whatever
+        ;;
+    *)
+        # leave ARCH as-is
+        ;;
+    esac
+  fi
+  export SONAR_PROCESSOR
+fi
+
+if [ -n "${SONAR_CMD}" ]; then
+  echo -e "${green} SONAR_CMD is defined ${happy_smiley} : ${SONAR_CMD} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : SONAR_CMD, use default one ${NC}"
+  echo -e "${magenta} ${double_arrow} ${HOME}/build-wrapper-linux-x86/build-wrapper-linux-${SONAR_PROCESSOR} ? ${NC}"
+  if [ -f "${HOME}/build-wrapper-linux-x86/build-wrapper-linux-${SONAR_PROCESSOR}" ]; then
+    SONAR_CMD="${HOME}/build-wrapper-linux-x86/build-wrapper-linux-${SONAR_PROCESSOR} --out-dir ${WORKSPACE}/bw-outputs/"
+  fi
+  export SONAR_CMD
+  echo -e "${cyan} ${double_arrow} ${SONAR_CMD} ${NC}"
+fi
+
+if [ -n "${MAKE}" ]; then
+  echo -e "${green} MAKE is defined ${happy_smiley} : ${MAKE} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : MAKE, use default one ${NC}"
+  if [ "$(uname -s)" == "Linux" ]; then
+    MAKE="colormake"
+  else
+    MAKE="make"
+  fi
+  export MAKE
+fi
+
 if [ -n "${SCONS}" ]; then
   echo -e "${green} SCONS is defined ${happy_smiley} : ${SCONS} ${NC}"
 else
@@ -254,7 +328,7 @@ else
   elif [ "$(uname -s)" == "Darwin" ]; then
     SCONS="/usr/local/bin/scons"
   else
-    SCONS="/usr/bin/scons"
+    SCONS="/usr/bin/python2.7 /usr/bin/scons"
   fi
   export SCONS
 fi
@@ -300,7 +374,7 @@ if [ -n "${SONAR_BRANCH}" -o "${SONAR_BRANCH}" == "null" ]; then
   echo -e "${green} SONAR_BRANCH is defined ${happy_smiley} : ${SONAR_BRANCH} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : SONAR_BRANCH, use the default one ${NC}"
-  SONAR_BRANCH="develop"
+  SONAR_BRANCH="master"
   export SONAR_BRANCH
 fi
 
@@ -537,11 +611,32 @@ else
   export TARGET_USER="jenkins"
 fi
 
+if [ -n "${TARGET_SERVER}" ]; then
+  echo -e "${green} TARGET_SERVER is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_SERVER, use the default one ${NC}"
+  export TARGET_SERVER=nabla.freeboxos.fr
+fi
+
+if [ -n "${TARGET_PORT}" ]; then
+  echo -e "${green} TARGET_PORT is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_PORT, use the default one ${NC}"
+  export TARGET_PORT=8280
+fi
+
+if [ -n "${TARGET_URL}" ]; then
+  echo -e "${green} TARGET_URL is defined ${happy_smiley} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_URL, use the default one ${NC}"
+  export TARGET_URL="visma/"
+fi
+
 if [ -n "${SERVER_HOST}" ]; then
   echo -e "${green} SERVER_HOST is defined ${happy_smiley} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : SERVER_HOST, use the default one ${NC}"
-  SERVER_HOST="kgrdb01"
+  SERVER_HOST="albandri"
   export SERVER_HOST
 fi
 

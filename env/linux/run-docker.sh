@@ -234,7 +234,7 @@ docker pull server:5000/nabla/jdk8
 docker pull server:5000/nabla/oracle
 docker pull server:5000/nabla/sybase
 docker pull server:5000/nabla/nabla
-docker exec –ti /bin/bash
+docker exec containername –ti /bin/bash
 
 #http://developerblog.redhat.com/2014/09/30/overview-storage-scalability-docker/
 

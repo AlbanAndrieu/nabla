@@ -54,6 +54,9 @@ ldd -u -r target/bin/x86Linux/run_app
 #nm --demangle --dynamic --defined-only --extern-only target/lib/x86Linux/debug64/shared/libmain_library.so
 readelf -d target/bin/x86Linux/run_app |head -20
 
+#sudo yum update glibc
+ldd --version
+
 apt-cache policy libcppunit-dev
 
 ecit 0
