@@ -10,7 +10,8 @@ source ./run-ansible.sh
 # check syntax
 echo -e "${cyan} =========== ${NC}"
 echo -e "${green} Starting the syntax-check. ${NC}"
-${ANSIBLE_PLAYBOOK_CMD} -i ${ANSIBLE_INVENTORY} -c local -v ${TARGET_PLAYBOOK} --limit ${TARGET_SLAVE} ${DRY_RUN} -vvvv --syntax-check --become-method=sudo
+echo -e "${magenta} ${ANSIBLE_PLAYBOOK_CMD} -i ${ANSIBLE_INVENTORY} -c local -v ${TARGET_PLAYBOOK} --limit ${TARGET_SLAVE} ${DRY_RUN} -vvvv --syntax-check --become-method=sudo ${NC}"
+${ANSIBLE_PLAYBOOK_CMD} -i ${ANSIBLE_INVENTORY} -v ${TARGET_PLAYBOOK} --limit ${TARGET_SLAVE} ${DRY_RUN} -vvvv --syntax-check --become-method=sudo
 RC=$?
 if [ ${RC} -ne 0 ]; then
   echo ""
@@ -29,8 +30,8 @@ fi
 echo -e "${cyan} =========== ${NC}"
 echo -e "${green} Starting the playbook. ${NC}"
 # --ask-sudo-pass
-# -e 'ansible_python_interpreter=/usr/bin/python3'
-${ANSIBLE_PLAYBOOK_CMD} -i ${ANSIBLE_INVENTORY} -c local -v ${TARGET_PLAYBOOK} --limit ${TARGET_SLAVE} --become-method=sudo -vvvv
+echo -e "${magenta} ${ANSIBLE_PLAYBOOK_CMD} -i ${ANSIBLE_INVENTORY} -c local -v ${TARGET_PLAYBOOK} --limit ${TARGET_SLAVE} --become-method=sudo -vvvv ${NC}"
+${ANSIBLE_PLAYBOOK_CMD} -i ${ANSIBLE_INVENTORY} -v ${TARGET_PLAYBOOK} --limit ${TARGET_SLAVE} --become-method=sudo -vvvv
 
 #deactivate
 
