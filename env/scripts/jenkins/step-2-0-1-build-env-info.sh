@@ -1,6 +1,5 @@
 #!/bin/bash
 #set -xv
-
 #=========================================
 
 echo -e "========== OS =========="
@@ -156,14 +155,24 @@ echo "========== TOOLS =========="
 
 if [ "$(uname -s)" == "Linux" ]; then
   echo "========== BROWSER =========="
-  /usr/bin/firefox  -V || true
-  /usr/lib/firefox/firefox -V || true
-  /usr/bin/chromium-browser --version || true
-  /opt/google/chrome/chrome --version || true
-  /usr/bin/google-chrome-stable --version || true
+  if [[ -f "/usr/bin/firefox" ]]; then
+	/usr/bin/firefox  -V || true #RedHat
+  fi
+  if [[ -f "/usr/lib/firefox/firefox" ]]; then
+	/usr/lib/firefox/firefox -V || true #Ubuntu
+  fi
+  if [[ -f "/usr/bin/chromium-browser" ]]; then
+	/usr/bin/chromium-browser --version || true #Ubuntu
+  fi
+  if [[ -f "/opt/google/chrome/chrome" ]]; then
+	/opt/google/chrome/chrome --version || true #RedHat AND #Ubuntu
+  fi
+  if [[ -f "/usr/bin/google-chrome-stable" ]]; then
+	/usr/bin/google-chrome-stable --version || true #RedHat AND #Ubuntu
+  fi
   echo "========== JAVASCRIPT =========="
   phantomjs --version || true
-  nodejs --version || true
+  #nodejs --version || true #Ubuntu
   node --version || true
   bower --version || true
   npm --version || true

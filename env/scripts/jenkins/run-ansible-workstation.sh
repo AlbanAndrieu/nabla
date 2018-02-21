@@ -13,7 +13,8 @@ source ./run-ansible.sh
 # check syntax
 echo -e "${cyan} =========== ${NC}"
 echo -e "${green} Starting the syntax-check. ${NC}"
-${ANSIBLE_PLAYBOOK_CMD} -i ${ANSIBLE_INVENTORY} -c local -v ${TARGET_PLAYBOOK} --limit ${TARGET_SLAVE} ${DRY_RUN} -vvvv --syntax-check --become-method=sudo
+echo -e "${magenta} ${ANSIBLE_PLAYBOOK_CMD} -i ${ANSIBLE_INVENTORY} -v ${TARGET_PLAYBOOK} --limit ${TARGET_SLAVE} ${DRY_RUN} -vvvv --syntax-check --become-method=sudo ${NC}"
+${ANSIBLE_PLAYBOOK_CMD} -i ${ANSIBLE_INVENTORY} -v ${TARGET_PLAYBOOK} --limit ${TARGET_SLAVE} ${DRY_RUN} -vvvv --syntax-check --become-method=sudo
 RC=$?
 if [ ${RC} -ne 0 ]; then
   echo ""
@@ -36,6 +37,7 @@ echo -e "${cyan} =========== ${NC}"
 echo -e "${green} Ansible server inventory ${NC}"
 rm -Rf out || true
 mkdir out
+echo -e "${magenta} ${ANSIBLE_CMD} -i ${ANSIBLE_INVENTORY} -m setup --user=root -vvv --tree out/ all ${NC}"
 ${ANSIBLE_CMD} -i ${ANSIBLE_INVENTORY} -m setup --user=root -vvv --tree out/ all
 RC=$?
 if [ ${RC} -ne 0 ]; then
@@ -48,6 +50,7 @@ fi
 
 echo -e "${cyan} =========== ${NC}"
 echo -e "${green} Ansible server inventory HTML generation ${NC}"
+echo -e "${magenta} ${ANSIBLE_CMBD_CMD} -i ./${ANSIBLE_INVENTORY} out/ > overview.html ${NC}"
 ${ANSIBLE_CMBD_CMD} -i ./${ANSIBLE_INVENTORY} out/ > overview.html
 #sudo cp overview.html /var/www/html/
 echo -e "${green} Ansible server summary done. $? ${NC}"
