@@ -1806,6 +1806,7 @@
 								</goals>
 							</execution>
 						</executions>
+						<inherited>true</inherited>
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -2118,7 +2119,8 @@
 										<additionalparam>-types</additionalparam>
 										<additionalparam>-visibility</additionalparam>
 										<additionalparam>-collpackages</additionalparam>
-										<!--<additionalparam>allow-script-in-comments</additionalparam>-->
+										<additionalparam>-Xdoclint:none</additionalparam>
+										<additionalparam>--allow-script-in-comments</additionalparam>
 									</configuration>
 									<!--
 																		<dependencies>
