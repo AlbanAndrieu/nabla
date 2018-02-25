@@ -201,10 +201,10 @@
 		<commons.lang3.version>3.0</commons.lang3.version>
 		<commons.logging.version>1.1.1</commons.logging.version>
 		<commons.math.version>2.2</commons.math.version>
-		<commons.math3.version>3.0</commons.math3.version>
+		<commons.math3.version>3.6.1</commons.math3.version>
 		<commons.pool.version>1.4</commons.pool.version>
 		<commons.validator.version>1.3.1</commons.validator.version>
-		<concurrent.junit.version>1.0.0</concurrent.junit.version>
+		<concurrent.junit.version>1.0.2</concurrent.junit.version>
 		<concurrent.version>1.3.4</concurrent.version>
 		<!-- TODO overrided in filter -->
 		<copyright.year>2015</copyright.year>
@@ -405,7 +405,7 @@
 		<htmlunit.version>1.11</htmlunit.version>
 		<!--  groovy-eclipse 2.9.2 only support 2.4.8 -->
 		<http.builder.version>0.6</http.builder.version>
-		<httpclient.version>4.5.2</httpclient.version>
+		<httpclient.version>4.5.5</httpclient.version>
 		<httpunit.version>1.7</httpunit.version>
 		<ibatis.version>2.3.0</ibatis.version>
 		<icefaces.version>1.8.2</icefaces.version>
@@ -487,7 +487,7 @@
 		<jdbc.mysql.version>6.0.5</jdbc.mysql.version>
 		<jdbc.oracle.version>10.2.0.4.0</jdbc.oracle.version>
 		<jdbc.org.hsqldb.version>2.4.0</jdbc.org.hsqldb.version>
-		<jdbc.postgresql.version>9.1-901-1.jdbc4</jdbc.postgresql.version>
+		<jdbc.postgresql.version>9.3-1102.jdbc41</jdbc.postgresql.version>
 		<jdbc.sybase.version>7.0.7</jdbc.sybase.version>
 		<!-- TODO overrided in filter -->
 		<jdkLevel>1.8</jdkLevel>
@@ -514,7 +514,7 @@
 		<jmdns.version>1.0</jmdns.version>
 		<!-- googlecode.jmockit moved to org.jmockit -->
 		<jmockit.version>1.19</jmockit.version>
-		<joda.time.version>2.3</joda.time.version>
+		<joda.time.version>2.9.9</joda.time.version>
 		<jpa.version>1.0</jpa.version>
 		<jsf.api.version>${jsf.version}</jsf.api.version>
 		<!--<org.apache.myfaces.trinidad.version>2.0.0</org.apache.myfaces.trinidad.version>-->
@@ -523,8 +523,8 @@
 		<jsf.version>1.2_15</jsf.version>
 		<json.lib.version>2.3</json.lib.version>
 		<json4s.version>3.3.0.RC2</json4s.version>
-		<jsonassert.version>1.2.3</jsonassert.version>
-		<jsonassert.version>1.2.3</jsonassert.version>
+		<!--<jsonassert.version>1.2.3</jsonassert.version>-->
+		<jsonassert.version>1.5.0</jsonassert.version>
 		<jsp.api.version>2.2.1-b03</jsp.api.version>
 		<jsp.version>2.0</jsp.version>
 		<jspc.compiler.tomcat6.version>2.0-alpha-3</jspc.compiler.tomcat6.version>
@@ -845,7 +845,7 @@
 		<org.mvel.mvel2.version>2.0.10</org.mvel.mvel2.version>
 		<!-- NOK with 1.1.4.Final java.lang.RuntimeException: Could not create new instance of class org.jboss.arquillian.test.impl.EventTestRunnerAdaptor -->
 		<org.openejb.arquillian.tomee.embedded.version>1.7.1</org.openejb.arquillian.tomee.embedded.version>
-		<org.quartz.version>2.2.3</org.quartz.version>
+		<org.quartz.version>2.3.0</org.quartz.version>
 		<!-- Define the version of JBoss' Java EE 6 APIs and Tools we want to import.  -->
 		<org.richfaces.bom.version>4.3.6.Final</org.richfaces.bom.version>
 		<org.umlgraph.doclet.version>5.1</org.umlgraph.doclet.version>
@@ -873,7 +873,7 @@
 		<portlet.api.version>1.0</portlet.api.version>
 		<!-- issue with clover, use 1.9.5 instead -->
 		<!--<mockito.version>1.9.5</mockito.version>-->
-		<powermock.mockito.version>1.4.9</powermock.mockito.version>
+		<powermock.mockito.version>1.6.4</powermock.mockito.version>
 		<product.branch.version>${env.VERSION}</product.branch.version>
 		<product.dependencies>${product.name} ${product.patch.version}</product.dependencies>
 		<!-- default value that can be overrided -->
@@ -942,7 +942,7 @@
 		<selenium.iphone.driver.version>2.39.0</selenium.iphone.driver.version>
 		<selenium.safari.driver.version>${selenium.version}</selenium.safari.driver.version>
 		<!-- check compatibility http://selenium.googlecode.com/git/java/CHANGELOG -->
-		<selenium.version>3.7.1</selenium.version>
+		<selenium.version>3.9.1</selenium.version>
 		<servlet.api.version>2.5</servlet.api.version>
 		<shale.version>1.0.4</shale.version>
 		<shiro.version>1.2.5</shiro.version>
@@ -1073,7 +1073,7 @@
 		<!-- OK see http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 		<!-- OK <spring.security.web>3.1.3.RELEASE</spring.security.web>-->
 		<spring.security.web>3.1.4.RELEASE</spring.security.web>
-		<spring.springloaded.version>1.2.0.RELEASE</spring.springloaded.version>
+		<spring.springloaded.version>1.2.8.RELEASE</spring.springloaded.version>
 		<!--<spring.test.version>${spring4.version}</spring.test.version>-->
 		<spring.test.version>${spring.legacy.version}</spring.test.version>
 		<!-- OK <spring3.version>3.1.3.RELEASE</spring3.version>-->
@@ -1092,7 +1092,7 @@
 		<stax.util.version>20070216</stax.util.version>
 		<struts.menu.version>2.4.3</struts.menu.version>
 		<struts.version>1.2.9</struts.version>
-		<sun.jsf.version>2.2.13</sun.jsf.version>
+		<sun.jsf.version>2.2.16</sun.jsf.version>
 		<swagger.doclet.version>1.0.5</swagger.doclet.version>
 		<swagger.version>1.5.3</swagger.version>
 		<tacos.version>4.1.0</tacos.version>
@@ -1151,7 +1151,7 @@
 		<!--<servlet.version>2.4</servlet.version>-->
 		<wstx.asl.version>3.2.9</wstx.asl.version>
 		<xalan.version>2.7.2</xalan.version>
-		<xerces.version>2.9.1</xerces.version>
+		<xerces.version>2.11.0.SP5</xerces.version>
 		<xfire.version>1.2.6</xfire.version>
 		<xml.apis.ext.version>1.3.04</xml.apis.ext.version>
 		<xml.apis.version>1.4.01</xml.apis.version>
@@ -7958,7 +7958,8 @@
 						<additionalparam>-types</additionalparam>
 						<additionalparam>-visibility</additionalparam>
 						<additionalparam>-collpackages</additionalparam>
-						<!--<additionalparam>allow-script-in-comments</additionalparam>-->
+						<additionalparam>-Xdoclint:none</additionalparam>
+						<additionalparam>--allow-script-in-comments</additionalparam>
 						<links>
 							<link>http://docs.oracle.com/javase/8/docs/api/</link>
 							<link>http://docs.oracle.com/javaee/7/api/</link>
