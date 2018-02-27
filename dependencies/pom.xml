@@ -797,15 +797,16 @@
 		<!--<org.jboss.arquillian.glassfish.embedded.version>1.0.0.CR3</org.jboss.arquillian.glassfish.embedded.version>-->
 		<org.jboss.arquillian.glassfish.embedded.version>2.1.0.Beta1</org.jboss.arquillian.glassfish.embedded.version>
 		<org.jboss.arquillian.jacoco.version>1.0.0.Alpha8</org.jboss.arquillian.jacoco.version>
+		<org.jboss.arquillian.jetty.embedded.version>1.0.0.CR3</org.jboss.arquillian.jetty.embedded.version>
 		<org.jboss.arquillian.jsfunit.version>1.0.0.Alpha4.SP1</org.jboss.arquillian.jsfunit.version>
 		<!-- WARNING shrinkwrap-descriptors-spi 2.0.0 with DescriptorImporterBase class and shrinkwrap-descriptors-api-base with DescriptorImporter interface are incompatible with shrinkwrap-descriptors-api 0.1.7 DescriptorImporter interface because the latter lacks the fromStream method. -->
-		<!--<org.jboss.arquillian.junit.version>1.0.0.Alpha5</org.jboss.arquillian.junit.version>-->
-		<!--<org.jboss.arquillian.junit.version>${org.jboss.arquillian.bom.version}</org.jboss.arquillian.junit.version>-->
-		<org.jboss.arquillian.junit.version>${org.jboss.arquillian.version}</org.jboss.arquillian.junit.version>
+		<org.jboss.arquillian.junit.version>${org.jboss.arquillian.bom.version}</org.jboss.arquillian.junit.version>
+		<org.jboss.arquillian.tomcat.embedded.version>1.0.1.Final</org.jboss.arquillian.tomcat.embedded.version>
 		<!--<org.jboss.arquillian.version>1.1.0.Final</org.jboss.arquillian.version>-->
 		<!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 		<!--OK<org.jboss.arquillian.version>1.0.0.CR7</org.jboss.arquillian.version>-->
-		<org.jboss.arquillian.version>1.1.8.Final</org.jboss.arquillian.version>
+		<!--<org.jboss.arquillian.version>1.1.8.Final</org.jboss.arquillian.version>-->
+		<org.jboss.arquillian.version>1.3.0.Final</org.jboss.arquillian.version>
 		<!--NOK with arq-jbossas-managed <org.jboss.as.arquillian.container.version>7.2.0.Final</org.jboss.as.arquillian.container.version>-->
 		<!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 		<!--<org.jboss.arquillian.spi.version>1.0.0.Alpha5</org.jboss.arquillian.spi.version>-->
@@ -2870,11 +2871,6 @@
 				<version>${netty.version}</version>
 			</dependency>
 			<dependency>
-				<groupId>org.projectlombok</groupId>
-				<artifactId>lombok</artifactId>
-				<version>${lombok.version}</version>
-			</dependency>
-			<dependency>
 				<groupId>io.swagger</groupId>
 				<artifactId>swagger-core</artifactId>
 				<version>${swagger.version}</version>
@@ -4127,6 +4123,12 @@
 				<groupId>javax.annotation</groupId>
 				<artifactId>javax.annotation-api</artifactId>
 				<version>${javax.annotation.api}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.projectlombok</groupId>
+				<artifactId>lombok</artifactId>
+				<version>${lombok.version}</version>
+				<scope>provided</scope>
 			</dependency>
 			<dependency>
 				<groupId>net.sf.ehcache</groupId>
