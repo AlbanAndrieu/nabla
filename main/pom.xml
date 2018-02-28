@@ -2119,7 +2119,7 @@
 										<additionalparam>-types</additionalparam>
 										<additionalparam>-visibility</additionalparam>
 										<additionalparam>-collpackages</additionalparam>
-										<additionalparam>-Xdoclint:none</additionalparam>
+										<!--<additionalparam>-Xdoclint:none</additionalparam>-->
 										<additionalparam>--allow-script-in-comments</additionalparam>
 									</configuration>
 									<!--
