@@ -186,6 +186,7 @@ pkg install firefox
 pkg install chromium
 pkg install hs-ShellCheck
 pkg install lsof
+pkg install htop
 
 pkg install perl5
 pkg install p5-Locale-libintl

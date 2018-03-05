@@ -93,6 +93,7 @@ bower_components/
 
 *~
 *.log
+*.bak
 
 env/scripts/jenkins/*.nse
 env/scripts/jenkins/tls.lua
