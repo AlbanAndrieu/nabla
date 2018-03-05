@@ -482,7 +482,7 @@
 		<!--<jconnect.version>6.0.5.26312</jconnect.version>-->
 		<!--<jdbc.jconnect.version>7.0.7</jdbc.jconnect.version>-->
 		<jdbc.jtds.version>1.3.1</jdbc.jtds.version>
-		<jdbc.mysql.version>8.0.9</jdbc.mysql.version>
+		<jdbc.mysql.version>6.0.6</jdbc.mysql.version>
 		<jdbc.oracle.version>10.2.0.4.0</jdbc.oracle.version>
 		<jdbc.org.hsqldb.version>2.4.0</jdbc.org.hsqldb.version>
 		<jdbc.postgresql.version>9.3-1102.jdbc41</jdbc.postgresql.version>
