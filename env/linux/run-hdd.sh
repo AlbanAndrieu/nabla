@@ -158,4 +158,31 @@ modprobe dm-crypt
 sudo update-grub
 #Windows using BitLocker/TPM and Linux using dm-crypt with LUKS Enxtension
 
+#Ubuntu 17 add swap
+#http://linuxbsdos.com/2017/05/26/replace-the-swap-partition-with-a-swap-file-after-upgrading-to-ubuntu-17-04/
+
+swapon --show
+free -h
+
+#https://askubuntu.com/questions/934391/how-to-resize-ubuntu-17-04-zesty-swap-file-size
+
+swapoff /swapfile
+
+#dd if=/dev/zero of=/swapfile bs=1024 count=65536
+fallocate -l 4G /swapfile
+
+#Change the persmissions of the newly created file:
+
+chmod 0600 /swapfile
+
+#Setup the swap file with the command:
+
+mkswap /swapfile
+
+#To enable the swap file immediately but not automatically at boot time:
+
+swapon /swapfile
+
+sudo nano /etc/sysctl.conf
+
 exit 0
