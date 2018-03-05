@@ -105,7 +105,7 @@ sudo mount /docker
 # Extends physical volume.
 #extend size of logical volume
 lvextend --resizefs -L +6G /dev/rhel_fr1cslvcacrhel71/swap
-lvextend --resizefs -l +12805 /dev/rhel_fr1cslvcacrhel71/root
+lvextend --resizefs -L +17G /dev/rhel_fr1cslvcacrhel71/root
 lvextend -l +100%FREE /dev/rhel_fr1cslvcacrhel71/root
 #lvextend -L +1G /dev/rhel_fr1cslvcacrhel71/docker
 lvextend --resizefs -l +12805 /dev/mapper/rhel_fr1cslvcacrhel71-docker
