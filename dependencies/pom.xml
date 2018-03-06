@@ -761,7 +761,7 @@
 		<!--<richfaces.version>3.3.3.Final</richfaces.version>-->
 		<myfaces.version>1.2.9</myfaces.version>
 		<neethi.version>3.0.3</neethi.version>
-		<nekohtml.version>.2</nekohtml.version>
+		<nekohtml.version>1.9.6.2</nekohtml.version>
 		<net.sf.hibernate.version>2.1.8</net.sf.hibernate.version>
 		<net.sf.proguard.version>5.1</net.sf.proguard.version>
 		<net.sourceforge.nekohtml.version>1.9.17</net.sourceforge.nekohtml.version>
