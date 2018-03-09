@@ -7017,6 +7017,11 @@
 							<artifactId>doxia-core</artifactId>
 							<version>${doxia.version}</version>
 						</dependency>
+						<dependency>
+							<groupId>com.nabla.project</groupId>
+							<artifactId>skin</artifactId>
+							<version>1.0.1-SNAPSHOT</version>
+						</dependency>
 					</dependencies>
 					<configuration>
 						<encoding>${project.build.sourceEncoding}</encoding>
@@ -9642,6 +9647,18 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<groupId>org.apache.maven.plugins</groupId>
 							<artifactId>maven-site-plugin</artifactId>
 							<version>${maven.site.plugin.version}</version>
+							<dependencies>
+								<dependency>
+									<groupId>org.apache.maven.doxia</groupId>
+									<artifactId>doxia-core</artifactId>
+									<version>${doxia.version}</version>
+								</dependency>
+								<dependency>
+									<groupId>com.nabla.project</groupId>
+									<artifactId>skin</artifactId>
+									<version>1.0.1-SNAPSHOT</version>
+								</dependency>
+							</dependencies>
 						</plugin>
 					</plugins>
 				</pluginManagement>
