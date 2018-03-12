@@ -9,6 +9,8 @@ echo -e "${green} ssl encrypt renewal${NC}"
 echo -e "${magenta} ${underline}###################${NC}"
 echo -e "${NC}"
 
+#rm ~/.local/share/letsencrypt -R
+#rm -rf /opt/eff.org
 sudo certbot-auto renew
 
 sudo ls -lrta /var/log/letsencrypt/letsencrypt.log

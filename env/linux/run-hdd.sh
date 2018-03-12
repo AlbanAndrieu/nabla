@@ -81,12 +81,14 @@ lvdisplay
 # Extends volume group. Please confirm group name.
 #add disk to volume group
 vgextend rhel_fr1cslvcacrhel71 /dev/sdb
+vgextend VolGroup00 /dev/sdb
 #vgextend rhel_fr1cslvcacrhel71 /dev/sdc
 
 # Free disk space should be now visible in VG. Actual number of available physical extents (PE) will be smaller,
 # than expected with disk size, some of the space will be taken by metadata
 vgdisplay
 vgdisplay -v rhel_fr1cslvcacrhel71
+vgdisplay -v VolGroup00
 
 lvcreate -l 12805 -n workspace rhel_fr1cslvcacrhel71
 lvcreate -l 12805 -n docker rhel_fr1cslvcacrhel71
@@ -105,7 +107,7 @@ sudo mount /docker
 # Extends physical volume.
 #extend size of logical volume
 lvextend --resizefs -L +6G /dev/rhel_fr1cslvcacrhel71/swap
-lvextend --resizefs -l +12805 /dev/rhel_fr1cslvcacrhel71/root
+lvextend --resizefs -L +17G /dev/rhel_fr1cslvcacrhel71/root
 lvextend -l +100%FREE /dev/rhel_fr1cslvcacrhel71/root
 #lvextend -L +1G /dev/rhel_fr1cslvcacrhel71/docker
 lvextend --resizefs -l +12805 /dev/mapper/rhel_fr1cslvcacrhel71-docker

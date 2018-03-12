@@ -341,3 +341,10 @@ ln -s /etc/webmin/miniserv.pem /etc/ssl/private/miniserv.pem
 #sudo chmod 640 /etc/ssl/private/ssl-cert-snakeoil.key
 ll /etc/ssl/private/ssl-cert-snakeoil.key
 ln -s /etc/letsencrypt/keys/0001_key-certbot.pem 0001_key-certbot.pem
+
+#Renew certificate
+#rm ~/.local/share/letsencrypt -R
+#rm -rf /opt/eff.org
+sudo certbot-auto renew
+
+#See https://gist.github.com/daronco/45eeb9223c57d240e60d094f8bee457e
