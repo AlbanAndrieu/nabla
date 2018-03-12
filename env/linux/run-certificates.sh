@@ -285,6 +285,8 @@ openssl s_client -connect google.com:443 < /dev/null | sed -ne '/-BEGIN CERTIFIC
 /usr/local/sbin/certbot-auto certonly --renew-by-default --apache -d nabla.freeboxos.fr
 #/usr/local/sbin/certbot-auto certonly --renew-by-default --apache -d nabla.freeboxos.fr,nabla.mobi,home.nabla.mobi,alban-andrieu.fr,alban-andrieu.com,alban-andrieu.eu,bababou.fr,bababou.eu
 
+certbot-auto certonly --non-interactive --register-unsafely-without-email --agree-tos --expand --webroot --webroot-path /var/www/html --domain nabla.freeboxos.fr
+
 tail -f /var/log/letsencrypt/letsencrypt.log
 
 #Saving debug log to /var/log/letsencrypt/letsencrypt.log
