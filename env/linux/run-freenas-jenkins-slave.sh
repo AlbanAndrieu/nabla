@@ -1,6 +1,16 @@
 
+#Fix wrong version of Feenas in jail
+sudo freebsd-version
+jls
+sudo jexec 10 freebsd-version
+pkg version -v
+
+#See https://www.reddit.com/r/freenas/comments/7s1cgb/pkg_repository_freebsd_contains_packages_for/
+#I solved it by editing /usr/local/etc/pkg/repos/FreeBSD.conf Setting the url: to "pkg+https://pkg.freebsd.org/freebsd:11:x86:64/release_1" solved the problem.
+
 pkg update && pkg upgrade
-portsnap fetch update
+pkg update -f
+portsnap fetch extract update
 #You must run 'portsnap extract' before running 'portsnap update'.
 
 #Install Jenkins
@@ -187,6 +197,7 @@ pkg install chromium
 pkg install hs-ShellCheck
 pkg install lsof
 pkg install htop
+pkg install wget
 
 pkg install perl5
 pkg install p5-Locale-libintl
