@@ -174,3 +174,5 @@ ansigenome gendoc -f md
 
 #https://docs.ansible.com/ansible-container/
 sudo pip install ansible-container
+
+sudo pip3.5 install --upgrade ansible-cmdb

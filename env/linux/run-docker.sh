@@ -99,7 +99,7 @@ DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 8.8
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --storage-driver overlay2 --label provider=albandri
 #ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --storage-driver overlay2 --disable-legacy-registry --tlsverify --tlscacert /root/pki/ca.pem --tlscert /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.pem --tlskey /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.key --label provider=albandri
 #For RedHat 7
-#ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock
+#ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --data-root /docker
 # --disable-legacy-registry
 
 sudo systemctl show --property=Environment docker
@@ -202,10 +202,11 @@ docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs --no-run-if-empty doc
 
 #check disk space
 gksudo baobab
+
 #cleaning
-#sudo docker rm `sudo docker ps -a | grep Exited | awk '{print $1 }'`
-#sudo docker rmi `docker images -aq`
-sudo docker images --no-trunc| grep none | awk '{print $3}' | xargs -r sudo docker rmi
+docker stop $(docker ps -a -q) # stop all docker containers
+docker rm -f $(docker ps -a -q) # remove all docker containers
+docker images -q | xargs docker rmi -f # remove all docker images
 
 ll /var/lib/docker/tmp/docker-build*/Downloads
 
@@ -247,7 +248,7 @@ docker build . -t docker/nabla/visma:latest
 sudo pip install docker-compose
 docker-compose --version
 
-docker-compose -f docker-compose-logstash.yml -p TEST up -d
+docker-compose --verbose -f docker-compose-logstash.yml -p TEST up -d
 docker-compose -f docker-compose-logstash.yml -p TEST ps
 
 docker stats $(docker ps --format '{{.Names}}')

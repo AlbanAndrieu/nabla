@@ -84,5 +84,6 @@ docker exec -ti database-enterprise /bin/bash
 
 #connect
 /opt/oracle/instantclient_12_2/sqlplus sys/Oradoc_db1@//localhost:1521/ORCLCDB.localdomain as sysdba
+sqlplus sys/Test123\$@//10.21.188.31:1521/ORCLPDB1 as sysdba
 
 exit 0
