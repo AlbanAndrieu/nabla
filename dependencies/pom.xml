@@ -926,6 +926,7 @@
 		<scm.base>scm:git:git://github.com/AlbanAndrieu/nabla.git</scm.base>
 		<scope.compile>compile</scope.compile>
 		<scope.provided>provided</scope.provided>
+		<scope.runtime>runtime</scope.runtime>
 		<scope.type>${scope.provided}</scope.type>
 		<seam.embedded.version>beta3.SP15</seam.embedded.version>
 		<!--<seam.bom.version>3.1.0.Final</seam.bom.version>-->
