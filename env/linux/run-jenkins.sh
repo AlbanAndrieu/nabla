@@ -129,7 +129,6 @@ System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
 System.setProperty("hudson.slaves.WorkspaceList", "_")
 System.setProperty("permissive-script-security.enabled", "true")
 
-
 #Hook
 $JENKINS_URL/git/notifyCommit
 $JENKINS_URL/bitbucket-hook/

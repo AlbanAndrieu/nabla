@@ -57,6 +57,15 @@ readelf -d target/bin/x86Linux/run_app |head -20
 #sudo yum update glibc
 ldd --version
 
+openssl version -a
+
+yum whatprovides */libcrypto.so.10
+
+ldconfig -p | grep libssl
+
+#gcc/g++ linking is sensitive to order and that your linked libraries must follow the things that depend upon them.
+#For instance -lssh2 -lssl -lcrypto -llber -lldap -lz -ldl
+
 apt-cache policy libcppunit-dev
 
 ecit 0
