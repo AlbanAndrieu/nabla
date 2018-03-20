@@ -85,7 +85,7 @@ sudo docker version
 #cat /etc/default/docker
 
 #gksudo geany /etc/init/docker.conf /etc/systemd/system/docker.service.d/env.conf
-#gksudo geany /lib/systemd/system/docker.service
+gksudo geany /lib/systemd/system/docker.service
 systemctl cat docker.service
 
 #NOK DOCKER_OPTS="-H 127.0.0.1:4243 -H unix:///var/run/docker.sock"
@@ -101,6 +101,9 @@ ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/doc
 #For RedHat 7
 #ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --data-root /docker
 # --disable-legacy-registry
+
+#Docker daemon log : See https://stackoverflow.com/questions/30969435/where-is-the-docker-daemon-log
+sudo journalctl -fu docker.service
 
 sudo systemctl show --property=Environment docker
 sudo systemctl daemon-reload
@@ -203,12 +206,26 @@ docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs --no-run-if-empty doc
 #check disk space
 gksudo baobab
 
+#check docker space
+docker system df
+
 #cleaning
 docker stop $(docker ps -a -q) # stop all docker containers
 docker rm -f $(docker ps -a -q) # remove all docker containers
 docker images -q | xargs docker rmi -f # remove all docker images
 
+docker stats $(docker ps --format '{{.Names}}')
+
 ll /var/lib/docker/tmp/docker-build*/Downloads
+
+#https://github.com/docker/compose
+sudo pip install docker-compose
+docker-compose --version
+
+docker-compose --verbose -f docker-compose-logstash.yml -p TEST up -d
+docker-compose -f docker-compose-logstash.yml -p TEST ps
+
+alias dps='docker ps --format "table {{.Names}}\t{{.Status}}"'
 
 ----------
 
@@ -243,15 +260,6 @@ docker exec containername –ti /bin/bash
 #--storage-driver=overlay
 
 docker build . -t docker/nabla/visma:latest
-
-#https://github.com/docker/compose
-sudo pip install docker-compose
-docker-compose --version
-
-docker-compose --verbose -f docker-compose-logstash.yml -p TEST up -d
-docker-compose -f docker-compose-logstash.yml -p TEST ps
-
-docker stats $(docker ps --format '{{.Names}}')
 
 #Install docker-machine
 #https://www.digitalocean.com/community/tutorials/how-to-provision-and-manage-remote-docker-hosts-with-docker-machine-on-ubuntu-16-04

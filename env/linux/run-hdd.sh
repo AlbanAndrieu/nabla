@@ -73,6 +73,10 @@ echo 1>/sys/class/block/sdb/device/rescan
 
 pvresize /dev/sdb
 
+#1) The linux host machine *must* have a lvm partition of type xfs with d_type activated. This is done by formatting with: mkfs.xfs -n ftype=1 /dev/path_to_device,
+#2) pquota *must* also be set on the xfs device. Read https://help.directadmin.com/item.php?id=557 for details,
+#4) The container *must* be run with the options: --storage-opt size=35G --shm-size="8g" -p 1521:1521 -p 5500:5500 -p 5501:5501.
+
 #display atributes of disk
 pvdisplay
 vgdisplay
