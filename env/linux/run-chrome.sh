@@ -31,3 +31,5 @@ gnome-keyring-daemon &
 #RedHat fix
 #yum install firefox
 yum install mesa-libGLU*.i686 mesa-libGLU*.x86_64
+
+exit 0
