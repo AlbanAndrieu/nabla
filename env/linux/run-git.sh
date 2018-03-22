@@ -124,3 +124,12 @@ pre-commit autoupdate
 
 pre-commit run --all-files
 #pre-commit run
+
+#Jenkins declarative pipeline and BitBucker
+#Please note that I have followed : https://community.atlassian.com/t5/Bitbucket-questions/Bitbucket-Server-integration-with-jenkins/qaq-p/307023
+#
+#For triggering build in Jenkins automatically once changes done into Bitbucket SCM you have to install
+#
+#1. "Bitbucket Server Webhook to Jenkins" in Bitbucket ...
+#2. If already installed then you have to enable "Post Receive" Hook on that particular repo.
+#3. Once you are done this In Jenkins Job you have to add "poll SCM".
