@@ -117,7 +117,7 @@ sudo docker --tlsverify ps
 ls -lrta ~/.docker/config.json
 
 #docker login 10.21.70.133
-docker login registry.nabla.mobi --username=mgr.jenkins
+docker login registry.nabla.mobi --username=nabla
 
 if curl http://localhost:8380/jenkins 2>/dev/null | grep -iq jenkins; then echo "FAIL"; else echo "OK"; fi
 
