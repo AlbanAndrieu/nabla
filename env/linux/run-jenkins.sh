@@ -133,3 +133,8 @@ System.setProperty("permissive-script-security.enabled", "true")
 $JENKINS_URL/git/notifyCommit
 $JENKINS_URL/bitbucket-hook/
 $JENKINS_URL/bitbucket-scmsource-hook/notify/
+
+#On Windows
+#Clear Event Log (control panel> administrator tools>event viewer)
+# Application -> righ panel -> Action clear log
+#Remove windows service sc delete jenkinsslave-E__Jenkins-Slave
