@@ -308,3 +308,5 @@ docker exec -it pedantic_colden sh
 
 ssh -X jenkins@172.17.0.4 -o StrictHostKeyChecking=no
 xeyes ## run an X11 demo app in the client
+
+exit 0

@@ -56,6 +56,18 @@ type lsblk > /dev/null 2>&1 || { echo >&2 "lsblk isn't installed. Abort"; exit 1
 parted /dev/sda print free
 df -Th /root
 
+#Change quota on xfs for oracle database
+
+#1) The linux host machine *must* have a lvm partition of type xfs with d_type activated. This is done by formatting with: mkfs.xfs -n ftype=1 /dev/path_to_device,
+#2) pquota *must* also be set on the xfs device. Read https://help.directadmin.com/item.php?id=557 for details,
+#4) The container *must* be run with the options: --storage-opt size=35G --shm-size="8g" -p 1521:1521 -p 5500:5500 -p 5501:5501.
+
+#nano /etc/default/grub
+#GRUB_CMDLINE_LINUX="rd.lvm.lv=rhel_fr1cslvcacrhel71/swap rd.lvm.lv=rhel_fr1cslvcacrhel71/root rhgb quiet rootflags=uquota,pquota"
+
+#cp /boot/grub2/grub.cfg /boot/grub2/grub.cfg.orig
+#grub2-mkconfig -o /boot/grub2/grub.cfg
+
 #sudo partprobe /dev/sdb
 partprobe -s
 #partx -v -a /dev/sda
@@ -72,10 +84,6 @@ echo 1>/sys/class/block/sdb/device/rescan
 #echo 1>/sys/class/scsi_device/0\:0\:0\:0/device/block/sda/device/rescan
 
 pvresize /dev/sdb
-
-#1) The linux host machine *must* have a lvm partition of type xfs with d_type activated. This is done by formatting with: mkfs.xfs -n ftype=1 /dev/path_to_device,
-#2) pquota *must* also be set on the xfs device. Read https://help.directadmin.com/item.php?id=557 for details,
-#4) The container *must* be run with the options: --storage-opt size=35G --shm-size="8g" -p 1521:1521 -p 5500:5500 -p 5501:5501.
 
 #display atributes of disk
 pvdisplay
@@ -99,8 +107,10 @@ lvcreate -l 12805 -n docker rhel_fr1cslvcacrhel71
 
 lvdisplay
 
-sudo mkfs -t ext4 /dev/rhel_fr1cslvcacrhel71/workspace
-sudo mkfs -t ext4 /dev/rhel_fr1cslvcacrhel71/docker
+#sudo mkfs -t ext4 /dev/rhel_fr1cslvcacrhel71/workspace
+sudo mkfs -t xfs /dev/rhel_fr1cslvcacrhel71/workspace
+#sudo mkfs -t ext4 /dev/rhel_fr1cslvcacrhel71/docker
+mkfs.xfs -n ftype=1 /dev/rhel_fr1cslvcacrhel71/docker
 
 sudo mkdir /workspace
 sudo mount /workspace
@@ -127,8 +137,10 @@ xfs_growfs -d /dev/rhel_fr1cslvcacrhel71/root
 #resize2fs /dev/rhel_fr1cslvcacrhel71/root
 
 #nano /etc/fstab
-/dev/rhel_fr1cslvcacrhel71/workspace       /workspace   ext4    defaults        0       2
-/dev/rhel_fr1cslvcacrhel71/docker       /docker   ext4    defaults        0       2
+#/dev/rhel_fr1cslvcacrhel71/workspace /workspace ext4 auto 0 2
+#/dev/rhel_fr1cslvcacrhel71/docker /docker ext4 auto 0 2
+/dev/rhel_fr1cslvcacrhel71/workspace /workspace xfs auto 0 2
+/dev/rhel_fr1cslvcacrhel71/docker /docker xfs defaults,usrquota,prjquota  0   0
 
 df -h
 lsblk -o NAME,SIZE,GROUP,TYPE,FSTYPE,MOUNTPOINT
