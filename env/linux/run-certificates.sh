@@ -272,12 +272,48 @@ openssl s_client -connect google.com:443 < /dev/null | sed -ne '/-BEGIN CERTIFIC
 
 #https://www.ericluwj.com/2017/02/23/install-free-lets-encrypt-ssl-certificate-in-webmin.html
 
+#Apache2
+
+#https://doc.ubuntu-fr.org/ipv6
+#https://jochen.kirstaetter.name/configure-ipv6-on-ubuntu/
+
+sudo apt-get install miredo
+
+#sudo ifconfig eth0 inet6 add fe80::226:b9ff:fedd:c008/64
+sudo service networking restart
+
+#Test IPv6 enable
+test -f /proc/net/if_inet6 && echo "Running kernel is IPv6 ready"
+#https://doc.ubuntu-fr.org/optimisation#desactiver_le_support_ipv6
+ip link
+rfkill list all
+#sudo rfkill unblock all
+#rfkill list all
+
+ip a | grep inet6
+
+ip -6 addr show
+sudo ip -6 address show eth0
+
+sudo netstat -tulpn | grep :80
+sudo netstat -lnptu | grep "apache2\W*$"
+
+sudo ifconfig -a
+sudo ifconfig eth0
+
+http://test-ipv6.com/
+
+http://www.ipv6-test.com/
+http://ipv6-test.com/validate.php
+nabla.freeboxos.fr
+
 #freebox
 #http://blogmotion.fr/internet/lets-encrypt-freebox-https-14299
 
 #https://certbot.eff.org/#ubuntutrusty-apache
 #sudo apt-get install python-letsencrypt-apache
 #sudo apt install letsencrypt
+sudo apt-get install certbot
 #cd /usr/local/sbin
 #sudo wget https://dl.eff.org/certbot-auto
 #sudo chmod a+x /usr/local/sbin/certbot-auto
@@ -287,7 +323,12 @@ openssl s_client -connect google.com:443 < /dev/null | sed -ne '/-BEGIN CERTIFIC
 
 certbot-auto certonly --non-interactive --register-unsafely-without-email --agree-tos --expand --webroot --webroot-path /var/www/html --domain nabla.freeboxos.fr
 
+certbot certonly -w /var/www/html/ -d nabla.freeboxos.fr --installer apache --webroot  --test-cert &> certbot.log 
+
 tail -f /var/log/letsencrypt/letsencrypt.log
+
+cd /var/www/html/.well-known/acme-challenge
+watch -n 0.1 ls -lRa
 
 #Saving debug log to /var/log/letsencrypt/letsencrypt.log
 #Starting new HTTPS connection (1): acme-v01.api.letsencrypt.org
