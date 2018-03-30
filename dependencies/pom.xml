@@ -115,7 +115,7 @@
 		<acegi.version>1.0.5</acegi.version>
 		<acegijsf.version>1.1.2</acegijsf.version>
 		<!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
-		<activemq.core.version>4.1.1</activemq.core.version>
+		<activemq.core.version>5.7.0</activemq.core.version>
 		<ajax4jsf.version>1.0.6</ajax4jsf.version>
 		<!--<akka.version>2.3.7</akka.version>-->
 		<akka.version>2.5.10</akka.version>
@@ -129,7 +129,7 @@
 		<!--<ant.nodeps.version>${ant.version}</ant.nodeps.version>-->
 		<ant.trax.version>1.7.0</ant.trax.version>
 		<!-- necessary to force the relocation to org.jdom <jdom.version>${org.jdom.version}</jdom.version>-->
-		<ant.version>1.9.4</ant.version>
+		<ant.version>1.10.2</ant.version>
 		<antlr.version>2.7.7</antlr.version>
 		<aopalliance.version>1.0</aopalliance.version>
 		<appfuse.version>2.1.0-M1</appfuse.version>
@@ -140,7 +140,7 @@
 		<asm.version>3.3.1</asm.version>
 		<aspectj.version>1.8.13</aspectj.version>
 		<aspectj.weaver.version>${aspectj.version}</aspectj.weaver.version>
-		<atmosphere.version>0.8.1</atmosphere.version>
+		<atmosphere.version>1.1.0.RC5</atmosphere.version>
 		<avalon.framework.version>4.1.3</avalon.framework.version>
 		<axiom.api.version>1.2.10</axiom.api.version>
 		<axiom.dom.version>${axiom.api.version}</axiom.dom.version>
@@ -207,7 +207,7 @@
 		<!-- TODO overrided in filter -->
 		<copyright.year>2015</copyright.year>
 		<corejsf.validator.version>1.0</corejsf.validator.version>
-		<cssparser.version>0.9.4</cssparser.version>
+		<cssparser.version>0.9.25</cssparser.version>
 		<cucumber.feature></cucumber.feature>
 		<cucumber.features.dir>src/test/resources/features</cucumber.features.dir>
 		<cucumber.tags>~@no-tag-specified</cucumber.tags>
@@ -223,7 +223,7 @@
 		<!-- APPFUSE Persistence settings -->
 		<dao.framework>jpa</dao.framework>
 		<!--<clover.version>4.0.6</clover.version>-->
-		<dbunit.version>2.4.9</dbunit.version>
+		<dbunit.version>2.5.4</dbunit.version>
 		<displaytag.version>1.2</displaytag.version>
 		<documentation.output.directory>${project.build.directory}/docs</documentation.output.directory>
 		<dom4j.version>1.6.1</dom4j.version>
@@ -244,7 +244,7 @@
 		<!-- NOT needed instead remove jmock-junit4 because it does not work with jacoco
 				<jmock.version>2.6.0</jmock.version>
 				-->
-		<easymock.version>3.2</easymock.version>
+		<easymock.version>3.5.1</easymock.version>
 		<ehcache.core.version>2.6.11</ehcache.core.version>
 		<ehcache.jar.version>1.5.0</ehcache.jar.version>
 		<ehcache.terracotta.version>2.1.1</ehcache.terracotta.version>
@@ -306,7 +306,7 @@
 		<geronimo.ws.metadata.spec.version>1.1.3</geronimo.ws.metadata.spec.version>
 		<glassfish.embedded.all.version>3.1.2</glassfish.embedded.all.version>
 		<!-- The groovy dependency (groovy-all -> groovy.version) version should match the compiler version -->
-		<gluegen.rt.main.version>2.0-rc11</gluegen.rt.main.version>
+		<gluegen.rt.main.version>2.3.2</gluegen.rt.main.version>
 		<!--<gmaven.runtime.number.version>1.7</gmaven.runtime.number.version>-->
 		<gmaven.runtime.number.version>2.0</gmaven.runtime.number.version>
 		<gmaven.runtime.version>${maven.gmaven.plugin.version}</gmaven.runtime.version>
@@ -326,12 +326,13 @@
 		<!-- WARNING 16.0-rc1 does not work with selenium -->
 		<!--<guava.version>17.0</guava.version> does not work in visma -->
 		<!--<guava.version>18.0</guava.version>-->
-		<guava.version>23.5-jre</guava.version>
+		<guava.version>24.0-jre</guava.version>
 		<guice.version>4.1.0</guice.version>
 		<gwt.seam.version>${project.version}</gwt.seam.version>
 		<gwt.test.utils.version>0.38</gwt.test.utils.version>
-		<gwt.version>2.5.1</gwt.version>
-		<gwtp.all.version>1.0.2</gwtp.all.version>
+		<gwt.version>2.8.2</gwt.version>
+		<!-- <gwtp.all.version>1.0.2</gwtp.all.version> OK -->
+		<gwtp.all.version>1.6</gwtp.all.version>
 		<hamcrest.all.version>1.3</hamcrest.all.version>
 		<hamcrest.core.version>${hamcrest.all.version}</hamcrest.core.version>
 		<hamcrest.version>${hamcrest.all.version}</hamcrest.version>
@@ -511,7 +512,7 @@
 		<jline.version>2.14.4</jline.version>
 		<jmdns.version>1.0</jmdns.version>
 		<!-- googlecode.jmockit moved to org.jmockit -->
-		<jmockit.version>1.19</jmockit.version>
+		<jmockit.version>1.38</jmockit.version>
 		<joda.time.version>2.9.9</joda.time.version>
 		<jpa.version>1.0</jpa.version>
 		<jsf.api.version>${jsf.version}</jsf.api.version>
@@ -526,13 +527,13 @@
 		<jsp.api.version>2.2.1-b03</jsp.api.version>
 		<jsp.version>2.0</jsp.version>
 		<jspc.compiler.tomcat6.version>2.0-alpha-3</jspc.compiler.tomcat6.version>
-		<jsr305.version>3.0.1</jsr305.version>
+		<jsr305.version>3.0.2</jsr305.version>
 		<!-- works with cxf 2.7.14 -->
 		<jsr311.api.version>1.1.1</jsr311.api.version>
 		<jstl.version>1.2</jstl.version>
 		<jtidy.version>4aug2000r7-dev-hudson-1</jtidy.version>
 		<!--<junit.version>4.12</junit.version> does not work in visma -->
-		<junit.version>4.11</junit.version>
+		<junit.version>4.12</junit.version>
 		<junitperf.version>1.9.1</junitperf.version>
 		<!--<lifecycle.mapping.version>1.0.0-RC1</lifecycle.mapping.version> eclipse is complaining-->
 		<lifecycle.mapping.version>1.0.0</lifecycle.mapping.version>
@@ -540,7 +541,7 @@
 		<log4jdbc.remix.version>0.2.7</log4jdbc.remix.version>
 		<logback.version>1.1.7</logback.version>
 		<lombok.version>1.16.20</lombok.version>
-		<lucene.version>2.4.1</lucene.version>
+		<lucene.version>3.6.2</lucene.version>
 		<maven.animal.sniffer.plugin.version>1.16</maven.animal.sniffer.plugin.version>
 		<maven.ant.plugin.version>2.4</maven.ant.plugin.version>
 		<!--<maven.antlr3.plugin.version>3.1.1.2</maven.antlr3.plugin.version>-->
@@ -761,10 +762,10 @@
 		<!--<richfaces.version>3.3.3.Final</richfaces.version>-->
 		<myfaces.version>1.2.9</myfaces.version>
 		<neethi.version>3.0.3</neethi.version>
-		<nekohtml.version>1.9.6.2</nekohtml.version>
+		<nekohtml.version>1.9.12</nekohtml.version>
 		<net.sf.hibernate.version>2.1.8</net.sf.hibernate.version>
 		<net.sf.proguard.version>5.1</net.sf.proguard.version>
-		<net.sourceforge.nekohtml.version>1.9.17</net.sourceforge.nekohtml.version>
+		<net.sourceforge.nekohtml.version>1.9.22</net.sourceforge.nekohtml.version>
 		<netty.version>3.8.0.Final</netty.version>
 		<newrelic.version>3.47.0</newrelic.version>
 		<node.version>8.5.0</node.version>
@@ -851,7 +852,7 @@
 		<org.umlgraph.doclet.version>5.1</org.umlgraph.doclet.version>
 		<org.umlgraph.umlgraph.version>5.6.6</org.umlgraph.umlgraph.version>
 		<oro.version>2.0.8</oro.version>
-		<oscache.version>2.3</oscache.version>
+		<oscache.version>2.4.1</oscache.version>
 		<owasp.java.html.sanitizer.version>20160924.1</owasp.java.html.sanitizer.version>
 		<package.tomcat.zip.version>${tomcat.version}</package.tomcat.zip.version>
 		<performancetest.connectTimeout>1000</performancetest.connectTimeout>
@@ -1077,6 +1078,7 @@
 		<spring.springloaded.version>1.2.8.RELEASE</spring.springloaded.version>
 		<!--<spring.test.version>${spring4.version}</spring.test.version>-->
 		<spring.test.version>${spring.legacy.version}</spring.test.version>
+		<spring.version>${spring5.version}</spring.version>
 		<!-- OK <spring3.version>3.1.3.RELEASE</spring3.version>-->
 		<spring3.version>3.2.3.RELEASE</spring3.version>
 		<!-- TODO spring3.version -->
@@ -1084,6 +1086,7 @@
 		<!-- spring4 UPGRADE https://github.com/spring-projects/spring-framework/wiki/Migrating-from-earlier-versions-of-the-spring-framework -->
 		<!-- Hibernate 3.6+, Quartz 1.8+, Jackson 1.8+, Tiles 2.2+ required -->
 		<spring4.version>4.0.5.RELEASE</spring4.version>
+		<spring5.version>5.0.4.RELEASE</spring5.version>
 		<!--<spring.jpa.version>2.0.6</spring.jpa.version>-->
 		<springmodules.validation.version>0.8</springmodules.validation.version>
 		<!--<settings.localRepository>${env.M2_REPO}</settings.localRepository>-->
@@ -1112,9 +1115,9 @@
 		<!--<tibrv.version>8.1.2</tibrv.version>-->
 		<tibrv.version>8.2.2</tibrv.version>
 		<!--<xerces.version>2.10.0</xerces.version> TODO add dependency batik to avoid java.lang.NoClassDefFoundError: org/w3c/dom/ElementTraversal -->
-		<tomcat.version>6.0.29</tomcat.version>
+		<tomcat.version>6.0.53</tomcat.version>
 		<toplink.essentials.version>2.0-40</toplink.essentials.version>
-		<unitils.core.version>3.4.2</unitils.core.version>
+		<unitils.core.version>3.4.6</unitils.core.version>
 		<urlrewrite.version>3.0.4</urlrewrite.version>
 		<vaadin.invient.charts.version>0.8.6</vaadin.invient.charts.version>
 		<vaadin.lazyquerycontainer.version>1.2.9</vaadin.lazyquerycontainer.version>
@@ -1319,67 +1322,67 @@
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-core</artifactId>
-				<version>${spring3.version}</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<!-- Expression Language (depends on spring-core) Define this if you use Spring Expression APIs (org.springframework.expression.*) -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-expression</artifactId>
-				<version>${spring3.version}</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<!-- Object-to-XML Mapping (OXM) abstraction and integration with JAXB, JiBX, Castor, XStream, and XML Beans. (depends on spring-core, spring-beans, spring-context) Define this if you need OXM (org.springframework.oxm.*) -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-oxm</artifactId>
-				<version>${spring3.version}</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<!-- Web application development utilities applicable to both Servlet and Portlet Environments (depends on spring-core, spring-beans, spring-context) Define this if you use Spring MVC, or wish to use Struts, JSF, or another web framework with Spring (org.springframework.web.*) -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-web</artifactId>
-				<version>${spring3.version}</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<!-- Bean Factory and JavaBeans utilities (depends on spring-core) Define this if you use Spring Bean APIs (org.springframework.beans.*) -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-beans</artifactId>
-				<version>${spring3.version}</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<!-- Application Context (depends on spring-core, spring-expression, spring-aop, spring-beans) This is the central artifact for Spring's Dependency Injection Container and is generally always defined -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context</artifactId>
-				<version>${spring3.version}</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<!-- Aspect Oriented Programming (AOP) Framework (depends on spring-core, spring-beans) Define this if you use Spring AOP APIs (org.springframework.aop.*) -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-aop</artifactId>
-				<version>${spring3.version}</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<!-- Various Application Context utilities, including EhCache, JavaMail, Quartz, and Freemarker integration Define this if you need any of these integrations -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-context-support</artifactId>
-				<version>${spring3.version}</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<!-- Transaction Management Abstraction (depends on spring-core, spring-beans, spring-aop, spring-context) Define this if you use Spring Transactions or DAO Exception Hierarchy (org.springframework.transaction.*/org.springframework.dao.*) -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-tx</artifactId>
-				<version>${spring3.version}</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<!-- Object-to-Relation-Mapping (ORM) integration with Hibernate, JPA, and iBatis. (depends on spring-core, spring-beans, spring-context, spring-tx) Define this if you need ORM (org.springframework.orm.*) -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-orm</artifactId>
-				<version>${spring3.version}</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<!-- JDBC Data Access Library (depends on spring-core, spring-beans, spring-context, spring-tx) Define this if you use Spring's JdbcTemplate API (org.springframework.jdbc.*) -->
 			<dependency>
 				<groupId>org.springframework</groupId>
 				<artifactId>spring-jdbc</artifactId>
-				<version>${spring3.version}</version>
+				<version>${spring.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.springframework</groupId>

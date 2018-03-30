@@ -190,5 +190,6 @@ mkswap /swapfile
 swapon /swapfile
 
 sudo nano /etc/sysctl.conf
+sudo sysctl -p
 
 exit 0

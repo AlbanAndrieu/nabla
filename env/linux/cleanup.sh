@@ -119,4 +119,31 @@ dpkg -l | awk '{print $2}' | grep -E "linux-(image|headers)-$(uname -r | cut -d-
 #yum clean all || true
 #rm -rf /var/cache/yum
 
+#List pgk used by services
+find /etc/init /etc/init.d /etc/systemd /lib/systemd /etc/cron.* -type f -exec dpkg-query -S {} \; | sed 's/:.*$//' | sort -u
+
+#Bluetooth remove
+#apt-get remove blueman bluez-alsa bluez-cups
+
+#Wifii remove
+#apt-get remove bluez-cups
+
+#Modem remove
+#apt-get remove modem-manager
+
+#ppp remove
+#apt-get remove ppp pptp-linux network-manager-pptp network-manager-pptp-gnome
+
+#scanner remove
+#apt-get remove sane-utils
+
+#printer remove
+#apt-get remove cups cups-bsd cups-filters cups-ppdc
+
+#braille remove
+#apt-get remove brltty brltty-x11
+
+#vocale remove
+#apt-get remove speech-dispatcher
+
 exit 0
