@@ -15,9 +15,17 @@ set -xv
 #from Shell
 /etc/netcli
 
+#WebUI
+#Set nginx_enable to YES: sysrc nginx_enable=YES
+#modify nginx.conf: nano /usr/local/etc/nginx/nginx.conf
+#Remove the IPv6 listen line
+#Start Nginx Service: service nginx start
+
 echo "https://192.168.0.46:7000/"
 echo "https://home.nabla.mobi:7000/"
 echo "https://freenas.freeboxos.fr:7000/"
+#https://[fe80::160c:76ff:fe64:65dd]:7000/
+https://[fe80::7e05:7ff:fe0e:d988]:7000/
 
 #GUI
 user : root

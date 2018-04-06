@@ -24,6 +24,7 @@ edit /usr/local/etc/rc.d/jenkins
 /usr/local/etc/rc.d/jenkins stop
 #--ajp13ListenAddress=192.168.0.14 --ajp13Port=8009
 #REMOVE --prefix=/jenkins for jenkins apps on android
+: ${jenkins_java_opts="-Xmx2048m -XX:MaxPermSize=512m -Djava.awt.headless=true"}
 : ${jenkins_args="--webroot=${jenkins_home}/war --httpListenAddress=0.0.0.0 --httpPort=8380 --prefix=/"}
 echo 'jenkins_enable="YES"' >> /etc/rc.conf
 
