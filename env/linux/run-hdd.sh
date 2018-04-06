@@ -23,6 +23,7 @@ dmsetup remove_all
 #See https://doc.ubuntu-fr.org/lvm
 
 #See https://www.gadgetdaily.xyz/cactus-for-mac-review-powerful-and-clean-web-development-tools/
+#https://www.tecmint.com/extend-and-reduce-lvms-in-linux/
 
 sudo lvscan
 

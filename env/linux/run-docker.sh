@@ -214,6 +214,8 @@ docker stop $(docker ps -a -q) # stop all docker containers
 docker rm -f $(docker ps -a -q) # remove all docker containers
 docker images -q | xargs docker rmi -f # remove all docker images
 
+docker system prune -f --volumes
+
 docker stats $(docker ps --format '{{.Names}}')
 
 ll /var/lib/docker/tmp/docker-build*/Downloads
