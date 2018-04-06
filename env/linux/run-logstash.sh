@@ -120,3 +120,14 @@ curl -X PUT http://localhost:9200/kibana-int/dashboard/collectd-overview -T /wor
 wget https://gist.githubusercontent.com/shreyu86/8b9bb29d758d4ec5ce7c/raw/35d5c67181214fe65924d4f8147bcff8df73b3da/logstash.conf
 docker run -d --name logstash --link es:elasticsearch logstash -v /tmp/logstash.conf:./logstash.conf logstash logstash -f ./logstash.conf
 LOGSTASH_ADDRESS=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' logstash)
+
+#Install filebeat
+#YUM
+docker exec -u 0 -it test_frmb_1 env TERM=xterm-256color bash -l
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.2.3-x86_64.rpm
+rpm -vi filebeat-6.2.3-x86_64.rpm
+#APT
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.2.3-amd64.deb
+sudo dpkg -i filebeat-6.2.3-amd64.deb
+
+sudo filebeat setup --dashboards
