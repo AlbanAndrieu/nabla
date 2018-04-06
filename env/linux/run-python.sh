@@ -62,9 +62,11 @@ source /opt/ansible/env36/bin/activate
 sudo easy_install --upgrade pip
 
 #Show outdated pip package
-pip list --outdated --format=freeze
+pip2 list --outdated --format=freeze
+pip3 list --outdated --format=freeze
 #Upgrade all
-pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip install -U
+pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip2 install -U
+pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U
 
 #Issue pycurl: libcurl link-time ssl backend (nss) is different from compile-time ssl backend (none/other)
 pip uninstall pycurl
@@ -107,3 +109,13 @@ sudo pip3.6 uninstall docker-compose
 sudo pip3.6 install docker-compose==1.9.0
 
 docker-compose --version
+
+#Error below https://github.com/Kozea/CairoSVG/issues/141
+#sudo pip2.7 install cairosvg
+brew install cairo libxml2 libffi
+pip3 install cairosvg
+pip install cairocffi==0.8.0
+pip2 install CairoSVG==2.0.3
+
+dpkg -l | grep 'urllib3'
+sudo apt-get install python-urllib3 python3-urllib3

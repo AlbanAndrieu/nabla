@@ -17,12 +17,16 @@ cd /usr/ports/www/apache24
 cat /usr/local/etc/apache24/httpd.conf | grep Listen
 echo 'apache24_enable="YES"' >> /etc/rc.conf
 
+#check mod ssl
+/usr/ports/www/apache24]#  make showconfig | grep ssl
+     SSL=on: SSL/TLS support (mod_ssl)
+
 #as non jail
 #start apache
 /usr/local/etc/rc.d/apache24 start
 
 less /var/log/httpd-error.log
-see http://192.168.0.47/
+see http://192.168.0.28/
 
 #####################
 
@@ -155,5 +159,23 @@ DirectoryIndex index.php index.html
     SetHandler application/x-httpd-php-source
 </FilesMatch>
 
-service apache24 restart
+#DocumentRoot "/usr/local/www/apache24/data"
+cd /usr/local/www/apache24/data
 
+#https://mujahidjaleel.blogspot.fr/2016/10/how-to-install-apache-v24-webserver-in.html
+nano /usr/local/etc/apache24/extra/httpd-ssl.conf
+
+openssl s_client -connect localhost:443
+
+#https://www.debarbora.com/lets-encrypt-ssl-certificate-with-freebsd-apache/
+pkg install -y py27-certbot
+certbot certonly
+#certbot certonly --standalone -d home.nabla.mobi
+
+service apache24 restart
+ 
+http://192.168.0.28/index.pl
+http://192.168.0.28/index.cgi
+
+cd /usr/local/www/apache24/data/.well-known/acme-challenge
+watch -n 0.1 ls -lRa
