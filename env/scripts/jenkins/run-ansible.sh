@@ -21,6 +21,50 @@ export head_skull='\xE2\x98\xA0'
 export happy_smiley='\xE2\x98\xBA'
 export reverse_exclamation='\u00A1'
 
+case "$OSTYPE" in
+  linux*)   SYSTEM=LINUX;;
+  darwin*)  SYSTEM=OSX;;
+  win*)     SYSTEM=Windows;;
+  cygwin*)  SYSTEM=Cygwin;;
+  msys*)    SYSTEM=MSYS;;
+  bsd*)     SYSTEM=BSD;;
+  solaris*) SYSTEM=SOLARIS;;
+  *)        SYSTEM=UNKNOWN;;
+esac
+echo "SYSTEM : ${SYSTEM}"
+
+if [ -f /etc/os-release ]; then
+    # freedesktop.org and systemd
+    . /etc/os-release
+    OS=$NAME
+    VER=$VERSION_ID
+elif type lsb_release >/dev/null 2>&1; then
+    # linuxbase.org
+    OS=$(lsb_release -si)
+    VER=$(lsb_release -sr)
+elif [ -f /etc/lsb-release ]; then
+    # For some versions of Debian/Ubuntu without lsb_release command
+    . /etc/lsb-release
+    OS=$DISTRIB_ID
+    VER=$DISTRIB_RELEASE
+elif [ -f /etc/debian_version ]; then
+    # Older Debian/Ubuntu/etc.
+    OS=Debian
+    VER=$(cat /etc/debian_version)
+elif [ -f /etc/SuSe-release ]; then
+    # Older SuSE/etc.
+    ...
+elif [ -f /etc/redhat-release ]; then
+    # Older Red Hat, CentOS, etc.
+    ...
+else
+    # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
+    OS=$(uname -s)
+    VER=$(uname -r)
+fi
+echo "OS : ${OS}"
+echo "VER : ${VER}"
+
 if [ -n "${TARGET_SLAVE}" ]; then
   echo -e "${green} TARGET_SLAVE is defined ${happy_smiley} : ${TARGET_SLAVE} ${NC}"
 else
@@ -57,7 +101,14 @@ if [ -n "${PYTHON_CMD}" ]; then
   echo -e "${green} PYTHON_CMD is defined ${happy_smiley} : ${PYTHON_CMD} ${NC}"
 else
   echo -e "${red} \u00BB Undefined build parameter ${head_skull} : PYTHON_CMD, use the default one ${NC}"
-  export PYTHON_CMD="/usr/bin/python3.5"
+  #/usr/local/bin/python3.5 for RedHat
+  #/usr/bin/python3.5 for Ubuntu
+  if [ "${OS}" == "Red Hat Enterprise Linux Server" ]; then
+    PYTHON_CMD="/usr/local/bin/python3.5"
+  else
+    PYTHON_CMD="/usr/bin/python3.5"
+  fi
+  export PYTHON_CMD
   echo -e "${magenta} PYTHON_CMD : ${PYTHON_CMD} ${NC}"
 fi
 
@@ -73,7 +124,14 @@ if [ -n "${ANSIBLE_CMD}" ]; then
   echo -e "${green} ANSIBLE_CMD is defined ${happy_smiley} : ${ANSIBLE_CMD} ${NC}"
 else
   echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_CMD, use the default one ${NC}"
-  export ANSIBLE_CMD="${PYTHON_CMD} /usr/local/bin/ansible"
+  #/usr/bin/ansible for RedHat
+  #/usr/local/bin/ansible for Ubuntu
+  if [ "${OS}" == "Ubuntu" ]; then
+    ANSIBLE_CMD="${PYTHON_CMD} /usr/local/bin/ansible"
+  else
+    ANSIBLE_CMD="${PYTHON_CMD} /usr/bin/ansible"
+  fi
+  export ANSIBLE_CMD
   echo -e "${magenta} ANSIBLE_CMD : ${ANSIBLE_CMD} ${NC}"
 fi
 
@@ -81,7 +139,14 @@ if [ -n "${ANSIBLE_CMBD_CMD}" ]; then
   echo -e "${green} ANSIBLE_CMBD_CMD is defined ${happy_smiley} : ${ANSIBLE_CMBD_CMD} ${NC}"
 else
   echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_CMBD_CMD, use the default one ${NC}"
-  export ANSIBLE_CMBD_CMD="${PYTHON_CMD} /usr/local/bin/ansible-cmdb"
+  #/usr/bin/ansible-cmdb for RedHat
+  #/usr/local/bin/ansible-cmdb for Ubuntu
+  if [ "${OS}" == "Ubuntu" ]; then
+    ANSIBLE_CMBD_CMD="/usr/local/bin/ansible-cmdb"
+  else
+    ANSIBLE_CMBD_CMD="/usr/bin/ansible-cmdb"
+  fi
+  export ANSIBLE_CMBD_CMD
   echo -e "${magenta} ANSIBLE_CMBD_CMD : ${ANSIBLE_CMBD_CMD} ${NC}"
 fi
 
@@ -89,7 +154,14 @@ if [ -n "${ANSIBLE_GALAXY_CMD}" ]; then
   echo -e "${green} ANSIBLE_GALAXY_CMD is defined ${happy_smiley} : ${ANSIBLE_GALAXY_CMD} ${NC}"
 else
   echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_GALAXY_CMD, use the default one ${NC}"
-  export ANSIBLE_GALAXY_CMD="${PYTHON_CMD} /usr/local/bin/ansible-galaxy"
+  #/usr/bin/ansible-galaxy for RedHat
+  #/usr/local/bin/ansible-galaxy for Ubuntu
+  if [ "${OS}" == "Ubuntu" ]; then
+    ANSIBLE_GALAXY_CMD="${PYTHON_CMD} /usr/local/bin/ansible-galaxy"
+  else
+    ANSIBLE_GALAXY_CMD="${PYTHON_CMD} /usr/bin/ansible-galaxy"
+  fi
+  export ANSIBLE_GALAXY_CMD
   echo -e "${magenta} ANSIBLE_GALAXY_CMD : ${ANSIBLE_GALAXY_CMD} ${NC}"
 fi
 
@@ -97,7 +169,14 @@ if [ -n "${ANSIBLE_PLAYBOOK_CMD}" ]; then
   echo -e "${green} ANSIBLE_PLAYBOOK_CMD is defined ${happy_smiley} : ${ANSIBLE_PLAYBOOK_CMD} ${NC}"
 else
   echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_PLAYBOOK_CMD, use the default one ${NC}"
-  export ANSIBLE_PLAYBOOK_CMD="${PYTHON_CMD} /usr/local/bin/ansible-playbook"
+  #/usr/bin/ansible-playbook for RedHat
+  #/usr/local/bin/ansible-playbook for Ubuntu
+  if [ "${OS}" == "Ubuntu" ]; then
+    ANSIBLE_PLAYBOOK_CMD="${PYTHON_CMD} /usr/local/bin/ansible-playbook"
+  else
+    ANSIBLE_PLAYBOOK_CMD="${PYTHON_CMD} /usr/bin/ansible-playbook"
+  fi
+  export ANSIBLE_PLAYBOOK_CMD
   echo -e "${magenta} ANSIBLE_PLAYBOOK_CMD : ${ANSIBLE_PLAYBOOK_CMD} ${NC}"
 fi
 
@@ -105,7 +184,14 @@ if [ -n "${ANSIBLE_LINT_CMD}" ]; then
   echo -e "${green} ANSIBLE_LINT_CMD is defined ${happy_smiley} : ${ANSIBLE_LINT_CMD} ${NC}"
 else
   echo -e "${red} \u00BB Undefined build parameter ${head_skull} : ANSIBLE_LINT_CMD, use the default one ${NC}"
-  export ANSIBLE_LINT_CMD="${PYTHON_CMD} /usr/local/bin/ansible-lint"
+  #/usr/bin/ansible-lint for RedHat
+  #/usr/local/bin/ansible-lint for Ubuntu
+  if [ "${OS}" == "Ubuntu" ]; then
+    ANSIBLE_LINT_CMD="${PYTHON_CMD} /usr/local/bin/ansible-lint"
+  else
+    ANSIBLE_LINT_CMD="${PYTHON_CMD} /usr/bin/ansible-lint"
+  fi
+  export ANSIBLE_LINT_CMD
   echo -e "${magenta} ANSIBLE_LINT_CMD : ${ANSIBLE_LINT_CMD} ${NC}"
 fi
 
@@ -123,11 +209,12 @@ echo "WORKSPACE : $WORKSPACE"
 echo "DOCKER_CLIENT_TIMEOUT : $DOCKER_CLIENT_TIMEOUT"
 echo "COMPOSE_HTTP_TIMEOUT : $COMPOSE_HTTP_TIMEOUT"
 
+#tomcat8 must be stop to no use same port
 sudo service tomcat8 stop || true
 
 echo -e "${red} Configure workstation ${NC}"
 
-echo -e "${cyan} Use virtual env /opt/ansible/env36/bin/activate ${NC}"
+echo -e "${cyan} Use virtual env /opt/ansible/env35/bin/activate ${NC}"
 #echo "Switch to python 2.7 and ansible 2.1.1"
 #scl enable python27 bash
 #Enable python 2.7 and switch to ansible 2.1.1
@@ -135,9 +222,24 @@ echo -e "${cyan} Use virtual env /opt/ansible/env36/bin/activate ${NC}"
 
 #sudo virtualenv -p /usr/bin/python3.5 /opt/ansible/env35
 
-source /opt/ansible/env35/bin/activate
+source /opt/ansible/env35/bin/activate || exit 2
+
+echo -e "${cyan} =========== ${NC}"
+echo -e "${green} Install virtual env requiremnts ${NC}"
+sudo -H pip3.5 install -r roles/jenkins-slave/files/requirements-minimal-current-3.5.txt || exit 2
+
+echo -e "${cyan} =========== ${NC}"
+echo -e "${green} Checking docker-compose version ${NC}"
 
 docker-compose --version
+RC=$?
+if [ ${RC} -ne 0 ]; then
+  echo ""
+  echo -e "${red} ${head_skull} Sorry, docker-compose failed ${NC}"
+  exit 1
+else
+  echo -e "${green} The docker-compose check completed successfully. ${NC}"
+fi
 
 echo -e "${cyan} =========== ${NC}"
 echo -e "${green} Checking python version ${NC}"

@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 import csv
 import json
 import urllib
@@ -8,15 +9,15 @@ from os.path import isfile
 import pygal
 
 
-#jobs = ['1_FR_DEV_BUILD-ADVANCED_MEASURES']
+# jobs = ['1_NABLA_TEST']
 jobs = [line.strip() for line in open('job.list')]
 
 for job in jobs:
-    print 'Processing Jenkins job ' + job
+    print('Processing Jenkins job ' + job)
     buildTimes = {}
     csvFile = job + '.csv'
 
-    print 'Reading ' + csvFile
+    print('Reading ' + csvFile)
     # load existing csv file if exists
     if isfile(job + '.csv'):
         with open(job + '.csv', 'rb') as csvfile:
@@ -30,7 +31,7 @@ for job in jobs:
     # load values from url
     url = 'http://home.nabla.mobi:8381/job/' + \
         job + '/api/json?tree=builds[number,duration]'
-    print 'Reading data from ' + url
+    print('Reading data from ' + url)
     response = urllib.urlopen(url)
     data = json.loads(response.read())
 
@@ -38,7 +39,7 @@ for job in jobs:
         buildTimes[i['number']] = i['duration'] / 60000
 
     # store buildTimes dictionary as csv file
-    print 'Writing ' + csvFile
+    print('Writing ' + csvFile)
     with open(job + '.csv', 'wb') as csvfile:
         writer = csv.writer(csvfile, delimiter=',')
 
@@ -46,7 +47,7 @@ for job in jobs:
             writer.writerow([key, buildTimes[key]])
 
     # create chart data
-    print 'Creating chart file ' + job + '.png'
+    print('Creating chart file ' + job + '.png')
     build = array('l')
     duration = array('l')
 
