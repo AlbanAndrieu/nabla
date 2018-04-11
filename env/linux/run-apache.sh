@@ -9,6 +9,10 @@ sudo apt-get install php5
 sudo apt-get install libapache2-mod-php5
 sudo /etc/init.d/apache2 restart
 
+#For webmin
+sudo apt-get -y -f install webalizer
+sudo apt-get -y -f install fail2ban
+
 #http://doc.ubuntu-fr.org/apache2
 ll /etc/apache2/
 ll /var/www/
