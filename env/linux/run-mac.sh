@@ -6,6 +6,8 @@ set -xv
 
 #Download xcode from https://developer.apple.com/download/
 
+pkgutil --pkg-info=com.apple.pkg.CLTools_Executables
+
 sudo xcodebuild -license
 sudo xcode-select --install
 sudo xcode-select -p
@@ -24,12 +26,17 @@ ansible-galaxy install -r requirements.yml
 ansible-playbook main.yml -i inventory -K
 
 #Download Mac port from https://www.macports.org/install.php
+sw_vers -productVersion
+wget https://github.com/macports/macports-base/releases/download/v2.4.2/MacPorts-2.4.2-10.12-Sierra.pkg
+sudo installer -pkg MacPorts-2.4.2-10.12-Sierra.pkg -target /
+sudo /opt/local/bin/port version
 sudo /opt/local/bin/port -v selfupdate
 
-sudo port list | grep wget
-sudo port -t install wget
-sudo port install openssl
+sudo /opt/local/bin/port list | grep wget
+sudo /opt/local/bin/port -t install wget
+sudo /opt/local/bin/port install openssl
 #sudo port install xorg-server
+sudo /opt/local/bin/port install ansible
 
 #See https://github.com/geerlingguy/mac-dev-playbook
 git clone https://github.com/geerlingguy/mac-dev-playbook

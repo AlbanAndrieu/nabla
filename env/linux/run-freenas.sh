@@ -223,6 +223,9 @@ sudo mount -t nfs 192.168.0.46:/mnt/dpool/jenkins-slave /jenkins-slave
 sudo mount -t nfs 192.168.0.46:/mnt/dpool/workspace /workspace-tmp
 #sudo mount -t nfs 192.168.0.46:/mnt/dpool/workspace/users/albandri10 /workspace/users/albandri10
 
+#iscsi
+#See run-hdd.sh
+
 #TODO
 #https://github.com/zfsonlinux/pkg-zfs/wiki/Ubuntu-ZFS-mountall-FAQ-and-troubleshooting
 #connect to freenas

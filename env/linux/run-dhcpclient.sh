@@ -19,7 +19,7 @@ less /etc/resolv.conf
 
 #Since upgrade from ubuntu 14.04
 #http://askubuntu.com/questions/462560/ubuntu-14-04-wont-shutdown-or-reboot
-network-manager Could not acquire the org.freedesktop.ModemManager1 service name
+#network-manager Could not acquire the org.freedesktop.ModemManager1 service name
 sudo apt-get purge modemmanager
 sudo apt-get install modemmanager
 
