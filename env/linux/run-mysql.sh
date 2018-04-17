@@ -2,8 +2,7 @@
 set -xv
 
 #http://doc.ubuntu-fr.org/mysql
-sudo apt install mysql-server
-
+sudo apt-get install mysql-server-5.7
 #http://doc.ubuntu-fr.org/lamp
 #apache on http://127.0.1.1:80
 #check php http://localhost/test.php
@@ -55,7 +54,7 @@ telnet 10.21.22.69 3306
 mysql -u root --password=Motdepass12 -h 10.21.22.69 mysql
 
 sudo netstat -ntlup | grep mysql
-#sudo nano /etc/mysql/conf.d/mysqld.cnf
+#bind-address=YOUR-SERVER-IP
 #Try to add bind-address = 0.0.0.0 to your [mysqld] section of your my.cnf and restart mysqld.
 sudo nano /etc/mysql/my.cnf
 
