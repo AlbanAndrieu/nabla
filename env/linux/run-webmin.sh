@@ -14,6 +14,9 @@ cd /usr/local/webadmin
 sudo ln -s `which perl` /usr/local/bin/perl
 sudo ./local-setup.sh
 
+#Open firewall
+sudo ufw allow 10000
+
 #
 Login name on windows : admin
 Login name on windows : Ba...7
@@ -45,5 +48,8 @@ ls -lrta /etc/ssl/private/
 cat /etc/ssl/private/nabla.freeboxos.fr.key /etc/ssl/private/nabla.freeboxos.fr.pem > new_miniserv.pem
 
 service webmin restart
+
+cpan install DBI
+cpan install DBD::mysql
 
 echo "https://nabla.freeboxos.fr:10000/"
