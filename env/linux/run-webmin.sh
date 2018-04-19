@@ -18,9 +18,9 @@ sudo ./local-setup.sh
 sudo ufw allow 10000
 
 #
-Login name on windows : admin
-Login name on windows : Ba...7
-http://PTXMZ0087:10000/
+#Login name on windows : admin
+#Login name on windows : microsoft
+#http://PTXMZ0087:10000/
 
 #mon
 #change /var/www/cgi-bin/mon.cgi by /usr/lib/cgi-bin/mon.cgi
@@ -53,3 +53,13 @@ cpan install DBI
 cpan install DBD::mysql
 
 echo "https://nabla.freeboxos.fr:10000/"
+
+#See https://www.digitalocean.com/community/tutorials/how-to-install-webmin-on-ubuntu-16-04
+#letsencrypt
+
+#Private key /etc/webmin/miniserv.pem
+ls -lrta /etc/webmin/miniserv.csr
+
+tail -f /var/webmin/webmin.log
+tail -f /var/webmin/miniserv.log
+tail -f /var/webmin/miniserv.error
