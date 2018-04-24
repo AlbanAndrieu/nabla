@@ -14,6 +14,10 @@ sudo nano /etc/resolv.conf
 dpkg-reconfigure resolvconf
 sudo resolvconf -u
 
+sudo nano /etc/resolvconf/resolv.conf.d/head
+#Add
+nameserver 8.8.4.4
+
 sudo service network-manager restart
 less /etc/resolv.conf
 
@@ -44,3 +48,6 @@ yptest
 dmesg
 service nis stop
 ipconfig /flushdns
+
+#systemctl disable bind9
+#sudo update-rc.d bind9 disable
