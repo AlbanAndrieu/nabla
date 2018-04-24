@@ -63,3 +63,5 @@ ls -lrta /etc/webmin/miniserv.csr
 tail -f /var/webmin/webmin.log
 tail -f /var/webmin/miniserv.log
 tail -f /var/webmin/miniserv.error
+
+exit 0

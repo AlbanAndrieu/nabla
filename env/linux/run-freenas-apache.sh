@@ -1,4 +1,4 @@
-pkg install nano bash 
+pkg install nano bash
 #bash_completion
 ln -s /usr/local/bin/bash /bin/bash
 pkg install sudo
@@ -39,9 +39,9 @@ pkg install phpMyAdmin
 pkg install mod_php56 php56-mysql php56-mysqli
 pkg install php56-mysqli php56-json php56-mbstring php56-session
 
-pkg search php56 
+pkg search php56
 pkg install php56-bcmath php56-curl php56-gd php56-mbstring php56-pdo_mysql php56-xsl
- 
+
     Alias /phpmyadmin/ "/usr/local/www/phpMyAdmin/"
 
     <Directory "/usr/local/www/phpMyAdmin/">
@@ -55,7 +55,7 @@ pkg install php56-bcmath php56-curl php56-gd php56-mbstring php56-pdo_mysql php5
 http://192.168.0.28/phpMyAdmin/
 
 pkg install cdash
- 
+
 Message from php56-dom-5.6.31:
 ****************************************************************************
 
@@ -173,9 +173,15 @@ certbot certonly
 #certbot certonly --standalone -d home.nabla.mobi
 
 service apache24 restart
- 
+
 http://192.168.0.28/index.pl
 http://192.168.0.28/index.cgi
 
 cd /usr/local/www/apache24/data/.well-known/acme-challenge
 watch -n 0.1 ls -lRa
+
+pkg install py27-fail2ban
+pkg install webalizer
+pkg install awstats
+
+#See run-awstats.sh
