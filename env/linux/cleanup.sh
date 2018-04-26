@@ -38,6 +38,7 @@ echo "Start cleaning"
 #\rm -rf ~/.config/google-chrome/Default/Web\ Data
 \rm -Rf ~/.config/google-chrome/History*
 \rm -Rf ~/.config/variety/Downloaded/*/
+\rm -Rf ~/.local/share/applications/google-chrome-*.desktop
 #nabla
 \rm -Rf ~/env/config/setEnvFiles.list.txt
 #https://askubuntu.com/questions/177312/filesystem-filling-up-due-to-large-uvcydnctrl-udev-log-file

@@ -23,6 +23,9 @@ set -xv
 #To disable HTS
 #See chrome://net-internals/#hsts
 
+#Fix : Google Chrome opens in a new window in a new launcher icon
+#\rm -Rf ~/.local/share/applications/google-chrome-*.desktop
+
 gnome-keyring-daemon &
 /usr/bin/google-chrome
 
