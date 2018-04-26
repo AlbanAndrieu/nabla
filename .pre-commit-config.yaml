@@ -11,14 +11,24 @@ repos:
     -   id: check-executables-have-shebangs
     -   id: check-json
     -   id: check-xml
+        exclude: >
+                  (?x)^(
+                      env/home/log4j.xml
+                  )$
     -   id: check-yaml
     -   id: check-symlinks
     -   id: debug-statements
+        exclude: >
+                  (?x)^(
+                      env/scripts/zodclient.py|
+                      env/scripts/server-connector.py
+                  )$
     -   id: detect-private-key
         exclude: >
                   (?x)^(
                       roles/jenkins-master/defaults/main.yml|
-                      roles/jenkins-master/README.md
+                      roles/jenkins-master/README.md|
+                      env/scripts/server-connector.py
                   )$
     -   id: double-quote-string-fixer
     -   id: name-tests-test
@@ -27,6 +37,11 @@ repos:
     -   id: requirements-txt-fixer
     -   id: sort-simple-yaml
     -   id: flake8
+        exclude: >
+                  (?x)^(
+                      env/scripts/zodclient.py|
+                      env/scripts/server-connector.py
+                  )$
         args: [--max-line-length=120]
 -   repo: https://github.com/pre-commit/pre-commit.git
     rev: v1.8.2

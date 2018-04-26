@@ -1,10 +1,11 @@
 #!/usr/bin/env python2.7
+# -*- coding: utf-8 -*-
 """ This is the new server-connector. It enables binaries launched outside
 of NABLA_ENV to be ran against a zone, enabling transparent use of configuration and
 connection to thirdparties needed by the binary. Not like the previous implementation,
 it now use standard built-in feature of unix systems such as chroot.
 """
-#/usr/local/server-connector
+# /usr/local/server-connector
 from __future__ import print_function
 
 import argparse
@@ -23,7 +24,7 @@ import sys
 import urlparse
 
 if sys.hexversion < 0x02070000:
-    error("Python 2.7 or newer is required to run this program.")
+    error('Python 2.7 or newer is required to run this program.')
 
 __version__ = '2015.02.16'
 __author__ = 'nabla team'
@@ -59,8 +60,8 @@ KEY_MOUNT_TYPE = 'type'
 NETWORK_SHARE_TYPE = 'nfs'
 
 ZONE_USERS = {
-    'kgr':         {KEY_UID: 100},
-    'kplus':       {KEY_UID: 101},
+    'app1':         {KEY_UID: 100},
+    'app2':       {KEY_UID: 101},
     'vbox':        {KEY_UID: 107,  KEY_HOME: '/home/vbox'},
 }
 
@@ -72,147 +73,147 @@ ssh_cmd_string = 'ssh -o IdentityFile=~/.ssh/nabla.rsa -o StrictHostKeyChecking=
 nabla_local_dirs = ['nabla', 'thomsonreuters']
 nabla_zone_dir = 'nabla'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def mount_cmd():
     ptf = platform.system()
-    if ptf == "SunOS":
+    if ptf == 'SunOS':
         return '/usr/sbin/mount'
-    elif ptf == "Linux":
+    elif ptf == 'Linux':
         return '/bin/mount'
     else:
-        raise SystemExit("Platform " + platform.system() + " is not supported")
+        raise SystemExit('Platform ' + platform.system() + ' is not supported')
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def umount_cmd():
     ptf = platform.system()
-    if ptf == "SunOS":
+    if ptf == 'SunOS':
         return '/usr/sbin/umount'
-    elif ptf == "Linux":
+    elif ptf == 'Linux':
         return '/bin/umount'
     else:
-        raise SystemExit("Platform " + platform.system() + " is not supported")
+        raise SystemExit('Platform ' + platform.system() + ' is not supported')
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def env_cmd():
     ptf = platform.system()
-    if ptf == "SunOS":
+    if ptf == 'SunOS':
         return '/bin/env'
-    elif ptf == "Linux":
+    elif ptf == 'Linux':
         return '/usr/bin/env'
     else:
-        raise SystemExit("Platform " + platform.system() + " is not supported")
+        raise SystemExit('Platform ' + platform.system() + ' is not supported')
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def su_cmd():
     ptf = platform.system()
-    if ptf == "SunOS":
+    if ptf == 'SunOS':
         return '/bin/su'
-    elif ptf == "Linux":
+    elif ptf == 'Linux':
         return '/bin/su'
     else:
-        raise SystemExit("Platform " + platform.system() + " is not supported")
+        raise SystemExit('Platform ' + platform.system() + ' is not supported')
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def chroot_cmd():
     ptf = platform.system()
-    if ptf == "SunOS":
+    if ptf == 'SunOS':
         return '/usr/sbin/chroot'
-    elif ptf == "Linux":
+    elif ptf == 'Linux':
         return '/usr/sbin/chroot'
     else:
-        raise SystemExit("Platform " + platform.system() + " is not supported")
+        raise SystemExit('Platform ' + platform.system() + ' is not supported')
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def remove_file(filename, errormsg=None):
     if os.path.isfile(filename):
-        logging.debug("Removing %s" % (filename))
+        logging.debug('Removing %s' % (filename))
         os.unlink(filename)
     elif errormsg:
         logging.debug(errormsg)
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def mount_bind(src, dst, rbind):
-    logging.debug("Mounting " + src + " on " + dst)
-    if platform.system() == "SunOS":
-        cmd = [mount_cmd(), "-F", "lofs", src, dst]
-    elif platform.system() == "Linux":
+    logging.debug('Mounting ' + src + ' on ' + dst)
+    if platform.system() == 'SunOS':
+        cmd = [mount_cmd(), '-F', 'lofs', src, dst]
+    elif platform.system() == 'Linux':
         if rbind and isRHEL():
-            options = "--rbind"
+            options = '--rbind'
         else:
-            options = "--bind"
+            options = '--bind'
         cmd = [mount_cmd(), options, src, dst]
     else:
-        raise SystemExit("Platform " + platform.system() + " is not supported")
+        raise SystemExit('Platform ' + platform.system() + ' is not supported')
     logging.debug('Executing ' + ' '.join(cmd))
     subprocess.call(cmd)
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def mount(srcDir, srcServer, dst, options):
     if resource_mounted(dst):
-        logging.debug("%s already mounted." % (dst))
+        logging.debug('%s already mounted.' % (dst))
         return
     if not os.path.isdir(dst):
         os.mkdir(dst)
-    if platform.system() == "SunOS":
+    if platform.system() == 'SunOS':
         cmd = [mount_cmd()] + options + [srcServer + ':' + srcDir, dst]
-    elif platform.system() == "Linux":
+    elif platform.system() == 'Linux':
         cmd = [mount_cmd(), srcServer + ':' + srcDir, dst] + options
     else:
-        raise SystemExit("Platform " + platform.system() + " is not supported")
+        raise SystemExit('Platform ' + platform.system() + ' is not supported')
     logging.debug('Executing ' + ' '.join(cmd))
     subprocess.call(cmd)
 
 
 def mount_pattern(share):
-    pattern = ""
-    if platform.system() == "Linux":
-        pattern = "\s%s"
-    elif platform.system() == "SunOS":
-        pattern = "^%s"
+    pattern = ''
+    if platform.system() == 'Linux':
+        pattern = '\s%s'
+    elif platform.system() == 'SunOS':
+        pattern = '^%s'
     else:
-        raise SystemExit("Platform " + platform.system() + " is not supported")
+        raise SystemExit('Platform ' + platform.system() + ' is not supported')
 
     return pattern % (share)
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def mount_fields():
     fields = {KEY_MOUNT_POINT: 2, KEY_SHARE: 0}
-    if platform.system() == "Linux":
+    if platform.system() == 'Linux':
         fields[KEY_MOUNT_TYPE] = 4
-    elif platform.system() == "SunOS":
+    elif platform.system() == 'SunOS':
         fields[KEY_MOUNT_TYPE] = 3
     else:
-        raise SystemExit("Platform " + platform.system() + " is not supported")
+        raise SystemExit('Platform ' + platform.system() + ' is not supported')
 
     return fields
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # get list of mounted server shares (mounted and locally bind)
 
 
 def get_mounts():
-    mount_pattern_str = ""
+    mount_pattern_str = ''
     for local_dir in nabla_local_dirs + ['server-connector']:
         if len(mount_pattern_str) > 0:
-            mount_pattern_str += "|%s" % (local_dir)
+            mount_pattern_str += '|%s' % (local_dir)
         else:
             mount_pattern_str = local_dir
 
@@ -221,7 +222,7 @@ def get_mounts():
     mount_pattern = re.compile(mount_pattern_str)
 
     mounts = []
-    for mount in mounts_output.split("\n"):
+    for mount in mounts_output.split('\n'):
         if mount_pattern.search(mount):
             mounts.append(mount)
 
@@ -233,26 +234,26 @@ def get_mounts():
 def extract_connected_zone(mount_point, share):
     pattern = re.compile('server-connector')
     if (pattern.search(mount_point)):
-        dirs = mount_point.split("/")
+        dirs = mount_point.split('/')
 
         share = dirs[KEY_USER_DIR_SHARE] if len(
-            dirs) > KEY_USER_DIR_SHARE else "."
+            dirs) > KEY_USER_DIR_SHARE else '.'
 
         return {KEY_ZONE: dirs[KEY_USER_DIR_ZONE],
                 KEY_USER: dirs[KEY_USER_DIR_USER],
                 KEY_MOUNT_POINT: mount_point,
-                KEY_SHARE: "/".join(share)}
+                KEY_SHARE: '/'.join(share)}
     else:
-        dirs = share.split(":")
+        dirs = share.split(':')
         return {KEY_ZONE: dirs[KEY_GLOBAL_ZONE],
                 KEY_USER: KEY_GLOBAL_USER,
                 KEY_MOUNT_POINT: mount_point,
                 KEY_SHARE: dirs[KEY_GLOBAL_SHARE]}
 
 
-linuxPattern = re.compile("Linux")
-rhelPattern = re.compile("Red Hat Enterprise Linux")
-ubuntuPattern = re.compile("Ubuntu")
+linuxPattern = re.compile('Linux')
+rhelPattern = re.compile('Red Hat Enterprise Linux')
+ubuntuPattern = re.compile('Ubuntu')
 
 
 def isLinux():
@@ -266,20 +267,20 @@ def isUbuntu():
 def isRHEL():
     return isLinux() and rhelPattern.search(platform.linux_distribution()[0])
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # Show user list of zones connected to machine
 
 
 def show_all_connected():
     logging.debug('Check all present mount-points on : %s.' %
                   (socket.gethostname()))
-    print("Detecting existing connections. Please wait ...")
+    print('Detecting existing connections. Please wait ...')
     fields = mount_fields()
 
     servers = {}
     local_bindings = {}
     for mount in get_mounts():
-        mounts = mount.split(" ")
+        mounts = mount.split(' ')
         mount_point = mounts[fields[KEY_MOUNT_POINT]]
         share = mounts[fields[KEY_SHARE]]
         type = mounts[fields[KEY_MOUNT_TYPE]]
@@ -302,13 +303,13 @@ def show_all_connected():
                     {KEY_SHARE: share, KEY_MOUNT_POINT: mount_point})
 
     if len(servers) > 0:
-        print("Connected zones:")
+        print('Connected zones:')
         for zonename in servers:
             zone = servers[zonename]
-            print("Zone: %s connected (%s)" %
-                  (zone[KEY_ZONE], ",".join(zone[KEY_USER])))
+            print('Zone: %s connected (%s)' %
+                  (zone[KEY_ZONE], ','.join(zone[KEY_USER])))
     if len(local_bindings) > 0 and 0:
-        print("Locally bind:")
+        print('Locally bind:')
         for zonename in local_bindings:
             zone = local_bindings[zonename]
             logging.debug(zone[KEY_SHARE])
@@ -319,15 +320,15 @@ def show_all_connected():
 
     return
 
-    mount_output = ""
+    mount_output = ''
     servers = []
     local_binds = []
 
-    server_pattern_str = ""
+    server_pattern_str = ''
     for local_dir in nabla_local_dirs:
         if len(server_pattern_str) > 0:
-            server_pattern_str += "|"
-        server_pattern_str += mount_pattern("/%s" % (local_dir))
+            server_pattern_str += '|'
+        server_pattern_str += mount_pattern('/%s' % (local_dir))
 
     server_pattern = re.compile(server_pattern_str)
 
@@ -340,28 +341,28 @@ def show_all_connected():
         if server_pattern.search(mountpoint):
             servers.append({'zone:'})
         elif local_bind_pattern.search(mountpoint):
-            logging.debug("Is local binding.")
+            logging.debug('Is local binding.')
         else:
-            logging.debug("Skipping...")
+            logging.debug('Skipping...')
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 def resource_mounted(share):
     logging.debug("Check if: '%s' is mounted." % share)
     mount_output = subprocess.check_output([mount_cmd()])
     pattern = re.compile(mount_pattern(share))
-    for mount in mount_output.split("\n"):
+    for mount in mount_output.split('\n'):
         if pattern.search(mount):
             return 1
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def umount(mounted_dir, force=False):
     if force:
-        logging.debug("Force umounting: %s" % (mounted_dir))
+        logging.debug('Force umounting: %s' % (mounted_dir))
     else:
-        logging.debug("Check if is dir: %s" % (mounted_dir))
+        logging.debug('Check if is dir: %s' % (mounted_dir))
     try:
         if resource_mounted(mounted_dir):
             cmd = [umount_cmd()]
@@ -378,23 +379,23 @@ def umount(mounted_dir, force=False):
         except:
             pass
     except KeyboardInterrupt:
-        print("")  # to go to next line after user's break
+        print('')  # to go to next line after user's break
         sys.exit(0)  # user break
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def get_userConf(user):
     if user not in ZONE_USERS:
-        raise SystemExit("Unexpected user: " + user)
+        raise SystemExit('Unexpected user: ' + user)
     conf = ZONE_USERS[user]
     if KEY_HOME not in conf:
-        conf[KEY_HOME] = "/nabla/home/%s" % user
+        conf[KEY_HOME] = '/nabla/home/%s' % user
     if KEY_GID not in conf:
         conf[KEY_GID] = 1
     return conf
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def get_user_home(user):
@@ -403,7 +404,7 @@ def get_user_home(user):
     else:
         return subprocess.check_output(['/usr/bin/getent', 'passwd', user]).split(':')[5]
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def get_user():
@@ -412,14 +413,14 @@ def get_user():
     except:
         return getpass.getuser()
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def create_nabla_ssh_key_if_needed():
     sshdir = '%s/.ssh' % get_user_home(get_user())
 
     if not os.path.exists(sshdir):
-        os.mkdir(sshdir, 0700)
+        os.mkdir(sshdir)
 
     key = sshdir + '/nabla.rsa'
 
@@ -427,27 +428,15 @@ def create_nabla_ssh_key_if_needed():
         with open(key, 'w') as f:
             print('''
 -----BEGIN RSA PRIVATE KEY-----
-MIICXAIBAAKBgQC/y3/RxP31+jolt6FAeTMigwEZIeiZb4wF0pRzN7rMBnHQvyp4
-UMBuEbv62JEgRkmoqbVbQU05K2r4Pih2XCQU5ga+NOkHN7CjdGmqNAL2dGXPOgv1
-4+e6orOOO3k4WOuthpskl6OUEJ8TnJ6jwXlY0Ttlz2ThkBz8SSLWj1L5qQIDAQAB
-AoGAElTpCqvBellIZYJ/ryHmeU38NOLA0KmQwJ24Aqs493dGOaWL8aQGQH8BcKBy
-fps5Px25b9d2AhjcSI3oYCe+avZ92WpjKtkVbR8p7qIlGru6lveofG/ndiGJ+N97
-2XZ1eccbziktwPgdZ9QX8kAyag6UaZCVTzaUw7eniquLTYECQQDsyKrOEHjaUxMT
-khP+qUuy3hB1Wo3xVSugufUlywtBf74qcoX5Ix8GedlS0iGoJuyNib63JsoUzIM5
-F2b5KT91AkEAz1wopMdXQ4aBemH5wsQNdcmtrNkgVH9ZWPBYSiA9/5kLSkZ7wk5Y
-rqqf6GCu4ofzQNBhQC0ZSM1F4NS9mdee5QJAGR/pz9e7mx75hTgY2wrHt4EMqgcj
-zJnG+VUCCDKVTSvq18IzKQ5q+lrvjnQxkhAfRZ16GSEKjE5vFh2/lWylCQJAFO4R
-cChqx3cRJKA1DJKrZSM5M4Qq/jxocVC5KKo+d8kj2Zhpr4Am9WJlh5gSruzYAcfG
-uSqULcQCdKIkjR21fQJBAOD3Weg2fQk/eQb4PuZIT07EUTnRkLUKvtAyaDjLKVOx
-HaDuhzTx4r5t9fwmtCwfwMhriFYDmDBMArzb39WBVHM=
+TODO
 -----END RSA PRIVATE KEY-----
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQC/y3/RxP31+jolt6FAeTMigwEZIeiZb4wF0pRzN7rMBnHQvyp4UMBuEbv62JEgRkmoqbVbQU05K2r4Pih2XCQU5ga+NOkHN7CjdGmqNAL2dGXPOgv14+e6orOOO3k4WOuthpskl6OUEJ8TnJ6jwXlY0Ttlz2ThkBz8SSLWj1L5qQ== everybody@nabla.nabla.mobi
+ssh-rsa TODO everybody@nabla.nabla.mobi
 '''.strip(), file=f)
 
     if stat.S_IMODE(os.stat(key).st_mode) != 0400:
         os.chmod(key, 0400)
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def ping(server_name_or_ip):
@@ -462,7 +451,7 @@ def ping(server_name_or_ip):
     except socket.gaierror:
         raise SystemExit('The server ' + server_name_or_ip + ' does not exist')
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def is_zone_up_and_running(server_name_or_ip):
@@ -472,25 +461,25 @@ def is_zone_up_and_running(server_name_or_ip):
         return 0
     return 1
 
-#==============================================================================
+# ==============================================================================
 
 
 class KZoneConnector(object):
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def __init__(self):
-        self.supported_platforms = ["SunOS", "Linux"]
+        self.supported_platforms = ['SunOS', 'Linux']
         if platform.system() not in self.supported_platforms:
             raise SystemExit(
-                "Platform " + platform.system() + " is not supported")
+                'Platform ' + platform.system() + ' is not supported')
         self.root_dir = None  # To be set by children classes
         # To be set by init_zone_name(). Don't use it. use self.get_zone_name()
         self.server_name = None
         self.server_ip = None  # To be set by init_zone_name()
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def mount_server(self):
-        logging.debug("Mounting zone network filesystem")
+        logging.debug('Mounting zone network filesystem')
 
         specific_options = ['soft']
 
@@ -505,16 +494,16 @@ class KZoneConnector(object):
 
     def nabla_rootdir(self):
         return '' if self.root_dir == '/' else self.root_dir
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
 
     def nabla_filename(self, filename):
-        return "%s/%s/%s" % (self.nabla_rootdir(), NABLA_ENV_DIR, filename)
+        return '%s/%s/%s' % (self.nabla_rootdir(), NABLA_ENV_DIR, filename)
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def chroot_filename(self, filename):
         return '%s/%s' % (self.nabla_rootdir(), filename)
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def connected(self, bind_dirs=[]):
         for local_dir in nabla_local_dirs + bind_dirs:
             abs_path = self.chroot_filename(local_dir)
@@ -523,12 +512,12 @@ class KZoneConnector(object):
 
         return 0
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def init_zone_name(self, server_name_or_ip):
         try:
             self.server_ip = socket.gethostbyname(server_name_or_ip)
         except:
-            raise SystemExit("Cannot resolve " + server_name_or_ip)
+            raise SystemExit('Cannot resolve ' + server_name_or_ip)
         self.server_name = server_name_or_ip
         if self.server_ip == server_name_or_ip:
             try:
@@ -538,13 +527,13 @@ class KZoneConnector(object):
             except:
                 pass
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     # The global connector may need to know the zone name even when it is not provided by cmd line option
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def get_zone_name(self, short=False):
-        raise NotImplementedError("This is a virtual class")
+        raise NotImplementedError('This is a virtual class')
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def set_nfs_anon_mapping(self, user):
         if user:
             userConf = get_userConf(user)
@@ -558,7 +547,7 @@ class KZoneConnector(object):
                 raise SystemExit(
                     'ERROR: cannot modify the export file on the zone')
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def clear_nfs_anon_mapping(self):
         server_name = self.get_zone_name()
         if server_name and is_zone_up_and_running(server_name):
@@ -569,7 +558,7 @@ class KZoneConnector(object):
                 raise SystemExit(
                     'ERROR: cannot revert the export file on the zone')
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def init_nss(self):
         # Check /etc/nsswitch.conf has nabla on required maps
         requiredMaps = ['hosts', 'passwd', 'services']
@@ -582,11 +571,11 @@ class KZoneConnector(object):
                         ko.append(match.group(1))
         if ko:
             raise SystemExit(
-                "NSS nabla won't work. Please modify /etc/nsswitch.conf to use the nabla plugin for the following maps: " + ", ".join(ko))
+                "NSS nabla won't work. Please modify /etc/nsswitch.conf to use the nabla plugin for the following maps: " + ', '.join(ko))
 
-        if not os.path.isdir("%s/%s" % (self.root_dir,  NABLA_ENV_DIR)):
-            logging.debug("Make `" + NABLA_ENV_DIR + "` directory")
-            os.mkdir("%s/%s" % (self.root_dir, NABLA_ENV_DIR))
+        if not os.path.isdir('%s/%s' % (self.root_dir,  NABLA_ENV_DIR)):
+            logging.debug('Make `' + NABLA_ENV_DIR + '` directory')
+            os.mkdir('%s/%s' % (self.root_dir, NABLA_ENV_DIR))
 
         ip_filename = self.nabla_filename(NABLA_ENV_IP_FILENAME)
         with open(ip_filename, 'w') as f:
@@ -597,14 +586,14 @@ class KZoneConnector(object):
             for user in ZONE_USERS:
                 # write proper passwdline to file
                 userConf = get_userConf(user)
-                print("%s::%d:%d::%s:/bin/bash" % (user,
+                print('%s::%d:%d::%s:/bin/bash' % (user,
                                                    userConf[KEY_UID], userConf[KEY_GID], userConf[KEY_HOME]), file=f)
 
 
-#==============================================================================
+# ==============================================================================
 class KZoneConnectorChroot(KZoneConnector):
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def __init__(self, server_name_or_ip, bind_dirs):
         super(KZoneConnectorChroot, self).__init__()
         self.init_zone_name(server_name_or_ip)
@@ -612,52 +601,52 @@ class KZoneConnectorChroot(KZoneConnector):
             get_user(), self.get_zone_name(True))
 
         self.bind_dirs = [
-            "bin",
-            "dev",
-            "devices",
-            "etc",
-            "lib",
-            "lib32",
-            "lib64",
-            "proc",
-            "root",
-            "sbin",
-            "sys",
-            "tmp",
-            "usr",
-            "var",
-            "run",
-            "opt",
+            'bin',
+            'dev',
+            'devices',
+            'etc',
+            'lib',
+            'lib32',
+            'lib64',
+            'proc',
+            'root',
+            'sbin',
+            'sys',
+            'tmp',
+            'usr',
+            'var',
+            'run',
+            'opt',
         ]
 
         self.rbind_dirs = [
-            (get_user_home(get_user()).split("/"))[1],
+            (get_user_home(get_user()).split('/'))[1],
         ]
 
         # taken from https://docs.oracle.com/cd/E19199-01/816-6775-10/a_chroot.html (BMT-2092)
         self.solaris_workaround_dev = [
-            "dev/null",
-            "dev/tcp",
-            "dev/ticots",
-            "dev/ticlts",
-            "dev/ticotsord",
-            "dev/tty",
-            "dev/udp",
-            "dev/zero",
-            "dev/conslog"
+            'dev/null',
+            'dev/tcp',
+            'dev/ticots',
+            'dev/ticlts',
+            'dev/ticotsord',
+            'dev/tty',
+            'dev/udp',
+            'dev/zero',
+            'dev/conslog'
         ]
 
         # this should be unmouted
         self.solaris_workaround_devices = [
-            "devices/pseudo/mm@0:null",
-            "devices/pseudo/tcp@0:tcp",
-            "devices/pseudo/tl@0:ticots",
-            "devices/pseudo/tl@0:ticlts",
-            "devices/pseudo/tl@0:ticotsord",
-            "devices/pseudo/sy@0:tty",
-            "devices/pseudo/udp@0:udp",
-            "devices/pseudo/mm@0:zero",
-            "devices/pseudo/log@0:conslog"
+            'devices/pseudo/mm@0:null',
+            'devices/pseudo/tcp@0:tcp',
+            'devices/pseudo/tl@0:ticots',
+            'devices/pseudo/tl@0:ticlts',
+            'devices/pseudo/tl@0:ticotsord',
+            'devices/pseudo/sy@0:tty',
+            'devices/pseudo/udp@0:udp',
+            'devices/pseudo/mm@0:zero',
+            'devices/pseudo/log@0:conslog'
         ]
 
         self.additional_rbind_dirs = []
@@ -674,16 +663,16 @@ class KZoneConnectorChroot(KZoneConnector):
                 if bind_dir not in self.bind_dirs and bind_dir not in self.rbind_dirs:
                     self.additional_rbind_dirs.append(bind_dir)
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def print_status(self):
         if self.connected(self.bind_dirs):
-            print("Connected to %s (on %s)" %
+            print('Connected to %s (on %s)' %
                   (self.get_zone_name(True), self.root_dir))
         else:
-            print("Not connected to %s (on %s)" %
+            print('Not connected to %s (on %s)' %
                   (self.get_zone_name(True), self.root_dir))
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def bind(self, user):
         ping(self.get_zone_name())
         if self.connected(self.bind_dirs):
@@ -692,19 +681,19 @@ class KZoneConnectorChroot(KZoneConnector):
             self.set_nfs_anon_mapping(user)
         else:
             if not os.path.isdir(self.root_dir):
-                logging.debug("Make directory " + self.root_dir)
+                logging.debug('Make directory ' + self.root_dir)
                 os.makedirs(self.root_dir)
             self.init_nss()
             self.init_chroot(self.bind_dirs)
             self.init_chroot(self.rbind_dirs, True)
             self.init_chroot(self.additional_rbind_dirs, True)
-            if platform.system() == "Linux":
+            if platform.system() == 'Linux':
                 # for terminal programs
                 self.mount_special('devpts', 'dev/pts')
                 shmMountPoint = 'run/shm' if isUbuntu() else 'dev/shm'
                 # for python shared mem
                 self.mount_special('tmpfs', shmMountPoint)
-            if platform.system() == "SunOS":
+            if platform.system() == 'SunOS':
                 for dev in self.solaris_workaround_dev:
                     mount_bind('/' + dev, self.root_dir + '/' + dev, True)
 
@@ -713,7 +702,7 @@ class KZoneConnectorChroot(KZoneConnector):
             self.init_misc()
         self.print_status()
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def get_zone_name(self, short=False):
         server_name = self.server_name
         if short and server_name != self.server_ip:
@@ -728,7 +717,7 @@ class KZoneConnectorChroot(KZoneConnector):
 
         return list(set(bind_dirs))
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def unbind(self, force=False):
         print("Unbinding zone: '%s'. It might take a while if zone is down or was destroyed without disconnection." %
               self.get_zone_name(True))
@@ -739,11 +728,11 @@ class KZoneConnectorChroot(KZoneConnector):
         os.remove(bind_dirs_filename)
 
         dirs = self.bind_dirs + self.rbind_dirs
-        if platform.system() == "Linux":
+        if platform.system() == 'Linux':
             dirs.insert(0, 'dev/pts')  # before 'dev'
             shmMountPoint = 'run/shm' if isUbuntu() else 'dev/shm'
             dirs.insert(0, shmMountPoint)  # before 'run' and 'dev'
-        if platform.system() == "SunOS":
+        if platform.system() == 'SunOS':
             for dev in self.solaris_workaround_dev + self.solaris_workaround_devices:
                 umount(self.root_dir + '/' + dev)
 
@@ -768,11 +757,11 @@ class KZoneConnectorChroot(KZoneConnector):
         self.clear_nfs_anon_mapping()
 
         remove_file(self.nabla_filename(NABLA_ENV_IP_FILENAME),
-                    "Previous connection not detected")
+                    'Previous connection not detected')
         remove_file(self.nabla_filename(NABLA_ENV_PASSWD_FILE),
-                    "Previous users mapping not detected")
+                    'Previous users mapping not detected')
         remove_file(self.nabla_filename(NABLA_ENV_BASHRC_FILE),
-                    "Previous bashrc not detected")
+                    'Previous bashrc not detected')
         remove_file(self.chroot_filename(NABLA_ENV_XAUTH_FILE))
         try:
             os.rmdir(self.nabla_filename(''))
@@ -784,7 +773,7 @@ class KZoneConnectorChroot(KZoneConnector):
 
         bind_dirs_filename = self.nabla_filename(NABLA_ENV_BIND_DIRS_FILENAME)
 
-        bind_dirs = ",".join(self.read_bind_dirs(bind_dirs_filename))
+        bind_dirs = ','.join(self.read_bind_dirs(bind_dirs_filename))
 
         if dirs:
             bind_dirs += ',' + dirs
@@ -793,7 +782,7 @@ class KZoneConnectorChroot(KZoneConnector):
 
         unbind_cmd = [sys.argv[0], '--zone', zone, '--unbind', '--force']
 
-        logging.debug(" ".join(unbind_cmd))
+        logging.debug(' '.join(unbind_cmd))
 
         subprocess.call(unbind_cmd)
 
@@ -801,32 +790,32 @@ class KZoneConnectorChroot(KZoneConnector):
 
         bind_cmd = [sys.argv[0], '--zone', zone, '--bind']
 
-        if bind_dirs != "":
+        if bind_dirs != '':
             bind_cmd += ['--bind_dirs', bind_dirs]
 
         if user:
             bind_cmd += ['--user', user]
 
-        logging.debug(" ".join(bind_cmd))
+        logging.debug(' '.join(bind_cmd))
 
         subprocess.call(bind_cmd)
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def init_chroot(self, bind_dirs, rbind=False, checkRbindDblMount=False):
         if rbind and checkRbindDblMount:
             mounts = subprocess.check_output([mount_cmd()])
 
         for bind_dir in bind_dirs:
-            target_dir = self.root_dir + "/" + bind_dir
-            slash_bind_dir = "/" + bind_dir
+            target_dir = self.root_dir + '/' + bind_dir
+            slash_bind_dir = '/' + bind_dir
 
             if not os.path.isdir(slash_bind_dir):
                 logging.debug(
-                    "Will not mount non existing directory `/" + bind_dir + "`")
+                    'Will not mount non existing directory `/' + bind_dir + '`')
                 continue
 
             if not os.path.isdir(target_dir):
-                logging.debug("Make directory " + target_dir)
+                logging.debug('Make directory ' + target_dir)
                 os.makedirs(target_dir)
 
             # Prevent multiple mounts of user specified directories
@@ -844,14 +833,14 @@ class KZoneConnectorChroot(KZoneConnector):
                     for bind_dir in f:
                         bind_dirs.add(bind_dir.strip())
             if not os.path.exists(nabla_dir):
-                logging.debug("Creating %s." % nabla_dir)
+                logging.debug('Creating %s.' % nabla_dir)
                 os.makedirs(nabla_dir)
 
             with open(bind_dirs_filename, 'w') as f:
                 for bind_dir in bind_dirs:
                     print(bind_dir, file=f)
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def init_misc(self):
         # Specific chroot .bashrc
         with open(self.nabla_filename(NABLA_ENV_BASHRC_FILE), 'w') as f:
@@ -859,18 +848,18 @@ class KZoneConnectorChroot(KZoneConnector):
             print(
                 'cd $KZC_CALLER_PWD # defined only if no --user param used to launch the connector', file=f)
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def mount_special(self, fstype, dst):
-        dst = self.root_dir + "/" + dst
-        if platform.system() == "Linux":
-            cmd = [mount_cmd(), "-t", fstype, fstype, dst]
+        dst = self.root_dir + '/' + dst
+        if platform.system() == 'Linux':
+            cmd = [mount_cmd(), '-t', fstype, fstype, dst]
         else:
             raise SystemExit(
-                "Platform " + platform.system() + " is not supported")
+                'Platform ' + platform.system() + ' is not supported')
         logging.debug('Executing ' + ' '.join(cmd))
         subprocess.call(cmd)
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def exec_prog(self, prog, env_path):
 
         # We currently see no point in executing a process other than with the calling user, as we need to keep
@@ -879,7 +868,7 @@ class KZoneConnectorChroot(KZoneConnector):
 
         if not self.connected(self.bind_dirs):
             raise SystemExit(
-                "Cannot exececute without being connected to a zone (first, use --bind)")
+                'Cannot exececute without being connected to a zone (first, use --bind)')
 
         home = get_user_home(user)
         if not os.path.isdir(self.root_dir + '/' + home):
@@ -926,7 +915,7 @@ class KZoneConnectorChroot(KZoneConnector):
                     else:
                         raise
             else:
-                raise SystemExit(env_path + " does not exists")
+                raise SystemExit(env_path + ' does not exists')
 
         # For Solaris su which does not set it
         env.append('HOME=' + home)
@@ -949,12 +938,12 @@ class KZoneConnectorChroot(KZoneConnector):
         except KeyboardInterrupt:  # user break
             return -1
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     # Update the user .bahsrc so that, in connector context only,
     # a specific additional .bashrc is sourced.
     # This is needed to set a specific PS1
     # This sucks, but nobody could find a better way
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def updateUserBashrc(self):
         chroot_bashrc = get_user_home(get_user()) + '/.bashrc'
         bashrc = self.root_dir + chroot_bashrc
@@ -965,14 +954,14 @@ class KZoneConnectorChroot(KZoneConnector):
                 return
         # We need this server user write permission, so let's do the work in connector context
         # Ugly too, but what else...
-        self.exec_prog("%s updateBashrc %s" %
+        self.exec_prog('%s updateBashrc %s' %
                        (os.path.realpath(__file__), chroot_bashrc), None)
 
 
-#==============================================================================
+# ==============================================================================
 class KZoneConnectorGlobal(KZoneConnector):
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def __init__(self):
         super(KZoneConnectorGlobal, self).__init__()
         self.root_dir = '/'
@@ -980,7 +969,7 @@ class KZoneConnectorGlobal(KZoneConnector):
         # if os.path.isdir('/rms') and os.path.isdir('/database') and os.path.isdir('/kobra'):
         #    raise SystemExit("You may not use --global on a legacy server")
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def bind(self, server_name_or_ip, user):
         self.init_zone_name(server_name_or_ip)
         ping(server_name_or_ip)
@@ -989,7 +978,7 @@ class KZoneConnectorGlobal(KZoneConnector):
         self.mount_server()
         self.print_status()
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def get_zone_name(self, short=False):
         if not self.server_name and self.connected() and os.path.isfile(self.nabla_filename(NABLA_ENV_IP_FILENAME)):
             with open(self.nabla_filename(NABLA_ENV_IP_FILENAME)) as f:
@@ -1000,7 +989,7 @@ class KZoneConnectorGlobal(KZoneConnector):
             server_name = server_name.split('.')[0]
         return server_name
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def unbind(self, force=False):
         print("Unbinding zone: '%s'. It might take a while if zone is down or was destroyed without disconnection." %
               self.get_zone_name(True))
@@ -1016,9 +1005,9 @@ class KZoneConnectorGlobal(KZoneConnector):
 
         self.clear_nfs_anon_mapping()
         remove_file(self.nabla_filename(NABLA_ENV_IP_FILENAME),
-                    "Previous connection not detected")
+                    'Previous connection not detected')
         remove_file(self.nabla_filename(NABLA_ENV_PASSWD_FILE),
-                    "Previous users mapping not detected")
+                    'Previous users mapping not detected')
         try:
             os.rmdir(self.nabla_filename(''))
         except:
@@ -1033,12 +1022,12 @@ class KZoneConnectorGlobal(KZoneConnector):
                     binded_zone = f.read().strip()
             else:
                 sys.exit(
-                    "ERROR: Neither can detect zone nor --zone parameter is specified")
+                    'ERROR: Neither can detect zone nor --zone parameter is specified')
 
         # system server-connector.py --global --unbind --force
 
         unbind_cmd = [sys.argv[0], '--global', '--unbind', '--force']
-        logging.debug(" ".join(unbind_cmd))
+        logging.debug(' '.join(unbind_cmd))
 
         subprocess.call(unbind_cmd)
 
@@ -1049,18 +1038,18 @@ class KZoneConnectorGlobal(KZoneConnector):
         if user:
             bind_cmd += ['--user', user]
 
-        logging.debug(" ".join(bind_cmd))
+        logging.debug(' '.join(bind_cmd))
 
         subprocess.call(bind_cmd)
 
-    #--------------------------------------------------------------------------
+    # --------------------------------------------------------------------------
     def print_status(self):
         if self.connected():
-            print("Connected (globally) to %s" % self.get_zone_name())
+            print('Connected (globally) to %s' % self.get_zone_name())
         else:
-            print("Not connected (globally)")
+            print('Not connected (globally)')
 
-#==============================================================================
+# ==============================================================================
 
 
 def main():
@@ -1102,7 +1091,7 @@ def main():
     parser.add_argument('--verbose', action='store_true', dest='verbose_mode',
                         help='verbose mode')
     parser.add_argument('--env', action='store', dest='env_file',
-                        default=None, metavar="path/to/file",
+                        default=None, metavar='path/to/file',
                         help='path to env file for --exec')
     action_global = parser.add_mutually_exclusive_group(required=False)
 
@@ -1155,7 +1144,7 @@ def main():
             conn.rebind(args.zone, args.user)
         else:
             if conn.connected():
-                raise SystemExit("Connection detected. Please --unbind first")
+                raise SystemExit('Connection detected. Please --unbind first')
             conn.bind(args.zone, args.user)
 
     else:
@@ -1166,7 +1155,7 @@ def main():
             exit(0)
         elif args.bind:
             if conn.connected():
-                raise SystemExit("Connection detected. Please --unbind first")
+                raise SystemExit('Connection detected. Please --unbind first')
             conn.bind(args.user)
         elif args.unbind:
             conn.unbind(args.force_unbind)
@@ -1179,7 +1168,7 @@ def main():
             conn.updateUserBashrc()  # will use exec_prog itself
             sys.exit(conn.exec_prog(args.exec_prog, args.env_file))
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def send_request(zod_req, url):
@@ -1191,13 +1180,13 @@ def send_request(zod_req, url):
 
     response = conn.getresponse()
     if response.status != httplib.OK:
-        raise Exception("HTTP request failed with status=%d, reason: %s" % (
+        raise Exception('HTTP request failed with status=%d, reason: %s' % (
             response.status, response.reason))
     json_response_data = response.read()
     conn.close()
     return json.loads(json_response_data)
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def createRequest(build_req_fct):
@@ -1208,7 +1197,7 @@ def createRequest(build_req_fct):
 
     return request
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def executeRequest(build_req_fct, read_resp_fct, url):
@@ -1224,7 +1213,7 @@ def executeRequest(build_req_fct, read_resp_fct, url):
     if resp['err_code'] != 0:
         error('ERROR: ' + resp['err_str'])
 
-    if __name__ == "__main__":
+    if __name__ == '__main__':
         read_resp_fct(resp['data'])
     else:
         return resp['data']
@@ -1246,7 +1235,7 @@ check_update = (build_check_update_req, read_check_update_resp,
                 '../cgi-bin/version.cgi')
 
 # https://zod/cgi-bin/version.cgi
-#{
+# {
 #   "err_code" : 0,
 #   "ws_version" : "1",
 #   "query_id" : null,
@@ -1255,9 +1244,9 @@ check_update = (build_check_update_req, read_check_update_resp,
 #      "zod_www" : "2015.03.02",
 #      "server_connector" : "2015.03.02",
 #      "server_connector_py" : "2015.02.16"
-#}
+# }
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 if __name__ == '__main__':
 
