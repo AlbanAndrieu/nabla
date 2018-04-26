@@ -1,4 +1,5 @@
 #!/usr/bin/env python2.7
+# -*- coding: utf-8 -*-
 # DIFFS with perl version, rev 316:
 #  - option MUST be given with --option, instead of -option
 #  - no more use of external banner executable
@@ -8,7 +9,7 @@
 import sys
 
 if sys.hexversion < 0x02070000:
-    error("Python 2.7 or newer is required to run this program.")
+    error('Python 2.7 or newer is required to run this program.')
 
 import os
 import argparse
@@ -120,10 +121,10 @@ def read_search_resp(resp_data):
                         for snapshot in zone['snapshots']:
                             if snapshot.find('|||') > 0:
                                 descritption = snapshot.split('|||')[1]
-                                if descritption == "-":
-                                    descritption = ""
+                                if descritption == '-':
+                                    descritption = ''
                                 else:
-                                    descritption = " (" + descritption + ")"
+                                    descritption = ' (' + descritption + ')'
                                 snapshot = snapshot.split(
                                     '|||')[0] + descritption
                             table.add('Snapshot', snapshot)
@@ -135,7 +136,7 @@ def read_search_resp(resp_data):
                 if len(zone['origins']) > 0:
                     origins = list()
                     for disk in zone['origins'].keys():
-                        origins.append(disk + "|||" + zone['origins'][disk])
+                        origins.append(disk + '|||' + zone['origins'][disk])
                     table.add('Origin', ';;;'.join(origins))
                 else:
                     table.add('Origin', '')
@@ -144,8 +145,8 @@ def read_search_resp(resp_data):
                     table.separator()
                     if len(zone['origins']) > 0:
                         for disk in zone['origins'].keys():
-                            table.add('Origin', disk + " ( from " +
-                                      zone['origins'][disk] + ")")
+                            table.add('Origin', disk + ' ( from ' +
+                                      zone['origins'][disk] + ')')
                     else:
                         table.add('Snapshot', '')
             if args.parseable:
@@ -163,7 +164,7 @@ def read_search_resp(resp_data):
         printTable(table, format=args.format, maxLengths=[
                    None, None, None, 50, None])
     if not args.parseable:
-        print "Found %d zones in domain" % len(zones)
+        print('Found %d zones in domain' % len(zones))
 
 
 # getdoms
@@ -208,7 +209,7 @@ def read_cat_resp(resp_data):
     printTable(table, format=args.format, maxLengths=[
                70, 40, None, 70], doSep=True)
     if not args.parseable:
-        print "Found %d items in catalog" % len(allSnaps)
+        print('Found %d items in catalog' % len(allSnaps))
 
 
 # tmpl
@@ -262,7 +263,7 @@ def build_test_template_req(request):
     request['action'] = 'test_template'
     p = request['params'] = {}
     if not args.template:
-        error("missing template parameter")
+        error('missing template parameter')
 
     p['template'] = args.template
 
@@ -278,7 +279,7 @@ def build_create_req(request):
     p = request['params'] = {}
     if args.zonename:
         if not re.match(r'^kzone\d\d\d$', args.zonename):
-            error("Zone name is not valid")
+            error('Zone name is not valid')
         p['zonename'] = args.zonename
     #--- Apps
     if args.template:
@@ -334,7 +335,7 @@ def build_create_req(request):
         p['genericlimits_home'] = args.genericlimits_home
     if args.workflow_home:
         p['workflow_home'] = args.workflow_home
-    #--- 3rd parties
+    # --- 3rd parties
     if args.els:
         p['els'] = args.els
     if args.rvd:
@@ -447,7 +448,7 @@ def read_rollback_resp(resp_data):
     table = Table('Status', 'Snapshots')
 
     # for snapshot in sorted(resp_data):
-    table.add('Done', ",".join(sorted(resp_data)))
+    table.add('Done', ','.join(sorted(resp_data)))
 
     printTable(table, format=userFormat, parseable=(
         True if args.format is None else args.parseable))
@@ -577,16 +578,16 @@ check_update = (build_check_update_req, read_check_update_resp,
 #                              F U N C T I O N S                              #
 ###############################################################################
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def error(msg):
-    if __name__ == "__main__":
+    if __name__ == '__main__':
         sys.exit(msg)
     else:
         raise Exception(msg)
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def parseArgs(arguments=None):
@@ -780,37 +781,37 @@ def parseArgs(arguments=None):
         args.domain = None
 
     if args.version:
-        print "ZoD-client Version " + VERSION
+        print('ZoD-client Version ' + VERSION)
         error(0)
 
     if args.ls:
         args.action = 'search'
 
     if not re.match(r'^https?://.+', args.url):
-        error("Please specify a valid URL (--url http://...)")
+        error('Please specify a valid URL (--url http://...)')
 
     if not args.domain and args.action != 'getdoms':
-        error("Please specify a domain name (--domain)")
+        error('Please specify a domain name (--domain)')
 
     if args.zfs:
         # ['a', 'b,c'] -> ['a', 'b', 'c']
         args.zfs = [item for sublist in [
-            e.split(",") for e in args.zfs] for item in sublist]
+            e.split(',') for e in args.zfs] for item in sublist]
 
     if args.format:
-        args.format = [(item if item else None) for sublist in [e.split(",") for e in args.format]
+        args.format = [(item if item else None) for sublist in [e.split(',') for e in args.format]
                        for item in sublist]  # ['a', 'b,,c'] -> ['a', None, 'b', None, 'c']
 
-    if __name__ != "__main__":
+    if __name__ != '__main__':
         args.yes = True
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def display_ok():
-    print "Done"
+    print 'Done'
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def mandatoryArg(arg, notEmpty=False, notZero=False):
@@ -825,7 +826,7 @@ def mandatoryArg(arg, notEmpty=False, notZero=False):
               (arg, args.action))
     return val
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def get_creds():
@@ -836,7 +837,7 @@ def get_creds():
     else:
         error('Interactive mode not available. Please give your credentials (--identity) or use --guest')
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def get_creds_from_file(ident_file):
@@ -852,9 +853,9 @@ def get_creds_from_file(ident_file):
     if match:
         return (match.group(1), match.group(2))
     else:
-        error("Malformed identity file. Expect: login<=>passowrd")
+        error('Malformed identity file. Expect: login<=>passowrd')
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def confirm(message, confirm):
@@ -866,7 +867,7 @@ def confirm(message, confirm):
         else:
             error('Interactive mode not available. Please use option --yes')
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def send_request(zod_req, url):
@@ -878,19 +879,19 @@ def send_request(zod_req, url):
     if args.debug:
         if 'pass' in zod_req:
             zod_req['pass'] = '****'
-        print "Sending request", json.dumps(zod_req, indent=4)
+        print 'Sending request', json.dumps(zod_req, indent=4)
 
     response = conn.getresponse()
     if response.status != httplib.OK:
-        raise Exception("HTTP request failed with status=%d, reason: %s" % (
+        raise Exception('HTTP request failed with status=%d, reason: %s' % (
             response.status, response.reason))
     json_response_data = response.read()
     conn.close()
     if args.debug:
-        print "Received response", json_response_data
+        print 'Received response', json_response_data
     return json.loads(json_response_data)
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def createRequest(build_req_fct):
@@ -902,7 +903,7 @@ def createRequest(build_req_fct):
         request['login'], request['pass'] = get_creds()
     return request
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def executeRequest(build_req_fct, read_resp_fct, url):
@@ -918,12 +919,12 @@ def executeRequest(build_req_fct, read_resp_fct, url):
     if resp['err_code'] != 0:
         error('ERROR: ' + resp['err_str'])
 
-    if __name__ == "__main__":
+    if __name__ == '__main__':
         read_resp_fct(resp['data'])
     else:
         return resp['data']
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def run(commandLineArgs=None):
@@ -935,7 +936,7 @@ def run(commandLineArgs=None):
         error('Please specify an action (--action)')
     return executeRequest(*request_fcts[args.action])
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
 
 def printTable(table, format=None, maxLengths=None, doSep=False, parseable=None):
@@ -947,9 +948,9 @@ def printTable(table, format=None, maxLengths=None, doSep=False, parseable=None)
         print table.fancy(format, maxLengths, doSep).encode(encoding='UTF-8')
 
 
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 # A simple banner function
-#------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 letterforms = '''\
        |       |       |       |       |       |       | |
   ###  |  ###  |  ###  |   #   |       |  ###  |  ###  |!|
@@ -1067,30 +1068,30 @@ def banner(word):
 # with customizable format (wrapping, separators, printed columns)
 ###############################################################################
 class Table:
-    #------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------
     # Vertical mode:
     #   Special table with one value column or 2 key,value columns.
     #   The format option applies on keys, rather than on column headers, and the
     #   parseable output only prints a single value line
-    #------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------
     def __init__(self, *header):
         self.header = header
         self.verticalMode = False
         self.data = []
 
-    #------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------
     def setVerticalMode(self):
         self.verticalMode = True
 
-    #------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------
     def add(self, *row):
         self.data.append(row)
 
-    #------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------
     def separator(self):
         self.data.append(None)
 
-    #------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------
     # Check that all rows have the same number of elements
     def checkDataConsistency(self):
         lengths = map(len, [x for x in self.data if x])
@@ -1100,10 +1101,10 @@ class Table:
             error(
                 'Cannot handle a table where all rows or header don\'t have the same size.')
 
-    #------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------
     # Convert names into indexes, keep None for separator
     # Also returns a unique list of all available format items
-    #------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------
     def normalizeFormat(self, format):
         availableFormatItems = self.header
         itemName = 'column'
@@ -1133,7 +1134,7 @@ class Table:
                     if item < maxlen:
                         format[i] = item
                     else:
-                        colList = ' (%s)' % ", ".join(['%d: %s' % (i, n) for i, n in enumerate(
+                        colList = ' (%s)' % ', '.join(['%d: %s' % (i, n) for i, n in enumerate(
                             availableFormatItems)]) if availableFormatItems else ''
                         error('No %s %d: There are only %d%s' %
                               (itemName, item, maxlen, colList))
@@ -1146,7 +1147,7 @@ class Table:
                             format[i] = availableFormatItems.index(item)
                         else:
                             error('%s is not part of known %ss (%s)' % (
-                                item, itemName, ", ".join(sorted(availableFormatItems))))
+                                item, itemName, ', '.join(sorted(availableFormatItems))))
                 except exceptions.TypeError:
                     if item == None:  # None used for separator
                         if not self.verticalMode:
@@ -1157,9 +1158,9 @@ class Table:
 
         return (availableFormatItems, format)
 
-    #------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------
     # The list of data columns to be actually printed
-    #------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------
     # Columns which must be displayed (or lines in vertical mode)
     def outputColIndexes(self, format):
         if format and not self.verticalMode:
@@ -1172,9 +1173,9 @@ class Table:
             cols = []
         return cols
 
-    #------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------
     # Create the table to be actually printed, based on Table mode and optional format option
-    #------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------
     def outputData(self, format, maxLengths=None):
         availableFormatItems, format = self.normalizeFormat(format)
         cols = self.outputColIndexes(format)
@@ -1195,7 +1196,7 @@ class Table:
 
         return (header, data, maxLengths)
 
-    #------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------
     # Return a pretty ascii table
     #  - in normal mode, format is a list of header items, or header index
     #  - in vertical mode, data must be 2 columns (key, value) to use formatting.
@@ -1203,7 +1204,7 @@ class Table:
     #  - maxLength: list of maximum length (or None) for each column to wrap
     #    in vertical mode, only 2 or 1 elements in the list
     #  - doSep: insert a separator after each row
-    #------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------
     def fancy(self, format=None, maxLengths=None, doSep=False):
         self.checkDataConsistency()
         self.lastWasSep = False
@@ -1219,8 +1220,8 @@ class Table:
             columnLengths = [min(value) for value in zip(
                 columnLengths, [m if m else 999999 for m in maxLengths])]
 
-        #------------------------------------------------------------------------------
-        def insertSeparator(linechar="-"):
+        # ------------------------------------------------------------------------------
+        def insertSeparator(linechar='-'):
             if self.lastWasSep:
                 return
             spacedLine = '+'
@@ -1229,7 +1230,7 @@ class Table:
             spacedLines.append(spacedLine)
             self.lastWasSep = True
 
-        #------------------------------------------------------------------------------
+        # ------------------------------------------------------------------------------
         def insertData(row):
             mustInsertAdditionalLine = False
             if maxLengths:
@@ -1242,16 +1243,16 @@ class Table:
                         field = field[:maxLengths[i] - 3] + '...'
                         mustInsertAdditionalLine = True
                 diff = columnLengths[i] - len(field)
-                spacedLine += " " + field + ' ' * diff + ' |'
+                spacedLine += ' ' + field + ' ' * diff + ' |'
             spacedLines.append(spacedLine)
             if mustInsertAdditionalLine:
                 insertData(additionalLine)
             self.lastWasSep = False
 
         if (header):
-            insertSeparator("=")
+            insertSeparator('=')
             insertData(header)
-            insertSeparator("=")
+            insertSeparator('=')
         else:
             insertSeparator()
         for row in data:
@@ -1260,15 +1261,15 @@ class Table:
                     insertSeparator()
                 insertData(row)
             else:
-                insertSeparator("=" if doSep else "-")
+                insertSeparator('=' if doSep else '-')
         insertSeparator()
 
         return '\n'.join(spacedLines)
 
-    #------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------
     # Return a parseable list of data separated by tabs
     # - format: see fancy() comment
-    #------------------------------------------------------------------------------
+    # ------------------------------------------------------------------------------
     def parseable(self, format=None):
         self.checkDataConsistency()
         if not self.data:
@@ -1278,13 +1279,13 @@ class Table:
         header, data, maxLengths = self.outputData(format)
         if self.verticalMode:
             datacol = len(data[0]) - 1
-            return "\t".join([row[datacol].replace("\t", "    ") for row in data if row])
+            return '\t'.join([row[datacol].replace('\t', '    ') for row in data if row])
         else:
             lines = []
             for row in data:
                 if row:
                     lines.append(
-                        "\t".join([value.replace("\t", "    ") for value in row]))
+                        '\t'.join([value.replace('\t', '    ') for value in row]))
             return '\n'.join(lines)
 
 
@@ -1293,7 +1294,7 @@ class Table:
 ###############################################################################
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     if len(sys.argv) == 2 and sys.argv[1] == 'test':
         import zodclient_table_testsuite
         import zodclient_testsuite

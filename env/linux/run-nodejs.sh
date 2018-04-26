@@ -92,9 +92,9 @@ npm install -g grunt-contrib-compress
 npm install -g angular
 npm install -g node-gyp
 npm install -g grunt-pagespeed-junit@0.3.1
-#npm install -g slimerjs@0.9.2 
+#npm install -g slimerjs@0.9.2
 #npm install -g sharp@0.18.4
-#stack Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules/grunt-sitespeedio/node_modules/sleep/build'  
+#stack Error: EACCES: permission denied, mkdir '/usr/local/lib/node_modules/grunt-sitespeedio/node_modules/sleep/build'
 #npm install -g grunt-sitespeedio@0.10.5
 #npm install -g grunt-sitespeedio@3.1.0
 npm install -g grunt-yslow-test@0.1.0
