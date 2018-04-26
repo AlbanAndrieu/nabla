@@ -58,6 +58,12 @@ pw usermod jenkins -G wheel
 
 chown -R jenkins:jenkins /var/run/jenkins
 
+#pw groupadd -n www -g 80 #already exist
+pw useradd -n albandri -u 1000 -d /usr/local/albandri -s /usr/local/bin/bash
+
+#user www-data 33 33 TO DELETE
+#use instead www 80
+
 #add ssh to jail
 #http://doc.freenas.org/index.php/Adding_Jails
 #edit /etc/rc.conf

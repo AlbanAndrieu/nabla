@@ -139,4 +139,8 @@ $JENKINS_URL/bitbucket-scmsource-hook/notify/
 # Application -> righ panel -> Action clear log
 #Remove windows service sc delete jenkinsslave-E__Jenkins-Slave
 #https://wiki.jenkins.io/display/JENKINS/Installing+Jenkins+as+a+Windows+service
-sc.exe create "<serviceKey>" start= auto binPath= "<path to jenkins-slave.exe>" DisplayName= "<service display name>"
+#sc.exe create "<serviceKey>" start= auto binPath= "<path to jenkins-slave.exe>" DisplayName= "<service display name>"
+
+#How to install the jx binary on your machine
+curl -L https://github.com/jenkins-x/jx/releases/download/v1.2.18/jx-linux-amd64.tar.gz | tar xzv
+sudo mv jx /usr/local/bin
