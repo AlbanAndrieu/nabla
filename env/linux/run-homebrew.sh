@@ -6,7 +6,9 @@ set -xv
 sudo apt-get install build-essential curl file git python-setuptools ruby
 #sudo yum install curl file git irb python-setuptools ruby
 
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+sudo apt-get install linuxbrew-wrapper
+
+#ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
 
 PATH="$HOME/.linuxbrew/bin:$PATH"
 echo 'export PATH="$HOME/.linuxbrew/bin:$PATH"' >>~/.bash_profile

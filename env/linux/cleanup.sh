@@ -6,50 +6,50 @@ sudo apt-get install bleachbit
 
 echo "Start cleaning"
 #http://doc.ubuntu-fr.org/nettoyer_ubuntu
-\rm -Rf /usr/local/sonar/.local
-\rm -Rf /usr/local/sonar/Downloads/*
-\rm -Rf /usr/share/tomcat6/.m2/repository/
-\rm -Rf ~/.m2/repository/
-\rm -Rf ~/.repository
-#\rm -Rf ~/.cache/upstart
-\rm -Rf ~/.cache/*
-#\rm -Rf ~/.aspera
-#\rm -Rf ~/.eclipse/*
-\rm -Rf ~/.cpan/*
-\rm -Rf ~/.svn/*
-\rm -Rf ~/.thunderbird/*
-#\rm -Rf ~/.mozilla/*
-\rm -Rf ~/.fonts
-\rm -Rf ~/.gem
-\rm -Rf ~/.node_cache
-\rm -Rf ~/.node_tmp
-\rm -Rf ~/.node-gyp
-\rm -Rf ~/.npm
-\rm -Rf ~/.ievms
-\rm -Rf ~/tmp
-\rm -f ~/*.db
-#\rm -Rf  ~/.vagrant.d/boxes
+rm -Rf /usr/local/sonar/.local
+rm -Rf /usr/local/sonar/Downloads/*
+rm -Rf /usr/share/tomcat6/.m2/repository/
+rm -Rf ~/.m2/repository/
+rm -Rf ~/.repository
+#rm -Rf ~/.cache/upstart
+rm -Rf ~/.cache/*
+#rm -Rf ~/.aspera
+#rm -Rf ~/.eclipse/*
+rm -Rf ~/.cpan/*
+rm -Rf ~/.svn/*
+rm -Rf ~/.thunderbird/*
+#rm -Rf ~/.mozilla/*
+rm -Rf ~/.fonts
+rm -Rf ~/.gem
+rm -Rf ~/.node_cache
+rm -Rf ~/.node_tmp
+rm -Rf ~/.node-gyp
+rm -Rf ~/.npm
+rm -Rf ~/.ievms
+rm -Rf ~/tmp
+rm -f ~/*.db
+#rm -Rf  ~/.vagrant.d/boxes
 #empty trash
-\rm -rf ~/.local/share/Trash/*
-\rm -rf ~/.local/share/wineprefixes/*
-\rm -rf ~/.local/share/gvfs-metadata/*
-#\rm -Rf ~/.config/*
+rm -Rf ~/.local/share/Trash/*
+rm -Rf ~/.local/share/wineprefixes/*
+rm -Rf ~/.local/share/gvfs-metadata/*
+#rm -Rf ~/.config/*
 #google chrome
-#\rm -rf ~/.config/google-chrome/Default/Web\ Data
-\rm -Rf ~/.config/google-chrome/History*
-\rm -Rf ~/.config/variety/Downloaded/*/
-\rm -Rf ~/.local/share/applications/google-chrome-*.desktop
+#rm -Rf ~/.config/google-chrome/Default/Web\ Data
+rm -Rf ~/.config/google-chrome/History*
+rm -Rf ~/.config/variety/Downloaded/*/
+rm -Rf ~/.local/share/applications/google-chrome-*.desktop
 #nabla
-\rm -Rf ~/env/config/setEnvFiles.list.txt
+rm -Rf ~/env/config/setEnvFiles.list.txt
 #https://askubuntu.com/questions/177312/filesystem-filling-up-due-to-large-uvcydnctrl-udev-log-file
-sudo \rm -Rf /var/log/uvcdynctrl-udev.log
-sudo \rm -Rf /var/log/elasticsearch/elasticsearch.log*
-\rm -Rf /var/lib/mongodb/journal/*
-\rm -Rf /var/lib/mongodb/local.*
-\rm -Rf /var/lib/mongodb/nabla-*
-\rm -Rf /var/lib/redis/*.rdb
-\rm -Rf /var/lib/collectd/rrd/*
-\rm -Rf /workspace/jboss-as-7.1.1.Final/standalone/data/content*
+sudo rm -Rf /var/log/uvcdynctrl-udev.log
+sudo rm -Rf /var/log/elasticsearch/elasticsearch.log*
+rm -Rf /var/lib/mongodb/journal/*
+rm -Rf /var/lib/mongodb/local.*
+rm -Rf /var/lib/mongodb/nabla-*
+rm -Rf /var/lib/redis/*.rdb
+rm -Rf /var/lib/collectd/rrd/*
+rm -Rf /workspace/jboss-as-7.1.1.Final/standalone/data/content*
 
 ./cleanup-jenkins.sh
 
@@ -57,16 +57,16 @@ find ~/.thumbnails -type f -atime +7 -exec rm {} \;
 
 #find /var/log -type f -name '*.log' -exec chmod 664 {} \;
 
-#\rm -Rf workspace-cpp
-#\rm -Rf workspace-j2ee
+#rm -Rf workspace-cpp
+#rm -Rf workspace-j2ee
 
-#find . -type f -name '*~' | xargs rm -r $1
-find . -type f -name '*\.log' | xargs rm -r $1
-find . -type d -name '.svn' | xargs rm -r $1
+#find . -type f -name '*~'  -exec rm -rv {} \;
+find . -type f -name '*\.log' -exec rm -rv {} \;
+find . -type d -name '.svn' -exec rm -rv {} \;
 
-#\rm -Rf /var/lib/elasticsearch/elasticsearch/nodes/
-#https://community.spiceworks.com/topic/783490-webm-files-in-virtualbox-are-they-safe-to-delete
-\rm -Rf ~/VirtualBox VMs/**/*.webm
+#rm -Rf /var/lib/elasticsearch/elasticsearch/nodes/
+#https://community.spiceworks.com/topic/783490-webm-files-in-virtualbox-are-they-safe-to-exec rm -rv {} \;
+rm -Rf ~/VirtualBox VMs/**/*.webm
 
 echo "End cleaning"
 
@@ -80,7 +80,7 @@ echo "End cleaning"
 
 #find ~/ -name '*~' -print0
 find ~/ -name '*~' -type f
-find ~/ -name '*~' -type f -print0 | xargs -0 rm
+find ~/ -name '*~' -type f -print0  -exec rm -rv {} \;
 
 #http://www.insanitybit.com/2012/07/17/removing-zeitgeist-sped-up-unity-2/
 sudo apt-get purge zeitgeist zeitgeist-datahub rhythmbox-plugin-zeitgeist
@@ -99,11 +99,11 @@ sudo apt-get --purge remove tex.\*-doc$
 #current kernel
 uname -r
 #remove old kernel
-dpkg -l | awk '{print $2}' | grep -E "linux-(image|headers)-$(uname -r | cut -d- -f1).*" | grep -v $(uname -r | sed -r -e 's:-[a-z]+.*::')
+dpkg -l | awk '{print $2}' | grep -E "linux-(image|headers)-$(uname -r | cut -d- -f1).*" | grep -v "$(uname -r | sed -r -e 's:-[a-z]+.*::')"
 #sudo apt-get purge $(dpkg -l | awk '{print $2}' | grep -E "linux-(image|headers)-$(uname -r | cut -d- -f1).*" | grep -v $(uname -r | sed -r -e 's:-[a-z]+.*::'))
 
 #delete mail
-#http://apple.stackexchange.com/questions/28745/how-do-i-delete-all-terminal-mail
+#http://apple.stackexchange.com/questions/28745/how-do-i-exec rm -rv {} \;-all-terminal-mail
 #: > /var/mail/$USER
 #Fix issue sendmail-largeboxes
 #http://unix.stackexchange.com/questions/134136/how-to-access-and-manage-a-large-mailbox-11-gb
