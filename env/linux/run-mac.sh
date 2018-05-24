@@ -27,16 +27,30 @@ ansible-playbook main.yml -i inventory -K
 
 #Download Mac port from https://www.macports.org/install.php
 sw_vers -productVersion
-wget https://github.com/macports/macports-base/releases/download/v2.4.2/MacPorts-2.4.2-10.12-Sierra.pkg
-sudo installer -pkg MacPorts-2.4.2-10.12-Sierra.pkg -target /
+#wget https://github.com/macports/macports-base/releases/download/v2.4.2/MacPorts-2.4.2-10.12-Sierra.pkg
+wget https://distfiles.macports.org/MacPorts/MacPorts-2.4.3-10.13-HighSierra.pkg
+#sudo installer -pkg MacPorts-2.4.2-10.12-Sierra.pkg -target /
+sudo installer -pkg MacPorts-2.4.3-10.13-HighSierra.pkg -target /
 sudo /opt/local/bin/port version
+
+#less /opt/local/etc/macports/macports.conf
+sudo nano /opt/local/etc/macports/sources.conf
+#switch to
+#file:///Users/admin/Downloads/ports.tar [default]
+#then
+#file:////opt/local/var/macports/portdirs/ports/ [default]
+
 sudo /opt/local/bin/port -v selfupdate
 
 sudo /opt/local/bin/port list | grep wget
 sudo /opt/local/bin/port -t install wget
 sudo /opt/local/bin/port install openssl
 #sudo port install xorg-server
-sudo /opt/local/bin/port install ansible
+sudo /opt/local/bin/port install py-ansible
+
+#Upgrade macport
+/opt/local/bin/port -qv installed > myports.txt
+/opt/local/bin/port echo requested | cut -d ' ' -f 1 > requested.txt
 
 #See https://github.com/geerlingguy/mac-dev-playbook
 git clone https://github.com/geerlingguy/mac-dev-playbook
@@ -75,5 +89,19 @@ sudo keytool -importcert -alias dev -file UK1VSWCERT01-CA-5.crt -keystore /Libra
 #http://osxdaily.com/2015/02/03/set-or-disable-sleep-due-to-mac-system-inactivity-from-the-command-line-in-os-x/
 sudo systemsetup -getcomputersleep
 sudo systemsetup -setcomputersleep Never
+
+#On Issue : xcrun: error: unable to exec Xcode native xcrun (Permission denied)
+#xcrun --show-sdk-path
+#xcode-select --reset
+
+#See https://embeddedartistry.com/blog/2017/2/20/installing-clangllvm-on-osx
+#brew info llvm
+#brew doctor
+#brew install llvm
+#brew install --with-toolchain llvm
+#which scan-build
+#echo 'export PATH="/usr/local/opt/llvm/bin:$PATH"' >> ~/.bash_profile
+
+#sudo mv /opt/local ~/macports
 
 exit 0
