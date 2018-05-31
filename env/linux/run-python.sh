@@ -45,10 +45,18 @@ rm /root/Python-2.7.3
 sudo virtualenv /opt/ansible/env36 -p /usr/bin/python3.6
 source /opt/ansible/env36/bin/activate
 
-#alternatives --list | grep -i python
-
+#RedHat
 #alternatives --install /usr/bin/python python /usr/local/bin/python3.6 2
 #alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+#alternatives --list | grep -i python
+
+#Ubuntu
+#ls -la /etc/alternatives/python*
+#sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 30
+#sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.5 20
+#sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 100
+#sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.6  5
+#sudo update-alternatives --config python
 
 #pip3 install docker-py
 #pip3 install -U docker-compose
@@ -65,12 +73,15 @@ sudo easy_install --upgrade pip
 pip2 list --outdated --format=freeze
 pip3 list --outdated --format=freeze
 #Upgrade all
-pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip2 install -U
-pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip3 install -U
+export PYTHONPATH=/usr/local/lib/python2.7/dist-packages
+pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip2 install -U
+export PYTHONPATH=/usr/local/lib/python3.6/dist-packages/
+pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip3 install -U
 
+sudo apt-get install python3.6-dev
 #Issue pycurl: libcurl link-time ssl backend (nss) is different from compile-time ssl backend (none/other)
-pip uninstall pycurl
-pip install --no-cache-dir --compile --ignore-installed --install-option="--with-nss" pycurl
+sudo pip uninstall pycurl
+sudo pip install --no-cache-dir --compile --ignore-installed --install-option="--with-nss" pycurl
 
 #virtualenv
 mkvirtualenv py27 -p /usr/bin/python2.7
