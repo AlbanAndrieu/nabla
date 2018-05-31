@@ -34,4 +34,24 @@ sudo apt install conjure-up
 
 conjure-up kubernetes
 
+#https://github.com/GoogleContainerTools/skaffold
+curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin
+
+skaffold version
+
+#https://github.com/jenkins-x/jx
+
+curl -L https://github.com/jenkins-x/jx/releases/download/v1.2.88/jx-linux-amd64.tar.gz | tar xzv
+sudo mv jx /usr/local/bin
+
+jx version
+
+jx completion bash > ~/.jx/bash
+source ~/.jx/bash
+
+#https://docs.helm.sh/using_helm/#installing-helm
+
+brew update
+brew install kubernetes-helm
+
 exit 0

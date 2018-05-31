@@ -113,6 +113,12 @@ sudo mkfs -t xfs /dev/rhel_fr1cslvcacrhel71/workspace
 #sudo mkfs -t ext4 /dev/rhel_fr1cslvcacrhel71/docker
 mkfs.xfs -n ftype=1 /dev/rhel_fr1cslvcacrhel71/docker
 
+#nano /etc/fstab
+#/dev/rhel_fr1cslvcacrhel71/workspace /workspace ext4 auto 0 2
+#/dev/rhel_fr1cslvcacrhel71/docker /docker ext4 auto 0 2
+/dev/rhel_fr1cslvcacrhel71/workspace /workspace xfs auto 0 2
+/dev/rhel_fr1cslvcacrhel71/docker /docker xfs defaults,usrquota,prjquota  0   0
+
 sudo mkdir /workspace
 sudo mount /workspace
 
@@ -136,12 +142,6 @@ xfs_growfs -d /dev/rhel_fr1cslvcacrhel71/root
 
 #extend size of filesystem
 #resize2fs /dev/rhel_fr1cslvcacrhel71/root
-
-#nano /etc/fstab
-#/dev/rhel_fr1cslvcacrhel71/workspace /workspace ext4 auto 0 2
-#/dev/rhel_fr1cslvcacrhel71/docker /docker ext4 auto 0 2
-/dev/rhel_fr1cslvcacrhel71/workspace /workspace xfs auto 0 2
-/dev/rhel_fr1cslvcacrhel71/docker /docker xfs defaults,usrquota,prjquota  0   0
 
 df -h
 lsblk -o NAME,SIZE,GROUP,TYPE,FSTYPE,MOUNTPOINT

@@ -210,6 +210,8 @@ pkg install perl5
 pkg install p5-Locale-libintl
 pkg install p5-Locale-gettext
 
+pkg install log4j
+
 portsnap fetch update
 
 pkg upgrade ruby23

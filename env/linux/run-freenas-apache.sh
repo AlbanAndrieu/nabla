@@ -185,3 +185,44 @@ pkg install webalizer
 pkg install awstats
 
 #See run-awstats.sh
+
+grep deflate  /usr/local/etc/apache24/httpd.conf
+#LoadModule deflate_module libexec/apache24/mod_deflate.so
+nano /usr/local/etc/apache24/Includes/mod_deflate.conf
+
+---------------------------
+
+<IfModule mod_deflate.c>
+        <IfModule mod_filter.c>
+            # these are known to be safe with MSIE 6
+            AddOutputFilterByType DEFLATE text/html text/plain text/xml
+
+            # everything else may cause problems with MSIE 6
+            AddOutputFilterByType DEFLATE text/css
+            AddOutputFilterByType DEFLATE application/x-javascript application/javascript application/ecmascript
+            AddOutputFilterByType DEFLATE application/rss+xml
+            AddOutputFilterByType DEFLATE application/xml
+            AddOutputFilterByType DEFLATE image/svg+xml
+
+            #Highest 9 - Lowest 1
+            DeflateCompressionLevel 9
+
+            #Optional
+            #Skip browsers with known problems
+            BrowserMatch ^Mozilla/4 gzip-only-text/html
+            BrowserMatch ^Mozilla/4\.0[678] no-gzip
+            BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+
+            #Optional
+            #Logging
+            DeflateFilterNote ratio
+            LogFormat '"%r" %b (%{ratio}n) "%{User-agent}i"' deflate
+            CustomLog /var/log/deflate_log deflate
+        </IfModule>
+</IfModule>
+
+-----------------------------
+
+apachectl graceful
+
+exit 0
