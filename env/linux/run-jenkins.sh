@@ -137,7 +137,7 @@ $JENKINS_URL/bitbucket-scmsource-hook/notify/
 #On Windows
 #Clear Event Log (control panel> administrator tools>event viewer)
 # Application -> righ panel -> Action clear log
-#Remove windows service sc delete jenkinsslave-E__Jenkins-Slave
+#Remove windows service sc.exe  delete jenkinsslave-E__Jenkins-Slave
 #https://wiki.jenkins.io/display/JENKINS/Installing+Jenkins+as+a+Windows+service
 #sc.exe create "<serviceKey>" start= auto binPath= "<path to jenkins-slave.exe>" DisplayName= "<service display name>"
 
