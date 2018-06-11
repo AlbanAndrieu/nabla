@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import csv
 import json
-import urllib
+import urllib.request
 from array import array
 from os.path import isfile
 
@@ -32,7 +32,7 @@ for job in jobs:
     url = 'http://home.nabla.mobi:8381/job/' + \
         job + '/api/json?tree=builds[number,duration]'
     print('Reading data from ' + url)
-    response = urllib.urlopen(url)
+    response = urllib.request.urlopen(url)
     data = json.loads(response.read())
 
     for i in data['builds']:
