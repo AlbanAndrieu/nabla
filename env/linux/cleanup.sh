@@ -29,12 +29,12 @@ echo "Start cleaning"
 \rm -Rf ~/tmp
 \rm -f ~/*.db
 #\rm -Rf  ~/.vagrant.d/boxes
-echo "Empty trash"
-\rm -Rf ~/.local/share/Trash/*
-\rm -Rf ~/.local/share/wineprefixes/*
-\rm -Rf ~/.local/share/gvfs-metadata/*
+#empty trash
+\rm -rf ~/.local/share/Trash/*
+\rm -rf ~/.local/share/wineprefixes/*
+\rm -rf ~/.local/share/gvfs-metadata/*
 #\rm -Rf ~/.config/*
-echo "Empty google chrome"
+#google chrome
 #\rm -rf ~/.config/google-chrome/Default/Web\ Data
 \rm -Rf ~/.config/google-chrome/History*
 \rm -Rf ~/.config/variety/Downloaded/*/
@@ -43,13 +43,11 @@ echo "Empty google chrome"
 #https://askubuntu.com/questions/177312/filesystem-filling-up-due-to-large-uvcydnctrl-udev-log-file
 sudo \rm -Rf /var/log/uvcdynctrl-udev.log
 sudo \rm -Rf /var/log/elasticsearch/elasticsearch.log*
-echo "Empty mongodb"
 \rm -Rf /var/lib/mongodb/journal/*
 \rm -Rf /var/lib/mongodb/local.*
 \rm -Rf /var/lib/mongodb/nabla-*
 \rm -Rf /var/lib/redis/*.rdb
 \rm -Rf /var/lib/collectd/rrd/*
-echo "Empty jboss"
 \rm -Rf /workspace/jboss-as-7.1.1.Final/standalone/data/content*
 
 ./cleanup-jenkins.sh
@@ -81,7 +79,7 @@ echo "End cleaning"
 
 #find ~/ -name '*~' -print0
 find ~/ -name '*~' -type f
-find ~/ -name '*~' -type f -print0 | xargs -0 rm
+find ~/ -name '*~' -type f -print0  -exec rm -rv {} \;
 
 #http://www.insanitybit.com/2012/07/17/removing-zeitgeist-sped-up-unity-2/
 sudo apt-get purge zeitgeist zeitgeist-datahub rhythmbox-plugin-zeitgeist

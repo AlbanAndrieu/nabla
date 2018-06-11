@@ -49,6 +49,10 @@ zabbix_agentd
 
 #Test your file
 #plutil /Library/LaunchAgents/org.macports.zabbix_agent.plist
-launchd /Library/LaunchAgents/org.macports.zabbix_agent.plist
+sudo launchctl load -w /Library/LaunchAgents/org.macports.zabbix_agent.plist
+
+sudo launchctl list
+
+tail -f /tmp/zabbix_agentd.log
 
 exit 0

@@ -121,3 +121,8 @@ sudo apt-get install chromium-chromedriver
 
 #https://gist.github.com/caspyin/2288960
 curl -i -v -k ${SERVER_URL}${SERVER_CONTEXT} --data "username=test&password=microsoft"
+
+cd $WORKSPACE
+sudo /opt/owasp/zap/zap.sh -dir .
+
+exit 0

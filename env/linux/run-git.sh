@@ -133,3 +133,8 @@ pre-commit run --all-files
 #1. "Bitbucket Server Webhook to Jenkins" in Bitbucket ...
 #2. If already installed then you have to enable "Post Receive" Hook on that particular repo.
 #3. Once you are done this In Jenkins Job you have to add "poll SCM".
+
+#Revert a revert
+#git reset --hard f357b81dc4c
+#git reset --soft HEAD@{1}
+#git commit -m "Revert to f357b81dc4c"

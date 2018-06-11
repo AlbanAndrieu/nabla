@@ -23,13 +23,17 @@ set -xv
 #To disable HTS
 #See chrome://net-internals/#hsts
 
-gnome-keyring-daemon &
+#Fix : Google Chrome opens in a new window in a new launcher icon
+#\rm -Rf ~/.local/share/applications/google-chrome-*.desktop
+
+gnome-keyring-daemon --start --replace --foreground --components=secrets,ssh,pcks11 &
+#gnome-keyring-daemon &
 /usr/bin/google-chrome
 
 #chrome://flags/#allow-insecure-localhost
 
 #RedHat fix
 #yum install firefox
-yum install mesa-libGLU*.i686 mesa-libGLU*.x86_64
+#yum install mesa-libGLU*.i686 mesa-libGLU*.x86_64
 
 exit 0

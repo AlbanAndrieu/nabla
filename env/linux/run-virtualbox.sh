@@ -34,7 +34,8 @@ sudo mkdir -p /local/virtualbox/Windows7/Shared
 #install oracle vm virtualbox extension pack
 cd ~/.VirtualBox
 
-#wget http://download.virtualbox.org/virtualbox/4.3.10/Oracle_VM_VirtualBox_Extension_Pack-4.3.10-93012.vbox-extpack
+sudo apt-get install virtualbox-ext-pack
+
 wget http://download.virtualbox.org/virtualbox/5.0.16/Oracle_VM_VirtualBox_Extension_Pack-5.0.16-105871.vbox-extpack
 
 #fix issue with Extension Pack
@@ -111,7 +112,6 @@ sudo apt-get install linux-image-extra-4.8.0-34-generic linux-image-extra-virtua
 
 sudo dpkg -i *.deb
 
-
 sudo apt-get install mokutil
 sudo mokutil --disable-validation
 
@@ -125,6 +125,14 @@ sudo mokutil --import MOK.der
 sudo apt install virtualbox-qt
 
 sudo service virtualbox status
+
+#sudo dpkg-reconfigure virtualbox-dkms
+#sudo dpkg-reconfigure virtualbox
+#sudo modprobe vboxdrv
+#sudo modprobe vboxnetflt
+
+VBoxManage --version
+
 #vagrant up --provider=virtualbox
 
 #https://www.vagrantup.com/downloads.html

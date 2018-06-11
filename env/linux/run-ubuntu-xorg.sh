@@ -141,4 +141,7 @@ cd fglrx-15.201.2401
 reboot
 apt-get -f install
 
+#Maximum number of clients reached
+lsof -U +c 15 | cut -f1 -d' ' | sort | uniq -c | sort -rn | head -3
+
 #sudo aptitude install tcpd

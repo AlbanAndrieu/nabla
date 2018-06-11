@@ -1,7 +1,9 @@
 #!/bin/bash
 #set -xve
 
-source ./step-0-color.sh
+script_dir="$( cd "$(dirname "$0")" ; pwd -P )"
+
+tput colors && source "$script_dir/step-0-color.sh"
 
 if [ -n "${TARGET_USER}" ]; then
   echo -e "${green} TARGET_USER is defined ${happy_smiley} ${NC}"

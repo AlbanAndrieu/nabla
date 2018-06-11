@@ -102,6 +102,6 @@ service autofs stop
 
 #security cleaning
 #sudo apt-get remove ftp telnet xinetd finger sysstat rusersd rwho rwhod
-#sudo apt-get remove net-tools 
+#sudo apt-get remove net-tools
 
 exit 0

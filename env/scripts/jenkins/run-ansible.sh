@@ -97,6 +97,14 @@ else
   echo -e "${magenta} DOCKER_RUN : ${DOCKER_RUN} ${NC}"
 fi
 
+if [ -n "${VIRTUALENV_PATH}" ]; then
+  echo -e "${green} VIRTUALENV_PATH is defined ${happy_smiley} : ${PYTHON_CMD} ${NC}"
+else
+  echo -e "${red} \u00BB Undefined build parameter ${head_skull} : VIRTUALENV_PATH, use the default one ${NC}"
+  export VIRTUALENV_PATH="/opt/ansible/env35/bin"
+  echo -e "${magenta} VIRTUALENV_PATH : ${VIRTUALENV_PATH} ${NC}"
+fi
+
 if [ -n "${PYTHON_CMD}" ]; then
   echo -e "${green} PYTHON_CMD is defined ${happy_smiley} : ${PYTHON_CMD} ${NC}"
 else
@@ -106,7 +114,8 @@ else
   if [ "${OS}" == "Red Hat Enterprise Linux Server" ]; then
     PYTHON_CMD="/usr/local/bin/python3.5"
   else
-    PYTHON_CMD="/usr/bin/python3.5"
+    PYTHON_CMD="${VIRTUALENV_PATH}/python3.5"
+    #PYTHON_CMD="/usr/bin/python3.5"
   fi
   export PYTHON_CMD
   echo -e "${magenta} PYTHON_CMD : ${PYTHON_CMD} ${NC}"
@@ -214,7 +223,7 @@ sudo service tomcat8 stop || true
 
 echo -e "${red} Configure workstation ${NC}"
 
-echo -e "${cyan} Use virtual env /opt/ansible/env35/bin/activate ${NC}"
+echo -e "${cyan} Use virtual env ${VIRTUALENV_PATH}/activate ${NC}"
 #echo "Switch to python 2.7 and ansible 2.1.1"
 #scl enable python27 bash
 #Enable python 2.7 and switch to ansible 2.1.1
@@ -222,11 +231,11 @@ echo -e "${cyan} Use virtual env /opt/ansible/env35/bin/activate ${NC}"
 
 #sudo virtualenv -p /usr/bin/python3.5 /opt/ansible/env35
 
-source /opt/ansible/env35/bin/activate || exit 2
+source ${VIRTUALENV_PATH}/activate || exit 2
 
 echo -e "${cyan} =========== ${NC}"
-echo -e "${green} Install virtual env requiremnts ${NC}"
-sudo -H pip3.5 install -r roles/jenkins-slave/files/requirements-minimal-current-3.5.txt || exit 2
+echo -e "${green} Install virtual env requirements ${NC}"
+sudo -H ${VIRTUALENV_PATH}/pip3.5 install -r roles/jenkins-slave/files/requirements-current-3.5.txt || exit 2
 
 echo -e "${cyan} =========== ${NC}"
 echo -e "${green} Checking docker-compose version ${NC}"
@@ -236,6 +245,15 @@ RC=$?
 if [ ${RC} -ne 0 ]; then
   echo ""
   echo -e "${red} ${head_skull} Sorry, docker-compose failed ${NC}"
+  sudo ${VIRTUALENV_PATH}/pip3 freeze | grep dockergea
+
+  ${VIRTUALENV_PATH}/pip3.5 show docker-py
+  RC=$?
+  if [ ${RC} -ne 1 ]; then
+    echo -e "${red} ${head_skull} Please remove docker-py ${NC}"
+  fi
+  echo -e "${red} ${head_skull} sudo ${VIRTUALENV_PATH}/pip3.5 uninstall docker-py; sudo ${VIRTUALENV_PATH}/pip3.5 uninstall docker; sudo ${VIRTUALENV_PATH}/pip3.5 uninstall docker-compose; ${NC}"
+  echo -e "${red} ${head_skull} sudo ${VIRTUALENV_PATH}/pip3.5 install --upgrade --force-reinstall --no-cache-dir docker-compose==1.12.0 ${NC}"
   exit 1
 else
   echo -e "${green} The docker-compose check completed successfully. ${NC}"
@@ -244,6 +262,7 @@ fi
 echo -e "${cyan} =========== ${NC}"
 echo -e "${green} Checking python version ${NC}"
 
+#source ${VIRTUALENV_PATH}/activate || exit 2
 ansible --version | grep python || true
 
 python --version || true
@@ -270,14 +289,12 @@ echo -e "${green} Checking python 3.5 version ${NC}"
 
 python3 --version || true
 pip3 --version || true
-python3.5 --version || true
-pip3.5 --version || true
+${PYTHON_CMD} --version || true
+${VIRTUALENV_PATH}/pip3.5 --version || true
 
-#pip3.5 show docker-py || true
-sudo -H pip3.5 list --format=legacy | grep docker || true
+sudo -H ${VIRTUALENV_PATH}/pip3.5 list --format=legacy | grep docker || true
 
-#sudo pip3.5 -H install -r requirements-current-3.5.txt
-sudo -H pip3.5 freeze > requirements-3.5.txt
+sudo -H ${VIRTUALENV_PATH}/pip3.5 freeze > requirements-3.5.txt
 
 if [ -d "${WORKSPACE}/ansible" ]; then
   cd "${WORKSPACE}/ansible"
