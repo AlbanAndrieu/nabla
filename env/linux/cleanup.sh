@@ -30,12 +30,12 @@ echo "Start cleaning"
 \rm -f ~/*.db
 #\rm -Rf  ~/.vagrant.d/boxes
 #empty trash
-\rm -rf ~/.local/share/Trash/*
-\rm -rf ~/.local/share/wineprefixes/*
-\rm -rf ~/.local/share/gvfs-metadata/*
+\rm -Rf ~/.local/share/Trash/*
+\rm -Rf ~/.local/share/wineprefixes/*
+\rm -Rf ~/.local/share/gvfs-metadata/*
 #\rm -Rf ~/.config/*
 #google chrome
-#\rm -rf ~/.config/google-chrome/Default/Web\ Data
+#\rm -Rf ~/.config/google-chrome/Default/Web\ Data
 \rm -Rf ~/.config/google-chrome/History*
 \rm -Rf ~/.config/variety/Downloaded/*/
 #nabla
@@ -73,8 +73,8 @@ echo "End cleaning"
 #cd ~/Private
 #ecryptfs-umount-private
 #chmod 700 ~/Private
-#NEVER rm -rf ~/Private ~/.Private ~/.ecryptfs
-#NEVER rm -rf /home/.ecryptfs
+#NEVER rm -Rf ~/Private ~/.Private ~/.ecryptfs
+#NEVER rm -Rf /home/.ecryptfs
 #sudo apt-get remove ecryptfs-utils libecryptfs0
 
 #find ~/ -name '*~' -print0
@@ -117,7 +117,7 @@ dpkg -l | awk '{print $2}' | grep -E "linux-(image|headers)-$(uname -r | cut -d-
 
 #RedHat
 #yum clean all || true
-#rm -rf /var/cache/yum
+#rm -Rf /var/cache/yum
 
 #List pgk used by services
 find /etc/init /etc/init.d /etc/systemd /lib/systemd /etc/cron.* -type f -exec dpkg-query -S {} \; | sed 's/:.*$//' | sort -u
