@@ -29,12 +29,12 @@ echo "Start cleaning"
 \rm -Rf ~/tmp
 \rm -f ~/*.db
 #\rm -Rf  ~/.vagrant.d/boxes
-#empty trash
-\rm -rf ~/.local/share/Trash/*
-\rm -rf ~/.local/share/wineprefixes/*
-\rm -rf ~/.local/share/gvfs-metadata/*
+echo "Empty trash"
+\rm -Rf ~/.local/share/Trash/*
+\rm -Rf ~/.local/share/wineprefixes/*
+\rm -Rf ~/.local/share/gvfs-metadata/*
 #\rm -Rf ~/.config/*
-#google chrome
+echo "Empty google chrome"
 #\rm -rf ~/.config/google-chrome/Default/Web\ Data
 \rm -Rf ~/.config/google-chrome/History*
 \rm -Rf ~/.config/variety/Downloaded/*/
@@ -43,11 +43,13 @@ echo "Start cleaning"
 #https://askubuntu.com/questions/177312/filesystem-filling-up-due-to-large-uvcydnctrl-udev-log-file
 sudo \rm -Rf /var/log/uvcdynctrl-udev.log
 sudo \rm -Rf /var/log/elasticsearch/elasticsearch.log*
+echo "Empty mongodb"
 \rm -Rf /var/lib/mongodb/journal/*
 \rm -Rf /var/lib/mongodb/local.*
 \rm -Rf /var/lib/mongodb/nabla-*
 \rm -Rf /var/lib/redis/*.rdb
 \rm -Rf /var/lib/collectd/rrd/*
+echo "Empty jboss"
 \rm -Rf /workspace/jboss-as-7.1.1.Final/standalone/data/content*
 
 ./cleanup-jenkins.sh
@@ -145,5 +147,11 @@ find /etc/init /etc/init.d /etc/systemd /lib/systemd /etc/cron.* -type f -exec d
 
 #vocale remove
 #apt-get remove speech-dispatcher
+
+docker system df
+
+docker stop $(docker ps -a -q) # stop all docker containers
+docker rm -f $(docker ps -a -q) # remove all docker containers
+docker images -q | xargs docker rmi -f # remove all docker images
 
 exit 0
