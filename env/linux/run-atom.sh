@@ -10,4 +10,9 @@ sudo apt-get install atom
 apm install linter
 apm install linter-shellcheck
 
+#https://atom.io/packages/python-debugger
+apm install python-debugger language-python
+
+apm install atom-beautify
+
 exit 0

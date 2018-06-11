@@ -1,6 +1,6 @@
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks.git
-    sha: v1.2.0
+    rev: v1.3.0
     hooks:
     -   id: trailing-whitespace
     -   id: end-of-file-fixer
@@ -11,14 +11,24 @@ repos:
     -   id: check-executables-have-shebangs
     -   id: check-json
     -   id: check-xml
+        exclude: >
+                  (?x)^(
+                      env/home/log4j.xml
+                  )$
     -   id: check-yaml
     -   id: check-symlinks
     -   id: debug-statements
+        exclude: >
+                  (?x)^(
+                      env/scripts/zodclient.py|
+                      env/scripts/server-connector.py
+                  )$
     -   id: detect-private-key
         exclude: >
                   (?x)^(
                       roles/jenkins-master/defaults/main.yml|
-                      roles/jenkins-master/README.md
+                      roles/jenkins-master/README.md|
+                      env/scripts/server-connector.py
                   )$
     -   id: double-quote-string-fixer
     -   id: name-tests-test
@@ -27,18 +37,23 @@ repos:
     -   id: requirements-txt-fixer
     -   id: sort-simple-yaml
     -   id: flake8
+        exclude: >
+                  (?x)^(
+                      env/scripts/zodclient.py|
+                      env/scripts/server-connector.py
+                  )$
         args: [--max-line-length=120]
 -   repo: https://github.com/pre-commit/pre-commit.git
-    sha: v1.5.0
+    rev: v1.10.1
     hooks:
     -   id: validate_manifest
 -   repo: https://github.com/asottile/reorder_python_imports.git
-    sha: v1.0.1
+    rev: v1.0.1
     hooks:
     -   id: reorder-python-imports
-        language_version: python2.7
+#        language_version: python2.7
 -   repo: https://github.com/asottile/add-trailing-comma
-    sha: v0.6.4
+    rev: v0.6.4
     hooks:
     -   id: add-trailing-comma
 #-   repo: meta
@@ -52,7 +67,7 @@ repos:
 #        files: \.(yaml|yml)$
 #        exclude: '.travis.yml'
 -   repo: git://github.com/doublify/pre-commit-hindent
-    sha: c1b9c390e1379aa5b40f63557aa7478a3ee95389
+    rev: 73078a9ff6f276461c63568445972d6365dfeab2
     hooks:
     -   id: hindent
 #-   repo: git://github.com/detailyang/pre-commit-shell

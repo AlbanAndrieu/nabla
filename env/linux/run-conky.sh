@@ -14,3 +14,6 @@ sudo apt-add-repository ppa:teejee2008/ppa
 sudo apt-get update
 sudo apt-get install conky-manager
 #sudo apt-get remove conky-manager
+
+#See https://linuxconfig.org/system-monitoring-on-ubuntu-18-04-linux-with-conky
+chmod +x $HOME/.conky/conky-startup.sh

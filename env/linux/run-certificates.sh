@@ -72,6 +72,9 @@ cd /etc/ssl/private/
 openssl rsa -in /etc/ssl/private/${SSL_KEY_NAME}.key -text -noout
 openssl rsa -in /etc/ssl/private/${SSL_KEY_NAME}.key -pubout -out ${SSL_KEY_NAME}.pem
 
+#Permission --w-rwxr-T
+#chmod 1274 ${SSL_KEY_NAME}.pem
+
 #CSR
 openssl req -new \
     -key "/etc/ssl/private/${SSL_KEY_NAME}.key" \
@@ -174,19 +177,19 @@ openssl -h enc
 openssl ciphers -v
 openssl speed
 
-sudo keytool -import -alias ca -file ~/Downloads/crowd.crt -keystore cacerts -storepass changeit
+sudo keytool -import -alias ca -file ~/pki/ca.pem -keystore cacerts -storepass changeit
 
 #https://confluence.atlassian.com/kb/unable-to-connect-to-ssl-services-due-to-pkix-path-building-failed-779355358.html
 TEST :
 wget https://confluence.atlassian.com/kb/files/779355358/SSLPoke.class
 java -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.debug=true SSLPoke crowd 443
 
-openssl x509 -noout -fingerprint -in ~/Downloads/crowd.crt
+openssl x509 -noout -fingerprint -in~/pki/ca.pem
 #as root
-openssl x509 -noout -hash -in /home/albandri/Downloads/crowd.crt
-ln -s /home/albandri/Downloads/crowd.crt `openssl x509 -hash -noout -in /home/albandri/Downloads/crowd.crt`.0
+openssl x509 -noout -hash -in ~/pki/ca.pem
+ln -s ~/pki/ca.pem `openssl x509 -hash -noout -in /home/albandri/Downloads/crowd.crt`.0
 #openssl verify -CApath <ssl-base-dir>certs /home/albandri/Downloads/crowd.crt
-openssl verify -CAfile /home/albandri/Downloads/crowd.crt /home/albandri/Downloads/crowd.crt
+openssl verify -CAfile ~/pki/ca.pem /home/albandri/Downloads/crowd.crt
 openssl verify -CApath /usr/lib/ssl/certs /home/albandri/Downloads/crowd.crt
 openssl verify /home/albandri/Downloads/crowd.crt
 
@@ -222,7 +225,7 @@ sudo cp /etc/ssl/requests/certnew.cer albandri.crt
 #openssl s_client -showcerts -connect nabla.freeboxos.fr:443 </dev/null 2>/dev/null |openssl x509 -outform PEM | tee ~/Downloads/docker.pem
 sudo cp ~/Downloads/*.crt .
 #~ #count the number of certificate in a file
-#cat ~/Downloads/crowd.crt | grep 'BEGIN.* CERTIFICATE' | wc -l
+#cat ~/pki/ca.pem | grep 'BEGIN.* CERTIFICATE' | wc -l
 sudo update-ca-certificates
 #sudo dpkg-reconfigure ca-certificates
 less /etc/ssl/certs/ca-certificates.crt
@@ -323,7 +326,7 @@ sudo apt-get install certbot
 
 certbot-auto certonly --non-interactive --register-unsafely-without-email --agree-tos --expand --webroot --webroot-path /var/www/html --domain nabla.freeboxos.fr
 
-certbot certonly -w /var/www/html/ -d nabla.freeboxos.fr --installer apache --webroot  --test-cert &> certbot.log 
+certbot certonly -w /var/www/html/ -d nabla.freeboxos.fr --installer apache --webroot  --test-cert &> certbot.log
 
 tail -f /var/log/letsencrypt/letsencrypt.log
 

@@ -122,12 +122,20 @@ docker run -d --name logstash --link es:elasticsearch logstash -v /tmp/logstash.
 LOGSTASH_ADDRESS=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' logstash)
 
 #Install filebeat
-#YUM
-docker exec -u 0 -it test_frmb_1 env TERM=xterm-256color bash -l
-curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.2.3-x86_64.rpm
-rpm -vi filebeat-6.2.3-x86_64.rpm
 #APT
 curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.2.3-amd64.deb
 sudo dpkg -i filebeat-6.2.3-amd64.deb
 
 sudo filebeat setup --dashboards
+
+#YUM
+docker exec -u 0 -it test_frmb_1 env TERM=xterm-256color bash -l
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.2.3-x86_64.rpm
+rpm -vi filebeat-6.2.3-x86_64.rpm
+curl -L -O https://artifacts.elastic.co/downloads/logstash/logstash-5.5.2.rpm
+sudo rpm -vi logstash-5.5.2.rpm
+sudo yum install libpcap
+curl -L -O https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-5.5.2-x86_64.rpm
+sudo rpm -vi packetbeat-5.5.2-x86_64.rpm
+curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-5.5.2-x86_64.rpm
+sudo rpm -vi metricbeat-5.5.2-x86_64.rpm

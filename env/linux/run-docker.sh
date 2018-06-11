@@ -15,7 +15,8 @@ sudo apt-get -y install apt-transport-https ca-certificates curl software-proper
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu xenial stable"
 sudo apt-get update
-sudo apt-get -y install docker-ce aufs-tools
+sudo apt-get -y install aufs-tools
+sudo apt-get install -o Dpkg::Options::='--force-confold' --force-yes -y docker-ce
 
 ##Add CentOS repo
 #sudo yum install -y yum-utils

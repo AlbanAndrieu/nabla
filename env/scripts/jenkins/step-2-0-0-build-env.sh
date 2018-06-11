@@ -1,7 +1,9 @@
 #!/bin/bash
 #set -xv
 
-source ./step-0-color.sh
+script_dir="$( cd "$(dirname "$0")" ; pwd -P )"
+
+tput colors && source "$script_dir/step-0-color.sh"
 
 # shellcheck disable=SC2154
 echo -e "${yellow} ${bold} WELCOME ${nabla_logo} ${NC}"
