@@ -169,9 +169,14 @@ certbot certonly
 
 #INPUT
 #2
-#home.nabla.mobi
+#nabla.mobi,home.nabla.mobi,sample.nabla.mobi,alban-andrieu.fr,alban-andrieu.com,alban-andrieu.eu,bababou.fr,bababou.eu
 #1
 #/usr/local/www/apache24/data
+#/usr/local/www/apache24/data/sample
+#/usr/local/www/apache24/data/alban
+#/usr/local/www/apache24/data/bababou
+
+#TODO freenas.nabla.mobi,jenkins.nabla.mobi
 
 /usr/local/etc/letsencrypt/live/home.nabla.mobi/fullchain.pem
 
