@@ -228,7 +228,7 @@
 		<documentation.output.directory>${project.build.directory}/docs</documentation.output.directory>
 		<dom4j.version>1.6.1</dom4j.version>
 		<doxia.module.twiki.version>${doxia.version}</doxia.module.twiki.version>
-		<doxia.version>1.7</doxia.version>
+		<doxia.version>1.8</doxia.version>
 		<!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 		<!--<drools.version>6.2.0.CR4</drools.version>-->
 		<drools.api.version>5.2.0.M1</drools.api.version>
@@ -7016,11 +7016,13 @@
 					<artifactId>maven-site-plugin</artifactId>
 					<version>${maven.site.plugin.version}</version>
 					<dependencies>
+						<!--
 						<dependency>
 							<groupId>org.apache.maven.doxia</groupId>
 							<artifactId>doxia-core</artifactId>
 							<version>${doxia.version}</version>
 						</dependency>
+						-->
 						<dependency>
 							<groupId>com.nabla.project</groupId>
 							<artifactId>skin</artifactId>
@@ -9652,11 +9654,13 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<artifactId>maven-site-plugin</artifactId>
 							<version>${maven.site.plugin.version}</version>
 							<dependencies>
+								<!--
 								<dependency>
 									<groupId>org.apache.maven.doxia</groupId>
 									<artifactId>doxia-core</artifactId>
 									<version>${doxia.version}</version>
 								</dependency>
+								-->
 								<dependency>
 									<groupId>com.nabla.project</groupId>
 									<artifactId>skin</artifactId>
