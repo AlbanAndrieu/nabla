@@ -178,9 +178,20 @@ certbot certonly
 
 #TODO freenas.nabla.mobi,jenkins.nabla.mobi
 
+less /usr/local/etc/letsencrypt/renewal/home.nabla.mobi.conf
+
+cert = /usr/local/etc/letsencrypt/live/home.nabla.mobi/cert.pem
+privkey = /usr/local/etc/letsencrypt/live/home.nabla.mobi/privkey.pem
+chain = /usr/local/etc/letsencrypt/live/home.nabla.mobi/chain.pem
+fullchain = /usr/local/etc/letsencrypt/live/home.nabla.mobi/fullchain.pem
+
 /usr/local/etc/letsencrypt/live/home.nabla.mobi/fullchain.pem
 
 nano /usr/local/etc/apache24/httpd.conf
+
+SSLEngine On
+SSLCertificateFile "/usr/local/etc/letsencrypt/live/home.nabla.mobi/cert.pem"
+SSLCertificateKeyFile "/usr/local/etc/letsencrypt/live/home.nabla.mobi/privkey.pem"
 
 #certbot certonly --standalone -d home.nabla.mobi
 
