@@ -21,6 +21,8 @@ set -xv
 #Remove the IPv6 listen line
 #Start Nginx Service: service nginx start
 
+sqlite3 /data/freenas-v1.db "update system_settings set stg_guiprotocol = 'http';"
+
 echo "https://192.168.0.46:7000/"
 echo "https://home.nabla.mobi:7000/"
 echo "https://freenas.freeboxos.fr:7000/"
