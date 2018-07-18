@@ -392,3 +392,26 @@ ln -s /etc/letsencrypt/keys/0001_key-certbot.pem 0001_key-certbot.pem
 sudo certbot-auto renew
 
 #See https://gist.github.com/daronco/45eeb9223c57d240e60d094f8bee457e
+
+
+A: 82.253.244.162
+MX: aspmx2.googlemail.com
+MX: alt2.aspmx.l.google.com
+MX: alt1.aspmx.l.google.com
+MX: aspmx.l.google.com
+CNAME: _domainconnect.1and1.com
+
+Domaine: nabla.mobi
+Serveur de noms 1: ns1043.ui-dns.com
+Serveur de noms 2: ns1043.ui-dns.org
+Serveur de noms 3: ns1043.ui-dns.de
+Serveur de noms 4: ns1043.ui-dns.biz
+Adresse IP (A-record) : 82.253.244.162
+Serveur email 1: alt1.aspmx.l.google.com ,5
+Serveur email 2: alt2.aspmx.l.google.com ,5
+Serveur email 3: aspmx2.googlemail.com ,10
+Serveur email 4: aspmx.l.google.com ,1
+Adresse IPv6 (AAAA-record) : 2a01:e35:2fdf:4a20:0:0:0:1
+
+IPv4: 82.253.244.162
+IPv6: 2a01:0e35:2fdf:4a20:0000:0000:0000:0001
