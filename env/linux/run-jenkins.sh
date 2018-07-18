@@ -117,7 +117,7 @@ mkdir init.groovy.d/
 
 #See https://wiki.jenkins.io/display/JENKINS/Thanks+for+using+OSX+Installer
 #sudo defaults read /Library/Preferences/org.jenkins-ci
-#sudo defaults write /Library/Preferences/org.jenkins-ci heapSize 1024M
+#sudo defaults write /Library/Preferences/org.jenkins-ci heapSize 4096M
 #sudo defaults write /Library/Preferences/org.jenkins-ci httpPort -1
 #TODO sudo defaults write /Library/Preferences/org.jenkins-ci httpsPort 443
 #sudo defaults write /Library/Preferences/org.jenkins-ci httpsPort 8383
