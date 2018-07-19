@@ -39,13 +39,18 @@ args = None
 
 def build_search_req(request):
     request['action'] = 'search_kzones'
-    request['params'] = {'name': args.zonename,
-                         'owner': args.owner, 'usage': args.desc}
+    request['params'] = {
+        'name': args.zonename,
+        'owner': args.owner, 'usage': args.desc,
+    }
 
 
 def read_search_resp(resp_data):
-    zones = sorted(resp_data, key=lambda zone: time.strptime(
-        zone['creat'], DEFAULT_DATE_FORMAT))
+    zones = sorted(
+        resp_data, key=lambda zone: time.strptime(
+            zone['creat'], DEFAULT_DATE_FORMAT,
+        ),
+    )
     if args.full or args.parseable:
         for zone in zones:
             if not args.parseable:
@@ -58,8 +63,13 @@ def read_search_resp(resp_data):
             table.separator()
             if 'owned' in zone:  # those are only defined for search response, not for create resposne.
                 table.add('Owned',      'yes' if zone['owned'] else 'no')
-            table.add('Creation',    zone['creat'] if args.date_format is None else time.strftime(
-                args.date_format, time.strptime(zone['creat'], DEFAULT_DATE_FORMAT)))
+            table.add(
+                'Creation',    zone['creat'] if args.date_format is None else time.strftime(
+                    args.date_format, time.strptime(
+                        zone['creat'], DEFAULT_DATE_FORMAT,
+                    ),
+                ),
+            )
             table.add('IP',          zone['ip'])
             table.add('Booted',      'yes' if zone['booted'] else 'no')
             table.add('Validity',    zone['lifetime'])
@@ -85,8 +95,10 @@ def read_search_resp(resp_data):
             table.add('GLOBALCS',    'yes' if zone['globalcs'] else 'no')
             if not args.parseable:
                 table.add('CMF',          'yes' if zone['cmf'] else 'no')
-                table.add('GENERICLIMITS',
-                          'yes' if zone['genericlimits'] else 'no')
+                table.add(
+                    'GENERICLIMITS',
+                    'yes' if zone['genericlimits'] else 'no',
+                )
                 table.add('OPICS',        'yes' if zone['opics'] else 'no')
 
             if 'owned' in zone:  # those are only defined for search response, not for create resposne.
@@ -126,7 +138,8 @@ def read_search_resp(resp_data):
                                 else:
                                     descritption = ' (' + descritption + ')'
                                 snapshot = snapshot.split(
-                                    '|||')[0] + descritption
+                                    '|||',
+                                )[0] + descritption
                             table.add('Snapshot', snapshot)
                     else:
                         table.add('Snapshot', '')
@@ -145,24 +158,33 @@ def read_search_resp(resp_data):
                     table.separator()
                     if len(zone['origins']) > 0:
                         for disk in zone['origins'].keys():
-                            table.add('Origin', disk + ' ( from ' +
-                                      zone['origins'][disk] + ')')
+                            table.add(
+                                'Origin', disk + ' ( from ' +
+                                zone['origins'][disk] + ')',
+                            )
                     else:
                         table.add('Snapshot', '')
             if args.parseable:
                 table.add('CMF',          'yes' if zone['cmf'] else 'no')
-                table.add('GENERICLIMITS',
-                          'yes' if zone['genericlimits'] else 'no')
+                table.add(
+                    'GENERICLIMITS',
+                    'yes' if zone['genericlimits'] else 'no',
+                )
                 table.add('OPICS',        'yes' if zone['opics'] else 'no')
 
             printTable(table, format=args.format)
     else:
         table = Table('Name', 'Creator', 'Owner', 'Usage', 'Creation Date')
         for zone in zones:
-            table.add(zone['name'], zone['creator'],
-                      zone['owner'], zone['usage'], zone['creat'])
-        printTable(table, format=args.format, maxLengths=[
-                   None, None, None, 50, None])
+            table.add(
+                zone['name'], zone['creator'],
+                zone['owner'], zone['usage'], zone['creat'],
+            )
+        printTable(
+            table, format=args.format, maxLengths=[
+                None, None, None, 50, None,
+            ],
+        )
     if not args.parseable:
         print('Found %d zones in domain' % len(zones))
 
@@ -199,15 +221,20 @@ def read_cat_resp(resp_data):
                     # jezeli istnieje wpis allSnaps[snap['name'] to wyciagam kolumne khosts , dodaje aktualnego khosta do tej listy
                     # jezeli nie istnieje to tworze nowy wpis
                 allSnaps[snap['name']] = {
-                    'desc': snap['desc'], 'date': snap['date'], 'khosts': khost.split('.')[0]}
+                    'desc': snap['desc'], 'date': snap['date'], 'khosts': khost.split('.')[0],
+                }
             else:
-                allSnaps[snap['name']]['khosts'] = allSnaps[snap['name']
-                                                            ]['khosts'] + ', ' + khost.split('.')[0]
+                allSnaps[snap['name']]['khosts'] = allSnaps[
+                    snap['name']
+                ]['khosts'] + ', ' + khost.split('.')[0]
     table = Table('Name', 'Comment', 'Date', 'Khosts')
     for name, attr in sorted(allSnaps.iteritems()):
         table.add(name, attr['desc'], attr['date'], attr['khosts'])
-    printTable(table, format=args.format, maxLengths=[
-               70, 40, None, 70], doSep=True)
+    printTable(
+        table, format=args.format, maxLengths=[
+            70, 40, None, 70,
+        ], doSep=True,
+    )
     if not args.parseable:
         print('Found %d items in catalog' % len(allSnaps))
 
@@ -221,14 +248,19 @@ def build_tmpl_req(request):
 def read_tmpl_resp(resp_data):
     table = Table('Template', 'Contact', 'Name', 'Description', 'Params')
     for key, tmpl in resp_data.iteritems():
-        table.add(tmpl['template'], tmpl['contact'], tmpl['name'],
-                  tmpl['description'], json.dumps(tmpl['params']))
+        table.add(
+            tmpl['template'], tmpl['contact'], tmpl['name'],
+            tmpl['description'], json.dumps(tmpl['params']),
+        )
 
     if args.parseable:
         printTable(table, format=args.format)
     else:
-        printTable(table, format=args.format, maxLengths=[
-                   None, None, None, 50, 50], doSep=True)
+        printTable(
+            table, format=args.format, maxLengths=[
+                None, None, None, 50, 50,
+            ], doSep=True,
+        )
 
 # get_user_priv
 
@@ -406,8 +438,11 @@ def read_boot_resp(resp_data):
 
 def build_halt_req(request):
     request['action'] = 'halt_kzone'
-    request['params'] = {'zonename': mandatoryArg(
-        'zonename'), 'force': args.force}
+    request['params'] = {
+        'zonename': mandatoryArg(
+            'zonename',
+        ), 'force': args.force,
+    }
 
 
 def read_halt_resp(resp_data):
@@ -418,8 +453,11 @@ def read_halt_resp(resp_data):
 
 def build_snapshot_req(request):
     request['action'] = 'snapshot_kzone'
-    p = request['params'] = {'zonename': mandatoryArg(
-        'zonename'), 'zfslist': mandatoryArg('zfs')}
+    p = request['params'] = {
+        'zonename': mandatoryArg(
+            'zonename',
+        ), 'zfslist': mandatoryArg('zfs'),
+    }
     if args.suffix:
         p['zfs_suffix'] = args.suffix
     if args.comment:
@@ -437,8 +475,11 @@ def read_snapshot_resp(resp_data):
 
 def build_rollback_req(request):
     request['action'] = 'rollback_kzone'
-    request['params'] = {'zonename': mandatoryArg(
-        'zonename'), 'zfslist': mandatoryArg('zfs')}
+    request['params'] = {
+        'zonename': mandatoryArg(
+            'zonename',
+        ), 'zfslist': mandatoryArg('zfs'),
+    }
 
 
 def read_rollback_resp(resp_data):
@@ -450,16 +491,22 @@ def read_rollback_resp(resp_data):
     # for snapshot in sorted(resp_data):
     table.add('Done', ','.join(sorted(resp_data)))
 
-    printTable(table, format=userFormat, parseable=(
-        True if args.format is None else args.parseable))
+    printTable(
+        table, format=userFormat, parseable=(
+            True if args.format is None else args.parseable
+        ),
+    )
 
 # replicate_kzone
 
 
 def build_replicate_kzone_req(request):
     request['action'] = 'replicate_kzone'
-    p = request['params'] = {'zonename': mandatoryArg(
-        'zonename'), 'zfslist': mandatoryArg('zfs'), 'dst_dom': mandatoryArg('dstdom')}
+    p = request['params'] = {
+        'zonename': mandatoryArg(
+            'zonename',
+        ), 'zfslist': mandatoryArg('zfs'), 'dst_dom': mandatoryArg('dstdom'),
+    }
     if args.dsthost:
         p['dst_khost'] = args.dsthost
 
@@ -472,8 +519,11 @@ def read_replicate_kzone_resp(resp_data):
 
 def build_replicate_dataset_req(request):
     request['action'] = 'replicate_dataset'
-    p = request['params'] = {'src_khost': mandatoryArg('srchost'), 'dst_domain': mandatoryArg(
-        'dstdom'), 'dst_khost': mandatoryArg('dsthost'), 'src_zfs': mandatoryArg('srczfs')}
+    p = request['params'] = {
+        'src_khost': mandatoryArg('srchost'), 'dst_domain': mandatoryArg(
+            'dstdom',
+        ), 'dst_khost': mandatoryArg('dsthost'), 'src_zfs': mandatoryArg('srczfs'),
+    }
     if args.dstzfs:
         p['dst_zfs'] = args.dstzfs
     else:
@@ -507,8 +557,11 @@ def read_export_resp(resp_data):
 def build_update_kzone_dataset_req(request):
     request['action'] = 'update_kzone_dataset'
     request['params'] = {'zonename': mandatoryArg('zonename')}
-    p = request['params'] = {'zonename': mandatoryArg(
-        'zonename'), 'zfs_add': mandatoryArg('zfs_add'), 'zfs_del': mandatoryArg('zfs_del')}
+    p = request['params'] = {
+        'zonename': mandatoryArg(
+            'zonename',
+        ), 'zfs_add': mandatoryArg('zfs_add'), 'zfs_del': mandatoryArg('zfs_del'),
+    }
     if args.direct:
         p['zfs_direct'] = 1
 
@@ -521,14 +574,20 @@ def read_update_kzone_dataset_resp(resp_data):
 
 def build_update_kzone_property_owner_req(request):
     request['action'] = 'update_kzone_property'
-    p = request['params'] = {'zonename': mandatoryArg(
-        'zonename'), 'property': 'owner', 'value': mandatoryArg('owner')}
+    p = request['params'] = {
+        'zonename': mandatoryArg(
+            'zonename',
+        ), 'property': 'owner', 'value': mandatoryArg('owner'),
+    }
 
 
 def build_update_kzone_property_desc_req(request):
     request['action'] = 'update_kzone_property'
-    p = request['params'] = {'zonename': mandatoryArg(
-        'zonename'), 'property': 'usage', 'value': mandatoryArg('desc')}
+    p = request['params'] = {
+        'zonename': mandatoryArg(
+            'zonename',
+        ), 'property': 'usage', 'value': mandatoryArg('desc'),
+    }
 
 
 def read_update_kzone_property_resp(resp_data):
@@ -571,8 +630,10 @@ request_fcts = {
     'update_desc': (build_update_kzone_property_desc_req, read_update_kzone_property_resp, None),
 }
 
-check_update = (build_check_update_req, read_check_update_resp,
-                '../cgi-bin/version.cgi')
+check_update = (
+    build_check_update_req, read_check_update_resp,
+    '../cgi-bin/version.cgi',
+)
 
 ###############################################################################
 #                              F U N C T I O N S                              #
@@ -599,165 +660,317 @@ def parseArgs(arguments=None):
     )
 
     parser.add_argument('--url',      default='https://zod/zod', help='')
-    parser.add_argument('--domain',
-                        help='ZoD domain name (ie. kplustp, kgr, kplus kenvng)')
-    parser.add_argument('--guest',    action='store_true',
-                        help='Anonymous login')
-    parser.add_argument('--action',   choices=request_fcts.keys(),
-                        help='Mandatory. Action to be performed')
+    parser.add_argument(
+        '--domain',
+        help='ZoD domain name (ie. kplustp, kgr, kplus kenvng)',
+    )
+    parser.add_argument(
+        '--guest',    action='store_true',
+        help='Anonymous login',
+    )
+    parser.add_argument(
+        '--action',   choices=request_fcts.keys(),
+        help='Mandatory. Action to be performed',
+    )
     parser.add_argument('--force',    action='store_true',  help='')
-    parser.add_argument('--owner',
-                        help='By default, login name. Can be a regexp if search. (create, search)')
-    parser.add_argument('--desc',
-                        help='Zone description. Can be a regexp if is search. (create, search)')
-    parser.add_argument('--lifetime', type=int,
-                        help='Zone lifetime in seconds. (create)')
-    parser.add_argument('--zonename',
-                        help='Specify an explicit zone name. Can be a regexp if is search. (create, search, export)')
-    parser.add_argument('--direct',   action='store_true',
-                        help='Enable the zfs direct mode (create)')
-    parser.add_argument('--implicit', action='store_true',
-                        help='Snapshot on the fly the given dataset (create)')
-    parser.add_argument('--nostart',  action='store_true',
-                        help='Ask to not start any process (create)')
-    parser.add_argument('--noboot',  action='store_true',
-                        help='Do not boot zone after creation (create)')
+    parser.add_argument(
+        '--owner',
+        help='By default, login name. Can be a regexp if search. (create, search)',
+    )
+    parser.add_argument(
+        '--desc',
+        help='Zone description. Can be a regexp if is search. (create, search)',
+    )
+    parser.add_argument(
+        '--lifetime', type=int,
+        help='Zone lifetime in seconds. (create)',
+    )
+    parser.add_argument(
+        '--zonename',
+        help='Specify an explicit zone name. Can be a regexp if is search. (create, search, export)',
+    )
+    parser.add_argument(
+        '--direct',   action='store_true',
+        help='Enable the zfs direct mode (create)',
+    )
+    parser.add_argument(
+        '--implicit', action='store_true',
+        help='Snapshot on the fly the given dataset (create)',
+    )
+    parser.add_argument(
+        '--nostart',  action='store_true',
+        help='Ask to not start any process (create)',
+    )
+    parser.add_argument(
+        '--noboot',  action='store_true',
+        help='Do not boot zone after creation (create)',
+    )
 
-    parser.add_argument('--zrc',      metavar='D',
-                        help='Specify a custom kzone rc dataset/snapshot (create)')
-    parser.add_argument('--identity',
-                        help='Path to the identity file (single line with the format: user<=>password)')
+    parser.add_argument(
+        '--zrc',      metavar='D',
+        help='Specify a custom kzone rc dataset/snapshot (create)',
+    )
+    parser.add_argument(
+        '--identity',
+        help='Path to the identity file (single line with the format: user<=>password)',
+    )
     # Apps
-    parser.add_argument('--template',    metavar='D',
-                        help='template file obtained firstly from template list in particular domain(create)')
-    parser.add_argument('--kgr_home',           metavar='D',
-                        help='dataset/snapshot to be used for KGR binaries (create)')
-    parser.add_argument('--kgr_syb',            metavar='D',
-                        help='dataset/snapshot to be used for KGR database (create)')
-    parser.add_argument('--kplus_home',         metavar='D',
-                        help='dataset/snapshot to be used for K+ binaries (create)')
-    parser.add_argument('--kplus_syb',          metavar='D',
-                        help='dataset/snapshot to be used for K+ database (create)')
-    parser.add_argument('--summit_home',        metavar='D',
-                        help='dataset/snapshot to be used for SUMMIT binaries (create)')
-    parser.add_argument('--summit_data',        metavar='D',
-                        help='dataset/snapshot to be used for SUMMIT database (create)')
-    parser.add_argument('--sophis_home',        metavar='D',
-                        help='dataset/snapshot to be used for SOPHIS binaries (create)')
-    parser.add_argument('--sophis_data',        metavar='D',
-                        help='dataset/snapshot to be used for SOPHIS database (create)')
-    parser.add_argument('--topoffice_home',     metavar='D',
-                        help='dataset/snapshot to be used for Top Office binaries (create)')
-    parser.add_argument('--topoffice_data',     metavar='D',
-                        help='dataset/snapshot to be used for Top Office database (create)')
+    parser.add_argument(
+        '--template',    metavar='D',
+        help='template file obtained firstly from template list in particular domain(create)',
+    )
+    parser.add_argument(
+        '--kgr_home',           metavar='D',
+        help='dataset/snapshot to be used for KGR binaries (create)',
+    )
+    parser.add_argument(
+        '--kgr_syb',            metavar='D',
+        help='dataset/snapshot to be used for KGR database (create)',
+    )
+    parser.add_argument(
+        '--kplus_home',         metavar='D',
+        help='dataset/snapshot to be used for K+ binaries (create)',
+    )
+    parser.add_argument(
+        '--kplus_syb',          metavar='D',
+        help='dataset/snapshot to be used for K+ database (create)',
+    )
+    parser.add_argument(
+        '--summit_home',        metavar='D',
+        help='dataset/snapshot to be used for SUMMIT binaries (create)',
+    )
+    parser.add_argument(
+        '--summit_data',        metavar='D',
+        help='dataset/snapshot to be used for SUMMIT database (create)',
+    )
+    parser.add_argument(
+        '--sophis_home',        metavar='D',
+        help='dataset/snapshot to be used for SOPHIS binaries (create)',
+    )
+    parser.add_argument(
+        '--sophis_data',        metavar='D',
+        help='dataset/snapshot to be used for SOPHIS database (create)',
+    )
+    parser.add_argument(
+        '--topoffice_home',     metavar='D',
+        help='dataset/snapshot to be used for Top Office binaries (create)',
+    )
+    parser.add_argument(
+        '--topoffice_data',     metavar='D',
+        help='dataset/snapshot to be used for Top Office database (create)',
+    )
 
-    parser.add_argument('--opics_home',         metavar='D',
-                        help='dataset/snapshot to be used for Opics binaries (create)')
-    parser.add_argument('--opics_data',         metavar='D',
-                        help='dataset/snapshot to be used for Opics database (create)')
+    parser.add_argument(
+        '--opics_home',         metavar='D',
+        help='dataset/snapshot to be used for Opics binaries (create)',
+    )
+    parser.add_argument(
+        '--opics_data',         metavar='D',
+        help='dataset/snapshot to be used for Opics database (create)',
+    )
 
-    parser.add_argument('--orchestrate_home',   metavar='D',
-                        help='dataset/snapshot to be used for Orchestrate binaries (create)')
-    parser.add_argument('--orchestrate_data',   metavar='D',
-                        help='dataset/snapshot to be used for Orchestrate configuration (create)')
-    parser.add_argument('--bankfusion_home',    metavar='D',
-                        help='dataset/snapshot to be used for Bankfusion binaries (create)')
-    parser.add_argument('--bankfusion_data',    metavar='D',
-                        help='dataset/snapshot to be used for Bankfusion database (create)')
-    parser.add_argument('--kplustp_home',       metavar='D',
-                        help='dataset/snapshot to be used for K+TP binaries (create)')
-    parser.add_argument('--dasel_home',         metavar='D',
-                        help='dataset/snapshot to be used for K+TP database (create)')
-    parser.add_argument('--genesis_home',       metavar='D',
-                        help='dataset/snapshot to be used for Genesis binaries (create)')
-    parser.add_argument('--cmf_home',           metavar='D',
-                        help='dataset/snapshot to be used for CMF (create)')
-    parser.add_argument('--genericlimits_home', metavar='D',
-                        help='dataset/snapshot to be used for GENERICLIMITS (create)')
-    parser.add_argument('--globalcol_home',     metavar='D',
-                        help='dataset/snapshot to be used for Global Collateral binaries (create)')
-    parser.add_argument('--globalcol_data',     metavar='D',
-                        help='dataset/snapshot to be used for Global Collateral database (create)')
-    parser.add_argument('--globalcs_home',      metavar='D',
-                        help='dataset/snapshot to be used for Global Curves binaries (create)')
-    parser.add_argument('--globalcs_data',      metavar='D',
-                        help='dataset/snapshot to be used for Global Curves data (create)')
-    parser.add_argument('--globalpos_home',     metavar='D',
-                        help='dataset/snapshot to be used for Global Position binaries (create)')
-    parser.add_argument('--globalpos_data',     metavar='D',
-                        help='dataset/snapshot to be used for Global Position database (create)')
-    parser.add_argument('--globalps_home',      metavar='D',
-                        help='dataset/snapshot to be used for Global Pricing binaries (create)')
-    parser.add_argument('--globalps_data',      metavar='D',
-                        help='dataset/snapshot to be used for Global Pricing data (create)')
-    parser.add_argument('--etrading_home',      metavar='D',
-                        help='dataset/snapshot to be used for ETrading binaries (create)')
-    parser.add_argument('--etrading_data',      metavar='D',
-                        help='dataset/snapshot to be used for ETrading database (create)')
-    parser.add_argument('--workflow_home',      metavar='D',
-                        help='dataset/snapshot to be used for Workflow binaries (create)')
-    parser.add_argument('--zfs_add',            metavar='D',
-                        help='dataset to be destroyed (update_dataset)')
-    parser.add_argument('--zfs_del',            metavar='D',
-                        help='dataset/snapshot to add (update_dataset)')
+    parser.add_argument(
+        '--orchestrate_home',   metavar='D',
+        help='dataset/snapshot to be used for Orchestrate binaries (create)',
+    )
+    parser.add_argument(
+        '--orchestrate_data',   metavar='D',
+        help='dataset/snapshot to be used for Orchestrate configuration (create)',
+    )
+    parser.add_argument(
+        '--bankfusion_home',    metavar='D',
+        help='dataset/snapshot to be used for Bankfusion binaries (create)',
+    )
+    parser.add_argument(
+        '--bankfusion_data',    metavar='D',
+        help='dataset/snapshot to be used for Bankfusion database (create)',
+    )
+    parser.add_argument(
+        '--kplustp_home',       metavar='D',
+        help='dataset/snapshot to be used for K+TP binaries (create)',
+    )
+    parser.add_argument(
+        '--dasel_home',         metavar='D',
+        help='dataset/snapshot to be used for K+TP database (create)',
+    )
+    parser.add_argument(
+        '--genesis_home',       metavar='D',
+        help='dataset/snapshot to be used for Genesis binaries (create)',
+    )
+    parser.add_argument(
+        '--cmf_home',           metavar='D',
+        help='dataset/snapshot to be used for CMF (create)',
+    )
+    parser.add_argument(
+        '--genericlimits_home', metavar='D',
+        help='dataset/snapshot to be used for GENERICLIMITS (create)',
+    )
+    parser.add_argument(
+        '--globalcol_home',     metavar='D',
+        help='dataset/snapshot to be used for Global Collateral binaries (create)',
+    )
+    parser.add_argument(
+        '--globalcol_data',     metavar='D',
+        help='dataset/snapshot to be used for Global Collateral database (create)',
+    )
+    parser.add_argument(
+        '--globalcs_home',      metavar='D',
+        help='dataset/snapshot to be used for Global Curves binaries (create)',
+    )
+    parser.add_argument(
+        '--globalcs_data',      metavar='D',
+        help='dataset/snapshot to be used for Global Curves data (create)',
+    )
+    parser.add_argument(
+        '--globalpos_home',     metavar='D',
+        help='dataset/snapshot to be used for Global Position binaries (create)',
+    )
+    parser.add_argument(
+        '--globalpos_data',     metavar='D',
+        help='dataset/snapshot to be used for Global Position database (create)',
+    )
+    parser.add_argument(
+        '--globalps_home',      metavar='D',
+        help='dataset/snapshot to be used for Global Pricing binaries (create)',
+    )
+    parser.add_argument(
+        '--globalps_data',      metavar='D',
+        help='dataset/snapshot to be used for Global Pricing data (create)',
+    )
+    parser.add_argument(
+        '--etrading_home',      metavar='D',
+        help='dataset/snapshot to be used for ETrading binaries (create)',
+    )
+    parser.add_argument(
+        '--etrading_data',      metavar='D',
+        help='dataset/snapshot to be used for ETrading database (create)',
+    )
+    parser.add_argument(
+        '--workflow_home',      metavar='D',
+        help='dataset/snapshot to be used for Workflow binaries (create)',
+    )
+    parser.add_argument(
+        '--zfs_add',            metavar='D',
+        help='dataset to be destroyed (update_dataset)',
+    )
+    parser.add_argument(
+        '--zfs_del',            metavar='D',
+        help='dataset/snapshot to add (update_dataset)',
+    )
     # Thirdparties
-    parser.add_argument('--els',                metavar='D',
-                        help='dataset/snapshot to be used for ELS (create)')
-    parser.add_argument('--rvd',                metavar='D',
-                        help='dataset/snapshot to be used for Rendezvous (create)')
-    parser.add_argument('--webaccess',          metavar='D',
-                        help='dataset/snapshot to be used for WebAccess binaries (create)')
-    parser.add_argument('--tomcat',             metavar='D',
-                        help='dataset/snapshot to be used for Tomcat (create)')
-    parser.add_argument('--ems',                metavar='D',
-                        help='dataset/snapshot to be used for EMS (create)')
-    parser.add_argument('--java',               metavar='D',
-                        help='dataset/snapshot to be used for Java (create)')
-    parser.add_argument('--nodejs',             metavar='D',
-                        help='dataset/snapshot to be used for NodeJS (create)')
-    parser.add_argument('--rmds',               metavar='D',
-                        help='dataset/snapshot to be used for RMDS (create)')
-    parser.add_argument('--weblo',              metavar='D',
-                        help='dataset/snapshot to be used for WebLogic (create)')
-    parser.add_argument('--qatools',            metavar='D',
-                        help='dataset/snapshot to be used for QA (create)')
-    parser.add_argument('--python',             metavar='D',
-                        help='dataset/snapshot to be used for Python (create)')
+    parser.add_argument(
+        '--els',                metavar='D',
+        help='dataset/snapshot to be used for ELS (create)',
+    )
+    parser.add_argument(
+        '--rvd',                metavar='D',
+        help='dataset/snapshot to be used for Rendezvous (create)',
+    )
+    parser.add_argument(
+        '--webaccess',          metavar='D',
+        help='dataset/snapshot to be used for WebAccess binaries (create)',
+    )
+    parser.add_argument(
+        '--tomcat',             metavar='D',
+        help='dataset/snapshot to be used for Tomcat (create)',
+    )
+    parser.add_argument(
+        '--ems',                metavar='D',
+        help='dataset/snapshot to be used for EMS (create)',
+    )
+    parser.add_argument(
+        '--java',               metavar='D',
+        help='dataset/snapshot to be used for Java (create)',
+    )
+    parser.add_argument(
+        '--nodejs',             metavar='D',
+        help='dataset/snapshot to be used for NodeJS (create)',
+    )
+    parser.add_argument(
+        '--rmds',               metavar='D',
+        help='dataset/snapshot to be used for RMDS (create)',
+    )
+    parser.add_argument(
+        '--weblo',              metavar='D',
+        help='dataset/snapshot to be used for WebLogic (create)',
+    )
+    parser.add_argument(
+        '--qatools',            metavar='D',
+        help='dataset/snapshot to be used for QA (create)',
+    )
+    parser.add_argument(
+        '--python',             metavar='D',
+        help='dataset/snapshot to be used for Python (create)',
+    )
     # Other options
-    parser.add_argument('--zfs',       action='append',
-                        help='List of ZFS datasets to use (replicate, rollback, snapshot)')
-    parser.add_argument('--suffix',
-                        help='Zfs snapshot name (snapshot)')
-    parser.add_argument('--comment',
-                        help='Zfs snapshot comment (snapshot)')
-    parser.add_argument('--dstdom',
-                        help='Destination domain replicate/replicate_dataset (mandatory/mandatory)')
-    parser.add_argument('--srchost',
-                        help='Source host for replicate_dataset (mandatory)')
-    parser.add_argument('--dsthost',
-                        help='Destination host replicate/replicate_dataset (optional/mandatory)')
-    parser.add_argument('--srczfs',
-                        help='Source dataset for replicate_dataset (mandatory)')
-    parser.add_argument('--dstzfs',
-                        help='Destination dataset for replicate_dataset (optional)')
-    parser.add_argument('--no_dataset_sync_check', action='store_true',
-                        help='Do not care if last src snapshot exists on dst dataset (optional)')
-    parser.add_argument('--parseable', action='store_true',
-                        help='Remove pretty print display output from ZoD-client to be able to parse ZoD-client output')
-    parser.add_argument('--debug',     action='store_true',
-                        help='Display raw json request and response')
-    parser.add_argument('--yes',       action='store_true',
-                        help='Answer yes to all interactive prompts')
-    parser.add_argument('--ls',        action='store_true',
-                        help='Equivalent to --action search')
-    parser.add_argument('--full',      action='store_true',
-                        help='Print zones search with complete informations (search)')
-    parser.add_argument('--format',    action='append',
-                        help='Custom list of columns to display. Use headers name or column indexes. An empty element will add a separator in vertical tables such as zone description in --full mode')
-    parser.add_argument('--date-format', action='store',
-                        help='Custom format of date fields (use C formating string)')
-    parser.add_argument('--version',   action='store_true',
-                        help='Print ZoD-client version number and exit')
+    parser.add_argument(
+        '--zfs',       action='append',
+        help='List of ZFS datasets to use (replicate, rollback, snapshot)',
+    )
+    parser.add_argument(
+        '--suffix',
+        help='Zfs snapshot name (snapshot)',
+    )
+    parser.add_argument(
+        '--comment',
+        help='Zfs snapshot comment (snapshot)',
+    )
+    parser.add_argument(
+        '--dstdom',
+        help='Destination domain replicate/replicate_dataset (mandatory/mandatory)',
+    )
+    parser.add_argument(
+        '--srchost',
+        help='Source host for replicate_dataset (mandatory)',
+    )
+    parser.add_argument(
+        '--dsthost',
+        help='Destination host replicate/replicate_dataset (optional/mandatory)',
+    )
+    parser.add_argument(
+        '--srczfs',
+        help='Source dataset for replicate_dataset (mandatory)',
+    )
+    parser.add_argument(
+        '--dstzfs',
+        help='Destination dataset for replicate_dataset (optional)',
+    )
+    parser.add_argument(
+        '--no_dataset_sync_check', action='store_true',
+        help='Do not care if last src snapshot exists on dst dataset (optional)',
+    )
+    parser.add_argument(
+        '--parseable', action='store_true',
+        help='Remove pretty print display output from ZoD-client to be able to parse ZoD-client output',
+    )
+    parser.add_argument(
+        '--debug',     action='store_true',
+        help='Display raw json request and response',
+    )
+    parser.add_argument(
+        '--yes',       action='store_true',
+        help='Answer yes to all interactive prompts',
+    )
+    parser.add_argument(
+        '--ls',        action='store_true',
+        help='Equivalent to --action search',
+    )
+    parser.add_argument(
+        '--full',      action='store_true',
+        help='Print zones search with complete informations (search)',
+    )
+    parser.add_argument(
+        '--format',    action='append',
+        help='Custom list of columns to display. Use headers name or column indexes. An empty element will add a separator in vertical tables such as zone description in --full mode',
+    )
+    parser.add_argument(
+        '--date-format', action='store',
+        help='Custom format of date fields (use C formating string)',
+    )
+    parser.add_argument(
+        '--version',   action='store_true',
+        help='Print ZoD-client version number and exit',
+    )
 
     global args
     args = parser.parse_args(arguments)
@@ -795,12 +1008,17 @@ def parseArgs(arguments=None):
 
     if args.zfs:
         # ['a', 'b,c'] -> ['a', 'b', 'c']
-        args.zfs = [item for sublist in [
-            e.split(',') for e in args.zfs] for item in sublist]
+        args.zfs = [
+            item for sublist in [
+                e.split(',') for e in args.zfs
+            ] for item in sublist
+        ]
 
     if args.format:
-        args.format = [(item if item else None) for sublist in [e.split(',') for e in args.format]
-                       for item in sublist]  # ['a', 'b,,c'] -> ['a', None, 'b', None, 'c']
+        args.format = [
+            (item if item else None) for sublist in [e.split(',') for e in args.format]
+            for item in sublist
+        ]  # ['a', 'b,,c'] -> ['a', None, 'b', None, 'c']
 
     if __name__ != '__main__':
         args.yes = True
@@ -884,7 +1102,8 @@ def send_request(zod_req, url):
     response = conn.getresponse()
     if response.status != httplib.OK:
         raise Exception('HTTP request failed with status=%d, reason: %s' % (
-            response.status, response.reason))
+            response.status, response.reason,
+        ))
     json_response_data = response.read()
     conn.close()
     if args.debug:
@@ -1099,7 +1318,8 @@ class Table:
             lengths.append(len(self.header))
         if lengths and not [lengths[0]] * len(lengths) == lengths:
             error(
-                'Cannot handle a table where all rows or header don\'t have the same size.')
+                'Cannot handle a table where all rows or header don\'t have the same size.',
+            )
 
     # ------------------------------------------------------------------------------
     # Convert names into indexes, keep None for separator
@@ -1115,7 +1335,8 @@ class Table:
                 # remove duplicate while preserving the order
                 seen = set()
                 availableFormatItems = [
-                    x for x in availableFormatItems if x not in seen and not seen.add(x)]
+                    x for x in availableFormatItems if x not in seen and not seen.add(x)
+                ]
             else:
                 availableFormatItems = None
 
@@ -1130,29 +1351,38 @@ class Table:
                         maxlen = len(self.data[0])
                     else:
                         error(
-                            'Custom format in verticalMode is only possible if the table has a description column')
+                            'Custom format in verticalMode is only possible if the table has a description column',
+                        )
                     if item < maxlen:
                         format[i] = item
                     else:
-                        colList = ' (%s)' % ', '.join(['%d: %s' % (i, n) for i, n in enumerate(
-                            availableFormatItems)]) if availableFormatItems else ''
+                        colList = ' (%s)' % ', '.join([
+                            '%d: %s' % (i, n) for i, n in enumerate(
+                                availableFormatItems,
+                            )
+                        ]) if availableFormatItems else ''
                         error('No %s %d: There are only %d%s' %
                               (itemName, item, maxlen, colList))
                 except exceptions.ValueError:
                     if isinstance(item, types.StringTypes):
                         if not availableFormatItems:
                             error(
-                                'Custom format may be specified with names only if the table has a header. Use indexes otherwise')
+                                'Custom format may be specified with names only if the table has a header. Use indexes otherwise',
+                            )
                         if item in availableFormatItems:
                             format[i] = availableFormatItems.index(item)
                         else:
                             error('%s is not part of known %ss (%s)' % (
-                                item, itemName, ', '.join(sorted(availableFormatItems))))
+                                item, itemName, ', '.join(
+                                    sorted(availableFormatItems),
+                                ),
+                            ))
                 except exceptions.TypeError:
                     if item == None:  # None used for separator
                         if not self.verticalMode:
                             error(
-                                'Separators in a custom format are only allowed in verticalMode')
+                                'Separators in a custom format are only allowed in verticalMode',
+                            )
                     else:
                         raise
 
@@ -1191,8 +1421,12 @@ class Table:
                 else:
                     data.append(None)
         else:
-            data = [[row[i]
-                     for i in cols] if row else None for row in self.data]
+            data = [
+                [
+                    row[i]
+                    for i in cols
+                ] if row else None for row in self.data
+            ]
 
         return (header, data, maxLengths)
 
@@ -1214,11 +1448,13 @@ class Table:
             return ''
 
         columnLengths = [max(value) for value in zip(
-            *[map(len, row) for row in data + [header] if row])]
+            *[map(len, row) for row in data + [header] if row]
+        )]
 
         if maxLengths:
             columnLengths = [min(value) for value in zip(
-                columnLengths, [m if m else 999999 for m in maxLengths])]
+                columnLengths, [m if m else 999999 for m in maxLengths],
+            )]
 
         # ------------------------------------------------------------------------------
         def insertSeparator(linechar='-'):
@@ -1285,7 +1521,11 @@ class Table:
             for row in data:
                 if row:
                     lines.append(
-                        '\t'.join([value.replace('\t', '    ') for value in row]))
+                        '\t'.join([
+                            value.replace('\t', '    ')
+                            for value in row
+                        ]),
+                    )
             return '\n'.join(lines)
 
 

@@ -95,7 +95,7 @@ openssl req -new -sha256 \
     -subj "/C=FR/ST=IleDeFrance/O=Nabla, Inc./CN=${SSL_KEY_NAME}" \
     -reqexts SAN \
     -config <(cat /etc/ssl/openssl.cnf \
-        <(printf "[SAN]\nsubjectAltName=DNS:${SSL_KEY_NAME},DNS:nabla.mobi,DNS:home.nabla.mobi,DNS:alban-andrieu.fr,DNS:alban-andrieu.com,DNS:alban-andrieu.eu,DNS:bababou.fr,DNS:bababou.eu,IP:82.231.208.223,IP:192.168.0.29,IP:127.0.0.1")) \
+        <(printf "[SAN]\nsubjectAltName=DNS:${SSL_KEY_NAME},DNS:nabla.mobi,DNS:home.nabla.mobi,DNS:freenas.nabla.mobi,DNS:jenkins.nabla.mobi,DNS:sample.nabla.mobi,DNS:alban-andrieu.fr,DNS:alban-andrieu.com,DNS:alban-andrieu.eu,DNS:bababou.fr,DNS:bababou.eu,IP:82.253.244.162.223,IP:192.168.0.28,IP:192.168.0.29,IP:127.0.0.1")) \
     -out "/etc/ssl/requests/${SSL_KEY_NAME}.csr"
 
 cat "/etc/ssl/requests/${SSL_KEY_NAME}.csr"
