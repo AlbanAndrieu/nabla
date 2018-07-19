@@ -11,9 +11,9 @@ echo -e "${NC}"
 
 #rm ~/.local/share/letsencrypt -R
 #rm -rf /opt/eff.org
-sudo certbot-auto renew
+#sudo certbot-auto renew
 
-sudo ls -lrta /var/log/letsencrypt/letsencrypt.log
+#sudo ls -lrta /var/log/letsencrypt/letsencrypt.log
 
 echo -e "${NC}"
 echo -e "${magenta} ${underline}###################${NC}"

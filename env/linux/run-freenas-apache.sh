@@ -10,7 +10,7 @@ pkg install sudo
 
 #install apache
 
-#http://forums.freenas.org/threads/howto-install-apache-under-jail-with-freenas-8-3.10594/
+#https://forums.freenas.org/index.php?threads/howto-install-apache-under-jail-with-freenas-8-3.10594/
 pkg install apache24
 pkg install apachetop
 cd /usr/ports/www/apache24
@@ -18,14 +18,13 @@ cat /usr/local/etc/apache24/httpd.conf | grep Listen
 echo 'apache24_enable="YES"' >> /etc/rc.conf
 
 #check mod ssl
-/usr/ports/www/apache24]#  make showconfig | grep ssl
-     SSL=on: SSL/TLS support (mod_ssl)
+#/usr/ports/www/apache24]#  make showconfig | grep ssl
+#     SSL=on: SSL/TLS support (mod_ssl)
 
 #as non jail
 #start apache
 /usr/local/etc/rc.d/apache24 start
 
-less /var/log/httpd-error.log
 see http://192.168.0.28/
 
 #####################
@@ -163,16 +162,49 @@ DirectoryIndex index.php index.html
 cd /usr/local/www/apache24/data
 
 #https://mujahidjaleel.blogspot.fr/2016/10/how-to-install-apache-v24-webserver-in.html
-nano /usr/local/etc/apache24/extra/httpd-ssl.conf
-
-openssl s_client -connect localhost:443
 
 #https://www.debarbora.com/lets-encrypt-ssl-certificate-with-freebsd-apache/
 pkg install -y py27-certbot
 certbot certonly
+
+#INPUT
+#2
+#nabla.mobi,home.nabla.mobi,sample.nabla.mobi,alban-andrieu.fr,alban-andrieu.com,alban-andrieu.eu,bababou.fr,bababou.eu
+#1
+#/usr/local/www/apache24/data
+#/usr/local/www/apache24/data/sample
+#/usr/local/www/apache24/data/alban
+#/usr/local/www/apache24/data/bababou
+
+#TODO freenas.nabla.mobi,jenkins.nabla.mobi
+
+less /usr/local/etc/letsencrypt/renewal/home.nabla.mobi.conf
+
+cert = /usr/local/etc/letsencrypt/live/home.nabla.mobi/cert.pem
+privkey = /usr/local/etc/letsencrypt/live/home.nabla.mobi/privkey.pem
+chain = /usr/local/etc/letsencrypt/live/home.nabla.mobi/chain.pem
+fullchain = /usr/local/etc/letsencrypt/live/home.nabla.mobi/fullchain.pem
+
+/usr/local/etc/letsencrypt/live/home.nabla.mobi/fullchain.pem
+
+nano /usr/local/etc/apache24/httpd.conf
+
+SSLEngine On
+SSLCertificateFile "/usr/local/etc/letsencrypt/live/home.nabla.mobi/cert.pem"
+SSLCertificateKeyFile "/usr/local/etc/letsencrypt/live/home.nabla.mobi/privkey.pem"
+
 #certbot certonly --standalone -d home.nabla.mobi
 
+ServerAlias www.home.nabla.mobi
+
+nano /usr/local/etc/apache24/extra/httpd-vhosts.conf
+nano /usr/local/etc/apache24/extra/httpd-ssl.conf
+
+openssl s_client -connect localhost:443
+
 service apache24 restart
+
+tail -f /var/log/httpd-error.log
 
 http://192.168.0.28/index.pl
 http://192.168.0.28/index.cgi
@@ -186,7 +218,7 @@ pkg install awstats
 
 #See run-awstats.sh
 
-grep deflate  /usr/local/etc/apache24/httpd.conf
+grep deflate /usr/local/etc/apache24/httpd.conf
 #LoadModule deflate_module libexec/apache24/mod_deflate.so
 nano /usr/local/etc/apache24/Includes/mod_deflate.conf
 

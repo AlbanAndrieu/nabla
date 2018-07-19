@@ -66,7 +66,8 @@ ZONE_USERS = {
 }
 
 bashAddition = '[ -r /.nabla/%s ] && . /.nabla/%s' % (
-    NABLA_ENV_BASHRC_FILE, NABLA_ENV_BASHRC_FILE)
+    NABLA_ENV_BASHRC_FILE, NABLA_ENV_BASHRC_FILE,
+)
 
 ssh_cmd_string = 'ssh -o IdentityFile=~/.ssh/nabla.rsa -o StrictHostKeyChecking=no -o CheckHostIP=no -o UserKnownHostsFile=/dev/null -o LogLevel=quiet -o BatchMode=yes'
 
@@ -218,7 +219,8 @@ def get_mounts():
             mount_pattern_str = local_dir
 
     mounts_output = subprocess.check_output(
-        [mount_cmd()] + (['-p'] if platform.system() == 'SunOS' else []))
+        [mount_cmd()] + (['-p'] if platform.system() == 'SunOS' else []),
+    )
     mount_pattern = re.compile(mount_pattern_str)
 
     mounts = []
@@ -237,18 +239,23 @@ def extract_connected_zone(mount_point, share):
         dirs = mount_point.split('/')
 
         share = dirs[KEY_USER_DIR_SHARE] if len(
-            dirs) > KEY_USER_DIR_SHARE else '.'
+            dirs,
+        ) > KEY_USER_DIR_SHARE else '.'
 
-        return {KEY_ZONE: dirs[KEY_USER_DIR_ZONE],
-                KEY_USER: dirs[KEY_USER_DIR_USER],
-                KEY_MOUNT_POINT: mount_point,
-                KEY_SHARE: '/'.join(share)}
+        return {
+            KEY_ZONE: dirs[KEY_USER_DIR_ZONE],
+            KEY_USER: dirs[KEY_USER_DIR_USER],
+            KEY_MOUNT_POINT: mount_point,
+            KEY_SHARE: '/'.join(share),
+        }
     else:
         dirs = share.split(':')
-        return {KEY_ZONE: dirs[KEY_GLOBAL_ZONE],
-                KEY_USER: KEY_GLOBAL_USER,
-                KEY_MOUNT_POINT: mount_point,
-                KEY_SHARE: dirs[KEY_GLOBAL_SHARE]}
+        return {
+            KEY_ZONE: dirs[KEY_GLOBAL_ZONE],
+            KEY_USER: KEY_GLOBAL_USER,
+            KEY_MOUNT_POINT: mount_point,
+            KEY_SHARE: dirs[KEY_GLOBAL_SHARE],
+        }
 
 
 linuxPattern = re.compile('Linux')
@@ -289,18 +296,24 @@ def show_all_connected():
 
         if type == NETWORK_SHARE_TYPE:
             if zonename not in servers:
-                servers[zonename] = {KEY_ZONE: zonename,
-                                     KEY_USER: [zone[KEY_USER]]}
+                servers[zonename] = {
+                    KEY_ZONE: zonename,
+                    KEY_USER: [zone[KEY_USER]],
+                }
             else:
                 if zone[KEY_USER] not in servers[zonename][KEY_USER]:
                     servers[zonename][KEY_USER].append(zone[KEY_USER])
         else:
             if zonename not in local_bindings:
-                local_bindings[zonename] = {KEY_ZONE: zonename, KEY_SHARE: [
-                    {KEY_SHARE: share, KEY_MOUNT_POINT: mount_point}]}
+                local_bindings[zonename] = {
+                    KEY_ZONE: zonename, KEY_SHARE: [
+                        {KEY_SHARE: share, KEY_MOUNT_POINT: mount_point},
+                    ],
+                }
             else:
                 local_bindings[zonename][KEY_SHARE].append(
-                    {KEY_SHARE: share, KEY_MOUNT_POINT: mount_point})
+                    {KEY_SHARE: share, KEY_MOUNT_POINT: mount_point},
+                )
 
     if len(servers) > 0:
         print('Connected zones:')
@@ -426,12 +439,14 @@ def create_nabla_ssh_key_if_needed():
 
     if not os.path.isfile(key):
         with open(key, 'w') as f:
-            print('''
+            print(
+                '''
 -----BEGIN RSA PRIVATE KEY-----
 TODO
 -----END RSA PRIVATE KEY-----
 ssh-rsa TODO everybody@nabla.nabla.mobi
-'''.strip(), file=f)
+'''.strip(), file=f,
+            )
 
     if stat.S_IMODE(os.stat(key).st_mode) != 0400:
         os.chmod(key, 0400)
@@ -446,8 +461,10 @@ def ping(server_name_or_ip):
         s.connect((server_name_or_ip, 22))
         s.close()
     except socket.timeout:
-        raise SystemExit('The server ' + server_name_or_ip +
-                         ' seems not to be up and running')
+        raise SystemExit(
+            'The server ' + server_name_or_ip +
+            ' seems not to be up and running',
+        )
     except socket.gaierror:
         raise SystemExit('The server ' + server_name_or_ip + ' does not exist')
 
@@ -471,7 +488,8 @@ class KZoneConnector(object):
         self.supported_platforms = ['SunOS', 'Linux']
         if platform.system() not in self.supported_platforms:
             raise SystemExit(
-                'Platform ' + platform.system() + ' is not supported')
+                'Platform ' + platform.system() + ' is not supported',
+            )
         self.root_dir = None  # To be set by children classes
         # To be set by init_zone_name(). Don't use it. use self.get_zone_name()
         self.server_name = None
@@ -489,8 +507,10 @@ class KZoneConnector(object):
         options = ['-o', ','.join(specific_options)]
 
         for directory in nabla_local_dirs:
-            mount(nabla_zone_dir, self.get_zone_name(),
-                  self.chroot_filename(directory), options)
+            mount(
+                nabla_zone_dir, self.get_zone_name(),
+                self.chroot_filename(directory), options,
+            )
 
     def nabla_rootdir(self):
         return '' if self.root_dir == '/' else self.root_dir
@@ -523,7 +543,8 @@ class KZoneConnector(object):
             try:
                 # Try to get the real name
                 self.server_name = subprocess.check_output(
-                    ['/usr/bin/getent', 'hosts', server_name_or_ip]).strip().split()[1]
+                    ['/usr/bin/getent', 'hosts', server_name_or_ip],
+                ).strip().split()[1]
             except:
                 pass
 
@@ -541,22 +562,26 @@ class KZoneConnector(object):
             nfs_gid = userConf[KEY_GID]
             # su - get_user(): we expect the calling user to be able to ssh to a zone without password. Root probably can't.
             cmd = "su - %s -c \"echo '/nabla (rw,all_squash,insecure,anonuid=%s,anongid=%s)' | %s root@%s 'cat>/etc/exports; pkill -HUP unfsd'\" > /dev/null" % (
-                get_user(), nfs_uid, nfs_gid, ssh_cmd_string, self.get_zone_name())
+                get_user(), nfs_uid, nfs_gid, ssh_cmd_string, self.get_zone_name(),
+            )
             logging.debug('Executing ' + cmd)
             if subprocess.call(cmd, shell=True):
                 raise SystemExit(
-                    'ERROR: cannot modify the export file on the zone')
+                    'ERROR: cannot modify the export file on the zone',
+                )
 
     # --------------------------------------------------------------------------
     def clear_nfs_anon_mapping(self):
         server_name = self.get_zone_name()
         if server_name and is_zone_up_and_running(server_name):
             cmd = "su - %s -c \"echo '/nabla (rw,root_squash,insecure)' | %s root@%s 'cat>/etc/exports; pkill -HUP unfsd'\" > /dev/null" % (
-                get_user(), ssh_cmd_string, server_name)
+                get_user(), ssh_cmd_string, server_name,
+            )
             logging.debug('Executing ' + cmd)
             if subprocess.call(cmd, shell=True):
                 raise SystemExit(
-                    'ERROR: cannot revert the export file on the zone')
+                    'ERROR: cannot revert the export file on the zone',
+                )
 
     # --------------------------------------------------------------------------
     def init_nss(self):
@@ -571,7 +596,9 @@ class KZoneConnector(object):
                         ko.append(match.group(1))
         if ko:
             raise SystemExit(
-                "NSS nabla won't work. Please modify /etc/nsswitch.conf to use the nabla plugin for the following maps: " + ', '.join(ko))
+                "NSS nabla won't work. Please modify /etc/nsswitch.conf to use the nabla plugin for the following maps: " +
+                ', '.join(ko),
+            )
 
         if not os.path.isdir('%s/%s' % (self.root_dir,  NABLA_ENV_DIR)):
             logging.debug('Make `' + NABLA_ENV_DIR + '` directory')
@@ -586,8 +613,12 @@ class KZoneConnector(object):
             for user in ZONE_USERS:
                 # write proper passwdline to file
                 userConf = get_userConf(user)
-                print('%s::%d:%d::%s:/bin/bash' % (user,
-                                                   userConf[KEY_UID], userConf[KEY_GID], userConf[KEY_HOME]), file=f)
+                print(
+                    '%s::%d:%d::%s:/bin/bash' % (
+                        user,
+                        userConf[KEY_UID], userConf[KEY_GID], userConf[KEY_HOME],
+                    ), file=f,
+                )
 
 
 # ==============================================================================
@@ -598,7 +629,8 @@ class KZoneConnectorChroot(KZoneConnector):
         super(KZoneConnectorChroot, self).__init__()
         self.init_zone_name(server_name_or_ip)
         self.root_dir = '/usr/local/server-connector/%s/%s' % (
-            get_user(), self.get_zone_name(True))
+            get_user(), self.get_zone_name(True),
+        )
 
         self.bind_dirs = [
             'bin',
@@ -633,7 +665,7 @@ class KZoneConnectorChroot(KZoneConnector):
             'dev/tty',
             'dev/udp',
             'dev/zero',
-            'dev/conslog'
+            'dev/conslog',
         ]
 
         # this should be unmouted
@@ -646,7 +678,7 @@ class KZoneConnectorChroot(KZoneConnector):
             'devices/pseudo/sy@0:tty',
             'devices/pseudo/udp@0:udp',
             'devices/pseudo/mm@0:zero',
-            'devices/pseudo/log@0:conslog'
+            'devices/pseudo/log@0:conslog',
         ]
 
         self.additional_rbind_dirs = []
@@ -659,7 +691,10 @@ class KZoneConnectorChroot(KZoneConnector):
             for bind_dir in set(bind_dirs.split(',')):
                 if pattern.match(bind_dir):
                     raise SystemExit(
-                        "'/' is forbidden in bind_dirs value (use '%s' instead of '%s'" % (bind_dir[1:], bind_dir))
+                        "'/' is forbidden in bind_dirs value (use '%s' instead of '%s'" % (
+                            bind_dir[1:], bind_dir,
+                        ),
+                    )
                 if bind_dir not in self.bind_dirs and bind_dir not in self.rbind_dirs:
                     self.additional_rbind_dirs.append(bind_dir)
 
@@ -756,12 +791,18 @@ class KZoneConnectorChroot(KZoneConnector):
 
         self.clear_nfs_anon_mapping()
 
-        remove_file(self.nabla_filename(NABLA_ENV_IP_FILENAME),
-                    'Previous connection not detected')
-        remove_file(self.nabla_filename(NABLA_ENV_PASSWD_FILE),
-                    'Previous users mapping not detected')
-        remove_file(self.nabla_filename(NABLA_ENV_BASHRC_FILE),
-                    'Previous bashrc not detected')
+        remove_file(
+            self.nabla_filename(NABLA_ENV_IP_FILENAME),
+            'Previous connection not detected',
+        )
+        remove_file(
+            self.nabla_filename(NABLA_ENV_PASSWD_FILE),
+            'Previous users mapping not detected',
+        )
+        remove_file(
+            self.nabla_filename(NABLA_ENV_BASHRC_FILE),
+            'Previous bashrc not detected',
+        )
         remove_file(self.chroot_filename(NABLA_ENV_XAUTH_FILE))
         try:
             os.rmdir(self.nabla_filename(''))
@@ -811,7 +852,8 @@ class KZoneConnectorChroot(KZoneConnector):
 
             if not os.path.isdir(slash_bind_dir):
                 logging.debug(
-                    'Will not mount non existing directory `/' + bind_dir + '`')
+                    'Will not mount non existing directory `/' + bind_dir + '`',
+                )
                 continue
 
             if not os.path.isdir(target_dir):
@@ -825,7 +867,8 @@ class KZoneConnectorChroot(KZoneConnector):
             mount_bind(slash_bind_dir, os.path.abspath(target_dir), rbind)
         if rbind:
             bind_dirs_filename = self.nabla_filename(
-                NABLA_ENV_BIND_DIRS_FILENAME)
+                NABLA_ENV_BIND_DIRS_FILENAME,
+            )
             nabla_dir = self.chroot_filename(NABLA_ENV_DIR)
             bind_dirs = set(bind_dirs)
             if os.path.exists(bind_dirs_filename):
@@ -846,7 +889,8 @@ class KZoneConnectorChroot(KZoneConnector):
         with open(self.nabla_filename(NABLA_ENV_BASHRC_FILE), 'w') as f:
             print('PS1="\[\e[1;32m\]\u@\[\e[1;36m\]\h->%s:\[\e[1;33m\]\w)\[\e[0m\] "' % self.get_zone_name(True), file=f)
             print(
-                'cd $KZC_CALLER_PWD # defined only if no --user param used to launch the connector', file=f)
+                'cd $KZC_CALLER_PWD # defined only if no --user param used to launch the connector', file=f,
+            )
 
     # --------------------------------------------------------------------------
     def mount_special(self, fstype, dst):
@@ -855,7 +899,8 @@ class KZoneConnectorChroot(KZoneConnector):
             cmd = [mount_cmd(), '-t', fstype, fstype, dst]
         else:
             raise SystemExit(
-                'Platform ' + platform.system() + ' is not supported')
+                'Platform ' + platform.system() + ' is not supported',
+            )
         logging.debug('Executing ' + ' '.join(cmd))
         subprocess.call(cmd)
 
@@ -868,14 +913,16 @@ class KZoneConnectorChroot(KZoneConnector):
 
         if not self.connected(self.bind_dirs):
             raise SystemExit(
-                'Cannot exececute without being connected to a zone (first, use --bind)')
+                'Cannot exececute without being connected to a zone (first, use --bind)',
+            )
 
         home = get_user_home(user)
         if not os.path.isdir(self.root_dir + '/' + home):
             logging.debug('Seems to not be a directory: "%s"' %
                           (self.root_dir + '/' + home))
             raise SystemExit(
-                "This zone seems not to have a HOME directory for user '%s'" % user)
+                "This zone seems not to have a HOME directory for user '%s'" % user,
+            )
 
         env = []
 
@@ -886,13 +933,19 @@ class KZoneConnectorChroot(KZoneConnector):
             calling_user = get_user()
             dest_xauth = self.chroot_filename(NABLA_ENV_XAUTH_FILE)
             # required on legacy servers due to root noperm
-            subprocess.call("%s %s -c '/bin/chmod o+r %s'" %
-                            (su_cmd(), calling_user, src_auth), shell=True)
+            subprocess.call(
+                "%s %s -c '/bin/chmod o+r %s'" %
+                (su_cmd(), calling_user, src_auth), shell=True,
+            )
             shutil.copyfile(src_auth, dest_xauth)
-            subprocess.call("%s %s -c '/bin/chmod o-r %s'" %
-                            (su_cmd(), calling_user, src_auth), shell=True)
-            os.chmod(dest_xauth, stat.S_IRUSR | stat.S_IWUSR |
-                     stat.S_IRGRP | stat.S_IWGRP | stat.S_IROTH | stat.S_IWOTH)
+            subprocess.call(
+                "%s %s -c '/bin/chmod o-r %s'" %
+                (su_cmd(), calling_user, src_auth), shell=True,
+            )
+            os.chmod(
+                dest_xauth, stat.S_IRUSR | stat.S_IWUSR |
+                stat.S_IRGRP | stat.S_IWGRP | stat.S_IROTH | stat.S_IWOTH,
+            )
             env.append('XAUTHORITY=/' + NABLA_ENV_XAUTH_FILE)
 
         # env passing doc:
@@ -925,12 +978,15 @@ class KZoneConnectorChroot(KZoneConnector):
             env.append('KZC_CALLER_PWD=' + os.getcwd())
 
         user_cmd = '"%s %s /bin/bash -c \'exec %s\'"' % (
-            env_cmd(), ' '.join(env), prog)
+            env_cmd(), ' '.join(env), prog,
+        )
         # su_cmd_flag: With -c on RHEL, su traps CTRL-C instead of passing it to children
         # cf. http://sethmiller.org/it/su-forking-and-the-incorrect-trapping-of-sigint-ctrl-c/
         su_cmd_flag = '--session-command' if isRHEL() else '-c'
-        subprocess_arg = [chroot_cmd(), self.root_dir, su_cmd(),
-                          user, su_cmd_flag, user_cmd]
+        subprocess_arg = [
+            chroot_cmd(), self.root_dir, su_cmd(),
+            user, su_cmd_flag, user_cmd,
+        ]
 
         logging.debug('Executing ' + ' '.join(subprocess_arg))
         try:
@@ -954,8 +1010,10 @@ class KZoneConnectorChroot(KZoneConnector):
                 return
         # We need this server user write permission, so let's do the work in connector context
         # Ugly too, but what else...
-        self.exec_prog('%s updateBashrc %s' %
-                       (os.path.realpath(__file__), chroot_bashrc), None)
+        self.exec_prog(
+            '%s updateBashrc %s' %
+            (os.path.realpath(__file__), chroot_bashrc), None,
+        )
 
 
 # ==============================================================================
@@ -1004,10 +1062,14 @@ class KZoneConnectorGlobal(KZoneConnector):
             self.print_status()
 
         self.clear_nfs_anon_mapping()
-        remove_file(self.nabla_filename(NABLA_ENV_IP_FILENAME),
-                    'Previous connection not detected')
-        remove_file(self.nabla_filename(NABLA_ENV_PASSWD_FILE),
-                    'Previous users mapping not detected')
+        remove_file(
+            self.nabla_filename(NABLA_ENV_IP_FILENAME),
+            'Previous connection not detected',
+        )
+        remove_file(
+            self.nabla_filename(NABLA_ENV_PASSWD_FILE),
+            'Previous users mapping not detected',
+        )
         try:
             os.rmdir(self.nabla_filename(''))
         except:
@@ -1022,7 +1084,8 @@ class KZoneConnectorGlobal(KZoneConnector):
                     binded_zone = f.read().strip()
             else:
                 sys.exit(
-                    'ERROR: Neither can detect zone nor --zone parameter is specified')
+                    'ERROR: Neither can detect zone nor --zone parameter is specified',
+                )
 
         # system server-connector.py --global --unbind --force
 
@@ -1069,8 +1132,9 @@ def main():
         except KeyboardInterrupt:  # user break
             sys.exit(0)
 
-    parser = argparse.ArgumentParser(prog='server-connector.py', description="This is the server-connector\nCheck documentation page for details: 'http://home.nabla.mobi/server-connector.py'", formatter_class=argparse.RawTextHelpFormatter
-                                     )
+    parser = argparse.ArgumentParser(
+        prog='server-connector.py', description="This is the server-connector\nCheck documentation page for details: 'http://home.nabla.mobi/server-connector.py'", formatter_class=argparse.RawTextHelpFormatter,
+    )
 
     # building --zone argument require condition
     # for all not global actions
@@ -1079,47 +1143,74 @@ def main():
     zone_required = zone_required and ('--status' not in sys.argv)
     # for global unbind or status -> not needed
     zone_required = zone_required or (
-        '--global' in sys.argv and '--detach' not in sys.argv and '--unbind' not in sys.argv and '--status' not in sys.argv and '--rebind' not in sys.argv)
+        '--global' in sys.argv and '--detach' not in sys.argv and '--unbind' not in sys.argv and '--status' not in sys.argv and '--rebind' not in sys.argv
+    )
 
-    parser.add_argument('--zone', metavar='zonename_or_ip',
-                        required=zone_required,
-                        dest='zone', action='store',
-                        help='zone FQDN or IP')
-    parser.add_argument('--version', action='version',
-                        version='%(prog)s ' + __version__)
+    parser.add_argument(
+        '--zone', metavar='zonename_or_ip',
+        required=zone_required,
+        dest='zone', action='store',
+        help='zone FQDN or IP',
+    )
+    parser.add_argument(
+        '--version', action='version',
+        version='%(prog)s ' + __version__,
+    )
 
-    parser.add_argument('--verbose', action='store_true', dest='verbose_mode',
-                        help='verbose mode')
-    parser.add_argument('--env', action='store', dest='env_file',
-                        default=None, metavar='path/to/file',
-                        help='path to env file for --exec')
+    parser.add_argument(
+        '--verbose', action='store_true', dest='verbose_mode',
+        help='verbose mode',
+    )
+    parser.add_argument(
+        '--env', action='store', dest='env_file',
+        default=None, metavar='path/to/file',
+        help='path to env file for --exec',
+    )
     action_global = parser.add_mutually_exclusive_group(required=False)
 
-    action_global.add_argument('--bind_dirs', dest='bind_dirs', action='store', metavar='bind_dir_1,bind_dir_2',
-                               help='Binds additional root level directories (coma separated)')
-    parser.add_argument('--user',  dest='user', choices=sorted(ZONE_USERS.keys()),
-                        help='Specify the user as which NFS access will be performed on the zone (default: %(default)s)')
-    parser.add_argument('--force',  dest='force_unbind', action='store_true', default=None,
-                        help='Force unbinding zone, when it is stopped or destroyed, but still connected.')
-    action_global.add_argument('--global', dest='global_mode', action='store_true',
-                               help='run the connector in global mode, i.e. like the connector v1. Forbidden on legacy servers')
+    action_global.add_argument(
+        '--bind_dirs', dest='bind_dirs', action='store', metavar='bind_dir_1,bind_dir_2',
+        help='Binds additional root level directories (coma separated)',
+    )
+    parser.add_argument(
+        '--user',  dest='user', choices=sorted(ZONE_USERS.keys()),
+        help='Specify the user as which NFS access will be performed on the zone (default: %(default)s)',
+    )
+    parser.add_argument(
+        '--force',  dest='force_unbind', action='store_true', default=None,
+        help='Force unbinding zone, when it is stopped or destroyed, but still connected.',
+    )
+    action_global.add_argument(
+        '--global', dest='global_mode', action='store_true',
+        help='run the connector in global mode, i.e. like the connector v1. Forbidden on legacy servers',
+    )
 
     # actions on connector
     action = parser.add_mutually_exclusive_group(required=False)
-    action.add_argument('--bind', '--attach', dest='bind', action='store_true',
-                        help='attach to the zone (optional. --exec automatically binds)')
-    action.add_argument('--unbind', '--detach', dest='unbind', action='store_true',
-                        help='detach from the zone')
-    action.add_argument('--rebind', dest='rebind', action='store_true',
-                        help='rebinds the zone')
-    action.add_argument('--status', dest='get_status', action='store_true',
-                        help='get the current status')
-    action.add_argument('--exec', dest='exec_prog', action='store', default=None, metavar='command',
-                        help='execute and connect a program or a command (optional. By default, run a bash)')
+    action.add_argument(
+        '--bind', '--attach', dest='bind', action='store_true',
+        help='attach to the zone (optional. --exec automatically binds)',
+    )
+    action.add_argument(
+        '--unbind', '--detach', dest='unbind', action='store_true',
+        help='detach from the zone',
+    )
+    action.add_argument(
+        '--rebind', dest='rebind', action='store_true',
+        help='rebinds the zone',
+    )
+    action.add_argument(
+        '--status', dest='get_status', action='store_true',
+        help='get the current status',
+    )
+    action.add_argument(
+        '--exec', dest='exec_prog', action='store', default=None, metavar='command',
+        help='execute and connect a program or a command (optional. By default, run a bash)',
+    )
     args = parser.parse_args()
 
     logging.basicConfig(
-        level=logging.DEBUG if args.verbose_mode else logging.ERROR
+        level=logging.DEBUG if args.verbose_mode else logging.ERROR,
     )
 
     if args.verbose_mode:
@@ -1149,7 +1240,8 @@ def main():
 
     else:
         conn = KZoneConnectorChroot(
-            args.zone, args.bind_dirs)  # , args.unbind)
+            args.zone, args.bind_dirs,
+        )  # , args.unbind)
         if args.get_status:
             conn.print_status()
             exit(0)
@@ -1181,7 +1273,8 @@ def send_request(zod_req, url):
     response = conn.getresponse()
     if response.status != httplib.OK:
         raise Exception('HTTP request failed with status=%d, reason: %s' % (
-            response.status, response.reason))
+            response.status, response.reason,
+        ))
     json_response_data = response.read()
     conn.close()
     return json.loads(json_response_data)
@@ -1227,12 +1320,16 @@ def build_check_update_req(request):
 
 def read_check_update_resp(resp_data):
     if resp_data['server_connector_py'] != __version__:
-        print("WARNING: server-connector('" + __version__ + "') needs to be updated to '" +
-              resp_data['server_connector_py'] + "'", file=sys.stderr)
+        print(
+            "WARNING: server-connector('" + __version__ + "') needs to be updated to '" +
+            resp_data['server_connector_py'] + "'", file=sys.stderr,
+        )
 
 
-check_update = (build_check_update_req, read_check_update_resp,
-                '../cgi-bin/version.cgi')
+check_update = (
+    build_check_update_req, read_check_update_resp,
+    '../cgi-bin/version.cgi',
+)
 
 # https://zod/cgi-bin/version.cgi
 # {
