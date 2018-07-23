@@ -123,8 +123,10 @@ LOGSTASH_ADDRESS=$(docker inspect --format '{{ .NetworkSettings.IPAddress }}' lo
 
 #Install filebeat
 #APT
-curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.2.3-amd64.deb
-sudo dpkg -i filebeat-6.2.3-amd64.deb
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-6.3.0-amd64.deb
+sudo dpkg -i filebeat-6.3.0-amd64.deb
+
+docker pull docker.elastic.co/beats/filebeat:6.3.0
 
 sudo filebeat setup --dashboards
 

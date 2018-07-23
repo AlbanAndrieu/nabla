@@ -82,6 +82,8 @@ sudo apt-get install python3.6-dev
 #Issue pycurl: libcurl link-time ssl backend (nss) is different from compile-time ssl backend (none/other)
 sudo pip uninstall pycurl
 sudo pip install --no-cache-dir --compile --ignore-installed --install-option="--with-nss" pycurl
+#RedHat
+pip install pycurl==7.43.0.1 --global-option="--with-nss" --upgrade
 
 #virtualenv
 mkvirtualenv py27 -p /usr/bin/python2.7
@@ -125,12 +127,21 @@ docker-compose --version
 #sudo pip2.7 install cairosvg
 brew install cairo libxml2 libffi
 pip3 install cairosvg
+apt-get install libffi-dev
+yum install libffi-devel
 pip install cairocffi==0.8.0
 pip2 install CairoSVG==2.0.3
 
 dpkg -l | grep 'urllib3'
 sudo apt-get install python-urllib3 python3-urllib3
 
+<<<<<<< HEAD
+# Documentation
+sudo apt install python-markdown
+markdown_py README.md > README.html
+pip install -U mkdocs
+=======
 #Ubuntu 18.04 LTS
 #version `CURL_OPENSSL_3' not found (required by /usr/local/lib/python2.7/dist-packages/pycurl.so
 sudo apt-get install libcurl3 python-pip
+>>>>>>> ae967edf2aa17af4a8330a70be3753395e7cdfcc

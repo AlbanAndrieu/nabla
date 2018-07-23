@@ -2,8 +2,14 @@
 set -xv
 
 #http://doc.ubuntu-fr.org/xrdp
+sudo apt-get install xrdp gnome-session-flashback
+#echo "gnome-session --session=gnome-fallback" > ~/.xsession
 
-#sudo /etc/init.d/xrdp restart
+sudo apt-get install xfce4
+echo xfce4-session > ~/.xsession
+
+#sudo /etc/init.d/xrdp stop
+sudo /etc/init.d/xrdp restart
 
 #configure the  VM inside VirtualBox
 #https://www.youtube.com/watch?v=mFk0Stw3EZQ
@@ -36,7 +42,6 @@ Advanced -> Security : RDP
 Advanced -> Disable clipboard sync
 
 #remmina is a client to connect with RDP or VNC
-#
 rm -Rf ~/.freerdp
 
 #http://askubuntu.com/questions/157723/cannot-rdp-to-windows-7-with-remmina-on-12-04

@@ -11,6 +11,7 @@ set -xv
 #wake on LAN
 #https://dipisoft.com/pages/wakeonwan.php?lng=fr&tconfig=0
 #7C:05:07:0E:D9:88
+wakeonlan 7C:05:07:0E:D9:88
 
 #from Shell
 /etc/netcli
