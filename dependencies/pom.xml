@@ -403,7 +403,9 @@
 		<htmlunit.version>1.11</htmlunit.version>
 		<!--  groovy-eclipse 2.9.2 only support 2.4.8 -->
 		<http.builder.version>0.6</http.builder.version>
-		<httpclient.version>4.5.5</httpclient.version>
+		<httpclient.version>4.5.6</httpclient.version>
+		<httpcore.version>4.4.10</httpcore.version>
+		<!--<httpcore.version>4.2.3</httpcore.version>-->
 		<httpunit.version>1.7</httpunit.version>
 		<ibatis.version>2.3.0</ibatis.version>
 		<icefaces.version>1.8.2</icefaces.version>
@@ -1557,6 +1559,11 @@
 				<groupId>org.apache.httpcomponents</groupId>
 				<artifactId>httpclient</artifactId>
 				<version>${httpclient.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.apache.httpcomponents</groupId>
+				<artifactId>httpcore</artifactId>
+				<version>${httpcore.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.bouncycastle</groupId>
@@ -7913,6 +7920,11 @@
 							<version>${doxia.version}</version>
 						</dependency>
 						<dependency>
+							<groupId>org.apache.httpcomponents</groupId>
+							<artifactId>httpcore</artifactId>
+							<version>${httpcore.version}</version>
+						</dependency>
+						<dependency>
 							<groupId>org.umlgraph</groupId>
 							<artifactId>umlgraph</artifactId>
 							<version>${org.umlgraph.umlgraph.version}</version>
@@ -7978,10 +7990,6 @@
 						<doclet>org.umlgraph.doclet.UmlGraphDoc</doclet>
 						<docletArtifact>
 							<groupId>org.umlgraph</groupId>
-							<!--
-														<artifactId>doclet</artifactId>
-														<version>${org.umlgraph.doclet.version}</version>
-														-->
 							<artifactId>umlgraph</artifactId>
 							<version>${org.umlgraph.umlgraph.version}</version>
 						</docletArtifact>
@@ -7992,8 +8000,10 @@
 						<additionalparam>-types</additionalparam>
 						<additionalparam>-visibility</additionalparam>
 						<additionalparam>-collpackages</additionalparam>
-						<!--<additionalparam>-Xdoclint:none</additionalparam>-->
-						<additionalparam>--allow-script-in-comments</additionalparam>
+						<additionalOptions>
+							<additionalOption>-Xdoclint:none</additionalOption>
+							<additionalOption>--allow-script-in-comments</additionalOption>
+						</additionalOptions>
 						<links>
 							<link>http://docs.oracle.com/javase/8/docs/api/</link>
 							<link>http://docs.oracle.com/javaee/7/api/</link>
@@ -8058,15 +8068,15 @@
 							</tag>
 						</tags>
 						<header><![CDATA[<script type="text/javascript">
-														var _gaq = _gaq || [];
-														_gaq.push(['_setAccount', 'UA-56011797-1']);
-														_gaq.push(['_trackPageview']);
-														(function() {
-														var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-														ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-														var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-														})();
-													</script>]]></header>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-56011797-1']);
+_gaq.push(['_trackPageview']);
+(function() {
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+						</script>]]></header>
 					</configuration>
 				</plugin>
 				<plugin>

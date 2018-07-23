@@ -1807,6 +1807,12 @@
 							</execution>
 						</executions>
 						<inherited>true</inherited>
+						<configuration>
+							<additionalOptions>
+								<additionalOption>-Xdoclint:none</additionalOption>
+								<additionalOption>--allow-script-in-comments</additionalOption>
+							</additionalOptions>
+						</configuration>
 					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -2111,9 +2117,9 @@
 										<docletArtifact>
 											<groupId>org.umlgraph</groupId>
 											<!--
-																						<artifactId>doclet</artifactId>
-																						<version>${org.umlgraph.doclet.version}</version>
-																						-->
+											<artifactId>doclet</artifactId>
+											<version>${org.umlgraph.doclet.version}</version>
+											-->
 											<artifactId>umlgraph</artifactId>
 											<version>${org.umlgraph.umlgraph.version}</version>
 										</docletArtifact>
@@ -2124,8 +2130,10 @@
 										<additionalparam>-types</additionalparam>
 										<additionalparam>-visibility</additionalparam>
 										<additionalparam>-collpackages</additionalparam>
-										<!--<additionalparam>-Xdoclint:none</additionalparam>-->
-										<additionalparam>--allow-script-in-comments</additionalparam>
+										<additionalOptions>
+											<additionalOption>-Xdoclint:none</additionalOption>
+											<additionalOption>--allow-script-in-comments</additionalOption>
+										</additionalOptions>
 									</configuration>
 									<dependencies>
 										<dependency>
@@ -2137,8 +2145,8 @@
 											<groupId>org.apache.maven.doxia</groupId>
 											<artifactId>doxia-site-renderer</artifactId>
 											<version>${doxia.version}</version>
-										</dependency>											
-									    <!--
+										</dependency>
+										<!--
 										<dependency>
 											<groupId>org.umlgraph</groupId>
 											<artifactId>umlgraph</artifactId>
@@ -2150,7 +2158,7 @@
 											<version>${maven.clirr.plugin.version}</version>
 										</dependency>
 									-->
-									</dependencies>																			
+									</dependencies>
 								</plugin>
 								<!-- *** GENERATION DES SOURCES NAVIGABLES EN HTML *** -->
 								<!-- Source code cross-reference -->
