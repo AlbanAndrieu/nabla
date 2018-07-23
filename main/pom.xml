@@ -1836,6 +1836,11 @@
 								<groupId>org.apache.maven.doxia</groupId>
 								<artifactId>doxia-module-twiki</artifactId>
 								<version>${doxia.module.twiki.version}</version>
+							</dependency>							
+							<dependency>
+								<groupId>org.apache.maven.doxia</groupId>
+								<artifactId>doxia-site-renderer</artifactId>
+								<version>1.8.1</version>
 							</dependency>
 							-->
 							<dependency>
@@ -2823,6 +2828,11 @@
 								<groupId>org.apache.maven.doxia</groupId>
 								<artifactId>doxia-module-twiki</artifactId>
 								<version>${doxia.module.twiki.version}</version>
+							</dependency>							
+							<dependency>
+								<groupId>org.apache.maven.doxia</groupId>
+								<artifactId>doxia-site-renderer</artifactId>
+								<version>1.8.1</version>
 							</dependency>
 							-->
 							<dependency>

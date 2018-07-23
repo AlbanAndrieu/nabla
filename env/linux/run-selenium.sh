@@ -26,16 +26,13 @@ http://home.nabla.mobi:4444/grid/console
 #:99
 #use : 0.0 without xvfb
 
-cd /workspace
-/workspace/selenium-server-standalone-2.39.0.jar
 cd /usr/lib/chromium-browser/
 #NOK sudo wget http://chromedriver.storage.googleapis.com/2.9/chromedriver_linux64.zip
 #NOK sudo unzip chromedriver_linux64.zip
 sudo wget http://chromedriver.storage.googleapis.com/2.16/chromedriver_linux32.zip
 sudo unzip chromedriver_linux32.zip
 sudo chmod 755 chromedriver
-
-wget http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
+#wget http://selenium.googlecode.com/files/selenium-server-standalone-2.39.0.jar
 #or /var/lib/jenkins/selenium-server-standalone-2.29.0.jar
 
 #sudo apt-get install chromium-chromedriver
@@ -75,16 +72,46 @@ sudo chmod -R 777 /workspace/users/albandri10/.mozilla
 
 # Let's see if Selenium works for firefox:
 sudo chown -R jenkins:jenkins /workspace/users/albandri10/.mozilla/firefox/eaadg7zv.Jenkins
-#java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *firefox http://localhost:9090/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/firefox-results.html"
-java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *firefox http://localhost:8280/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/firefox-results.html" -log=/jenkins/selenium.log -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/lwc4dypx.Selenium/
 
-#java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *firefox http://localhost:8280/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/firefox-results.html" -log=/jenkins/selenium.log -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/4ppq46yo.Nabla/
-#NOK java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *chrome /opt/google/chrome/chrome http://localhost:8280/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/chrome-results.html" -log=/jenkins/selenium.log -debug=true`
-java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *chrome http://localhost:8280/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/chrome-results.html" -log=/jenkins/selenium.log -debug=true
-java -jar /var/lib/selenium/selenium.jar -Dwebdriver.chrome.driver=/var/lib/chromedriver -port 6666 -log=/jenkins/selenium.log -debug=true -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/lwc4dypx.Selenium/ -htmlSuite *chrome http://localhost:8280/welcome/ /jenkins/jobs/nabla-servers-jsf-simple-seleniumhq/workspace/src/test/selenium/SimpleSTestSuite.html /jenkins/jobs/nabla-servers-jsf-simple-seleniumhq/workspace/target/test-reports/chrome-results.html
 
-# For chrome we also need to specify the Chrome driver location.:
-java -jar -Dwebdriver.chrome.driver=/var/lib/chromedriver /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *googlechrome http://localhost:9090/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/chrome-results.html"
+
+cd /workspace
+#/workspace/selenium-server-standalone-2.39.0.jar
+wget http://npm.taobao.org/mirrors/selenium/3.13/selenium-html-runner-3.13.0.jar
+#See https://seleniumhq.github.io/docs/html-runner.html
+
+wget https://github.com/mozilla/geckodriver/releases/download/v0.21.0/geckodriver-v0.21.0-linux64.tar.gz
+tar -xvzf geckodriver-v0.*-linux64.tar.gz
+#rm geckodriver-v0.*-linux64.tar.gz
+chmod +x geckodriver
+sudo cp geckodriver /usr/local/bin/
+
+whereis geckodriver
+
+sudo cp /usr/lib/chromium-browser/chromedriver /usr/local/bin/
+
+whereis chromedriver
+
+#BEFORE with selenium-server-standalone-2.52.0.jar
+#
+##java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *firefox http://localhost:9090/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/firefox-results.html"
+#java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *firefox http://localhost:8280/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/firefox-results.html" -log=/jenkins/selenium.log -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/lwc4dypx.Selenium/
+#
+##java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *firefox http://localhost:8280/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/firefox-results.html" -log=/jenkins/selenium.log -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/4ppq46yo.Nabla/
+##NOK java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *chrome /opt/google/chrome/chrome http://localhost:8280/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/chrome-results.html" -log=/jenkins/selenium.log -debug=true`
+#java -jar /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *chrome http://localhost:8280/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/chrome-results.html" -log=/jenkins/selenium.log -debug=true
+#java -jar /var/lib/selenium/selenium.jar -Dwebdriver.chrome.driver=/var/lib/chromedriver -port 6666 -log=/jenkins/selenium.log -debug=true -debug=true -firefoxProfileTemplate /workspace/users/albandri10/.mozilla/firefox/lwc4dypx.Selenium/ -htmlSuite *chrome http://localhost:8280/welcome/ /jenkins/jobs/nabla-servers-jsf-simple-seleniumhq/workspace/src/test/selenium/SimpleSTestSuite.html /jenkins/jobs/nabla-servers-jsf-simple-seleniumhq/workspace/target/test-reports/chrome-results.html
+#
+## For chrome we also need to specify the Chrome driver location.:
+#java -jar -Dwebdriver.chrome.driver=/var/lib/chromedriver /var/lib/selenium/selenium.jar -port 6666 -htmlSuite *googlechrome http://localhost:9090/welcome "/workspace/users/albandri10/servers/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html" "/workspace/users/albandri10/servers/sample/jsf-simple/target/test-reports/chrome-results.html"
+#java -jar /var/lib/selenium/selenium.jar -Dwebdriver.chrome.driver=/var/lib/chromedriver -port 6666 -timeout 600 -log=/jenkins/selenium.log -debug=true -htmlSuite *chrome http://home.nabla.mobi:8280/welcome/ /jenkins-slave/workspace/nabla-servers-jsf-simple-seleniumhq-nightly/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html /jenkins-slave/workspace/nabla-servers-jsf-simple-seleniumhq-nightly/sample/jsf-simple/target/test-reports/chrome-results.html
+
+#AFTER with selenium-html-runner-3.13.0.jar
+java -jar /workspace/selenium-html-runner-3.13.0.jar -timeout 600  -htmlSuite *firefox http://home.nabla.mobi:8280/welcome/ /jenkins-slave/workspace/nabla-servers-jsf-simple-seleniumhq-nightly/sample/jsf-simple/src/test/selenium/SimpleSTestSuite.html /jenkins-slave/workspace/nabla-servers-jsf-simple-seleniumhq-nightly/sample/jsf-simple/target/test-reports/chrome-results.html
+
+browser
+*googlechrome
+*firefox
 
 #add properties in surefire
 <plugin>
