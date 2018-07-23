@@ -108,6 +108,9 @@ git commit --amend --author="Andrieu, Alban <alban.andrieu@free.fr>"
 cp hook/* .git/hooks
 #chmod +x prepare-commit-msg
 
+#Use meld
+git config --global diff.external meld
+
 git difftool
 #disable meld
 git diff --no-ext-diff
