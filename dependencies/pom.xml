@@ -14,7 +14,7 @@
 	<name>Dependencies pom file</name>
 	<description>The Dependencies pom file is a superpom to centralize all third parties</description>
 	<url>http://maven.nabla.mobi/dependencies</url>
-	<inceptionYear>2012</inceptionYear>
+	<inceptionYear>2018</inceptionYear>
 	<organization>
 		<name>Nabla Software</name>
 		<url>http://home.nabla.mobi/</url>
@@ -710,7 +710,7 @@
 		<maven.site.old.plugin.version>2.3</maven.site.old.plugin.version>
 		<!--<maven.site.plugin.version>${maven.site.old.plugin.version}</maven.site.plugin.version>-->
 		<!--<maven.site.plugin.version>3.5.1</maven.site.plugin.version> TODO issue-->
-		<maven.site.plugin.version>3.7</maven.site.plugin.version>
+		<maven.site.plugin.version>3.7.1</maven.site.plugin.version>
 		<maven.sonar.plugin.version>3.3.0.603</maven.sonar.plugin.version>
 		<maven.sonar.report.plugin.version>2.2.1</maven.sonar.report.plugin.version>
 		<maven.sortpom.google.plugin.version>2.3.1</maven.sortpom.google.plugin.version>
@@ -944,7 +944,7 @@
 		<selenium.iphone.driver.version>2.39.0</selenium.iphone.driver.version>
 		<selenium.safari.driver.version>${selenium.version}</selenium.safari.driver.version>
 		<!-- check compatibility http://selenium.googlecode.com/git/java/CHANGELOG -->
-		<selenium.version>3.9.1</selenium.version>
+		<selenium.version>3.13.0</selenium.version>
 		<servlet.api.version>2.5</servlet.api.version>
 		<shale.version>1.0.4</shale.version>
 		<shiro.version>1.2.5</shiro.version>
@@ -7021,6 +7021,11 @@
 							<groupId>org.apache.maven.doxia</groupId>
 							<artifactId>doxia-core</artifactId>
 							<version>${doxia.version}</version>
+						</dependency>						
+						<dependency>
+							<groupId>org.apache.maven.doxia</groupId>
+							<artifactId>doxia-site-renderer</artifactId>
+							<version>1.8.1</version>
 						</dependency>
 						-->
 						<dependency>
@@ -9659,6 +9664,11 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 									<groupId>org.apache.maven.doxia</groupId>
 									<artifactId>doxia-core</artifactId>
 									<version>${doxia.version}</version>
+								</dependency>								
+								<dependency>
+									<groupId>org.apache.maven.doxia</groupId>
+									<artifactId>doxia-site-renderer</artifactId>
+									<version>1.8.1</version>
 								</dependency>
 								-->
 								<dependency>
