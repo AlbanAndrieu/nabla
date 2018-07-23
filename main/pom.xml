@@ -1840,7 +1840,7 @@
 							<dependency>
 								<groupId>org.apache.maven.doxia</groupId>
 								<artifactId>doxia-site-renderer</artifactId>
-								<version>1.8.1</version>
+								<version>${doxia.version}</version>
 							</dependency>
 							-->
 							<dependency>
@@ -2127,25 +2127,30 @@
 										<!--<additionalparam>-Xdoclint:none</additionalparam>-->
 										<additionalparam>--allow-script-in-comments</additionalparam>
 									</configuration>
-									<!--
-																		<dependencies>
-																		    <dependency>
-																				<groupId>org.umlgraph</groupId>
-																				<artifactId>umlgraph</artifactId>
-																				<version>${org.umlgraph.umlgraph.version}</version>
-																		    </dependency>
-																		    <dependency>
-																				<groupId>org.codehaus.mojo</groupId>
-																				<artifactId>clirr-maven-plugin</artifactId>
-																				<version>${maven.clirr.plugin.version}</version>
-																		    </dependency>
-																			<dependency>
-																				<groupId>com.nabla.project</groupId>
-																				<artifactId>build-tools</artifactId>
-																				<version>1.0.1-SNAPSHOT</version>
-																			</dependency>
-																		</dependencies>
-																		-->
+									<dependencies>
+										<dependency>
+											<groupId>org.apache.maven.doxia</groupId>
+											<artifactId>doxia-core</artifactId>
+											<version>${doxia.core.version}</version>
+										</dependency>
+										<dependency>
+											<groupId>org.apache.maven.doxia</groupId>
+											<artifactId>doxia-site-renderer</artifactId>
+											<version>${doxia.version}</version>
+										</dependency>											
+									    <!--
+										<dependency>
+											<groupId>org.umlgraph</groupId>
+											<artifactId>umlgraph</artifactId>
+											<version>${org.umlgraph.umlgraph.version}</version>
+										</dependency>
+										<dependency>
+											<groupId>org.codehaus.mojo</groupId>
+											<artifactId>clirr-maven-plugin</artifactId>
+											<version>${maven.clirr.plugin.version}</version>
+										</dependency>
+									-->
+									</dependencies>																			
 								</plugin>
 								<!-- *** GENERATION DES SOURCES NAVIGABLES EN HTML *** -->
 								<!-- Source code cross-reference -->
@@ -2832,7 +2837,7 @@
 							<dependency>
 								<groupId>org.apache.maven.doxia</groupId>
 								<artifactId>doxia-site-renderer</artifactId>
-								<version>1.8.1</version>
+								<version>${doxia.version}</version>
 							</dependency>
 							-->
 							<dependency>
@@ -3070,7 +3075,7 @@
 																				-->
 										<show>public</show>
 										<version>true</version>
-										<javadocVersion>${jdkLevel}</javadocVersion>
+										<javadocVersion>${jdkVersion}</javadocVersion>
 										<failOnError>false</failOnError>
 										<linksource>true</linksource>
 										<serialwarn>true</serialwarn>

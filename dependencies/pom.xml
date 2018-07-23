@@ -225,8 +225,9 @@
 		<displaytag.version>1.2</displaytag.version>
 		<documentation.output.directory>${project.build.directory}/docs</documentation.output.directory>
 		<dom4j.version>1.6.1</dom4j.version>
+		<doxia.core.version>1.8</doxia.core.version>
 		<doxia.module.twiki.version>${doxia.version}</doxia.module.twiki.version>
-		<doxia.version>1.8</doxia.version>
+		<doxia.version>1.8.1</doxia.version>
 		<!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 		<!--<drools.version>6.2.0.CR4</drools.version>-->
 		<drools.api.version>5.2.0.M1</drools.api.version>
@@ -7014,18 +7015,16 @@
 					<artifactId>maven-site-plugin</artifactId>
 					<version>${maven.site.plugin.version}</version>
 					<dependencies>
-						<!--
 						<dependency>
 							<groupId>org.apache.maven.doxia</groupId>
 							<artifactId>doxia-core</artifactId>
-							<version>${doxia.version}</version>
-						</dependency>						
+							<version>${doxia.core.version}</version>
+						</dependency>
 						<dependency>
 							<groupId>org.apache.maven.doxia</groupId>
 							<artifactId>doxia-site-renderer</artifactId>
-							<version>1.8.1</version>
+							<version>${doxia.version}</version>
 						</dependency>
-						-->
 						<dependency>
 							<groupId>com.nabla.project</groupId>
 							<artifactId>skin</artifactId>
@@ -7897,13 +7896,22 @@
 					<version>${maven.surefire.report.plugin.version}</version>
 				</plugin>
 				<!-- attach-javadocs -->
-				<!-- do not add maven-javadoc-plugin definition because attach-javadocs
-										will not work properly -->
+				<!-- do not add maven-javadoc-plugin definition because attach-javadocs will not work properly -->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-javadoc-plugin</artifactId>
 					<version>${maven.javadoc.plugin.version}</version>
 					<dependencies>
+						<dependency>
+							<groupId>org.apache.maven.doxia</groupId>
+							<artifactId>doxia-core</artifactId>
+							<version>${doxia.core.version}</version>
+						</dependency>
+						<dependency>
+							<groupId>org.apache.maven.doxia</groupId>
+							<artifactId>doxia-site-renderer</artifactId>
+							<version>${doxia.version}</version>
+						</dependency>
 						<dependency>
 							<groupId>org.umlgraph</groupId>
 							<artifactId>umlgraph</artifactId>
@@ -7939,7 +7947,7 @@
 						<show>public</show>
 						<version>true</version>
 						<failOnError>false</failOnError>
-						<javadocVersion>${jdkLevel}</javadocVersion>
+						<javadocVersion>${jdkVersion}</javadocVersion>
 						<linksource>true</linksource>
 						<serialwarn>true</serialwarn>
 						<docfilessubdirs>true</docfilessubdirs>
@@ -9649,18 +9657,16 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 							<artifactId>maven-site-plugin</artifactId>
 							<version>${maven.site.plugin.version}</version>
 							<dependencies>
-								<!--
 								<dependency>
 									<groupId>org.apache.maven.doxia</groupId>
 									<artifactId>doxia-core</artifactId>
-									<version>${doxia.version}</version>
-								</dependency>								
+									<version>${doxia.core.version}</version>
+								</dependency>
 								<dependency>
 									<groupId>org.apache.maven.doxia</groupId>
 									<artifactId>doxia-site-renderer</artifactId>
-									<version>1.8.1</version>
+									<version>${doxia.version}</version>
 								</dependency>
-								-->
 								<dependency>
 									<groupId>com.nabla.project</groupId>
 									<artifactId>skin</artifactId>

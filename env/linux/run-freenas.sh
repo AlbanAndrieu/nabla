@@ -19,8 +19,17 @@ wakeonlan 7C:05:07:0E:D9:88
 #WebUI
 #Set nginx_enable to YES: sysrc nginx_enable=YES
 #modify nginx.conf: nano /usr/local/etc/nginx/nginx.conf
+#listen                  192.168.0.46:7000 default_server ssl http2;
+#listen                  [::]:7000 default_server ssl http2;
+#
+#ssl_certificate         "/etc/certificates/freenas-pre-certui.crt";
+#ssl_certificate_key     "/etc/certificates/freenas-pre-certui.key";
+#listen       192.168.0.46:80;
+#listen       [::]:80;
 #Remove the IPv6 listen line
 #Start Nginx Service: service nginx start
+service nginx restart
+service django restart
 
 sqlite3 /data/freenas-v1.db "update system_settings set stg_guiprotocol = 'http';"
 
