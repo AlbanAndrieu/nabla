@@ -139,3 +139,8 @@ pre-commit run --all-files
 #git reset --hard f357b81dc4c
 #git reset --soft HEAD@{1}
 #git commit -m "Revert to f357b81dc4c"
+
+#gitlab
+#https://about.gitlab.com/installation/#ubuntu
+curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
+sudo EXTERNAL_URL="https://gitlab.com/AlbanAndrieu" apt-get install gitlab-ee

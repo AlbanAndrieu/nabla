@@ -54,7 +54,7 @@ lvm lvs
 type lsblk > /dev/null 2>&1 || { echo >&2 "lsblk isn't installed. Abort"; exit 1; }
 
 #See free space
-parted /dev/sda print free
+sudo parted /dev/sda print free
 df -Th /root
 
 #Change quota on xfs for oracle database
@@ -78,13 +78,27 @@ partprobe -s
 #init disk for use by LVM
 pvcreate /dev/sdb
 
+sudo apt-get install scsitools
+sudo rescan-scsi-bus
 ls -1d /sys/class/scsi_device/*/device/block/*
 #bash -c 'echo "1" > /sys/class/scsi_disk/2\:0\:2\:0/device/rescan'
 echo 1>/sys/class/block/sdb/device/rescan
+echo 1>/sys/class/block/sda/device/rescan
 #OR
 #echo 1>/sys/class/scsi_device/0\:0\:0\:0/device/block/sda/device/rescan
+#echo 1>/sys/class/scsi_device/2\:0\:0\:0/device/block/sda/device/rescan
+#sh -c 'echo "1" > /sys/class/scsi_disk/2\:0\:0\:0/device/rescan'
 
+#On RedHat
 pvresize /dev/sdb
+
+#On Ubuntu
+#sudo apt-get install parted
+#umount /dev/sda
+#resize2fs /dev/sda1
+#resize2fs /dev/sda1
+#mount -a
+pvresize /dev/sda5
 
 #display atributes of disk
 pvdisplay
@@ -95,6 +109,7 @@ lvdisplay
 #add disk to volume group
 vgextend rhel_fr1cslvcacrhel71 /dev/sdb
 vgextend VolGroup00 /dev/sdb
+vgextend fr1vslub1604-vg /dev/sdb
 #vgextend rhel_fr1cslvcacrhel71 /dev/sdc
 
 # Free disk space should be now visible in VG. Actual number of available physical extents (PE) will be smaller,
@@ -105,19 +120,24 @@ vgdisplay -v VolGroup00
 
 lvcreate -l 12805 -n workspace rhel_fr1cslvcacrhel71
 lvcreate -l 12805 -n docker rhel_fr1cslvcacrhel71
+lvcreate -l 12805 -n workspace fr1vslub1604-vg
+lvcreate -l 12794 -n docker fr1vslub1604-vg
 
 lvdisplay
 
 #sudo mkfs -t ext4 /dev/rhel_fr1cslvcacrhel71/workspace
 sudo mkfs -t xfs /dev/rhel_fr1cslvcacrhel71/workspace
+sudo mkfs -t ext4 /dev/fr1vslub1604-vg/workspace
 #sudo mkfs -t ext4 /dev/rhel_fr1cslvcacrhel71/docker
 mkfs.xfs -n ftype=1 /dev/rhel_fr1cslvcacrhel71/docker
+sudo mkfs -t ext4 /dev/fr1vslub1604-vg/docker
 
 #nano /etc/fstab
 #/dev/rhel_fr1cslvcacrhel71/workspace /workspace ext4 auto 0 2
 #/dev/rhel_fr1cslvcacrhel71/docker /docker ext4 auto 0 2
 /dev/rhel_fr1cslvcacrhel71/workspace /workspace xfs auto 0 2
 /dev/rhel_fr1cslvcacrhel71/docker /docker xfs defaults,usrquota,prjquota  0   0
+q
 
 sudo mkdir /workspace
 sudo mount /workspace
