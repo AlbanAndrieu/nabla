@@ -2,7 +2,8 @@
 set -xv
 
 #http://doc.ubuntu-fr.org/xrdp
-sudo apt-get install xrdp gnome-session-flashback
+sudo apt-get install xrdp
+sudo apt-get install gnome-session-flashback
 #echo "gnome-session --session=gnome-fallback" > ~/.xsession
 
 sudo apt-get install xfce4

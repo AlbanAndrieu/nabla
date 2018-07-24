@@ -10,4 +10,11 @@ curl -sS https://get.fabric8.io/download.txt | bash
 echo 'export PATH=$PATH:~/.fabric8/bin' >> ~/.bashrc
 source ~/.bashrc
 
-gofabric8 start
+gofabric8 start --package=system  --namespace fabric8
+#gofabric8 start --minishift --package=system  --namespace fabric8
+
+#See https://github.com/fabric8io/fabric8/blob/master/docs/getStarted/gofabric8.md
+
+#See https://github.com/settings/applications/818104
+export GITHUB_OAUTH_CLIENT_ID=c52c293400ba80af105a
+export GITHUB_OAUTH_CLIENT_SECRET=microsoft
