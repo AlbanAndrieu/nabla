@@ -12,6 +12,8 @@ echo "Start cleaning"
 \rm -Rf ~/.m2/repository/
 \rm -Rf ~/.repository
 #\rm -Rf ~/.cache/upstart
+#\rm -Rf ~/.cache/pip
+#\rm -Rf ~/.cache/thumbnails/*
 \rm -Rf ~/.cache/*
 #\rm -Rf ~/.aspera
 #\rm -Rf ~/.eclipse/*
@@ -48,6 +50,7 @@ sudo \rm -Rf /var/log/elasticsearch/elasticsearch.log*
 \rm -Rf /var/lib/mongodb/nabla-*
 \rm -Rf /var/lib/redis/*.rdb
 \rm -Rf /var/lib/collectd/rrd/*
+#\rm -Rf /var/lib/docker/overlay2/*
 \rm -Rf /workspace/jboss-as-7.1.1.Final/standalone/data/content*
 
 ./cleanup-jenkins.sh
@@ -84,8 +87,9 @@ find ~/ -name '*~' -type f -print0  -exec rm -rv {} \;
 #http://www.insanitybit.com/2012/07/17/removing-zeitgeist-sped-up-unity-2/
 sudo apt-get purge zeitgeist zeitgeist-datahub rhythmbox-plugin-zeitgeist
 
-sudo apt-get autoclean
-sudo apt-get autoremove
+#sudo apt-get autoclean
+sudo apt-get clean
+sudo apt-get autoremove --purge
 #sudo dpkg -P `dpkg -l | grep "^rc" | tr -s ' ' | cut -d ' ' -f 2`
 sudo apt-get --purge remove tex.\*-doc$
 
@@ -151,5 +155,13 @@ docker system df
 docker stop $(docker ps -a -q) # stop all docker containers
 docker rm -f $(docker ps -a -q) # remove all docker containers
 docker images -q | xargs docker rmi -f # remove all docker images
+
+#See https://itsfoss.com/free-up-space-ubuntu-linux/
+
+sudo apt-get install gtkorphan
+#sudo gtkorphan
+
+sudo apt install fdupes
+#fdupes -d ~/
 
 exit 0
