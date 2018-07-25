@@ -54,4 +54,23 @@ echo -e "${red} Killing stale jboss processes ${head_skull} ${NC}"
 find /proc -maxdepth 1 -user "${TARGET_USER}" -type d -mmin +200 -exec basename {} \; | xargs ps | grep jboss-modules | awk '{ print $1 }'
 find /proc -maxdepth 1 -user "${TARGET_USER}" -type d -mmin +200 -exec basename {} \; | xargs ps | grep jboss-modules | awk '{ print $1 }' | sudo xargs kill -9 || true
 
+export DISPLAY=localhost:99.0
+
+SELENIUM_SERVER_STANDALONE_VERSION="3.13"
+
+cd /workspace/
+
+wget -nc https://selenium-release.storage.googleapis.com/${SELENIUM_SERVER_STANDALONE_VERSION}/selenium-server-standalone-${SELENIUM_SERVER_STANDALONE_VERSION}.0.jar
+wget -nc https://selenium-release.storage.googleapis.com/${SELENIUM_SERVER_STANDALONE_VERSION}/selenium-html-runner-${SELENIUM_SERVER_STANDALONE_VERSION}.0.jar
+
+SELENIUM_SERVER_STANDALONE="/workspace/selenium-server-standalone-${SELENIUM_SERVER_STANDALONE_VERSION}.0.jar"
+#SELENIUM_HUB="http://127.0.0.1:4444"
+SELENIUM_HUB="http://home.nabla.mobi:4444"
+
+cd ~
+
+nohup java -jar ${SELENIUM_SERVER_STANDALONE} -Dwebdriver.chrome.driver=/usr/lib/chromium-browser/chromedriver -role hub -port 4444 -host 192.168.0.29 -debug &
+
+nohup java -jar ${SELENIUM_SERVER_STANDALONE} -Dwebdriver.chrome.driver=/usr/lib/chromium-browser/chromedriver -role node -hub ${SELENIUM_HUB}/grid/register -browser browserName=firefox,version=58.0.2,firefox_binary=/usr/bin/firefox,maxInstances=1,platform=LINUX -browser browserName=chrome,version=48.0.2564.116,chrome_binary=/usr/bin/google-chrome,maxInstances=1,platform=LINUX -debug > selenum-hub.out 2>&1 &
+
 exit 0
