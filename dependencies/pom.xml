@@ -708,7 +708,7 @@
 		<maven.shared.jar.version>1.0</maven.shared.jar.version>
 		<maven.site.github.plugin.version>0.12</maven.site.github.plugin.version>
 		<!--<maven.site.old.plugin.version>2.3</maven.site.old.plugin.version>-->
-		<maven.site.plugin.version>3.7.1</maven.site.plugin.version>
+		<maven.site.plugin.version>3.7.0</maven.site.plugin.version>
 		<maven.sonar.plugin.version>3.4.0.905</maven.sonar.plugin.version>
 		<maven.sonar.report.plugin.version>2.2.1</maven.sonar.report.plugin.version>
 		<maven.sortpom.google.plugin.version>2.3.1</maven.sortpom.google.plugin.version>
