@@ -78,12 +78,16 @@ SELENIUM_HUB="http://home.nabla.mobi:4444"
 
 cd ~
 
-echo -e "${red} Start hub ${head_skull} ${NC}"
+echo -e "${green} Start hub ${NC}"
 
-nohup java -jar ${SELENIUM_SERVER_STANDALONE} -Dwebdriver.chrome.driver=/usr/lib/chromium-browser/chromedriver -role hub -port 4444 -host 192.168.0.29 -debug &
+#-Dwebdriver.chrome.driver=/usr/lib/chromium-browser/chromedriver
+echo -e "${green} nohup java -jar ${SELENIUM_SERVER_STANDALONE} -role hub -port 4444 -host 192.168.0.29 -debug ${NC}"
+nohup java -jar ${SELENIUM_SERVER_STANDALONE} -role hub -port 4444 -host 192.168.0.29 -debug &
+#nohup java -jar /workspace/selenium-server-standalone-3.13.0.jar -role hub -port 4444 -host 192.168.0.29 -debug
 
-echo -e "${red} Start node ${head_skull} ${NC}"
+echo -e "${green} Start node ${NC}"
 
-nohup java -jar ${SELENIUM_SERVER_STANDALONE} -Dwebdriver.chrome.driver=/usr/lib/chromium-browser/chromedriver -role node -hub ${SELENIUM_HUB}/grid/register -browser browserName=firefox,version=58.0.2,firefox_binary=/usr/bin/firefox,maxInstances=1,platform=LINUX -browser browserName=chrome,version=48.0.2564.116,chrome_binary=/usr/bin/google-chrome,maxInstances=1,platform=LINUX -debug > selenum-hub.out 2>&1 &
+echo -e "${green} nohup java -jar ${SELENIUM_SERVER_STANDALONE} -role node -hub ${SELENIUM_HUB}/grid/register -browser browserName=firefox,version=58.0.2,firefox_binary=/usr/bin/firefox,maxInstances=1,platform=LINUX -browser browserName=chrome,version=48.0.2564.116,chrome_binary=/usr/bin/google-chrome,maxInstances=1,platform=LINUX -debug > selenum-hub.out ${NC}"
+nohup java -jar ${SELENIUM_SERVER_STANDALONE} -role node -hub ${SELENIUM_HUB}/grid/register -browser browserName=firefox,version=58.0.2,firefox_binary=/usr/bin/firefox,maxInstances=1,platform=LINUX -browser browserName=chrome,version=48.0.2564.116,chrome_binary=/usr/bin/google-chrome,maxInstances=1,platform=LINUX -debug > selenum-hub.out 2>&1 &
 
 exit 0
