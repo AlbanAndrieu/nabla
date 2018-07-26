@@ -60,8 +60,8 @@ SELENIUM_SERVER_STANDALONE_VERSION="3.13"
 
 cd /workspace/
 
-wget -nc https://selenium-release.storage.googleapis.com/${SELENIUM_SERVER_STANDALONE_VERSION}/selenium-server-standalone-${SELENIUM_SERVER_STANDALONE_VERSION}.0.jar
-wget -nc https://selenium-release.storage.googleapis.com/${SELENIUM_SERVER_STANDALONE_VERSION}/selenium-html-runner-${SELENIUM_SERVER_STANDALONE_VERSION}.0.jar
+sudo wget -nc https://selenium-release.storage.googleapis.com/${SELENIUM_SERVER_STANDALONE_VERSION}/selenium-server-standalone-${SELENIUM_SERVER_STANDALONE_VERSION}.0.jar
+sudo wget -nc https://selenium-release.storage.googleapis.com/${SELENIUM_SERVER_STANDALONE_VERSION}/selenium-html-runner-${SELENIUM_SERVER_STANDALONE_VERSION}.0.jar
 
 SELENIUM_SERVER_STANDALONE="/workspace/selenium-server-standalone-${SELENIUM_SERVER_STANDALONE_VERSION}.0.jar"
 #SELENIUM_HUB="http://127.0.0.1:4444"
