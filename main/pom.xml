@@ -1809,7 +1809,7 @@
 						<inherited>true</inherited>
 						<configuration>
 							<additionalOptions>
-								<additionalOption>-Xdoclint:none</additionalOption>
+								<!--<additionalOption>-Xdoclint:none</additionalOption>-->
 								<additionalOption>--allow-script-in-comments</additionalOption>
 							</additionalOptions>
 						</configuration>
@@ -2131,7 +2131,7 @@
 										<additionalparam>-visibility</additionalparam>
 										<additionalparam>-collpackages</additionalparam>
 										<additionalOptions>
-											<additionalOption>-Xdoclint:none</additionalOption>
+											<!--<additionalOption>-Xdoclint:none</additionalOption>-->
 											<additionalOption>--allow-script-in-comments</additionalOption>
 										</additionalOptions>
 									</configuration>
