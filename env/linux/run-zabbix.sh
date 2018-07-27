@@ -43,7 +43,7 @@ dhcpcd eth1
 #MacOSX
 #See http://blog.oper-init.eu/2016/07/05/install-zabbix-agent-on-mac-osx/
 
-ls -lrta  /usr/local/etc/zabbix/zabbix_agentd.conf
+ls -lrta /usr/local/etc/zabbix/zabbix_agentd.conf
 #ls -lrta /usr/local/sbin/zabbix_agentd
 zabbix_agentd
 

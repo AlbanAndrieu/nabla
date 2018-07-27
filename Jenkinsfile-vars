@@ -1,0 +1,103 @@
+
+def getCommitShortSHA1() {
+    println(env.GIT_COMMIT)
+    println("***")
+    environment()
+    env.GIT_COMMIT.take(7)
+}
+
+def setBuildName() {
+    setBuildName(env.BRANCH_NAME)
+}
+
+def setBuildName(def gitBranchName) {
+    currentBuild.displayName = "#" + currentBuild.number.toString() + " " + gitBranchName + " " + getCommitShortSHA1()
+}
+
+def createVersionTextFile(def description="TEST", def filename="TEST_VERSION.TXT") {
+    build = currentBuild.number.toString()
+    commitSHA1 = getCommitShortSHA1()
+    sh """
+        echo ${description}: BUILD: ${build} SHA1:${commitSHA1} > "${env.WORKSPACE}/${filename}"
+    """
+}
+
+def gitTagLocal(def tagName="LATEST_SUCCESSFULL", def message="Jenkins local") {
+    sh """
+        cd ${env.WORKSPACE}
+        git tag -l | grep -E "^${tagName}\$" && { git tag -d $tagName ; }
+        git tag -a ${tagName} -m "${message}"
+    """
+}
+
+def gitTagRemote(def tagName="LATEST_SUCCESSFULL", def remote="origin") {
+    // Push empty reference ( :tag) to delete remote tag
+    // Assumes that remote is consistently named to origin
+    sh """
+        git push ${remote} :${tagName} || echo "Could not delete tag: does not exist or no access rights"
+        git push ${remote} ${tagName} --force || echo "Could not push tag: invalid name or no access rights"
+    """
+}
+
+def notifyMe() {
+  //// send to Slack
+  //slackSend (color: '#FFFF00', message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+  //
+  //// send to HipChat
+  //hipchatSend (color: 'YELLOW', notify: true,
+  //    message: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})"
+  //)
+
+  def content = '${SCRIPT, template="pipeline.template"}'
+  //to: "${GIT_AUTHOR_EMAIL}"
+
+  // send to email
+  emailext (
+      //subject: "STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'",
+      subject: ("${currentBuild.result}: ${env.TARGET_PROJECT} ${currentBuild.displayName}"),
+      //body: """<p>${env.TARGET_PROJECT} STARTED: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]': build on branch ${env.BRANCH_NAME} resulted in ${currentBuild.result} :</p>
+      //  <p>Check console output at "<a href="${env.BUILD_URL}">${env.JOB_NAME} [${env.BUILD_NUMBER}]</a>"</p>""",
+      body: content,
+      attachLog: false,
+      compressLog: true,
+      to: emailextrecipients([
+          [$class: 'CulpritsRecipientProvider'],
+          [$class: 'DevelopersRecipientProvider'],
+          [$class: 'RequesterRecipientProvider']
+      ])
+    )
+
+  //slackSend channel: '#general', color: 'good', message: '[${currentBuild.result}] #${env.BUILD_NUMBER} ${env.BUILD_URL}', teamDomain: 'kitconcept', token: '<ADD-TOKEN-HERE>'
+
+} // notifyMe
+
+def abortPreviousRunningBuilds() {
+  def hi = Hudson.instance
+  def pname = env.JOB_NAME.split('/')[0]
+  def bname = env.JOB_NAME.split('/')[1]  // branch name
+
+  try {
+      hi.getItem(pname).getItem(env.JOB_BASE_NAME).getBuilds().each{ build ->
+          def exec = build.getExecutor()
+
+          if (build.number != currentBuild.number && exec != null) {
+            exec.interrupt(
+              Result.ABORTED,
+              new CauseOfInterruption.UserInterruption(
+                "Aborted by ${pname} - ${bname} #${currentBuild.number}"
+              )
+            )
+            println("${pname} - ${bname} / ${env.JOB_BASE_NAME} : Aborted previous running build #${build.number}")
+          } else {
+            println("${pname} - ${bname} / ${env.JOB_BASE_NAME} : Build is not running or is already built, not aborting #${build.number}")
+          }
+      }
+  } catch(NullPointerException e) {
+      // happens the first time if there is no branch at all
+  } finally {
+      // carry on as if nothing went wrong
+  }
+
+} // abortPreviousRunningBuilds
+
+return this

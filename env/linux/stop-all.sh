@@ -104,4 +104,6 @@ service autofs stop
 #sudo apt-get remove ftp telnet xinetd finger sysstat rusersd rwho rwhod
 #sudo apt-get remove net-tools
 
+service gitlab-runsvdir stop
+
 exit 0
