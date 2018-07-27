@@ -200,6 +200,15 @@ printenv
 #env 2>&1
 
 # shellcheck disable=SC2129,SC2086
+echo "env.TAR=\"${TAR}\"" >> ${ENV_FILE}
+# shellcheck disable=SC2129,SC2086
+echo "env.WGET=\"${WGET}\"" >> ${ENV_FILE}
+# shellcheck disable=SC2129,SC2086
+echo "env.CURL=\"${CURL}\"" >> ${ENV_FILE}
+# shellcheck disable=SC2129,SC2086
+echo "env.MD5SUM=\"${MD5SUM}\"" >> ${ENV_FILE}
+
+# shellcheck disable=SC2129,SC2086
 echo "env.SONAR_BRANCH=\"$(printf '%s' $GIT_BRANCH | cut -d'/' -f 2-)\"" >> ${ENV_FILE}
 # shellcheck disable=SC2129
 echo "env.RELEASE_VERSION=\"${RELEASE_VERSION}\"" >> ${ENV_FILE}

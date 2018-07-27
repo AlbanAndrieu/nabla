@@ -144,3 +144,6 @@ $JENKINS_URL/bitbucket-scmsource-hook/notify/
 #How to install the jx binary on your machine
 curl -L https://github.com/jenkins-x/jx/releases/download/v1.2.18/jx-linux-amd64.tar.gz | tar xzv
 sudo mv jx /usr/local/bin
+
+#API endpoint
+#http://home.nabla.mobi:8381/job/nabla-projects-interview-visma-nightly/lastSuccessfulBuild/api/json?tree=actions[remoteUrls,lastBuildRevision[SHA1]]&pretty=true
