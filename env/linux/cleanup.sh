@@ -93,6 +93,10 @@ sudo apt-get autoremove --purge
 #sudo dpkg -P `dpkg -l | grep "^rc" | tr -s ' ' | cut -d ' ' -f 2`
 sudo apt-get --purge remove tex.\*-doc$
 
+#ls -lrta /etc/yum.repos.d/*
+#yum clean all && yum clean metadata && yum clean dbcache && yum makecache && yum update
+#rm -rf /var/cache/yum
+
 #Removed useless local file
 #sudo apt-get install localepurge
 #sudo localepurge

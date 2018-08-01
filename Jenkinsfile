@@ -1,280 +1,206 @@
 #!/usr/bin/env groovy
 /*
     Point of this Jenkinsfile is to:
-    - build java project
+    - define global behavior
 */
 def utils
 
 def isReleaseBranch() {
-    env.BRANCH_NAME ==~ /develop/ || env.BRANCH_NAME ==~ /master/ || env.BRANCH_NAME ==~ /release\/.*/
+    BRANCH_NAME ==~ /develop/ || BRANCH_NAME ==~ /master/ || BRANCH_NAME ==~ /release\/.*/
 }
 
 pipeline {
-    //properties([pipelineTriggers([snapshotDependencies()])])
-    agent { label 'docker-inside' }
+    //agent { label 'docker-inside' }
+    agent none
     triggers {
         cron '@daily'
-        pollSCM '@hourly'
+        //pollSCM '@hourly'
     }
     parameters {
-        //string(defaultValue: 'develop', description: 'Default git branch to override', name: 'GIT_BRANCH_NAME')
-        string(defaultValue: 'LATEST_SUCCESSFULL', description: 'Create a TAG', name: 'TARGET_TAG')
-        booleanParam(defaultValue: false, description: 'Clean before run', name: 'CLEAN_RUN')
+        booleanParam(defaultValue: false, description: 'Dry run', name: 'DRY_RUN')
     }
     environment {
-        JENKINS_CREDENTIALS = 'todo'
-        //GIT_BRANCH_NAME = "${params.GIT_BRANCH_NAME}"
-        CLEAN_RUN = "${params.CLEAN_RUN}"
-        TARGET_PROJECT = sh(returnStdout: true, script: "echo ${env.JOB_NAME} | cut -d'/' -f -1").trim()
         BRANCH_NAME = "${env.BRANCH_NAME}".replaceAll("feature/","")
         PROJECT_BRANCH = "${env.GIT_BRANCH}".replaceFirst("origin/","")
-        BUILD_ID = "${env.BUILD_ID}"
-        SONAR_BRANCH = sh(returnStdout: true, script: "echo ${env.BRANCH_NAME} | cut -d'/' -f 2-").trim()
-        GIT_AUTHOR_EMAIL = "${env.CHANGE_AUTHOR_EMAIL}"
-        GIT_COMMIT = "TODO"
     }
     options {
         disableConcurrentBuilds()
+        ansiColor('xterm')
         timeout(time: 45, unit: 'MINUTES')
         buildDiscarder(logRotator(numToKeepStr: '5'))
     }
     stages {
-        stage('Cleaning') {
-            steps {
-                script {
-                    if (params.CLEAN_RUN == true) {
-                        stage('Clean everything') {
-                            echo "Delete everything at start"
-                            deleteDir()
-                        }
-                    }
-                }
-            }
-        }
         stage('Preparation') { // for display purposes
             steps {
-                checkout scm
+                node('docker-inside') {
+                    //checkout scm
 
-                script {
-                    utils = load "Jenkinsfile-vars"
-                    if (! isReleaseBranch()) { utils.abortPreviousRunningBuilds() }
-                    //properties(vars.createPropertyList())
-                    sh "git rev-parse --short HEAD > .git/commit-id"
-                    GIT_COMMIT = readFile('.git/commit-id')
-                }
+                    script {
+                        utils = load "Jenkinsfile-vars"
+                        if (! isReleaseBranch()) { utils.abortPreviousRunningBuilds() }
+                            //properties(utils.createPropertyList())
+                        sh "git rev-parse --short HEAD > .git/commit-id"
+                        GIT_COMMIT = readFile('.git/commit-id')
 
-                echo "GIT_COMMIT: ${GIT_COMMIT}"
-                echo "SONAR_BRANCH: ${SONAR_BRANCH}"
-                echo "PROJECT_BRANCH: ${PROJECT_BRANCH}"
-                echo "BRANCH_NAME: ${env.BRANCH_NAME}"
-                //echo "GIT_BRANCH_NAME: ${env.GIT_BRANCH_NAME}"
-
-                script {
-                    currentBuild.displayName = [
-                        '#',
-                        BRANCH_NAME,
-                        ' (',
-                        GIT_COMMIT,
-                        ', ',
-                        currentBuild.displayName,
-                        ')'
-                    ].join("")
-                }
-
-                ansiColor('xterm') {
+                        if (!params.DRY_RUN) {
+                            ansiColor('xterm') {
 sh '''
 set -e
 #set -xve
+
+echo USER $USER
+
+cd ./env/scripts/jenkins/
+
+echo PATH ${PATH}
+echo JAVA_HOME ${JAVA_HOME}
+echo DISPLAY ${DISPLAY}
 
 echo BUILD_NUMBER: ${BUILD_NUMBER}
 echo BUILD_ID: ${BUILD_ID}
+echo IS_M2RELEASEBUILD: ${IS_M2RELEASEBUILD}
 
+./step-2-0-0-build-env.sh || exit 1
 
-exit 0
-'''
-                } //ansiColor
-                echo "${env.SONAR_BRANCH}"
-                echo "${env.RELEASE_VERSION}"
-            } //step
-        }
-
-        stage('Build') {
-            //environment {
-            //    MAVEN_ROOT_POM = "${WORKSPACE}/${TARGET_PROJECT}/pom.xml"
-            //    MAVEN_SETTINGS_FILE = "${WORKSPACE}/${TARGET_PROJECT}/settings.xml"
-            //    SONAR_MAVEN_COMMANDS = "sonar:sonar"
-            //}
-            steps {
-                ansiColor('xterm') {
-sh '''
-set -e
-#set -xve
-
-echo -e "${red} ${double_arrow} DO TEST WORKSPACE ${NC}"
+./step-2-0-1-build-env-info.sh || exit 1
 
 exit 0
 '''
-                } //ansiColor
+                            } //ansiColor
+
+                            load "${env.WORKSPACE}/env/scripts/jenkins/jenkins-env.groovy"
+                        } // DRY_RUN
+
+                    } // script
+
+                    echo "GIT_COMMIT: ${GIT_COMMIT}"
+                    echo "PROJECT_BRANCH: ${env.PROJECT_BRANCH}"
+                    echo "BRANCH_NAME: ${env.BRANCH_NAME}"
+                } // node
             } //steps
-        } // stage Build
+        } // Preparation
 
         stage('SonarQube analysis') {
             environment {
                 SONAR_SCANNER_OPTS = "-Xmx1g"
             }
             steps {
-                sh "pwd"
-                sh "/usr/local/sonar-runner/bin/sonar-scanner -D sonar-project.properties"
+                node('docker-inside') {
+                    sh "pwd"
+                    sh "/usr/local/sonar-runner/bin/sonar-scanner -D sonar-project.properties"
+                } // node
             }
         }
 
         stage('Results') {
             steps {
-                //warnings canComputeNew: false, canResolveRelativePaths: false, categoriesPattern: '', consoleParsers: [[parserName: 'Java Compiler (javac)'], [parserName: 'Maven']], defaultEncoding: '', excludePattern: '', healthy: '', includePattern: '', messagesPattern: '', unHealthy: ''
-
-                step([
-                        $class: "WarningsPublisher",
-                        canComputeNew: false,
-                        canResolveRelativePaths: false,
-                        canRunOnFailed: true,
-                        consoleParsers: [
-                            [
-                                parserName: 'Java Compiler (javac)'
-                            ],
-                            [
-                                parserName: 'Maven'
+                node('docker-inside') {
+                    step([
+                            $class: "WarningsPublisher",
+                            canComputeNew: false,
+                            canResolveRelativePaths: false,
+                            canRunOnFailed: true,
+                            consoleParsers: [
+                                [
+                                    parserName: 'Java Compiler (javac)'
+                                ],
+                                [
+                                    parserName: 'Maven'
+                                ]
                             ]
-                        ]
-                    ])
+                        ])
 
-                step([
-                        $class: "AnalysisPublisher",
-                        canComputeNew: false,
-                        checkStyleActivated: false,
-                        defaultEncoding: '',
-                        dryActivated: false,
-                        findBugsActivated: false,
-                        healthy: '',
-                        opentasksActivated: false,
-                        pmdActivated: false,
-                        unHealthy: ''
-                    ])
+                    step([
+                            $class: "AnalysisPublisher",
+                            canComputeNew: false,
+                            checkStyleActivated: false,
+                            defaultEncoding: '',
+                            dryActivated: false,
+                            findBugsActivated: false,
+                            healthy: '',
+                            opentasksActivated: false,
+                            pmdActivated: false,
+                            unHealthy: ''
+                        ])
 
-                step([
-                        $class: 'LogParserPublisher', parsingRulesPath: '/jenkins/deploy-log_parsing_rules', useProjectRule: false
-                    ])
+                    step([
+                            $class: 'LogParserPublisher', parsingRulesPath: '/jenkins/deploy-log_parsing_rules', useProjectRule: false
+                        ])
 
-                script {
-                    shellcheckExitCode = sh(
-                        script: 'shellcheck -f checkstyle *.sh > checkstyle.xml',
-                        returnStdout: true,
-                        returnStatus: true
-                    )
-                    sh "echo ${shellcheckExitCode}"
-                } // script
+                    script {
+                        shellcheckExitCode = sh(
+                            script: 'shellcheck -f checkstyle ./env/scripts/jenkins/*.sh > checkstyle.xml',
+                            returnStdout: true,
+                            returnStatus: true
+                        )
+                        sh "echo ${shellcheckExitCode}"
+                    } // script
 
-                step([
-                    $class: 'CheckStylePublisher',
-                    //pattern: '**/eslint.xml',
-                    pattern: '**/checkstyle.xml',
-                    unstableTotalAll: '0',
-                    usePreviousBuildAsReference: true
-                    ])
+                    checkstyle canComputeNew: false, defaultEncoding: '', healthy: '50', pattern: '**/checkstyle.xml', shouldDetectModules: true, thresholdLimit: 'normal', unHealthy: '100'
+
+                } // node
 
             }
         } // stage Results
 
         stage('Archive Artifacts') {
-
             steps {
-                script {
-                    //sshagent(['jenkins-ssh']) {
-                    //    String versionInfo = "${TARGET_PROJECT}: BUILD: ${BUILD_ID} BRANCH: ${BRANCH_NAME} SHA1: ${GIT_COMMIT}"
-                    //    String versionFile = "${env.WORKSPACE}/${TARGET_PROJECT}_VERSION.TXT"
-                    //    sh "echo ${versionInfo} > ${versionFile}"
-                    //}
+                node('docker-inside') {
+                    script {
 
-                    String ARTIFACTS = ['*_VERSION.TXT',
-                                    '**/target/*.swf',
-                                    '**/target/*.log',
-                                    'reports/*',
-                                    '**/MD5SUMS.md5',
-                                    'Jenkinsfile'].join(', ')
+                        if ((BRANCH_NAME == 'develop') || (BRANCH_NAME ==~ /release\/.*/) || (BRANCH_NAME ==~ /master\/.*/)) {
 
-                    if ((BRANCH_NAME == 'develop') || (BRANCH_NAME ==~ /feature\/.*/)) {
-                        ARTIFACTS << ",**/target/*SNAPSHOT.jar, **/target/*SNAPSHOT.war, **/target/*SNAPSHOT*.zip"
-                        ARTIFACTS << ",**/target/*test.jar"
-                    }
+                            publishHTML (target: [
+                              allowMissing: true,
+                              alwaysLinkToLastBuild: false,
+                              keepAll: true,
+                              reportDir: 'reports/',
+                              reportFiles: 'JENKINS_ZAP_VULNERABILITY_REPORT-${BUILD_ID}.html',
+                              reportName: "ZaProxy Report"
+                            ])
 
-                    if ((BRANCH_NAME ==~ /release\/.*/) || (BRANCH_NAME ==~ /master\/.*/)) {
-                        ARTIFACTS << ",**/target/*test.jar"
-                    }
+                            publishHTML (target: [
+                              allowMissing: true,
+                              alwaysLinkToLastBuild: false,
+                              keepAll: true,
+                              reportDir: 'build/phantomas/',
+                              reportFiles: 'index.html',
+                              reportName: "Phantomas Report"
+                            ])
 
-                    if ((BRANCH_NAME == 'develop') || (BRANCH_NAME ==~ /release\/.*/) || (BRANCH_NAME ==~ /master\/.*/)) {
-                        archiveArtifacts artifacts: "${ARTIFACTS}", excludes: null, fingerprint: true, onlyIfSuccessful: true
+                            publishHTML (target: [
+                              allowMissing: true,
+                              alwaysLinkToLastBuild: false,
+                              keepAll: true,
+                              reportDir: 'screenshots/desktop/',
+                              reportFiles: 'index.html.png',
+                              reportName: "Desktop CSS Diff Report"
+                            ])
 
-                        publishHTML (target: [
-                          allowMissing: true,
-                          alwaysLinkToLastBuild: false,
-                          keepAll: true,
-                          reportDir: 'reports/',
-                          reportFiles: 'JENKINS_ZAP_VULNERABILITY_REPORT-${BUILD_ID}.html',
-                          reportName: "ZaProxy Report"
-                        ])
+                            publishHTML (target: [
+                              allowMissing: true,
+                              alwaysLinkToLastBuild: false,
+                              keepAll: true,
+                              reportDir: 'screenshots/mobile/',
+                              reportFiles: 'index.html.png',
+                              reportName: "Mobile CSS Diff Report"
+                            ])
 
-                        publishHTML (target: [
-                          allowMissing: true,
-                          alwaysLinkToLastBuild: false,
-                          keepAll: true,
-                          reportDir: 'build/phantomas/',
-                          reportFiles: 'index.html',
-                          reportName: "Phantomas Report"
-                        ])
+                            publishHTML (target: [
+                              allowMissing: true,
+                              alwaysLinkToLastBuild: false,
+                              keepAll: true,
+                              //reportDir: 'target/*',
+                              reportFiles: 'gc.png speed.har CHANGELOG.html',
+                              reportName: "Reports"
+                            ])
 
-                        publishHTML (target: [
-                          allowMissing: true,
-                          alwaysLinkToLastBuild: false,
-                          keepAll: true,
-                          reportDir: 'screenshots/desktop/',
-                          reportFiles: 'index.html.png',
-                          reportName: "Desktop CSS Diff Report"
-                        ])
+                        }
 
-                        publishHTML (target: [
-                          allowMissing: true,
-                          alwaysLinkToLastBuild: false,
-                          keepAll: true,
-                          reportDir: 'screenshots/mobile/',
-                          reportFiles: 'index.html.png',
-                          reportName: "Mobile CSS Diff Report"
-                        ])
-
-                        publishHTML (target: [
-                          allowMissing: true,
-                          alwaysLinkToLastBuild: false,
-                          keepAll: true,
-                          reportDir: 'target/*',
-                          reportFiles: 'gc.png speed.har CHANGELOG.html',
-                          reportName: "Reports"
-                        ])
-                    }
-
-                } //script
-            }
-        } // stage Archive Artifacts
-
-        stage("Git Tag") {
-            agent { label 'docker-inside' }
-            steps {
-                script {
-                    utils.gitTagLocal()
-                    utils.gitTagRemote()
-
-                    utils.setBuildName()
-                    utils.createVersionTextFile("${env.TARGET_PROJECT}_VERSION.TXT")
-               } // script
+                    } //script
+                } // node
             } // steps
-        } // stage Git Tag
+        } // stage Archive Artifacts
     }
     post {
         // always means, well, always run.
@@ -282,45 +208,21 @@ exit 0
             node('docker-inside') {
                 echo "Hi there"
                 script {
+                    utils = load "Jenkinsfile-vars"
                     utils.notifyMe()
-                    try {
-                      sh '''docker system prune -f;"'''
-                      //docker rmi "${DOCKER_BUILD_IMG}:${DOCKER_TAG}
-                    } catch(exc) {
-                      echo 'Warn: There was a problem Cleaning local docker repo. '+exc.toString()
-                    }
                 }
             } // node
         }
         failure {
             echo "I'm failing"
-            //bitbucketStatusNotify(
-            //  buildState: 'FAILED',
-            //  buildKey: 'build',
-            //  buildName: 'Build',
-            //  buildDescription: 'Something went wrong with build!'
-            //)
         }
         // changed means when the build status is different than the previous build's status.
         changed {
             echo "I'm different"
-            //bitbucketStatusNotify(
-            //  buildState: 'FAILED',
-            //  buildKey: 'test',
-            //  buildName: 'Test',
-            //  buildDescription: 'Something went wrong with tests!'
-            //)
         }
         // success, failure, unstable all run if the current build status is successful, failed, or unstable, respectively
         success {
-            node('docker-inside') {
-                echo "I succeeded"
-                //bitbucketStatusNotify ( buildState: 'SUCCESSFUL' )
-                //archive "**/*"
-                script {
-                    if (! isReleaseBranch()) { cleanWs() }
-                }
-            } //node
+          echo "I succeeded"
         }
     }
 }
