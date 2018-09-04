@@ -107,9 +107,12 @@ lvdisplay
 
 # Extends volume group. Please confirm group name.
 #add disk to volume group
+#RedHat
 vgextend rhel_fr1cslvcacrhel71 /dev/sdb
 vgextend VolGroup00 /dev/sdb
 vgextend fr1vslub1604-vg /dev/sdb
+#CentOS 7
+vgextend centos_tmpvcaccent7 /dev/sdb
 #vgextend rhel_fr1cslvcacrhel71 /dev/sdc
 
 # Free disk space should be now visible in VG. Actual number of available physical extents (PE) will be smaller,
@@ -118,26 +121,38 @@ vgdisplay
 vgdisplay -v rhel_fr1cslvcacrhel71
 vgdisplay -v VolGroup00
 
+#RedHat
 lvcreate -l 12805 -n workspace rhel_fr1cslvcacrhel71
 lvcreate -l 12805 -n docker rhel_fr1cslvcacrhel71
+#Ubuntu
 lvcreate -l 12805 -n workspace fr1vslub1604-vg
 lvcreate -l 12794 -n docker fr1vslub1604-vg
+#CentOS 7
+lvcreate -l 12805 -n workspace centos_tmpvcaccent7
+lvcreate -l 12794 -n docker centos_tmpvcaccent7
 
 lvdisplay
 
+#RedHat
 #sudo mkfs -t ext4 /dev/rhel_fr1cslvcacrhel71/workspace
-sudo mkfs -t xfs /dev/rhel_fr1cslvcacrhel71/workspace
-sudo mkfs -t ext4 /dev/fr1vslub1604-vg/workspace
+mkfs -t xfs /dev/rhel_fr1cslvcacrhel71/workspace
 #sudo mkfs -t ext4 /dev/rhel_fr1cslvcacrhel71/docker
 mkfs.xfs -n ftype=1 /dev/rhel_fr1cslvcacrhel71/docker
-sudo mkfs -t ext4 /dev/fr1vslub1604-vg/docker
+#Ubuntu
+mkfs -t ext4 /dev/fr1vslub1604-vg/workspace
+mkfs -t ext4 /dev/fr1vslub1604-vg/docker
+#CentOS 7
+mkfs -t xfs /dev/centos_tmpvcaccent7/workspace
+mkfs.xfs -n ftype=1 /dev/centos_tmpvcaccent7/docker
 
 #nano /etc/fstab
 #/dev/rhel_fr1cslvcacrhel71/workspace /workspace ext4 auto 0 2
 #/dev/rhel_fr1cslvcacrhel71/docker /docker ext4 auto 0 2
 /dev/rhel_fr1cslvcacrhel71/workspace /workspace xfs auto 0 2
 /dev/rhel_fr1cslvcacrhel71/docker /docker xfs defaults,usrquota,prjquota  0   0
-q
+#CentOS 7
+/dev/centos_tmpvcaccent7/workspace /workspace xfs auto 0 2
+/dev/centos_tmpvcaccent7/docker /docker xfs defaults,usrquota,prjquota  0   0
 
 sudo mkdir /workspace
 sudo mount /workspace
@@ -154,6 +169,9 @@ lvextend -l +100%FREE /dev/rhel_fr1cslvcacrhel71/root
 lvextend --resizefs -l +12805 /dev/mapper/rhel_fr1cslvcacrhel71-docker
 #lvextend --resizefs -l +12805 /dev/rhel_fr1cslvcacrhel71/docker
 lvextend --resizefs -l +12805 /dev/rhel_fr1cslvcacrhel71/workspace
+#CentOS 7
+lvextend --resizefs -L +6G /dev/mapper/centos_tmpvcaccent7-swap
+lvextend --resizefs -L +17G /dev/mapper/centos_tmpvcaccent7-root
 
 xfs_info /dev/mapper/rhel_fr1cslvcacrhel71-root
 # extend size of mapped logical volume (only for xfs file system since RHEL7)
@@ -310,6 +328,10 @@ mkswap /swapfile
 #To enable the swap file immediately but not automatically at boot time:
 
 swapon /swapfile
+
+#to enable swap on reboot
+sudo nano /etc/fstab
+/swapfile swap swap defaults 0 0
 
 sudo nano /etc/sysctl.conf
 sudo sysctl -p

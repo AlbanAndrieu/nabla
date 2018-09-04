@@ -213,6 +213,9 @@ Intermediate CA
 cd $JAVA_HOME/jre/lib/security/
 cacerts -> /etc/ssl/certs/java/cacerts
 
+#RedHat
+ln -s /etc/pki/java/cacerts cacerts
+
 java -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.debug=true SSLPoke crowd 443
 
 #Add certificates

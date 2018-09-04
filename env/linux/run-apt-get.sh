@@ -255,6 +255,9 @@ xhost +
 # ubuntu error messages check
 dmesg -T
 grep EDAC /var/log/messages*
+# memory issues
+egrep 'Out|Killed' /var/log/messages*
+
 ifconfig eth0
 
 #uid of current user
@@ -455,3 +458,25 @@ systemd-analyze blame
 systemd-analyze critical-chain
 systemd-analyze plot > plot.svg
 eog plot.svg
+
+#Ubuntu 16.04 upgrade
+#See https://bugs.launchpad.net/ubuntu/+source/ubuntu-release-upgrader/+bug/1613970
+#sudo rm /var/lib/dpkg/info/util-linux.postinst
+#install-docs --install-changed
+#
+#dpkg --configure initscripts
+#dpkg -l initscripts insse
+#apt-cache policy initscripts insserv
+#
+#sudo apt-get dist-upgrade -f
+#
+#dpkg --purge task-file-server nfs-kernel-server rpcbind nfs-common
+#
+#The program 'showmount' is currently not installed. You can install it by typing:
+#apt install nfs-common
+#
+#/etc/ssh/ssh_config
+#Host allmypersobox*
+#    StrictHostKeyChecking no
+#    UserKnownHostsFile /dev/null
+#    IdentityFile ~/.ssh/kenvng.rsa
