@@ -143,3 +143,11 @@ pip install -U mkdocs
 #Ubuntu 18.04 LTS
 #version `CURL_OPENSSL_3' not found (required by /usr/local/lib/python2.7/dist-packages/pycurl.so
 sudo apt-get install libcurl3 python-pip
+
+#Ubuntu 18.04 LTS
+#See https://stackoverflow.com/questions/46631071/django-migration-with-python3-6-errorrootcode-for-hash-sha3-224-was-not-found
+cd /usr/bin
+sudo cp python3.6 python3
+#recreate virtualenv
+sudo rm -Rf /opt/ansible/env36
+virtualenv --no-site-packages /opt/ansible/env36 -p python3.6

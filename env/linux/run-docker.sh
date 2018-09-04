@@ -99,8 +99,9 @@ DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 8.8
 #For Ubuntu 16.04
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --label provider=albandri
 #ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --storage-driver overlay2 --disable-legacy-registry --tlsverify --tlscacert /root/pki/ca.pem --tlscert /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.pem --tlskey /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.key --label provider=albandri
-#For RedHat 7
-#ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --data-root /docker
+#For RedHat 7.4
+ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --data-root /docker
+#ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 --data-root /docker
 # --disable-legacy-registry
 
 #Docker daemon log : See https://stackoverflow.com/questions/30969435/where-is-the-docker-daemon-log
@@ -108,7 +109,8 @@ sudo journalctl -fu docker.service
 
 sudo systemctl show --property=Environment docker
 sudo systemctl daemon-reload
-sudo service docker restart
+#sudo service docker restart
+sudo systemctl restart docker.service
 sudo systemctl status docker
 sudo systemctl status docker.service -l
 journalctl -xe
@@ -187,7 +189,11 @@ sudo docker pull nabla/ansible-jenkins-slave-docker
 
 docker run --rm nabla/ansible-jenkins-slave-docker curl http://home.nabla.mobi/html/download/README.html
 
-sudo docker run -i -t nabla/ansible-jenkins-slave-docker /bin/bash
+docker run -it nabla/ansible-jenkins-slave-docker /bin/bash
+#Sample using container to buid my local workspace
+docker run -t -d -w /sandbox/project-to-build -v /workspace/users/albandri30/:/sandbox/project-to-build:rw --name sandbox nabla/ansible-jenkins-slave:latest cat
+#More advance sample using jenkins user on my workstation in order to get bash completion, git-radar and most of the dev tools I need
+docker run -it -u 1004:999 --rm --net=host --pid=host --dns-search=misys.global.ad --init -w /sandbox/project-to-build -v /workspace/users/albandri30/:/sandbox/project-to-build:rw -v /workspace:/workspace -v /jenkins:/home/jenkins -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v /etc/bash_completion.d:/etc/bash_completion.d:ro -v/data1/home/albandri/.git-radar/:/home/jenkins/.git-radar/ --name sandbox nabla/ansible-jenkins-slave:latest /bin/bash
 #do you stuff
 docker commit 44f8471b6047 jenkins-1
 sudo docker run --rm -i -t fec8ae404140 /usr/sbin/sshd -D
@@ -209,13 +215,15 @@ gksudo baobab
 
 #check docker space
 docker system df
+#docker system prune -f --volumes
+docker system prune -f
 
 #cleaning
 docker stop $(docker ps -a -q) # stop all docker containers
 docker rm -f $(docker ps -a -q) # remove all docker containers
 docker images -q | xargs docker rmi -f # remove all docker images
-
-docker system prune -f --volumes
+#docker volume ls -f dangling=true
+docker volume prune
 
 docker stats $(docker ps --format '{{.Names}}')
 

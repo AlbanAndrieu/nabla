@@ -147,3 +147,17 @@ pre-commit run --all-files
 #https://about.gitlab.com/installation/#ubuntu
 curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
 sudo EXTERNAL_URL="https://gitlab.com/AlbanAndrieu" apt-get install gitlab-ee
+
+#Checkout BitBucket PR
+#See https://gist.github.com/piscisaureus/3342247
+#Locate the section for your github remote in the .git/config file. It looks like this:
+#[remote "origin"]
+#	fetch = +refs/heads/*:refs/remotes/origin/*
+#	url = git@github.com:joyent/node.git
+#Now add the line fetch = +refs/pull/*/head:refs/remotes/origin/pr/* to this section.
+#Obviously, change the github url to match your project's URL. It ends up looking like this:
+#[remote "origin"]
+#	url = ssh://git@scm-git-eur.misys.global.ad:7999/risk/fr-arc.git
+#	fetch = +refs/heads/*:refs/remotes/origin/*
+#	fetch = +refs/pull-requests/*/from:refs/remotes/origin/PR-*
+git fetch origin
