@@ -36,6 +36,7 @@ dhcpcd eth1
 #REM cd C:\Program Files\Zabbix Agent
 #REM zabbix_agentd.exe -c zabbix_agentd.conf -i
 #REM zabbix_agentd.exe -c zabbix_agentd.conf -s
+#REM C:\ProgramData\zabbix\zabbix_agentd.conf
 
 #Disable Windows firewall
 #I managed to connect zabbix-agent (VM 1) to zabbix server (VM 2), but I had to disable Windows firewall. Must allow port 10050 Inbound Connection in Firewall
@@ -54,5 +55,10 @@ sudo launchctl load -w /Library/LaunchAgents/org.macports.zabbix_agent.plist
 sudo launchctl list
 
 tail -f /tmp/zabbix_agentd.log
+
+#Solaris
+svcs | grep zabbix
+svcadm refresh zabbix-agent
+svcadm restart zabbix-agent
 
 exit 0

@@ -307,8 +307,14 @@ sudo update-grub
 #Ubuntu 17 add swap
 #http://linuxbsdos.com/2017/05/26/replace-the-swap-partition-with-a-swap-file-after-upgrading-to-ubuntu-17-04/
 
-swapon --show
+#Display amount of free and used memory
+#free -m
 free -h
+#Display swap usage summary
+swapon -s
+#swapon --show
+#Display user-process resource limits
+ulimit -a
 
 #https://askubuntu.com/questions/934391/how-to-resize-ubuntu-17-04-zesty-swap-file-size
 

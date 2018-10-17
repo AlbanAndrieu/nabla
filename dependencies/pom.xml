@@ -7043,12 +7043,12 @@
 					</configuration>
 				</plugin>
 				<!--
-								<plugin>
-										<groupId>com.github.github</groupId>
-										<artifactId>downloads-maven-plugin</artifactId>
-										<version>${maven.downloads.github.plugin.version}</version>
-								</plugin>
-								-->
+				<plugin>
+						<groupId>com.github.github</groupId>
+						<artifactId>downloads-maven-plugin</artifactId>
+						<version>${maven.downloads.github.plugin.version}</version>
+				</plugin>
+				-->
 				<plugin>
 					<groupId>com.github.github</groupId>
 					<artifactId>site-maven-plugin</artifactId>
