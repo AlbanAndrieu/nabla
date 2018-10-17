@@ -398,6 +398,8 @@ sudo rm -f /etc/apt/sources.list.d/ntop.list
 sudo rm -f /etc/apt/sources.list.d/dl_google_com_linux_chrome_deb.list*
 sudo rm -f /etc/apt/sources.list.d/google-chrome.list
 sudo rm -f /etc/apt/sources.list.d/repo_zabbix_com_zabbix_2_2_ubuntu.list
+sudo rm -Rf /etc/apt/sources.list.d/nvidia-docker.list*
+sudo rm -Rf /etc/apt/sources.list.d/google-talkplugin.list*
 sudo apt-get update
 
 #backup / save
@@ -451,6 +453,9 @@ sudo systemctl enable nexus.service
 sudo nano /etc/default/grub
 #And change GRUB_TIMEOUT=10 to GRUB_TIMEOUT=2
 sudo update-grub
+
+# Are we booting with systemd
+ps -p 1 -o comm=
 
 #https://www.thegeekdiary.com/centos-rhel-7-systemd-analyze-command-to-find-booting-time-delays/
 systemd-analyze time

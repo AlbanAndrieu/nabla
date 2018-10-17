@@ -55,12 +55,13 @@ bash ./check-config.sh
 ps aux |grep dnsmasq
 gksudo geany /etc/NetworkManager/NetworkManager.conf
 
-vim /etc/docker/daemon.json
+nano /etc/docker/daemon.json
 	{
-		"dns": ["172.17.0.1"]
+		"dns": ["172.17.0.1"],
+		"debug": true
 	}
 
-vim /etc/NetworkManager/dnsmasq.d/docker-bridge.conf
+nano /etc/NetworkManager/dnsmasq.d/docker-bridge.conf
 	listen-address=172.17.0.1
 
 #Comment out the dns=dnsmasq
@@ -319,5 +320,15 @@ docker exec -it pedantic_colden sh
 
 ssh -X jenkins@172.17.0.4 -o StrictHostKeyChecking=no
 xeyes ## run an X11 demo app in the client
+
+#Enable debug mode
+#https://success.docker.com/article/how-do-i-enable-debug-logging-of-the-docker-daemon
+
+#https://docs.docker.com/config/daemon/#read-the-logs
+journalctl -u docker.service
+
+#https://registry.misys.global.ad/docs/api
+#https://registry.misys.global.ad/api/v0/repositories
+#https://registry.misys.global.ad/api/v0/imagescan/status
 
 exit 0
