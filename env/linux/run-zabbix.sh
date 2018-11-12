@@ -46,6 +46,7 @@ dhcpcd eth1
 
 ls -lrta /usr/local/etc/zabbix/zabbix_agentd.conf
 #ls -lrta /usr/local/sbin/zabbix_agentd
+nano /etc/zabbix/zabbix_agentd.conf
 zabbix_agentd
 
 #Test your file

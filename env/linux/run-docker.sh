@@ -86,6 +86,10 @@ sudo docker version
 #less /var/log/upstart/docker.log
 #cat /etc/default/docker
 
+#Add plugins
+#See https://github.com/docker/docker-ce/blob/master/components/cli/docs/extend/plugins_graphdriver.md
+#docker plugin install cpuguy83/docker-overlay2-graphdriver-plugin
+
 #gksudo geany /etc/init/docker.conf /etc/systemd/system/docker.service.d/env.conf
 gksudo geany /lib/systemd/system/docker.service
 systemctl cat docker.service
@@ -98,8 +102,9 @@ DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock"
 DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 8.8.8.8 --dns 8.8.8.4"
 
 #For Ubuntu 16.04
-ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --label provider=albandri
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --label provider=albandri --experimental
 #ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --storage-driver overlay2 --disable-legacy-registry --tlsverify --tlscacert /root/pki/ca.pem --tlscert /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.pem --tlskey /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.key --label provider=albandri
+# -s cpuguy83/docker-overlay2-graphdriver-plugin
 #For RedHat 7.4
 ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --data-root /docker
 #ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 --data-root /docker
@@ -283,6 +288,7 @@ curl -L https://github.com/docker/machine/releases/download/v0.8.2/docker-machin
 sudo wget https://raw.githubusercontent.com/docker/machine/master/contrib/completion/bash/docker-machine-prompt.bash -O /etc/bash_completion.d/docker-machine-prompt.bash
 
 #Doc See https://github.com/wsargent/docker-cheat-sheet
+#OR http://msoliman.me/2017/04/20/most-common-docker-commands/
 #Checking container logs
 docker logs sandbox
 #Copying log files to the local file system
@@ -292,6 +298,8 @@ docker cp input.csv sandbox:/tmp/
 #Executing a command on a running container
 docker exec -it sandbox /bin/bash
 #docker exec -u 0 -it sandbox env TERM=xterm-256color bash -l
+docker run -i -t --entrypoint /bin/bash sandbox
+docker run -d sandbox sleep infinity
 
 #https://blog.docker.com/2013/07/docker-desktop-your-desktop-over-ssh-running-inside-of-a-docker-container/
 

@@ -124,10 +124,15 @@ mkdir init.groovy.d/
 #sudo defaults write /Library/Preferences/org.jenkins-ci httpsKeyStore /etc/ssl/almonde-jenkins.misys.global.ad/almonde-jenkins.misys.global.ad.jks
 #sudo defaults write /Library/Preferences/org.jenkins-ci httpsKeyStorePassword changeit
 
+ls /Applications/Jenkins/jenkins.war
+
 # See https://wiki.jenkins.io/display/JENKINS/Configuring+Content+Security+Policy
-System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
 System.setProperty("hudson.slaves.WorkspaceList", "_")
+System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
 System.setProperty("permissive-script-security.enabled", "true")
+System.setProperty("org.jenkinsci.plugins.gitclient.Git.timeOut", "120")
+System.setProperty("hudson.plugins.git.GitSCM.verbose", "true")
+System.setProperty("org.jenkinsci.plugins.docker.workflow.client.DockerClient.CLIENT_TIMEOUT", "240")
 
 #Hook
 $JENKINS_URL/git/notifyCommit
