@@ -1,6 +1,12 @@
+#https://home.nabla.mobi:7000/ui/plugins/add/zoneminder
 
 #zoneminder
+pkg update -f
+pkg upgrade
+pkg install nano
+
 pkg install zoneminder
+
 The schroedinger port currently does not have a maintainer. As a result, it is
 more likely to have unresolved issues, not be up-to-date, or even be removed in
 the future. To volunteer to maintain this port, please create an issue at:
@@ -315,3 +321,48 @@ Upgrades
 	service zoneminder start
 
 echo "http://192.168.0.25/zoneminder/"
+
+#See https://forums.freenas.org/index.php?threads/howto-installing-zoneminder-in-a-freenas-11-jail.62135/
+
+nano /usr/local/my.cnf
+#sql_mode=NO_ENGINE_SUBSTITUTION,STRICT_TRANS_TABLES
+sql_mode=NO_ENGINE_SUBSTITUTION
+
+ls -lrta  /usr/ports/multimedia
+
+service mysql-server restart
+
+#https://forums.freebsd.org/threads/problems-accessing-usb-devices-with-non-root-user-inside-jail.49946/
+
+usbconfig
+
+/dev/video0
+
+Set /etc/sysctl.conf in your base system to
+vfs.usermount=1
+
+sh /etc/rc.d/devfs restart
+
+sysctl vfs.usermount
+
+# https://wiki.zoneminder.com/Foscam
+
+# https://www.ispyconnect.com/man.aspx?n=foscam
+http://192.168.0.48:88/cgi-bin/CGIProxy.fcgi?cmd=snapPicture2&usr=admin&pwd=&
+rtsp://admin:@192.168.0.48:88/videoMain
+
+cd /usr/local/share/zoneminder
+cd /usr/local/www/zoneminder
+
+In /usr/local/etc/apache24/httpd.conf you need to find the lines
+
+# https://forums.freenas.org/index.php?threads/howto-installing-zoneminder-in-a-freenas-11-jail.62135/
+Code:
+<IfModule mpm_prefork_module>
+        #LoadModule cgi_module libexec/apache24/mod_cgi.so
+</IfModule>
+service apache24 restart
+
+cd /usr/local/www/zoneminder/api
+
+#https://wiki.zoneminder.com/Hardware_Compatibility_List#Network_Cameras
