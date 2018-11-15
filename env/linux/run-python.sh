@@ -101,6 +101,13 @@ sudo pip3.6 install ansicolors termcolor colorama
 sudo pip3.6 freeze > requirements-current-3.6.txt
 sudo pip3.6 install -r requirements-current-3.6.txt
 
+#Upgrade requirements.txt
+#pip install pip-tools pip-review
+#pip-review --auto
+pip install pip-upgrader
+
+pip-upgrade requirements-current-3.6.txt
+
 #pip uninstall docker docker-py docker-compose
 
 #Ubuntu 16 is missing pip3.6

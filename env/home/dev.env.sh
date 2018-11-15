@@ -543,10 +543,21 @@ export PATH=${LUMBERMILL_HOME}/bin:${PATH}
 alias lumbermill='java -jar ${LUMBERMILL_HOME}/dist/lib/lumbermill.jar'
 echo "Lumbermill port is 4445"
 
+#AWS EC2
+#export EC2_KEYPAIR=<your keypair name> # name only, not the file name
+#export EC2_URL=https://ec2.<your ec2 region>.amazonaws.com
+#export EC2_PRIVATE_KEY=$HOME/<where your private key is>/pk-XXXXXXXXXXXXXXXXXXXXXXXXXXXX.pem
+#export EC2_CERT=$HOME/<where your certificate is>/cert-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.pem
+
 export EC2_KEYPAIR=albandri # name only, not the file name
 export EC2_URL=https://ec2.us-west-2.amazonaws.com
 export EC2_PRIVATE_KEY=$HOME/.ec2/pk-FMQ27HNLF2PVMPVL7MPWHEY5GWDKDOT2.pem
 export EC2_CERT=$HOME/.ec2/cert-FMQ27HNLF2PVMPVL7MPWHEY5GWDKDOT2.pem
+
+export GITHUB_OAUTH_CLIENT_ID=c52c293400ba80af105a
+export GITHUB_OAUTH_CLIENT_SECRET=todo
+
+export GITHUB_TOKEN=todo
 
 export WPT_API_KEY="A.01ea5a02081b6d10415d7b0e7c844e73"
 
@@ -589,15 +600,6 @@ then
   export PATH=${PATH}:${DRIVE_PATH}/Windows/system32:${DRIVE_PATH}/Windows
 fi
 
-#AWS EC2
-#export EC2_KEYPAIR=<your keypair name> # name only, not the file name
-#export EC2_URL=https://ec2.<your ec2 region>.amazonaws.com
-#export EC2_PRIVATE_KEY=$HOME/<where your private key is>/pk-XXXXXXXXXXXXXXXXXXXXXXXXXXXX.pem
-#export EC2_CERT=$HOME/<where your certificate is>/cert-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.pem
-export EC2_KEYPAIR=albandri # name only, not the file name
-export EC2_URL=https://ec2.us-west-2.amazonaws.com
-export EC2_PRIVATE_KEY=$HOME/.ec2/pk-FMQ27HNLF2PVMPVL7MPWHEY5GWDKDOT2.pem
-export EC2_CERT=$HOME/.ec2/cert-FMQ27HNLF2PVMPVL7MPWHEY5GWDKDOT2.pem
 ###
 # INCLUDE LANGUAGE SPECIFIC
 ###
