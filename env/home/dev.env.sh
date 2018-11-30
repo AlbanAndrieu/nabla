@@ -84,9 +84,9 @@ fi
 if [ -d "${DRIVE_PATH}/cygwin/bin" ] ; then
     PATH="${DRIVE_PATH}/cygwin/bin:$PATH"
 fi
-if [ -d "${HOME}/.linuxbrew/bin" ] ; then
-    PATH="${HOME}/.linuxbrew/bin:$PATH"
-fi
+#if [ -d "${HOME}/.linuxbrew/bin" ] ; then
+#    PATH="${HOME}/.linuxbrew/bin:$PATH"
+#fi
 if [ -d "${HOME}/.git-radar" ] ; then
     PATH="${HOME}/.git-radar/:$PATH"
 fi

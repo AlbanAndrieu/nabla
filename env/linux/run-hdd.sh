@@ -321,7 +321,7 @@ ulimit -a
 swapoff /swapfile
 
 #dd if=/dev/zero of=/swapfile bs=1024 count=65536
-fallocate -l 4G /swapfile
+fallocate -l 8G /swapfile
 
 #Change the persmissions of the newly created file:
 

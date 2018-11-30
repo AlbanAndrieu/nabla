@@ -99,3 +99,7 @@ unzip xdoclet-lib-1.2.3.zip
 
 #In eclipse preferences java EE xdoclet
 #/workspace/users/albandri30/xdoclet-1.2.3
+
+# See https://www.eclipse.org/che/docs/che-6/quick-start.html
+docker run --rm --net host eclipse/che-ip:nightly
+docker run -ti -v /var/run/docker.sock:/var/run/docker.sock -v /data1/home/albandri/eclipse-workspace-che:/data eclipse/che start
