@@ -100,6 +100,17 @@ unzip xdoclet-lib-1.2.3.zip
 #In eclipse preferences java EE xdoclet
 #/workspace/users/albandri30/xdoclet-1.2.3
 
+#Docker
 # See https://www.eclipse.org/che/docs/che-6/quick-start.html
 docker run --rm --net host eclipse/che-ip:nightly
 docker run -ti -v /var/run/docker.sock:/var/run/docker.sock -v /data1/home/albandri/eclipse-workspace-che:/data eclipse/che start
+
+#RedHat 6
+yum install python27-python-pip
+#scl enable devtoolset-4 bash
+cd /workspace/sandbox/cmr
+scl -l
+scl enable python27 bash
+
+#eclipse
+/opt/rh/devtoolset-4/root/usr/bin/eclipse

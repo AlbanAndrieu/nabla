@@ -110,6 +110,29 @@ ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock 
 #ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 --data-root /docker
 # --disable-legacy-registry
 
+#For RedHat CentOS
+#See https://www.ostechnix.com/install-dnf-centos-7/
+
+#sudo yum install epel-release
+#sudo yum install dnf
+
+#wget http://springdale.math.ias.edu/data/puias/unsupported/7/x86_64//dnf-0.6.4-2.sdl7.noarch.rpm
+#wget http://springdale.math.ias.edu/data/puias/unsupported/7/x86_64/dnf-conf-0.6.4-2.sdl7.noarch.rpm
+#wget http://springdale.math.ias.edu/data/puias/unsupported/7/x86_64/python-dnf-0.6.4-2.sdl7.noarch.rpm
+#yum install dnf-0.6.4-2.sdl7.noarch.rpm dnf-conf-0.6.4-2.sdl7.noarch.rpm python-dnf-0.6.4-2.sdl7.noarch.rpm
+
+#See http://www.projectatomic.io/blog/2015/06/notes-on-fedora-centos-and-docker-storage-drivers/
+
+#dnf install -y docker-storage-setup.noarch
+
+#See https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-direct-lvm-mode-for-production
+sudo systemctl stop docker
+
+yum install device-mapper-persistent-data lvm2
+sudo apt-get install thin-provisioning-tools lvm2
+
+nano /etc/docker/daemon.json
+
 #Docker daemon log : See https://stackoverflow.com/questions/30969435/where-is-the-docker-daemon-log
 sudo journalctl -fu docker.service
 
@@ -223,6 +246,7 @@ gksudo baobab
 docker system df
 #docker system prune -f --volumes
 docker system prune -f
+docker system prune -a --volumes
 
 #cleaning
 docker stop $(docker ps -a -q) # stop all docker containers
