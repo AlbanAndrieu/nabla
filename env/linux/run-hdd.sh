@@ -115,6 +115,10 @@ vgextend fr1vslub1604-vg /dev/sdb
 vgextend centos_tmpvcaccent7 /dev/sdb
 #vgextend rhel_fr1cslvcacrhel71 /dev/sdc
 
+#Already create vgcreate by VMWare
+#vgcreate docker /dev/xvdf
+#vgcreate docker /dev/sdb
+
 # Free disk space should be now visible in VG. Actual number of available physical extents (PE) will be smaller,
 # than expected with disk size, some of the space will be taken by metadata
 vgdisplay
@@ -178,8 +182,9 @@ xfs_info /dev/mapper/rhel_fr1cslvcacrhel71-root
 #xfs_growfs -d /dev/mapper/rhel_fr1cslvcacrhel71-root
 xfs_growfs -d /dev/rhel_fr1cslvcacrhel71/root
 
-#extend size of filesystem
+#extend size of filesystem on Centos 6
 #resize2fs /dev/rhel_fr1cslvcacrhel71/root
+resize2fs /dev/mapper/VolGroup00-workspace
 
 df -h
 lsblk -o NAME,SIZE,GROUP,TYPE,FSTYPE,MOUNTPOINT
@@ -341,5 +346,51 @@ sudo nano /etc/fstab
 
 sudo nano /etc/sysctl.conf
 sudo sysctl -p
+
+#Resize
+#rm -Rf /var/lib/docker/*
+vgchange -a y
+cd /
+umount /docker
+fdisk -l
+lsblk
+#ext 4 only
+#e2fsck -fy /dev/mapper/centos_tmpvcaccent7-docker
+#resize2fs /dev/mapper/centos_tmpvcaccent7-docker 4G
+lvreduce -L -10G /dev/mapper/centos_tmpvcaccent7-docker
+
+#See https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-direct-lvm-mode-for-production
+
+lvcreate --wipesignatures y -n thinpoolmeta centos_tmpvcaccent7 -l 1%VG
+
+sudo lvconvert -y \
+--zero n \
+-c 512K \
+--thinpool centos_tmpvcaccent7/docker \
+--poolmetadata centos_tmpvcaccent7/thinpoolmeta
+
+nano /etc/lvm/profile/docker-thinpool.profile
+activation {
+  thin_pool_autoextend_threshold=80
+  thin_pool_autoextend_percent=20
+}
+
+sudo lvchange --metadataprofile docker-thinpool centos_tmpvcaccent7/docker
+sudo lvs -o+seg_monitor
+
+nano /etc/docker/daemon.json
+{
+    "storage-driver": "devicemapper",
+    "storage-opts": [
+    "dm.thinpooldev=centos_tmpvcaccent7-docker",
+    "dm.use_deferred_removal=true",
+    "dm.use_deferred_deletion=true"
+    ]
+}
+
+sudo systemctl start docker
+
+journalctl -fu dm-event.service
+lvs -a
 
 exit 0

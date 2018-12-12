@@ -246,7 +246,14 @@ cd nodejs/v0.12.4
 
 #get LTS stable version
 npm view npm dist-tags
-npm install -g npm@2.13.0
+#npm install -g npm@2.13.0
+
+#Upgrade npm
+sudo npm install npm@latest -g
+#Upgrade mnodejs
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
 
 #install compass
 #sudo apt-get install ruby-full rubygems1.8

@@ -24,7 +24,7 @@ git config --global core.autocrlf input
 git config --unset credential.helper
 git config --global credential.helper store
 
-git config --global help.autocorrect 1
+git config --global help.autocorrect 8
 git config --global color.ui auto
 git config --global branch.master.rebase true
 git config --global branch.autosetuprebase always
@@ -165,3 +165,9 @@ sudo apt-get install gitlab-ce
 #	fetch = +refs/heads/*:refs/remotes/origin/*
 #	fetch = +refs/pull-requests/*/from:refs/remotes/origin/PR-*
 git fetch origin
+
+for d in $(find . -type d -name .git); do (mr register $d/..); done
+mr update
+
+# See https://hub.github.com/
+alias git=hub
