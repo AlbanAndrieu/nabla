@@ -246,7 +246,7 @@ gksudo baobab
 docker system df
 #docker system prune -f --volumes
 docker system prune -f
-docker system prune -a --volumes
+docker system prune -a --volumes -y
 
 #cleaning
 docker stop $(docker ps -a -q) # stop all docker containers

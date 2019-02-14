@@ -809,6 +809,10 @@ fi
 #  echo "Conky is not installed"
 #fi
 
+export SHELLCHECK_OPTS="-e SC2154 -e SC2086"
+export JIRA_USER="aandrieu"
+export JIRA_PASSWORD="Samsung123$"
+
 echo "PATH is ${PATH}"
 
 #exit 0

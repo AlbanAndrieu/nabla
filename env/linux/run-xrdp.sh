@@ -57,3 +57,6 @@ pkill vino
 export DISPLAY=:0.0
 /usr/lib/vino/vino-server &
 3389
+
+sudo apt install freerdp-x11
+xfreerdp --sec rdp -d NABLA -u aandrieu WINDOWSBOX

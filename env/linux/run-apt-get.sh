@@ -400,6 +400,12 @@ sudo rm -f /etc/apt/sources.list.d/google-chrome.list
 sudo rm -f /etc/apt/sources.list.d/repo_zabbix_com_zabbix_2_2_ubuntu.list
 sudo rm -Rf /etc/apt/sources.list.d/nvidia-docker.list*
 sudo rm -Rf /etc/apt/sources.list.d/google-talkplugin.list*
+sudo rm -Rf /etc/apt/sources.list.d/yarn.list
+sudo rm -Rf /etc/apt/sources.list.d/github_git-lfs.list
+sudo rm -Rf /etc/apt/sources.list.d/download_webmin_com_download_repository.list
+sudo rm -Rf /etc/apt/sources.list.d/nodesource.list
+sudo rm -Rf /etc/apt/sources.list.d/ppa_webupd8team_nemo_bionic.list
+sudo rm -Rf /etc/apt/sources.list.d/ppa_awstools_dev_awstools_bionic.list
 sudo apt-get update
 
 #backup / save

@@ -53,6 +53,8 @@ sudo \rm -Rf /var/log/elasticsearch/elasticsearch.log*
 #\rm -Rf /var/lib/docker/overlay2/*
 \rm -Rf /workspace/jboss-as-7.1.1.Final/standalone/data/content*
 
+brew cleanup || true
+
 ./cleanup-jenkins.sh
 
 find ~/.thumbnails -type f -atime +7 -exec rm {} \;
