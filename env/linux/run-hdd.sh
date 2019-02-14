@@ -176,6 +176,13 @@ lvextend --resizefs -l +12805 /dev/rhel_fr1cslvcacrhel71/workspace
 #CentOS 7
 lvextend --resizefs -L +6G /dev/mapper/centos_tmpvcaccent7-swap
 lvextend --resizefs -L +17G /dev/mapper/centos_tmpvcaccent7-root
+# RedHat 6
+lvextend --resizefs -L +8G /dev/VolGroup00/swapvol
+lvextend --resizefs -L +2G /dev/VolGroup00/optvol
+lvextend --resizefs -L +2G /dev/VolGroup00/varvol
+lvextend --resizefs -L +2G /dev/VolGroup00/tmpvol
+lvextend --resizefs -L +6G /dev/VolGroup00/usrvol
+lvextend --resizefs -L +6G /dev/VolGroup00/rootvol
 
 xfs_info /dev/mapper/rhel_fr1cslvcacrhel71-root
 # extend size of mapped logical volume (only for xfs file system since RHEL7)

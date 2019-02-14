@@ -16,4 +16,6 @@ echo 'export PATH="$HOME/.linuxbrew/bin:$PATH"' >>~/.bash_profile
 brew --version
 brew doctor
 
+brew update && brew upgrade; brew cleanup
+
 exit 0

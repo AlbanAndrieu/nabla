@@ -176,3 +176,16 @@ ansigenome gendoc -f md
 sudo pip install ansible-container
 
 sudo pip3.5 install --upgrade ansible-cmdb
+
+# Install ARA
+#See https://github.com/openstack/ara
+# Install ARA
+pip install ara
+# Load environment variables that inform Ansible to use ARA regardless
+# of its location or python version
+source <(python -m ara.setup.env)
+# Run your Ansible playbook or commands
+# ansible-playbook myplaybook.yml
+# Start the ARA standalone webserver
+ara-manage runserver
+# Browse http://127.0.0.1:9191

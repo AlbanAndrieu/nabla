@@ -17,4 +17,7 @@ Compose s s  = ß"
 echo "Compose ? ? = ¿"
 echo "Compose << = «"
 
+#On Ubuntu 18.04
+sudo apt install gnome-tweaks
+
 exit 0
