@@ -495,5 +495,5 @@ eog plot.svg
 #Ubuntu 18.04 upgrade
 #sudo dpkg-reconfigure dash
 sudo service apparmor stop
-sudo update-rc.d -f apparmor remove 
+sudo update-rc.d -f apparmor remove
 sudo apt-get remove apparmor apparmor-utils

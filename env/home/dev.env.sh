@@ -810,8 +810,8 @@ fi
 #fi
 
 export SHELLCHECK_OPTS="-e SC2154 -e SC2086"
-export JIRA_USER="aandrieu"
-export JIRA_PASSWORD="Samsung123$"
+
+source ./pass.env.sh
 
 echo "PATH is ${PATH}"
 
