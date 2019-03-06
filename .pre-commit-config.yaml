@@ -1,22 +1,31 @@
+---
+default_language_version:
+    python: python3.6
+
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks.git
     rev: v2.1.0
     hooks:
     -   id: trailing-whitespace
     -   id: end-of-file-fixer
-    -   id: autopep8-wrapper
     -   id: check-added-large-files
+        args: ['--maxkb=123']
     -   id: check-case-conflict
     -   id: check-docstring-first
     -   id: check-executables-have-shebangs
-    -   id: check-json
-    -   id: check-xml
         exclude: >
                   (?x)^(
                       env/home/log4j.xml
+                      clean.bat|
+                      build.bat|
+                      mvnw.cmd|
+                      .mvn/
                   )$
+    -   id: check-json
+    -   id: check-xml
     -   id: check-yaml
     -   id: check-symlinks
+    -   id: check-merge-conflict
     -   id: debug-statements
         exclude: >
                   (?x)^(
@@ -26,12 +35,19 @@ repos:
     -   id: detect-private-key
         exclude: >
                   (?x)^(
+                      .ssh/id_rsa|
                       roles/jenkins-master/defaults/main.yml|
                       roles/jenkins-master/README.md|
                       env/scripts/server-connector.py
                   )$
     -   id: double-quote-string-fixer
     -   id: name-tests-test
+        exclude: >
+                  (?x)^(
+                      .*/molecule/default/tests/test_default.py
+                  )$
+#    -   id: no-commit-to-branch
+#        args: [--branch, develop, --branch, master, --branch, release/*]
     -   id: end-of-file-fixer
     -   id: fix-encoding-pragma
     -   id: requirements-txt-fixer
@@ -43,6 +59,7 @@ repos:
                       env/scripts/server-connector.py
                   )$
         args: [--max-line-length=120]
+    -   id: file-contents-sorter
 -   repo: https://github.com/pre-commit/pre-commit.git
     rev: v1.14.3
     hooks:
@@ -56,25 +73,44 @@ repos:
     rev: v0.7.2
     hooks:
     -   id: add-trailing-comma
-#-   repo: meta
-#    hooks:
-#    -   id: check-hooks-apply
-#    -   id: check-useless-excludes
-#-   repo: https://github.com/willthames/ansible-lint.git
-#    sha: v3.4.20
-#    hooks:
-#    -   id: ansible-lint
-#        files: \.(yaml|yml)$
-#        exclude: '.travis.yml'
+-   repo: https://github.com/willthames/ansible-lint.git
+    rev: v4.1.0
+    hooks:
+    -   id: ansible-lint
+        files: \.(yaml|yml)$
+        exclude: '.travis.yml'
 -   repo: git://github.com/doublify/pre-commit-hindent
-    rev: b3680b6ebf9f7cf29b19307f246adef66756feef
+    sha: master
     hooks:
     -   id: hindent
-#-   repo: git://github.com/detailyang/pre-commit-shell
-#    sha: 1.0.2
-#    hooks:
-#    - id: shell-lint
+-   repo: https://github.com/detailyang/pre-commit-shell
+    rev: 1.0.4
+    hooks:
+    -   id: shell-lint
+        #entry: pre_commit_hooks/shell-lint.sh -x
+        args: [-x]
+        exclude: >
+                  (?x)^(
+                      mvnw|
+                      hooks
+                  )$
 #-   repo: git://github.com/doublify/pre-commit-clang-format
 #    sha: 994f99b6498e9c76341367ecaf76c69dfb4ea4f2
 #    hooks:
 #    -   id: clang-format
+-   repo: https://github.com/asottile/pyupgrade
+    rev: v1.11.2
+    hooks:
+    -   id: pyupgrade
+-   repo: https://github.com/pre-commit/mirrors-autopep8
+    rev: v1.4.3
+    hooks:
+    -   id: autopep8
+#-   repo: https://github.com/PyCQA/bandit
+#    rev: master
+#    hooks:
+#    - id: bandit
+-   repo: https://github.com/IamTheFij/ansible-pre-commit
+    rev: v0.1.2
+    hooks:
+    -   id: encryption-check
