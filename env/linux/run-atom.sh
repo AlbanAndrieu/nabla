@@ -9,6 +9,8 @@ sudo apt-get install atom
 #sudo apt install apmd xapm
 apm install linter
 apm install linter-shellcheck
+apm install language-jenkinsfile
+apm install linter-jenkins
 
 #https://atom.io/packages/python-debugger
 apm install python-debugger language-python

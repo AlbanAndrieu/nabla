@@ -119,6 +119,7 @@
 		<ajax4jsf.version>1.0.6</ajax4jsf.version>
 		<!--<akka.version>2.3.7</akka.version>-->
 		<akka.version>2.5.10</akka.version>
+		<org.assertj.version>3.4.1</org.assertj.version>
 		<amp.fullSource>false</amp.fullSource>
 		<!-- APPFUSE settings -->
 		<amp.genericCore>true</amp.genericCore>
@@ -320,6 +321,7 @@
 		<groovy.eclipse.compiler.version>2.9.2-01</groovy.eclipse.compiler.version>
 		<!-- works with cxf 2.7.14 -->
 		<groovy.version>2.4.12</groovy.version>
+		<groovy.cps.version>1.12</groovy.cps.version>
 		<groovydoc.directory.name>groovydocs</groovydoc.directory.name>
 		<!--<guava.version>14.0.1</guava.version>-->
 		<!-- WARNING 16.0-rc1 does not work with selenium -->
@@ -1826,6 +1828,11 @@
 					</exclusion>
 				</exclusions>
 			</dependency>
+            <dependency>
+                <groupId>com.cloudbees</groupId>
+                <artifactId>groovy-cps</artifactId>
+                <version>${groovy.cps.version}</version>
+            </dependency> 			
 			<dependency>
 				<groupId>org.codehaus.groovy</groupId>
 				<artifactId>groovy-eclipse-compiler</artifactId>
@@ -5575,6 +5582,11 @@
 				<scope>test</scope>
 			</dependency>
 			<!-- // Misc -->
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${org.assertj.version}</version>
+            </dependency>   			
 		</dependencies>
 	</dependencyManagement>
 	<repositories>

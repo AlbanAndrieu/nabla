@@ -5,6 +5,12 @@ set -xv
 #smb://ptxw011116/share/
 
 sudo apt-get install -y samba samba-common python-glade2 system-config-samba
+
+#check mountable filesystem
+lsof | grep '/srv'
+#umount auto_srv
+less /etc/mtab
+
 #https://help.ubuntu.com/lts/serverguide/samba-fileserver.html
 sudo mkdir -p /srv/samba/share
 sudo chown nobody:nogroup /srv/samba/share/

@@ -491,3 +491,9 @@ eog plot.svg
 #    StrictHostKeyChecking no
 #    UserKnownHostsFile /dev/null
 #    IdentityFile ~/.ssh/kenvng.rsa
+
+#Ubuntu 18.04 upgrade
+#sudo dpkg-reconfigure dash
+sudo service apparmor stop
+sudo update-rc.d -f apparmor remove 
+sudo apt-get remove apparmor apparmor-utils

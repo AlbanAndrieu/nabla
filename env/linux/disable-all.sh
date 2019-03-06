@@ -1,98 +1,106 @@
 #!/bin/bash
 set -xv
 
-sudo service webmin stop
-sudo service usermin stop
-sudo service jetty stop
-sudo service jenkins stop
-sudo service selenium_hub stop
-sudo service sonar stop
-sudo service rabbitmq-server stop
-sudo service jboss stop
-sudo service zabbix-agent stop
-sudo service supervisor stop
-sudo service mon stop
-sudo service tomcat7 stop
-sudo service elasticsearch stop
-sudo service logstash stop
-sudo service logstash-web stop
-sudo service collectd stop
-sudo service docker stop
-sudo service docker.io stop
-sudo service apache2 stop
-sudo service ChrononController stop
-sudo service postgresql stop
-sudo service mysql stop
-sudo service nginx stop
-sudo service varnish stop
-sudo service gearman-job-server stop
-sudo service ansible-tower stop
-sudo service redis-server stop
-sudo service private-bower stop
-sudo service mongod stop
-sudo service nis stop
-sudo service teamviewerd stop
+systemctl stop webmin
+systemctl stop usermin
+systemctl stop jetty
+systemctl stop jenkins
+systemctl stop selenium_hub
+systemctl stop sonar
+systemctl stop rabbitmq-server
+systemctl stop jboss
+systemctl stop zabbix-agent
+systemctl stop supervisor
+systemctl stop mon
+systemctl stop tomcat7
+systemctl stop elasticsearch
+systemctl stop logstash
+systemctl stop logstash-web
+systemctl stop collectd
+systemctl stop mailman.service
+systemctl stop bumblebeed
+systemctl stop apparmor
+systemctl stop docker
+systemctl stop docker.io
+systemctl stop apache2
+systemctl stop ChrononController
+systemctl stop postgresql
+systemctl stop mysql
+systemctl stop nginx
+systemctl stop varnish
+systemctl stop gearman-job-server
+systemctl stop ansible-tower
+systemctl stop redis-server
+systemctl stop private-bower
+systemctl stop mongod
+systemctl stop nis
+systemctl stop teamviewerd
 
-sudo service slapd stop
-sudo service snmpd stop
-sudo service sendmail stop
-sudo service iscsitarget stop
-sudo service nmbd stop
-sudo service smbd stop
-sudo service samba stop
-sudo service lightdm stop
-sudo service avahi-daemon stop
-sudo sh -c "echo manual > /etc/init/avahi-daemon.override"
-sudo service memcached stop
-sudo service clamav-freshclam stop
-sudo service clamav-daemon stop
-sudo service osspd stop
-sudo service cups stop
-sudo service cups-browsed stop
-sudo service ypbind stop
-sudo service apt-cacher-ng stop
+systemctl stop slapd
+systemctl stop snmpd
+systemctl stop sendmail
+systemctl stop iscsitarget
+systemctl stop nmbd
+systemctl stop smbd
+systemctl stop samba
+systemctl stop lightdm
+systemctl stop avahi-daemon
+sh -c "echo manual > /etc/init/avahi-daemon.override"
+systemctl stop memcached
+systemctl stop clamav-freshclam
+systemctl stop clamav-daemon
+systemctl stop osspd
+systemctl stop cups
+systemctl stop cups-browsed
+systemctl stop ypbind
+systemctl stop apt-cacher-ng
 
-sudo update-rc.d -f webmin remove
-sudo update-rc.d -f usermin remove
-sudo update-rc.d -f jetty remove
-sudo update-rc.d -f jenkins remove
-sudo update-rc.d -f selenium_hub remove
-sudo update-rc.d -f selenium-standalone remove
-sudo update-rc.d -f sonar remove
-sudo update-rc.d -f rabbitmq-server remove
-sudo update-rc.d -f jboss remove
-sudo update-rc.d -f zabbix-agent remove
-sudo update-rc.d -f supervisor remove
-#sudo update-rc.d -f supervisord remove
-sudo update-rc.d -f mon remove
-sudo update-rc.d -f sendmail remove
-sudo update-rc.d -f tomcat7 remove
-sudo update-rc.d -f elasticsearch remove
-sudo update-rc.d -f logstash remove
-sudo update-rc.d -f logstash-web remove
+#update-rc.d -f todo remove
+
+systemctl disable webmin remove
+systemctl disable usermin remove
+systemctl disable jetty remove
+systemctl disable jenkins remove
+systemctl disable selenium_hub remove
+systemctl disable selenium-standalone remove
+systemctl disable sonar remove
+systemctl disable rabbitmq-server remove
+systemctl disable jboss remove
+systemctl disable zabbix-agent remove
+systemctl disable supervisor remove
+#systemctl disable supervisord remove
+systemctl disable mon remove
+systemctl disable sendmail remove
+systemctl disable tomcat7 remove
+systemctl disable elasticsearch remove
+systemctl disable logstash remove
+systemctl disable logstash-web remove
 #sudo rm /etc/init.d/logstash-web
-sudo update-rc.d -f collectd remove
-sudo update-rc.d -f docker remove
-sudo update-rc.d -f apache2 remove
-sudo update-rc.d -f ChrononController remove
-sudo update-rc.d -f postgresql remove
-sudo update-rc.d -f mysql remove
-sudo update-rc.d -f nginx remove
-sudo update-rc.d -f varnish remove
-sudo update-rc.d -f gearman-job-server remove
+systemctl disable collectd remove
+systemctl disable mailman.service remove
+systemctl disable bumblebeed remove
+systemctl disable apparmor remove
+systemctl disable docker remove
+systemctl disable apache2 remove
+systemctl disable ChrononController remove
+systemctl disable postgresql remove
+systemctl disable mysql remove
+systemctl disable nginx remove
+systemctl disable varnish remove
+systemctl disable gearman-job-server remove
 #sudo apt-get remove gearman gearman-job-server
-sudo update-rc.d -f ansible-tower remove
-sudo update-rc.d -f redis-server remove
-sudo update-rc.d -f private-bower remove
-sudo update-rc.d -f mongod remove
-sudo update-rc.d -f teamviewerd remove
-sudo update-rc.d -f nis remove
-sudo update-rc.d -f cfengine2 remove
-sudo update-rc.d -f cfengine3 remove
-sudo update-rc.d -f memcached remove
-sudo update-rc.d -f clamav-freshclam remove
-sudo update-rc.d -f clamav-daemon remove
-sudo update-rc.d -f osspd remove
-sudo update-rc.d -f cups remove
-sudo update-rc.d -f cups-browsed remove
-sudo update-rc.d -f ypbind remove
+systemctl disable ansible-tower remove
+systemctl disable redis-server remove
+systemctl disable private-bower remove
+systemctl disable mongod remove
+systemctl disable teamviewerd remove
+systemctl disable nis remove
+systemctl disable cfengine2 remove
+systemctl disable cfengine3 remove
+systemctl disable memcached remove
+systemctl disable clamav-freshclam remove
+systemctl disable clamav-daemon remove
+systemctl disable osspd remove
+systemctl disable cups remove
+systemctl disable cups-browsed remove
+systemctl disable ypbind remove

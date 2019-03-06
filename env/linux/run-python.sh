@@ -153,3 +153,9 @@ sudo apt-get install libcurl3 python-pip
 #recreate virtualenv
 sudo rm -Rf /opt/ansible/env36
 virtualenv --no-site-packages /opt/ansible/env36 -p python3.6
+
+#Run setuptools to create python package
+#See https://packaging.python.org/tutorials/packaging-projects/#setup-py
+
+python3 -m pip install --user --upgrade setuptools wheel
+python3 setup.py sdist bdist_wheel

@@ -1,98 +1,99 @@
 #!/bin/bash
 set -xv
 
-service jenkins stop
-service selenium_hub stop
-service apache2 stop
-service tomcat6 stop
-service tomcat7 stop
-service jboss stop
+systemctl stop jenkins
+systemctl stop selenium_hub
+systemctl stop apache2
+systemctl stop tomcat6
+systemctl stop tomcat7
+systemctl stop jboss
 
-service sonar stop
-service nexus stop
-service crowd stop
-service mysql stop
+systemctl stop sonar
+systemctl stop nexus
+systemctl stop crowd
+systemctl stop mysql
 #mountall
-service icinga stop
-#service ssh stop
+systemctl stop icinga
+#systemctl stop ssh
 
-service rabbitmq-server stop
-service zabbix-agent stop
-service supervisord stop
-service mon stop
-service mongod stop
-service nginx stop
+systemctl stop rabbitmq-server
+systemctl stop zabbix-agent
+systemctl stop supervisord
+systemctl stop mon
+systemctl stop mongod
+systemctl stop nginx
 
-#service lightdm stop
+#systemctl stop lightdm
 #if mouse get stuck
 #http://superuser.com/questions/72112/mouse-clicks-suddenly-stopped-working-in-ubuntu
 #apt-get remove flashplugin-nonfree flashplugin-installer
 #metacity --replace
 
-service webmin stop
-service usermin stop
-service jetty stop
-#service jenkins stop
-#service sonar stop
-service rabbitmq-server stop
-#service jboss stop
-service supervisord stop
-service mon stop
-#service tomcat7 stop
-service elasticsearch stop
-service logstash stop
-service logstash-web stop
-service collectd stop
-service docker stop
-service docker.io stop
+systemctl stop webmin
+systemctl stop usermin
+systemctl stop jetty
+#systemctl stop jenkins
+#systemctl stop sonar
+systemctl stop rabbitmq-server
+#systemctl stop jboss
+systemctl stop supervisord
+systemctl stop mon
+#systemctl stop tomcat7
+systemctl stop elasticsearch
+systemctl stop logstash
+systemctl stop logstash-web
+systemctl stop collectd
+systemctl stop mailman.service
+systemctl stop docker
+systemctl stop docker.io
 #sudo apt-get -y remove docker*
-#service apache2 stop
-service ChrononController stop
-service postgresql stop
-#service mysql stop
-service nginx stop
-service varnish stop
-service gearman-job-server stop
-service redis-server stop
-#service private-bower stop
-service nis stop
-service teamviewerd stop
-#service conky stop
+#systemctl stop apache2
+systemctl stop ChrononController
+systemctl stop postgresql
+#systemctl stop mysql
+systemctl stop nginx
+systemctl stop varnish
+systemctl stop gearman-job-server
+systemctl stop redis-server
+#systemctl stop private-bower
+systemctl stop nis
+systemctl stop teamviewerd
+#systemctl stop conky
 
-service slapd stop
+systemctl stop slapd
 #sudo apt-get -y remove slapd
-service snmpd stop
-#service iscsitarget stop
-service nmbd stop
-service smbd stop
-#service lightdm stop
+systemctl stop snmpd
+#systemctl stop iscsitarget
+systemctl stop nmbd
+systemctl stop smbd
+#systemctl stop lightdm
 #http://www.ihackforfun.eu/index.php?title=improve-security-by-removing-services&more=1&c=1&tb=1&pb=1
-service avahi-daemon stop
+systemctl stop avahi-daemon
 #sh -c "echo manual > /etc/init/avahi-daemon.override"
-service memcached stop
-service cups stop
-service cups-browsed stop
+systemctl stop memcached
+systemctl stop cups
+systemctl stop cups-browsed
 #sudo apt-get -y remove cups
-service ypbind stop
-service apt-cacher-ng stop
+systemctl stop ypbind
+systemctl stop apt-cacher-ng
 #ps -edf | grep smmsp
-service sendmail stop
+systemctl stop sendmail
 
-service ansible-tower stop
+systemctl stop ansible-tower
 
-service clamav-daemon stop
-service clamav-freshclam stop
+systemctl stop clamav-daemon
+systemctl stop clamav-freshclam
 #https://linuxacademy.com/blog/linux/disabling-unused-daemons-to-speed-up-your-boot-sequence/
-service bluetooth stop
-service fancontrol stop
-service autofs stop
+systemctl stop bluetooth
+systemctl stop fancontrol
+systemctl stop autofs
 
 #tiger clamav are consuming too many resources
 #ps -edf | grep tiger
 #apt-get remove tiger
 #apt-get remove clamav
 
-#service --status-all
+#systemctl stop --status-all
 
 #ps -edf | grep chrome
 #ps -edf | grep firefox
@@ -104,6 +105,6 @@ service autofs stop
 #sudo apt-get remove ftp telnet xinetd finger sysstat rusersd rwho rwhod
 #sudo apt-get remove net-tools
 
-service gitlab-runsvdir stop
+systemctl stop gitlab-runsvdir
 
 exit 0

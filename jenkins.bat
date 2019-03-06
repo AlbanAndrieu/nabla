@@ -48,10 +48,13 @@ call mvn -B -U -e -Dsurefire.useFile=false install pmd:pmd pmd:cpd checkstyle:ch
 REM karma start ${WORKSPACE}/code/riskinsight/webapp/src/main/webapp/karma.jenkins.conf.js
 REM output code/riskinsight/webapp/src/main/webapp/TEST-Karma-resultsTest.xml
 REM mvn -Dsonargraph.prepareForSonar=true -Dsonargraph.activationCode=2356-F3B2-E2C6-CC70 com.hello2morrow.sonargraph:maven-sonargraph-plugin:7.1.10:architect-report -Psample -Ddatabase=derby
-#TODO Archive the artifacts **/pit-reports/**/*.html
+REM #TODO Archive the artifacts **/pit-reports/**/*.html
 
 REM call mvn install -pl maven/skin
 REM call mvn install -amd maven/skin
 REM call mvn -Dsonar.branch=`git rev-parse --abbrev-ref HEAD` sonar:sonar
+
+REM display all modules path for sonar-project.properties
+call mvn -q --also-make exec:exec -Dexec.executable="pwd"
 
 pause
