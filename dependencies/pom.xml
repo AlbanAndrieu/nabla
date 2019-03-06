@@ -1832,7 +1832,7 @@
                 <groupId>com.cloudbees</groupId>
                 <artifactId>groovy-cps</artifactId>
                 <version>${groovy.cps.version}</version>
-            </dependency> 			
+            </dependency>
 			<dependency>
 				<groupId>org.codehaus.groovy</groupId>
 				<artifactId>groovy-eclipse-compiler</artifactId>
@@ -5586,7 +5586,7 @@
                 <groupId>org.assertj</groupId>
                 <artifactId>assertj-core</artifactId>
                 <version>${org.assertj.version}</version>
-            </dependency>   			
+            </dependency>
 		</dependencies>
 	</dependencyManagement>
 	<repositories>
