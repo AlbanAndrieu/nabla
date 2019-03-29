@@ -29,7 +29,8 @@ sudo nano /etc/samba/smb.conf
 
 [share]
     comment = Ubuntu File Server Share
-    path = /srv/samba/share
+#    path = /srv/samba/share
+    path = /workspace/samba/share
     browsable = yes
     guest ok = yes
     read only = no

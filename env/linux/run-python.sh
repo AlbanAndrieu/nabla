@@ -159,3 +159,17 @@ virtualenv --no-site-packages /opt/ansible/env36 -p python3.6
 
 python3 -m pip install --user --upgrade setuptools wheel
 python3 setup.py sdist bdist_wheel
+
+# Could not import python modules: apt, apt_pkg. Please install python3-apt package.
+sudo apt-get remove --purge python-apt
+#sudo apt-get install python-apt -y -q
+sudo apt-get install python3-apt --reinstall
+sudo apt install python3.7
+cd /usr/lib/python3/dist-packages
+sudo ln -s apt_pkg.cpython-{35m,34m}-x86_64-linux-gnu.so
+sudo ln -s apt_pkg.cpython-{36m,35m}-x86_64-linux-gnu.so
+sudo ln -s apt_pkg.cpython-{36m,37m}-x86_64-linux-gnu.so
+#sudo ln -s apt_pkg.cpython-{35m,34m}-x86_64-linux-gnu.so apt_pkg.so
+#sudo ln -s apt_pkg.cpython-{35m,34m}-x86_64-linux-gnu.so apt.so
+sudo cp apt_pkg.cpython-36m-x86_64-linux-gnu.so apt_pkg.so
+sudo ln -s apt_inst.cpython-36m-x86_64-linux-gnu.so apt_inst.so
