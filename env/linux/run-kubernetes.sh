@@ -51,7 +51,13 @@ source ~/.jx/bash
 
 #https://docs.helm.sh/using_helm/#installing-helm
 
-brew update
-brew install kubernetes-helm
+#brew update
+#brew install kubernetes-helm
+
+sudo swapoff -a
+kubeadm version
+#As root
+kubectl get nodes
+#sudo kubeadm init --pod-network-cidr=10.41.40.0/24
 
 exit 0

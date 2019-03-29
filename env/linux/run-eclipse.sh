@@ -114,3 +114,6 @@ scl enable python27 bash
 
 #eclipse
 /opt/rh/devtoolset-4/root/usr/bin/eclipse
+
+# ctrl z shorti not working
+#rm -f /workspace/users/albandri30/nabla/env/linux/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi

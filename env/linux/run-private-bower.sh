@@ -58,9 +58,14 @@ sudo /command/svstat .
 .: up (pid 32259) 54601 seconds
 #http://www.wolframalpha.com/input/?i=54601%20seconds%20ago
 
+sudo find /usr/local/lib/node_modules/private-bower -type f -print0 | xargs -0 sudo sed -i 's/risk-bower/fr1cslfrqa0001/g'
+
 #Start private-bower
 cd /home/bower/private-bower
 nohup node /usr/local/node/lib/node_modules/private-bower/bin/private-bower --config private-bower.json >> private-bower.log 2>&1
+
+lsof -i :5678
+lsof -i :6789
 
 To read status:
 

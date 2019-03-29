@@ -1,4 +1,12 @@
 #!/bin/bash
+#set -xv
+#shopt -s extglob
+
+##set -ueo pipefail
+#set -eo pipefail
+
+WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
+
 # Ansible managed
 
 ####################
@@ -811,8 +819,8 @@ fi
 
 export SHELLCHECK_OPTS="-e SC2154 -e SC2086"
 
-source ./pass.env.sh
+source "${WORKING_DIR}/pass.env.sh"
 
-echo "PATH is ${PATH}"
+echo -e "${cyan} PATH is ${PATH} ${NC}"
 
 #exit 0
