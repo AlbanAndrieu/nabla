@@ -564,6 +564,8 @@
 		<maven.build.helper.plugin.version>3.0.0</maven.build.helper.plugin.version>
 		<maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
 		<maven.buildmetadata.plugin.version>1.1.5</maven.buildmetadata.plugin.version>
+		<maven.fabric8-docker-maven.plugin.version>0.26.1</maven.fabric8-docker-maven.plugin.version>
+		<maven.git-commit-id.plugin.version>2.2.4</maven.git-commit-id.plugin.version>
 		<maven.buildnumber.plugin.version>1.4</maven.buildnumber.plugin.version>
 		<maven.bundle.plugin.version>3.5.0</maven.bundle.plugin.version>
 		<maven.cargo.maven2.plugin.version>${cargo.core.uberjar.version}</maven.cargo.maven2.plugin.version>
@@ -9310,6 +9312,16 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 					<artifactId>cxx-maven-plugin</artifactId>
 					<version>${maven.cxx.plugin.version}</version>
 				</plugin>
+                <plugin>
+                    <groupId>io.fabric8</groupId>
+                    <artifactId>docker-maven-plugin</artifactId>
+                    <version>${fabric8-docker-maven-plugin.version}</version>
+                </plugin>
+                <plugin>
+                    <groupId>pl.project13.maven</groupId>
+                    <artifactId>git-commit-id-plugin</artifactId>
+                    <version>${git-commit-id-plugin.version}</version>
+                </plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>

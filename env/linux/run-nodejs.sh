@@ -280,3 +280,7 @@ ll /usr/local/lib/node_modules/protractor/selenium/selenium-server-standalone-2.
 sudo su - root
 npm install -g devtools-terminal
 devtools-terminal --install --id=leakmhneaibbdapdoienlkifomjceknl
+
+# Upgrade package
+npm outdated
+npm update
