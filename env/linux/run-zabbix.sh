@@ -62,4 +62,22 @@ svcs | grep zabbix
 svcadm refresh zabbix-agent
 svcadm restart zabbix-agent
 
+#Redhat centos
+yum remove zabbix zabbix-agent zabbix-sender zabbix-get zabbix-*
+#CentOS/RHEL 7:
+rpm -Uvh http://repo.zabbix.com/zabbix/3.4/rhel/7/x86_64/zabbix-release-3.4-2.el7.noarch.rpm
+#CentOS/RHEL 6:
+rpm -Uvh http://repo.zabbix.com/zabbix/3.4/rhel/6/x86_64/zabbix-release-3.4-1.el6.noarch.rpm
+yum install zabbix30 zabbix30-agent
+
+# ubuntu 18.04 issue
+sudo apt-get remove zabbix-sender zabbix-get
+sudo apt-get install zabbix-agent=1:3.0.12+dfsg-1
+
+rm -f /var/log/zabbix/zabbix_agentd.log
+systemctl restart zabbix-agent
+
+zabbix_agentd -t agent.version
+zabbix_agentd -t 'system.swap.size[,total]'
+
 exit 0

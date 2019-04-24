@@ -17,6 +17,10 @@ http://localhost:5678/packages
 bower register [packageName] [gitRepo]
 bower register sample-component ssh://git@scm-git-eur.misys.global.ad:7999/risk/bower-fr-sample-component.git
 
+# Add packages
+#bower register font-awesome https://github.com/components/font-awesome.git
+#bower register bootstrap-sass-official https://github.com/twbs/bootstrap-sass.git
+
 #bower register test https://scm-git-eur.misys.global.ad/scm/risk/ui-components.git
 #for bower registry
 curl -X DELETE "http://localhost:5678/packages/test?access_token=password"
@@ -92,3 +96,6 @@ git fetch --prune --tags
 #for each repo
 git config --local --list
 git config http.sslVerify false
+
+# SSL connect error
+git clone https://github.com/components/font-awesome.git

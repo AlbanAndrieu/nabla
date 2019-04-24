@@ -398,14 +398,14 @@ sudo rm -f /etc/apt/sources.list.d/ntop.list
 sudo rm -f /etc/apt/sources.list.d/dl_google_com_linux_chrome_deb.list*
 sudo rm -f /etc/apt/sources.list.d/google-chrome.list
 sudo rm -f /etc/apt/sources.list.d/repo_zabbix_com_zabbix_2_2_ubuntu.list
-sudo rm -Rf /etc/apt/sources.list.d/nvidia-docker.list*
-sudo rm -Rf /etc/apt/sources.list.d/google-talkplugin.list*
-sudo rm -Rf /etc/apt/sources.list.d/yarn.list
-sudo rm -Rf /etc/apt/sources.list.d/github_git-lfs.list
-sudo rm -Rf /etc/apt/sources.list.d/download_webmin_com_download_repository.list
-sudo rm -Rf /etc/apt/sources.list.d/nodesource.list
-sudo rm -Rf /etc/apt/sources.list.d/ppa_webupd8team_nemo_bionic.list
-sudo rm -Rf /etc/apt/sources.list.d/ppa_awstools_dev_awstools_bionic.list
+sudo rm -f /etc/apt/sources.list.d/nvidia-docker.list*
+sudo rm -f /etc/apt/sources.list.d/google-talkplugin.list*
+sudo rm -f /etc/apt/sources.list.d/yarn.list
+sudo rm -f /etc/apt/sources.list.d/github_git-lfs.list
+sudo rm -f /etc/apt/sources.list.d/download_webmin_com_download_repository.list
+sudo rm -f /etc/apt/sources.list.d/nodesource.list
+sudo rm -f /etc/apt/sources.list.d/ppa_webupd8team_nemo_bionic.list
+sudo rm -f /etc/apt/sources.list.d/ppa_awstools_dev_awstools_bionic.list
 sudo apt-get update
 
 #backup / save
@@ -497,3 +497,17 @@ eog plot.svg
 sudo service apparmor stop
 sudo update-rc.d -f apparmor remove
 sudo apt-get remove apparmor apparmor-utils
+
+# remove old kernel when boot is full
+# https://gist.github.com/ipbastola/2760cfc28be62a5ee10036851c654600
+#rm -rf /boot/*-4.4.0-{130,131,133,134}-*
+#rm -rf /boot/*-4.4.0-{59,81,93,104,108,109,112,130,131}-*
+sudo apt-get -f install
+sudo apt-get autoremove
+sudo update-grub
+
+#chmod 777 /var/run/docker.sock
+#For non sudo user
+#sudo chmod 666 /var/run/docker.sock
+setfacl -m user:jenkins:rw /var/run/docker.sock
+ls -lrta /var/run/docker.sock

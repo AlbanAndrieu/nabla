@@ -239,6 +239,11 @@ docker ps -a | grep 'weeks ago' | awk '{print $1}' | xargs --no-run-if-empty doc
 #bug fix for swap
 #http://docs.docker.com/installation/ubuntulinux/#adjust-memory-and-swap-accounting
 
+#Fix warning https://unix.stackexchange.com/questions/342735/docker-warning-no-swap-limit-support/408955
+nano /etc/default/grub
+GRUB_CMDLINE_LINUX="cgroup_enable=memory swapaccount=1"
+sudo update-grub
+
 #check disk space
 gksudo baobab
 
