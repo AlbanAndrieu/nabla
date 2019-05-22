@@ -303,7 +303,9 @@ then
   ln -s ${DRIVE_PATH}/Program\ Files\ \(x86\) /ProgramFilesx86
   #export JAVA_HOME="/ProgramFilesx86/Java/jdk1.5.0_22"
 fi
-export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
+#export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
+#export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/
+export JAVA_HOME=/usr/lib/jvm/default-java/
 
 export JRE_HOME=${JAVA_HOME}/jre
 #export JDK_HOME JRE_HOME JAVA_HOME
