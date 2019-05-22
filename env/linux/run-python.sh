@@ -173,3 +173,13 @@ sudo ln -s apt_pkg.cpython-{36m,37m}-x86_64-linux-gnu.so
 #sudo ln -s apt_pkg.cpython-{35m,34m}-x86_64-linux-gnu.so apt.so
 sudo cp apt_pkg.cpython-36m-x86_64-linux-gnu.so apt_pkg.so
 sudo ln -s apt_inst.cpython-36m-x86_64-linux-gnu.so apt_inst.so
+
+#Python profiling
+#See https://github.com/jrfonseca/gprof2dot
+sudo apt-get install python3 graphviz
+pip install gprof2dot
+
+# Use normal command to run script, proceeded by module call to cProfile (-o is output file)
+python -m  cProfile -o cprofile  setup.py
+# Use gprof2dot to generate .png image of calls
+gprof2dot -f pstats cprofile | dot -Tpng -o output.png

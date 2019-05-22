@@ -406,6 +406,8 @@ sudo rm -f /etc/apt/sources.list.d/download_webmin_com_download_repository.list
 sudo rm -f /etc/apt/sources.list.d/nodesource.list
 sudo rm -f /etc/apt/sources.list.d/ppa_webupd8team_nemo_bionic.list
 sudo rm -f /etc/apt/sources.list.d/ppa_awstools_dev_awstools_bionic.list
+sudo rm -f /etc/apt/sources.list.d/artful.list*
+sudo rm -f /etc/apt/sources.list.d/ppa_webupd8team_java_bionic.list*
 sudo apt-get update
 
 #backup / save

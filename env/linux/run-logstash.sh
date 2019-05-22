@@ -141,3 +141,10 @@ curl -L -O https://artifacts.elastic.co/downloads/beats/packetbeat/packetbeat-5.
 sudo rpm -vi packetbeat-5.5.2-x86_64.rpm
 curl -L -O https://artifacts.elastic.co/downloads/beats/metricbeat/metricbeat-5.5.2-x86_64.rpm
 sudo rpm -vi metricbeat-5.5.2-x86_64.rpm
+
+# Elasticsearch
+#max virtual memory areas vm.max_map_count [65530] is too low, increase to at least [262144]
+#sysctl -w vm.max_map_count=262144
+sudo nano /etc/sysctl.conf
+#kernel.core_pattern=/home/jenkins/coredumps/core-%e-%p-%t
+vm.max_map_count=262144
