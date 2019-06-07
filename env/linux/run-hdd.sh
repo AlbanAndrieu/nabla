@@ -176,6 +176,8 @@ lvextend --resizefs -l +12805 /dev/rhel_fr1cslvcacrhel71/workspace
 #CentOS 7
 lvextend --resizefs -L +6G /dev/mapper/centos_tmpvcaccent7-swap
 lvextend --resizefs -L +17G /dev/mapper/centos_tmpvcaccent7-root
+lvextend --resizefs -L +50G /dev/centos_tmpvcaccent7/docker
+lvextend --resizefs -L +50G /dev/centos_tmpvcaccent7/workspace
 # RedHat 6
 lvextend --resizefs -L +8G /dev/VolGroup00/swapvol
 lvextend --resizefs -L +2G /dev/VolGroup00/optvol

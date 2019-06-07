@@ -612,6 +612,7 @@
 		<maven.exec.plugin.version>1.6.0</maven.exec.plugin.version>
 		<maven.failsafe.plugin.version>${maven.surefire.plugin.version}</maven.failsafe.plugin.version>
 		<maven.findbugs.plugin.version>3.0.5</maven.findbugs.plugin.version>
+		<maven.spotbugs.plugin.version>3.1.11</maven.spotbugs.plugin.version>
 		<maven.flex.pmd.plugin.version>1.2</maven.flex.pmd.plugin.version>
 		<maven.flexmojos.plugin.version>4.2-beta</maven.flexmojos.plugin.version>
 		<!--<maven.swagger.plugin.version>3.1.4</maven.swagger.plugin.version>-->
@@ -8173,6 +8174,19 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 						<timeout>1200000</timeout>
 					</configuration>
 				</plugin>
+                <plugin>
+                  <groupId>com.github.spotbugs</groupId>
+                  <artifactId>spotbugs-maven-plugin</artifactId>
+                  <version>${maven.spotbugs.plugin.version}</version>
+                  <dependencies>
+                    <!-- overwrite dependency on spotbugs if you want to specify the version of spotbugs -->
+                    <dependency>
+                      <groupId>com.github.spotbugs</groupId>
+                      <artifactId>spotbugs</artifactId>
+                      <version>3.1.12</version>
+                    </dependency>
+                  </dependencies>
+                </plugin>
 				<plugin>
 					<groupId>com.mobilvox.ossi.mojo</groupId>
 					<artifactId>maven-js-plugin</artifactId>
