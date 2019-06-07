@@ -98,6 +98,12 @@ fi
 if [ -d "${HOME}/.git-radar" ] ; then
     PATH="${HOME}/.git-radar/:$PATH"
 fi
+if [ -d "/snap/bin" ] ; then
+    PATH="/snap/bin/:$PATH"
+fi
+#if [ -d "/usr/share/openjfx/lib" ] ; then
+#    PATH="/usr/share/openjfx/lib:$PATH"
+#fi
 
 export PROJECT_MAJOR_VERSION=${PROJECT_VERSION}
 
@@ -304,8 +310,8 @@ then
   #export JAVA_HOME="/ProgramFilesx86/Java/jdk1.5.0_22"
 fi
 #export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
-#export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/
-export JAVA_HOME=/usr/lib/jvm/default-java/
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/
+#export JAVA_HOME=/usr/lib/jvm/default-java/
 
 export JRE_HOME=${JAVA_HOME}/jre
 #export JDK_HOME JRE_HOME JAVA_HOME

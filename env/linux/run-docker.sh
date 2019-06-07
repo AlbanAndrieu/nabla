@@ -368,4 +368,7 @@ journalctl -u docker.service
 #https://registry.misys.global.ad/api/v0/repositories
 #https://registry.misys.global.ad/api/v0/imagescan/status
 
+#See https://github.com/GoogleContainerTools/container-structure-test
+curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64 && chmod +x container-structure-test-linux-amd64 && sudo mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
+
 exit 0
