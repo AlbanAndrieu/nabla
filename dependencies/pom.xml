@@ -315,10 +315,8 @@
 		<gr.spinellis.UmlGraph.version>4.6.0</gr.spinellis.UmlGraph.version>
 		<gridgain.platform.version>${gridgain.version}test</gridgain.platform.version>
 		<gridgain.version>6.5.6</gridgain.version>
-		<groovy.eclipse.batch.version>2.4.3-01</groovy.eclipse.batch.version>
-		<!--TODO <groovy.eclipse.batch.version>2.4.12-04</groovy.eclipse.batch.version>-->
-		<!--TODO <groovy.eclipse.compiler.version>2.9.2-03</groovy.eclipse.compiler.version>-->
-		<groovy.eclipse.compiler.version>2.9.2-01</groovy.eclipse.compiler.version>
+		<groovy.eclipse.compiler.version>3.4.0-01</groovy.eclipse.compiler.version>
+        <groovy.eclipse.batch.version>2.5.7-01</groovy.eclipse.batch.version>
 		<!-- works with cxf 2.7.14 -->
 		<groovy.version>2.4.12</groovy.version>
 		<groovy.cps.version>1.12</groovy.cps.version>
@@ -571,7 +569,7 @@
 		<maven.cargo.maven2.plugin.version>${cargo.core.uberjar.version}</maven.cargo.maven2.plugin.version>
 		<maven.changelog.plugin.version>2.3</maven.changelog.plugin.version>
 		<maven.changes.plugin.version>2.12</maven.changes.plugin.version>
-		<maven.checkmarx.plugin.version>8.70.0</maven.checkmarx.plugin.version>
+		<maven.checkmarx.plugin.version>8.90.2</maven.checkmarx.plugin.version>
 		<!--<maven.checkstyle.plugin.version>2.17</maven.checkstyle.plugin.version>-->
 		<maven.checkstyle.plugin.version>3.0.0</maven.checkstyle.plugin.version>
 		<maven.classpath.fitnesse.version>1.7</maven.classpath.fitnesse.version>

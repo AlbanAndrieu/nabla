@@ -134,92 +134,6 @@ rc6.d contains the services which runs in runlevel 6
 #First one is S script (S30killprocs)---> start
 #Second one is k script (K15pulseaudio)---> kill
 
-/etc/rc0.d:
-K05heartbeat@            K20clamav-freshclam@  K20speech-dispatcher@  K32logd@      S20sendsigs@
-K08tomcat6@              K20exim4@             K20stunnel4@           K65sonar@     S30urandom@
-K08tomcat7@              K20hddtemp@           K20varnish@            K79quotarpc@  S31umountnfs.sh@
-K09apache2@              K20kerneloops@        K20varnishlog@         K80slapd@     S34aoetools@
-K10unattended-upgrades@  K20libnss-ldap@       K20varnishncsa@        K85bind9@     S40umountfs@
-K10webmin@               K20mon@               K20vnstat@             K85dnsmasq@   S48cryptdisks@
-K18icinga@               K20mountall.sh@       K20xrdp@               K85quota@     S59cryptdisks-early@
-K18krb5-admin-server@    K20openhpid@          K20zfs-mount@          K90nexus@     S60umountroot@
-K18krb5-kdc@             K20postfix@           K20zfs-share@          K99fail2ban@  S90halt@
-K19sendmail@             K20saslauthd@         K21vblade@             README
-
-/etc/rc1.d:
-K05heartbeat@          K20acpi-support@      K20postfix@            K20vnstat@     K85bind9@
-K08tomcat6@            K20clamav-freshclam@  K20saned@              K20xrdp@       K85dnsmasq@
-K08tomcat7@            K20exim4@             K20saslauthd@          K20zfs-mount@  K90nexus@
-K09apache2@            K20hddtemp@           K20smartmontools@      K20zfs-share@  K99fail2ban@
-K10webmin@             K20kerneloops@        K20speech-dispatcher@  K21vblade@     README
-K18icinga@             K20libnss-ldap@       K20stunnel4@           K32logd@       S30killprocs@
-K18krb5-admin-server@  K20mon@               K20varnish@            K65sonar@      S70dns-clean@
-K18krb5-kdc@           K20mountall.sh@       K20varnishlog@         K79quotarpc@   S70pppd-dns@
-K19sendmail@           K20openhpid@          K20varnishncsa@        K80slapd@      S90single@
-
-/etc/rc2.d:
-README                 S20kerneloops@         S20stunnel4@     S21sendmail@   S92tomcat6@
-S10nexus@              S20libnss-ldap@        S20varnish@      S30icinga@     S92tomcat7@
-S15bind9@              S20logd@               S20varnishlog@   S35sonar@      S99acpi-support@
-S15dnsmasq@            S20mon@                S20varnishncsa@  S50rsync@      S99fail2ban@
-S18krb5-admin-server@  S20mountall.sh@        S20vblade@       S50saned@      S99grub-common@
-S18krb5-kdc@           S20openhpid@           S20vnstat@       S70dns-clean@  S99ondemand@
-S19slapd@              S20postfix@            S20xrdp@         S70pppd-dns@   S99rc.local@
-S20clamav-freshclam@   S20saslauthd@          S20zfs-mount@    S75heartbeat@  S99webmin@
-S20exim4@              S20smartmontools@      S20zfs-share@    S75sudo@
-S20hddtemp@            S20speech-dispatcher@  S21quotarpc@     S91apache2@
-
-/etc/rc3.d:
-README                 S20kerneloops@         S20stunnel4@     S21sendmail@   S92tomcat6@
-S10nexus@              S20libnss-ldap@        S20varnish@      S30icinga@     S92tomcat7@
-S15bind9@              S20logd@               S20varnishlog@   S35sonar@      S99acpi-support@
-S15dnsmasq@            S20mon@                S20varnishncsa@  S50rsync@      S99fail2ban@
-S18krb5-admin-server@  S20mountall.sh@        S20vblade@       S50saned@      S99grub-common@
-S18krb5-kdc@           S20openhpid@           S20vnstat@       S70dns-clean@  S99ondemand@
-S19slapd@              S20postfix@            S20xrdp@         S70pppd-dns@   S99rc.local@
-S20clamav-freshclam@   S20saslauthd@          S20zfs-mount@    S75heartbeat@  S99webmin@
-S20exim4@              S20smartmontools@      S20zfs-share@    S75sudo@
-S20hddtemp@            S20speech-dispatcher@  S21quotarpc@     S91apache2@
-
-/etc/rc4.d:
-K10webmin@             S20hddtemp@        S20speech-dispatcher@  S21quotarpc@   S91apache2@
-README                 S20kerneloops@     S20stunnel4@           S21sendmail@   S92tomcat6@
-S10nexus@              S20libnss-ldap@    S20varnish@            S30icinga@     S92tomcat7@
-S15bind9@              S20logd@           S20varnishlog@         S35sonar@      S99acpi-support@
-S15dnsmasq@            S20mon@            S20varnishncsa@        S50rsync@      S99fail2ban@
-S18krb5-admin-server@  S20mountall.sh@    S20vblade@             S50saned@      S99grub-common@
-S18krb5-kdc@           S20openhpid@       S20vnstat@             S70dns-clean@  S99ondemand@
-S19slapd@              S20postfix@        S20xrdp@               S70pppd-dns@   S99rc.local@
-S20clamav-freshclam@   S20saslauthd@      S20zfs-mount@          S75heartbeat@
-S20exim4@              S20smartmontools@  S20zfs-share@          S75sudo@
-
-/etc/rc5.d:
-README                 S20kerneloops@         S20stunnel4@     S21sendmail@   S92tomcat6@
-S10nexus@              S20libnss-ldap@        S20varnish@      S30icinga@     S92tomcat7@
-S15bind9@              S20logd@               S20varnishlog@   S35sonar@      S99acpi-support@
-S15dnsmasq@            S20mon@                S20varnishncsa@  S50rsync@      S99fail2ban@
-S18krb5-admin-server@  S20mountall.sh@        S20vblade@       S50saned@      S99grub-common@
-S18krb5-kdc@           S20openhpid@           S20vnstat@       S70dns-clean@  S99ondemand@
-S19slapd@              S20postfix@            S20xrdp@         S70pppd-dns@   S99rc.local@
-S20clamav-freshclam@   S20saslauthd@          S20zfs-mount@    S75heartbeat@  S99webmin@
-S20exim4@              S20smartmontools@      S20zfs-share@    S75sudo@
-S20hddtemp@            S20speech-dispatcher@  S21quotarpc@     S91apache2@
-
-/etc/rc6.d:
-K05heartbeat@            K20clamav-freshclam@  K20speech-dispatcher@  K32logd@      S20sendsigs@
-K08tomcat6@              K20exim4@             K20stunnel4@           K65sonar@     S30urandom@
-K08tomcat7@              K20hddtemp@           K20varnish@            K79quotarpc@  S31umountnfs.sh@
-K09apache2@              K20kerneloops@        K20varnishlog@         K80slapd@     S34aoetools@
-K10unattended-upgrades@  K20libnss-ldap@       K20varnishncsa@        K85bind9@     S40umountfs@
-K10webmin@               K20mon@               K20vnstat@             K85dnsmasq@   S48cryptdisks@
-K18icinga@               K20mountall.sh@       K20xrdp@               K85quota@     S59cryptdisks-early@
-K18krb5-admin-server@    K20openhpid@          K20zfs-mount@          K90nexus@     S60umountroot@
-K18krb5-kdc@             K20postfix@           K20zfs-share@          K99fail2ban@  S90reboot@
-K19sendmail@             K20saslauthd@         K21vblade@             README
-
-/etc/rcS.d:
-README  S25brltty@  S35quota@  S37apparmor@  S41aoetools@  S47lm-sensors@  S55urandom@  S70x11-common@
-
 #sudo update-rc.d varnish start XX 2 3 4 5 . stop XX 0 1 6 .
 #sudo update-rc.d varnish start 30 5 . stop 30 0 1 6 .
 #Dans ce cas là, monscript sera uniquement lancé dans le runlevel 5 et avec une priorité de 30. Il sera stoppé dans les runlevels 0,1,6 avec une priorité de 30 également.
@@ -391,25 +305,6 @@ lsb_release -a
 lsmod
 sudo modinfo btrfs
 
-#remove
-#sudo rm /etc/apt/sources.list.d/get_docker_io_ubuntu.list
-sudo rm -f /etc/apt/sources.list.d/pdffs-precise-virt-trusty.list
-sudo rm -f /etc/apt/sources.list.d/ntop.list
-sudo rm -f /etc/apt/sources.list.d/dl_google_com_linux_chrome_deb.list*
-sudo rm -f /etc/apt/sources.list.d/google-chrome.list
-sudo rm -f /etc/apt/sources.list.d/repo_zabbix_com_zabbix_2_2_ubuntu.list
-sudo rm -f /etc/apt/sources.list.d/nvidia-docker.list*
-sudo rm -f /etc/apt/sources.list.d/google-talkplugin.list*
-sudo rm -f /etc/apt/sources.list.d/yarn.list
-sudo rm -f /etc/apt/sources.list.d/github_git-lfs.list
-sudo rm -f /etc/apt/sources.list.d/download_webmin_com_download_repository.list
-sudo rm -f /etc/apt/sources.list.d/nodesource.list
-sudo rm -f /etc/apt/sources.list.d/ppa_webupd8team_nemo_bionic.list
-sudo rm -f /etc/apt/sources.list.d/ppa_awstools_dev_awstools_bionic.list
-sudo rm -f /etc/apt/sources.list.d/artful.list*
-sudo rm -f /etc/apt/sources.list.d/ppa_webupd8team_java_bionic.list*
-sudo apt-get update
-
 #backup / save
 #http://www.hascode.com/snippets
 dpkg --get-selections > installed-packages
@@ -499,14 +394,6 @@ eog plot.svg
 sudo service apparmor stop
 sudo update-rc.d -f apparmor remove
 sudo apt-get remove apparmor apparmor-utils
-
-# remove old kernel when boot is full
-# https://gist.github.com/ipbastola/2760cfc28be62a5ee10036851c654600
-#rm -rf /boot/*-4.4.0-{130,131,133,134}-*
-#rm -rf /boot/*-4.4.0-{59,81,93,104,108,109,112,130,131}-*
-sudo apt-get -f install
-sudo apt-get autoremove
-sudo update-grub
 
 #chmod 777 /var/run/docker.sock
 #For non sudo user

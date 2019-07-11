@@ -105,11 +105,39 @@ sudo apt-get --purge remove tex.\*-doc$
 #in case of problem
 #sudo apt-get install --reinstall locales
 
+#remove
+#sudo rm /etc/apt/sources.list.d/get_docker_io_ubuntu.list
+sudo rm -f /etc/apt/sources.list.d/pdffs-precise-virt-trusty.list
+sudo rm -f /etc/apt/sources.list.d/ntop.list
+sudo rm -f /etc/apt/sources.list.d/dl_google_com_linux_chrome_deb.list*
+sudo rm -f /etc/apt/sources.list.d/google-chrome.list
+sudo rm -f /etc/apt/sources.list.d/repo_zabbix_com_zabbix_2_2_ubuntu.list
+sudo rm -f /etc/apt/sources.list.d/nvidia-docker.list*
+sudo rm -f /etc/apt/sources.list.d/google-talkplugin.list*
+sudo rm -f /etc/apt/sources.list.d/yarn.list
+sudo rm -f /etc/apt/sources.list.d/github_git-lfs.list
+sudo rm -f /etc/apt/sources.list.d/download_webmin_com_download_repository.list
+sudo rm -f /etc/apt/sources.list.d/nodesource.list
+sudo rm -f /etc/apt/sources.list.d/ppa_webupd8team_nemo_bionic.list
+sudo rm -f /etc/apt/sources.list.d/ppa_awstools_dev_awstools_bionic.list
+sudo rm -f /etc/apt/sources.list.d/artful.list*
+sudo rm -f /etc/apt/sources.list.d/ppa_webupd8team_java_bionic.list*
+sudo apt-get update
+
 #current kernel
 uname -r
 #remove old kernel
 dpkg -l | awk '{print $2}' | grep -E "linux-(image|headers)-$(uname -r | cut -d- -f1).*" | grep -v $(uname -r | sed -r -e 's:-[a-z]+.*::')
 #sudo apt-get purge $(dpkg -l | awk '{print $2}' | grep -E "linux-(image|headers)-$(uname -r | cut -d- -f1).*" | grep -v $(uname -r | sed -r -e 's:-[a-z]+.*::'))
+
+# remove old kernel when boot is full
+# https://gist.github.com/ipbastola/2760cfc28be62a5ee10036851c654600
+ls -lrta /boot
+#rm -rf /boot/*-4.4.0-{130,131,133,134,137,138,139}-*
+#rm -rf /boot/*-4.4.0-{59,81,93,104,108,109,112,130,131}-*
+sudo apt-get -f install
+sudo apt-get autoremove
+sudo update-grub
 
 #delete mail
 #http://apple.stackexchange.com/questions/28745/how-do-i-delete-all-terminal-mail
