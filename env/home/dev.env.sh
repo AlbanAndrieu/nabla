@@ -312,12 +312,14 @@ fi
 #export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/
 #export JAVA_HOME=/usr/lib/jvm/default-java/
+#dpkg -L openjfx
+export JAVAFX_HOME="/usr/share/openjfx/lib"
 
 export JRE_HOME=${JAVA_HOME}/jre
 #export JDK_HOME JRE_HOME JAVA_HOME
 #export JAVA=$JAVA_HOME/bin/java
 #PATH=${JDK_HOME}/bin:${JRE_HOME}/bin:${PATH}
-PATH=${JAVA_HOME}/bin:${PATH}
+PATH=${JAVA_HOME}/bin:${JAVAFX_HOME}:${PATH}
 export PATH
 
 export JAVA_OPTS="-Xms256m -Xmx1548m"

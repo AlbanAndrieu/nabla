@@ -371,4 +371,12 @@ journalctl -u docker.service
 #See https://github.com/GoogleContainerTools/container-structure-test
 curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64 && chmod +x container-structure-test-linux-amd64 && sudo mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
 
+
+#ls -lrta /var/run/docker.sock
+#chmod 777 /var/run/docker.sock
+#For non sudo user
+#sudo chmod 666 /var/run/docker.sock
+setfacl -m user:jenkins:rw /var/run/docker.sock
+ls -lrta /var/run/docker.sock
+
 exit 0
