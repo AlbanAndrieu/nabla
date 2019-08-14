@@ -312,22 +312,22 @@ sudo nano /etc/fstab
 
 sudo mount -a
 
-#See encrypted diks
-#https://community.linuxmint.com/tutorial/view/2191#appc
+# See encrypted diks
+# https://community.linuxmint.com/tutorial/view/2191#appc
 modprobe dm-crypt
 sudo update-grub
 #Windows using BitLocker/TPM and Linux using dm-crypt with LUKS Enxtension
 
-#Ubuntu 17 add swap
+# Ubuntu 17 add swap
 #http://linuxbsdos.com/2017/05/26/replace-the-swap-partition-with-a-swap-file-after-upgrading-to-ubuntu-17-04/
 
-#Display amount of free and used memory
+# Display amount of free and used memory
 #free -m
 free -h
-#Display swap usage summary
+# Display swap usage summary
 swapon -s
-#swapon --show
-#Display user-process resource limits
+# swapon --show
+# Display user-process resource limits
 ulimit -a
 
 #https://askubuntu.com/questions/934391/how-to-resize-ubuntu-17-04-zesty-swap-file-size

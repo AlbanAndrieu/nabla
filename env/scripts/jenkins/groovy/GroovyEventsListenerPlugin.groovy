@@ -12,8 +12,9 @@ import org.jenkinsci.plugins.workflow.actions.WorkspaceAction
 //import java.util.Base64 // requires java8
 //auth = "Basic " + Base64.getEncoder().encodeToString("elastic:changeme".getBytes()) // if no java8, compute basicAuth externally and hardcode it here
 auth = null
+auth = "Basic " + Base64.getEncoder().encodeToString("elastic:elastic".getBytes())
 
-esUrl = 'http://bm-es:9200'
+esUrl = 'http://localhost:9200'
 jenkinsIndex = 'jenkins-'+ new Date().format('yyyyMM')
 timeout = 5 //seconds
 
