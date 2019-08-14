@@ -46,7 +46,7 @@ echo "Start cleaning"
 sudo \rm -Rf /var/log/uvcdynctrl-udev.log
 sudo \rm -Rf /var/log/elasticsearch/elasticsearch.log*
 \rm -Rf /var/lib/mongodb/journal/*
-\rm -Rf /var/lib/mongodb/local.*
+\rm -Rf /var/lib/mongodb/local.*boot
 \rm -Rf /var/lib/mongodb/nabla-*
 \rm -Rf /var/lib/redis/*.rdb
 \rm -Rf /var/lib/collectd/rrd/*
@@ -122,6 +122,11 @@ sudo rm -f /etc/apt/sources.list.d/ppa_webupd8team_nemo_bionic.list
 sudo rm -f /etc/apt/sources.list.d/ppa_awstools_dev_awstools_bionic.list
 sudo rm -f /etc/apt/sources.list.d/artful.list*
 sudo rm -f /etc/apt/sources.list.d/ppa_webupd8team_java_bionic.list*
+sudo rm -f /etc/apt/sources.list.d/download_docker_com_linux_ubuntu.list*
+sudo add-apt-repository \
+"deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+$(lsb_release -cs) \
+stable"
 sudo apt-get update
 
 #current kernel
@@ -133,8 +138,9 @@ dpkg -l | awk '{print $2}' | grep -E "linux-(image|headers)-$(uname -r | cut -d-
 # remove old kernel when boot is full
 # https://gist.github.com/ipbastola/2760cfc28be62a5ee10036851c654600
 ls -lrta /boot
-#rm -rf /boot/*-4.4.0-{130,131,133,134,137,138,139}-*
-#rm -rf /boot/*-4.4.0-{59,81,93,104,108,109,112,130,131}-*
+#rm -rf /boot/*-4.4.0-{59,81,93,104,108,109,112,130,131,133,134,137,138,139}-*
+#rm -rf /boot/*-4.4.0-{148,150,151}-*
+#rm -rf /boot/*-4.15.0-51-*
 sudo apt-get -f install
 sudo apt-get autoremove
 sudo update-grub

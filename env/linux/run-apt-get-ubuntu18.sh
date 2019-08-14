@@ -5,7 +5,7 @@ TRYING to upgrade my workstation
 
 With error
 
-Your python3 install is corrupted. Please fix the '/usr/bin/python3' symlink
+#Your python3 install is corrupted. Please fix the '/usr/bin/python3' symlink
 
 TRIED:
 
@@ -15,7 +15,7 @@ sudo ln -sf /usr/bin/python2.7 /usr/bin/python
 sudo apt-get install --reinstall python
 sudo apt-get install --reinstall python3
 
-Disable python from
+#Disable python from
 
 .bashrc
 /workspace/users/albandri30/nabla/env/home/dev.env.sh
@@ -38,7 +38,7 @@ sudo do-release-upgrade
 
 ----------------
 
-See https://sobrelinux.info/questions/13527/the-package-system-is-broken-after-upgraded-to-ubuntu-17-04
+#See https://sobrelinux.info/questions/13527/the-package-system-is-broken-after-upgraded-to-ubuntu-17-04
 
 sudo apt autoclean
 sudo -H pip uninstall click libunity-scopes1.0
@@ -82,7 +82,8 @@ sudo ln -sf /usr/bin/python3.6 /usr/bin/python3
 apt-get install --reinstall  python3-apt
 apt-get install python-netaddr
 
-python3 -m pip install --upgrade pip==9.0.3
+#python3 -m pip install --upgrade pip==9.0.3
+python3 -m pip install --upgrade pip==19.2.2
 
 sudo rm -rf /usr/lib/python3/dist-packages/PyYAML-*
 
