@@ -224,9 +224,6 @@ sudo apt-get install rabbitvcs-cli
 #putty
 sudo chown -R albandri:albandri ~/.putty
 
-#synergy
-wget http://synergy-project.org/files/packages/synergy-1.4.17-r2055-Linux-x86_64.deb
-
 #javascript coverage
 sudo apt-get install lcov
 #diff tool
@@ -400,3 +397,10 @@ sudo apt-get remove apparmor apparmor-utils
 #sudo chmod 666 /var/run/docker.sock
 setfacl -m user:jenkins:rw /var/run/docker.sock
 ls -lrta /var/run/docker.sock
+
+#Ubuntu 19.04
+#A start job is running for Hold until boot finishes up
+#See http://rffuste.com/solution-a-start-job-is-running-for-hold-until-boot-finishes-up-ubuntu/
+#mount  -o remount, rw /
+#apt-get install lightdm
+##dpkg-reconfigure lightdm
