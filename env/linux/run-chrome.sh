@@ -36,4 +36,7 @@ gnome-keyring-daemon --start --replace --foreground --components=secrets,ssh,pck
 #yum install firefox
 #yum install mesa-libGLU*.i686 mesa-libGLU*.x86_64
 
+#Bug video
+#See https://gist.github.com/ruario/3c873d43eb20553d5014bd4d29fe37f1#file-latest-widevine-sh
+
 exit 0
