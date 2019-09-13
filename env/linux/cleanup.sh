@@ -123,6 +123,9 @@ sudo rm -f /etc/apt/sources.list.d/ppa_awstools_dev_awstools_bionic.list
 sudo rm -f /etc/apt/sources.list.d/artful.list*
 sudo rm -f /etc/apt/sources.list.d/ppa_webupd8team_java_bionic.list*
 sudo rm -f /etc/apt/sources.list.d/download_docker_com_linux_ubuntu.list*
+sudo rm -f /etc/apt/sources.list.d/ppa_webupd8team_atom_disco.list*
+sudo rm -f /etc/apt/sources.list.d/ppa_linuxuprising_shutter.list*
+sudo rm -f /etc/apt/sources.list.d/ppa_brightbox_ruby_ng_disco.list*
 sudo add-apt-repository \
 "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
 $(lsb_release -cs) \

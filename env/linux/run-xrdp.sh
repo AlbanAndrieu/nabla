@@ -1,16 +1,27 @@
 #!/bin/bash
 set -xv
 
+#sudo apt-get install xfce4
+#echo xfce4-session > ~/.xsession
+# or
+#sudo apt-get purge xrdp
+
 #http://doc.ubuntu-fr.org/xrdp
 sudo apt-get install xrdp
 sudo apt-get install gnome-session-flashback
 #echo "gnome-session --session=gnome-fallback" > ~/.xsession
 
-sudo apt-get install xfce4
-echo xfce4-session > ~/.xsession
+#See https://c-nergy.be/blog/?p=12469
+sudo apt-get install xrdp-pulseaudio-installer
+xrdp-build-pulse-modules
+
+#See https://guacamole.apache.org/doc/0.9.0/gug/installing-guacamole.html
 
 #sudo /etc/init.d/xrdp stop
-sudo /etc/init.d/xrdp restart
+#sudo /etc/init.d/xrdp restart
+sudo systemctl restart xrdp.service
+sudo systemctl status xrdp.service
+sudo journalctl -xe
 
 #configure the  VM inside VirtualBox
 #https://www.youtube.com/watch?v=mFk0Stw3EZQ

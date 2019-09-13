@@ -275,7 +275,8 @@ export CMAKE_ROOT=${CMAKE_HOME}
 export SCONS_DIR=/usr/lib/scons/SCons
 
 # ALIAS to scons-local
-alias scons='/usr/bin/scons'
+export SCONS='/usr/bin/python2.7 /opt/ansible/env/bin/scons' # for virtualenv
+alias scons="${SCONS}"
 
 export SCONS_PATH=/usr/lib/scons/SCons/Script
 if [ "$SCONS_PATH" = "" ]
@@ -804,7 +805,8 @@ case ${ARCH} in
     ;;
 esac
 
-export DISPLAY=:0.0
+#export DISPLAY=:0.0
+#export DISPLAY=localhost:10.0
 #instead us ansible local role
 #export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
