@@ -153,7 +153,10 @@ UPDATE  `oc_appconfig` SET  `configvalue` =  "no" WHERE  `appid` =  "music" AND 
 UPDATE  `oc_appconfig` SET  `configvalue` =  "no" WHERE  `appid` =  "internal_bookmarks" AND  `configkey` =  "enabled"
 UPDATE  `oc_appconfig` SET  `configvalue` =  "no" WHERE  `appid` =  "mozilla_sync" AND  `configkey` =  "enabled"
 
-ll /usr/local/share/jenkins/jenkins.war
+cd /usr/local/share/jenkins/
+ls -lrta jenkins.war
+wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+
 pkg_add -v -r fontconfig
 pkg_add -v -r libXfont
 pkg_add -v -r libfontenc
