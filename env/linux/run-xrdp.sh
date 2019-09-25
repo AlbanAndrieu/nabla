@@ -1,10 +1,23 @@
 #!/bin/bash
 set -xv
 
-#sudo apt-get install xfce4
-#echo xfce4-session > ~/.xsession
-# or
+# See https://medium.com/@vivekteega/how-to-setup-an-xrdp-server-on-ubuntu-18-04-89f7e205bd4e
 #sudo apt-get purge xrdp
+
+sudo ufw allow 3389/tcp
+
+rm -f ~/.xsession
+
+#sudo apt-get install xfce4
+#Optional stuff
+#sudo apt-get install xfce4-terminal
+#sudo apt-get install gnome-icon-theme-full tango-icon-theme
+#echo xfce4-session > ~/.xsession
+#sudo sed -i.bak '/fi/a #xrdp multiple users configuration \n xfce-session \n' /etc/xrdp/startwm.sh
+
+#sudo apt-get install mate-core mate-desktop-environment mate-notification-daemon
+#echo mate-session> ~/.xsession
+#sudo sed -i.bak '/fi/a #xrdp multiple users configuration \n mate-session \n' /etc/xrdp/startwm.sh
 
 #http://doc.ubuntu-fr.org/xrdp
 sudo apt-get install xrdp
@@ -69,5 +82,5 @@ export DISPLAY=:0.0
 /usr/lib/vino/vino-server &
 3389
 
-sudo apt install freerdp-x11
-xfreerdp --sec rdp -d NABLA -u aandrieu WINDOWSBOX
+#sudo apt install freerdp-x11
+#xfreerdp --sec rdp -d NABLA -u aandrieu WINDOWSBOX

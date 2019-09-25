@@ -5,6 +5,10 @@ echo "Install bleachbit"
 sudo apt-get install bleachbit
 
 echo "Start cleaning"
+
+#Inside your home directory
+du -sh .[!.]* *
+
 #http://doc.ubuntu-fr.org/nettoyer_ubuntu
 \rm -Rf /usr/local/sonar/.local
 \rm -Rf /usr/local/sonar/Downloads/*
@@ -15,6 +19,12 @@ echo "Start cleaning"
 #\rm -Rf ~/.cache/pip
 #\rm -Rf ~/.cache/thumbnails/*
 \rm -Rf ~/.cache/*
+#\rm -Rf ~/.linuxbrew/*
+\rm -Rf ~/.jenkins/cache/*
+#\rm -Rf ~/.conan/*
+#\rm -Rf ~/.codemix/*
+#\rm -Rf ~/.cpan/*
+#\rm -Rf ~/.cppan/*
 #\rm -Rf ~/.aspera
 #\rm -Rf ~/.eclipse/*
 \rm -Rf ~/.cpan/*
@@ -126,6 +136,7 @@ sudo rm -f /etc/apt/sources.list.d/download_docker_com_linux_ubuntu.list*
 sudo rm -f /etc/apt/sources.list.d/ppa_webupd8team_atom_disco.list*
 sudo rm -f /etc/apt/sources.list.d/ppa_linuxuprising_shutter.list*
 sudo rm -f /etc/apt/sources.list.d/ppa_brightbox_ruby_ng_disco.list*
+sudo rm -f /etc/apt/sources.list.d/ppa_deadsnakes_ppa_disco.list*
 sudo add-apt-repository \
 "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
 $(lsb_release -cs) \
