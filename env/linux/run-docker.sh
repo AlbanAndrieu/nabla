@@ -379,4 +379,16 @@ curl -LO https://storage.googleapis.com/container-structure-test/latest/containe
 setfacl -m user:jenkins:rw /var/run/docker.sock
 ls -lrta /var/run/docker.sock
 
+#Ubuntu 19.04
+
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 7EA0A9C3F273FCD8
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable edge test"
+sudo apt-cache policy docker-ce
+sudo apt-get install -y docker-ce
+sudo systemctl status docker
+
+sudo usermod -aG docker ${USER}
+
+docker run -it -u 1004:999 -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v /var/run/docker.sock:/var/run/docker.sock --entrypoint /bin/bash fusion-risk/ansible-jenkins-slave:latest
+
 exit 0
