@@ -32,7 +32,7 @@ if re.match(regex, branch):
             print(issue_to_check.fields.issuetype.name)          # 'New Feature'
             print(issue_to_check.fields.reporter.displayName)
 
-            required_message = '%s : %s by %s' % (
+            required_message = '{} : {} by {}'.format(
                 issue_to_check, issue_to_check.fields.issuetype.name, issue_to_check.fields.reporter.displayName,
             )
         except:  # noqa: ignore=E722

@@ -6,21 +6,21 @@
 #  - search --parseable will also display the Disk data at the end of each line
 #  - ask for login/passwd after other checks are done, to avoid typing them if other issues will prevent executing the command
 #  - new --format formatting option
+import exceptions
+import types
+import time
+import urlparse
+import httplib
+import json
+import getpass
+import re
+import argparse
+import os
 import sys
 
 if sys.hexversion < 0x02070000:
     error('Python 2.7 or newer is required to run this program.')
 
-import os
-import argparse
-import re
-import getpass
-import json
-import httplib
-import urlparse
-import time
-import types
-import exceptions
 
 VERSION = '2015.02.16'   # ZoD-client version
 DATE = 'Mon, 16 Feb 2015 10:31:13 +0100'  # Release date
@@ -1170,7 +1170,7 @@ def printTable(table, format=None, maxLengths=None, doSep=False, parseable=None)
 # ------------------------------------------------------------------------------
 # A simple banner function
 # ------------------------------------------------------------------------------
-letterforms = '''\
+letterforms = r'''\
        |       |       |       |       |       |       | |
   ###  |  ###  |  ###  |   #   |       |  ###  |  ###  |!|
   #  # |  #  # |  #  # |       |       |       |       |"|

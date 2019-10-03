@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
-import urllib2
 
+import urllib2
 from BeautifulSoup import BeautifulSoup
 plugin_matrix_file = open('plugin_matrix_file.csv', 'wb')
 plugins_links = []
@@ -11,7 +11,7 @@ page = page.read()
 links = re.findall(r"<a.*?\s*href=\"(.*?)\".*?>(.*?)</a>", page)
 for link in links:
     if (link[0].find('+Plugin') != -1):
-        print('href: %s, HTML text: %s' % (link[0], link[1]))
+        print('href: {}, HTML text: {}'.format(link[0], link[1]))
         plugins_links.append(link[0])
 for plugin_link in plugins_links:
     line_to_add = ''
@@ -58,7 +58,7 @@ for plugin_link in plugins_links:
             print('PV: %s\n' % plugin_version)
             line_to_add += ';' + str(plugin_version[0])
             for numb in range(0, len(plugin_version)):
-                print('%s -> %s' % (numb, plugin_version[numb]))
+                print('{} -> {}'.format(numb, plugin_version[numb]))
             if (len(plugin_version) > 4):
                 dependency = ''
                 for num in range(4, len(plugin_version)):
