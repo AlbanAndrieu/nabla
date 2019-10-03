@@ -19,6 +19,8 @@ rm -f ~/.xsession
 #echo mate-session> ~/.xsession
 #sudo sed -i.bak '/fi/a #xrdp multiple users configuration \n mate-session \n' /etc/xrdp/startwm.sh
 
+#echo lightdm-session> ~/.xsession
+
 #http://doc.ubuntu-fr.org/xrdp
 sudo apt-get install xrdp
 sudo apt-get install gnome-session-flashback

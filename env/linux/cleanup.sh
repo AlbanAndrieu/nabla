@@ -218,4 +218,8 @@ sudo apt-get install gtkorphan
 sudo apt install fdupes
 #fdupes -d ~/
 
+#CentOS
+#yum clean all
+#rm -rf /var/cache/yum
+
 exit 0

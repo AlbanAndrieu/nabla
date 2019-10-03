@@ -184,7 +184,7 @@ def mount(srcDir, srcServer, dst, options):
 def mount_pattern(share):
     pattern = ''
     if platform.system() == 'Linux':
-        pattern = '\s%s'
+        pattern = r'\s%s'
     elif platform.system() == 'SunOS':
         pattern = '^%s'
     else:
@@ -448,8 +448,8 @@ ssh-rsa TODO everybody@nabla.nabla.mobi
 '''.strip(), file=f,
             )
 
-    if stat.S_IMODE(os.stat(key).st_mode) != 0400:
-        os.chmod(key, 0400)
+    if stat.S_IMODE(os.stat(key).st_mode) != 0o400:
+        os.chmod(key, 0o400)
 
 # ------------------------------------------------------------------------------
 
@@ -887,7 +887,7 @@ class KZoneConnectorChroot(KZoneConnector):
     def init_misc(self):
         # Specific chroot .bashrc
         with open(self.nabla_filename(NABLA_ENV_BASHRC_FILE), 'w') as f:
-            print('PS1="\[\e[1;32m\]\u@\[\e[1;36m\]\h->%s:\[\e[1;33m\]\w)\[\e[0m\] "' % self.get_zone_name(True), file=f)
+            print('PS1="\\[\\e[1;32m\\]\u@\\[\\e[1;36m\\]\\h->%s:\\[\\e[1;33m\\]\\w)\\[\\e[0m\\] "' % self.get_zone_name(True), file=f)
             print(
                 'cd $KZC_CALLER_PWD # defined only if no --user param used to launch the connector', file=f,
             )

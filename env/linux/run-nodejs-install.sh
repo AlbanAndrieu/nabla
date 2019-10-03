@@ -64,8 +64,8 @@ npm update
 #show which dependencies is using connect
 npm ls connect
 #Upgrade npm
-#npm install -g npm
-npm install -g npm@5.5.1
+npm install -g npm
+#npm install -g npm@5.5.1
 
 #publish to https://www.npmjs.com/
 npm whoami
