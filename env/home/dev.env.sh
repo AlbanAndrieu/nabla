@@ -192,6 +192,7 @@ export ORACLE_HOME=${DRIVE_PATH}/oraclexe/app/oracle/product/${ORACLE_VERSION}/s
 
 export SNYK_TOKEN=c89235c8-165b-47f1-8a67-c6b39292bda4
 #snyk auth $SNYK_TOKEN
+export MICROSCANNER_TOKEN=NzdhNTQ2ZGZmYmEz
 
 ###
 # Alias
@@ -805,7 +806,7 @@ case ${ARCH} in
     ;;
 esac
 
-#export DISPLAY=:0.0
+export DISPLAY=:0.0
 #export DISPLAY=localhost:10.0
 #instead us ansible local role
 #export LC_CTYPE=en_US.UTF-8
