@@ -17,6 +17,7 @@ call mvn -B dependency:build-classpath -Psample > dependency-classpath.log 2>&1
 call mvn -B dependency:copy-dependencies -Psample > dependency-dependencies.log 2>&1
 call mvn -B dependency:analyze -DignoreNonCompile -Psample > analyze.log 2>&1
 call mvn -B dependency:analyze-dep-mgt -Psample > analyze-dep.log 2>&1
+call mvn -B toolchains:toolchain -Psample > toolchains.log 2>&1
 call mvn -B animal-sniffer:check -Psample > animal-sniffer-check.log 2>&1
 call mvn -B help:effective-pom -Psample > effective.log 2>&1
 call mvn -B help:active-profiles -Psample > profile.log 2>&1
