@@ -6,6 +6,8 @@ sudo apt-get install bleachbit
 
 echo "Start cleaning"
 
+# As jenkins user
+
 #Inside your home directory
 du -sh .[!.]* *
 
@@ -27,6 +29,8 @@ du -sh .[!.]* *
 #\rm -Rf ~/.cppan/*
 #\rm -Rf ~/.aspera
 #\rm -Rf ~/.eclipse/*
+#\rm -Rf ~/.ansible
+#\rm -Rf ~/ansible
 \rm -Rf ~/.cpan/*
 \rm -Rf ~/.svn/*
 \rm -Rf ~/.thunderbird/*
@@ -53,8 +57,17 @@ du -sh .[!.]* *
 #nabla
 \rm -Rf ~/env/config/setEnvFiles.list.txt
 #https://askubuntu.com/questions/177312/filesystem-filling-up-due-to-large-uvcydnctrl-udev-log-file
-sudo \rm -Rf /var/log/uvcdynctrl-udev.log
-sudo \rm -Rf /var/log/elasticsearch/elasticsearch.log*
+\rm -Rf /var/log/uvcdynctrl-udev.log
+\rm -Rf /var/log/elasticsearch/elasticsearch.log*
+#\rm -Rf /var/log/bandwidth
+#\rm -Rf /var/log/*.1
+#\rm -Rf /var/log/*.1.gz
+#\rm -Rf /var/log/*.2.gz
+#\rm -Rf /var/log/*.3.gz
+#\rm -Rf /var/log/*.4.gz
+#\rm -Rf /var/log/*.5.gz
+#\rm -Rf /var/log/*.6.gz
+#\rm -Rf /var/log/*.7.gz
 \rm -Rf /var/lib/mongodb/journal/*
 \rm -Rf /var/lib/mongodb/local.*boot
 \rm -Rf /var/lib/mongodb/nabla-*
@@ -62,6 +75,22 @@ sudo \rm -Rf /var/log/elasticsearch/elasticsearch.log*
 \rm -Rf /var/lib/collectd/rrd/*
 #\rm -Rf /var/lib/docker/overlay2/*
 \rm -Rf /workspace/jboss-as-7.1.1.Final/standalone/data/content*
+\rm -Rf /usr/share/doc/
+
+#systemctl stop mysql
+#ls /var/log/mysql/mysql.err
+##mv /var/log/mysql/mysql.err /backup/mysql/log/mysql-TODELETE.err
+#systemctl start mysql
+#systemctl stop proftpd
+#rm /var/log/proftpd/tls.log
+lsof +D /var/spool/mqueue-client/ || true
+#systemctl stop sendmail
+#rm -Rf /var/spool/mqueue-client/
+#systemctl start sendmail
+
+#rm -f /var/log/bandwidth
+#rm -f /var/log/kern.log
+#rm -f /var/log/syslog*
 
 brew cleanup || true
 
@@ -137,17 +166,22 @@ sudo rm -f /etc/apt/sources.list.d/ppa_webupd8team_atom_disco.list*
 sudo rm -f /etc/apt/sources.list.d/ppa_linuxuprising_shutter.list*
 sudo rm -f /etc/apt/sources.list.d/ppa_brightbox_ruby_ng_disco.list*
 sudo rm -f /etc/apt/sources.list.d/ppa_deadsnakes_ppa_disco.list*
+
 sudo add-apt-repository \
 "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
 $(lsb_release -cs) \
 stable"
+sudo rm -rf /var/lib/apt/lists/*
+#/var/lib/apt/lists/software.virtualmin.com_vm_6_gpl_apt_dists_virtualmin-*
 sudo apt-get update
 
 #current kernel
 uname -r
+dpkg -l *linux-image* | grep ii
 #remove old kernel
 dpkg -l | awk '{print $2}' | grep -E "linux-(image|headers)-$(uname -r | cut -d- -f1).*" | grep -v $(uname -r | sed -r -e 's:-[a-z]+.*::')
 #sudo apt-get purge $(dpkg -l | awk '{print $2}' | grep -E "linux-(image|headers)-$(uname -r | cut -d- -f1).*" | grep -v $(uname -r | sed -r -e 's:-[a-z]+.*::'))
+sudo apt search linux-image
 
 # remove old kernel when boot is full
 # https://gist.github.com/ipbastola/2760cfc28be62a5ee10036851c654600
@@ -155,13 +189,14 @@ ls -lrta /boot
 #rm -rf /boot/*-4.4.0-{59,81,93,104,108,109,112,130,131,133,134,137,138,139}-*
 #rm -rf /boot/*-4.4.0-{148,150,151}-*
 #rm -rf /boot/*-4.15.0-51-*
+# See https://www.tecmint.com/upgrade-kernel-in-ubuntu/
 sudo apt-get -f install
 sudo apt-get autoremove
 sudo update-grub
 
 #delete mail
 #http://apple.stackexchange.com/questions/28745/how-do-i-delete-all-terminal-mail
-#: > /var/mail/$USER
+: > /var/mail/$USER
 #Fix issue sendmail-largeboxes
 #http://unix.stackexchange.com/questions/134136/how-to-access-and-manage-a-large-mailbox-11-gb
 #sudo rm /var/spool/mail/BOGUS.jenkins.N4Af

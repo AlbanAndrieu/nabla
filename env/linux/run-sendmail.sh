@@ -1,6 +1,14 @@
 #!/bin/bash
 set -xv
 
+sudo apt-get install sendmail
+sudo sendmailconfig
+nano /etc/hosts
+#Make sure the line looks like this: 127.0.0.1 localhost yourhostname
+#Run Sendmail's config and answer 'Y' to everything:
+sudo sendmailconfig
+sudo service apache2 restart
+
 sudo gedit /etc/ssmtp/ssmtp.conf
 
 --------------------------
