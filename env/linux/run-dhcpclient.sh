@@ -36,12 +36,12 @@ less /etc/defaultdomain
 
 #https://help.ubuntu.com/community/SettingUpNISHowTo
 #https://docs.oracle.com/cd/E19455-01/806-1387/6jam692fn/index.html
-status rpcbind
+systemctl status rpcbind
 #start rpcbind
 #/etc/init.d/nis restart
 #sudo service rpcbind start
-status ypbind
-start ypbind
+systemctl status ypbind
+systemctl start ypbind
 ypwhich
 yptest
 
@@ -51,3 +51,11 @@ ipconfig /flushdns
 
 #systemctl disable bind9
 #sudo update-rc.d bind9 disable
+
+#showmount -e ptxidns01
+
+# Try accessing by hand
+#systemctl stop autofs
+#mkdir /home/jenkins
+#chown jenkins:docker /home/jenkins/
+#sudo automount -f -v

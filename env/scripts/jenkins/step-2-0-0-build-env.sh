@@ -1,10 +1,11 @@
 #!/bin/bash
 #set -xv
 
-script_dir="$( cd "$(dirname "$0")" ; pwd -P )"
+WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
 
-#tput colors && source "$script_dir/step-0-color.sh"
-source "$script_dir/step-0-color.sh"
+# source only if terminal supports color, otherwise use unset color vars
+# shellcheck source=./step-0-color.sh
+tput colors && source "${WORKING_DIR}/step-0-color.sh"
 
 # shellcheck disable=SC2154
 echo -e "${yellow} ${bold} WELCOME ${nabla_logo} ${NC}"
@@ -29,49 +30,8 @@ echo -e "${green} GIT_COMMIT : ${GIT_COMMIT} ${NC}"
 # shellcheck disable=SC2154
 echo -e "${magenta} ${underline}PARAMETERS ${NC}"
 
-case "$OSTYPE" in
-  linux*)   export SYSTEM=LINUX;;
-  darwin*)  export SYSTEM=OSX;;
-  win*)     export SYSTEM=Windows;;
-  cygwin*)  export SYSTEM=Cygwin;;
-  msys*)    export SYSTEM=MSYS;;
-  bsd*)     export SYSTEM=BSD;;
-  solaris*) export SYSTEM=SOLARIS;;
-  *)        export SYSTEM=UNKNOWN;;
-esac
-echo "SYSTEM : ${SYSTEM}"
-
-if [ -f /etc/os-release ]; then
-    # freedesktop.org and systemd
-    . /etc/os-release
-    OS=$NAME
-    VER=$VERSION_ID
-elif type lsb_release >/dev/null 2>&1; then
-    # linuxbase.org
-    OS=$(lsb_release -si)
-    VER=$(lsb_release -sr)
-elif [ -f /etc/lsb-release ]; then
-    # For some versions of Debian/Ubuntu without lsb_release command
-    . /etc/lsb-release
-    OS=$DISTRIB_ID
-    VER=$DISTRIB_RELEASE
-elif [ -f /etc/debian_version ]; then
-    # Older Debian/Ubuntu/etc.
-    OS=Debian
-    VER=$(cat /etc/debian_version)
-elif [ -f /etc/SuSe-release ]; then
-    # Older SuSE/etc.
-    ...
-elif [ -f /etc/redhat-release ]; then
-    # Older Red Hat, CentOS, etc.
-    ...
-else
-    # Fall back to uname, e.g. "Linux <version>", also works for BSD, etc.
-    OS=$(uname -s)
-    VER=$(uname -r)
-fi
-echo "OS : ${OS}"
-echo "VER : ${VER}"
+# shellcheck source=./step-1-os.sh
+source "${WORKING_DIR}/step-1-os.sh"
 
 #DRY_RUN is used on UAT in order to avoid TAGING or DEPLOYING to production
 if [ -n "${DRY_RUN}" ]; then
@@ -119,8 +79,11 @@ if [ "$(uname -s)" == "SunOS" ]; then
   export PATH
   echo -e "${magenta} PATH : ${PATH} ${NC}"
 elif [ "$(uname -s)" == "Linux" ]; then
-  #For RedHat add /usr/sbin
   PATH=${PATH}:/usr/sbin;
+  export PATH
+  echo -e "${magenta} PATH : ${PATH} ${NC}"
+elif [ "$(uname -s)" == "Darwin" ]; then
+  PATH=${PATH}:/usr/local/bin;
   export PATH
   echo -e "${magenta} PATH : ${PATH} ${NC}"
 fi
@@ -131,7 +94,8 @@ if [ -z "$WORKSPACE" ]; then
 fi
 if [ -n "${WORKSPACE}" ]; then
   if [ "${SYSTEM}" == "MSYS" -o "${SYSTEM}" == "Cygwin" ]; then
-      export WORKSPACE=`cygpath -u ${WORKSPACE}`
+      WORKSPACE=$(cygpath -u "${WORKSPACE}")
+      export WORKSPACE
   fi
   echo -e "${green} WORKSPACE is defined ${happy_smiley} : ${WORKSPACE} ${NC}"
 else
@@ -151,7 +115,8 @@ if [ -n "${WORKSPACE_SUFFIX}" ]; then
   echo -e "${green} WORKSPACE_SUFFIX is defined ${happy_smiley} : ${WORKSPACE_SUFFIX} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : WORKSPACE_SUFFIX, use default one ${NC}"
-  export WORKSPACE_SUFFIX="CMR"
+  WORKSPACE_SUFFIX="TEST"
+  export WORKSPACE_SUFFIX
   echo -e "${magenta} WORKSPACE_SUFFIX : ${WORKSPACE_SUFFIX} ${NC}"
 fi
 
@@ -359,12 +324,9 @@ if [ -n "${SONAR_CMD}" ]; then
   echo -e "${green} SONAR_CMD is defined ${happy_smiley} : ${SONAR_CMD} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : SONAR_CMD, use default one ${NC}"
-  echo -e "${magenta} ${double_arrow} ${HOME}/build-wrapper-linux-x86/build-wrapper-linux-${SONAR_PROCESSOR} ? ${NC}"
-  if [ -d "/usr/local/sonar-build-wrapper/bin/" ]; then
-    SONAR_CMD="/usr/local/sonar-build-wrapper/bin/build-wrapper-linux-${SONAR_PROCESSOR} --out-dir ${WORKSPACE}/bw-outputs/"
-  else
-    echo -e "${red} ${double_arrow} Undefined directory ${head_skull} : SONAR_CMD failed ${NC}"
-    #exit 1
+  echo -e "${magenta} ${double_arrow} /usr/local/sonar-build-wrapper/build-wrapper-linux-${SONAR_PROCESSOR} ${NC}"
+  if [ -f "/usr/local/sonar-build-wrapper/build-wrapper-linux-${SONAR_PROCESSOR}" ]; then
+    SONAR_CMD="/usr/local/sonar-build-wrapper/build-wrapper-linux-${SONAR_PROCESSOR} --out-dir ${WORKSPACE}/bw-outputs/"
   fi
   export SONAR_CMD
   echo -e "${magenta} SONAR_CMD : ${SONAR_CMD} ${NC}"
@@ -375,7 +337,8 @@ if [ -n "${MAKE}" ]; then
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : MAKE, use default one ${NC}"
   if [ "$(uname -s)" == "Linux" ]; then
-    MAKE="colormake"
+    #MAKE="colormake"
+    MAKE="make"
   else
     MAKE="make"
   fi
@@ -433,7 +396,21 @@ if [ -n "${SONAR_BRANCH}" -o "${SONAR_BRANCH}" == "null" ]; then
   echo -e "${green} SONAR_BRANCH is defined ${happy_smiley} : ${SONAR_BRANCH} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : SONAR_BRANCH, use the default one ${NC}"
-  SONAR_BRANCH="master"
+  if [ -n "${GIT_BRANCH}" ]; then
+    echo -e "${green} GIT_BRANCH is defined ${happy_smiley} : ${GIT_BRANCH} ${NC}"
+    # shellcheck disable=SC2086
+    SONAR_BRANCH="$(printf '%s' ${GIT_BRANCH} | cut -d'/' -f 2-)"
+  else
+    echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : GIT_BRANCH, use the default one ${NC}"
+    if [ -n "${GIT_BRANCH_NAME}" ]; then
+      echo -e "${green} GIT_BRANCH_NAME is defined ${happy_smiley} : ${GIT_BRANCH_NAME} ${NC}"
+      # shellcheck disable=SC2086
+      SONAR_BRANCH="$(printf '%s' ${GIT_BRANCH_NAME} | cut -d'/' -f 2-)"
+    else
+      echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : GIT_BRANCH_NAME, use the default one ${NC}"
+      SONAR_BRANCH="develop"
+    fi
+  fi
   export SONAR_BRANCH
   echo -e "${magenta} SONAR_BRANCH : ${SONAR_BRANCH} ${NC}"
 fi
@@ -451,7 +428,7 @@ else
   elif [ "$(uname -s)" == "Linux" ]; then
     TAR="tar"
   elif [ "$(uname -s | cut -c 1-7)" == "MSYS_NT" ]; then
-    TAR="zip"
+    TAR="tar"
   else
     TAR="7z"
   fi
@@ -493,15 +470,15 @@ if [ -n "${CURL}" ]; then
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : CURL, use default one ${NC}"
   if [ "$(uname -s)" == "SunOS" ]; then
-    WGET="/usr/local/bin/curl"
+    CURL="/usr/local/bin/curl"
   elif [ "$(uname -s)" == "Darwin" ]; then
-    WGET="/opt/local/bin/curl"
+    CURL="/opt/local/bin/curl"
   elif [ "$(uname -s)" == "Linux" ]; then
-    WGET="/usr/bin/curl"
+    CURL="/usr/bin/curl"
   elif [ "$(uname -s | cut -c 1-7)" == "MSYS_NT" ]; then
-    WGET="curl"
+    CURL="curl"
   else
-    WGET="curl"
+    CURL="curl"
   fi
   export CURL
   echo -e "${magenta} CURL : ${CURL} ${NC}"
@@ -514,6 +491,17 @@ else
   CURL_OPTIONS="-k"
   export CURL_OPTIONS
   echo -e "${magenta} CURL_OPTIONS : ${CURL_OPTIONS} ${NC}"
+fi
+
+if [ -n "${XARGS_OPTIONS}" ]; then
+  echo -e "${green} XARGS_OPTIONS is defined ${happy_smiley} : ${XARGS_OPTIONS} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : XARGS_OPTIONS, use default one ${NC}"
+  if [ "$(uname -s)" != "Darwin" ]; then
+    XARGS_OPTIONS+=" -r " # No run on OSX
+    export XARGS_OPTIONS
+  fi
+  echo -e "${magenta} XARGS_OPTIONS : ${XARGS_OPTIONS} ${NC}"
 fi
 
 if [ -n "${MD5SUM}" ]; then
@@ -594,7 +582,7 @@ if [ -n "${JAVA_HOME}" ]; then
   echo -e "${green} JAVA_HOME is defined ${happy_smiley} : ${JAVA_HOME} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : JAVA_HOME, use the default one ${NC}"
-  JAVA_HOME="/usr"
+  #JAVA_HOME="/usr"
   if [ "$(uname -s)" == "SunOS" ]; then
     JAVA_HOME="/usr/jdk/instances/jdk1.8.0_131"
   elif [ "$(uname -s)" == "Darwin" ]; then
@@ -602,6 +590,9 @@ else
   fi
   if [[ -d /dpool/jdk ]]; then
     JAVA_HOME="/dpool/jdk"
+  fi
+  if [[ -d /usr/lib/jvm/java-1.8.0-openjdk-amd64 ]]; then
+    JAVA_HOME="/usr/lib/jvm/java-1.8.0-openjdk-amd64"
   fi
   if [[ -d /usr/lib/jvm/java-8-oracle ]]; then
     JAVA_HOME="/usr/lib/jvm/java-8-oracle"
@@ -630,7 +621,7 @@ if [ -n "${MAVEN_OPTS}" ]; then
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : MAVEN_OPTS, use the default one ${NC}"
   #MAVEN_OPTS="-XX:MaxPermSize=512m"
-  MAVEN_OPTS="-d64 -Xmx3072m -Djava.awt.headless=true -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:gc.log -XX:+HeapDumpOnOutOfMemoryError -Dsun.zip.disableMemoryMapping=true -Djava.io.tmpdir=${WORKSPACE}/target/tmp"
+  MAVEN_OPTS="-Xmx3072m -Djava.awt.headless=true -XX:+PrintGCDetails -XX:+PrintGCDateStamps -Xloggc:gc.log -XX:+HeapDumpOnOutOfMemoryError -Dsun.zip.disableMemoryMapping=true -Djava.io.tmpdir=${WORKSPACE}/target/tmp"
   export MAVEN_OPTS
   echo -e "${magenta} MAVEN_OPTS : ${MAVEN_OPTS} ${NC}"
 fi
@@ -650,9 +641,11 @@ if [ -n "${VIRTUALENV_PATH}" ]; then
   echo -e "${green} VIRTUALENV_PATH is defined ${happy_smiley} : ${VIRTUALENV_PATH} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : VIRTUALENV_PATH, use the default one ${NC}"
-  export VIRTUALENV_PATH=/opt/ansible/env$(echo $PYTHON_MAJOR_VERSION | sed 's/\.//g')
-  #sudo virtualenv ${VIRTUALENV_PATH} -p {{PYTHON_EXE}}
+  # shellcheck disable=SC2001
+  VIRTUALENV_PATH=/opt/ansible/env$(echo $PYTHON_MAJOR_VERSION | sed 's/\.//g')
+  #virtualenv --no-site-packages ${VIRTUALENV_PATH} -p {{PYTHON_EXE}}
   #source ${VIRTUALENV_PATH}/bin/activate
+  export VIRTUALENV_PATH
   echo -e "${magenta} VIRTUALENV_PATH : ${VIRTUALENV_PATH} ${NC}"
 fi
 
@@ -725,7 +718,6 @@ if [ -n "${TARGET_TAG}" ]; then
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_TAG, use the default one ${NC}"
   export TARGET_TAG="LATEST_SUCCESSFULL"
-  #export TARGET_TAG="1.7.0.0_1"
   echo -e "${magenta} TARGET_TAG : ${TARGET_TAG} ${NC}"
 fi
 
@@ -737,44 +729,55 @@ else
   echo -e "${magenta} TARGET_USER : ${TARGET_USER} ${NC}"
 fi
 
-if [ -n "${TARGET_SERVER}" ]; then
-  echo -e "${green} TARGET_SERVER is defined ${happy_smiley} ${NC}"
+if [ -n "${TARGET_HOST}" ]; then
+  echo -e "${green} TARGET_HOST is defined ${happy_smiley} : ${TARGET_HOST} ${NC}"
 else
-  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_SERVER, use the default one ${NC}"
-  export TARGET_SERVER=nabla.freeboxos.fr
-  echo -e "${magenta} TARGET_SERVER : ${TARGET_SERVER} ${NC}"
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_HOST, use the default one ${NC}"
+  export TARGET_HOST=${TARGET_HOST:-"FR1CSLFRBM0059"}
+  export SERVER_HOST=${SERVER_HOST:-"FR1CSLFRBM0059"} #TODO TARGET_HOST and SERVER_HOST are duplicated
+  echo -e "${magenta} TARGET_HOST : ${TARGET_HOST} ${NC}"
 fi
 
-if [ -n "${TARGET_PORT}" ]; then
-  echo -e "${green} TARGET_PORT is defined ${happy_smiley} ${NC}"
+if [ -n "${INSTALLER_PATH}" ]; then
+  echo -e "${green} INSTALLER_PATH is defined ${happy_smiley} : ${INSTALLER_PATH} ${NC}"
 else
-  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_PORT, use the default one ${NC}"
-  export TARGET_PORT=8280
-  echo -e "${magenta} TARGET_PORT : ${TARGET_PORT} ${NC}"
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : INSTALLER_PATH, use the default one ${NC}"
+  export INSTALLER_PATH="1.7.1"
+  echo -e "${magenta} INSTALLER_PATH : ${INSTALLER_PATH} ${NC}"
 fi
 
-if [ -n "${TARGET_URL}" ]; then
-  echo -e "${green} TARGET_URL is defined ${happy_smiley} ${NC}"
+if [ -n "${TARGET_SHARE_DIR}" ]; then
+  echo -e "${green} TARGET_SHARE_DIR is defined ${happy_smiley} : ${TARGET_SHARE_DIR} ${NC}"
 else
-  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_URL, use the default one ${NC}"
-  export TARGET_URL="visma/"
-  echo -e "${magenta} TARGET_URL : ${TARGET_URL} ${NC}"
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_SHARE_DIR, use default one ${NC}"
+  export TARGET_SHARE_DIR="${TARGET_USER}@${TARGET_HOST}:/var/www/release/ARC/LatestBuildsUntested/${INSTALLER_PATH}/"
+  # shellcheck disable=SC2154
+  echo -e "${magenta} TARGET_SHARE_DIR : ${TARGET_SHARE_DIR} ${NC}"
+fi
+
+if [ -n "${TARGET_DIR}" ]; then
+  echo -e "${green} TARGET_DIR is defined ${happy_smiley} : ${TARGET_DIR} ${NC}"
+else
+  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_DIR, use default one ${NC}"
+  export TARGET_DIR="${TARGET_USER}@${SERVER_HOST}:/var/www/~devel/${JOB_NAME}/AlmondeTest"
+  # shellcheck disable=SC2154
+  echo -e "${magenta} TARGET_DIR : ${TARGET_DIR} ${NC}"
 fi
 
 if [ -n "${SERVER_HOST}" ]; then
   echo -e "${green} SERVER_HOST is defined ${happy_smiley} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : SERVER_HOST, use the default one ${NC}"
-  SERVER_HOST="albandri"
+  SERVER_HOST="FR1CSLFRBM0059"
   export SERVER_HOST
   echo -e "${magenta} SERVER_HOST : ${SERVER_HOST} ${NC}"
 fi
 
 if [ -n "${SERVER_CONTEXT}" ]; then
-  echo -e "${green} SERVER_URL is defined ${happy_smiley} : ${SERVER_CONTEXT} ${NC}"
+  echo -e "${green} SERVER_CONTEXT is defined ${happy_smiley} : ${SERVER_CONTEXT} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : SERVER_CONTEXT, use the default one ${NC}"
-  SERVER_CONTEXT="/test"
+  SERVER_CONTEXT="/test/#/"
   export SERVER_CONTEXT
   echo -e "${magenta} SERVER_CONTEXT : ${SERVER_CONTEXT} ${NC}"
 fi
@@ -783,7 +786,7 @@ if [ -n "${SERVER_URL}" ]; then
   echo -e "${green} SERVER_URL is defined ${happy_smiley} : ${SERVER_URL} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : SERVER_URL, use the default one ${NC}"
-  SERVER_URL=${HTTP_PROTOCOL}${SERVER_HOST}${SERVER_CONTEXT}
+  SERVER_URL=${HTTP_PROTOCOL}${SERVER_HOST}
   export SERVER_URL
   echo -e "${magenta} SERVER_URL : ${SERVER_URL} ${NC}"
 fi
@@ -914,11 +917,14 @@ else
   echo -e "${magenta} H2_PORT : ${H2_PORT} ${NC}"
 fi
 
+# shellcheck source=./step-2-0-0-build-almonde-env.sh
+source "${WORKING_DIR}/step-2-0-0-build-almonde-env.sh"
+
 ENV_FILENAME="${WORKSPACE}/ENV_${ARCH}_VERSION.TXT"
 
 echo -e "${NC}"
 
-$script_dir/step-2-0-1-build-env-info.sh > "${ENV_FILENAME}"
+"${WORKING_DIR}/step-2-0-1-build-env-info.sh" > "${ENV_FILENAME}"
 
 # shellcheck disable=SC2154
 echo -e "${black} ${blink} DONE ${NC}"

@@ -3,9 +3,10 @@ set -xv
 
 #http://www.ubuntugeek.com/how-to-install-webmin-on-ubuntu-12-04-precise-server.html
 
+cd ~
 sudo apt-get install perl libnet-ssleay-perl openssl libauthen-pam-perl libpam-runtime libio-pty-perl apt-show-versions python
-wget http://prdownloads.sourceforge.net/webadmin/webmin_1.630_all.deb
-dpkg --install webmin_1.630_all.deb
+wget http://prdownloads.sourceforge.net/webadmin/webmin_1.930_all.deb
+dpkg --install webmin_1.930_all.deb
 
 #check out git code
 #see http://www.webmin.com/git.html
@@ -14,15 +15,14 @@ cd /usr/local/webadmin
 sudo ln -s `which perl` /usr/local/bin/perl
 sudo ./local-setup.sh
 
-#Open firewall
+# Open firewall
 sudo ufw allow 10000
 
-#
 #Login name on windows : admin
 #Login name on windows : microsoft
 #http://PTXMZ0087:10000/
 
-#mon
+# mon
 #change /var/www/cgi-bin/mon.cgi by /usr/lib/cgi-bin/mon.cgi
 
 #Install virtualmin

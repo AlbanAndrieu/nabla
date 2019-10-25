@@ -100,6 +100,7 @@ if [ -n "${TAR}" ]; then
 fi
 if [ -n "${GIT_CMD}" ]; then
   "${GIT_CMD}" --version 2>&1 || true
+  "${GIT_CMD}" lfs env 2>&1 || true
 fi
 mvn --version 2>&1 || true
 
@@ -120,23 +121,23 @@ which osql 2>&1 || true
 
 echo "========== JAVA =========="
 java -version 2>&1 || true
-echo "JAVA_HOME ${JAVA_HOME}"
-echo "NODE_PATH ${NODE_PATH}"
+echo "JAVA_HOME : ${JAVA_HOME}"
+echo "NODE_PATH : ${NODE_PATH}"
 echo "========== MAVEN =========="
-echo "DISPLAY ${DISPLAY}"
-echo "BUILD_NUMBER: ${BUILD_NUMBER}"
-echo "BUILD_ID: ${BUILD_ID}"
+echo "DISPLAY : ${DISPLAY}"
+echo "BUILD_NUMBER : ${BUILD_NUMBER}"
+echo "BUILD_ID : ${BUILD_ID}"
 echo "GIT_BRANCH_NAME : ${GIT_BRANCH_NAME}"
 echo "GIT_BRANCH : ${GIT_BRANCH}"
 echo "GIT_COMMIT : ${GIT_COMMIT}"
-echo "IS_M2RELEASEBUILD: ${IS_M2RELEASEBUILD}"
+echo "IS_M2RELEASEBUILD : ${IS_M2RELEASEBUILD}"
 echo "env.IS_M2RELEASEBUILD=\"${IS_M2RELEASEBUILD}\"" >> ${ENV_FILE}
 echo "========== SERVER =========="
 echo "SERVER_HOST : ${SERVER_HOST}"
 echo "env.SERVER_HOST=\"${SERVER_HOST}\"" >> ${ENV_FILE}
-echo "SERVER_CONTEXT: ${SERVER_CONTEXT}"
+echo "SERVER_CONTEXT : ${SERVER_CONTEXT}"
 echo "env.SERVER_CONTEXT=\"${SERVER_CONTEXT}\"" >> ${ENV_FILE}
-echo "SERVER_URL: ${SERVER_URL}"
+echo "SERVER_URL : ${SERVER_URL}"
 echo "env.SERVER_URL=\"${SERVER_URL}\"" >> ${ENV_FILE}
 echo "========== ZAP =========="
 echo "ZAP_PORT : ${ZAP_PORT}"
@@ -171,13 +172,14 @@ if [ "$(uname -s)" == "Linux" ]; then
 	/usr/bin/google-chrome-stable --version || true #RedHat AND #Ubuntu
   fi
   echo "========== JAVASCRIPT =========="
-  phantomjs --version || true
+#  phantomjs --version || true
   #nodejs --version || true #Ubuntu
   node --version || true
   bower --version || true
   npm --version || true
   grunt --version || true
   yarn --version || true
+#  /usr/lib/chromium-browser/chromedriver --version || true
   echo "========== BUILD TOOLS =========="
   mvn --version || true
   docker --version || true
@@ -192,7 +194,7 @@ fi
 echo "========== SCM =========="
 git --version || true
 git config --global --list || true
-svn --version || true
+#svn --version || true
 
 echo "========== ENV =========="
 #env is already displayed in jenkins
