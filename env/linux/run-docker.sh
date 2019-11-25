@@ -55,18 +55,33 @@ bash ./check-config.sh
 ps aux |grep dnsmasq
 gksudo geany /etc/NetworkManager/NetworkManager.conf
 
-nano /etc/docker/daemon.json
-	{
-		"dns": ["172.17.0.1"],
-		"debug": true
-	}
+#nano /etc/docker/daemon.json
+#   {
+#  "dns": ["172.17.0.1"],
+#  "exec-opts": ["native.cgroupdriver=systemd"],
+#  "log-driver": ["json-file"],
+#  "log-opts": {
+#      "max-size": "100m"
+#   },
+#   "debug": true
+#   }
+sudo sh -x 'cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=cgroupfs"],
+  "storage-driver": "overlay2",
+  "debug": true
+}
+EOF'
+#nano /etc/NetworkManager/dnsmasq.d/docker-bridge.conf
+#   listen-address=172.17.0.1
 
-nano /etc/NetworkManager/dnsmasq.d/docker-bridge.conf
-	listen-address=172.17.0.1
+swapoff -a
+strace -eopenat kubectl version
 
 #Comment out the dns=dnsmasq
 sudo service network-manager restart
-sudo service docker restart
+sudo systemctl daemon-reload
+sudo systemctl restart docker
 
 #------------------
 
@@ -104,7 +119,7 @@ DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 8.8
 #For Ubuntu 16.04
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --label provider=albandri --experimental
 #ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --storage-driver overlay2 --disable-legacy-registry --tlsverify --tlscacert /root/pki/ca.pem --tlscert /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.pem --tlskey /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.key --label provider=albandri
-ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.soc --data-root /docker
+ExecStart=/usr/bin/dockerd -H fd:// --dns 10.21.200.3 --dns 10.41.200.3 --containerd=/run/containerd/containerd.sock --data-root /docker -label provider=albandri
 # -s cpuguy83/docker-overlay2-graphdriver-plugin
 #For RedHat 7.4
 ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --data-root /docker
@@ -140,6 +155,7 @@ sudo journalctl -fu docker.service
 sudo systemctl show --property=Environment docker
 sudo systemctl daemon-reload
 #sudo service docker restart
+sudo systemctl stop kubelet
 sudo systemctl restart docker.service
 sudo systemctl status docker
 sudo systemctl status docker.service -l
@@ -370,7 +386,6 @@ journalctl -u docker.service
 
 #See https://github.com/GoogleContainerTools/container-structure-test
 curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64 && chmod +x container-structure-test-linux-amd64 && sudo mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
-
 
 #ls -lrta /var/run/docker.sock
 #chmod 777 /var/run/docker.sock

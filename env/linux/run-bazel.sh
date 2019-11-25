@@ -10,5 +10,6 @@ curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
 
 sudo apt-get update && sudo apt-get install bazel
 sudo apt-get upgrade bazel
+#sudo apt-get install --only-upgrade bazel
 
 exit 0

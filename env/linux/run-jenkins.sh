@@ -109,6 +109,7 @@ ls -la /proc/PID/fd | wc -l
 
 #MacOSX
 sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist
+ls /Applications/Jenkins/jenkins.war
 sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist
 tail -f /var/log/jenkins/jenkins.log
 cd /Users/Shared/Jenkins/Home
@@ -126,8 +127,6 @@ mkdir init.groovy.d/
 #sudo defaults write /Library/Preferences/org.jenkins-ci httpsPort 8383
 #sudo defaults write /Library/Preferences/org.jenkins-ci httpsKeyStore /etc/ssl/almonde-jenkins.misys.global.ad/almonde-jenkins.misys.global.ad.jks
 #sudo defaults write /Library/Preferences/org.jenkins-ci httpsKeyStorePassword changeit
-
-ls /Applications/Jenkins/jenkins.war
 
 # See https://wiki.jenkins.io/display/JENKINS/Configuring+Content+Security+Policy
 System.setProperty("hudson.slaves.WorkspaceList", "_")
