@@ -620,6 +620,11 @@ then
   export PATH=${PATH}:${DRIVE_PATH}/Windows/system32:${DRIVE_PATH}/Windows
 fi
 
+# KUBERNETES
+source <(kubectl completion bash)
+alias k=kubectl
+complete -F __start_kubectl k
+
 ###
 # INCLUDE LANGUAGE SPECIFIC
 ###
@@ -806,7 +811,7 @@ case ${ARCH} in
     ;;
 esac
 
-export DISPLAY=:0.0
+#export DISPLAY=:0.0
 #export DISPLAY=localhost:10.0
 #instead us ansible local role
 #export LC_CTYPE=en_US.UTF-8
@@ -817,7 +822,15 @@ export PAGER=most
 export COWSAY="/usr/games/cowsay"
 if [ -f $COWSAY ]
 then
-  /usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`/usr/games/fortune -s`"
+  command -v rl || {
+      echo -e "rl | randomize-lines not found in system PATH, please make sure that randomize-lines is installed"
+      echo -e "rl | apt-get install randomize-lines fortunes fortunes-fr"
+      #exit 1
+  }
+  if [ -f /usr/bin/rl ]
+  then
+    /usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`/usr/games/fortune -s`"
+  fi
 else
   echo "Cowsay is not installed"
 fi
@@ -833,6 +846,17 @@ fi
 export SHELLCHECK_OPTS="-e SC2154 -e SC2086"
 
 source "${WORKING_DIR}/pass.env.sh"
+
+command -v docker || {
+	echo -e "Docker | docker not found in system PATH, please make sure that docker is installed"
+	echo -e "Docker | Recommended docker version is >= 18.09.9,"
+#	exit 1
+}
+command -v docker-compose || {
+	echo -e "Docker | docker-compose not found in system PATH, please make sure that docker-compose is installed"
+	echo -e "Docker | Recommended docker-compose version is >= 1.24.1"
+#	exit 1
+}
 
 echo -e "${cyan} PATH is ${PATH} ${NC}"
 
