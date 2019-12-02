@@ -624,6 +624,8 @@ fi
 source <(kubectl completion bash)
 alias k=kubectl
 complete -F __start_kubectl k
+#export KUBECONFIG=$KUBECONFIG:config:config-albandri:config-albandrieu
+unset KUBECONFIG
 
 ###
 # INCLUDE LANGUAGE SPECIFIC

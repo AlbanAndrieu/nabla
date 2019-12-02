@@ -70,6 +70,8 @@ kubectl get nodes
 #kubeadm reset
 kubectl -n kube-system get cm kubeadm-config -oyaml
 #sudo kubeadm init --pod-network-cidr=10.41.40.0/24
+service hpsmhd status
+service hpsmhd stop
 kubeadm init --ignore-preflight-errors=SystemVerification,IsDockerSystemdCheck,Swap
 
 #As albandri
@@ -86,12 +88,19 @@ kubectl get cs
 
 sudo kubectl apply -f "https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')"
 #sudo kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+kubectl cluster-info
+kubectl --kubeconfig ./k8s.cfg cluster-info
 kubectl get nodes
 
 #NAME                       STATUS   ROLES    AGE   VERSION
 #albandri.misys.global.ad   Ready    master   23h   v1.16.3
 
+kubectl api-resources --namespaced=false
+kubectl api-resources --namespaced=true
+kubectl get namespace
 kubectl get pods --all-namespaces
+kubectl get pods --namespace=albandri
+kubectl get services  
 
 sudo nano /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 #NOK --cgroup-driver=system
@@ -103,7 +112,7 @@ sudo systemctl restart kubelet
 sudo systemctl status kubelet
 journalctl -xeu kubelet
 
-#kubectl taint nodes --all node-role.kubernetes.io/master-node/vm1
+#kubectl taint nodes --all node-role.kubernetes.io/master-
 
 #You can now join any number of machines by running the following on each node
 #as root:
@@ -113,14 +122,22 @@ kubeadm join 10.41.40.139:6443 --token wq7kbn.l21cmw4d2ko4tc9v \
 #albandrieu
 kubeadm join 10.41.40.40:6443 --token em40d6.ork5gj1u2ngn7vmf \
     --discovery-token-ca-cert-hash sha256:dea402bcb29d4cd5e41edc7837ce9518f32272e2ad932565013213b8aacfdcc3 --ignore-preflight-errors=SystemVerification,IsDockerSystemdCheck,Swap
-
 #See https://10.41.40.40:6443/
+#ptxs12361
+kubeadm join 150.151.160.25:6443 --token 75vk06.nnltqwjhavn7e4wh \
+    --discovery-token-ca-cert-hash sha256:4afffce3c8d39f076285aad87f75a743d8012f7e7da8738be112310a99ab94db 
 
 #See https://github.com/kubernetes/dashboard#kubernetes-dashboard
-sudo kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
-sudo kubectl proxy
-#See http://localhost:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/
+#kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta6/aio/deploy/recommended.yaml
+kubectl config view
+#kubectl proxy
+kubectl proxy --address 0.0.0.0 --port=8582 --accept-hosts '.*'
+curl http://localhost:8582/api/
+#See http://localhost:8582/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
 
 sudo kubectl get nodes
+
+# See https://kubernetes.io/fr/docs/reference/kubectl/cheatsheet/
 
 exit 0

@@ -398,9 +398,12 @@ sudo apt-get remove apparmor apparmor-utils
 setfacl -m user:jenkins:rw /var/run/docker.sock
 ls -lrta /var/run/docker.sock
 
-#Ubuntu 19.04
+#Ubuntu 19.04 upgrade
 #A start job is running for Hold until boot finishes up
 #See http://rffuste.com/solution-a-start-job-is-running-for-hold-until-boot-finishes-up-ubuntu/
 #mount  -o remount, rw /
 #apt-get install lightdm
 ##dpkg-reconfigure lightdm
+
+#Ubuntu 19.10 upgrade
+#sudo aptitude remove libgtk3-nocsd0 gtk3-nocsd
