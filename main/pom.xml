@@ -138,6 +138,14 @@
 		<!-- Change this the port on which your webservice will be deploy -->
 		<webservice.port>8187</webservice.port>
 		<zap.port>8090</zap.port>
+		<kubernetes.api.port>6443</kubernetes.api.port>
+		<kubernetes.etcd.port>2379-2380</kubernetes.etcd.port>
+		<kubernetes.kubelet.port>10250</kubernetes.kubelet.port>
+		<kubernetes.scheduler.port>10251</kubernetes.scheduler.port>
+		<kubernetes.controller-manager.port>10252</kubernetes.controller-manager.port>
+		<kubernetes.nodes.port>30000-32767</kubernetes.nodes.port>
+		<rancher.port>8580</rancher.port>
+		<rancher.ssl.port>8581</rancher.ssl.port>
 	</properties>
 	<dependencyManagement>
 		<dependencies>

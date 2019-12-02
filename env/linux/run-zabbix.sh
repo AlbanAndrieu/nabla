@@ -54,7 +54,7 @@ zabbix_agentd
 sudo su - root
 sudo launchctl load -w /Library/LaunchAgents/org.macports.zabbix_agent.plist
 sudo launchctl list
-# As jenkins user
+# As jenkins user or root
 /etc/startzabbix.sh
 tail -f /tmp/zabbix_agentd.log
 
