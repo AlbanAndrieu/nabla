@@ -72,7 +72,7 @@ kubectl -n kube-system get cm kubeadm-config -oyaml
 #sudo kubeadm init --pod-network-cidr=10.41.40.0/24
 service hpsmhd status
 service hpsmhd stop
-kubeadm init --ignore-preflight-errors=SystemVerification,IsDockerSystemdCheck,Swap
+kubeadm init --ignore-preflight-errors=SystemVerification,IsDockerSystemdCheck,Swap,DirAvailable--var-lib-etcd
 
 #As albandri
 mkdir -p $HOME/.kube
@@ -83,6 +83,11 @@ kubectl get cs
 
 #Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
 #  https://kubernetes.io/docs/concepts/cluster-administration/addons/
+
+#Calico
+
+#https://github.com/projectcalico/calico/blob/master/v3.9/getting-started/kubernetes/installation/hosted/rbac-kdd.yaml
+#https://github.com/projectcalico/calico/blob/master/v3.9/getting-started/kubernetes/installation/hosted/kubernetes-datastore/calico-networking/1.7/calico.yaml
 
 #https://www.weave.works/blog/weave-net-kubernetes-integration/
 
@@ -100,7 +105,7 @@ kubectl api-resources --namespaced=true
 kubectl get namespace
 kubectl get pods --all-namespaces
 kubectl get pods --namespace=albandri
-kubectl get services  
+kubectl get services
 
 sudo nano /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 #NOK --cgroup-driver=system
@@ -124,8 +129,8 @@ kubeadm join 10.41.40.40:6443 --token em40d6.ork5gj1u2ngn7vmf \
     --discovery-token-ca-cert-hash sha256:dea402bcb29d4cd5e41edc7837ce9518f32272e2ad932565013213b8aacfdcc3 --ignore-preflight-errors=SystemVerification,IsDockerSystemdCheck,Swap
 #See https://10.41.40.40:6443/
 #ptxs12361
-kubeadm join 150.151.160.25:6443 --token 75vk06.nnltqwjhavn7e4wh \
-    --discovery-token-ca-cert-hash sha256:4afffce3c8d39f076285aad87f75a743d8012f7e7da8738be112310a99ab94db 
+kubeadm join 150.151.160.25:6443 --token gokjm5.t6y5zshdw14ditgq \
+    --discovery-token-ca-cert-hash sha256:f45a448c0609119af281b7ee7c6abcff8bda7f713fadaaaf8f5a75562fc3c2ff
 
 #See https://github.com/kubernetes/dashboard#kubernetes-dashboard
 #kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
@@ -139,5 +144,8 @@ curl http://localhost:8582/api/
 sudo kubectl get nodes
 
 # See https://kubernetes.io/fr/docs/reference/kubectl/cheatsheet/
+
+ls -lrta /etc/kubernetes/pki/
+kubectl --insecure-skip-tls-verify cluster-info
 
 exit 0
