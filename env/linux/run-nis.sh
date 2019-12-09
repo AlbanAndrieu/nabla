@@ -10,3 +10,8 @@ sudo apt-get install nis
 #nis domain nabla
 sudo service ypserv start
 sudo service nis start
+
+#To get access to /home/jenkins
+systemctl stop autofs
+
+exit 0

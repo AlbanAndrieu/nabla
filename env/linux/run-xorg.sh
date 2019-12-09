@@ -39,7 +39,6 @@ sudo apt-get install dconf-editor dconf-tools
 wget https://launchpad.net/~amith/+archive/ubuntutools/+build/3910667/+files/unity-reset_0.1-8_all.deb
 sudo dpkg --install unity-reset_0.1-8_all.deb
 
-TODO
 unity-reset
 #Optionally you can reset launcher icons by executing unity --reset-icons
 
@@ -58,6 +57,7 @@ sudo hwinfo --framebuffer
 sudo hwinfo --monitor
 lspci -vnn | grep -i VGA
 
+Xorg -version
 sudo Xorg -configure
 ls /etc/X11/xorg.conf
 
@@ -145,3 +145,23 @@ apt-get -f install
 lsof -U +c 15 | cut -f1 -d' ' | sort | uniq -c | sort -rn | head -3
 
 #sudo aptitude install tcpd
+#Do not set DISPLAY in
+
+# See https://doc.ubuntu-fr.org/xrandr
+
+xdpyinfo | grep -e dimensions -e resolution
+
+# Resolution
+xrandr -q
+#xrandr --output VGA1 --mode 800x600
+#xrandr --output HDMI1 --mode 1920x1024
+#xrandr --output HDMI1 --mode 2560x1440
+xrandr --size 1920x1024
+xrandr --size 3840x2160
+xrandr --size 32:9
+
+# check grqphic cqrt hold mode
+gtf 3840 2160 144
+
+#xrandr --newmode $(3840 2160 144 | sed -ne 's/"//g;s/ Modeline //p')
+xrandr --newmode "3840x2160_144.00"  1833.14  3840 4200 4632 5424  2160 2161 2164 2347  -HSync +Vsync

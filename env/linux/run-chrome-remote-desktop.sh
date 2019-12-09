@@ -14,16 +14,22 @@ sudo usermod -a -G chrome-remote-desktop $USER
 less  ~/.chrome-remote-desktop-session
 less /opt/google/chrome-remote-desktop/chrome-remote-desktop
 
-#echo "exec /usr/bin/lxsession -s Lubuntu -e LXDE" > ~/.chrome-remote-desktop-session
+#Choose Ubuntu (Not Unity or MATE)
 
-# for xfce4 
+# for lxde
+#echo "exec /usr/bin/lxsession -s Lubuntu -e LXDE" > ~/.chrome-remote-desktop-session
+# for xfce4
 #sudo apt install --assume-yes xscreensaver
 #sudo bash -c 'echo "exec /etc/X11/Xsession /usr/bin/xfce4-session" > /etc/chrome-remote-desktop-session'
 #echo "exec /usr/bin/xfce4-session" > ~/.chrome-remote-desktop-session
-# for cinnamon 
-echo "exec /usr/bin/cinnamon-session-cinnamon2d" > ~/.chrome-remote-desktop-session
+# for cinnamon
+#echo "exec /usr/bin/cinnamon-session-cinnamon2d" > ~/.chrome-remote-desktop-session
 
 #sudo systemctl disable lightdm.service
 sudo systemctl restart chrome-remote-desktop
+
+gsettings get org.gnome.desktop.lockdown disable-lock-screen
+
+gsettings set org.gnome.desktop.lockdown disable-lock-screen 'true'
 
 exit 0
