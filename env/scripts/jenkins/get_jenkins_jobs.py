@@ -164,9 +164,11 @@ def get_jenkins_jobs(server):
     print(jenkins_jobs)
     add_job_properties_partial = partial(add_job_properties, http=http)
     with Pool(processes=8) as pool:
-        jobs_updated = {jenkins_job['name']: jenkins_job for jenkins_job in pool.map(
-            add_job_properties_partial, jenkins_jobs,
-        )}
+        jobs_updated = {
+            jenkins_job['name']: jenkins_job for jenkins_job in pool.map(
+                add_job_properties_partial, jenkins_jobs,
+            )
+        }
     try:
         with open('sample_output.txt', 'w') as f_out:
             f_out.write(json.dumps(jobs_updated))
