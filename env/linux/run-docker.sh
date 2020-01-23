@@ -120,11 +120,12 @@ DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 8.8
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --label provider=albandri --experimental
 #ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --storage-driver overlay2 --disable-legacy-registry --tlsverify --tlscacert /root/pki/ca.pem --tlscert /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.pem --tlskey /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.key --label provider=albandri
 #For Ubuntu 19.10
-ExecStart=/usr/bin/dockerd -H fd:// --dns 10.21.200.3 --dns 10.41.200.3 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --disable-legacy-registry
+ExecStart=/usr/bin/dockerd -H fd:// --dns 10.21.200.3 --dns 10.41.200.3 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --insecure-registry=registry.misys.global.ad --insecure-registry=registry-tmp.misys.global.ad --userns-remap jenkins
 # -s cpuguy83/docker-overlay2-graphdriver-plugin
 #For RedHat 7.4
 ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --data-root /docker
-#ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 --data-root /docker
+#For RedHat 7.7
+ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock -H tcp://0.0.0.0:2376 --data-root /docker --label provider=albandri --userns-remap jenkins
 # --disable-legacy-registry
 
 #For RedHat CentOS
@@ -160,7 +161,7 @@ sudo systemctl stop kubelet
 sudo systemctl restart docker.service
 sudo systemctl status docker
 sudo systemctl status docker.service -l
-journalctl -xe 
+journalctl -xe
 
 sudo docker --tlsverify ps
 
@@ -269,7 +270,7 @@ gksudo baobab
 docker system df
 #docker system prune -f --volumes
 docker system prune -f
-docker system prune -a --volumes -y
+docker system prune -a --volumes
 
 #cleaning
 docker stop $(docker ps -a -q) # stop all docker containers
@@ -393,7 +394,9 @@ curl -LO https://storage.googleapis.com/container-structure-test/latest/containe
 #For non sudo user
 #sudo chmod 666 /var/run/docker.sock
 setfacl -m user:jenkins:rw /var/run/docker.sock
+setfacl -m user:albandri:rw /var/run/docker.sock
 ls -lrta /var/run/docker.sock
+docker version
 
 #Ubuntu 19.04
 
@@ -406,5 +409,16 @@ sudo systemctl status docker
 sudo usermod -aG docker ${USER}
 
 docker run -it -u 1004:999 -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v /var/run/docker.sock:/var/run/docker.sock --entrypoint /bin/bash fusion-risk/ansible-jenkins-slave:latest
+
+#docker linter
+# See https://github.com/hadolint/hadolint
+brew install hadolint
+#ls -lrta .hadolint.yaml
+hadolint Dockerfile
+
+#See https://github.com/wagoodman/dive
+#wget https://github.com/wagoodman/dive/releases/download/v0.9.1/dive_0.9.1_linux_amd64.deb
+#sudo apt install ./dive_0.9.1_linux_amd64.deb
+brew install dive
 
 exit 0

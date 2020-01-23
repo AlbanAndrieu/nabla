@@ -128,8 +128,11 @@ mkdir init.groovy.d/
 #sudo defaults write /Library/Preferences/org.jenkins-ci httpsKeyStore /etc/ssl/almonde-jenkins.misys.global.ad/almonde-jenkins.misys.global.ad.jks
 #sudo defaults write /Library/Preferences/org.jenkins-ci httpsKeyStorePassword changeit
 
+System.setProperty("org.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS", "true")
+System.setProperty("org.jenkinsci.plugins.durabletask.BourneShellScript.FORCE_SHELL_WRAPPER", "true")
+System.setProperty("org.jenkinsci.plugins.durabletask.BourneShellScript.FORCE_BINARY_WRAPPER", "true")
+#System.setProperty("hudson.slaves.WorkspaceList", "_")
 # See https://wiki.jenkins.io/display/JENKINS/Configuring+Content+Security+Policy
-System.setProperty("hudson.slaves.WorkspaceList", "_")
 System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
 System.setProperty("permissive-script-security.enabled", "true")
 System.setProperty("org.jenkinsci.plugins.gitclient.Git.timeOut", "120")

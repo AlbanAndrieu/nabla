@@ -105,7 +105,7 @@ kubectl api-resources --namespaced=true
 kubectl get namespace
 kubectl get pods --all-namespaces
 kubectl get pods --namespace=albandri
-kubectl get services
+kubectl --kubeconfig ./kube.config get services
 
 sudo nano /etc/systemd/system/kubelet.service.d/10-kubeadm.conf
 #NOK --cgroup-driver=system
@@ -147,5 +147,14 @@ sudo kubectl get nodes
 
 ls -lrta /etc/kubernetes/pki/
 kubectl --insecure-skip-tls-verify cluster-info
+
+kubectl --kubeconfig ./kube.config cluster-info dump | tee cluster-info.log
+
+export HELM_TLS_ENABLE=false
+
+#force remove pods from current namepace: kubectl get pods | awk '{ print $1 }' | xargs kubectl delete po --force --grace-period=0
+#remove release: helm delete --purge <release name>
+#remove napespace: kubectl delete namespace <namespace>
+#removing nampespace should rmove secretes, pv... in namespace
 
 exit 0

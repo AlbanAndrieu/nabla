@@ -160,8 +160,10 @@ xrandr --size 1920x1024
 xrandr --size 3840x2160
 xrandr --size 32:9
 
-# check grqphic cqrt hold mode
-gtf 3840 2160 144
+# check graphic cqrt hold mode
+sudo gtf 3840 2160 144
+sudo cvt 3840 2160 144
+sudo cvt -r 3840 2160 60
 
-#xrandr --newmode $(3840 2160 144 | sed -ne 's/"//g;s/ Modeline //p')
+#xrandr --newmode $(cvt 3840 2160 144 | sed -ne 's/"//g;s/Modeline //p')
 xrandr --newmode "3840x2160_144.00"  1833.14  3840 4200 4632 5424  2160 2161 2164 2347  -HSync +Vsync
