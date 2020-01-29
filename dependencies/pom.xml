@@ -5629,7 +5629,7 @@
             </snapshots>
             <id>nexus-releases</id>
             <name>Nexus Release Repository</name>
-            <url>http://home.nabla.mobi:8085/nexus/content/repositories/releases</url>
+            <url>http://albandrieu.com:8081/nexus/content/repositories/releases</url>
         </repository>
         <repository>
             <releases>
@@ -5642,7 +5642,7 @@
             </snapshots>
             <id>nexus-snapshots</id>
             <name>Nexus Snapshot Repository</name>
-            <url>http://home.nabla.mobi:8085/nexus/content/repositories/snapshots</url>
+            <url>http://albandrieu.com:8081/nexus/content/repositories/snapshots</url>
         </repository>
     </repositories>
     <pluginRepositories>
@@ -5676,7 +5676,7 @@
                 <enabled>false</enabled>
             </snapshots>
             <id>nexus-releases</id>
-            <url>http://home.nabla.mobi:8085/nexus/content/repositories/releases</url>
+            <url>http://albandrieu.com:8081/nexus/content/repositories/releases</url>
         </pluginRepository>
         <pluginRepository>
             <releases>
@@ -5686,7 +5686,7 @@
                 <enabled>true</enabled>
             </snapshots>
             <id>nexus-snapshots</id>
-            <url>http://home.nabla.mobi:8085/nexus/content/repositories/snapshots</url>
+            <url>http://albandrieu.com:8081/nexus/content/repositories/snapshots</url>
         </pluginRepository>
     </pluginRepositories>
     <build>
@@ -6372,7 +6372,7 @@
                     <extensions>true</extensions>
                     <configuration>
                         <!-- The Base URL of Nexus instance where we want to stage -->
-                        <nexusUrl>http://home.nabla.mobi:8085/nexus</nexusUrl>
+                        <nexusUrl>http://albandrieu.com:8081/nexus</nexusUrl>
                         <!-- The server "id" element from settings to use authentication from -->
                         <serverId>local-nexus</serverId>
                         <tags>
@@ -8291,7 +8291,7 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
                         <centralAnalyzerEnabled>false</centralAnalyzerEnabled>
                         <nexusAnalyzerEnabled>false</nexusAnalyzerEnabled>
                         <!--
-                        <nexusUrl>http://home.nabla.mobi:8085/nexus</nexusUrl>
+                        <nexusUrl>http://albandrieu.com:8081/nexus</nexusUrl>
                         <cveUrl12Modified>http://home.nabla.mobi/download/nist/nvdcve-Modified.xml.gz</cveUrl12Modified>
                         <cveUrl20Modified>http://home.nabla.mobi/download/nist/nvdcve-2.0-Modified.xml.gz</cveUrl20Modified>
                         <cveUrl12Base>http://home.nabla.mobi/download/nist/nvdcve-%d.xml</cveUrl12Base>
