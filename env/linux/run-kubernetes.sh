@@ -146,15 +146,17 @@ sudo kubectl get nodes
 # See https://kubernetes.io/fr/docs/reference/kubectl/cheatsheet/
 
 ls -lrta /etc/kubernetes/pki/
+kubectl cluster-info -v 5
 kubectl --insecure-skip-tls-verify cluster-info
-
 kubectl --kubeconfig ./kube.config cluster-info dump | tee cluster-info.log
-
-export HELM_TLS_ENABLE=false
 
 #force remove pods from current namepace: kubectl get pods | awk '{ print $1 }' | xargs kubectl delete po --force --grace-period=0
 #remove release: helm delete --purge <release name>
 #remove napespace: kubectl delete namespace <namespace>
 #removing nampespace should rmove secretes, pv... in namespace
+
+export no_proxy=$(hostname -i)
+curl -v http://10.41.40.40:6443
+
 
 exit 0

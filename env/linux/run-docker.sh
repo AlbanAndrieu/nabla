@@ -393,8 +393,8 @@ curl -LO https://storage.googleapis.com/container-structure-test/latest/containe
 #chmod 777 /var/run/docker.sock
 #For non sudo user
 #sudo chmod 666 /var/run/docker.sock
-setfacl -m user:jenkins:rw /var/run/docker.sock
-setfacl -m user:albandri:rw /var/run/docker.sock
+sudo setfacl -m user:jenkins:rw /var/run/docker.sock
+sudo setfacl -m user:albandri:rw /var/run/docker.sock
 ls -lrta /var/run/docker.sock
 docker version
 
