@@ -581,6 +581,6 @@ echo "webmin_enable="YES"" >> /etc/rc.conf
 admin
 
 echo "https://192.168.0.26:10000"
-echo "https://192.168.0.28:10000"
+echo "https://192.168.1.42:10000"
 echo "https://192.168.0.23:10000"
 echo "https://192.168.0.25:10000/"

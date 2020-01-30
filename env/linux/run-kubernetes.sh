@@ -16,7 +16,8 @@ cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
 deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 sudo apt-get update
-sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-get install -y kubelet=1.13.12-00 kubeadm=1.13.12-00 kubectl=1.13.12-00 # ubuntu 18
+#sudo apt-get install -y kubelet=1.17.2-00 kubeadm=1.17.2-00 kubectl=1.17.2-00 # ubuntu 19
 sudo apt-mark hold kubelet kubeadm kubectl
 #sudo apt-mark unhold kubelet kubeadm kubectl
 #sudo snap install kubectl --classic
