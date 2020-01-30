@@ -25,7 +25,7 @@ echo 'apache24_enable="YES"' >> /etc/rc.conf
 #start apache
 /usr/local/etc/rc.d/apache24 start
 
-see http://192.168.0.28/
+see http://192.168.1.42/
 
 #####################
 
@@ -51,7 +51,7 @@ pkg install php56-bcmath php56-curl php56-gd php56-mbstring php56-pdo_mysql php5
         Require host .example.com
     </Directory>
 
-http://192.168.0.28/phpMyAdmin/
+http://192.168.1.42/phpMyAdmin/
 
 pkg install cdash
 
@@ -206,8 +206,8 @@ service apache24 restart
 
 tail -f /var/log/httpd-error.log
 
-http://192.168.0.28/index.pl
-http://192.168.0.28/index.cgi
+http://192.168.1.42/index.pl
+http://192.168.1.42/index.cgi
 
 cd /usr/local/www/apache24/data/.well-known/acme-challenge
 watch -n 0.1 ls -lRa

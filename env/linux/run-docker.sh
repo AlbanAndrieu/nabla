@@ -168,7 +168,7 @@ sudo docker --tlsverify ps
 ls -lrta ~/.docker/config.json
 
 #docker login 10.21.70.133
-docker login registry.nabla.mobi --username=nabla
+docker login registry.albandrieu.com --username=nabla
 
 if curl http://localhost:8380/jenkins 2>/dev/null | grep -iq jenkins; then echo "FAIL"; else echo "OK"; fi
 
@@ -235,7 +235,7 @@ vagrant ssh
 #sudo docker pull dockerfile/ansible
 sudo docker pull nabla/ansible-jenkins-slave-docker
 
-docker run --rm nabla/ansible-jenkins-slave-docker curl http://home.nabla.mobi/html/download/README.html
+docker run --rm nabla/ansible-jenkins-slave-docker curl http://home.albandrieu.com/html/download/README.html
 
 docker run -it nabla/ansible-jenkins-slave-docker /bin/bash
 #Sample using container to buid my local workspace
