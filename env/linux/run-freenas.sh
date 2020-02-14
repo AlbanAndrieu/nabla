@@ -19,12 +19,12 @@ wakeonlan 7C:05:07:0E:D9:88
 #WebUI
 #Set nginx_enable to YES: sysrc nginx_enable=YES
 #modify nginx.conf: nano /usr/local/etc/nginx/nginx.conf
-#listen                  192.168.0.46:7000 default_server ssl http2;
+#listen                  192.168.1.24:7000 default_server ssl http2;
 #listen                  [::]:7000 default_server ssl http2;
 #
 #ssl_certificate         "/etc/certificates/freenas-pre-certui.crt";
 #ssl_certificate_key     "/etc/certificates/freenas-pre-certui.key";
-#listen       192.168.0.46:80;
+#listen       192.168.1.24:80;
 #listen       [::]:80;
 #Remove the IPv6 listen line
 #Start Nginx Service: service nginx start
@@ -33,7 +33,7 @@ service django restart
 
 sqlite3 /data/freenas-v1.db "update system_settings set stg_guiprotocol = 'http';"
 
-echo "https://192.168.0.46:7000/"
+echo "https://192.168.1.24:7000/"
 echo "https://home.nabla.mobi:7000/"
 echo "https://freenas.freeboxos.fr:7000/"
 #https://[fe80::160c:76ff:fe64:65dd]:7000/
@@ -69,7 +69,7 @@ minidlna-1.0.24_1-amd64
 transmission-2.77-amd64
 firefly-1696_7-amd64
 
-#freenas IP is 192.168.0.46
+#freenas IP is 192.168.1.24
 
 #IPv4 Default Gateway
 #NOK 192.168.1.1
@@ -106,7 +106,7 @@ tail -f /mnt/dpool/jail/software/var/log/minidlna.log
 
 #Firefly
 #do redirect to jail
-http://192.168.0.46:3689/
+http://192.168.1.24:3689/
 http://home.nabla.mobi:3689/index.html
 
 #transmission
@@ -205,7 +205,7 @@ user : admin
 
 #mount by hand
 sudo apt-get install nfs-common
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media /media -o user=albandri
+sudo mount -t nfs 192.168.1.24:/mnt/dpool/media /media -o user=albandri
 sudo umount /media/ftp
 sudo umount /media/photo
 sudo umount /media/music
@@ -216,24 +216,24 @@ sudo umount /jenkins-tmp
 sudo umount /workspace-tmp
 sudo umount /workspace/users/albandri10
 
-#sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/ftp /media/ftp -o user=albandri
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/download /media/download
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/ftp /media/ftp
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/movie /media/movie
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/music /media/music
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/photo /media/photo
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/serie /media/serie
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/torrentfile /media/torrentfile
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/video /media/video
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/webdav /media/webdav
-sudo mount -t zfs 192.168.0.46:/mnt/dpool/image /image
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/archive /archive
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/backup /backup
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/jenkins /media/jenkins
+#sudo mount -t nfs 192.168.1.24:/mnt/dpool/media/ftp /media/ftp -o user=albandri
+sudo mount -t nfs 192.168.1.24:/mnt/dpool/media/download /media/download
+sudo mount -t nfs 192.168.1.24:/mnt/dpool/media/ftp /media/ftp
+sudo mount -t nfs 192.168.1.24:/mnt/dpool/media/movie /media/movie
+sudo mount -t nfs 192.168.1.24:/mnt/dpool/media/music /media/music
+sudo mount -t nfs 192.168.1.24:/mnt/dpool/media/photo /media/photo
+sudo mount -t nfs 192.168.1.24:/mnt/dpool/media/serie /media/serie
+sudo mount -t nfs 192.168.1.24:/mnt/dpool/media/torrentfile /media/torrentfile
+sudo mount -t nfs 192.168.1.24:/mnt/dpool/media/video /media/video
+sudo mount -t nfs 192.168.1.24:/mnt/dpool/media/webdav /media/webdav
+sudo mount -t zfs 192.168.1.24:/mnt/dpool/image /image
+sudo mount -t nfs 192.168.1.24:/mnt/dpool/archive /archive
+sudo mount -t nfs 192.168.1.24:/mnt/dpool/backup /backup
+sudo mount -t nfs 192.168.1.24:/mnt/dpool/jenkins /media/jenkins
 rsync -anv /jenkins/ /media/jenkins
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/jenkins-slave /jenkins-slave
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/workspace /workspace-tmp
-#sudo mount -t nfs 192.168.0.46:/mnt/dpool/workspace/users/albandri10 /workspace/users/albandri10
+sudo mount -t nfs 192.168.1.24:/mnt/dpool/jenkins-slave /jenkins-slave
+sudo mount -t nfs 192.168.1.24:/mnt/dpool/workspace /workspace-tmp
+#sudo mount -t nfs 192.168.1.24:/mnt/dpool/workspace/users/albandri10 /workspace/users/albandri10
 
 #iscsi
 #See run-hdd.sh
@@ -274,7 +274,7 @@ sudo update-rc.d mountall.sh defaults
 less /var/log/syslog | grep -i nfs
 
 #install java
-ssh root@192.168.0.46
+ssh root@192.168.1.24
 
 #http://doc.freenas.org/index.php/Plugins#Accessing_the_Plugins_Jail
 jls
@@ -365,7 +365,7 @@ echo $SHELL
 #chmod -R 755 /mnt/dpool/albandri/.ssh
 #chown -R albandri:albandri /mnt/dpool/albandri/.ssh
 #chmod 600 /mnt/dpool/albandri/.ssh/authorized_keys
-scp ~/.ssh/id_rsa.pub albandri@192.168.0.46:
+scp ~/.ssh/id_rsa.pub albandri@192.168.1.24:
 cat ~/id_rsa.pub >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 

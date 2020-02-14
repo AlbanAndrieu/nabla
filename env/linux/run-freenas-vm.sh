@@ -4,7 +4,7 @@ set -xv
 #See https://forums.freenas.org/index.php?threads/howto-freenas-11-1-rancheros-docker-rancherui-plex.59963/
 #See http://doc.freenas.org/11/vms.html#rancher-vm-requirements
 
-ssh -X root@192.168.0.46
+ssh -X root@192.168.1.24
 
 cu -l /dev/nmdm4B
 rancher
