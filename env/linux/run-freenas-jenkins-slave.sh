@@ -86,7 +86,7 @@ ssh-rsa KEY jenkins@freenas.local
 ssh-rsa KEY jenkins@albandri
 
 #freenas
-ssh -X jenkins@192.168.0.46
+ssh -X jenkins@192.168.1.24
 ssh-keyscan -t rsa 192.168.0.29 >> /mnt/dpool/jenkins/.ssh/known_hosts
 #in the jail
 ssh-keyscan -t rsa 192.168.0.29 >> ~/.ssh/known_hosts
@@ -133,7 +133,7 @@ I use both methods depending on current situation.
 tail -f  /var/log/messages
 
 #freenas
-ssh jenkins@192.168.0.46
+ssh jenkins@192.168.1.24
 ssh-keyscan -t rsa 192.168.0.29 >> /mnt/dpool/jenkins/.ssh/known_hosts
 
 #jenkins_1 jail
