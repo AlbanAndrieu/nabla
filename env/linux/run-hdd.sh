@@ -250,6 +250,10 @@ dmesg | grep sd
 sudo fdisk -l
 lsblk
 
+cat /proc/scsi/scsi
+ls -ld /sys/block/sd*/device
+ls -la /dev/disk/by-id/
+
 # https://www.howtoforge.com/tutorial/how-to-setup-iscsi-storage-server-on-ubuntu-1804/
 #sudo apt-get install tgt 
 #sudo systemctl status tgt
@@ -324,16 +328,26 @@ fdisk /dev/sdc
 
 fdisk -l
 
-mkfs.ext4 /dev/sdc1
+mkfs.ext4 /dev/sdd1
 
+sudo mkdir -p /data
 #sudo mkdir -p /media/iscsi/zvol-openstack
-sudo mkdir -p /media/iscsi/extent1
 #sudo mkdir -p /media/iscsi/zvol-owncloud
 
-mount /dev/sdc1 /media/iscsi/extent1
+sudo mount /dev/sdd1 /data
+
+ls -la /dev/disk/by-id/  | grep 6589cfc0000008c24bc3487156982765
+# sdb albandri
+ls -la /dev/disk/by-id/  | grep 6589cfc0000000d5e6acd678f4eaeaac
+# sdc albandrieu
+
+sudo mount /dev/sdb1 /workspace/users/albandri
+sudo mount /dev/sdc1 /workspace/users/albandrieu
 
 sudo nano /etc/fstab
-/dev/sdb       /media/iscsi/extent1        ext4    defaults,auto,_netdev 0 0
+/dev/sdd1       /data       ext4    defaults,auto,_netdev 0 0
+/dev/sdb1       /workspace/users/albandri       ext4    defaults,auto,_netdev 0 0
+/dev/sdc1       /workspace/users/albandrieu       ext4    defaults,auto,_netdev 0 0
 #/dev/sdc       /media/iscsi/zvol-openstack        zfs    defaults,auto,_netdev 0 0
 #/dev/sdd       /media/iscsi/zvol-owncloud        zfs    defaults,auto,_netdev 0 0
 
