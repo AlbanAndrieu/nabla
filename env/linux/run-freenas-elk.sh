@@ -1,5 +1,5 @@
-pkg install nano bash bash_completion
-ln -s /usr/local/bin/bash /bin/bash
+#!/bin/bash
+set -xv
 
 #See https://blog.gufi.org/2016/02/15/elk-first-part/
 

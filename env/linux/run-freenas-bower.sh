@@ -1,5 +1,5 @@
-
-###################################
+#!/bin/bash
+set -xv
 
 pkg install screen
 npm install -g private-bower
@@ -104,3 +104,5 @@ service bower onestart
 http://192.168.1.42:5678/
 
 # TODO add proxy redirect for 6789 and 5678
+
+exit 0

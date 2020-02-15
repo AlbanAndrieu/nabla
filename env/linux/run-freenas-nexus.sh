@@ -1,6 +1,8 @@
+#!/bin/bash
+set -xv
 
 #nexus
-http://home.nabla.mobi:8085/nexus/
+http://albandrieu.com:8085/nexus/
 http://192.168.0.24:8081/nexus
 
 pkg install nexus2-oss
@@ -40,5 +42,7 @@ Further documentation can be found in the official Nexus Book at:
 echo 'nexus2_enable="YES"' >> /etc/rc.conf
 service nexus2 start
 http://192.168.0.24:8081/nexus
-http://home.nabla.mobi:8085/nexus/
-OLD NEXUS is http://home.nabla.mobi:8084/nexus
+http://albandrieu.com:8085/nexus/
+OLD NEXUS is http://albandrieu.com:8084/nexus
+
+exit 0
