@@ -159,5 +159,6 @@ kubectl --kubeconfig ./kube.config cluster-info dump | tee cluster-info.log
 export no_proxy=$(hostname -i)
 curl -v http://10.41.40.40:6443
 
+kubectl --kubeconfig kube.config get pod -A
 
 exit 0
