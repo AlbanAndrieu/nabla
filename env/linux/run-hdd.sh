@@ -224,7 +224,7 @@ systemctl restart open-iscsi
 
 # See https://www.howtoforge.com/tutorial/how-to-setup-iscsi-storage-server-on-ubuntu-1804/
 # On freenas in portal Discovery Auth Method to NONE AND Discovery Auth Group empty
-sudo iscsiadm -m discovery -t st -p 192.168.1.24 
+sudo iscsiadm -m discovery -t st -p 192.168.1.24
 # Do not redon discovery it will reset login info
 192.168.1.24:3260,-1 iqn.2011-03.com.albandrieu.istgt:albandri
 192.168.1.24:3260,-1 iqn.2011-03.com.albandrieu.istgt:home
@@ -255,7 +255,7 @@ ls -ld /sys/block/sd*/device
 ls -la /dev/disk/by-id/
 
 # https://www.howtoforge.com/tutorial/how-to-setup-iscsi-storage-server-on-ubuntu-1804/
-#sudo apt-get install tgt 
+#sudo apt-get install tgt
 #sudo systemctl status tgt
 
 fdisk /dev/sdc
