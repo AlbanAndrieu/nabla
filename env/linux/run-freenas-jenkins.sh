@@ -79,7 +79,7 @@ service jenkins restart
 tail -f /var/log/jenkins.log
 tail -f /mnt/dpool/jail/software/var/log/httpd-access.log
 
-cd /media/jenkins/scm-sync-configuration/checkoutConfiguration 
+cd /media/jenkins/scm-sync-configuration/checkoutConfiguration
 git config --global user.email "alban.andrieu@free.fr"
 git config --global user.name "AlbanAndrieu"
 

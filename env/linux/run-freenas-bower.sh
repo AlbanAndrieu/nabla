@@ -97,10 +97,12 @@ git ls-remote --tags --heads git://albandrieu.com:6789/nabla-styles
 cd /usr/local/lib/node_modules/private-bower/bin/
 private-bower --config bower.conf.json
 
+cd /usr/local/lib/node_modules/
+ln -s /media/bower/ private-bower
 ls -lrta /usr/local/lib/node_modules/private-bower/gitRepoCache
 
+lsof -i :5678
 service bower onestart
-
 http://192.168.1.42:5678/
 
 # TODO add proxy redirect for 6789 and 5678
