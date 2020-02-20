@@ -15,7 +15,10 @@ edit /usr/pbi/transmission-amd64/etc/transmission/home/settings.json
 
 cd /usr/local/etc/transmission/home/
 
-cd /usr/local/etc/transmission/home/blocklists
+cd /mnt/dpool/www/apache24/data/nabla-site-apache/scripts
 ./run-wicked.sh
+
+cp /mnt/dpool/www/apache24/data/nabla-site-apache/scripts/out-transmission-wickedlist.txt /mnt/dpool/iocage/jails/transmission/root/usr/local/etc/transmission/home/blocklists/
+cd /usr/local/etc/transmission/home/blocklists
 
 exit 0
