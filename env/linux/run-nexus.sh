@@ -78,6 +78,8 @@ sudo chown nexus:nexus nexus-npm-repository-plugin-0.0.2-SNAPSHOT-bundle.zip
 sudo jar xf  nexus-npm-repository-plugin-0.0.2-SNAPSHOT-bundle.zip
 sudo chown -R nexus:nexus /workspace/sonatype-work/nexus/plugin-repository/nexus-npm-repository-plugin-0.0.2-SNAPSHOT
 
- #inside nexus use http://registry.npmjs.org/ without the s
+#inside nexus use http://registry.npmjs.org/ without the s
 
 npm config set registry http://home.nabla.mobi:8081/nexus/content/npm/registry.npmjs.org/
+
+tail -f /usr/local/nexus/sonatype-work/nexus3/log/nexus.log
