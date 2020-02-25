@@ -39,7 +39,7 @@ sudo apt-get install geany gedit
 
 sudo apt-get install openjdk-6-jdk openjdk-7-jdk
 
-sudo add-apt-repository ppa:webupd8team/java
+#sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update
 sudo apt-get install oracle-java7-installer
 sudo apt-get install oracle-java8-installer

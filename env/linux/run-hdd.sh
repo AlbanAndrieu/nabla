@@ -280,7 +280,7 @@ ls -ld /sys/block/sd*/device
 ls -la /dev/disk/by-id/
 
 # https://www.howtoforge.com/tutorial/how-to-setup-iscsi-storage-server-on-ubuntu-1804/
-#sudo apt-get install tgt 
+#sudo apt-get install tgt
 #sudo systemctl status tgt
 
 fdisk /dev/sdc

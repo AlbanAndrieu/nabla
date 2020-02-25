@@ -57,6 +57,7 @@ gksudo geany /etc/NetworkManager/NetworkManager.conf
 
 #nano /etc/docker/daemon.json
 #   {
+#  "userns-remap": "jenkins",
 #  "dns": ["172.17.0.1"],
 #  "exec-opts": ["native.cgroupdriver=systemd"],
 #  "log-driver": ["json-file"],
