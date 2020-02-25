@@ -67,4 +67,9 @@ pw useradd -n albandri -u 1000 -d /usr/local/albandri -s /usr/local/bin/bash
 ssh jenkins@192.168.1.24
 ssh-keyscan -t rsa 192.168.0.29 >> /mnt/dpool/jenkins/.ssh/known_hosts
 
+pw groupadd -n bower -g 34
+pw useradd -n bower -u 34 -d /nonexistent -s /usr/sbin/nologin
+
+
+
 exit 0

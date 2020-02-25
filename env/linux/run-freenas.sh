@@ -109,16 +109,6 @@ tail -f /mnt/dpool/jail/software/var/log/minidlna.log
 http://192.168.1.24:3689/
 http://albandrieu.com:3689/index.html
 
-#transmission
-http://192.168.0.01:9091/
-http://albandrieu.com:9091/transmission/web/
-#in the jail
-cd /usr/pbi/transmission-amd64/etc/transmission/home/
-edit /usr/pbi/transmission-amd64/etc/transmission/home/settings.json
-
-#install transmission rempte gui
-#https://code.google.com/p/transmisson-remote-gui/downloads/list
-
 #couchpotato
 http://albandrieu.com:5050/
 http://192.168.0.4:5050/

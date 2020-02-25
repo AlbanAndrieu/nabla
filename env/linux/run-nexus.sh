@@ -15,7 +15,7 @@ sudo ln -s /workspace/nexus/bin/nexus nexus
 sudo update-rc.d nexus defaults 06 94
 ls -l /etc/rc?.d/*nexus
 
-sudo adduser nexus
+sudo useradd -M -s /sbin/nologin nexus -c "Nexus nabla" -u 1001 -g 1001 -G jenkins,docker
 sudo addgroup data
 sudo adduser nexus data
 
