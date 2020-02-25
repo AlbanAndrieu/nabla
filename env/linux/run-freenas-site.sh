@@ -21,11 +21,17 @@
 #tautulli
 #http://192.168.1.24:8181/home
 
+#nexus
+#http://albandrieu.com:8081/nexus/
+#http://192.168.1.61:8081/nexus/
+
 #jenkins
 #http://192.168.1.62/jenkins/
 #webmin
 #https://albandrieu.com:10000/
 #https://192.168.1.61:10000/
 #https://apache:10000/
+#bower
+#http://192.168.1.61:5678/
 
 exit 0

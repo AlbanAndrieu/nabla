@@ -4,8 +4,7 @@
 #http://doc.freenas.org/index.php/Plugins#Accessing_the_Plugins_Jail
 jls
 
-jexec 1 /bin/tcsh
-jexec 9
+jexec 48 /bin/tcsh
 
 ./run-freenas-port.sh
 

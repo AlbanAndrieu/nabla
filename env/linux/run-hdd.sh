@@ -76,7 +76,7 @@ partprobe -s
 #Add more disk space to VM
 #First add another HDD in cloud, it will be visible in VM as sdb
 #init disk for use by LVM
-pvcreate /dev/sdb
+#pvcreate /dev/sdb
 
 sudo apt-get install scsitools
 sudo rescan-scsi-bus
@@ -98,7 +98,7 @@ pvresize /dev/sdb
 #resize2fs /dev/sda1
 #resize2fs /dev/sda1
 #mount -a
-pvresize /dev/sda5
+pvresize /dev/sdd1
 
 #display atributes of disk
 pvdisplay
@@ -108,9 +108,9 @@ lvdisplay
 # Extends volume group. Please confirm group name.
 #add disk to volume group
 #RedHat
-vgextend rhel_fr1cslvcacrhel71 /dev/sdb
-vgextend VolGroup00 /dev/sdb
-vgextend fr1vslub1604-vg /dev/sdb
+#vgextend rhel_fr1cslvcacrhel71 /dev/sdb
+#vgextend VolGroup00 /dev/sdb
+vgextend vg_iscsi /dev/sdd
 #CentOS 7
 vgextend centos_tmpvcaccent7 /dev/sdb
 #vgextend rhel_fr1cslvcacrhel71 /dev/sdc
@@ -119,18 +119,23 @@ vgextend centos_tmpvcaccent7 /dev/sdb
 #vgcreate docker /dev/xvdf
 #vgcreate docker /dev/sdb
 
+#Create vg_iscsi volume group
+umount /data && vgcreate vg_iscsi /dev/sdd1
+
+fdisk -l /dev/sdd1
+
 # Free disk space should be now visible in VG. Actual number of available physical extents (PE) will be smaller,
 # than expected with disk size, some of the space will be taken by metadata
 vgdisplay
-vgdisplay -v rhel_fr1cslvcacrhel71
-vgdisplay -v VolGroup00
+#vgdisplay -v rhel_fr1cslvcacrhel71
+#vgdisplay -v VolGroup00
 
 #RedHat
 lvcreate -l 12805 -n workspace rhel_fr1cslvcacrhel71
 lvcreate -l 12805 -n docker rhel_fr1cslvcacrhel71
 #Ubuntu
-lvcreate -l 12805 -n workspace fr1vslub1604-vg
-lvcreate -l 12794 -n docker fr1vslub1604-vg
+lvcreate -L 500G -n workspace vg_iscsi
+lvcreate -L 100G -n docker vg_iscsi
 #CentOS 7
 lvcreate -l 12805 -n workspace centos_tmpvcaccent7
 lvcreate -l 12794 -n docker centos_tmpvcaccent7
@@ -143,20 +148,27 @@ mkfs -t xfs /dev/rhel_fr1cslvcacrhel71/workspace
 #sudo mkfs -t ext4 /dev/rhel_fr1cslvcacrhel71/docker
 mkfs.xfs -n ftype=1 /dev/rhel_fr1cslvcacrhel71/docker
 #Ubuntu
-mkfs -t ext4 /dev/fr1vslub1604-vg/workspace
-mkfs -t ext4 /dev/fr1vslub1604-vg/docker
+mkfs -t ext4 /dev/vg_iscsi/workspace
+mkfs -t ext4 /dev/vg_iscsi/docker
 #CentOS 7
 mkfs -t xfs /dev/centos_tmpvcaccent7/workspace
 mkfs.xfs -n ftype=1 /dev/centos_tmpvcaccent7/docker
 
-#nano /etc/fstab
-#/dev/rhel_fr1cslvcacrhel71/workspace /workspace ext4 auto 0 2
-#/dev/rhel_fr1cslvcacrhel71/docker /docker ext4 auto 0 2
+sudo nano /etc/fstab
+#/dev/sdd1       /data       ext4    defaults,auto,_netdev 0 0
+/dev/vg_iscsi/docker       /docker       ext4    defaults,auto,_netdev 0 0
+/dev/vg_iscsi/workspace       /workspace        ext4    defaults,auto,_netdev 0 0
+/dev/sdb1       /home/albandri       ext4    defaults,auto,_netdev 0 0
+#/dev/sdc1       /home/albandrieu       ext4    defaults,auto,_netdev 0 0
+#/dev/sdc       /media/iscsi/zvol-openstack        zfs    defaults,auto,_netdev 0 0
+#/dev/sdd       /media/iscsi/zvol-owncloud        zfs    defaults,auto,_netdev 0 0
 /dev/rhel_fr1cslvcacrhel71/workspace /workspace xfs auto 0 2
 /dev/rhel_fr1cslvcacrhel71/docker /docker xfs defaults,usrquota,prjquota  0   0
 #CentOS 7
 /dev/centos_tmpvcaccent7/workspace /workspace xfs auto 0 2
 /dev/centos_tmpvcaccent7/docker /docker xfs defaults,usrquota,prjquota  0   0
+
+sudo mount -a
 
 sudo mkdir /workspace
 sudo mount /workspace
@@ -224,7 +236,7 @@ systemctl restart open-iscsi
 
 # See https://www.howtoforge.com/tutorial/how-to-setup-iscsi-storage-server-on-ubuntu-1804/
 # On freenas in portal Discovery Auth Method to NONE AND Discovery Auth Group empty
-sudo iscsiadm -m discovery -t st -p 192.168.1.24 
+sudo iscsiadm -m discovery -t st -p 192.168.1.24
 # Do not redon discovery it will reset login info
 192.168.1.24:3260,-1 iqn.2011-03.com.albandrieu.istgt:albandri
 192.168.1.24:3260,-1 iqn.2011-03.com.albandrieu.istgt:home
@@ -246,6 +258,19 @@ sudo iscsiadm -m node --login
 #sudo systemctl restart open-iscsi # failing
 service open-iscsi restart
 
+
+# See https://www.cyberciti.biz/faq/howto-setup-debian-ubuntu-linux-iscsi-initiator/
+nano /etc/iscsi/iscsid.conf
+node.session.auth.authmethod = CHAP
+node.session.auth.username = albandri
+node.session.auth.password = 65
+node.session.auth.username_in = albandrieu
+node.session.auth.password_in = 2y
+
+/etc/init.d/open-iscsi restart
+
+iscsiadm -m session
+ 
 dmesg | grep sd
 sudo fdisk -l
 lsblk
@@ -343,15 +368,6 @@ ls -la /dev/disk/by-id/  | grep 6589cfc0000000d5e6acd678f4eaeaac
 
 sudo mount /dev/sdb1 /workspace/users/albandri
 sudo mount /dev/sdc1 /workspace/users/albandrieu
-
-sudo nano /etc/fstab
-/dev/sdd1       /data       ext4    defaults,auto,_netdev 0 0
-/dev/sdb1       /workspace/users/albandri       ext4    defaults,auto,_netdev 0 0
-/dev/sdc1       /workspace/users/albandrieu       ext4    defaults,auto,_netdev 0 0
-#/dev/sdc       /media/iscsi/zvol-openstack        zfs    defaults,auto,_netdev 0 0
-#/dev/sdd       /media/iscsi/zvol-owncloud        zfs    defaults,auto,_netdev 0 0
-
-sudo mount -a
 
 # See encrypted diks
 # https://community.linuxmint.com/tutorial/view/2191#appc
