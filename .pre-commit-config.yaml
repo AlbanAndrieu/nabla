@@ -67,7 +67,6 @@ repos:
         args: [--max-line-length=120]
     -   id: file-contents-sorter
 -   repo: https://github.com/pre-commit/pre-commit.git
-#    rev: v1.14.3
     rev: v1.20.0
     hooks:
     -   id: validate_manifest
@@ -75,8 +74,6 @@ repos:
     rev: v1.8.0
     hooks:
     -   id: reorder-python-imports
-#       language_version: python3
-#       language_version: python2.7
 -   repo: https://github.com/asottile/add-trailing-comma
     rev: v1.5.0
     hooks:

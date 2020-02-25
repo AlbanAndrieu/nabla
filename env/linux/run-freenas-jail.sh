@@ -8,4 +8,9 @@ jexec 48 /bin/tcsh
 
 ./run-freenas-port.sh
 
+#OLD jail are in
+ls /mnt/dpool/jails/
+#NEW are
+ls /mnt/dpool/iocage/jails
+
 exit 0
