@@ -52,7 +52,6 @@ glxinfo | grep OpenGL
 #check you video hardware
 sudo lshw -c video
 
-
 sudo hwinfo --framebuffer
 sudo hwinfo --monitor
 lspci -vnn | grep -i VGA

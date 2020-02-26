@@ -161,6 +161,9 @@ pip install -U mkdocs
 #Ubuntu 18.04 LTS
 #version `CURL_OPENSSL_3' not found (required by /usr/local/lib/python2.7/dist-packages/pycurl.so
 sudo apt-get install libcurl3 python-pip
+#Ubuntu 19.04 LTS
+sudo apt-get install libcurl4 python-pip
+
 #recreate virtualenv
 sudo rm -Rf /opt/ansible/env36
 virtualenv --no-site-packages /opt/ansible/env36 -p python3.6
