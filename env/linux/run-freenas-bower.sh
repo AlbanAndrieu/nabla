@@ -2,16 +2,15 @@
 set -xv
 
 pkg install screen
-npm install -g private-bower
-private-bower
+npm install private-bower
 
 #as non jail
 #start bower
-/usr/local/etc/rc.d/bower start
+
 echo 'bower_enable="YES"' >> /etc/rc.conf
 
 cd /usr/local/etc/rc.d/
-edit  bower
+edit bower
 
 ###############################
 #!/bin/sh
@@ -83,13 +82,14 @@ bower_start()
 
 run_rc_command "$1"
 #########
+
 chmod +x bower
 #sudo update-rc.d bower defaults
 
 cd /usr/local/lib/node_modules/private-bower/
 
-192.168.1.42
-"publicAccessURL": "albandrieu.com:6789",
+nano bower.conf.json
+#"publicAccessURL": "albandrieu.com:6789",
 
 git clone git://albandrieu.com:6789/nabla-styles
 git ls-remote --tags --heads git://albandrieu.com:6789/nabla-styles
@@ -120,7 +120,8 @@ chown -R bower:bower *
 
 lsof -i :5678
 service bower onestart
-http://192.168.1.42:5678/
+
+http://192.168.1.61:5678/
 
 # TODO add proxy redirect for 6789 and 5678
 

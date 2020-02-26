@@ -7,9 +7,9 @@ http://192.168.0.24:8081/nexus
 
 pkg install nexus2-oss
 ======================================================================
-Message from nexus2-oss-2.14.0:
+Message from nexus2-oss-2.14.15		:
 ========================================================================
-Nexus Repository Manager OSS 2.14.0 has been successfully installed!
+Nexus Repository Manager OSS 2.14.15 has been successfully installed!
 
 To enable Nexus, add the following line to /etc/rc.conf[.local]:
 
@@ -39,10 +39,15 @@ Documentation
 Further documentation can be found in the official Nexus Book at:
   http://books.sonatype.com/nexus-book/2.14/reference/index.html
 
+rm -R /var/nexus2
+ln -s /media/nexus /var/nexus2
+
 echo 'nexus2_enable="YES"' >> /etc/rc.conf
 service nexus2 start
-http://192.168.0.24:8081/nexus
+
+tail -f /var/log/nexus2/
+
+http://192.168.1.61:8081/nexus
 http://albandrieu.com:8085/nexus/
-OLD NEXUS is http://albandrieu.com:8084/nexus
 
 exit 0

@@ -10,4 +10,30 @@ ssh -X root@nabla
 iocage df
 iocage restart jenkins
 
+/sbin/umount -f /mnt/dpool/iocage/jails/jenkins/root/media/jenkins
+#iocage exec jenkins /sbin/umount -t nullfs /mnt/dpool/iocage/jails/jenkins/root/media/jenkins
+#iocage fstab -a plexmediaserver /mnt/dpool/media /mnt/dpool/iocage/jails/plexmediaserver/root/media nullfs rw 0 0
+
+df -h | grep -v RELEASE | grep -v devfs | grep -v fdescfs  | grep -v system
+
+# Media Permissions
+iocage exec transmission "pw user add media -c media -u 8675309 -d /nonexistent -s /usr/bin/nologin"
+#iocage exec transmission "pw groupadd -n media -g 8675309"
+iocage exec transmission "pw groupmod media -m transmission"
+#iocage exec transmission  chown -R media:media /config/transmission-home
+iocage exec transmission  chown -R media:media /media
+iocage exec transmission  sysrc 'transmission_user=media'
+
+iocage exec sonarr "pw user add media -c media -u 8675309 -d /nonexistent -s /usr/bin/nologin"
+#iocage exec sonarr "pw groupadd -n media -g 8675309"
+iocage exec sonarr "pw groupmod media -m sonarr"
+##iocage exec sonarr chown -R media:media /usr/local/share/Sonarr /config
+iocage exec sonarr  sysrc 'sonarr_user=media'
+
+iocage exec radarr "pw user add media -c media -u 8675309 -d /nonexistent -s /usr/bin/nologin"
+#iocage exec radarr "pw groupadd -n media -g 8675309"
+#iocage exec radarr "pw groupmod media -m radarr"
+#iocage exec radarr chown -R media:media /usr/local/share/Radarr /config
+iocage exec radarr sysrc 'radarr_user=media'
+
 exit 0
