@@ -27,6 +27,9 @@ set -xv
 
 #change JENKINS_HOME from /var/lib/jenkins/ to /jenkins/
 
+#Massive change in config.xml
+#find /jenkins/jobs -type f -name "config.xml" -exec sed -i 's/<name>nabla.jenkins<\/name>/<name>nabla jenkins<\/name>/g' {} +
+
 #conf
 #/etc/init/jenkins.conf
 /etc/default/jenkins
@@ -109,7 +112,10 @@ ls -la /proc/PID/fd | wc -l
 
 #MacOSX
 sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist
+rm -f /var/log/jenkins/jenkins.log
 ls /Applications/Jenkins/jenkins.war
+cd /Applications/Jenkins/
+wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
 sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist
 tail -f /var/log/jenkins/jenkins.log
 cd /Users/Shared/Jenkins/Home
