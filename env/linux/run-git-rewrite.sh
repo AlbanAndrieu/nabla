@@ -15,18 +15,17 @@ for branch in `git branch -r --merged | grep -v '\*\|master\|develop\|release'`;
 
 git filter-branch -f --env-filter '
 OLD_EMAIL="alban.andrieu@nabla.mobi"
-CORRECT_NAME="Andrieu, Alban"
-CORRECT_EMAIL="alban.andrieu@finastra.com"
-if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" -o "$GIT_COMMITTER_EMAIL" = "alban.andrieu@free.fr" -o "$GIT_COMMITTER_EMAIL" = "alban.andrieu@misys.com" -o "$GIT_COMMITTER_EMAIL" = "alban.andrieu@mysis.com" ]
+#CORRECT_NAME="Andrieu, Alban"
+CORRECT_NAME="AlbanAndrieu"
+#CORRECT_EMAIL="alban.andrieu@finastra.com"
+CORRECT_EMAIL="alban.andrieu@free.fr"
+if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" -o "$GIT_COMMITTER_EMAIL" = "root@localhost" -o "$GIT_COMMITTER_EMAIL" = "alban.andrieu@free.fr" -o "$GIT_COMMITTER_EMAIL" = "alban.andrieu@misys.com" -o "$GIT_COMMITTER_EMAIL" = "alban.andrieu@mysis.com" ]
 then
     export GIT_COMMITTER_NAME="$CORRECT_NAME"
     export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
 fi
-if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
-then
-    export GIT_AUTHOR_NAME="$CORRECT_NAME"
-    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
-fi
+export GIT_AUTHOR_NAME="$GIT_COMMITTER_NAME"
+export GIT_AUTHOR_EMAIL="$GIT_COMMITTER_EMAIL"
 ' --tag-name-filter cat -- --branches --tags
 
 echo "git log --pretty=format:\"%h - %an, %ae : %s\""
