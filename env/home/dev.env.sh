@@ -92,18 +92,18 @@ fi
 if [ -d "${DRIVE_PATH}/cygwin/bin" ] ; then
     PATH="${DRIVE_PATH}/cygwin/bin:$PATH"
 fi
-#if [ -d "${HOME}/.linuxbrew/bin" ] ; then
-#    PATH="${HOME}/.linuxbrew/bin:$PATH"
-#fi
+if [ -d "${HOME}/.linuxbrew/bin" ] ; then
+    PATH="${HOME}/.linuxbrew/bin:$PATH"
+fi
+if [ -d "/home/linuxbrew/.linuxbrew/bin/" ] ; then
+    PATH="/home/linuxbrew/.linuxbrew/bin/:$PATH"
+fi
 if [ -d "${HOME}/.git-radar" ] ; then
     PATH="${HOME}/.git-radar/:$PATH"
 fi
 if [ -d "/snap/bin" ] ; then
     PATH="/snap/bin/:$PATH"
 fi
-#if [ -d "/usr/share/openjfx/lib" ] ; then
-#    PATH="/usr/share/openjfx/lib:$PATH"
-#fi
 
 export PROJECT_MAJOR_VERSION=${PROJECT_VERSION}
 
@@ -264,6 +264,11 @@ export BOOST=$BOOST_ROOT
 # CMAKE 2.6.4
 export CMAKE_HOME=/usr/share/cmake-2.6.4
 export CMAKE_ROOT=${CMAKE_HOME}
+
+if [ -f ${HOME}/run-python.sh ]; then
+    echo ${HOME}/run-python.sh
+    source ${HOME}/run-python.sh
+fi
 
 # PYTHON 27
 #export PYTHON_DIR=/usr/lib/python
@@ -461,7 +466,7 @@ fi
 
 # MAVEN
 #export M2_HOME=/usr/local/apache-maven-3.2.1
-export M2_HOME=/opt/maven/apache-maven-3.3.9
+export M2_HOME=/opt/maven/apache-maven-3.6.3
 export M2=${M2_HOME}/bin
 export PATH=${M2}:$PATH
 #export MAVEN_OPTS="-Xms512m -Xmx1024m"
@@ -619,6 +624,13 @@ if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
 then
   export PATH=${PATH}:${DRIVE_PATH}/Windows/system32:${DRIVE_PATH}/Windows
 fi
+
+# KUBERNETES
+source <(kubectl completion bash)
+alias k=kubectl
+complete -F __start_kubectl k
+#export KUBECONFIG=$KUBECONFIG:config:config-albandri:config-albandrieu
+unset KUBECONFIG
 
 ###
 # INCLUDE LANGUAGE SPECIFIC
@@ -806,7 +818,7 @@ case ${ARCH} in
     ;;
 esac
 
-export DISPLAY=:0.0
+#export DISPLAY=:0.0
 #export DISPLAY=localhost:10.0
 #instead us ansible local role
 #export LC_CTYPE=en_US.UTF-8
@@ -817,7 +829,14 @@ export PAGER=most
 export COWSAY="/usr/games/cowsay"
 if [ -f $COWSAY ]
 then
-  /usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`/usr/games/fortune -s`"
+  command -v rl || {
+      echo -e "rl | randomize-lines not found in system PATH, please make sure that randomize-lines is installed"
+      echo -e "rl | apt-get install randomize-lines fortunes fortunes-fr"
+  }
+  if [ -f /usr/bin/rl ]
+  then
+    /usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`/usr/games/fortune -s`"
+  fi
 else
   echo "Cowsay is not installed"
 fi
@@ -832,7 +851,8 @@ fi
 
 export SHELLCHECK_OPTS="-e SC2154 -e SC2086"
 
-source "${WORKING_DIR}/pass.env.sh"
+#source "${WORKING_DIR}/pass.env.sh"
+source "${PROJECT_DEV}/nabla/env/home/pass.env.sh"
 
 echo -e "${cyan} PATH is ${PATH} ${NC}"
 
