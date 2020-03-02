@@ -189,3 +189,7 @@ source <(python -m ara.setup.env)
 # Start the ARA standalone webserver
 ara-manage runserver
 # Browse http://127.0.0.1:9191
+
+# in order to fix issue :
+# Could not import python modules: apt, apt_pkg. Please install python3-apt package
+# remove  -e ansible_python_interpreter="/opt/ansible/env37/bin/python3.7" from Jenkinsfile and add it on inventory/production

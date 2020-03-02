@@ -9,6 +9,7 @@ export JENKINS_SLAVE_HOME="/jenkins-slave"
 
 rm -Rf ${JENKINS_HOME}/.jenkins
 rm -Rf ${JENKINS_HOME}/.sonar
+rm -Rf ${JENKINS_HOME}/.caches
 #rm -Rf /media/backup/jenkins/thin/*
 
 rm -Rf ${JENKINS_HOME}/.m2/.repository

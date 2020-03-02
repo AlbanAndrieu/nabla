@@ -66,8 +66,18 @@ source /opt/ansible/env36/bin/activate
 
 #update-alternatives --config python
 
+#Upgrade pip
 #Issue AttributeError: 'module' object has no attribute 'PROTOCOL_SSLv3
-sudo easy_install --upgrade pip
+#sudo easy_install --upgrade pip
+pip2 install --upgrade pip
+pip3 install --upgrade pip
+
+#Run setuptools to create python package
+#See https://packaging.python.org/tutorials/packaging-projects/#setup-py
+
+python2 -m pip install --user --upgrade setuptools wheel
+python3 -m pip install --user --upgrade setuptools wheel
+python3 setup.py sdist bdist_wheel
 
 #Show outdated pip package
 pip2 list --outdated --format=freeze
@@ -75,7 +85,8 @@ pip3 list --outdated --format=freeze
 #Upgrade all
 export PYTHONPATH=/usr/local/lib/python2.7/dist-packages
 pip2 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip2 install -U
-export PYTHONPATH=/usr/local/lib/python3.6/dist-packages/
+#export PYTHONPATH=/usr/local/lib/python3.6/dist-packages/
+export PYTHONPATH=/opt/ansible/env37/lib/python3.7/site-packages/
 pip3 freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 sudo pip3 install -U
 
 sudo apt-get install python3.6-dev
@@ -150,15 +161,12 @@ pip install -U mkdocs
 #Ubuntu 18.04 LTS
 #version `CURL_OPENSSL_3' not found (required by /usr/local/lib/python2.7/dist-packages/pycurl.so
 sudo apt-get install libcurl3 python-pip
+#Ubuntu 19.04 LTS
+sudo apt-get install libcurl4 python-pip
+
 #recreate virtualenv
 sudo rm -Rf /opt/ansible/env36
 virtualenv --no-site-packages /opt/ansible/env36 -p python3.6
-
-#Run setuptools to create python package
-#See https://packaging.python.org/tutorials/packaging-projects/#setup-py
-
-python3 -m pip install --user --upgrade setuptools wheel
-python3 setup.py sdist bdist_wheel
 
 # Could not import python modules: apt, apt_pkg. Please install python3-apt package.
 sudo apt-get remove --purge python-apt
@@ -184,3 +192,5 @@ pip install gprof2dot
 python -m  cProfile -o cprofile  setup.py
 # Use gprof2dot to generate .png image of calls
 gprof2dot -f pstats cprofile | dot -Tpng -o output.png
+
+exit 0

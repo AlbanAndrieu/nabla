@@ -86,6 +86,12 @@
 		<!-- 8443 is used by zap see jetty-ssl.xml in src/main/config/demo-base/etc -->
 		<jetty.stop.port>19097</jetty.stop.port>
 		<jira.port>8082</jira.port>
+		<kubernetes.api.port>6443</kubernetes.api.port>
+		<kubernetes.controller-manager.port>10252</kubernetes.controller-manager.port>
+		<kubernetes.etcd.port>2379-2380</kubernetes.etcd.port>
+		<kubernetes.kubelet.port>10250</kubernetes.kubelet.port>
+		<kubernetes.nodes.port>30000-32767</kubernetes.nodes.port>
+		<kubernetes.scheduler.port>10251</kubernetes.scheduler.port>
 		<lumbermill.port>4445</lumbermill.port>
 		<maven.build.generated>src/generated</maven.build.generated>
 		<maven.build.src>${pom.basedir}/${maven.build.generated}</maven.build.src>
@@ -101,6 +107,8 @@
 		<project.includexml>${project.target}</project.includexml>
 		<!--<project.target>C:\target</project.target>-->
 		<project.target>/target</project.target>
+		<rancher.port>8580</rancher.port>
+		<rancher.ssl.port>8581</rancher.ssl.port>
 		<!-- START overrided in cargo profile -->
 		<server.domain>nabla</server.domain>
 		<sonar.derby.port>1527</sonar.derby.port>
@@ -573,25 +581,25 @@
 					<language>Intercal</language>
 				</configuration>
 			</plugin>
-            <plugin>
-                <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>${maven.spotbugs.plugin.version}</version>
-                <configuration>
-                    <effort>Max</effort>
-                    <threshold>Low</threshold>
-                    <failOnError>true</failOnError>
-                    <includeFilterFile>${session.executionRootDirectory}/spotbugs-security-include.xml</includeFilterFile>
-                    <excludeFilterFile>${session.executionRootDirectory}/spotbugs-security-exclude.xml</excludeFilterFile>
-                    <plugins>
-                        <plugin>
-                            <groupId>com.h3xstream.findsecbugs</groupId>
-                            <artifactId>findsecbugs-plugin</artifactId>
-                            <version>LATEST</version>
-                        </plugin>
-                    </plugins>
-                </configuration>
-            </plugin>
+			<plugin>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>${maven.spotbugs.plugin.version}</version>
+				<configuration>
+					<effort>Max</effort>
+					<threshold>Low</threshold>
+					<failOnError>true</failOnError>
+					<includeFilterFile>${session.executionRootDirectory}/spotbugs-security-include.xml</includeFilterFile>
+					<excludeFilterFile>${session.executionRootDirectory}/spotbugs-security-exclude.xml</excludeFilterFile>
+					<plugins>
+						<plugin>
+							<groupId>com.h3xstream.findsecbugs</groupId>
+							<artifactId>findsecbugs-plugin</artifactId>
+							<version>LATEST</version>
+						</plugin>
+					</plugins>
+				</configuration>
+			</plugin>
 			<!--
                                 <plugin> <groupId>org.apache.maven.plugins</groupId>
                                 <artifactId>maven-docck-plugin</artifactId> <executions> <execution>
