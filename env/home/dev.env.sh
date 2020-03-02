@@ -92,18 +92,18 @@ fi
 if [ -d "${DRIVE_PATH}/cygwin/bin" ] ; then
     PATH="${DRIVE_PATH}/cygwin/bin:$PATH"
 fi
-#if [ -d "${HOME}/.linuxbrew/bin" ] ; then
-#    PATH="${HOME}/.linuxbrew/bin:$PATH"
-#fi
+if [ -d "${HOME}/.linuxbrew/bin" ] ; then
+    PATH="${HOME}/.linuxbrew/bin:$PATH"
+fi
+if [ -d "/home/linuxbrew/.linuxbrew/bin/" ] ; then
+    PATH="/home/linuxbrew/.linuxbrew/bin/:$PATH"
+fi
 if [ -d "${HOME}/.git-radar" ] ; then
     PATH="${HOME}/.git-radar/:$PATH"
 fi
 if [ -d "/snap/bin" ] ; then
     PATH="/snap/bin/:$PATH"
 fi
-#if [ -d "/usr/share/openjfx/lib" ] ; then
-#    PATH="/usr/share/openjfx/lib:$PATH"
-#fi
 
 export PROJECT_MAJOR_VERSION=${PROJECT_VERSION}
 
@@ -264,6 +264,11 @@ export BOOST=$BOOST_ROOT
 # CMAKE 2.6.4
 export CMAKE_HOME=/usr/share/cmake-2.6.4
 export CMAKE_ROOT=${CMAKE_HOME}
+
+if [ -f ${HOME}/run-python.sh ]; then
+    echo ${HOME}/run-python.sh
+    source ${HOME}/run-python.sh
+fi
 
 # PYTHON 27
 #export PYTHON_DIR=/usr/lib/python
@@ -461,7 +466,7 @@ fi
 
 # MAVEN
 #export M2_HOME=/usr/local/apache-maven-3.2.1
-export M2_HOME=/opt/maven/apache-maven-3.3.9
+export M2_HOME=/opt/maven/apache-maven-3.6.3
 export M2=${M2_HOME}/bin
 export PATH=${M2}:$PATH
 #export MAVEN_OPTS="-Xms512m -Xmx1024m"
@@ -827,7 +832,7 @@ then
   command -v rl || {
       echo -e "rl | randomize-lines not found in system PATH, please make sure that randomize-lines is installed"
       echo -e "rl | apt-get install randomize-lines fortunes fortunes-fr"
-      #exit 1
+      exit 1
   }
   if [ -f /usr/bin/rl ]
   then
@@ -847,7 +852,8 @@ fi
 
 export SHELLCHECK_OPTS="-e SC2154 -e SC2086"
 
-source "${WORKING_DIR}/pass.env.sh"
+#source "${WORKING_DIR}/pass.env.sh"
+source "${PROJECT_DEV}/nabla/env/home/pass.env.sh"
 
 command -v docker || {
 	echo -e "Docker | docker not found in system PATH, please make sure that docker is installed"
