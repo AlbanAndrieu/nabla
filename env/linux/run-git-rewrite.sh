@@ -29,9 +29,10 @@ then
 fi
 ' --tag-name-filter cat -- --branches --tags
 
-echo "git log --pretty=format:\"%h - %an, %ae : %s\""
+echo "git log --pretty=format:\"%h - %an, %an, %ae : %s\""
 
 echo "git log --pretty='%h, %ae - %s'  --author='Alban'  --before='2019-01-01' --no-merges --since='2008-01-01'"
+# --committer='alban'
 
 #Apply changes
 echo "git push --force --tags origin 'refs/heads/*'"
