@@ -409,6 +409,8 @@ sudo systemctl status docker
 
 sudo usermod -aG docker ${USER}
 
+sudo apt-get install -y docker-registry cadvisor
+
 docker run -it -u 1004:999 -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v /var/run/docker.sock:/var/run/docker.sock --entrypoint /bin/bash fusion-risk/ansible-jenkins-slave:latest
 
 #docker linter
