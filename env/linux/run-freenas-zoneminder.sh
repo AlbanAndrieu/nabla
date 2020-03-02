@@ -1,4 +1,4 @@
-#https://home.nabla.mobi:7000/ui/plugins/add/zoneminder
+#https://albandrieu.com:7000/ui/plugins/add/zoneminder
 
 #zoneminder
 pkg update -f

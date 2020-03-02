@@ -59,12 +59,17 @@ zfs destroy rpool/swap
 zfs create -V300G -b4k rpool/swap
 swap -a /dev/zvol/dsk/rpool/swap
 
+zfs list
+
+
 #issue Load the module manually by running 'insmod <location>/zfs.ko' as root
 sudo apt-get install --reinstall zfs-dkms
 
 #cleaning
 #sudo apt remove zfs.doc
 sudo apt install zfsutils-linux
+
+sudo dkms status
 
 #Cheat sheet
 #http://thegeekdiary.com/solaris-zfs-command-line-reference-cheat-sheet/

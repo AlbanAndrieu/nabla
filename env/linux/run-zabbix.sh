@@ -51,10 +51,11 @@ zabbix_agentd
 
 #Test your file
 #plutil /Library/LaunchAgents/org.macports.zabbix_agent.plist
+sudo su - root
 sudo launchctl load -w /Library/LaunchAgents/org.macports.zabbix_agent.plist
-
 sudo launchctl list
-
+# As jenkins user or root
+/etc/startzabbix.sh
 tail -f /tmp/zabbix_agentd.log
 
 #Solaris

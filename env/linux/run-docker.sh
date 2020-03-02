@@ -55,18 +55,34 @@ bash ./check-config.sh
 ps aux |grep dnsmasq
 gksudo geany /etc/NetworkManager/NetworkManager.conf
 
-nano /etc/docker/daemon.json
-	{
-		"dns": ["172.17.0.1"],
-		"debug": true
-	}
+#nano /etc/docker/daemon.json
+#   {
+#  "userns-remap": "jenkins",
+#  "dns": ["172.17.0.1"],
+#  "exec-opts": ["native.cgroupdriver=systemd"],
+#  "log-driver": ["json-file"],
+#  "log-opts": {
+#      "max-size": "100m"
+#   },
+#   "debug": true
+#   }
+sudo sh -x 'cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=cgroupfs"],
+  "storage-driver": "overlay2",
+  "debug": true
+}
+EOF'
+#nano /etc/NetworkManager/dnsmasq.d/docker-bridge.conf
+#   listen-address=172.17.0.1
 
-nano /etc/NetworkManager/dnsmasq.d/docker-bridge.conf
-	listen-address=172.17.0.1
+swapoff -a
+strace -eopenat kubectl version
 
 #Comment out the dns=dnsmasq
 sudo service network-manager restart
-sudo service docker restart
+sudo systemctl daemon-reload
+sudo systemctl restart docker
 
 #------------------
 
@@ -104,11 +120,13 @@ DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 8.8
 #For Ubuntu 16.04
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --label provider=albandri --experimental
 #ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --storage-driver overlay2 --disable-legacy-registry --tlsverify --tlscacert /root/pki/ca.pem --tlscert /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.pem --tlskey /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.key --label provider=albandri
-ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.soc --data-root /docker
+#For Ubuntu 19.10
+ExecStart=/usr/bin/dockerd -H fd:// --dns 10.21.200.3 --dns 10.41.200.3 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --insecure-registry=registry.misys.global.ad --insecure-registry=registry-tmp.misys.global.ad --userns-remap jenkins
 # -s cpuguy83/docker-overlay2-graphdriver-plugin
 #For RedHat 7.4
 ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --data-root /docker
-#ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 --data-root /docker
+#For RedHat 7.7
+ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock -H tcp://0.0.0.0:2376 --data-root /docker --label provider=albandri --userns-remap jenkins
 # --disable-legacy-registry
 
 #For RedHat CentOS
@@ -140,6 +158,7 @@ sudo journalctl -fu docker.service
 sudo systemctl show --property=Environment docker
 sudo systemctl daemon-reload
 #sudo service docker restart
+sudo systemctl stop kubelet
 sudo systemctl restart docker.service
 sudo systemctl status docker
 sudo systemctl status docker.service -l
@@ -150,7 +169,7 @@ sudo docker --tlsverify ps
 ls -lrta ~/.docker/config.json
 
 #docker login 10.21.70.133
-docker login registry.nabla.mobi --username=nabla
+docker login registry.albandrieu.com --username=nabla
 
 if curl http://localhost:8380/jenkins 2>/dev/null | grep -iq jenkins; then echo "FAIL"; else echo "OK"; fi
 
@@ -217,7 +236,7 @@ vagrant ssh
 #sudo docker pull dockerfile/ansible
 sudo docker pull nabla/ansible-jenkins-slave-docker
 
-docker run --rm nabla/ansible-jenkins-slave-docker curl http://home.nabla.mobi/html/download/README.html
+docker run --rm nabla/ansible-jenkins-slave-docker curl http://home.albandrieu.com/html/download/README.html
 
 docker run -it nabla/ansible-jenkins-slave-docker /bin/bash
 #Sample using container to buid my local workspace
@@ -252,7 +271,7 @@ gksudo baobab
 docker system df
 #docker system prune -f --volumes
 docker system prune -f
-docker system prune -a --volumes -y
+docker system prune -a --volumes
 
 #cleaning
 docker stop $(docker ps -a -q) # stop all docker containers
@@ -371,13 +390,14 @@ journalctl -u docker.service
 #See https://github.com/GoogleContainerTools/container-structure-test
 curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64 && chmod +x container-structure-test-linux-amd64 && sudo mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
 
-
 #ls -lrta /var/run/docker.sock
 #chmod 777 /var/run/docker.sock
 #For non sudo user
 #sudo chmod 666 /var/run/docker.sock
-setfacl -m user:jenkins:rw /var/run/docker.sock
+sudo setfacl -m user:jenkins:rw /var/run/docker.sock
+sudo setfacl -m user:albandri:rw /var/run/docker.sock
 ls -lrta /var/run/docker.sock
+docker version
 
 #Ubuntu 19.04
 
@@ -389,6 +409,19 @@ sudo systemctl status docker
 
 sudo usermod -aG docker ${USER}
 
+sudo apt-get install -y docker-registry cadvisor
+
 docker run -it -u 1004:999 -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v /var/run/docker.sock:/var/run/docker.sock --entrypoint /bin/bash fusion-risk/ansible-jenkins-slave:latest
+
+#docker linter
+# See https://github.com/hadolint/hadolint
+brew install hadolint
+#ls -lrta .hadolint.yaml
+hadolint Dockerfile
+
+#See https://github.com/wagoodman/dive
+#wget https://github.com/wagoodman/dive/releases/download/v0.9.1/dive_0.9.1_linux_amd64.deb
+#sudo apt install ./dive_0.9.1_linux_amd64.deb
+brew install dive
 
 exit 0

@@ -95,7 +95,7 @@ openssl req -new -sha256 \
     -subj "/C=FR/ST=IleDeFrance/O=Nabla, Inc./CN=${SSL_KEY_NAME}" \
     -reqexts SAN \
     -config <(cat /etc/ssl/openssl.cnf \
-        <(printf "[SAN]\nsubjectAltName=DNS:${SSL_KEY_NAME},DNS:nabla.mobi,DNS:home.nabla.mobi,DNS:freenas.nabla.mobi,DNS:jenkins.nabla.mobi,DNS:sample.nabla.mobi,DNS:alban-andrieu.fr,DNS:alban-andrieu.com,DNS:alban-andrieu.eu,DNS:bababou.fr,DNS:bababou.eu,IP:82.253.244.162.223,IP:192.168.0.28,IP:192.168.0.29,IP:127.0.0.1")) \
+        <(printf "[SAN]\nsubjectAltName=DNS:${SSL_KEY_NAME},DNS:nabla.mobi,DNS:home.nabla.mobi,DNS:freenas.nabla.mobi,DNS:jenkins.nabla.mobi,DNS:sample.nabla.mobi,DNS:alban-andrieu.fr,DNS:alban-andrieu.com,DNS:alban-andrieu.eu,DNS:bababou.fr,DNS:bababou.eu,IP:82.253.244.162.223,IP:192.168.1.42,IP:192.168.0.29,IP:127.0.0.1")) \
     -out "/etc/ssl/requests/${SSL_KEY_NAME}.csr"
 
 cat "/etc/ssl/requests/${SSL_KEY_NAME}.csr"
@@ -226,6 +226,8 @@ java -Djavax.net.ssl.trustStore=/etc/ssl/certs/java/cacerts -Djavax.net.debug=tr
 cd /usr/local/share/ca-certificates
 sudo cp /etc/ssl/requests/certnew.cer albandri.crt
 #openssl s_client -showcerts -connect nabla.freeboxos.fr:443 </dev/null 2>/dev/null |openssl x509 -outform PEM | tee ~/Downloads/docker.pem
+#Get your intermediary certificat
+sudo wget http://albandrieu.com/download/certs/NABLA-CA-1.crt
 sudo cp ~/Downloads/*.crt .
 #~ #count the number of certificate in a file
 #cat ~/pki/ca.pem | grep 'BEGIN.* CERTIFICATE' | wc -l
@@ -234,6 +236,7 @@ sudo update-ca-certificates
 less /etc/ssl/certs/ca-certificates.crt
 
 #Test it
+curl --cacert /etc/ssl/certs/ https://albandrieu.com:8686/jenkins/
 openssl s_client -connect nabla.freeboxos.fr:443 -CApath /etc/ssl/certs
 openssl s_client -showcerts -connect nabla.freeboxos.fr:443
 

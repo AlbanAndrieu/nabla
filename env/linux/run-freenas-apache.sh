@@ -1,7 +1,4 @@
-pkg install nano bash
-#bash_completion
-ln -s /usr/local/bin/bash /bin/bash
-pkg install sudo
+
 
 ###################################
 
@@ -25,7 +22,7 @@ echo 'apache24_enable="YES"' >> /etc/rc.conf
 #start apache
 /usr/local/etc/rc.d/apache24 start
 
-see http://192.168.0.28/
+#See http://192.168.1.62/
 
 #####################
 
@@ -51,7 +48,7 @@ pkg install php56-bcmath php56-curl php56-gd php56-mbstring php56-pdo_mysql php5
         Require host .example.com
     </Directory>
 
-http://192.168.0.28/phpMyAdmin/
+http://192.168.1.62/phpMyAdmin/
 
 pkg install cdash
 
@@ -169,7 +166,7 @@ certbot certonly
 
 #INPUT
 #2
-#nabla.mobi,home.nabla.mobi,sample.nabla.mobi,alban-andrieu.fr,alban-andrieu.com,alban-andrieu.eu,bababou.fr,bababou.eu
+#nabla.mobi,albandrieu.com,sample.nabla.mobi,alban-andrieu.fr,alban-andrieu.com,alban-andrieu.eu,bababou.fr,bababou.eu
 #1
 #/usr/local/www/apache24/data
 #/usr/local/www/apache24/data/sample
@@ -178,24 +175,24 @@ certbot certonly
 
 #TODO freenas.nabla.mobi,jenkins.nabla.mobi
 
-less /usr/local/etc/letsencrypt/renewal/home.nabla.mobi.conf
+less /usr/local/etc/letsencrypt/renewal/albandrieu.com.conf
 
-cert = /usr/local/etc/letsencrypt/live/home.nabla.mobi/cert.pem
-privkey = /usr/local/etc/letsencrypt/live/home.nabla.mobi/privkey.pem
-chain = /usr/local/etc/letsencrypt/live/home.nabla.mobi/chain.pem
-fullchain = /usr/local/etc/letsencrypt/live/home.nabla.mobi/fullchain.pem
+cert = /usr/local/etc/letsencrypt/live/albandrieu.com/cert.pem
+privkey = /usr/local/etc/letsencrypt/live/albandrieu.com/privkey.pem
+chain = /usr/local/etc/letsencrypt/live/albandrieu.com/chain.pem
+fullchain = /usr/local/etc/letsencrypt/live/albandrieu.com/fullchain.pem
 
-/usr/local/etc/letsencrypt/live/home.nabla.mobi/fullchain.pem
+/usr/local/etc/letsencrypt/live/albandrieu.com/fullchain.pem
 
 nano /usr/local/etc/apache24/httpd.conf
 
 SSLEngine On
-SSLCertificateFile "/usr/local/etc/letsencrypt/live/home.nabla.mobi/cert.pem"
-SSLCertificateKeyFile "/usr/local/etc/letsencrypt/live/home.nabla.mobi/privkey.pem"
+SSLCertificateFile "/usr/local/etc/letsencrypt/live/albandrieu.com/cert.pem"
+SSLCertificateKeyFile "/usr/local/etc/letsencrypt/live/albandrieu.com/privkey.pem"
 
-#certbot certonly --standalone -d home.nabla.mobi
+#certbot certonly --standalone -d albandrieu.com
 
-ServerAlias www.home.nabla.mobi
+ServerAlias www.albandrieu.com
 
 nano /usr/local/etc/apache24/extra/httpd-vhosts.conf
 nano /usr/local/etc/apache24/extra/httpd-ssl.conf
@@ -206,8 +203,8 @@ service apache24 restart
 
 tail -f /var/log/httpd-error.log
 
-http://192.168.0.28/index.pl
-http://192.168.0.28/index.cgi
+http://192.168.1.62/index.pl
+http://192.168.1.62/index.cgi
 
 cd /usr/local/www/apache24/data/.well-known/acme-challenge
 watch -n 0.1 ls -lRa

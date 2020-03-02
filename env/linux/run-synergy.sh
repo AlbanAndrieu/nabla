@@ -33,4 +33,13 @@ killall synergy-config
 
 tail -f /var/log/synergy/synergy-core.log
 
+locate synergy.conf
+nano /var/lib/synergy/synergy.conf
+synergy-core --config /var/lib/synergy/synergy.conf
+synergys --config /var/lib/synergy/synergy.conf
+
+#nano /var/lib/synergy/synergy-user.cfg
+
+sudo systemctl restart synergy
+
 exit 0

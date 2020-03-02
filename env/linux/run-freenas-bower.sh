@@ -1,17 +1,16 @@
-
-###################################
+#!/bin/bash
+set -xv
 
 pkg install screen
-npm install -g private-bower
-private-bower
+npm install private-bower
 
 #as non jail
 #start bower
-/usr/local/etc/rc.d/bower start
+
 echo 'bower_enable="YES"' >> /etc/rc.conf
 
 cd /usr/local/etc/rc.d/
-edit  bower
+edit bower
 
 ###############################
 #!/bin/sh
@@ -83,22 +82,48 @@ bower_start()
 
 run_rc_command "$1"
 #########
+
 chmod +x bower
 #sudo update-rc.d bower defaults
 
 cd /usr/local/lib/node_modules/private-bower/
 
-192.168.0.28
-"publicAccessURL": "home.nabla.mobi:6789",
+nano bower.conf.json
+#"publicAccessURL": "albandrieu.com:6789",
 
-git clone git://home.nabla.mobi:6789/nabla-styles
-git ls-remote --tags --heads git://home.nabla.mobi:6789/nabla-styles
+git clone git://albandrieu.com:6789/nabla-styles
+git ls-remote --tags --heads git://albandrieu.com:6789/nabla-styles
 
 cd /usr/local/lib/node_modules/private-bower/bin/
 private-bower --config bower.conf.json
 
+cd /usr/local/lib/node_modules/
+ln -s /media/bower/ private-bower
 ls -lrta /usr/local/lib/node_modules/private-bower/gitRepoCache
 
+#cd /usr/local/lib/node_modules/private-bower/gitRepoCache
+#cd jquery/
+##https://github.com/jquery/jquery/tree/2.1.4
+#git fetch && git fetch --tags
+#git checkout tags/2.1.4
+#
+#cd bootstrap-sass-official/
+#git fetch && git fetch --tags
+#git checkout v3.3.7
+#
+#cd angular/
+#git fetch && git fetch --tags
+#git checkout tags/v1.4.8
+
+cd /media/bower/gitRepoCache
+chown -R bower:bower *
+
+lsof -i :5678
 service bower onestart
 
-http://192.168.0.28:5678/
+http://192.168.1.61:5678/
+
+# TODO add proxy redirect for 6789 and 5678
+
+
+exit 0

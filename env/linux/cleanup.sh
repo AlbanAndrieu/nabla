@@ -3,6 +3,7 @@ set -xv
 
 echo "Install bleachbit"
 sudo apt-get install bleachbit
+#See https://www.bleachbit.org/download/file/t?file=bleachbit_3.0_all_ubuntu1904.deb
 
 echo "Start cleaning"
 
@@ -44,6 +45,7 @@ du -sh .[!.]* *
 \rm -Rf ~/.ievms
 \rm -Rf ~/tmp
 \rm -f ~/*.db
+\rm -f *:compile #maven crap
 #\rm -Rf  ~/.vagrant.d/boxes
 #empty trash
 \rm -Rf ~/.local/share/Trash/*
