@@ -68,3 +68,8 @@ echo "http://localhost:8082 http://localhost:8083"
 
 sudo apt-get install wput
 #on_picture_save wput ftp://user@password@server %f
+
+# App to display camera
+sudo apt-get install cheese
+
+exit 0

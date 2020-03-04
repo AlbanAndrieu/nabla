@@ -26,7 +26,6 @@ sudo ufw allow 10000
 #change /var/www/cgi-bin/mon.cgi by /usr/lib/cgi-bin/mon.cgi
 
 #Install virtualmin
-
 sudo apt-get remove --purge libapache2-mod-fcgid
 sudo rm -rf /var/lib/apache2/fcgid/
 sudo apt-get install libapache2-mod-fcgid
@@ -52,7 +51,11 @@ service webmin restart
 cpan install DBI
 cpan install DBD::mysql
 
-echo "https://nabla.freeboxos.fr:10000/"
+#Google Authenticator
+cpan install Authen::OATH
+#Go into this file /etc/webmin/miniserv.conf, delete this line: twofactor_provider=totp
+
+echo "https://albandrieu.com:10000/"
 
 #See https://www.digitalocean.com/community/tutorials/how-to-install-webmin-on-ubuntu-16-04
 #letsencrypt

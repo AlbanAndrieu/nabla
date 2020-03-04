@@ -7,7 +7,14 @@ set -xv
 
 ssh -X root@nabla
 
+iocage list
+
+#Freenas plugins unable to open database file
+#Maybe https://community.home-assistant.io/t/my-outdated-quick-start-for-home-assistant-core-on-freenas-11-2/71882/66
+iocage destroy homeassistant
+
 iocage df
+iocage fetch
 iocage restart jenkins
 
 /sbin/umount -f /mnt/dpool/iocage/jails/jenkins/root/media/jenkins
@@ -15,6 +22,9 @@ iocage restart jenkins
 #iocage fstab -a plexmediaserver /mnt/dpool/media /mnt/dpool/iocage/jails/plexmediaserver/root/media nullfs rw 0 0
 
 df -h | grep -v RELEASE | grep -v devfs | grep -v fdescfs  | grep -v system
+
+# Update plugins
+iocage update clamav
 
 # Media Permissions
 iocage exec transmission "pw user add media -c media -u 8675309 -d /nonexistent -s /usr/bin/nologin"

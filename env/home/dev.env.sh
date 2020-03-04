@@ -6,12 +6,19 @@
 #set -eo pipefail
 
 WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
-
 # Ansible managed
 
 ####################
 ### READ ARGUMENTS
 ####################
+#How to not Prompt when Installing a Module using cpan
+#export PERL_MM_USE_DEFAULT=1
+#export PERL_EXTUTILS_AUTOINSTALL="--defaultdeps"
+
+#WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
+
+source ${HOME}/step-0-color.sh
+
 TOOLS_OPTION_PURIFY=""
 export PERLGEN_OPTION=""
 typeset PURIFY=$1
@@ -34,35 +41,35 @@ then
 fi
 ###################
 
-echo "ARCH : ${ARCH} must be sun4sol sun4 rs6000 hprisc solaris linux cygwin winnt"
+#echo -e "${cyan} ARCH : ${ARCH} must be sun4sol sun4 rs6000 hprisc solaris linux cygwin winnt ${NC}"
 
 if [ -z "$PROJECT_USER" ]
 then
-  echo "ERROR: Set PROJECT_USER environment variable!"
-  export PROJECT_USER=albandri
+  echo -e "${red} ${double_arrow} Undefined parameter ${head_skull} : PROJECT_USER, use the default one ${NC}"
+  export PROJECT_USER=albandrieu
 fi
 
 if [ -z "$PROJECT_VERSION" ]
 then
-  echo "ERROR: Set PROJECT_VERSION environment variable!"
+  echo -e "${red} ${double_arrow} Undefined parameter ${head_skull} : PROJECT_VERSION, use the default one ${NC}"
   export PROJECT_VERSION=30
 fi
 
 if [ -z "$DRIVE_PATH" ]
 then
-  #echo "ERROR: Set DRIVE_PATH environment variable!"
+  echo -e "${red} ${double_arrow} Undefined parameter ${head_skull} : DRIVE_PATH, use the default one ${NC}"
   export DRIVE_PATH=
 fi
 
 if [ -z "$PROJECT_HOME" ]
 then
-  echo "ERROR: Set PROJECT_HOME environment variable!"
+  echo -e "${red} ${double_arrow} Undefined parameter ${head_skull} : PROJECT_HOME, use the default one ${NC}"
   export PROJECT_HOME=${DRIVE_PATH}/workspace/users
 fi
 
 if [ -z "$WORKSPACE_ENV" ]
 then
-  echo "ERROR: Set WORKSPACE_ENV environment variable!"
+  echo -e "${red} ${double_arrow} Undefined parameter ${head_skull} : WORKSPACE_ENV, use the default one ${NC}"
   export WORKSPACE_ENV=${PROJECT_HOME}/${PROJECT_USER}${PROJECT_VERSION}/nabla/env
 fi
 
@@ -92,18 +99,18 @@ fi
 if [ -d "${DRIVE_PATH}/cygwin/bin" ] ; then
     PATH="${DRIVE_PATH}/cygwin/bin:$PATH"
 fi
-#if [ -d "${HOME}/.linuxbrew/bin" ] ; then
-#    PATH="${HOME}/.linuxbrew/bin:$PATH"
-#fi
+if [ -d "${HOME}/.linuxbrew/bin" ] ; then
+    PATH="${HOME}/.linuxbrew/bin:$PATH"
+fi
 if [ -d "${HOME}/.git-radar" ] ; then
     PATH="${HOME}/.git-radar/:$PATH"
+fi
+if [ -d "/home/linuxbrew/.linuxbrew/bin/" ] ; then
+    PATH="/home/linuxbrew/.linuxbrew/bin/:$PATH"
 fi
 if [ -d "/snap/bin" ] ; then
     PATH="/snap/bin/:$PATH"
 fi
-#if [ -d "/usr/share/openjfx/lib" ] ; then
-#    PATH="/usr/share/openjfx/lib:$PATH"
-#fi
 
 export PROJECT_MAJOR_VERSION=${PROJECT_VERSION}
 
@@ -111,7 +118,7 @@ export PROJECT_BUILD_TYPE=target
 export CLIENT_SERVER_TYPE=jboss
 
 export PROJECT_DEV=${PROJECT_HOME}/${PROJECT_USER}${PROJECT_MAJOR_VERSION}
-echo PROJECT_USER: ${PROJECT_USER} PROJECT_DEV : ${PROJECT_DEV}
+echo -e "${cyan} PROJECT_USER : ${PROJECT_USER} PROJECT_DEV : ${PROJECT_DEV} ${NC}"
 export PROJECT_SRC=${PROJECT_DEV}/${PROJECT_EXTRACTION}
 export PROJECT_TARGET_PATH=${WORKSPACE}/${PROJECT_BUILD_TYPE}
 export PROJECT_USER_PROFILE="${PROJECT_DEV}/env/config/profiles/${PROJECT_USER}${PROJECT_VERSION}.${ARCH}.properties"
@@ -123,13 +130,14 @@ export PROJECT_PKG=${PROJECT_TARGET_PATH}/pkg/${PROJECT_MAJOR_VERSION}
 if [ ! -d $PROJECT_DEV ]
 then
   echo "ERROR: Directory ${PROJECT_DEV} doesn't exist!"
+  echo -e "${red} ${double_arrow} Directory ${PROJECT_DEV} doesn't exist! ${head_skull} ${NC}"
   exit 1
 fi
 
 #This variable must not be set if jenkins is used
 if [ -z "$WORKSPACE" ]
 then
-  echo "ERROR: Set WORKSPACE environment variable!"
+  echo -e "${red} ${double_arrow} Undefined parameter ${head_skull} : WORKSPACE, use the default one ${NC}"
   export WORKSPACE=${PROJECT_DEV}
 fi
 
@@ -142,7 +150,7 @@ fi
 ##  if [ -z "$CLASSPATH" ]
 ##  then
 ##fix javadoc plugins error
-    echo 'Cleaning $CLASSPATH: '${CLASSPATH}
+#    echo 'Cleaning $CLASSPATH: '${CLASSPATH}
     export CLASSPATH=""
 ##  fi
 ##
@@ -192,7 +200,6 @@ export ORACLE_HOME=${DRIVE_PATH}/oraclexe/app/oracle/product/${ORACLE_VERSION}/s
 
 export SNYK_TOKEN=c89235c8-165b-47f1-8a67-c6b39292bda4
 #snyk auth $SNYK_TOKEN
-export MICROSCANNER_TOKEN=NzdhNTQ2ZGZmYmEz
 
 ###
 # Alias
@@ -216,32 +223,32 @@ then
   export CORBA_ROOT=${PROJECT_THIRDPARTY_PATH}/tao
   export ACE_ROOT=${CORBA_ROOT}/ACE_wrappers
 
-  echo ${ACE_ROOT}
+  echo -e "${cyan} ACE_ROOT : ${ACE_ROOT} ${NC}"
 
   TAO_ROOT=${ACE_ROOT}/tao
   export TAO_ROOT
 
-  echo ${TAO_ROOT}
+  echo -e "${cyan} TAO_ROOT : ${TAO_ROOT} ${NC}"
 
   MPC_ROOT=${ACE_ROOT}/MPC
   export MPC_ROOT
 
-  echo ${MPC_ROOT}
+  echo -e "${cyan} MPC_ROOT : ${MPC_ROOT} ${NC}"
 
   CIAO_ROOT=${TAO_ROOT}/CIAO
   export CIAO_ROOT
 
-  echo ${CIAO_ROOT}
+  echo -e "${cyan} CIAO_ROOT : ${CIAO_ROOT} ${NC}"
 
   DANCE_ROOT=${CIAO_ROOT}/DANCE
   export DANCE_ROOT
 
-  echo ${DANCE_ROOT}
+  echo -e "${cyan} DANCE_ROOT : ${DANCE_ROOT} ${NC}"
 
   DDS_ROOT=${CIO_ROOT}/connectors/dds4ccm
   export DDS_ROOT
 
-  echo ${DDS_ROOT}
+  echo -e "${cyan} DDS_ROOT : ${DDS_ROOT} ${NC}"
 fi
 
 export BOOST_VERSION=1.41.0
@@ -265,24 +272,39 @@ export BOOST=$BOOST_ROOT
 export CMAKE_HOME=/usr/share/cmake-2.6.4
 export CMAKE_ROOT=${CMAKE_HOME}
 
-# PYTHON 27
-#export PYTHON_DIR=/usr/lib/python
+# PYTHON 3.6
+#See run-python.sh script
+#export PYTHON_MAJOR_VERSION=3.6
+
+if [ -f ${HOME}/run-python.sh ]; then
+    echo -e "${green} ${HOME}/run-python.sh ${NC}"
+    source ${HOME}/run-python.sh
+fi
+
+#export PYTHON_DIR=${DRIVE_PATH}/usr/lib/python3.6
+#export VIRTUALENV_PATH=/opt/ansible/env$(echo $PYTHON_MAJOR_VERSION | sed -r 's/\.//g')
+#echo "sudo virtualenv ${VIRTUALENV_PATH} -p /usr/bin/python3.6"
+#export PATH="${VIRTUALENV_PATH}/bin:${PATH}"
+##export PYTHONPATH=$PYTHONPATH:${DRIVE_PATH}/usr/lib/python3.6/dist-packages/
+#export PYTHONPATH="${VIRTUALENV_PATH}/lib/python${PYTHON_MAJOR_VERSION}/site-packages/"
+#source ${VIRTUALENV_PATH}/bin/activate
 
 # ALIAS to python
-#alias python='/usr/bin/python'
+#alias python='/usr/bin/python3.6'
 
 # SCONS 2.2.0
 #export SCONS_DIR=${PYTHON_DIR}/Lib/site-packages/scons-2.2.0
 export SCONS_DIR=/usr/lib/scons/SCons
 
 # ALIAS to scons-local
-export SCONS='/usr/bin/python2.7 /opt/ansible/env/bin/scons' # for virtualenv
+export SCONS='/usr/bin/python2.7 /opt/ansible/env/bin/scons'
 alias scons="${SCONS}"
+#alias scons='/usr/bin/python2.7 /opt/ansible/env/bin/scons'
 
 export SCONS_PATH=/usr/lib/scons/SCons/Script
 if [ "$SCONS_PATH" = "" ]
 then
-  echo "WARNING: Set SCONS_PATH environment variable not defined!"
+  echo -e "${red} ${double_arrow} Undefined parameter ${head_skull} : SCONS_PATH, use the default one ${NC}"
 else
   export PATH=${SCONS_PATH}:${PATH}
 fi
@@ -311,25 +333,21 @@ then
   ln -s ${DRIVE_PATH}/Program\ Files\ \(x86\) /ProgramFilesx86
   #export JAVA_HOME="/ProgramFilesx86/Java/jdk1.5.0_22"
 fi
-#export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/
-#export JAVA_HOME=/usr/lib/jvm/default-java/
-#dpkg -L openjfx
-export JAVAFX_HOME="/usr/share/openjfx/lib"
 
 export JRE_HOME=${JAVA_HOME}/jre
 #export JDK_HOME JRE_HOME JAVA_HOME
 #export JAVA=$JAVA_HOME/bin/java
 #PATH=${JDK_HOME}/bin:${JRE_HOME}/bin:${PATH}
-PATH=${JAVA_HOME}/bin:${JAVAFX_HOME}:${PATH}
+PATH=${JAVA_HOME}/bin:${PATH}
 export PATH
 
-export JAVA_OPTS="-Xms256m -Xmx1548m"
+export JAVA_OPTS="-Xms1G -Xmx2G"
 
 if [ -z "$JAVA_OPTS" ]
 then
 
-  echo "Enable : -Xms256m -Xmx1548m"
+  echo -e "${cyan} Enable JAVA_OPTS : ${JAVA_OPTS} ${NC}"
 
   #JAVA_OPTS="${JAVA_OPTS} -Xms256m -Xmx1548m"
   #JAVA_OPTS="${JAVA_OPTS} -XX:PermSize=430m -XX:MaxPermSize=430m -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000"
@@ -344,18 +362,18 @@ then
   #JAVA_OPTS="${JAVA_OPTS} -Djava.security.egd=file:/dev/urandom"
   #JAVA_OPTS="${JAVA_OPTS} -Djava.io.tmpdir=${WORKSPACE}/target/tmp" # tmp get full
 
-  echo "DEFAULT JAVA_OPTS=${JAVA_OPTS}"
+  echo -e "${cyan} DEFAULT JAVA_OPTS=${JAVA_OPTS} ${NC}"
 fi
 
 if [ 1 -eq 1 ] ; then
   export ECLIPSE_DEBUG_PORT="2924"
   if [ -n "$ECLIPSE_DEBUG_PORT" ]
   then
-    echo "Enable : ${ECLIPSE_DEBUG_PORT}"
+    echo -e "${cyan} Enable ECLIPSE_DEBUG_PORT : ${ECLIPSE_DEBUG_PORT} ${NC}"
 
     JAVA_OPTS="${JAVA_OPTS} -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=2924,server=y,suspend=n"
 
-    echo "DEBUG JAVA_OPTS=${JAVA_OPTS}"
+    echo -e "${cyan} DEBUG JAVA_OPTS=${JAVA_OPTS} ${NC}"
   fi
 
   #export JMX_DEFAULT_DEBUG_PORT="9193"
@@ -375,7 +393,7 @@ if [ 1 -eq 1 ] ; then
     #these lines activate jmx for visualvm to see threads ; chosen  port is to be entered in ‘add jmx connection’ params
     # for instance : albandri:9193 if $JMX_PORT=9193
 
-    echo "Enable JMX : ${JMX_DEFAULT_DEBUG_PORT}"
+    echo -e "${cyan} Enable JMX_DEFAULT_DEBUG_PORT : ${JMX_DEFAULT_DEBUG_PORT} ${NC}"
 
     JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote"
     #JAVA_OPTS="${JAVA_OPTS} -Djava.rmi.server.hostname=albandri"
@@ -383,7 +401,7 @@ if [ 1 -eq 1 ] ; then
     JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote.ssl=false"
     JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote.authenticate=false"
 
-    echo "JMX JAVA_OPTS=${JAVA_OPTS}"
+    echo -e "${cyan} JMX JAVA_OPTS=${JAVA_OPTS} ${NC}"
 
     #JSTATD POLICY for JMX
     POLICY=${HOME}/.jstatd.all.policy
@@ -393,7 +411,7 @@ permission java.security.AllPermission;
 };
 POLICY
 
-    echo "jstatd -J-Djava.security.policy=${POLICY}"
+    echo -e "${cyan} jstatd -J-Djava.security.policy=${POLICY} ${NC}"
 
   fi
 
@@ -402,7 +420,7 @@ POLICY
 
   if [ -n "$YOURKIT_HOME" ]
   then
-    echo "Enable : ${YOURKIT_HOME}"
+    echo -e "${cyan} Enable YOURKIT_HOME : ${YOURKIT_HOME} ${NC}"
 
     #rm -Rf yjp-*
     #wget https://www.yourkit.com/download/yjp-2015-build-15082.zip
@@ -413,7 +431,7 @@ POLICY
     YOURKIT_AGENT="${YOURKIT_HOME}/bin/${YOURKIT_AGENT_ARCH}/libyjpagent.so"
     JAVA_OPTS="-agentpath:${YOURKIT_AGENT}=disablestacktelemetry,disableexceptiontelemetry,delay=10000,sessionname=Tomcat ${JAVA_OPTS}"
 
-    echo "DEBUG YOURKIT JAVA_OPTS=${JAVA_OPTS}"
+    echo -e "${cyan} DEBUG YOURKIT JAVA_OPTS=${JAVA_OPTS} ${NC}"
   fi
 
   #JREBEL
@@ -421,7 +439,7 @@ POLICY
 
   if [ -n "$JREBEL_HOME" ]
   then
-    echo "Enable : ${JREBEL_HOME}"
+    echo -e "${cyan} Enable JREBEL_HOME : ${JREBEL_HOME} ${NC}"
 
     #rm -Rf jrebel*
     #wget http://dl.zeroturnaround.com/jrebel-stable-nosetup.zip
@@ -429,12 +447,12 @@ POLICY
     JAVAAGENT_JREBEL_OPTS="\"${JREBEL_HOME}/jrebel.jar\""
     JAVA_OPTS="${JAVA_OPTS} -javaagent:\"${JAVAAGENT_JREBEL_OPTS}\" -Drebel.remoting_plugin=true"
 
-    echo "DEBUG JAVAAGENT_JREBEL_OPTS=${JAVAAGENT_JREBEL_OPTS}"
+    echo -e "${cyan} DEBUG JAVAAGENT_JREBEL_OPTS=${JAVAAGENT_JREBEL_OPTS} ${NC}"
   fi
 
   if [ -n "$JACOCO_AGENT_HOME" ]
   then
-    echo "Enable : ${JACOCO_AGENT_HOME}"
+    echo -e "${cyan} Enable JACOCO_AGENT_HOME : ${JACOCO_AGENT_HOME} ${NC}"
 
     #rm -Rf org.jacoco*
     #wget http://central.maven.org/maven2/org/jacoco/org.jacoco.agent/${JACOCO_AGENT_VERSION}/org.jacoco.agent-${JACOCO_AGENT_VERSION}.jar
@@ -449,7 +467,7 @@ POLICY
     JAVAAGENT_JACOCO_OPTS="\"${JACOCO_AGENT_HOME}/org.jacoco.agent-${JACOCO_AGENT_VERSION}-runtime.jar\"=${JACOCO_AGENT_REPORT_FILE}"
     JAVA_OPTS="${JAVA_OPTS} -javaagent:${JAVAAGENT_JACOCO_OPTS}"
 
-    echo "DEBUG JAVAAGENT_JACOCO_OPTS=${JAVAAGENT_JACOCO_OPTS}"
+    echo -e "${cyan} DEBUG JAVAAGENT_JACOCO_OPTS=${JAVAAGENT_JACOCO_OPTS} ${NC}"
   fi
 
   # ---- DripStat arguments
@@ -460,18 +478,20 @@ POLICY
 fi
 
 # MAVEN
-#export M2_HOME=/usr/local/apache-maven-3.2.1
 export M2_HOME=/opt/maven/apache-maven-3.3.9
 export M2=${M2_HOME}/bin
 export PATH=${M2}:$PATH
 #export MAVEN_OPTS="-Xms512m -Xmx1024m"
 #export MAVEN_OPTS="-Xmx512M -XX:MaxPermSize=1024M"
 #export MAVEN_OPTS="-Xms256m -Xmx512m -XX:PermSize=64M -XX:MaxPermSize=160M"
+#setenv MAVEN_OPTS "-Djava.net.preferIPv4Stack=true"
+#setenv MAVEN_OPTS "org.pitest:pitest-maven:mutationCoverage -Dtomcat.port=$TOMCAT_PORT -Djetty.port=$JETTY_PORT -Dcargo.rmi.port=$CARGO_RMI_PORT -Dcargo.http.port=$CARGO_HTTP_PORT -Dcargo.ssh.port=$CARGO_SSH_PORT -Dcargo.debug.port=$CARGO_DEBUG_PORT -Dcargo.telnet.port=$CARGO_TELNET_PORT"
+#setenv MAVEN_OPTS "-Djacoco.outputDir=${WORKSPACE}/target -Dsonar.branch=${SONAR_BRANCH} -Dsonar.scm.enabled=false -Dsonar.scm-stats.enabled=false -Dissueassignplugin.enabled=false -Dsonar.pitest.mode=skip -Dsonar.scm.user.secured=false"
 #Jenkins We have 48GB RAM and 44 GB swap and its 24 core server.
 #-Xms24g -Xmx24g -Xmn6g -XX:MaxPermSize=512M -XX:+UseParallelOldGC -XX:ParallelGCThreads=16
 #Add MaxPermSize for andromda
 #for java 8 PermSize and MaxPermSize can be removed
-MAVEN_OPTS="-Xms256m -Xmx2g"
+MAVEN_OPTS="-Xms1G -Xmx2G -Dmaven.color.hide.level=false"
 #https://developer.atlassian.com/docs/advanced-topics/working-with-maven/colour-coding-your-maven-output
 export MAVEN_COLOR=true
 
@@ -491,8 +511,12 @@ if [ 1 -eq 1 ] ; then
   MAVEN_OPTS="${MAVEN_OPTS}"
 fi
 export MAVEN_OPTS
-export M2_REPO=${DRIVE_PATH}/repo
-echo "Maven repo are in : ${M2_REPO}"
+
+export M2_REPO=${env.WORKSPACE}/.m2/repository
+mkdir -p ${M2_REPO} || true
+mkdir ${HOME}/.m2 || true
+ln -s ${M2_REPO} ${HOME}/.m2/repository/ || true
+echo -e "${cyan} Maven repo is in : ${M2_REPO} ${NC}"
 
 # ANT
 export ANT_HOME=/usr/share/ant
@@ -561,7 +585,7 @@ export CHROME_BIN=${DRIVE_PATH}/usr/bin/google-chrome
 export LUMBERMILL_HOME="${DRIVE_PATH}/lumbermill-2.0-b3"
 export PATH=${LUMBERMILL_HOME}/bin:${PATH}
 alias lumbermill='java -jar ${LUMBERMILL_HOME}/dist/lib/lumbermill.jar'
-echo "Lumbermill port is 4445"
+#echo -e "${cyan} Lumbermill port is 4445 ${NC}"
 
 #AWS EC2
 #export EC2_KEYPAIR=<your keypair name> # name only, not the file name
@@ -574,9 +598,13 @@ export EC2_URL=https://ec2.us-west-2.amazonaws.com
 export EC2_PRIVATE_KEY=$HOME/.ec2/pk-FMQ27HNLF2PVMPVL7MPWHEY5GWDKDOT2.pem
 export EC2_CERT=$HOME/.ec2/cert-FMQ27HNLF2PVMPVL7MPWHEY5GWDKDOT2.pem
 
+export DOCKER_REGISTRY_USER=nabla
+#export DOCKER_REGISTRY_PASS=todo
+
 export GITHUB_OAUTH_CLIENT_ID=c52c293400ba80af105a
 export GITHUB_OAUTH_CLIENT_SECRET=todo
 
+export GITHUB_ORGANIZATION=Banbou
 export GITHUB_TOKEN=todo
 
 export WPT_API_KEY="A.01ea5a02081b6d10415d7b0e7c844e73"
@@ -604,9 +632,8 @@ export LD_LIBRARY_PATH=/opt/oracle/instantclient_12_2:$LD_LIBRARY_PATH
 export PATH=/opt/oracle/instantclient_12_2:$PATH
 
 # TIBCO
-TIBRV_VERSION=8.4
-export TIBCO_HOME=${DRIVE_PATH}/home/albandri/tibco
-export TIBRV_HOME=${DRIVE_PATH}/home/albandri/tibco/tibrv/${TIBRV_VERSION}
+export TIBCO_HOME=${DRIVE_PATH}/home/albandrieu/tibco
+export TIBRV_HOME=${DRIVE_PATH}/home/albandrieu/tibco/tibrv/8.4
 export PATH=${TIBRV_HOME}/bin:${PATH}
 export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}:${TIBRV_HOME}/lib
 
@@ -617,15 +644,14 @@ export COMPOSE_HTTP_TIMEOUT=2000
 # WINDOWS
 if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
 then
-  export PATH=${PATH}:${DRIVE_PATH}/Windows/system32:${DRIVE_PATH}/Windows
+  export PATH=$PATH:${DRIVE_PATH}/Windows/system32:${DRIVE_PATH}/Windows
 fi
 
 # KUBERNETES
 source <(kubectl completion bash)
 alias k=kubectl
 complete -F __start_kubectl k
-#export KUBECONFIG=$KUBECONFIG:config:config-albandri:config-albandrieu
-unset KUBECONFIG
+export KUBECONFIG=$KUBECONFIG:config:config-albandri
 
 ###
 # INCLUDE LANGUAGE SPECIFIC
@@ -634,7 +660,7 @@ unset KUBECONFIG
 # Make a directory with link to several libraries for LIBPATH length restriction
 #################################################################################
 LIB_LINK_DIR="${PROJECT_TARGET_PATH}/lib/${ARCH}"
-echo $LIB_LINK_DIR
+echo -e "${cyan} LIB_LINK_DIR : ${LIB_LINK_DIR} ${NC}"
 test ! -d ${LIB_LINK_DIR} && mkdir -p ${LIB_LINK_DIR}
 #\rm -f ${LIB_LINK_DIR}/* |& cat >/dev/null
 #rm -f ${LIB_LINK_DIR}/*
@@ -686,6 +712,12 @@ export LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/lib:/usr/lib
 # Development library path, opt first, then debug
 export LD_LIBRARY_PATH=${PROJECT_TARGET_PATH}/lib/${ARCH}/debug:${PROJECT_TARGET_PATH}/lib/${ARCH}/debug/shared:${LD_LIBRARY_PATH}
 export LD_LIBRARY_PATH=${PROJECT_TARGET_PATH}/lib/${ARCH}/opt:${PROJECT_TARGET_PATH}/lib/${ARCH}/opt/shared:${LD_LIBRARY_PATH}
+
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
+#AddressSanitizer to sanitize your code!
+export ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer-3.8
+export ASAN_OPTIONS=alloc_dealloc_mismatch=0,symbolize=1
 
 ##
 # Alias
@@ -749,8 +781,8 @@ alias ls='/bin/ls -F --color=auto'
 alias lt='l -t'
 alias lrt='l -rt'
 alias l~='l ~'
-alias ll='l -a'
-alias la='l -al'
+alias ll='l -ah'
+alias la='l -ahl'
 alias llt='ll -t'
 alias llrt='ll -rt'
 alias ll~='ll ~'
@@ -768,7 +800,7 @@ alias setWorkspace="source ${WORKSPACE_ENV}/scripts/setWorkspace.sh"
 
 #export M2_SETTINGS=${PROJECT_DEV}/.m2/settings.xml
 #alias mvn="mvn -s ${M2_SETTINGS}"
-#echo "Maven settings are in : ${M2_SETTINGS}"
+#echo "Maven settings is in : ${M2_SETTINGS}"
 
 # PATH Setting
 #source ${WORKSPACE_ENV}/java/dev.env.sh
@@ -776,6 +808,9 @@ alias setWorkspace="source ${WORKSPACE_ENV}/scripts/setWorkspace.sh"
 #GIT
 #git config --global http.sslVerify false
 export GIT_SSL_NO_VERIFY=true
+
+#for yarn
+export NODE_TLS_REJECT_UNAUTHORIZED=0
 
 #see source ~/.git-prompt.sh in .bashrc
 #source ${WORKSPACE_ENV}/home/.git-completion.bash
@@ -800,9 +835,9 @@ then
   if [ -d "${NEW_PATH}" ]
   then
         cd ${NEW_PATH}
-        echo Current path UPDATED : cd `pwd`
-  else
-        echo "Current path : `pwd`"
+        echo -e "${cyan} Current path UPDATED cd `pwd` ${NC}"
+#  else
+#        echo -e "${cyan} Current path : `pwd` ${NC}"
   fi
 fi
 
@@ -813,8 +848,11 @@ case ${ARCH} in
     ;;
 esac
 
+#If you put below it will hard code DISPLAY and you will not be able to connect
 #export DISPLAY=:0.0
 #export DISPLAY=localhost:10.0
+#export DISPLAY=:0.0
+
 #instead us ansible local role
 #export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -830,14 +868,14 @@ then
       #exit 1
   }
   if [ -f /usr/bin/rl ]
-  then
+  then  
     /usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`/usr/games/fortune -s`"
   fi
 else
-  echo "Cowsay is not installed"
+  echo -e "${red} ${double_arrow} Cowsay is not installed ${head_skull} ${NC}"
 fi
 
-#export CONKY_HOME="${PROJECT_HOME}/albandri30/.conky"
+#export CONKY_HOME="${PROJECT_HOME}/albandrieu30/.conky"
 #if [ -d $CONKY_HOME ]
 #then
 #  ~/.conky/conky-startup.sh &
@@ -846,8 +884,6 @@ fi
 #fi
 
 export SHELLCHECK_OPTS="-e SC2154 -e SC2086"
-
-source "${WORKING_DIR}/pass.env.sh"
 
 command -v docker || {
 	echo -e "Docker | docker not found in system PATH, please make sure that docker is installed"
@@ -859,6 +895,9 @@ command -v docker-compose || {
 	echo -e "Docker | Recommended docker-compose version is >= 1.24.1"
 #	exit 1
 }
+
+#source "${WORKING_DIR}/pass.env.sh"
+source "${PROJECT_DEV}/nabla/env/home/pass.env.sh"
 
 echo -e "${cyan} PATH is ${PATH} ${NC}"
 

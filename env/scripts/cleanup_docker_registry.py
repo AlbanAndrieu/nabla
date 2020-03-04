@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # TODO: add colored output
+import argparse
 import os
 import re
 import sys
@@ -10,7 +11,6 @@ from collections import (
 from datetime import datetime
 from datetime import timedelta
 
-import argparse
 import requests
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
