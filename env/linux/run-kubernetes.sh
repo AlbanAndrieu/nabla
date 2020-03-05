@@ -1,8 +1,7 @@
 #!/bin/bash
 set -xv
 
-#First install docker
-#./run-docker.sh
+./run-kubernetes-microk8s.sh
 
 #See https://kubernetes.io/docs/tasks/tools/install-kubectl/
 

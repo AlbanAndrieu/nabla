@@ -1,4 +1,5 @@
-
+#!/bin/bash
+#set -xv
 
 ###################################
 
@@ -32,11 +33,11 @@ mysql_secure_installation
 
 #https://www.ostechnix.com/install-phpmyadmin-apache-nginx-freebsd-10-2/
 pkg install phpMyAdmin
-pkg install mod_php56 php56-mysql php56-mysqli
-pkg install php56-mysqli php56-json php56-mbstring php56-session
+#pkg install mod_php56 php56-mysql php56-mysqli
+#pkg install php56-mysqli php56-json php56-mbstring php56-session
 
-pkg search php56
-pkg install php56-bcmath php56-curl php56-gd php56-mbstring php56-pdo_mysql php56-xsl
+#pkg search php56
+#pkg install php56-bcmath php56-curl php56-gd php56-mbstring php56-pdo_mysql php56-xsl
 
     Alias /phpmyadmin/ "/usr/local/www/phpMyAdmin/"
 

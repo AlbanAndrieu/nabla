@@ -464,3 +464,6 @@ pkg install tomcat7
 
 ssh-keygen
 cat ~/.ssh/id_rsa.pub | ssh 192.168.1.24 "cat >> .ssh/authorized_keys"
+
+#Add https://www.ixsystems.com/documentation/freenas/11.3-RELEASE/tasks.html#cloud-sync-tasks
+#https://rclone.org/

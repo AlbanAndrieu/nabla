@@ -112,6 +112,7 @@ ls -la /proc/PID/fd | wc -l
 
 #MacOSX
 sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist
+
 rm -f /var/log/jenkins/jenkins.log
 ls /Applications/Jenkins/jenkins.war
 cd /Applications/Jenkins/

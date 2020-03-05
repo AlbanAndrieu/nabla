@@ -22,4 +22,7 @@ cp /mnt/dpool/www/apache24/data/nabla-site-apache/scripts/out-transmission-wicke
 cd /usr/local/etc/transmission/home/blocklists
 
 exit 0
+<<<<<<< HEAD
+=======
 
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
