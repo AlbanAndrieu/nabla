@@ -270,7 +270,11 @@ node.session.auth.password_in = 2y
 /etc/init.d/open-iscsi restart
 
 iscsiadm -m session
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 dmesg | grep sd
 sudo fdisk -l
 lsblk

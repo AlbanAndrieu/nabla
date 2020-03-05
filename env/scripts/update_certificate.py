@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
+<<<<<<< HEAD
 import argparse
+=======
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 import os
 import subprocess
 from time import sleep
 
+<<<<<<< HEAD
+=======
+import argparse
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select

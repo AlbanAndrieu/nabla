@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # TODO: add colored output
+<<<<<<< HEAD
 import argparse
+=======
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 import os
 import re
 import sys
@@ -11,6 +14,10 @@ from collections import (
 from datetime import datetime
 from datetime import timedelta
 
+<<<<<<< HEAD
+=======
+import argparse
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 import requests
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))

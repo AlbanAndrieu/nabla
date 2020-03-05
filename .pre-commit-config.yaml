@@ -1,6 +1,11 @@
 ---
+<<<<<<< HEAD
 #default_language_version:
 #    python: python3.6  # Ubuntu 18.04.3
+=======
+default_language_version:
+    python: python3.6  # Ubuntu 18.04.3
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 #    python: python3.7  # Ubuntu 19.04
 
 repos:
@@ -97,7 +102,11 @@ repos:
         exclude: >
                   (?x)^(
                       mvnw|
+<<<<<<< HEAD
                       hooks|
+=======
+                      hooks
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
                   )$
 #-   repo: git://github.com/doublify/pre-commit-clang-format
 #    sha: 994f99b6498e9c76341367ecaf76c69dfb4ea4f2

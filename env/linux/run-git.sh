@@ -45,6 +45,7 @@ git config --global http.sslVerify false
 git config --system core.longpaths true
 git config --global pack.packsizelimit 2g
 git config --system core.autocrlf false
+<<<<<<< HEAD
 
 # For issue https://github.com/git-lfs/git-lfs/issues/3171
 git config lfs.contenttype 0
@@ -56,6 +57,19 @@ git config --global init.templatedir /workspace/users/albandri30/nabla-hooks/hoo
 
 git config --global user.email "alban.andrieu@free.fr"
 git config --global user.name "Andrieu, Alban"
+=======
+
+# For issue https://github.com/git-lfs/git-lfs/issues/3171
+git config lfs.contenttype 0
+#git config core.ignoreStat true
+#git config core.fscache true
+
+#See http://omerkatz.com/blog/2013/5/23/git-hooks-part-2-implementing-git-hooks-using-python
+git config --global init.templatedir /workspace/users/albandri30/nabla-hooks/hooks
+
+git config user.email "alban.andrieu@free.fr"
+git config user.name "Andrieu, Alban"
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 git config --local -l
 
 #for maven
@@ -64,6 +78,7 @@ git config --global maven-scm.forceUsername true
 
 git remote --verbose
 
+<<<<<<< HEAD
 #list old branch
 git gc
 git fetch --tags
@@ -110,6 +125,8 @@ git commit --amend --author="Andrieu, Alban <alban.andrieu@free.fr>"
 #git symbolic-ref HEAD
 #git symbolic-ref HEAD refs/heads/my-branch
 
+=======
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 #See hook https://dzone.com/articles/an-in-depth-look-at-git-hooks
 cp hook/* .git/hooks
 #chmod +x prepare-commit-msg
@@ -174,6 +191,14 @@ git fetch origin
 
 for d in $(find . -type d -name .git); do (mr register $d/..); done
 mr update
+<<<<<<< HEAD
 
 # See https://hub.github.com/
 alias git=hub
+=======
+
+# See https://hub.github.com/
+alias git=hub
+
+exit 0
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705

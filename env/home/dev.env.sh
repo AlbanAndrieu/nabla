@@ -6,6 +6,10 @@
 #set -eo pipefail
 
 WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 # Ansible managed
 
 ####################
@@ -45,13 +49,22 @@ fi
 
 if [ -z "$PROJECT_USER" ]
 then
+<<<<<<< HEAD
   echo -e "${red} ${double_arrow} Undefined parameter ${head_skull} : PROJECT_USER, use the default one ${NC}"
   export PROJECT_USER=albandrieu
+=======
+  echo "ERROR: Set PROJECT_USER environment variable!"
+  export PROJECT_USER=albandri
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 fi
 
 if [ -z "$PROJECT_VERSION" ]
 then
+<<<<<<< HEAD
   echo -e "${red} ${double_arrow} Undefined parameter ${head_skull} : PROJECT_VERSION, use the default one ${NC}"
+=======
+  echo "ERROR: Set PROJECT_VERSION environment variable!"
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
   export PROJECT_VERSION=30
 fi
 
@@ -69,7 +82,11 @@ fi
 
 if [ -z "$WORKSPACE_ENV" ]
 then
+<<<<<<< HEAD
   echo -e "${red} ${double_arrow} Undefined parameter ${head_skull} : WORKSPACE_ENV, use the default one ${NC}"
+=======
+  echo "ERROR: Set WORKSPACE_ENV environment variable!"
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
   export WORKSPACE_ENV=${PROJECT_HOME}/${PROJECT_USER}${PROJECT_VERSION}/nabla/env
 fi
 
@@ -102,12 +119,21 @@ fi
 if [ -d "${HOME}/.linuxbrew/bin" ] ; then
     PATH="${HOME}/.linuxbrew/bin:$PATH"
 fi
+<<<<<<< HEAD
 if [ -d "${HOME}/.git-radar" ] ; then
     PATH="${HOME}/.git-radar/:$PATH"
 fi
 if [ -d "/home/linuxbrew/.linuxbrew/bin/" ] ; then
     PATH="/home/linuxbrew/.linuxbrew/bin/:$PATH"
 fi
+=======
+if [ -d "/home/linuxbrew/.linuxbrew/bin/" ] ; then
+    PATH="/home/linuxbrew/.linuxbrew/bin/:$PATH"
+fi
+if [ -d "${HOME}/.git-radar" ] ; then
+    PATH="${HOME}/.git-radar/:$PATH"
+fi
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 if [ -d "/snap/bin" ] ; then
     PATH="/snap/bin/:$PATH"
 fi
@@ -200,6 +226,10 @@ export ORACLE_HOME=${DRIVE_PATH}/oraclexe/app/oracle/product/${ORACLE_VERSION}/s
 
 export SNYK_TOKEN=c89235c8-165b-47f1-8a67-c6b39292bda4
 #snyk auth $SNYK_TOKEN
+<<<<<<< HEAD
+=======
+export MICROSCANNER_TOKEN=NzdhNTQ2ZGZmYmEz
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 
 ###
 # Alias
@@ -238,17 +268,29 @@ then
   CIAO_ROOT=${TAO_ROOT}/CIAO
   export CIAO_ROOT
 
+<<<<<<< HEAD
   echo -e "${cyan} CIAO_ROOT : ${CIAO_ROOT} ${NC}"
+=======
+  echo ${CIAO_ROOT}
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 
   DANCE_ROOT=${CIAO_ROOT}/DANCE
   export DANCE_ROOT
 
+<<<<<<< HEAD
   echo -e "${cyan} DANCE_ROOT : ${DANCE_ROOT} ${NC}"
+=======
+  echo ${DANCE_ROOT}
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 
   DDS_ROOT=${CIO_ROOT}/connectors/dds4ccm
   export DDS_ROOT
 
+<<<<<<< HEAD
   echo -e "${cyan} DDS_ROOT : ${DDS_ROOT} ${NC}"
+=======
+  echo ${DDS_ROOT}
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 fi
 
 export BOOST_VERSION=1.41.0
@@ -272,6 +314,7 @@ export BOOST=$BOOST_ROOT
 export CMAKE_HOME=/usr/share/cmake-2.6.4
 export CMAKE_ROOT=${CMAKE_HOME}
 
+<<<<<<< HEAD
 # PYTHON 3.6
 #See run-python.sh script
 #export PYTHON_MAJOR_VERSION=3.6
@@ -291,20 +334,41 @@ fi
 
 # ALIAS to python
 #alias python='/usr/bin/python3.6'
+=======
+if [ -f ${HOME}/run-python.sh ]; then
+    echo ${HOME}/run-python.sh
+    source ${HOME}/run-python.sh
+fi
+
+# PYTHON 27
+#export PYTHON_DIR=/usr/lib/python
+
+# ALIAS to python
+#alias python='/usr/bin/python'
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 
 # SCONS 2.2.0
 #export SCONS_DIR=${PYTHON_DIR}/Lib/site-packages/scons-2.2.0
 export SCONS_DIR=/usr/lib/scons/SCons
 
 # ALIAS to scons-local
+<<<<<<< HEAD
 export SCONS='/usr/bin/python2.7 /opt/ansible/env/bin/scons'
 alias scons="${SCONS}"
 #alias scons='/usr/bin/python2.7 /opt/ansible/env/bin/scons'
+=======
+export SCONS='/usr/bin/python2.7 /opt/ansible/env/bin/scons' # for virtualenv
+alias scons="${SCONS}"
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 
 export SCONS_PATH=/usr/lib/scons/SCons/Script
 if [ "$SCONS_PATH" = "" ]
 then
+<<<<<<< HEAD
   echo -e "${red} ${double_arrow} Undefined parameter ${head_skull} : SCONS_PATH, use the default one ${NC}"
+=======
+  echo "WARNING: Set SCONS_PATH environment variable not defined!"
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 else
   export PATH=${SCONS_PATH}:${PATH}
 fi
@@ -333,13 +397,21 @@ then
   ln -s ${DRIVE_PATH}/Program\ Files\ \(x86\) /ProgramFilesx86
   #export JAVA_HOME="/ProgramFilesx86/Java/jdk1.5.0_22"
 fi
+<<<<<<< HEAD
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/
+=======
+#export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/
+#export JAVA_HOME=/usr/lib/jvm/default-java/
+#dpkg -L openjfx
+export JAVAFX_HOME="/usr/share/openjfx/lib"
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 
 export JRE_HOME=${JAVA_HOME}/jre
 #export JDK_HOME JRE_HOME JAVA_HOME
 #export JAVA=$JAVA_HOME/bin/java
 #PATH=${JDK_HOME}/bin:${JRE_HOME}/bin:${PATH}
-PATH=${JAVA_HOME}/bin:${PATH}
+PATH=${JAVA_HOME}/bin:${JAVAFX_HOME}:${PATH}
 export PATH
 
 export JAVA_OPTS="-Xms1G -Xmx2G"
@@ -477,21 +549,166 @@ POLICY
   #export JAVA_OPTS
 fi
 
+if [ -z "$JAVA_OPTS" ]
+then
+
+  echo "Enable : -Xms256m -Xmx1548m"
+
+  #JAVA_OPTS="${JAVA_OPTS} -Xms256m -Xmx1548m"
+  #JAVA_OPTS="${JAVA_OPTS} -XX:PermSize=430m -XX:MaxPermSize=430m -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000"
+  JAVA_OPTS="${JAVA_OPTS} -Djava.awt.headless=true "
+  #For Jenkins
+  JAVA_OPTS="${JAVA_OPTS} -Dakka.test.timefactor=2"
+  #Turn off jvmstat instrumentation https://stackoverflow.com/questions/76327/how-can-i-prevent-java-from-creating-hsperfdata-files
+  #JAVA_OPTS="${JAVA_OPTS} -XX:-UsePerfData"
+  #Fix GZip issue
+  #JAVA_OPTS="-Dsun.zip.disableMemoryMapping=true"
+  #Use better entropie unlimited random
+  #JAVA_OPTS="${JAVA_OPTS} -Djava.security.egd=file:/dev/urandom"
+  #JAVA_OPTS="${JAVA_OPTS} -Djava.io.tmpdir=${WORKSPACE}/target/tmp" # tmp get full
+
+  echo "DEFAULT JAVA_OPTS=${JAVA_OPTS}"
+fi
+
+if [ 1 -eq 1 ] ; then
+  export ECLIPSE_DEBUG_PORT="2924"
+  if [ -n "$ECLIPSE_DEBUG_PORT" ]
+  then
+    echo "Enable : ${ECLIPSE_DEBUG_PORT}"
+
+    JAVA_OPTS="${JAVA_OPTS} -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=2924,server=y,suspend=n"
+
+    echo "DEBUG JAVA_OPTS=${JAVA_OPTS}"
+  fi
+
+  #export JMX_DEFAULT_DEBUG_PORT="9193"
+  if [ -n "$JMX_DEFAULT_DEBUG_PORT" ]
+  then
+    #On your remote server (the one you want to get statistics
+    #Following line is needed for tomcat to be remotely seen by jvisualvm
+    #jstatd -J-Djava.security.policy=all.policy -p 2020
+    #Add credentials
+    #gedit ~/.java.policy
+    #grant codebase "file:${java.home}/../lib/tools.jar" {
+    #  permission java.security.AllPermission;
+    #};
+    #Disable firewall if any or do a ssh tunneling
+    #ssh -D 9696 albandri@albandri -v
+
+    #these lines activate jmx for visualvm to see threads ; chosen  port is to be entered in ‘add jmx connection’ params
+    # for instance : albandri:9193 if $JMX_PORT=9193
+
+    echo "Enable JMX : ${JMX_DEFAULT_DEBUG_PORT}"
+
+    JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote"
+    #JAVA_OPTS="${JAVA_OPTS} -Djava.rmi.server.hostname=albandri"
+    JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote.port=${JMX_DEFAULT_DEBUG_PORT}"
+    JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote.ssl=false"
+    JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote.authenticate=false"
+
+    echo "JMX JAVA_OPTS=${JAVA_OPTS}"
+
+    #JSTATD POLICY for JMX
+    POLICY=${HOME}/.jstatd.all.policy
+    [ -r ${POLICY} ] || cat >${POLICY} <<'POLICY'
+grant codebase "file:${java.home}/../lib/tools.jar" {
+permission java.security.AllPermission;
+};
+POLICY
+
+    echo "jstatd -J-Djava.security.policy=${POLICY}"
+
+  fi
+
+  #YOURKIT_HOME
+  export YOURKIT_HOME=""
+
+  if [ -n "$YOURKIT_HOME" ]
+  then
+    echo "Enable : ${YOURKIT_HOME}"
+
+    #rm -Rf yjp-*
+    #wget https://www.yourkit.com/download/yjp-2015-build-15082.zip
+    #unzip yjp-2015-build-15082.zip
+    #rm -f yjp-2015-build-15082.zip
+
+    YOURKIT_AGENT_ARCH="${ARCH}-x86-64"
+    YOURKIT_AGENT="${YOURKIT_HOME}/bin/${YOURKIT_AGENT_ARCH}/libyjpagent.so"
+    JAVA_OPTS="-agentpath:${YOURKIT_AGENT}=disablestacktelemetry,disableexceptiontelemetry,delay=10000,sessionname=Tomcat ${JAVA_OPTS}"
+
+    echo "DEBUG YOURKIT JAVA_OPTS=${JAVA_OPTS}"
+  fi
+
+  #JREBEL
+  export JREBEL_HOME=""
+
+  if [ -n "$JREBEL_HOME" ]
+  then
+    echo "Enable : ${JREBEL_HOME}"
+
+    #rm -Rf jrebel*
+    #wget http://dl.zeroturnaround.com/jrebel-stable-nosetup.zip
+    #unzip jrebel-stable-nosetup.zip
+    JAVAAGENT_JREBEL_OPTS="\"${JREBEL_HOME}/jrebel.jar\""
+    JAVA_OPTS="${JAVA_OPTS} -javaagent:\"${JAVAAGENT_JREBEL_OPTS}\" -Drebel.remoting_plugin=true"
+
+    echo "DEBUG JAVAAGENT_JREBEL_OPTS=${JAVAAGENT_JREBEL_OPTS}"
+  fi
+
+  if [ -n "$JACOCO_AGENT_HOME" ]
+  then
+    echo "Enable : ${JACOCO_AGENT_HOME}"
+
+    #rm -Rf org.jacoco*
+    #wget http://central.maven.org/maven2/org/jacoco/org.jacoco.agent/${JACOCO_AGENT_VERSION}/org.jacoco.agent-${JACOCO_AGENT_VERSION}.jar
+
+    if [ -z "$JACOCO_AGENT_VERSION" ]
+    then
+      JACOCO_AGENT_VERSION="0.7.4.201502262128"
+    fi
+    JACOCO_AGENT_REPORT_FILE="destfile=\"${SRV_LOG_DIR}jacoco.exec\""
+    #Can also be output=tcpserver
+
+    JAVAAGENT_JACOCO_OPTS="\"${JACOCO_AGENT_HOME}/org.jacoco.agent-${JACOCO_AGENT_VERSION}-runtime.jar\"=${JACOCO_AGENT_REPORT_FILE}"
+    JAVA_OPTS="${JAVA_OPTS} -javaagent:${JAVAAGENT_JACOCO_OPTS}"
+
+    echo "DEBUG JAVAAGENT_JACOCO_OPTS=${JAVAAGENT_JACOCO_OPTS}"
+  fi
+
+  # ---- DripStat arguments
+  #DS_JAR=/usr/share/tomcat7/dripstat/dripstat.jar;
+  #export DS_JAR
+  #JAVA_OPTS="$JAVA_OPTS -javaagent:$DS_JAR";
+  #export JAVA_OPTS
+fi
+
 # MAVEN
+<<<<<<< HEAD
 export M2_HOME=/opt/maven/apache-maven-3.3.9
+=======
+#export M2_HOME=/usr/local/apache-maven-3.2.1
+export M2_HOME=/opt/maven/apache-maven-3.6.3
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 export M2=${M2_HOME}/bin
 export PATH=${M2}:$PATH
 #export MAVEN_OPTS="-Xms512m -Xmx1024m"
 #export MAVEN_OPTS="-Xmx512M -XX:MaxPermSize=1024M"
 #export MAVEN_OPTS="-Xms256m -Xmx512m -XX:PermSize=64M -XX:MaxPermSize=160M"
+<<<<<<< HEAD
 #setenv MAVEN_OPTS "-Djava.net.preferIPv4Stack=true"
 #setenv MAVEN_OPTS "org.pitest:pitest-maven:mutationCoverage -Dtomcat.port=$TOMCAT_PORT -Djetty.port=$JETTY_PORT -Dcargo.rmi.port=$CARGO_RMI_PORT -Dcargo.http.port=$CARGO_HTTP_PORT -Dcargo.ssh.port=$CARGO_SSH_PORT -Dcargo.debug.port=$CARGO_DEBUG_PORT -Dcargo.telnet.port=$CARGO_TELNET_PORT"
 #setenv MAVEN_OPTS "-Djacoco.outputDir=${WORKSPACE}/target -Dsonar.branch=${SONAR_BRANCH} -Dsonar.scm.enabled=false -Dsonar.scm-stats.enabled=false -Dissueassignplugin.enabled=false -Dsonar.pitest.mode=skip -Dsonar.scm.user.secured=false"
+=======
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 #Jenkins We have 48GB RAM and 44 GB swap and its 24 core server.
 #-Xms24g -Xmx24g -Xmn6g -XX:MaxPermSize=512M -XX:+UseParallelOldGC -XX:ParallelGCThreads=16
 #Add MaxPermSize for andromda
 #for java 8 PermSize and MaxPermSize can be removed
+<<<<<<< HEAD
 MAVEN_OPTS="-Xms1G -Xmx2G -Dmaven.color.hide.level=false"
+=======
+MAVEN_OPTS="-Xms256m -Xmx2g"
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 #https://developer.atlassian.com/docs/advanced-topics/working-with-maven/colour-coding-your-maven-output
 export MAVEN_COLOR=true
 
@@ -511,12 +728,17 @@ if [ 1 -eq 1 ] ; then
   MAVEN_OPTS="${MAVEN_OPTS}"
 fi
 export MAVEN_OPTS
+<<<<<<< HEAD
 
 export M2_REPO=${env.WORKSPACE}/.m2/repository
 mkdir -p ${M2_REPO} || true
 mkdir ${HOME}/.m2 || true
 ln -s ${M2_REPO} ${HOME}/.m2/repository/ || true
 echo -e "${cyan} Maven repo is in : ${M2_REPO} ${NC}"
+=======
+export M2_REPO=${DRIVE_PATH}/repo
+echo "Maven repo are in : ${M2_REPO}"
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 
 # ANT
 export ANT_HOME=/usr/share/ant
@@ -593,11 +815,18 @@ alias lumbermill='java -jar ${LUMBERMILL_HOME}/dist/lib/lumbermill.jar'
 #export EC2_PRIVATE_KEY=$HOME/<where your private key is>/pk-XXXXXXXXXXXXXXXXXXXXXXXXXXXX.pem
 #export EC2_CERT=$HOME/<where your certificate is>/cert-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.pem
 
+#AWS EC2
+#export EC2_KEYPAIR=<your keypair name> # name only, not the file name
+#export EC2_URL=https://ec2.<your ec2 region>.amazonaws.com
+#export EC2_PRIVATE_KEY=$HOME/<where your private key is>/pk-XXXXXXXXXXXXXXXXXXXXXXXXXXXX.pem
+#export EC2_CERT=$HOME/<where your certificate is>/cert-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.pem
+
 export EC2_KEYPAIR=albandri # name only, not the file name
 export EC2_URL=https://ec2.us-west-2.amazonaws.com
 export EC2_PRIVATE_KEY=$HOME/.ec2/pk-FMQ27HNLF2PVMPVL7MPWHEY5GWDKDOT2.pem
 export EC2_CERT=$HOME/.ec2/cert-FMQ27HNLF2PVMPVL7MPWHEY5GWDKDOT2.pem
 
+<<<<<<< HEAD
 export DOCKER_REGISTRY_USER=nabla
 #export DOCKER_REGISTRY_PASS=todo
 
@@ -605,6 +834,11 @@ export GITHUB_OAUTH_CLIENT_ID=c52c293400ba80af105a
 export GITHUB_OAUTH_CLIENT_SECRET=todo
 
 export GITHUB_ORGANIZATION=Banbou
+=======
+export GITHUB_OAUTH_CLIENT_ID=c52c293400ba80af105a
+export GITHUB_OAUTH_CLIENT_SECRET=todo
+
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 export GITHUB_TOKEN=todo
 
 export WPT_API_KEY="A.01ea5a02081b6d10415d7b0e7c844e73"
@@ -632,8 +866,14 @@ export LD_LIBRARY_PATH=/opt/oracle/instantclient_12_2:$LD_LIBRARY_PATH
 export PATH=/opt/oracle/instantclient_12_2:$PATH
 
 # TIBCO
+<<<<<<< HEAD
 export TIBCO_HOME=${DRIVE_PATH}/home/albandrieu/tibco
 export TIBRV_HOME=${DRIVE_PATH}/home/albandrieu/tibco/tibrv/8.4
+=======
+TIBRV_VERSION=8.4
+export TIBCO_HOME=${DRIVE_PATH}/home/albandri/tibco
+export TIBRV_HOME=${DRIVE_PATH}/home/albandri/tibco/tibrv/${TIBRV_VERSION}
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 export PATH=${TIBRV_HOME}/bin:${PATH}
 export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}:${TIBRV_HOME}/lib
 
@@ -644,14 +884,19 @@ export COMPOSE_HTTP_TIMEOUT=2000
 # WINDOWS
 if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
 then
-  export PATH=$PATH:${DRIVE_PATH}/Windows/system32:${DRIVE_PATH}/Windows
+  export PATH=${PATH}:${DRIVE_PATH}/Windows/system32:${DRIVE_PATH}/Windows
 fi
 
 # KUBERNETES
 source <(kubectl completion bash)
 alias k=kubectl
 complete -F __start_kubectl k
+<<<<<<< HEAD
 export KUBECONFIG=$KUBECONFIG:config:config-albandri
+=======
+#export KUBECONFIG=$KUBECONFIG:config:config-albandri:config-albandrieu
+unset KUBECONFIG
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 
 ###
 # INCLUDE LANGUAGE SPECIFIC
@@ -809,9 +1054,12 @@ alias setWorkspace="source ${WORKSPACE_ENV}/scripts/setWorkspace.sh"
 #git config --global http.sslVerify false
 export GIT_SSL_NO_VERIFY=true
 
+<<<<<<< HEAD
 #for yarn
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 
+=======
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 #see source ~/.git-prompt.sh in .bashrc
 #source ${WORKSPACE_ENV}/home/.git-completion.bash
 #source ${WORKSPACE_ENV}/home/.git-prompt.sh
@@ -848,11 +1096,16 @@ case ${ARCH} in
     ;;
 esac
 
+<<<<<<< HEAD
 #If you put below it will hard code DISPLAY and you will not be able to connect
 #export DISPLAY=:0.0
 #export DISPLAY=localhost:10.0
 #export DISPLAY=:0.0
 
+=======
+#export DISPLAY=:0.0
+#export DISPLAY=localhost:10.0
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 #instead us ansible local role
 #export LC_CTYPE=en_US.UTF-8
 export LANG=en_US.UTF-8
@@ -865,6 +1118,7 @@ then
   command -v rl || {
       echo -e "rl | randomize-lines not found in system PATH, please make sure that randomize-lines is installed"
       echo -e "rl | apt-get install randomize-lines fortunes fortunes-fr"
+<<<<<<< HEAD
       #exit 1
   }
   if [ -f /usr/bin/rl ]
@@ -876,6 +1130,19 @@ else
 fi
 
 #export CONKY_HOME="${PROJECT_HOME}/albandrieu30/.conky"
+=======
+      exit 1
+  }
+  if [ -f /usr/bin/rl ]
+  then
+    /usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`/usr/games/fortune -s`"
+  fi
+else
+  echo "Cowsay is not installed"
+fi
+
+#export CONKY_HOME="${PROJECT_HOME}/albandri30/.conky"
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 #if [ -d $CONKY_HOME ]
 #then
 #  ~/.conky/conky-startup.sh &
@@ -885,6 +1152,12 @@ fi
 
 export SHELLCHECK_OPTS="-e SC2154 -e SC2086"
 
+<<<<<<< HEAD
+=======
+#source "${WORKING_DIR}/pass.env.sh"
+source "${PROJECT_DEV}/nabla/env/home/pass.env.sh"
+
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 command -v docker || {
 	echo -e "Docker | docker not found in system PATH, please make sure that docker is installed"
 	echo -e "Docker | Recommended docker version is >= 18.09.9,"
@@ -896,9 +1169,12 @@ command -v docker-compose || {
 #	exit 1
 }
 
+<<<<<<< HEAD
 #source "${WORKING_DIR}/pass.env.sh"
 source "${PROJECT_DEV}/nabla/env/home/pass.env.sh"
 
+=======
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 echo -e "${cyan} PATH is ${PATH} ${NC}"
 
 #exit 0

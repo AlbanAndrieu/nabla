@@ -235,9 +235,15 @@ vagrant ssh
 #sudo docker pull ubuntu
 #sudo docker pull dockerfile/ansible
 sudo docker pull nabla/ansible-jenkins-slave-docker
+<<<<<<< HEAD
 
 docker run --rm nabla/ansible-jenkins-slave-docker curl http://home.albandrieu.com/html/download/README.html
 
+=======
+
+docker run --rm nabla/ansible-jenkins-slave-docker curl http://home.albandrieu.com/html/download/README.html
+
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 docker run -it nabla/ansible-jenkins-slave-docker /bin/bash
 #Sample using container to buid my local workspace
 docker run -t -d -w /sandbox/project-to-build -v /workspace/users/albandri30/:/sandbox/project-to-build:rw --name sandbox nabla/ansible-jenkins-slave:latest cat
@@ -409,6 +415,11 @@ sudo systemctl status docker
 
 sudo usermod -aG docker ${USER}
 
+<<<<<<< HEAD
+=======
+sudo apt-get install -y docker-registry cadvisor
+
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 docker run -it -u 1004:999 -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v /var/run/docker.sock:/var/run/docker.sock --entrypoint /bin/bash fusion-risk/ansible-jenkins-slave:latest
 
 #docker linter

@@ -59,6 +59,7 @@ sudo mount -t nfs nabla:/mnt/dpool/workspace /workspace-tmp
 #sudo nano /etc/fstab
 ##<server>:</remote/export></local/directory><nfs-type><options> 0 0
 #nabla:/mnt/dpool/media/ftp /media/ftp nfs rw 0 0
+<<<<<<< HEAD
 nabla:/mnt/dpool/media/download /media/download nfs4 defaults,user,auto,noatime,bg,rsize=16384,wsize=16384 0 0
 nabla:/mnt/dpool/media/music /media/music nfs4 defaults,user,auto,noatime,bg,rsize=16384,wsize=16384 0 0
 nabla:/mnt/dpool/media/photo /media/photo nfs4 defaults,user,auto,noatime,bg,rsize=16384,wsize=16384 0 0
@@ -73,6 +74,17 @@ nabla:/mnt/dpool/jenkins /media/jenkins nfs4 defaults,user,auto,noatime,bg,rsize
 nabla:/mnt/dpool/jenkins-slave /media/jenkins-slave nfs4 defaults,user,auto,noatime,bg,rsize=16384,wsize=16384 0 0
 nabla:/mnt/dpool/workspace /workspace-tmp nfs4 defaults,user,auto,noatime,bg,rsize=16384,wsize=16384 0 0
 #nabla:/mnt/dpool/media/ftp  /media/ftp  zfs  defaults  0  0
+=======
+#nabla:/mnt/dpool/media/photo /media/photo nfs rw 0 0
+#nabla:/mnt/dpool/media/music /media/music nfs rw 0 0
+#nabla:/mnt/dpool/media/video /media/video nfs rw 0 0
+#nabla:/mnt/dpool/image /image nfs defaults 0 0
+#nabla:/mnt/dpool/archive /archive nfs rw 0 0
+#nabla:/mnt/dpool/backup /backup nfs rw 0 0
+#nabla:/mnt/dpool/jenkins /jenkins nfs rw 0 0
+#nabla:/mnt/dpool/workspace /workspace-tmp nfs rw 0 0
+##nabla:/mnt/dpool/media/ftp  /media/ftp  zfs  defaults  0  0
+>>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 
 echo "Mount freenas NABLA NFS directories"
 #less /var/log/syslog | grep -i nfs
