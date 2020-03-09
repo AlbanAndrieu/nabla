@@ -521,10 +521,10 @@ if [ 1 -eq 1 ] ; then
 fi
 export MAVEN_OPTS
 
-export M2_REPO=${env.WORKSPACE}/.m2/repository
+export M2_REPO=${WORKSPACE}/.m2/repository
 mkdir -p ${M2_REPO} || true
 mkdir ${HOME}/.m2 || true
-ln -s ${M2_REPO} ${HOME}/.m2/repository/ || true
+ln -s "${M2_REPO}/" ${HOME}/.m2/repository/ || true
 echo -e "${cyan} Maven repo is in : ${M2_REPO} ${NC}"
 
 # ANT
@@ -908,9 +908,8 @@ command -v docker-compose || {
 #	exit 1
 }
 
-#source "${WORKING_DIR}/pass.env.sh"
-source "${PROJECT_DEV}/nabla/env/home/pass.env.sh"
-
 echo -e "${cyan} PATH is ${PATH} ${NC}"
+
+source "${PROJECT_DEV}/nabla/env/home/pass.env.sh"
 
 #exit 0
