@@ -112,14 +112,11 @@ ls -la /proc/PID/fd | wc -l
 
 #MacOSX
 sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist
-<<<<<<< HEAD
-ls /Applications/Jenkins/jenkins.war
-=======
+
 rm -f /var/log/jenkins/jenkins.log
 ls /Applications/Jenkins/jenkins.war
 cd /Applications/Jenkins/
 wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
->>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist
 tail -f /var/log/jenkins/jenkins.log
 cd /Users/Shared/Jenkins/Home

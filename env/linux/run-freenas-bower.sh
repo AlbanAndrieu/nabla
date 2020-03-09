@@ -101,8 +101,6 @@ cd /usr/local/lib/node_modules/
 ln -s /media/bower/ private-bower
 ls -lrta /usr/local/lib/node_modules/private-bower/gitRepoCache
 
-<<<<<<< HEAD
-=======
 #cd /usr/local/lib/node_modules/private-bower/gitRepoCache
 #cd jquery/
 ##https://github.com/jquery/jquery/tree/2.1.4
@@ -120,7 +118,6 @@ ls -lrta /usr/local/lib/node_modules/private-bower/gitRepoCache
 cd /media/bower/gitRepoCache
 chown -R bower:bower *
 
->>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 lsof -i :5678
 service bower onestart
 
@@ -128,12 +125,10 @@ http://192.168.1.61:5678/
 
 # TODO add proxy redirect for 6789 and 5678
 
-<<<<<<< HEAD
 cd  /usr/local/lib/node_modules/private-bower/gitRepoCache
 #https://github.com/jquery/jquery/tree/2.1.4
 git fetch && git fetch --tags
 git checkout 2.1.4
-=======
->>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
+
 
 exit 0

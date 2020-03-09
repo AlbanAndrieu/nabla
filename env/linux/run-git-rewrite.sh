@@ -28,9 +28,9 @@ export GIT_AUTHOR_NAME="$GIT_COMMITTER_NAME"
 export GIT_AUTHOR_EMAIL="$GIT_COMMITTER_EMAIL"
 ' --tag-name-filter cat -- --branches --tags
 
-echo "git log --pretty=format:\"%h - %an, %an, %ae : %s\""
+echo "git log --pretty=format:\"%h - %an, %ae : %s\""
 
-echo "git log --pretty='%h, %ae - %s'  --author='Alban'  --before='2019-01-01' --no-merges --since='2008-01-01'"
+echo "git log --pretty='%h, %an, %ae - %s'  --author='Alban'  --before='2019-01-01' --no-merges --since='2008-01-01'"
 # --committer='alban'
 
 #Apply changes
