@@ -146,6 +146,12 @@ System.setProperty("org.jenkinsci.plugins.gitclient.Git.timeOut", "120")
 System.setProperty("hudson.plugins.git.GitSCM.verbose", "true")
 System.setProperty("org.jenkinsci.plugins.docker.workflow.client.DockerClient.CLIENT_TIMEOUT", "240")
 
+#System.setProperty("http.connect.timeout", "100")
+#System.setProperty("http.connect.request.timeout", "600")
+#System.setProperty("http.socket.timeout", "600")
+System.setProperty("http.socket.timeout", "300")
+System.getProperty("http.socket.timeout")
+
 #Hook
 $JENKINS_URL/git/notifyCommit
 $JENKINS_URL/bitbucket-hook/

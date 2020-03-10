@@ -18,7 +18,7 @@ WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
 
 #WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
 
-source ${HOME}/step-0-color.sh
+source "${HOME}/step-0-color.sh"
 
 TOOLS_OPTION_PURIFY=""
 export PERLGEN_OPTION=""
@@ -474,139 +474,6 @@ POLICY
     JAVA_OPTS="${JAVA_OPTS} -javaagent:${JAVAAGENT_JACOCO_OPTS}"
 
     echo -e "${cyan} DEBUG JAVAAGENT_JACOCO_OPTS=${JAVAAGENT_JACOCO_OPTS} ${NC}"
-  fi
-
-  # ---- DripStat arguments
-  #DS_JAR=/usr/share/tomcat7/dripstat/dripstat.jar;
-  #export DS_JAR
-  #JAVA_OPTS="$JAVA_OPTS -javaagent:$DS_JAR";
-  #export JAVA_OPTS
-fi
-
-if [ -z "$JAVA_OPTS" ]
-then
-
-  echo "Enable : -Xms256m -Xmx1548m"
-
-  #JAVA_OPTS="${JAVA_OPTS} -Xms256m -Xmx1548m"
-  #JAVA_OPTS="${JAVA_OPTS} -XX:PermSize=430m -XX:MaxPermSize=430m -Dsun.rmi.dgc.client.gcInterval=3600000 -Dsun.rmi.dgc.server.gcInterval=3600000"
-  JAVA_OPTS="${JAVA_OPTS} -Djava.awt.headless=true "
-  #For Jenkins
-  JAVA_OPTS="${JAVA_OPTS} -Dakka.test.timefactor=2"
-  #Turn off jvmstat instrumentation https://stackoverflow.com/questions/76327/how-can-i-prevent-java-from-creating-hsperfdata-files
-  #JAVA_OPTS="${JAVA_OPTS} -XX:-UsePerfData"
-  #Fix GZip issue
-  #JAVA_OPTS="-Dsun.zip.disableMemoryMapping=true"
-  #Use better entropie unlimited random
-  #JAVA_OPTS="${JAVA_OPTS} -Djava.security.egd=file:/dev/urandom"
-  #JAVA_OPTS="${JAVA_OPTS} -Djava.io.tmpdir=${WORKSPACE}/target/tmp" # tmp get full
-
-  echo "DEFAULT JAVA_OPTS=${JAVA_OPTS}"
-fi
-
-if [ 1 -eq 1 ] ; then
-  export ECLIPSE_DEBUG_PORT="2924"
-  if [ -n "$ECLIPSE_DEBUG_PORT" ]
-  then
-    echo "Enable : ${ECLIPSE_DEBUG_PORT}"
-
-    JAVA_OPTS="${JAVA_OPTS} -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=2924,server=y,suspend=n"
-
-    echo "DEBUG JAVA_OPTS=${JAVA_OPTS}"
-  fi
-
-  #export JMX_DEFAULT_DEBUG_PORT="9193"
-  if [ -n "$JMX_DEFAULT_DEBUG_PORT" ]
-  then
-    #On your remote server (the one you want to get statistics
-    #Following line is needed for tomcat to be remotely seen by jvisualvm
-    #jstatd -J-Djava.security.policy=all.policy -p 2020
-    #Add credentials
-    #gedit ~/.java.policy
-    #grant codebase "file:${java.home}/../lib/tools.jar" {
-    #  permission java.security.AllPermission;
-    #};
-    #Disable firewall if any or do a ssh tunneling
-    #ssh -D 9696 albandri@albandri -v
-
-    #these lines activate jmx for visualvm to see threads ; chosen  port is to be entered in ‘add jmx connection’ params
-    # for instance : albandri:9193 if $JMX_PORT=9193
-
-    echo "Enable JMX : ${JMX_DEFAULT_DEBUG_PORT}"
-
-    JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote"
-    #JAVA_OPTS="${JAVA_OPTS} -Djava.rmi.server.hostname=albandri"
-    JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote.port=${JMX_DEFAULT_DEBUG_PORT}"
-    JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote.ssl=false"
-    JAVA_OPTS="${JAVA_OPTS} -Dcom.sun.management.jmxremote.authenticate=false"
-
-    echo "JMX JAVA_OPTS=${JAVA_OPTS}"
-
-    #JSTATD POLICY for JMX
-    POLICY=${HOME}/.jstatd.all.policy
-    [ -r ${POLICY} ] || cat >${POLICY} <<'POLICY'
-grant codebase "file:${java.home}/../lib/tools.jar" {
-permission java.security.AllPermission;
-};
-POLICY
-
-    echo "jstatd -J-Djava.security.policy=${POLICY}"
-
-  fi
-
-  #YOURKIT_HOME
-  export YOURKIT_HOME=""
-
-  if [ -n "$YOURKIT_HOME" ]
-  then
-    echo "Enable : ${YOURKIT_HOME}"
-
-    #rm -Rf yjp-*
-    #wget https://www.yourkit.com/download/yjp-2015-build-15082.zip
-    #unzip yjp-2015-build-15082.zip
-    #rm -f yjp-2015-build-15082.zip
-
-    YOURKIT_AGENT_ARCH="${ARCH}-x86-64"
-    YOURKIT_AGENT="${YOURKIT_HOME}/bin/${YOURKIT_AGENT_ARCH}/libyjpagent.so"
-    JAVA_OPTS="-agentpath:${YOURKIT_AGENT}=disablestacktelemetry,disableexceptiontelemetry,delay=10000,sessionname=Tomcat ${JAVA_OPTS}"
-
-    echo "DEBUG YOURKIT JAVA_OPTS=${JAVA_OPTS}"
-  fi
-
-  #JREBEL
-  export JREBEL_HOME=""
-
-  if [ -n "$JREBEL_HOME" ]
-  then
-    echo "Enable : ${JREBEL_HOME}"
-
-    #rm -Rf jrebel*
-    #wget http://dl.zeroturnaround.com/jrebel-stable-nosetup.zip
-    #unzip jrebel-stable-nosetup.zip
-    JAVAAGENT_JREBEL_OPTS="\"${JREBEL_HOME}/jrebel.jar\""
-    JAVA_OPTS="${JAVA_OPTS} -javaagent:\"${JAVAAGENT_JREBEL_OPTS}\" -Drebel.remoting_plugin=true"
-
-    echo "DEBUG JAVAAGENT_JREBEL_OPTS=${JAVAAGENT_JREBEL_OPTS}"
-  fi
-
-  if [ -n "$JACOCO_AGENT_HOME" ]
-  then
-    echo "Enable : ${JACOCO_AGENT_HOME}"
-
-    #rm -Rf org.jacoco*
-    #wget http://central.maven.org/maven2/org/jacoco/org.jacoco.agent/${JACOCO_AGENT_VERSION}/org.jacoco.agent-${JACOCO_AGENT_VERSION}.jar
-
-    if [ -z "$JACOCO_AGENT_VERSION" ]
-    then
-      JACOCO_AGENT_VERSION="0.7.4.201502262128"
-    fi
-    JACOCO_AGENT_REPORT_FILE="destfile=\"${SRV_LOG_DIR}jacoco.exec\""
-    #Can also be output=tcpserver
-
-    JAVAAGENT_JACOCO_OPTS="\"${JACOCO_AGENT_HOME}/org.jacoco.agent-${JACOCO_AGENT_VERSION}-runtime.jar\"=${JACOCO_AGENT_REPORT_FILE}"
-    JAVA_OPTS="${JAVA_OPTS} -javaagent:${JAVAAGENT_JACOCO_OPTS}"
-
-    echo "DEBUG JAVAAGENT_JACOCO_OPTS=${JAVAAGENT_JACOCO_OPTS}"
   fi
 
   # ---- DripStat arguments
