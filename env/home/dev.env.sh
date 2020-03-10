@@ -47,7 +47,7 @@ fi
 if [ -z "$PROJECT_USER" ]
 then
   echo -e "${red} ${double_arrow} Undefined parameter ${head_skull} : PROJECT_USER, use the default one ${NC}"
-  export PROJECT_USER=albandri
+  export PROJECT_USER=albandrieu
 fi
 
 if [ -z "$PROJECT_VERSION" ]
@@ -345,7 +345,7 @@ export JRE_HOME=${JAVA_HOME}/jre
 #export JDK_HOME JRE_HOME JAVA_HOME
 #export JAVA=$JAVA_HOME/bin/java
 #PATH=${JDK_HOME}/bin:${JRE_HOME}/bin:${PATH}
-PATH=${JAVA_HOME}/bin:${JAVAFX_HOME}:${PATH}
+PATH=${JAVA_HOME}/bin:${PATH}
 export PATH
 
 export JAVA_OPTS="-Xms1G -Xmx2G"
@@ -521,10 +521,10 @@ if [ 1 -eq 1 ] ; then
 fi
 export MAVEN_OPTS
 
-export M2_REPO=${env.WORKSPACE}/.m2/repository
+export M2_REPO=${WORKSPACE}/.m2/repository
 mkdir -p ${M2_REPO} || true
 mkdir ${HOME}/.m2 || true
-ln -s ${M2_REPO} ${HOME}/.m2/repository/ || true
+ln -s "${M2_REPO}/" ${HOME}/.m2/repository/ || true
 echo -e "${cyan} Maven repo is in : ${M2_REPO} ${NC}"
 
 # ANT
@@ -602,12 +602,6 @@ alias lumbermill='java -jar ${LUMBERMILL_HOME}/dist/lib/lumbermill.jar'
 #export EC2_PRIVATE_KEY=$HOME/<where your private key is>/pk-XXXXXXXXXXXXXXXXXXXXXXXXXXXX.pem
 #export EC2_CERT=$HOME/<where your certificate is>/cert-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.pem
 
-#AWS EC2
-#export EC2_KEYPAIR=<your keypair name> # name only, not the file name
-#export EC2_URL=https://ec2.<your ec2 region>.amazonaws.com
-#export EC2_PRIVATE_KEY=$HOME/<where your private key is>/pk-XXXXXXXXXXXXXXXXXXXXXXXXXXXX.pem
-#export EC2_CERT=$HOME/<where your certificate is>/cert-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXX.pem
-
 export EC2_KEYPAIR=albandri # name only, not the file name
 export EC2_URL=https://ec2.us-west-2.amazonaws.com
 export EC2_PRIVATE_KEY=$HOME/.ec2/pk-FMQ27HNLF2PVMPVL7MPWHEY5GWDKDOT2.pem
@@ -660,7 +654,7 @@ export COMPOSE_HTTP_TIMEOUT=2000
 # WINDOWS
 if [ "${ARCH}" = winnt -o "${ARCH}" = cygwin ]
 then
-  export PATH=${PATH}:${DRIVE_PATH}/Windows/system32:${DRIVE_PATH}/Windows
+  export PATH=$PATH:${DRIVE_PATH}/Windows/system32:${DRIVE_PATH}/Windows
 fi
 
 # KUBERNETES
@@ -891,7 +885,7 @@ else
   echo -e "${red} ${double_arrow} Cowsay is not installed ${head_skull} ${NC}"
 fi
 
-#export CONKY_HOME="${PROJECT_HOME}/albandri30/.conky"
+#export CONKY_HOME="${PROJECT_HOME}/albandrieu30/.conky"
 #if [ -d $CONKY_HOME ]
 #then
 #  ~/.conky/conky-startup.sh &
@@ -901,7 +895,6 @@ fi
 
 export SHELLCHECK_OPTS="-e SC2154 -e SC2086"
 
-#source "${WORKING_DIR}/pass.env.sh"
 source "${PROJECT_DEV}/nabla/env/home/pass.env.sh"
 
 command -v docker || {
@@ -915,8 +908,8 @@ command -v docker-compose || {
 #	exit 1
 }
 
-#source "${WORKING_DIR}/pass.env.sh"
-source "${PROJECT_DEV}/nabla/env/home/pass.env.sh"
 echo -e "${cyan} PATH is ${PATH} ${NC}"
+
+source "${PROJECT_DEV}/nabla/env/home/pass.env.sh"
 
 #exit 0
