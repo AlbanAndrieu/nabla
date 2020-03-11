@@ -31,6 +31,6 @@ service webmin start
 
 tail -f /var/log/webmin/miniserv.error
 
-echo "https://192.168.1.24:10000"
+echo "https://192.168.1.62:10000"
 
 exit 0

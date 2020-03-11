@@ -79,4 +79,4 @@ npm config ls
 #API : http://npm.nabla.mobi:8080/
 #GUI : https://www.npmjs.com/~albanandrieu
 
- npm list -g
+npm list -g

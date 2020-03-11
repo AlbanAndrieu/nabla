@@ -5,7 +5,7 @@
 #http://albandrieu.com:81/ui/sessions/signin
 #https://albandrieu.com:7000/ui/sessions/signin
 #https://92.151.127.109:7000/ui/jails
-#https://192.168.1.24:7000/ui/jails
+#https://192.168.1.62:7000/ui/jails
 #emby
 #http://albandrieu.com:8096/web/index.html
 #radarr
@@ -19,7 +19,7 @@
 #plexmediaserver
 #http://192.168.1.58:32400/web/index.html
 #tautulli
-#http://192.168.1.24:8181/home
+#http://192.168.1.62:8181/home
 
 #nexus
 #http://albandrieu.com:8081/nexus/

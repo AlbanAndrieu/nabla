@@ -6,7 +6,6 @@
 #set -eo pipefail
 
 WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
-
 # Ansible managed
 
 ####################
@@ -18,7 +17,7 @@ WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
 
 #WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
 
-source ${HOME}/step-0-color.sh
+source "${HOME}/step-0-color.sh"
 
 TOOLS_OPTION_PURIFY=""
 export PERLGEN_OPTION=""
@@ -201,7 +200,6 @@ export ORACLE_HOME=${DRIVE_PATH}/oraclexe/app/oracle/product/${ORACLE_VERSION}/s
 
 export SNYK_TOKEN=c89235c8-165b-47f1-8a67-c6b39292bda4
 #snyk auth $SNYK_TOKEN
-export MICROSCANNER_TOKEN=NzdhNTQ2ZGZmYmEz
 
 ###
 # Alias
@@ -280,7 +278,7 @@ export CMAKE_ROOT=${CMAKE_HOME}
 
 if [ -f ${HOME}/run-python.sh ]; then
     echo -e "${green} ${HOME}/run-python.sh ${NC}"
-    source ${HOME}/run-python.sh
+    source "${HOME}/run-python.sh"
 fi
 
 #export PYTHON_DIR=${DRIVE_PATH}/usr/lib/python3.6
@@ -299,7 +297,7 @@ fi
 export SCONS_DIR=/usr/lib/scons/SCons
 
 # ALIAS to scons-local
-export SCONS='/usr/bin/python2.7 /opt/ansible/env/bin/scons' # for virtualenv
+export SCONS='/usr/bin/python2.7 /opt/ansible/env/bin/scons'
 alias scons="${SCONS}"
 #alias scons='/usr/bin/python2.7 /opt/ansible/env/bin/scons'
 
@@ -335,11 +333,7 @@ then
   ln -s ${DRIVE_PATH}/Program\ Files\ \(x86\) /ProgramFilesx86
   #export JAVA_HOME="/ProgramFilesx86/Java/jdk1.5.0_22"
 fi
-#export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/
-#export JAVA_HOME=/usr/lib/jvm/default-java/
-#dpkg -L openjfx
-export JAVAFX_HOME="/usr/share/openjfx/lib"
 
 export JRE_HOME=${JAVA_HOME}/jre
 #export JDK_HOME JRE_HOME JAVA_HOME
@@ -484,10 +478,7 @@ POLICY
 fi
 
 # MAVEN
-#export M2_HOME=/usr/local/apache-maven-3.2.1
 export M2_HOME=/opt/maven/apache-maven-3.3.9
-#export M2_HOME=/opt/maven/apache-maven-3.6.3
-
 export M2=${M2_HOME}/bin
 export PATH=${M2}:$PATH
 #export MAVEN_OPTS="-Xms512m -Xmx1024m"
@@ -523,8 +514,8 @@ export MAVEN_OPTS
 
 export M2_REPO=${WORKSPACE}/.m2/repository
 mkdir -p ${M2_REPO} || true
-mkdir ${HOME}/.m2 || true
-ln -s "${M2_REPO}/" ${HOME}/.m2/repository/ || true
+mkdir "${HOME}/.m2" || true
+#ln -s "${M2_REPO}/" "${HOME}/.m2/repository/" || true
 echo -e "${cyan} Maven repo is in : ${M2_REPO} ${NC}"
 
 # ANT
@@ -641,9 +632,8 @@ export LD_LIBRARY_PATH=/opt/oracle/instantclient_12_2:$LD_LIBRARY_PATH
 export PATH=/opt/oracle/instantclient_12_2:$PATH
 
 # TIBCO
-TIBRV_VERSION=8.4
-export TIBCO_HOME=${DRIVE_PATH}/home/albandri/tibco
-export TIBRV_HOME=${DRIVE_PATH}/home/albandri/tibco/tibrv/${TIBRV_VERSION}
+export TIBCO_HOME=${DRIVE_PATH}/home/albandrieu/tibco
+export TIBRV_HOME=${DRIVE_PATH}/home/albandrieu/tibco/tibrv/8.4
 export PATH=${TIBRV_HOME}/bin:${PATH}
 export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}:${TIBRV_HOME}/lib
 
@@ -661,8 +651,7 @@ fi
 source <(kubectl completion bash)
 alias k=kubectl
 complete -F __start_kubectl k
-#export KUBECONFIG=$KUBECONFIG:config:config-albandri:config-albandrieu
-unset KUBECONFIG
+export KUBECONFIG=$KUBECONFIG:config:config-albandri
 
 ###
 # INCLUDE LANGUAGE SPECIFIC
@@ -862,6 +851,7 @@ esac
 #If you put below it will hard code DISPLAY and you will not be able to connect
 #export DISPLAY=:0.0
 #export DISPLAY=localhost:10.0
+#export DISPLAY=:0.0
 
 #instead us ansible local role
 #export LC_CTYPE=en_US.UTF-8
@@ -878,7 +868,7 @@ then
       #exit 1
   }
   if [ -f /usr/bin/rl ]
-  then
+  then  
     /usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`/usr/games/fortune -s`"
   fi
 else
@@ -895,8 +885,6 @@ fi
 
 export SHELLCHECK_OPTS="-e SC2154 -e SC2086"
 
-source "${PROJECT_DEV}/nabla/env/home/pass.env.sh"
-
 command -v docker || {
 	echo -e "Docker | docker not found in system PATH, please make sure that docker is installed"
 	echo -e "Docker | Recommended docker version is >= 18.09.9,"
@@ -908,8 +896,8 @@ command -v docker-compose || {
 #	exit 1
 }
 
-echo -e "${cyan} PATH is ${PATH} ${NC}"
+#source "${PROJECT_DEV}/nabla/env/home/pass.env.sh"
 
-source "${PROJECT_DEV}/nabla/env/home/pass.env.sh"
+echo -e "${cyan} PATH is ${PATH} ${NC}"
 
 #exit 0

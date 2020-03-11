@@ -38,7 +38,6 @@ id ${USER}
 echo "Add nexus user"
 printf "\033[1;32msudo useradd --no-create-home --system -s /sbin/nologin nexus -c \"Nexus nabla\" -u 1001 -G root,docker \033[0m\n"
 
-<<<<<<< HEAD
 echo "Add media group"
 sudo groupadd -g 8675309 media
 "sudo usermod -a -G media ${USER}"
@@ -51,6 +50,7 @@ sudo groupadd -g 1001 tomcat7
 sudo groupadd -g 666 webdav
 sudo groupadd -g 1002 docker
 
-=======
->>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
+#Disable kerberos
+pam-auth-update
+
 exit 0
