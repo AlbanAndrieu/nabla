@@ -410,6 +410,8 @@ sudo systemctl status docker
 sudo usermod -aG docker ${USER}
 
 sudo apt-get install -y docker-registry cadvisor
+#See http://localhost:4194/containers/
+nano /lib/systemd/system/cadvisor.service
 
 docker run -it -u 1004:999 -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v /var/run/docker.sock:/var/run/docker.sock --entrypoint /bin/bash fusion-risk/ansible-jenkins-slave:latest
 
@@ -424,4 +426,8 @@ hadolint Dockerfile
 #sudo apt install ./dive_0.9.1_linux_amd64.deb
 brew install dive
 
+#could not find an available, non-overlapping IPv4 address pool among the defaults to assign to the network
+docker network ls
+#system prune -a --volumes
+docker network prune
 exit 0

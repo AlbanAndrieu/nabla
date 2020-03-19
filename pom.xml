@@ -29,7 +29,6 @@
 	<properties>
 		<archiva.dir>C:\apache-archiva-1.3\data\repositories</archiva.dir>
 		<project.project.distributionManagement.repository.url>file://localhost/${archiva.dir}</project.project.distributionManagement.repository.url>
-		<!--<wagon.webdav.plugin.version>1.0-beta-2</wagon.webdav.plugin.version> -->
 		<wagon.webdav.jackrabbit.version>1.0-beta-7</wagon.webdav.jackrabbit.version>
 		<wagon.svn.plugin.version>1.8</wagon.svn.plugin.version>
 		<wagon.ftp.plugin.version>2.2</wagon.ftp.plugin.version>
@@ -578,8 +577,6 @@
 				</property>
 			</activation>
 			<build>
-				<!-- <plugins> <plugin> <artifactId>maven-gpg-plugin</artifactId> <inherited>true</inherited>
-                    </plugin> </plugins> -->
 			</build>
 			<distributionManagement>
 				<repository>
@@ -595,7 +592,6 @@
 					<url>http://albandrieu.com:8081/nexus/content/repositories/snapshots</url>
 				</snapshotRepository>
 				<site>
-					<!--<id>website</id>-->
 					<id>webdav</id>
 					<name>Project Website</name>
 					<!--<url>ftp://www.nabla.mobi/maven</url>-->

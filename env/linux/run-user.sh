@@ -49,6 +49,14 @@ sudo groupadd -g 80 www
 sudo groupadd -g 1001 tomcat7
 sudo groupadd -g 666 webdav
 sudo groupadd -g 1002 docker
+sudo usermod -a -G docker albandri
+sudo usermod -a -G docker nexus3
+
+#To assign a new UID to user called foo, enter:
+#sudo usermod -u 117 jenkins
+
+#To assign a new GID to group called docker, enter:
+#sudo groupmod -g 2000 docker
 
 #Disable kerberos
 pam-auth-update

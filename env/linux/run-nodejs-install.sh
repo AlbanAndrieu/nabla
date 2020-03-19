@@ -12,6 +12,13 @@ sudo rm -rf /usr/local/{lib/node{,/.npm,_modules},bin,share/man}/{npm*,node*,man
 
 #On Ubuntu 16.04 (you can reinstall it (but I would use Upgrade node in run-nodejs.sh instead)
 sudo apt-get install nodejs
+#On Ubuntu 19.04
+curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
+curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
+sudo apt-get update && sudo apt-get install yarn
+sudo apt-get install nodejs
+#sudo apt-get install node-grunt-cli webpack
 
 /usr/bin/nodejs --version
 

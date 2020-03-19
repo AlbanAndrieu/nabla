@@ -15,9 +15,11 @@ sudo apt install resolvconf
 dpkg-reconfigure resolvconf
 sudo resolvconf -u
 
-sudo nano /etc/resolvconf/resolv.conf.d/head
+#sudo nano /etc/resolvconf/resolv.conf.d/head
+sudo nano /etc/resolvconf/resolv.conf.d/base
 #Add
-nameserver 8.8.4.4
+#nameserver 8.8.4.4
+search home albandrieu.com misys.global.ad
 
 sudo service network-manager restart
 less /etc/resolv.conf

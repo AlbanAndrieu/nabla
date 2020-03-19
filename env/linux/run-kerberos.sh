@@ -11,10 +11,10 @@ set -xv
 sudo apt-get install krb5-user
 #ALBANDRIEU.COM
 #nabla
-sudo apt-get install libpam-krb5 
-sudo modprobe rpcsec_gss_krb5 
+sudo apt-get install libpam-krb5
+sudo modprobe rpcsec_gss_krb5
 
-less /etc/krb5.conf 
+less /etc/krb5.conf
 
 klist
 grep passwd /etc/nsswitch.conf

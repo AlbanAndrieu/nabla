@@ -324,3 +324,15 @@ source /etc/apache2/envvars
 /usr/sbin/apache2 -V
 #sudo chmod 660 /var/log/apache2/modsec_audit.log
 sudo chmod 664 /var/log/apache2/modsec_audit.log
+
+iocage exec apache sed -i '' -e 's?listen = 127.0.0.1:9000?listen = /var/run/php-fpm.sock?g' /usr/local/etc/php-fpm.d/www.conf
+iocage exec apache sed -i '' -e 's/;listen.owner = www/listen.owner = www/g' /usr/local/etc/php-fpm.d/www.conf
+iocage exec apache sed -i '' -e 's/;listen.group = www/listen.group = www/g' /usr/local/etc/php-fpm.d/www.conf
+iocage exec apache sed -i '' -e 's/;listen.mode = 0660/listen.mode = 0600/g' /usr/local/etc/php-fpm.d/www.conf
+iocage exec apache cp /usr/local/etc/php.ini-production /usr/local/etc/php.ini
+iocage exec apache sed -i '' -e 's?;date.timezone =?date.timezone = "Universal"?g' /usr/local/etc/php.ini
+iocage exec apache sed -i '' -e 's?;cgi.fix_pathinfo=1?cgi.fix_pathinfo=0?g' /usr/local/etc/php.ini
+
+edit /mnt/dpool/iocage/jails/organizr/root/usr/local/etc/nginx/
+
+exit 0

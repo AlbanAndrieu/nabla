@@ -178,7 +178,9 @@
 		<classworlds.version>1.1</classworlds.version>
 		<clickstream.version>1.0.2</clickstream.version>
 		<!-- Test Coverage/Sonar - Clover - Do not change this version without checking if everything is working well -->
-		<clover.version>4.0.6</clover.version>
+		<clover.cenqua.version>3.3.0</clover.cenqua.version>
+		<!-- old version which moved to com.atlassian.clover » clover -->
+		<clover.version>4.1.2</clover.version>
 		<cobertura.format>xml</cobertura.format>
 		<commons.beanutils.version>1.8.3</commons.beanutils.version>
 		<commons.cli.version>1.2</commons.cli.version>
@@ -471,8 +473,11 @@
 		<jbossws.client.version>2.0.1.SP2</jbossws.client.version>
 		<jbossws.framework.version>3.0.1-GA</jbossws.framework.version>
 		<jbossws.native.client.version>3.2.0.GA</jbossws.native.client.version>
+		<jbpm.bom.version>7.34.0.Final</jbpm.bom.version>
+		<jbpm.identity.version>3.3.1</jbpm.identity.version>
 		<jbpm.jpdl.version>3.2.3</jbpm.jpdl.version>
-		<jbpm.version>3.3.1.GA</jbpm.version>
+		<!--<jbpm.version>3.3.1.GA</jbpm.version>-->
+		<jbpm.version>7.34.0.Final</jbpm.version>
 		<jcip.annotations.version>1.0-1</jcip.annotations.version>
 		<jdbc.derby.version>10.14.1.0</jdbc.derby.version>
 		<!--TODO same as jdbc.sybase.version <jconn.version>6.0</jconn.version>-->
@@ -539,7 +544,7 @@
 		<log4j.version>1.2.17</log4j.version>
 		<log4jdbc.remix.version>0.2.7</log4jdbc.remix.version>
 		<logback.version>1.1.7</logback.version>
-		<lombok.version>1.16.20</lombok.version>2
+		<lombok.version>1.16.20</lombok.version>
 		<lucene.version>3.6.2</lucene.version>
 		<maven.animal.sniffer.plugin.version>1.18</maven.animal.sniffer.plugin.version>
 		<maven.ant.plugin.version>2.4</maven.ant.plugin.version>
@@ -2496,6 +2501,11 @@
 						<groupId>javax.servlet</groupId>
 					</exclusion>
 				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-identity</artifactId>
+				<version>${jbpm.identity.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>jboss</groupId>
@@ -5022,6 +5032,15 @@
 				<scope>import</scope>
 				<!--<scope>provided</scope>-->
 			</dependency>
+
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm</artifactId>
+				<version>${jbpm.bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-java</artifactId>

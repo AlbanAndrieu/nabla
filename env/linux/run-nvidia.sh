@@ -22,12 +22,37 @@ sudo nvidia-settings
 
 #Add Antialiasingand Anisotropie
 
-#Save settings to /workspace/users/albandrieu30/ansible-jenkins-slave-docker/playbooks/templates/nvidia-albandrieu.j2
-sudo chown albandrieu:albandrieu /workspace/users/albandrieu30/ansible-jenkins-slave-docker/playbooks/templates/nvidia-albandrieu.j2
+#Save settings to /workspace/users/albandrieu30/ansible-nabla/playbooks/templates/.nvidia-settings-rc.j2
+sudo chown albandrieu:albandrieu /workspace/users/albandrieu30/ansible-nabla/playbooks/templates/.nvidia-settings-rc.j2
+cp /home/albandrieu/.config/monitors.xml /workspace/users/albandrieu30/ansible-nabla/playbooks/templates/monitors.xml.j2
 
 sudo lshw -c video
 
 #Connaître la version des pilotes
 glxinfo | grep OpenGL
+
+#https://doc.ubuntu-fr.org/problemes_nvidia
+apt-get install compizconfig-settings-manager
+
+less Xorg.0.log
+#[  1292.663] (--) NVIDIA(GPU-0): Samsung C49HG9x (DFP-1): 2660.0 MHz maximum pixel clock
+#[  1292.663] (--) NVIDIA(GPU-0):
+#[  1292.665] (--) NVIDIA(GPU-0): DFP-2: disconnected
+#[  1292.665] (--) NVIDIA(GPU-0): DFP-2: Internal TMDS
+#[  1292.665] (--) NVIDIA(GPU-0): DFP-2: 165.0 MHz maximum pixel clock
+#
+#1891.859] (WW) modeset(G0): Output DP-1-1: Strange aspect ratio (1196/336), consider adding a quirk
+#[  1891.859] (WW) modeset(G0): Output DP-1-1: Strange aspect ratio (1196/336), consider adding a quirk
+#[  1891.859] (WW) modeset(G0): Output DP-1-1: Strange aspect ratio (1196/336), consider adding a quirk
+#[  1891.859] (WW) modeset(G0): Output DP-1-1: Strange aspect ratio (1196/336), consider adding a quirk
+
+#profile added in /home/albandrieu/.nv/nvidia-application-profiles-rc
+
+# See https://doc.ubuntu-fr.org/multi-ecran
+find /sys/devices/ -iname edid
+xrandr
+
+nvidia-xconfig
+ls -lrta /etc/X11/xorg.conf
 
 exit 0

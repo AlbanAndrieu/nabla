@@ -89,7 +89,7 @@ then
 fi
 export SVN_EDITOR=${EDITOR}
 
-export PATH=/usr/local/bin:/usr/sbin:/sbin:/usr/bin:/bin
+export PATH=/usr/local/bin:/usr/sbin:/sbin:/usr/bin:/bin:${PATH}
 if [ -d "${HOME}/bin" ] ; then
     PATH="${HOME}/bin:$PATH"
 fi
@@ -98,15 +98,6 @@ if [ -d "${WORKSPACE_ENV}/${ARCH}/bin" ] ; then
 fi
 if [ -d "${DRIVE_PATH}/cygwin/bin" ] ; then
     PATH="${DRIVE_PATH}/cygwin/bin:$PATH"
-fi
-if [ -d "${HOME}/.linuxbrew/bin" ] ; then
-    PATH="${HOME}/.linuxbrew/bin:$PATH"
-fi
-if [ -d "${HOME}/.git-radar" ] ; then
-    PATH="${HOME}/.git-radar/:$PATH"
-fi
-if [ -d "/home/linuxbrew/.linuxbrew/bin/" ] ; then
-    PATH="/home/linuxbrew/.linuxbrew/bin/:$PATH"
 fi
 if [ -d "/snap/bin" ] ; then
     PATH="/snap/bin/:$PATH"
@@ -272,9 +263,9 @@ export BOOST=$BOOST_ROOT
 export CMAKE_HOME=/usr/share/cmake-2.6.4
 export CMAKE_ROOT=${CMAKE_HOME}
 
-# PYTHON 3.6
+# PYTHON 3.7
 #See run-python.sh script
-#export PYTHON_MAJOR_VERSION=3.6
+#export PYTHON_MAJOR_VERSION=3.7
 
 if [ -f ${HOME}/run-python.sh ]; then
     echo -e "${green} ${HOME}/run-python.sh ${NC}"
@@ -653,6 +644,21 @@ alias k=kubectl
 complete -F __start_kubectl k
 export KUBECONFIG=$KUBECONFIG:config:config-albandri
 
+#BREW PATH
+#Must be run after run-python.sh
+
+if [ -d "${HOME}/.linuxbrew/bin" ] ; then
+    PATH="${HOME}/.linuxbrew/bin:$PATH"
+fi
+if [ -d "${HOME}/.git-radar" ] ; then
+    PATH="${HOME}/.git-radar/:$PATH"
+fi
+if [ -d "/home/linuxbrew/.linuxbrew/bin/" ] ; then
+    PATH="/home/linuxbrew/.linuxbrew/bin/:$PATH"
+fi
+
+export PATH=/usr/local/bin:/usr/sbin:/sbin:/usr/bin:/bin:${PATH}
+
 ###
 # INCLUDE LANGUAGE SPECIFIC
 ###
@@ -868,7 +874,7 @@ then
       #exit 1
   }
   if [ -f /usr/bin/rl ]
-  then  
+  then
     /usr/games/cowsay -f `ls /usr/share/cowsay/cows/ | rl | tail -n 1 | cut -d'.' -f1` "`/usr/games/fortune -s`"
   fi
 else
@@ -896,7 +902,7 @@ command -v docker-compose || {
 #	exit 1
 }
 
-#source "${PROJECT_DEV}/nabla/env/home/pass.env.sh"
+source "${PROJECT_DEV}/nabla/env/home/pass.env.sh"
 
 echo -e "${cyan} PATH is ${PATH} ${NC}"
 

@@ -15,7 +15,7 @@ wget https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk
 tar zxvf google-cloud-sdk-280.0.0-linux-x86_64.tar.gz
 ./google-cloud-sdk/install.sh
 
-/root/google-cloud-sdk/bin/gcloud init 
+/root/google-cloud-sdk/bin/gcloud init
 /root/google-cloud-sdk/bin/gcloud auth list
 
 #See https://cloud.google.com/sdk/auth_success
