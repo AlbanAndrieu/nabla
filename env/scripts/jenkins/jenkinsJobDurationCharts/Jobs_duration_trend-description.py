@@ -9,7 +9,7 @@ for job in jobs:
     print('<tr>')
     print('	<td>' + job + '</td>')
     print(
-        '	<td><img src=\"http://home.nabla.mobi:8381/job/' +
+        '	<td><img src=\"http://albandrieu.com:8686/job/' +
         job + '/buildTimeGraph/png\"/></td>',
     )
     print('</tr>')

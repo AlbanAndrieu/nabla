@@ -362,7 +362,7 @@ if [ 1 -eq 1 ] ; then
   then
     echo -e "${cyan} Enable ECLIPSE_DEBUG_PORT : ${ECLIPSE_DEBUG_PORT} ${NC}"
 
-    JAVA_OPTS="${JAVA_OPTS} -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=2924,server=y,suspend=n"
+    #JAVA_OPTS="${JAVA_OPTS} -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=2924,server=y,suspend=n"
 
     echo -e "${cyan} DEBUG JAVA_OPTS=${JAVA_OPTS} ${NC}"
   fi

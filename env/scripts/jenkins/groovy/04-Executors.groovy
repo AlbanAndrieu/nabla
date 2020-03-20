@@ -1,2 +1,4 @@
-import jenkins.model.*
-Jenkins.instance.setNumExecutors(0)
+#!/usr/bin/groovy
+import hudson.model.*
+
+Hudson.instance.setNumExecutors(0)

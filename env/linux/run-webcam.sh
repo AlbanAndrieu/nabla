@@ -51,6 +51,7 @@ gphoto2 --auto-detect
 
 #identify webcam
 lsusb -v
+#us 001 Device 011: ID 046d:081b Logitech, Inc. Webcam C310
 
 #install webcam security tool
 sudo apt-get install motion
