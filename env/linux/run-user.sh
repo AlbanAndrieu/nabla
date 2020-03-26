@@ -58,6 +58,8 @@ sudo usermod -a -G docker nexus3
 #To assign a new GID to group called docker, enter:
 #sudo groupmod -g 2000 docker
 
+# TODO do not mount albandri AND albandrieu to /home, xrdp will not work
+
 #Disable kerberos
 pam-auth-update
 

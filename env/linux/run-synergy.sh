@@ -42,4 +42,7 @@ synergys --config /var/lib/synergy/synergy.conf
 
 sudo systemctl restart synergy
 
+sudo apt-get install barrier
+# 24800
+
 exit 0

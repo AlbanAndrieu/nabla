@@ -66,4 +66,6 @@ helm plugin install https://github.com/helm/helm-2to3
 helm plugin list
 helm 2to3
 
+#See https://hub.helm.sh/
+
 exit 0

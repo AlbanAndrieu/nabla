@@ -36,6 +36,8 @@ Jackett should be available at http://192.168.1.24:9117
 # From outside http://192.168.1.24:9117/api/v2.0/indexers/gktorrent/results/torznab/api?t=caps&apikey=sprfux7y52dbksyktc56ksjq4iebaj9r
 # From inside http://172.16.0.22:9117/api/v2.0/indexers/gktorrent/results/torznab/
 
+# http://172.16.0.22:9117/api/v2.0/indexers/all/results/torznab
+
 iocage df
 
 exit 

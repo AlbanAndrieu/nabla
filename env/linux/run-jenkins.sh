@@ -74,15 +74,15 @@ java -jar /usr/share/jenkins/jenkins.war --httpPort=8081 --ajp13Port=8010
 
 #trigger a full backup
 #wget http://albandri:8280/jenkins/backup/backup
-#http://home.nabla.mobi:8080/
+#http://home.albandrieu.com:8080/
 
 #check memory
 #http://blog.cloudbees.com/2013/09/health-check-up-for-your-jenkins.html?mkt_tok=3RkMMJWWfF9wsRonvanBZKXonjHpfsX%2F7uwqUbHr08Yy0EZ5VunJEUWy24MIRdQ%2FcOedCQkZHblFnVwASa2lV7oNr6QP
 ssh -X jenkins@myserver jconsole
 
 #monitoring
-https://home.nabla.mobi/jenkins/monitoring?
-https://home.nabla.mobi/jenkins/monitoring?part=graph&graph=httpSessions
+https://home.albandrieu.com/jenkins/monitoring?
+https://home.albandrieu.com/jenkins/monitoring?part=graph&graph=httpSessions
 
 #On Red hat disable jenkins start at boot time
 #chkconfig jenkins off
@@ -171,4 +171,4 @@ curl -L https://github.com/jenkins-x/jx/releases/download/v1.2.18/jx-linux-amd64
 sudo mv jx /usr/local/bin
 
 #API endpoint
-#http://home.nabla.mobi:8381/job/nabla-projects-interview-visma-nightly/lastSuccessfulBuild/api/json?tree=actions[remoteUrls,lastBuildRevision[SHA1]]&pretty=true
+#http://home.albandrieu.com:8381/job/nabla-projects-interview-visma-nightly/lastSuccessfulBuild/api/json?tree=actions[remoteUrls,lastBuildRevision[SHA1]]&pretty=true

@@ -1,7 +1,9 @@
 #!/bin/bash
 set -xv
 
-sudo apt-get install php7.0 php7.0-mysql php7.0-cgi php7.0-cli
+php -v
+
+sudo apt-get install php7.3 php7.3-mysql php7.3-cgi php7.3-cli
 
 #Reset the default PHP back to PHP5 (optional)
 #update-alternatives --set php /usr/bin/php5

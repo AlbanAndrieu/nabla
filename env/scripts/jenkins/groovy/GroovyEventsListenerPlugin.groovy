@@ -19,7 +19,7 @@ import org.jenkinsci.plugins.workflow.actions.WorkspaceAction
 //auth = "Basic " + Base64.getEncoder().encodeToString("elastic:changeme".getBytes()) // if no java8, compute basicAuth externally and hardcode it here
 auth = null
 nexusUrl = 'http://localhost/jenkins-events-listener/regex.json'
-esUrl = 'http://localhost:9200'
+esUrl = 'http://monitoring_elasticsearch:9200'
 jenkinsIndex = 'new.jenkins-'+ new Date().format('yyyyMM')
 timeout = 5 //seconds
 

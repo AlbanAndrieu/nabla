@@ -149,7 +149,7 @@ sudo vim /etc/apache2/sites-available/nabla.conf
 sudo a2dissite 000-default
 sudo a2ensite nabla
 sudo a2ensite jenkins
-sudo a2ensite gearman
+#sudo a2ensite gearman
 sudo a2ensite sample
 
 sudo a2enmod rewrite vhost_alias expires headers mime autoindex deflate ssl
@@ -166,9 +166,9 @@ cd /etc/apache2/sites-enabled
         # match this virtual host. For the default virtual host (this file) this
         # value is not decisive as it is used as a last resort host regardless.
         # However, you must set it for any further virtual host explicitly.
-        ServerName www.home.nabla.mobi
+        ServerName www.home.albandrieu.com
 
-        ServerAdmin alban.andrieu@nabla.mobi
+        ServerAdmin alban.andrieu@free.fr
         DocumentRoot /var/www/nabla
 
         # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
