@@ -17,8 +17,15 @@ dpkg-reconfigure nis
 systemctl stop autofs
 
 ypwhich
+yptest
 ypdomainname
-sudo /usr/lib/yp/ypinit -m
+
+# See http://wawadeb.crdp.ac-caen.fr/iso/tmp/ressources/linux/www.ac-creteil.fr/reseaux/systemes/linux/nis-linux.html
+
+ls -lrta /var/yp/albandrieu.com/
+ls -lrt /var/yp/binding/
+
+#sudo /usr/lib/yp/ypinit -m
 #Now you can run ypinit -s albandrieu on all slave server
 
 exit 0

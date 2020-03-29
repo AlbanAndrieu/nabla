@@ -138,7 +138,6 @@ Listen 7074
 
 #http://technique.arscenic.org/lamp-linux-apache-mysql-php/apache/modules-complementaires/article/mod_proxy-rediriger-en-tout
 
-/etc/init.d/apache2 reload
 
 ls -lrta /etc/apache2/conf-enabled
 
@@ -148,12 +147,16 @@ or
 sudo vim /etc/apache2/sites-available/nabla.conf
 sudo a2dissite 000-default
 sudo a2ensite nabla
-sudo a2ensite jenkins
+#sudo a2ensite jenkins
+sudo a2dissite jenkins
 #sudo a2ensite gearman
 sudo a2ensite sample
 
 sudo a2enmod rewrite vhost_alias expires headers mime autoindex deflate ssl
 sudo a2enmod proxy proxy_ajp proxy_http rewrite deflate headers proxy_balancer proxy_connect proxy_html
+
+#/etc/init.d/apache2 reload
+sudo systemctl reload apache2
 
 #check site that are enable at
 cd /etc/apache2/sites-enabled

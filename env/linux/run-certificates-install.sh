@@ -18,7 +18,6 @@ mkdir --parent '/etc/ssl/private'
 #mkdir --parent '/etc/ssl/authorities'
 #mkdir --parent '/etc/ssl/configs'
 
-
 sudo addgroup --system 'ssl-cert'
 sudo chown -R root:ssl-cert '/etc/ssl/private'
 sudo chmod 710 '/etc/ssl/private'

@@ -16,7 +16,7 @@ wakeonlan 7C:05:07:0E:D9:88
 #from Shell
 /etc/netcli
 
-#WebUI
+# WebUI
 #Set nginx_enable to YES: sysrc nginx_enable=YES
 #modify nginx.conf: nano /usr/local/etc/nginx/nginx.conf
 #listen                  192.168.1.62:7000 default_server ssl http2;
@@ -35,7 +35,6 @@ sqlite3 /data/freenas-v1.db "update system_settings set stg_guiprotocol = 'http'
 
 echo "https://192.168.1.62:7000/"
 echo "https://albandrieu.com:7000/"
-echo "https://freenas.freeboxos.fr:7000/"
 #https://[fe80::160c:76ff:fe64:65dd]:7000/
 https://[fe80::7e05:7ff:fe0e:d988]:7000/
 
@@ -424,7 +423,6 @@ $CONFIG = array(
 );
 ?>
 
-
 /mnt/dpool/jail/software/usr/local/www/owncloud/data
 
 #hors jail
@@ -467,3 +465,5 @@ cat ~/.ssh/id_rsa.pub | ssh 192.168.1.62 "cat >> .ssh/authorized_keys"
 
 #Add https://www.ixsystems.com/documentation/freenas/11.3-RELEASE/tasks.html#cloud-sync-tasks
 #https://rclone.org/
+
+exit 0
