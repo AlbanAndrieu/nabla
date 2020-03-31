@@ -4,7 +4,7 @@
 	<parent>
 		<groupId>com.nabla.project</groupId>
 		<artifactId>dependencies</artifactId>
-		<version>1.0.1-SNAPSHOT</version>
+		<version>1.0.0</version>
 		<relativePath>../dependencies/pom.xml</relativePath>
 	</parent>
 	<groupId>com.nabla.project</groupId>
