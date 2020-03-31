@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>com.nabla</groupId>
 		<artifactId>users</artifactId>
-		<version>1.0.1-SNAPSHOT</version>
+		<version>1.0.0</version>
 	</parent>
 	<groupId>com.nabla.project</groupId>
 	<artifactId>dependencies</artifactId>
@@ -443,10 +443,10 @@
 		<javax.websocket.api>1.0</javax.websocket.api>
 		<javax.ws.rs-api.version>2.0</javax.ws.rs-api.version>
 		<jaws.version>1.0</jaws.version>
-		<jaxb.version>2.2.11</jaxb.version>
 		<jaxb.api.version>${jaxb.version}</jaxb.api.version>
 		<jaxb.core.version>${jaxb.version}</jaxb.core.version>
 		<jaxb.impl.version>${jaxb.version}</jaxb.impl.version>
+		<jaxb.version>2.2.11</jaxb.version>
 		<jaxen.version>1.1.4</jaxen.version>
 		<jaxrs.doclet.version>0.0.4-SNAPSHOT</jaxrs.doclet.version>
 		<jaxws.rt.version>2.2.8</jaxws.rt.version>
@@ -3617,11 +3617,11 @@
 				<artifactId>jaxb-api</artifactId>
 				<version>${jaxb.api.version}</version>
 			</dependency>
-            <dependency>
-                <groupId>com.sun.xml.bind</groupId>
-                <artifactId>jaxb-core</artifactId>
-                <version>${jaxb.core.version}</version>
-            </dependency>			
+			<dependency>
+				<groupId>com.sun.xml.bind</groupId>
+				<artifactId>jaxb-core</artifactId>
+				<version>${jaxb.core.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>com.sun.xml.bind</groupId>
 				<artifactId>jaxb-impl</artifactId>
