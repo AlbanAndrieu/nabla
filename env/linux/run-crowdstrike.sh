@@ -10,4 +10,6 @@ set -xv
 #cd /tmp; wget http://10.22.212.139/falcon/Ubuntu.zip; unzip Ubuntu.zip; cd Ubuntu; dpkg -i falcon-sensor_5.28.0-9205_amd64.deb; /opt/CrowdStrike/falconctl -s --cid=A0DDF149ED9147C9844E012249585DD9-EF; systemctl start falcon-sensor.service; systemctl status falcon-sensor.service
 #cid=A0DDF149ED9147C9844E012249585DD9-EF
 
+# Check server is reported in http://crowdstrike.provides.io/
+
 exit 0

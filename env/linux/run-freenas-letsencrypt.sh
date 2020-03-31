@@ -42,8 +42,6 @@ ServerAlias www.albandrieu.com
 nano /usr/local/etc/apache24/extra/httpd-vhosts.conf
 nano /usr/local/etc/apache24/extra/httpd-ssl.conf
 
-openssl s_client -connect localhost:443
-
 service apache24 restart
 
 tail -f /var/log/httpd-error.log
@@ -53,5 +51,16 @@ http://192.168.1.62/index.cgi
 
 cd /usr/local/www/apache24/data/.well-known/acme-challenge
 watch -n 0.1 ls -lRa
+
+# below is working as well
+
+/usr/local/bin/certbot certonly --renew-by-default  -d albandrieu.com,home.albandrieu.com
+
+service apache24 restart
+
+#See https://albandrieu.com/nabla/index/index.html
+
+openssl s_client -connect localhost:443
+openssl s_client -connect albandrieu.com:443
 
 exit 0

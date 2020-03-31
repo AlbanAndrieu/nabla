@@ -172,3 +172,5 @@ sudo mv jx /usr/local/bin
 
 #API endpoint
 #http://home.albandrieu.com:8381/job/nabla-projects-interview-visma-nightly/lastSuccessfulBuild/api/json?tree=actions[remoteUrls,lastBuildRevision[SHA1]]&pretty=true
+
+exit 0

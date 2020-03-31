@@ -14,7 +14,7 @@ sudo apt-get install certbot
 #sudo wget https://dl.eff.org/certbot-auto
 #sudo chmod a+x /usr/local/sbin/certbot-auto
 #/usr/local/sbin/certbot-auto certonly --apache -d albandrieu.albandrieu.com,albandrieu.com,home.albandrieu.com,alban-andrieu.fr,alban-andrieu.com,alban-andrieu.eu,bababou.fr,bababou.eu
-/usr/local/sbin/certbot-auto certonly --renew-by-default --apache -d albandrieu.albandrieu.com
+/usr/local/sbin/certbot-auto certonly --renew-by-default --apache -d albandrieu.com,albandrieu.albandrieu.com
 #/usr/local/sbin/certbot-auto certonly --renew-by-default --apache -d albandrieu.albandrieu.com,albandrieu.com,home.albandrieu.com,alban-andrieu.fr,alban-andrieu.com,alban-andrieu.eu,bababou.fr,bababou.eu
 
 certbot-auto certonly --non-interactive --register-unsafely-without-email --agree-tos --expand --webroot --webroot-path /var/www/html --domain albandrieu.albandrieu.com

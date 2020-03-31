@@ -46,14 +46,6 @@ less /var/log/docker.log
 #TODO
 #https://forums.freenas.org/index.php?threads/how-to-oracle-database-container.53973/
 
-#pkg_add -v -r maven3
-#cd /usr/ports/devel/maven3/ && make install clean
-pkg install maven3
-#cd /usr/ports/devel/maven33/ && make install clean
-pkg install maven33
-
-mvn --version
-
 #SSH
 ssh -i OpenSSH_RSA_4096 albandri@freenas
 

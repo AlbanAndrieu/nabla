@@ -469,7 +469,7 @@ POLICY
 fi
 
 # MAVEN
-export M2_HOME=/opt/maven/apache-maven-3.3.9
+export M2_HOME=/opt/maven/apache-maven-3.5.0
 export M2=${M2_HOME}/bin
 export PATH=${M2}:$PATH
 #export MAVEN_OPTS="-Xms512m -Xmx1024m"

@@ -107,7 +107,7 @@ sudo docker version
 #docker plugin install cpuguy83/docker-overlay2-graphdriver-plugin
 
 #gksudo geany /etc/init/docker.conf /etc/systemd/system/docker.service.d/env.conf
-gksudo geany /lib/systemd/system/docker.service
+geany /lib/systemd/system/docker.service
 systemctl cat docker.service
 
 #NOK DOCKER_OPTS="-H 127.0.0.1:4243 -H unix:///var/run/docker.sock"
@@ -122,6 +122,7 @@ ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/doc
 #ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --storage-driver overlay2 --disable-legacy-registry --tlsverify --tlscacert /root/pki/ca.pem --tlscert /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.pem --tlskey /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.key --label provider=albandri
 #For Ubuntu 19.10
 ExecStart=/usr/bin/dockerd -H fd:// --dns 10.21.200.3 --dns 10.41.200.3 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --insecure-registry=registry.misys.global.ad --insecure-registry=registry-tmp.misys.global.ad --userns-remap jenkins
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 --dns 10.21.200.3 --dns 10.41.200.3 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --insecure-registry=registry.misys.global.ad --insecure-registry=registry-tmp.misys.global.ad
 # -s cpuguy83/docker-overlay2-graphdriver-plugin
 #For RedHat 7.4
 ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --data-root /docker
@@ -131,6 +132,8 @@ ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 
 #For RedHat CentOS
 #See https://www.ostechnix.com/install-dnf-centos-7/
+
+#See http://192.168.1.57:2376/version
 
 #sudo yum install epel-release
 #sudo yum install dnf

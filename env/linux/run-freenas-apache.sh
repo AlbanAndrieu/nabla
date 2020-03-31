@@ -161,4 +161,6 @@ nano /usr/local/etc/apache24/Includes/mod_deflate.conf
 
 apachectl graceful
 
+./run-freenas-jenkins-package.sh
+
 exit 0

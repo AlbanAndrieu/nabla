@@ -50,6 +50,8 @@ sudo groupadd -g 1001 tomcat7
 sudo groupadd -g 666 webdav
 sudo groupadd -g 1002 docker
 sudo usermod -a -G docker albandri
+sudo usermod -a -G docker albandrieu
+sudo usermod -a -G www-data albandrieu
 sudo usermod -a -G docker nexus3
 
 #To assign a new UID to user called foo, enter:
@@ -62,5 +64,16 @@ sudo usermod -a -G docker nexus3
 
 #Disable kerberos
 pam-auth-update
+
+# User jenkins specific for docker run
+#sudo chmod -R 777 /home/jenkins/.config/configstore/
+sudo chmod -R 777 /jenkins/.config/
+sudo chmod 777 /jenkins/.cache/
+
+sudo mkdir -p /jenkins/.local/share/bower/
+#sudo chmod 777 /home/jenkins/.local/share/bower/
+sudo chmod 777 /jenkins/.local/
+sudo chmod 777 /jenkins/.local/share/
+sudo chmod 777 /jenkins/.local/share/bower/
 
 exit 0

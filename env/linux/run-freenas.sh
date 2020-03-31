@@ -204,40 +204,7 @@ pkg install sudo
 
 pkg install wget
 
-pkg install ansible
-
-pkg install python
-pkg install py27-pip
-pip install pygal
-
-cd /usr/ports/security/openssh-askpass/ && make install clean
-#pkg install OpenSSH-askpass
-ls /usr/local/bin/ssh-askpass
-
-#for Xvfb
-pkg install xorg-vfbserver
-#/usr/local/bin/Xvfb
-
-#See https://www.freebsd.org/doc/handbook/desktop-browsers.html
-pkg install firefox
-#pkg install firefox-esr
-pkg install chromium
-
-npm install -g bower
-npm install -g nsp
-#npm install -g phantomjs-prebuilt
-#npm i phantom@4.0.5 -g
-npm search phantomjs
-
-pkg install phantomjs
-cd /usr/ports/lang/phantomjs/ && make install clean
-
-pkg info phantomjs
-ls -lrta /usr/local/bin/phantomjs
-#ls -lrta /usr/local/lib/node_modules/
-
-#pkg install libass
-#pkg install ffmpeg
+./run-freenas-jenkins-slave.sh
 
 #pkg install ar-ae_fonts_mono ar-ae_fonts1_ttf croscorefonts
 pkg install xterm rxvt-unicode
