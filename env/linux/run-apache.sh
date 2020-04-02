@@ -9,6 +9,7 @@ sudo apt-get install apache2
 #sudo apt-get install libapache2-mod-php5
 sudo apt-get install libapache2-mod-fastcgi #(for cgi/PHP-FPM) or
 sudo apt-get install libapache2-mod-php7.0
+sudo apt-get install libapache2-mod-auth-openidc
 sudo /etc/init.d/apache2 restart
 
 #For webmin

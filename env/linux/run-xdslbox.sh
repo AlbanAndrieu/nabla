@@ -1,6 +1,8 @@
 #!/bin/bash
 set -xv
 
+#See https://blog.ithasu.org/2019/01/monitoring-de-la-livebox-4-avec-grafana/
+
 ###########################################
 # Firmware Livebox 4 = 3.4.10 g0-f-sip-fr #
 #     Script mis a jour le 06/04/2018     #

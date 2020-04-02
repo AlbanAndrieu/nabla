@@ -214,34 +214,53 @@ then
   export CORBA_ROOT=${PROJECT_THIRDPARTY_PATH}/tao
   export ACE_ROOT=${CORBA_ROOT}/ACE_wrappers
 
-  echo -e "${cyan} ACE_ROOT : ${ACE_ROOT} ${NC}"
-
   TAO_ROOT=${ACE_ROOT}/tao
   export TAO_ROOT
-
-  echo -e "${cyan} TAO_ROOT : ${TAO_ROOT} ${NC}"
 
   MPC_ROOT=${ACE_ROOT}/MPC
   export MPC_ROOT
 
-  echo -e "${cyan} MPC_ROOT : ${MPC_ROOT} ${NC}"
-
   CIAO_ROOT=${TAO_ROOT}/CIAO
   export CIAO_ROOT
-
-  echo -e "${cyan} CIAO_ROOT : ${CIAO_ROOT} ${NC}"
 
   DANCE_ROOT=${CIAO_ROOT}/DANCE
   export DANCE_ROOT
 
-  echo -e "${cyan} DANCE_ROOT : ${DANCE_ROOT} ${NC}"
-
-  DDS_ROOT=${CIO_ROOT}/connectors/dds4ccm
+  DDS_ROOT=${CIAO_ROOT}/connectors/dds4ccm
   export DDS_ROOT
 
-  echo -e "${cyan} DDS_ROOT : ${DDS_ROOT} ${NC}"
+else
+  export CORBA_ROOT=${PROJECT_THIRDPARTY_PATH}/tao
+  export ACE_ROOT=${PROJECT_THIRDPARTY_PATH}/ACE/ACE_wrappers
+
+  TAO_ROOT=${ACE_ROOT}/TAO
+  export TAO_ROOT
+
+  MPC_ROOT=${ACE_ROOT}/MPC
+  export MPC_ROOT
+
+  CIAO_ROOT=${PROJECT_THIRDPARTY_PATH}/CIAO
+  export CIAO_ROOT
+
+  DANCE_ROOT=${CIAO_ROOT}/DAnCE
+  export DANCE_ROOT
+
+  DDS_ROOT=${CIAO_ROOT}/connectors/dds4ccm
+  export DDS_ROOT  
 fi
 
+echo -e "${cyan} ACE_ROOT : ${ACE_ROOT} ${NC}"
+
+echo -e "${cyan} TAO_ROOT : ${TAO_ROOT} ${NC}"
+
+echo -e "${cyan} MPC_ROOT : ${MPC_ROOT} ${NC}"
+
+echo -e "${cyan} CIAO_ROOT : ${CIAO_ROOT} ${NC}"
+
+echo -e "${cyan} DANCE_ROOT : ${DANCE_ROOT} ${NC}"
+
+echo -e "${cyan} DDS_ROOT : ${DDS_ROOT} ${NC}"
+  
 export BOOST_VERSION=1.41.0
 export GETTEXT_VERSION=0.17
 export XERCES_VERSION=2.8.0
