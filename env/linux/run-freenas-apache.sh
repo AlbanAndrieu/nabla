@@ -11,7 +11,7 @@
 #https://forums.freenas.org/index.php?threads/howto-install-apache-under-jail-with-freenas-8-3.10594/
 pkg install apache24
 pkg install apachetop
-cd /usr/ports/www/apache24
+#cd /usr/ports/www/apache24
 cat /usr/local/etc/apache24/httpd.conf | grep Listen
 echo 'apache24_enable="YES"' >> /etc/rc.conf
 
@@ -24,17 +24,17 @@ echo 'apache24_enable="YES"' >> /etc/rc.conf
 /usr/local/etc/rc.d/apache24 start
 service apache24 restart
 
-#See http://192.168.1.62/
+#See http://192.168.1.61/
 
 #####################
 
-pkg install databases/mysql56-server
+pkg install databases/mysql80-server
 service mysql-server start
 mysql_secure_installation
 
 #https://www.ostechnix.com/install-phpmyadmin-apache-nginx-freebsd-10-2/
-pkg install phpMyAdmin5-php72-5.0.1
-pkg install mod_php72 
+pkg install phpMyAdmin5-php74-5.0.1
+pkg install mod_php74
 #pkg install php72-mysql php72-mysqli
 #pkg install php72-mysqli php72-json php72-mbstring php72-session
 

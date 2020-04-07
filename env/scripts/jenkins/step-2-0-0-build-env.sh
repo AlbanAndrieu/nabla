@@ -3,9 +3,8 @@
 
 WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
 
-# source only if terminal supports color, otherwise use unset color vars
-# shellcheck source=./step-0-color.sh
-tput colors && source "${WORKING_DIR}/step-0-color.sh"
+# shellcheck source=/dev/null
+source "${WORKING_DIR}/step-0-color.sh"
 
 # shellcheck disable=SC2154
 echo -e "${yellow} ${bold} WELCOME ${nabla_logo} ${NC}"
@@ -32,6 +31,11 @@ echo -e "${magenta} ${underline}PARAMETERS ${NC}"
 
 # shellcheck source=./step-1-os.sh
 source "${WORKING_DIR}/step-1-os.sh"
+
+# shellcheck source=/dev/null
+source "${HOME}/run-python.sh"
+
+WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
 
 #DRY_RUN is used on UAT in order to avoid TAGING or DEPLOYING to production
 if [ -n "${DRY_RUN}" ]; then
@@ -79,6 +83,7 @@ if [ "$(uname -s)" == "SunOS" ]; then
   export PATH
   echo -e "${magenta} PATH : ${PATH} ${NC}"
 elif [ "$(uname -s)" == "Linux" ]; then
+  #For RedHat add /usr/sbin
   PATH=${PATH}:/usr/sbin;
   export PATH
   echo -e "${magenta} PATH : ${PATH} ${NC}"
@@ -176,47 +181,47 @@ if [ "${OS}" == "Debian" ]; then
     #LDFLAGS=$(dpkg-buildflags --get LDFLAGS)
 fi
 
-if [ -n "${CC}" ]; then
-  echo -e "${green} CC is defined ${happy_smiley} : ${CC} ${NC}"
-else
-  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : CC, use default one ${NC}"
-  if [ -n "${ENABLE_CLANG}" ]; then
-    echo -e "${green} ENABLE_CLANG is defined ${happy_smiley} ${NC}"
-    export CC="/usr/bin/clang"
-  else
-    echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : ENABLE_CLANG, use default one ${NC}"
-    if [ "$(uname -s)" == "SunOS" ]; then
-      export CC="cc"
-    elif [ "$(uname -s)" == "Linux" ]; then
-      export CC="/usr/bin/gcc-6"
-    else
-      export CC="/usr/bin/gcc"
-    fi
-  fi
-  echo -e "${magenta} CC : ${CC} ${NC}"
-fi
-
-if [ -n "${CXX}" ]; then
-  echo -e "${green} COMPILER is defined ${happy_smiley} : ${CXX} ${NC}"
-else
-  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : CXX, use default one ${NC}"
-  if [ -n "${ENABLE_CLANG}" ]; then
-    echo -e "${green} ENABLE_CLANG is defined ${happy_smiley} ${NC}"
-    export CXX="/usr/bin/clang++"
-    export COMPILER=${CXX}
-  else
-    echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : ENABLE_CLANG, use default one ${NC}"
-    if [ "$(uname -s)" == "SunOS" ]; then
-      export CXX="CC"
-    elif [ "$(uname -s)" == "Linux" ]; then
-      export CXX="/usr/bin/g++-6"
-    else
-      export CXX="/usr/bin/g++"
-    fi
-    export COMPILER=${CXX}
-  fi
-  echo -e "${magenta} COMPILER : ${COMPILER} ${NC}"
-fi
+#if [ -n "${CC}" ]; then
+#  echo -e "${green} CC is defined ${happy_smiley} : ${CC} ${NC}"
+#else
+#  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : CC, use default one ${NC}"
+#  if [ -n "${ENABLE_CLANG}" ]; then
+#    echo -e "${green} ENABLE_CLANG is defined ${happy_smiley} ${NC}"
+#    export CC="/usr/bin/clang"
+#  else
+#    echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : ENABLE_CLANG, use default one ${NC}"
+#    if [ "$(uname -s)" == "SunOS" ]; then
+#      export CC="cc"
+#    elif [ "$(uname -s)" == "Linux" ]; then
+#      export CC="/usr/bin/gcc-8"
+#    else
+#      export CC="/usr/bin/gcc"
+#    fi
+#  fi
+#  echo -e "${magenta} CC : ${CC} ${NC}"
+#fi
+#
+#if [ -n "${CXX}" ]; then
+#  echo -e "${green} COMPILER is defined ${happy_smiley} : ${CXX} ${NC}"
+#else
+#  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : CXX, use default one ${NC}"
+#  if [ -n "${ENABLE_CLANG}" ]; then
+#    echo -e "${green} ENABLE_CLANG is defined ${happy_smiley} ${NC}"
+#    export CXX="/usr/bin/clang++"
+#    export COMPILER=${CXX}
+#  else
+#    echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : ENABLE_CLANG, use default one ${NC}"
+#    if [ "$(uname -s)" == "SunOS" ]; then
+#      export CXX="CC"
+#    elif [ "$(uname -s)" == "Linux" ]; then
+#      export CXX="/usr/bin/g++-8"
+#    else
+#      export CXX="/usr/bin/g++"
+#    fi
+#    export COMPILER=${CXX}
+#  fi
+#  echo -e "${magenta} COMPILER : ${COMPILER} ${NC}"
+#fi
 
 if [ -n "${BITS}" ]; then
   echo -e "${green} BITS is defined ${happy_smiley} : ${BITS} ${NC}"
@@ -327,6 +332,9 @@ else
   echo -e "${magenta} ${double_arrow} /usr/local/sonar-build-wrapper/build-wrapper-linux-${SONAR_PROCESSOR} ${NC}"
   if [ -f "/usr/local/sonar-build-wrapper/build-wrapper-linux-${SONAR_PROCESSOR}" ]; then
     SONAR_CMD="/usr/local/sonar-build-wrapper/build-wrapper-linux-${SONAR_PROCESSOR} --out-dir ${WORKSPACE}/bw-outputs/"
+  else
+    echo -e "${red} ${double_arrow} Undefined directory ${head_skull} : SONAR_CMD failed ${NC}"
+    #exit 1
   fi
   export SONAR_CMD
   echo -e "${magenta} SONAR_CMD : ${SONAR_CMD} ${NC}"
@@ -355,7 +363,8 @@ else
   elif [ "$(uname -s)" == "Darwin" ]; then
     SCONS="/usr/local/bin/scons"
   else
-    SCONS="/usr/bin/python2.7 /usr/bin/scons"
+    #SCONS="/usr/bin/python2.7 /usr/bin/scons"
+    SCONS="python3 /usr/bin/scons"
   fi
   export SCONS
   echo -e "${magenta} SCONS : ${SCONS} ${NC}"
@@ -371,7 +380,8 @@ else
   elif [ "$(uname -s)" == "Linux" ]; then
     SCONS_OPTS="-j32 opt=True"
   else
-    SCONS_OPTS="-j8 --cache-disable gcc_version=4.1.2 opt=True"
+    #SCONS_OPTS="-j8 --cache-disable gcc_version=8 opt=True"
+    SCONS_OPTS="--cache-disable"
   fi
   #-j32 --cache-disable gcc_version=4.8.5 opt=True
   #--debug=time,explain
@@ -629,42 +639,6 @@ fi
 #export PATH="${JAVA_HOME}/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin:/kgr/dev/kgr_maven/nexus/bin/jsw/linux-x86-64:/kgr-mvn/hudson/etc/init.d:/home/kgr_mvn/bin"
 export M2_HOME=""
 
-if [ -n "${PYTHON_MAJOR_VERSION}" ]; then
-  echo -e "${green} PYTHON_MAJOR_VERSION is defined ${happy_smiley} : ${PYTHON_MAJOR_VERSION} ${NC}"
-else
-  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : PYTHON_MAJOR_VERSION, use the default one ${NC}"
-  export PYTHON_MAJOR_VERSION=3.5
-  echo -e "${magenta} PYTHON_MAJOR_VERSION : ${PYTHON_MAJOR_VERSION} ${NC}"
-fi
-
-if [ -n "${VIRTUALENV_PATH}" ]; then
-  echo -e "${green} VIRTUALENV_PATH is defined ${happy_smiley} : ${VIRTUALENV_PATH} ${NC}"
-else
-  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : VIRTUALENV_PATH, use the default one ${NC}"
-  # shellcheck disable=SC2001
-  VIRTUALENV_PATH=/opt/ansible/env$(echo $PYTHON_MAJOR_VERSION | sed 's/\.//g')
-  #virtualenv --no-site-packages ${VIRTUALENV_PATH} -p {{PYTHON_EXE}}
-  #source ${VIRTUALENV_PATH}/bin/activate
-  export VIRTUALENV_PATH
-  echo -e "${magenta} VIRTUALENV_PATH : ${VIRTUALENV_PATH} ${NC}"
-fi
-
-if [ -n "${PYTHON_CMD}" ]; then
-  echo -e "${green} PYTHON_CMD is defined ${happy_smiley} : ${PYTHON_CMD} ${NC}"
-else
-  echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : PYTHON_CMD, use the default one ${NC}"
-  #/usr/local/bin/python3.5 for RedHat
-  #/usr/bin/python3.5 for Ubuntu
-  if [ "${OS}" == "Red Hat Enterprise Linux Server" ]; then
-    PYTHON_CMD="/usr/local/bin/python${PYTHON_MAJOR_VERSION}"
-  else
-    PYTHON_CMD="${VIRTUALENV_PATH}/bin/python${PYTHON_MAJOR_VERSION}"
-    #PYTHON_CMD="/usr/bin/python3.5"
-  fi
-  export PYTHON_CMD
-  echo -e "${magenta} PYTHON_CMD : ${PYTHON_CMD} ${NC}"
-fi
-
 if [ -n "${USE_SUDO}" ]; then
   echo -e "${green} USE_SUDO is defined ${happy_smiley} : ${USE_SUDO} ${NC}"
 else
@@ -733,8 +707,8 @@ if [ -n "${TARGET_HOST}" ]; then
   echo -e "${green} TARGET_HOST is defined ${happy_smiley} : ${TARGET_HOST} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_HOST, use the default one ${NC}"
-  export TARGET_HOST=${TARGET_HOST:-"FR1CSLFRBM0059"}
-  export SERVER_HOST=${SERVER_HOST:-"FR1CSLFRBM0059"} #TODO TARGET_HOST and SERVER_HOST are duplicated
+  export TARGET_HOST=${TARGET_HOST:-"albandrieu.com"}
+  export SERVER_HOST=${SERVER_HOST:-"albandrieu.com"} #TODO TARGET_HOST and SERVER_HOST are duplicated
   echo -e "${magenta} TARGET_HOST : ${TARGET_HOST} ${NC}"
 fi
 
@@ -742,7 +716,7 @@ if [ -n "${INSTALLER_PATH}" ]; then
   echo -e "${green} INSTALLER_PATH is defined ${happy_smiley} : ${INSTALLER_PATH} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : INSTALLER_PATH, use the default one ${NC}"
-  export INSTALLER_PATH="1.7.1"
+  export INSTALLER_PATH="1.0.0"
   echo -e "${magenta} INSTALLER_PATH : ${INSTALLER_PATH} ${NC}"
 fi
 
@@ -750,7 +724,7 @@ if [ -n "${TARGET_SHARE_DIR}" ]; then
   echo -e "${green} TARGET_SHARE_DIR is defined ${happy_smiley} : ${TARGET_SHARE_DIR} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_SHARE_DIR, use default one ${NC}"
-  export TARGET_SHARE_DIR="${TARGET_USER}@${TARGET_HOST}:/var/www/release/ARC/LatestBuildsUntested/${INSTALLER_PATH}/"
+  export TARGET_SHARE_DIR="${TARGET_USER}@${TARGET_HOST}:/var/www/release/todo/${INSTALLER_PATH}/"
   # shellcheck disable=SC2154
   echo -e "${magenta} TARGET_SHARE_DIR : ${TARGET_SHARE_DIR} ${NC}"
 fi
@@ -759,7 +733,7 @@ if [ -n "${TARGET_DIR}" ]; then
   echo -e "${green} TARGET_DIR is defined ${happy_smiley} : ${TARGET_DIR} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : TARGET_DIR, use default one ${NC}"
-  export TARGET_DIR="${TARGET_USER}@${SERVER_HOST}:/var/www/~devel/${JOB_NAME}/AlmondeTest"
+  export TARGET_DIR="${TARGET_USER}@${SERVER_HOST}:/var/www/~devel/${JOB_NAME}/todo"
   # shellcheck disable=SC2154
   echo -e "${magenta} TARGET_DIR : ${TARGET_DIR} ${NC}"
 fi
@@ -768,7 +742,7 @@ if [ -n "${SERVER_HOST}" ]; then
   echo -e "${green} SERVER_HOST is defined ${happy_smiley} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : SERVER_HOST, use the default one ${NC}"
-  SERVER_HOST="FR1CSLFRBM0059"
+  SERVER_HOST="albandrieu"
   export SERVER_HOST
   echo -e "${magenta} SERVER_HOST : ${SERVER_HOST} ${NC}"
 fi
@@ -786,7 +760,7 @@ if [ -n "${SERVER_URL}" ]; then
   echo -e "${green} SERVER_URL is defined ${happy_smiley} : ${SERVER_URL} ${NC}"
 else
   echo -e "${red} ${double_arrow} Undefined build parameter ${head_skull} : SERVER_URL, use the default one ${NC}"
-  SERVER_URL=${HTTP_PROTOCOL}${SERVER_HOST}
+  SERVER_URL=${HTTP_PROTOCOL}${SERVER_HOST}${SERVER_CONTEXT}
   export SERVER_URL
   echo -e "${magenta} SERVER_URL : ${SERVER_URL} ${NC}"
 fi
@@ -917,13 +891,11 @@ else
   echo -e "${magenta} H2_PORT : ${H2_PORT} ${NC}"
 fi
 
-# shellcheck source=./step-2-0-0-build-almonde-env.sh
-source "${WORKING_DIR}/step-2-0-0-build-almonde-env.sh"
-
 ENV_FILENAME="${WORKSPACE}/ENV_${ARCH}_VERSION.TXT"
 
 echo -e "${NC}"
 
+# shellcheck source=./step-2-0-1-build-env-info.sh
 "${WORKING_DIR}/step-2-0-1-build-env-info.sh" > "${ENV_FILENAME}"
 
 # shellcheck disable=SC2154

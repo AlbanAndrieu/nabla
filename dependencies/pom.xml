@@ -14,7 +14,7 @@
 	<name>Dependencies pom file</name>
 	<description>The Dependencies pom file is a superpom to centralize all third parties</description>
 	<url>http://maven.nabla.mobi/dependencies</url>
-	<inceptionYear>2018</inceptionYear>
+	<inceptionYear>2020</inceptionYear>
 	<organization>
 		<name>Nabla Software</name>
 		<url>http://home.nabla.mobi/</url>
@@ -140,6 +140,8 @@
 		<asm.version>3.3.1</asm.version>
 		<aspectj.version>1.8.13</aspectj.version>
 		<aspectj.weaver.version>${aspectj.version}</aspectj.weaver.version>
+		<atmosphere.gwt.client.version>1.1.0.RC5</atmosphere.gwt.client.version>
+		<atmosphere.gwt.server.version>1.1.0.RC5</atmosphere.gwt.server.version>
 		<atmosphere.version>2.5.13</atmosphere.version>
 		<avalon.framework.version>4.1.3</avalon.framework.version>
 		<axiom.api.version>1.2.10</axiom.api.version>
@@ -233,6 +235,8 @@
 		<!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 		<!--<drools.version>6.2.0.CR4</drools.version>-->
 		<drools.api.version>5.2.0.M1</drools.api.version>
+		<drools.rhq.plugin.version>7.11.0.Final</drools.rhq.plugin.version>
+		<drools.simulator.version>6.5.0.Final</drools.simulator.version>
 		<drools.transformer.xstream.version>5.1.0.M2</drools.transformer.xstream.version>
 		<!--<webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>-->
 		<!-- warning overrided in customs/pom.xml depending on architecture -->
@@ -241,6 +245,10 @@
 		<!--<arquillian>arq-jbossas-managed</arquillian>-->
 		<!-- warning overrided in customs/pom.xml depending on architecture -->
 		<drools.version>7.6.0.Final</drools.version>
+		<drools.wb.categories.editor.client.version>6.2.0.CR4</drools.wb.categories.editor.client.version>
+		<drools.wb.verifier.api.version>7.11.0.Final</drools.wb.verifier.api.version>
+		<drools.wb.verifier.core.version>7.11.0.Final</drools.wb.verifier.core.version>
+		<drools.wb.webapp.version>6.2.0.CR4</drools.wb.webapp.version>
 		<dwr.version>2.0.1</dwr.version>
 		<!-- NOT needed instead remove jmock-junit4 because it does not work with jacoco
                 <jmock.version>2.6.0</jmock.version>
@@ -267,8 +275,10 @@
 		<!-- TODO remove overrided to 1.0.1-SNAPSHOT-->
 		<environment>development</environment>
 		<errai.jboss7.support.version>2.0.Beta4</errai.jboss7.support.version>
+		<errai.js.version>${errai.version}</errai.js.version>
 		<!-- OK <errai.version>2.0.Beta3</errai.version>-->
 		<errai.version>2.3.2.Final</errai.version>
+		<!--<errai.js.version>3.2.5.Final</errai.js.version>-->
 		<esper.version>4.11.0</esper.version>
 		<express-jar.artifactId>ehcache</express-jar.artifactId>
 		<ezmorph.version>1.0.6</ezmorph.version>
@@ -476,6 +486,7 @@
 		<jbossws.framework.version>3.0.1-GA</jbossws.framework.version>
 		<jbossws.native.client.version>3.2.0.GA</jbossws.native.client.version>
 		<jbpm.bom.version>7.34.0.Final</jbpm.bom.version>
+		<jbpm.designer.distribution.wars.version>7.0.0.Final</jbpm.designer.distribution.wars.version>
 		<jbpm.identity.version>3.3.1</jbpm.identity.version>
 		<jbpm.jpdl.version>3.2.3</jbpm.jpdl.version>
 		<!--<jbpm.version>3.3.1.GA</jbpm.version>-->
@@ -690,7 +701,7 @@
 		<maven.pmd.plugin.version>3.10.0</maven.pmd.plugin.version>
 		<maven.processor.plugin.version>3.3.3</maven.processor.plugin.version>
 		<maven.proguard.plugin.version>2.0.14</maven.proguard.plugin.version>
-		<maven.project.info.reports.plugin.version>2.9</maven.project.info.reports.plugin.version>
+		<maven.project.info.reports.plugin.version>3.0.0</maven.project.info.reports.plugin.version>
 		<!-- Plugin version definitions -->
 		<maven.project.version>3.0-alpha-2</maven.project.version>
 		<maven.properties.plugin.version>1.0.0</maven.properties.plugin.version>
@@ -918,8 +929,8 @@
 		<saxon.version>8.7</saxon.version>
 		<scala.short.version>2.11</scala.short.version>
 		<!-- for gatling to work -->
-		<scala.suffix>_2.11</scala.suffix>
-		<scala.version>2.11.7</scala.version>
+		<scala.suffix>_2.12</scala.suffix>
+		<scala.version>2.13.1</scala.version>
 		<!--
                 <scala.dep.version>${scala-short.version}.6</scala.dep.version>
                 <scala.lib.version>${scala-short.version}.6</scala.lib.version>
@@ -2351,6 +2362,11 @@
 				<artifactId>errai-tools</artifactId>
 				<version>${errai.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.jboss.errai</groupId>
+				<artifactId>errai-js</artifactId>
+				<version>${errai.js.version}</version>
+			</dependency>
 			<!-- Errai JAX-RS -->
 			<dependency>
 				<groupId>org.jboss.errai</groupId>
@@ -2429,12 +2445,12 @@
 			<dependency>
 				<groupId>org.atmosphere</groupId>
 				<artifactId>atmosphere-gwt-server</artifactId>
-				<version>${atmosphere.version}</version>
+				<version>${atmosphere.gwt.server.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.atmosphere</groupId>
 				<artifactId>atmosphere-gwt-client</artifactId>
-				<version>${atmosphere.version}</version>
+				<version>${atmosphere.gwt.client.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.atmosphere</groupId>
@@ -2508,6 +2524,11 @@
 				<groupId>org.jbpm</groupId>
 				<artifactId>jbpm-identity</artifactId>
 				<version>${jbpm.identity.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-designer-distribution-wars</artifactId>
+				<version>${jbpm.designer.distribution.wars.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>jboss</groupId>
@@ -4054,6 +4075,37 @@
 				<artifactId>drools-transformer-xstream</artifactId>
 				<version>${drools.transformer.xstream.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.drools</groupId>
+				<artifactId>drools-wb-webapp</artifactId>
+				<version>${drools.wb.webapp.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.drools</groupId>
+				<artifactId>drools-wb-verifier-core</artifactId>
+				<version>${drools.wb.verifier.core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.drools</groupId>
+				<artifactId>drools-wb-verifier-api</artifactId>
+				<version>${drools.wb.verifier.api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.drools</groupId>
+				<artifactId>drools-wb-categories-editor-client</artifactId>
+				<version>${drools.wb.categories.editor.client.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.drools</groupId>
+				<artifactId>drools-simulator</artifactId>
+				<version>${drools.simulator.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.drools</groupId>
+				<artifactId>drools-rhq-plugin</artifactId>
+				<version>${drools.rhq.plugin.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>com.thoughtworks.xstream</groupId>
 				<artifactId>xstream</artifactId>

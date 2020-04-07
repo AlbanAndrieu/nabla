@@ -3,6 +3,9 @@ set -xv
 
 #See https://doc.ubuntu-fr.org/nvidia
 #https://linuxconfig.org/how-to-install-the-nvidia-drivers-on-ubuntu-19-04-disco-dingo-linux
+#https://linuxconfig.org/how-to-install-the-nvidia-drivers-on-ubuntu-19-10-eoan-ermine-linux
+
+sudo apt remove --purge nvidia-driver-435
 
 ubuntu-drivers devices
 #== /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==
@@ -15,8 +18,9 @@ ubuntu-drivers devices
 
 #Check for the Available Nvidia Drivers
 apt search nvidia-driver*
+#nvidia-driver-435/eoan,now 435.21-0ubuntu2 amd64 [installed]
 
-sudo apt install nvidia-driver-435 nvidia-settings
+sudo apt-get install nvidia-driver-435 nvidia-settings
 
 sudo nvidia-settings
 
@@ -54,5 +58,17 @@ xrandr
 
 nvidia-xconfig
 ls -lrta /etc/X11/xorg.conf
+
+# See issue
+#ucsi_ccg 0-0008: failed to reset PPM!
+# https://askubuntu.com/questions/1155263/new-install-desktop-ubuntu-19-04-shows-error-message-ucsi-ccg-0-0008-failed-to
+# https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1850238
+
+./run-grub.sh
+
+#Add unity
+#sudo apt-get install lightdm
+
+sudo apt install linux-headers-$(uname -r)
 
 exit 0

@@ -282,9 +282,9 @@ export BOOST=$BOOST_ROOT
 export CMAKE_HOME=/usr/share/cmake-2.6.4
 export CMAKE_ROOT=${CMAKE_HOME}
 
-# PYTHON 3.7
+# PYTHON 3.8
 #See run-python.sh script
-#export PYTHON_MAJOR_VERSION=3.7
+#export PYTHON_MAJOR_VERSION=3.8
 
 if [ -f ${HOME}/run-python.sh ]; then
     echo -e "${green} ${HOME}/run-python.sh ${NC}"
@@ -524,7 +524,7 @@ export MAVEN_OPTS
 
 export M2_REPO=${WORKSPACE}/.m2/repository
 mkdir -p ${M2_REPO} || true
-mkdir "${HOME}/.m2" || true
+mkdir "${HOME}/.m2"  2> /dev/null
 #ln -s "${M2_REPO}/" "${HOME}/.m2/repository/" || true
 echo -e "${cyan} Maven repo is in : ${M2_REPO} ${NC}"
 
@@ -658,10 +658,12 @@ then
 fi
 
 # KUBERNETES
-source <(kubectl completion bash)
+#source <(kubectl completion bash)
+snap alias microk8s.kubectl kubectl
 alias k=kubectl
 complete -F __start_kubectl k
 export KUBECONFIG=$KUBECONFIG:config:config-albandri
+
 
 #BREW PATH
 #Must be run after run-python.sh

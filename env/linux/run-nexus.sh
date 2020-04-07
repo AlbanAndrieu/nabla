@@ -85,8 +85,11 @@ npm config set registry http://albandrieu.com:8081/nexus/content/npm/registry.np
 
 tail -f /usr/local/nexus/sonatype-work/nexus3/log/nexus.log
 
-#sudo systemctl disable nexus remove
+sudo systemctl disable nexus.service
 sudo systemctl enable nexus.service
+
+sudo geany  /var/lib/dpkg/info/nexus-repository-manager.prerm
+#add || true
 
 #See https://github.com/sonatype-nexus-community/nexus-repository-installer
 
@@ -100,6 +103,7 @@ sudo apt-get install nexus-repository-manager
 
 ls -lrta /opt/sonatype/nexus3/bin/nexus
 cd /opt/sonatype/sonatype-work/nexus3
+sudo apt-get remove nexus-repository-manager
 
 user nexus3
 

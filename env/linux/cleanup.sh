@@ -78,6 +78,7 @@ du -sh .[!.]* *
 #\rm -Rf /var/lib/docker/overlay2/*
 \rm -Rf /workspace/jboss-as-7.1.1.Final/standalone/data/content*
 \rm -Rf /usr/share/doc/
+\rm -Rf /var/cache/apt/archives/
 
 #systemctl stop mysql
 #ls /var/log/mysql/mysql.err

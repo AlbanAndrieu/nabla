@@ -110,31 +110,6 @@ ulimit -n
 lsof -p PID | wc -l
 ls -la /proc/PID/fd | wc -l
 
-#MacOSX
-sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist
-
-rm -f /var/log/jenkins/jenkins.log
-ls /Applications/Jenkins/jenkins.war
-cd /Applications/Jenkins/
-wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
-sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist
-tail -f /var/log/jenkins/jenkins.log
-cd /Users/Shared/Jenkins/Home
-sudo su - jenkins
-mkdir init.groovy.d/
-
-#See https://wiki.jenkins.io/display/JENKINS/Thanks+for+using+OSX+Installer
-#sudo defaults read /Library/Preferences/org.jenkins-ci
-#sudo defaults write /Library/Preferences/org.jenkins-ci heapSize 8192M
-#sudo defaults write /Library/Preferences/org.jenkins-ci minHeapSize 1024M
-#sudo defaults write /Library/Preferences/org.jenkins-ci minPermGen 1024M
-#sudo defaults write /Library/Preferences/org.jenkins-ci permGen 2048M
-#sudo defaults write /Library/Preferences/org.jenkins-ci httpPort -1
-#TODO sudo defaults write /Library/Preferences/org.jenkins-ci httpsPort 443
-#sudo defaults write /Library/Preferences/org.jenkins-ci httpsPort 8383
-#sudo defaults write /Library/Preferences/org.jenkins-ci httpsKeyStore /etc/ssl/almonde-jenkins.misys.global.ad/almonde-jenkins.misys.global.ad.jks
-#sudo defaults write /Library/Preferences/org.jenkins-ci httpsKeyStorePassword changeit
-
 System.setProperty("org.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS", "true")
 System.setProperty("org.jenkinsci.plugins.durabletask.BourneShellScript.FORCE_SHELL_WRAPPER", "true")
 System.setProperty("org.jenkinsci.plugins.durabletask.BourneShellScript.FORCE_BINARY_WRAPPER", "true")
