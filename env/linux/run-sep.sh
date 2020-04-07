@@ -61,7 +61,6 @@ sudo ./sav manualscan --clscan /
 #Rebuild SEP kernel
 #See for full info https://knowledge.broadcom.com/external/article?legacyId=TECH132773
 
-#sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 70 --slave /usr/bin/g++ g++ /usr/bin/g++-7 --slave /usr/bin/gcov gcov /usr/bin/gcov-7
 sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 70 
 sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 70 
 sudo update-alternatives --config gcc
