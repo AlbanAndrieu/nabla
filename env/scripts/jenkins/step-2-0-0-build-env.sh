@@ -4,7 +4,8 @@
 WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
 
 # shellcheck source=/dev/null
-source "${WORKING_DIR}/step-0-color.sh"
+#source "${WORKING_DIR}/step-0-color.sh"
+source "${HOME}/step-0-color.sh"
 
 # shellcheck disable=SC2154
 echo -e "${yellow} ${bold} WELCOME ${nabla_logo} ${NC}"
@@ -30,7 +31,8 @@ echo -e "${green} GIT_COMMIT : ${GIT_COMMIT} ${NC}"
 echo -e "${magenta} ${underline}PARAMETERS ${NC}"
 
 # shellcheck source=./step-1-os.sh
-source "${WORKING_DIR}/step-1-os.sh"
+#source "${WORKING_DIR}/step-1-os.sh"
+source "${HOME}/step-1-os.sh"
 
 # shellcheck source=/dev/null
 source "${HOME}/run-python.sh"

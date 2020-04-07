@@ -17,7 +17,7 @@
 	<inceptionYear>2020</inceptionYear>
 	<organization>
 		<name>Nabla Software</name>
-		<url>http://home.nabla.mobi/</url>
+		<url>http://albandrieu.com/</url>
 	</organization>
 	<licenses>
 		<license>
@@ -1018,7 +1018,7 @@
 		<sonar.global.exclusions>**/generated/**</sonar.global.exclusions>
 		<sonar.groovy.codenarc.reportPath>target/CodeNarcReport.xml</sonar.groovy.codenarc.reportPath>
 		<!--<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath> -->
-		<!--<sonar.host.url>http://home.nabla.mobi:9000</sonar.host.url>-->
+		<!--<sonar.host.url>http://albandrieu.com:9000</sonar.host.url>-->
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<!--<sonar.sources>src/main/java,src/main/js,src/main/webapp,src/generated/java,src/generated/js, **/web.xml, **/*.xhtml</sonar.sources>-->
 		<!-- DO NOT SET below sonar properties for all projects
@@ -1058,13 +1058,13 @@
                 <jetty.context.path.to.replace>jetty.context.path</jetty.context.path.to.replace>
                 <jetty.context.path>/nabla</jetty.context.path>
                 -->
-		<!--<sonar.jdbc.url>jdbc:mysql://home.nabla.mobi:3306/sonar</sonar.jdbc.url>-->
+		<!--<sonar.jdbc.url>jdbc:mysql://albandrieu.com:3306/sonar</sonar.jdbc.url>-->
 		<!--<sonar.jdbc.driver>com.mysql.jdbc.Driver</sonar.jdbc.driver>-->
 
 		<!--
         <sonar.jdbc.driver>org.h2.Driver</sonar.jdbc.driver>
         <sonar.jdbc.password>sonar</sonar.jdbc.password>
-        <sonar.jdbc.url>jdbc:h2:tcp://home.nabla.mobi:9092/sonar</sonar.jdbc.url>
+        <sonar.jdbc.url>jdbc:h2:tcp://albandrieu.com:9092/sonar</sonar.jdbc.url>
         <sonar.jdbc.username>sonar</sonar.jdbc.username>
         <sonar.pdf.password>microsoft</sonar.pdf.password>
         <sonar.pdf.username>admin</sonar.pdf.username>
@@ -6824,9 +6824,9 @@
                         <nodeVersion>v${node.version}</nodeVersion>
                         <npmVersion>${npm.version}</npmVersion>
                         <yarnVersion>v${yarn.version}</yarnVersion>
-                        <nodeDownloadRoot>http://home.nabla.mobi/html/download/nodejs/</nodeDownloadRoot>
-                        <npmDownloadRoot>http://home.nabla.mobi/html/download/npm/-/</npmDownloadRoot>
-                        <yarnDownloadRoot>http://home.nabla.mobi/html/download//yarn/</yarnDownloadRoot>
+                        <nodeDownloadRoot>http://albandrieu.com/download/nodejs/</nodeDownloadRoot>
+                        <npmDownloadRoot>http://albandrieu.com/download/npm/-/</npmDownloadRoot>
+                        <yarnDownloadRoot>http://albandrieu.com/download/yarn/</yarnDownloadRoot>
                     </configuration>
                     -->
 				</plugin>
@@ -6872,9 +6872,9 @@
 						<!--<executable>${java.home}/bin/javac</executable> WARNING define in main/pom.xml -->
 						<compilerArgument>-Xlint:cast,unchecked,fallthrough,finally,serial</compilerArgument>
 						<!--
-                                                        <verbose>true</verbose> <excludes>
-                                                        <exclude>**/*Point*.java</exclude> </excludes>
-                                                -->
+								<verbose>true</verbose> <excludes>
+								<exclude>**/*Point*.java</exclude> </excludes>
+						-->
 					</configuration>
 				</plugin>
 				<plugin>
@@ -8366,10 +8366,10 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 						<nexusAnalyzerEnabled>false</nexusAnalyzerEnabled>
 						<!--
                         <nexusUrl>http://albandrieu.com:8081/nexus</nexusUrl>
-                        <cveUrl12Modified>http://home.nabla.mobi/download/nist/nvdcve-Modified.xml.gz</cveUrl12Modified>
-                        <cveUrl20Modified>http://home.nabla.mobi/download/nist/nvdcve-2.0-Modified.xml.gz</cveUrl20Modified>
-                        <cveUrl12Base>http://home.nabla.mobi/download/nist/nvdcve-%d.xml</cveUrl12Base>
-                        <cveUrl20Base>http://home.nabla.mobi/download/nist/nvdcve-2.0-%d.xml</cveUrl20Base>
+                        <cveUrl12Modified>http://albandrieu.com/download/nist/nvdcve-Modified.xml.gz</cveUrl12Modified>
+                        <cveUrl20Modified>http://albandrieu.com/download/nist/nvdcve-2.0-Modified.xml.gz</cveUrl20Modified>
+                        <cveUrl12Base>http://albandrieu.com/download/nist/nvdcve-%d.xml</cveUrl12Base>
+                        <cveUrl20Base>http://albandrieu.com/download/nist/nvdcve-2.0-%d.xml</cveUrl20Base>
                         -->
 					</configuration>
 				</plugin>
