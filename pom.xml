@@ -8,7 +8,7 @@
 	<name>Users</name>
 	<!-- This element provides a basic description of your project -->
 	<description>Users</description>
-	<!--<url>http://www.maven.nabla.mobi</url>-->
+	<!--<url>http://www.maven.albandrieu.com</url>-->
 	<url>https://github.com/AlbanAndrieu/nabla</url>
 	<prerequisites>
 		<maven>3.0.4</maven>
@@ -564,7 +564,7 @@
                         <url>file:/var/www/docs</url> -->
 					<!--<url>file://${deploy.dir}</url> -->
 					<!--<url>file:/tmp</url>-->
-					<url>ftp://home.albandrieu.com:8021/maven</url>
+					<url>ftp://albandrieu.com:8021/maven</url>
 				</site>
 			</distributionManagement>
 		</profile>
@@ -595,7 +595,7 @@
 					<id>webdav</id>
 					<name>Project Website</name>
 					<!--<url>ftp://www.nabla.mobi/maven</url>-->
-					<url>dav:http://home.albandrieu.com:8087/nabla/</url>
+					<url>dav:http://albandrieu.com:8087/nabla/</url>
 				</site>
 			</distributionManagement>
 			<properties>

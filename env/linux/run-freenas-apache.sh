@@ -107,7 +107,7 @@ certbot certonly
 
 #INPUT
 #2
-#www.albandrieu.com,albandrieu.com,albandrieu.albandrieu.com,nabla.albandrieu.com,home.albandrieu.com,alban-andrieu.eu,bababou.fr,bababou.eu
+#www.albandrieu.com,albandrieu.com,albandrieu.albandrieu.com,nabla.albandrieu.com,albandrieu.com,alban-andrieu.eu,bababou.fr,bababou.eu
 #1
 #/usr/local/www/apache24/data
 #/usr/local/www/apache24/data/sample

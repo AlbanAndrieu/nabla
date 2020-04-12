@@ -49,7 +49,8 @@ yptest
 
 dmesg
 service nis stop
-ipconfig /flushdns
+
+./run-dns.sh
 
 #systemctl disable bind9
 #sudo update-rc.d bind9 disable

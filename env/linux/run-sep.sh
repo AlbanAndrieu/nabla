@@ -83,4 +83,12 @@ dmesg | tail -n 2
 sudo apt-get purge $(dpkg -l | awk '{print $2}' | grep -E "linux-(image|headers)-$(uname -r | cut -d- -f1).*" )
 apt --fix-broken install
 
+#/opt/Symantec/symantec_antivirus/savtray
+#killall savtray
+pkill savtray
+
+sudo /etc/init.d/rtvscand stop
+sudo /etc/init.d/symcfgd stop
+sudo /etc/init.d/smcd stop
+
 exit 0

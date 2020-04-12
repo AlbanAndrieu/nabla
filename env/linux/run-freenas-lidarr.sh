@@ -36,6 +36,9 @@ iocage exec lidarr service lidarr restart
 lidarr should be available at http://192.168.1.24:8683
 #iocage start lidarr
 
+# In settings
+#/usr/local/etc/transmission/home/Downloads/music/ /mnt/music/
+
 iocage df
 
 exit 

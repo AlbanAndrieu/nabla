@@ -41,12 +41,6 @@ echo manual | sudo tee /etc/init/docker.override
 #Upgrade kernel
 sudo apt-get install --install-recommends linux-generic-hwe-16.04 xserver-xorg-hwe-16.04
 
-#-------------
-
-#Check docker
-curl https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh > check-config.sh
-bash ./check-config.sh
-
 #------------------
 
 #See https://docs.docker.com/engine/installation/linux/linux-postinstall/#specify-dns-servers-for-docker
@@ -433,4 +427,7 @@ brew install dive
 docker network ls
 #system prune -a --volumes
 docker network prune
+
+sudo apt-get install lxc
+ 
 exit 0

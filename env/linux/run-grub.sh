@@ -6,7 +6,7 @@ set -xv
 #sudo nano /etc/default/grub
 #GRUB_TIMEOUT=10
 #GRUB_CMDLINE_LINUX_DEFAULT="nomodset"
-#GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nvidia-drm.modeset=1"
+#GRUB_CMDLINE_LINUX_DEFAULT="quiet splash nvidia-drm.modeset=1 cgroup_enable=memory swapaccount=1"
 #sudo update-grub
 
 exit 0

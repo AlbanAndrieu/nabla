@@ -76,4 +76,7 @@ sudo chmod 777 /jenkins/.local/
 sudo chmod 777 /jenkins/.local/share/
 sudo chmod 777 /jenkins/.local/share/bower/
 
+sudo ln -s /docker /var/lib/docker
+sudo ln -s /jenkins /var/lib/jenkins
+
 exit 0

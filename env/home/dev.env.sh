@@ -169,7 +169,8 @@ export QTDIR=${DRIVE_PATH}/usr/lib/qt3
 export ZAPROXY_HOME=${DRIVE_PATH}/workspace/divers/zaproxy-read-only/build/zap
 export HUDSON_HOME=${DRIVE_PATH}/workspace/hudson
 export JENKINS_HOME=${DRIVE_PATH}/jenkins
-export TOMCAT_HOME=${DRIVE_PATH}/var/lib/tomcat7
+export TOMCAT_BASE=tomcat9
+export TOMCAT_HOME=${DRIVE_PATH}/var/lib/${TOMCAT_BASE}
 export SONAR_HOME=${DRIVE_PATH}/workspace/sonar
 export SONAR_RUNNER_HOME=${DRIVE_PATH}/workspace/sonar-runner
 export PATH=${SONAR_RUNNER_HOME}/bin:${PATH}
@@ -180,7 +181,7 @@ export CROWD_HOME=${DRIVE_PATH}/var/crowd-home
 export NEXUS_HOME=${DRIVE_PATH}/workspace/nexus
 export FISHEYE_HOME=${DRIVE_PATH}/workspace/fecru
 export FISHEYE_INST=${DRIVE_PATH}/workspace/fisheye
-export OPENGROK_TOMCAT_BASE=${DRIVE_PATH}/var/lib/tomcat7
+export OPENGROK_TOMCAT_BASE=${DRIVE_PATH}/var/lib/${TOMCAT_BASE}
 
 export SYBASE_OCS=OCS-15_0
 export SYBASE_VERSION=12.5
@@ -481,7 +482,7 @@ POLICY
   fi
 
   # ---- DripStat arguments
-  #DS_JAR=/usr/share/tomcat7/dripstat/dripstat.jar;
+  #DS_JAR=/usr/share/${TOMCAT_BASE}/dripstat/dripstat.jar;
   #export DS_JAR
   #JAVA_OPTS="$JAVA_OPTS -javaagent:$DS_JAR";
   #export JAVA_OPTS
@@ -543,9 +544,9 @@ export PATH=${BEES_HOME}:$PATH
 alias jboss='${JBOSS_HOME}/bin/run.sh > ${PROJECT_DEV}/jboss.txt'
 
 # TOMCAT
-export CATALINA_HOME=${DRIVE_PATH}/usr/share/tomcat7
+export CATALINA_HOME=${DRIVE_PATH}/usr/share/${TOMCAT_BASE}
 # Customize tomcat in CATALINA_BASE
-export CATALINA_BASE=${DRIVE_PATH}/var/lib/tomcat7
+export CATALINA_BASE=${DRIVE_PATH}/var/lib/${TOMCAT_BASE}
 CATALINA_OPTS=""
 #CATALINA_OPTS="-Dappserver.home=$CATALINA_HOME -Dappserver.base=$CATALINA_HOME -Dapplication.property.dir=${CATALINA_HOME}/project"
 if [ 1 -eq 1 ] ; then
@@ -554,7 +555,7 @@ fi
 
 if [ 1 -eq 1 ] ; then
   # ---- New Relic switch automatically added to start command on 2015 Jan 14, 14:16:32
-  NR_JAR=/usr/share/tomcat7/newrelic/newrelic.jar;
+  NR_JAR=/usr/share/${TOMCAT_BASE}/newrelic/newrelic.jar;
   export NR_JAR
   CATALINA_OPTS="$CATALINA_OPTS -javaagent:$NR_JAR";
 fi

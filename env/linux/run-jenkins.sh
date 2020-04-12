@@ -119,7 +119,7 @@ System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
 System.setProperty("permissive-script-security.enabled", "true")
 System.setProperty("org.jenkinsci.plugins.gitclient.Git.timeOut", "120")
 System.setProperty("hudson.plugins.git.GitSCM.verbose", "true")
-System.setProperty("org.jenkinsci.plugins.docker.workflow.client.DockerClient.CLIENT_TIMEOUT", "240")
+System.setProperty("org.jenkinsci.plugins.docker.workflow.client.DockerClient.CLIENT_TIMEOUT", "600")
 
 #System.setProperty("http.connect.timeout", "100")
 #System.setProperty("http.connect.request.timeout", "600")

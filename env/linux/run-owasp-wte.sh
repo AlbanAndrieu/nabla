@@ -8,3 +8,5 @@ wget -q -O - http://appseclive.org/apt/owasp-wte.gpg.key | apt-key add -
 apt-get update && apt-get -y install owasp-wte-*
 
 #snap install zaproxy --classic
+
+exit 0

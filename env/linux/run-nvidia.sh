@@ -63,6 +63,8 @@ ls -lrta /etc/X11/xorg.conf
 #ucsi_ccg 0-0008: failed to reset PPM!
 # https://askubuntu.com/questions/1155263/new-install-desktop-ubuntu-19-04-shows-error-message-ucsi-ccg-0-0008-failed-to
 # https://bugs.launchpad.net/ubuntu/+source/linux/+bug/1850238
+sudo nano /etc/modprobe.d/blacklist-nvidia-usb.conf
+#blacklist ucsi_ccg
 
 ./run-grub.sh
 

@@ -43,6 +43,11 @@ sudo su - Jenkins
 #nano /Library/Application\ Support/Jenkins/jenkins-runner.sh
 nohup /Library/Application\ Support/Jenkins/jenkins-runner.sh
 # Add export JENKINS_HOME="/Users/Shared/Jenkins/Home"
+echo "/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/java" $javaArgs -jar "$war" $args
+exec "/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/java" $javaArgs -jar "$war" $args
+
+sudo /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/keytool -importcert -alias dev -file UK1VSWCERT01-CA-5.crt -keystore /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/lib/security/cacerts
+
 ls -lrta /Users/Shared/Jenkins/
 sudo chown -R jenkins:staff /Users/Shared/Jenkins/
 sudo chown -R jenkins:staff /Volumes/DATA/jobs/

@@ -12,4 +12,8 @@ set -xv
 
 # Check server is reported in http://crowdstrike.provides.io/
 
+sudo systemctl disable falcon-sensor 
+
+service falcon-sensor status
+
 exit 0

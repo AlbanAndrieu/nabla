@@ -71,22 +71,22 @@ nohup node /usr/local/node/lib/node_modules/private-bower/bin/private-bower --co
 lsof -i :5678
 lsof -i :6789
 
-To read status:
-
-cd /service
-
-sudo /command/svstat *
-$ sudo /command/svstat /service/private-bower/
-/service/private-bower/: up (pid 21632) 1358 seconds
-
-To stop:
-sudo /command/svc –d /service/private-bower/
-
-To start:
-sudo /command/svc –u /service/private-bower/
-
-To restart:
-sudo /command/svc –t /service/private-bower/
+#To read status:
+#
+#cd /service
+#
+#sudo /command/svstat *
+#$ sudo /command/svstat /service/private-bower/
+#/service/private-bower/: up (pid 21632) 1358 seconds
+#
+#To stop:
+#sudo /command/svc –d /service/private-bower/
+#
+#To start:
+#sudo /command/svc –u /service/private-bower/
+#
+#To restart:
+#sudo /command/svc –t /service/private-bower/
 
 #issue while refresh
 #try workaround

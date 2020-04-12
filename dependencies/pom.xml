@@ -13,7 +13,7 @@
 	<packaging>pom</packaging>
 	<name>Dependencies pom file</name>
 	<description>The Dependencies pom file is a superpom to centralize all third parties</description>
-	<url>http://maven.nabla.mobi/dependencies</url>
+	<url>http://maven.albandrieu.com/dependencies</url>
 	<inceptionYear>2020</inceptionYear>
 	<organization>
 		<name>Nabla Software</name>

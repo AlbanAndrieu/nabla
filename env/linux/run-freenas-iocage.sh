@@ -34,16 +34,10 @@ iocage exec transmission "pw groupmod media -m transmission"
 iocage exec transmission  chown -R media:media /media
 iocage exec transmission  sysrc 'transmission_user=media'
 
-iocage exec sonarr "pw user add media -c media -u 8675309 -d /nonexistent -s /usr/bin/nologin"
-#iocage exec sonarr "pw groupadd -n media -g 8675309"
-iocage exec sonarr "pw groupmod media -m sonarr"
-##iocage exec sonarr chown -R media:media /usr/local/share/Sonarr /config
-iocage exec sonarr  sysrc 'sonarr_user=media'
+./run-freenas-sonarr.sh
 
-iocage exec radarr "pw user add media -c media -u 8675309 -d /nonexistent -s /usr/bin/nologin"
-#iocage exec radarr "pw groupadd -n media -g 8675309"
-#iocage exec radarr "pw groupmod media -m radarr"
-#iocage exec radarr chown -R media:media /usr/local/share/Radarr /config
-iocage exec radarr sysrc 'radarr_user=media'
+./run-freenas-radarr.sh
+
+./run-freenas-jackett.sh
 
 exit 0
