@@ -38,6 +38,8 @@ Jackett should be available at http://192.168.1.24:9117
 
 # http://172.16.0.22:9117/api/v2.0/indexers/all/results/torznab
 
+# https://www.oxtorrent.com/ is working well
+
 iocage df
 
 exit 

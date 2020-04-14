@@ -7,19 +7,19 @@ chmod +x ./install.sh
 sudo ./install.sh
 
 cd /opt/Symantec/symantec_antivirus/
-./sav info -d
-sudo ./sav info -s
-./sav info -p 
-./sav info -e
-./sav manage -p
-./sav manage -s
+/opt/Symantec/symantec_antivirus/sav info -d
+sudo /opt/Symantec/symantec_antivirus/sav info -s
+/opt/Symantec/symantec_antivirus/sav info -p 
+/opt/Symantec/symantec_antivirus/sav info -e
+/opt/Symantec/symantec_antivirus/sav manage -p
+/opt/Symantec/symantec_antivirus/sav manage -s
 # sepm.finastra.global
 
 /opt/Symantec/symantec_antivirus/sav info -a
 #Malfunctioning
 
 #connected to LiveUpdate and downloaded updates with
-sudo ./sav liveupdate -u
+sudo /opt/Symantec/symantec_antivirus/sav liveupdate -u
 sudo /etc/init.d/rtvscand restart
 
 sudo bash ./sadiag.sh
@@ -47,11 +47,11 @@ sudo bash ./sadiag.sh
 #wget https://definitions.symantec.com/defs/20200405-002-core15unix.sh
 #wget http://definitions.symantec.com/defs/static/symcdefs-unix64.sh
 
-sudo ./sav scheduledscan -c albandri -f weekly -i Sat -t 23:00 -m 1 /
-sudo ./sav scheduledscan --list
+sudo /opt/Symantec/symantec_antivirus/sav scheduledscan -c albandri -f weekly -i Sat -t 23:00 -m 1 /
+sudo /opt/Symantec/symantec_antivirus/sav scheduledscan --list
 
-#sudo ./sav manualscan --scan /
-sudo ./sav manualscan --clscan /
+#sudo /opt/Symantec/symantec_antivirus/sav manualscan --scan /
+sudo /opt/Symantec/symantec_antivirus/sav manualscan --clscan / &
 
 #See https://knowledge.broadcom.com/external/article?legacyId=TECH132773
 
@@ -79,7 +79,7 @@ dmesg | tail -n 2
 
 /opt/Symantec/symantec_antivirus/sav info -a
 
-#sudo apt remove linux-image-unsigned-4.15.0-51-generic linux-headers-5.0.0-050000-generic
+#sudo apt remove linux-image-unsigned-5.0.0-050000-generic linux-headers-5.0.0-050000-generic
 sudo apt-get purge $(dpkg -l | awk '{print $2}' | grep -E "linux-(image|headers)-$(uname -r | cut -d- -f1).*" )
 apt --fix-broken install
 

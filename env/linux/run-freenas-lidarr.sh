@@ -29,6 +29,10 @@ iocage exec lidarr chown -R lidarr:lidarr /usr/local/share/Lidarr /config
 #Create an rc file for lidarr using your favorite editor at 
 nano /mnt/dpool/iocage/jails/lidarr/root/usr/local/etc/rc.d/lidarr
 
+iocage exec sonarr "pw user add transmission -c media -u 921 -d /nonexistent -s /usr/bin/nologin"
+iocage exec sonarr "pw user add media -c media -u 8675309 -d /nonexistent -s /usr/bin/nologin"
+iocage exec sonarr "pw groupmod media -m lidarr"
+
 iocage exec lidarr chmod u+x /usr/local/etc/rc.d/lidarr
 iocage exec lidarr sysrc "lidarr_enable=YES"
 iocage exec lidarr service lidarr restart
@@ -37,7 +41,8 @@ lidarr should be available at http://192.168.1.24:8683
 #iocage start lidarr
 
 # In settings
-#/usr/local/etc/transmission/home/Downloads/music/ /mnt/music/
+#/usr/local/etc/transmission/home/Downloads/music/ /media/music
+#/usr/local/sabnzbd/Downloads/complete/music/ /media/music
 
 iocage df
 

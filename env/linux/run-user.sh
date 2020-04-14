@@ -38,6 +38,8 @@ id ${USER}
 echo "Add nexus user"
 printf "\033[1;32msudo useradd --no-create-home --system -s /sbin/nologin nexus -c \"Nexus nabla\" -u 1001 -G root,docker \033[0m\n"
 
+sudo useradd --no-create-home --system -s /sbin/nologin transmission -c "Transmission nabla" -u 921 -G media,www-data,docker
+
 echo "Add media group"
 sudo groupadd -g 8675309 media
 "sudo usermod -a -G media ${USER}"

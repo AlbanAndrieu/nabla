@@ -229,9 +229,9 @@
 		<displaytag.version>1.2</displaytag.version>
 		<documentation.output.directory>${project.build.directory}/docs</documentation.output.directory>
 		<dom4j.version>1.6.1</dom4j.version>
-		<doxia.core.version>1.8</doxia.core.version>
+		<doxia.core.version>1.9.1</doxia.core.version>
 		<doxia.module.twiki.version>${doxia.version}</doxia.module.twiki.version>
-		<doxia.version>1.8.1</doxia.version>
+		<doxia.version>1.9.2</doxia.version>
 		<!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 		<!--<drools.version>6.2.0.CR4</drools.version>-->
 		<drools.api.version>5.2.0.M1</drools.api.version>
@@ -696,7 +696,7 @@
 		<maven.pax.plugin.version>1.6.0</maven.pax.plugin.version>
 		<maven.pitest.plugin.version>1.5.0</maven.pitest.plugin.version>
 		<maven.plexus.util.plugin.version>1.1</maven.plexus.util.plugin.version>
-		<maven.plugin.api.plugin.version>${maven.version}</maven.plugin.api.plugin.version>
+		<maven.plugin.api.plugin.version>3.6.3</maven.plugin.api.plugin.version>
 		<maven.plugin.plugin.plugin.version>3.5</maven.plugin.plugin.plugin.version>
 		<maven.pmd.plugin.version>3.10.0</maven.pmd.plugin.version>
 		<maven.processor.plugin.version>3.3.3</maven.processor.plugin.version>
@@ -723,7 +723,7 @@
 		<maven.shared.jar.version>1.0</maven.shared.jar.version>
 		<maven.site.github.plugin.version>0.12</maven.site.github.plugin.version>
 		<!--<maven.site.old.plugin.version>2.3</maven.site.old.plugin.version>-->
-		<maven.site.plugin.version>3.8.2</maven.site.plugin.version>
+		<maven.site.plugin.version>3.9.0</maven.site.plugin.version>
 		<maven.sonar.plugin.version>3.7.0.1746</maven.sonar.plugin.version>
 		<maven.sonar.report.plugin.version>2.2.1</maven.sonar.report.plugin.version>
 		<maven.sortpom.google.plugin.version>2.3.1</maven.sortpom.google.plugin.version>
@@ -762,7 +762,7 @@
 		<maven.xdoclet.plugin.version>1.0</maven.xdoclet.plugin.version>
 		<maven.xml.plugin.version>1.0.2</maven.xml.plugin.version>
 		<maven.zap.plugin.version>1.2-SNAPSHOT</maven.zap.plugin.version>
-		<mimepull.version></mimepull.version>
+		<mimepull.version>1.9.13</mimepull.version>
 		<mockito.version>1.10.19</mockito.version>
 		<!-- WARNING jmockit does not work wit jacoco coverage -->
 		<mockrunner.version>1.0.0</mockrunner.version>
@@ -1151,10 +1151,10 @@
 		<!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 		<!--<org.jboss.shrinkwrap.bom.version>2.1.1</org.jboss.shrinkwrap.bom.version>-->
 		<version.shrinkwrap_shrinkwrap>1.2.2</version.shrinkwrap_shrinkwrap>
-		<wagon.ftp.plugin.version>3.0.0</wagon.ftp.plugin.version>
-		<wagon.ssh.plugin.version>3.0.0</wagon.ssh.plugin.version>
+		<wagon.ftp.plugin.version>3.3.4</wagon.ftp.plugin.version>
+		<wagon.ssh.plugin.version>3.3.4</wagon.ssh.plugin.version>
 		<wagon.svn.plugin.version>1.12</wagon.svn.plugin.version>
-		<wagon.webdav.jackrabbit.version>3.0.0</wagon.webdav.jackrabbit.version>
+		<wagon.webdav.jackrabbit.version>3.3.4</wagon.webdav.jackrabbit.version>
 		<web.framework>struts</web.framework>
 		<webtest.version>R_1600</webtest.version>
 		<!-- http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
@@ -7140,6 +7140,7 @@
 							<artifactId>doxia-site-renderer</artifactId>
 							<version>${doxia.version}</version>
 						</dependency>
+
 						<dependency>
 							<groupId>com.nabla.project</groupId>
 							<artifactId>skin</artifactId>
@@ -7501,7 +7502,7 @@
 					</dependencies>
 					<configuration>
 						<providerSelection>2.0</providerSelection>
-						<debug>${maven.compile  r.debug}</debug>
+						<debug>${maven.compiler.debug}</debug>
 						<stacktrace>${maven.compiler.debug}</stacktrace>
 						<targetBytecode>${jdkLevel}</targetBytecode>
 						<!-- is the value to compile for a JDK 1.5 or later JVM. -->
@@ -9847,6 +9848,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 									<artifactId>doxia-site-renderer</artifactId>
 									<version>${doxia.version}</version>
 								</dependency>
+
 								<dependency>
 									<groupId>com.nabla.project</groupId>
 									<artifactId>skin</artifactId>

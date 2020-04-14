@@ -29,10 +29,10 @@
 	<properties>
 		<archiva.dir>C:\apache-archiva-1.3\data\repositories</archiva.dir>
 		<project.project.distributionManagement.repository.url>file://localhost/${archiva.dir}</project.project.distributionManagement.repository.url>
-		<wagon.webdav.jackrabbit.version>1.0-beta-7</wagon.webdav.jackrabbit.version>
-		<wagon.svn.plugin.version>1.8</wagon.svn.plugin.version>
-		<wagon.ftp.plugin.version>2.2</wagon.ftp.plugin.version>
-		<wagon.ssh.plugin.version>1.0-beta-6</wagon.ssh.plugin.version>
+		<wagon.webdav.jackrabbit.version>3.3.4</wagon.webdav.jackrabbit.version>
+		<wagon.svn.plugin.version>1.12</wagon.svn.plugin.version>
+		<wagon.ftp.plugin.version>3.3.4</wagon.ftp.plugin.version>
+		<wagon.ssh.plugin.version>3.3.4</wagon.ssh.plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
