@@ -678,6 +678,9 @@ fi
 if [ -d "/home/linuxbrew/.linuxbrew/bin/" ] ; then
     PATH="/home/linuxbrew/.linuxbrew/bin/:$PATH"
 fi
+if [ -d "/opt/Symantec/symantec_antivirus/" ] ; then
+    PATH="/opt/Symantec/symantec_antivirus/:$PATH"
+fi
 
 export PATH=/usr/local/bin:/usr/sbin:/sbin:/usr/bin:/bin:${PATH}
 

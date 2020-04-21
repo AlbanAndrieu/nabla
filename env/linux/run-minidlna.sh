@@ -1,4 +1,4 @@
-#!/bin/bash
+r#!/bin/bash
 set -xv
 
 # See https://doc.ubuntu-fr.org/minidlna
@@ -13,5 +13,7 @@ media_dir=V,/media/video
 sudo ufw allow from 192.168.1.0/24 to any port 8200
 
 sudo systemctl restart minidlna
+
+# http://localhost:8200/
 
 exit 0

@@ -1,7 +1,7 @@
 #!/bin/bash
 set -xv
 
-echo "Symantec Endpoint Protection"
+echo "Symantec Endpoint Protection : SAVFL"
 
 chmod +x ./install.sh
 sudo ./install.sh
@@ -91,4 +91,35 @@ sudo /etc/init.d/rtvscand stop
 sudo /etc/init.d/symcfgd stop
 sudo /etc/init.d/smcd stop
 
+# https://community.broadcom.com/symantecenterprise/communities/community-home/librarydocuments/viewdocument?DocumentKey=277577ca-a0b1-4ae8-8002-36048d86d833&CommunityKey=1ecf5f55-9545-44d6-b0f4-4e4a7f5f5e68&tab=librarydocuments
+/opt/Symantec/symantec_antivirus/unsupported/xsymcfg --help
+
+ls -lrta /etc/symantec/sep
+
+export PATH=$PATH:/opt/Symantec/symantec_antivirus/
+
+/opt/Symantec/symantec_antivirus/symcfg -r list
+/opt/Symantec/symantec_antivirus/symcfg add -k '\Symantec Endpoint Protection\AV\Storages\FileSystem\RealTimeScan' -v HaveExceptionDirs -d 1 -t REG_DWORD
+/opt/Symantec/symantec_antivirus/symcfg add -k '\Symantec Endpoint Protection\AV\LocalScans\ManualScan' -v HaveExceptionDirs -d 1 -t REG_DWORD
+/opt/Symantec/symantec_antivirus/symcfg add -k '\Symantec Endpoint Protection\AV\Custom Tasks\albandri' -v HaveExceptionDirs -d 1 -t REG_DWORD
+
+/opt/Symantec/symantec_antivirus/symcfg add -k '\Symantec Endpoint Protection\AV\Storages\FileSystem\RealTimeScan\NoScanDir' -v /proc -d 1 -t REG_DWORD
+/opt/Symantec/symantec_antivirus/symcfg add -k '\Symantec Endpoint Protection\AV\Storages\FileSystem\RealTimeScan\NoScanDir' -v /sys -d 1 -t REG_DWORD
+/opt/Symantec/symantec_antivirus/symcfg add -k '\Symantec Endpoint Protection\AV\LocalScans\ManualScan\NoScanDir' -v /proc -d 1 -t REG_DWORD
+/opt/Symantec/symantec_antivirus/symcfg add -k '\Symantec Endpoint Protection\AV\LocalScans\ManualScan\NoScanDir' -v /sys -d 1 -t REG_DWORD
+/opt/Symantec/symantec_antivirus/symcfg add -k '\Symantec Endpoint Protection\AV\Custom Tasks\albandri\NoScanDir' -v /proc -d 1 -t REG_DWORD
+/opt/Symantec/symantec_antivirus/symcfg add -k '\Symantec Endpoint Protection\AV\Custom Tasks\albandri\NoScanDir' -v /sys -d 1 -t REG_DWORD
+
+/opt/Symantec/symantec_antivirus/symcfg add -k '\Symantec Endpoint Protection\AV\Storages\FileSystem\RealTimeScan\NoScanDir' -v /kgr -d 1 -t REG_DWORD
+/opt/Symantec/symantec_antivirus/symcfg add -k '\Symantec Endpoint Protection\AV\Storages\FileSystem\RealTimeScan\NoScanDir' -v /home -d 1 -t REG_DWORD
+/opt/Symantec/symantec_antivirus/symcfg add -k '\Symantec Endpoint Protection\AV\LocalScans\ManualScan\NoScanDir' -v /kgr -d 1 -t REG_DWORD
+/opt/Symantec/symantec_antivirus/symcfg add -k '\Symantec Endpoint Protection\AV\LocalScans\ManualScan\NoScanDir' -v /home -d 1 -t REG_DWORD
+/opt/Symantec/symantec_antivirus/symcfg add -k '\Symantec Endpoint Protection\AV\Custom Tasks\albandri\NoScanDir' -v /kgr -d 1 -t REG_DWORD
+/opt/Symantec/symantec_antivirus/symcfg add -k '\Symantec Endpoint Protection\AV\Custom Tasks\albandri\NoScanDir' -v /home -d 1 -t REG_DWORD
+
+/opt/Symantec/symantec_antivirus/symcfg -r list | grep 'proc\|sys\|kgr\|home'
+
+tail -f /var/symantec/sep/Logs/syslog.log
+/opt/Symantec/symantec_antivirus/sav log -e
+ 
 exit 0
