@@ -2,8 +2,8 @@
 set -xv
 
 # https://wiki.jenkins-ci.org/display/JENKINS/ClamAV+Plugin
-sudo apt-get install clamav-base clamav-daemon clamav-docs clamav 
-#sudo apt-get install clamtk-nautilus 
+sudo apt-get install clamav-base clamav-daemon clamav-docs clamav
+#sudo apt-get install clamtk-nautilus
 sudo apt-get install clamtk-gnome
 
 # See https://doc.ubuntu-fr.org/clamav
@@ -21,7 +21,7 @@ netstat -tlpn | grep clam
 
 tail -f /var/log/clamav/freshclam.log
 
-sudo apt-get install inotify-tools 
+sudo apt-get install inotify-tools
 ./run-clamav-tr.sh
 
 sudo clamscan --max-filesize=3999M --max-scansize=3999M --exclude-dir=/kgr/* --exclude-dir=/home/* --exclude-dir=/sys/* --exclude-dir=/proc/* -i -r /
@@ -40,12 +40,13 @@ less /etc/clamav/freshclam.conf
 
 netstat -anp | grep -E "(Active|State|clam|3310)"
 
-sudo nano /etc/clamav/clamd.conf 
-# Add 
+sudo nano /etc/clamav/clamd.conf
+# Add
 #TCPSocket 3310
 #TCPAddr 192.168.1.25
 
 #systemctl disable clamav-daemon.service
+systemctl restart clamav-daemon.service
 
 sudo clamd ping
 

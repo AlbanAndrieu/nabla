@@ -16,7 +16,7 @@ cd /Users/Shared/Jenkins/Home
 sudo su - Jenkins
 mkdir init.groovy.d/
 
-sudo launchctl start org.apache.httpd 
+sudo launchctl start org.apache.httpd
 ls -lrta /private/var/log/apache2/error_log
 
 #/Users/devel/.ssh/org.jenkins-ci
@@ -47,6 +47,7 @@ echo "/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/java"
 exec "/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/java" $javaArgs -jar "$war" $args
 
 sudo /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/bin/keytool -importcert -alias dev -file UK1VSWCERT01-CA-5.crt -keystore /Library/Internet\ Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/lib/security/cacerts
+/Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/bin/keytool -importcert -alias dev -file UK1VSWCERT01-CA-5.crt -keystore /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/security/cacerts
 
 ls -lrta /Users/Shared/Jenkins/
 sudo chown -R jenkins:staff /Users/Shared/Jenkins/
