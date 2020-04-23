@@ -701,7 +701,8 @@
 		<maven.pmd.plugin.version>3.10.0</maven.pmd.plugin.version>
 		<maven.processor.plugin.version>3.3.3</maven.processor.plugin.version>
 		<maven.proguard.plugin.version>2.0.14</maven.proguard.plugin.version>
-		<maven.project.info.reports.plugin.version>3.0.0</maven.project.info.reports.plugin.version>
+		<maven.project.info.reports.plugin.version>2.9</maven.project.info.reports.plugin.version>
+		<!--<maven.project.info.reports.plugin.version>3.0.0</maven.project.info.reports.plugin.version> NOK -->
 		<!-- Plugin version definitions -->
 		<maven.project.version>3.0-alpha-2</maven.project.version>
 		<maven.properties.plugin.version>1.0.0</maven.properties.plugin.version>
