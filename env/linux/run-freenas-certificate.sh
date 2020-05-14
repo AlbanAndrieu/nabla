@@ -17,7 +17,8 @@ nano /root/deploy-freenas/deploy_config
 source .bashrc
 /root/.acme.sh/acme.sh --issue --dns dns_gcloud -d albandrieu.com -d '*.albandrieu.com' --reloadcmd "/root/deploy-freenas/deploy_freenas.py"
 # Go to https://console.developers.google.com/project/1054538550931/settings
-/root/.acme.sh/acme.sh --nginx  --issue --dns dns_gcloud -d albandrieu.com -d '*.albandrieu.com' --reloadcmd "/root/deploy-freenas/deploy_freenas.py"
+#/root/.acme.sh/acme.sh --nginx  --issue --dns dns_gcloud -d albandrieu.com -d '*.albandrieu.com' --reloadcmd "/root/deploy-freenas/deploy_freenas.py"
+/root/.acme.sh/acme.sh --apache  --issue --dns dns_gcloud -d albandrieu.com -d '*.albandrieu.com' --reloadcmd "/root/deploy-freenas/deploy_freenas.py"
 #-w /var/www/html
 ls -lrta /usr/local/etc/nginx
 ls -lrta /usr/local/www

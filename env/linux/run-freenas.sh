@@ -16,15 +16,15 @@ wakeonlan 7C:05:07:0E:D9:88
 #from Shell
 /etc/netcli
 
-#WebUI
+# WebUI
 #Set nginx_enable to YES: sysrc nginx_enable=YES
 #modify nginx.conf: nano /usr/local/etc/nginx/nginx.conf
-#listen                  192.168.1.24:7000 default_server ssl http2;
+#listen                  192.168.1.62:7000 default_server ssl http2;
 #listen                  [::]:7000 default_server ssl http2;
 #
 #ssl_certificate         "/etc/certificates/freenas-pre-certui.crt";
 #ssl_certificate_key     "/etc/certificates/freenas-pre-certui.key";
-#listen       192.168.1.24:80;
+#listen       192.168.1.62:80;
 #listen       [::]:80;
 #Remove the IPv6 listen line
 #Start Nginx Service: service nginx start
@@ -33,9 +33,8 @@ service django restart
 
 sqlite3 /data/freenas-v1.db "update system_settings set stg_guiprotocol = 'http';"
 
-echo "https://192.168.1.24:7000/"
+echo "https://192.168.1.62:7000/"
 echo "https://albandrieu.com:7000/"
-echo "https://freenas.freeboxos.fr:7000/"
 #https://[fe80::160c:76ff:fe64:65dd]:7000/
 https://[fe80::7e05:7ff:fe0e:d988]:7000/
 
@@ -69,7 +68,7 @@ minidlna-1.0.24_1-amd64
 transmission-2.77-amd64
 firefly-1696_7-amd64
 
-#freenas IP is 192.168.1.24
+#freenas IP is 192.168.1.62
 
 #IPv4 Default Gateway
 #NOK 192.168.1.1
@@ -106,7 +105,7 @@ tail -f /mnt/dpool/jail/software/var/log/minidlna.log
 
 #Firefly
 #do redirect to jail
-http://192.168.1.24:3689/
+http://192.168.1.62:3689/
 http://albandrieu.com:3689/index.html
 
 #couchpotato
@@ -194,7 +193,7 @@ user : admin
 #http://192.168.0.15:32400/web/index.html
 
 #install java
-ssh root@192.168.1.24
+ssh root@192.168.1.62
 
 #http://orw.se/blog/index.php/install-java-on-freenas-7-3/
 setenv PACKAGESITE ftp://ftp.freebsd.org/pub/FreeBSD/ports/i386/packages-8.3-release/Latest/
@@ -205,40 +204,7 @@ pkg install sudo
 
 pkg install wget
 
-pkg install ansible
-
-pkg install python
-pkg install py27-pip
-pip install pygal
-
-cd /usr/ports/security/openssh-askpass/ && make install clean
-#pkg install OpenSSH-askpass
-ls /usr/local/bin/ssh-askpass
-
-#for Xvfb
-pkg install xorg-vfbserver
-#/usr/local/bin/Xvfb
-
-#See https://www.freebsd.org/doc/handbook/desktop-browsers.html
-pkg install firefox
-#pkg install firefox-esr
-pkg install chromium
-
-npm install -g bower
-npm install -g nsp
-#npm install -g phantomjs-prebuilt
-#npm i phantom@4.0.5 -g
-npm search phantomjs
-
-pkg install phantomjs
-cd /usr/ports/lang/phantomjs/ && make install clean
-
-pkg info phantomjs
-ls -lrta /usr/local/bin/phantomjs
-#ls -lrta /usr/local/lib/node_modules/
-
-#pkg install libass
-#pkg install ffmpeg
+./run-freenas-jenkins-slave.sh
 
 #pkg install ar-ae_fonts_mono ar-ae_fonts1_ttf croscorefonts
 pkg install xterm rxvt-unicode
@@ -280,7 +246,7 @@ echo $SHELL
 #chmod -R 755 /mnt/dpool/albandri/.ssh
 #chown -R albandri:albandri /mnt/dpool/albandri/.ssh
 #chmod 600 /mnt/dpool/albandri/.ssh/authorized_keys
-scp ~/.ssh/id_rsa.pub albandri@192.168.1.24:
+scp ~/.ssh/id_rsa.pub albandri@192.168.1.62:
 cat ~/id_rsa.pub >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 
@@ -424,7 +390,6 @@ $CONFIG = array(
 );
 ?>
 
-
 /mnt/dpool/jail/software/usr/local/www/owncloud/data
 
 #hors jail
@@ -463,7 +428,9 @@ mkdir /usr/pbi/minidlna-amd64/media
 pkg install tomcat7
 
 ssh-keygen
-cat ~/.ssh/id_rsa.pub | ssh 192.168.1.24 "cat >> .ssh/authorized_keys"
+cat ~/.ssh/id_rsa.pub | ssh 192.168.1.62 "cat >> .ssh/authorized_keys"
 
 #Add https://www.ixsystems.com/documentation/freenas/11.3-RELEASE/tasks.html#cloud-sync-tasks
 #https://rclone.org/
+
+exit 0

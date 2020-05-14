@@ -18,5 +18,6 @@ microk8s.status
 snap alias microk8s.kubectl kubectl
 sudo usermod -a -G microk8s albandrieu
 microk8s.kubectl config view --raw > $HOME/.kube/config
+#cp /root/.kube/config /home/albandrieu/.kube/
 
 exit 0

@@ -74,15 +74,15 @@ java -jar /usr/share/jenkins/jenkins.war --httpPort=8081 --ajp13Port=8010
 
 #trigger a full backup
 #wget http://albandri:8280/jenkins/backup/backup
-#http://home.nabla.mobi:8080/
+#http://home.albandrieu.com:8080/
 
 #check memory
 #http://blog.cloudbees.com/2013/09/health-check-up-for-your-jenkins.html?mkt_tok=3RkMMJWWfF9wsRonvanBZKXonjHpfsX%2F7uwqUbHr08Yy0EZ5VunJEUWy24MIRdQ%2FcOedCQkZHblFnVwASa2lV7oNr6QP
 ssh -X jenkins@myserver jconsole
 
 #monitoring
-https://home.nabla.mobi/jenkins/monitoring?
-https://home.nabla.mobi/jenkins/monitoring?part=graph&graph=httpSessions
+https://home.albandrieu.com/jenkins/monitoring?
+https://home.albandrieu.com/jenkins/monitoring?part=graph&graph=httpSessions
 
 #On Red hat disable jenkins start at boot time
 #chkconfig jenkins off
@@ -110,31 +110,6 @@ ulimit -n
 lsof -p PID | wc -l
 ls -la /proc/PID/fd | wc -l
 
-#MacOSX
-sudo launchctl unload /Library/LaunchDaemons/org.jenkins-ci.plist
-
-rm -f /var/log/jenkins/jenkins.log
-ls /Applications/Jenkins/jenkins.war
-cd /Applications/Jenkins/
-wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
-sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist
-tail -f /var/log/jenkins/jenkins.log
-cd /Users/Shared/Jenkins/Home
-sudo su - jenkins
-mkdir init.groovy.d/
-
-#See https://wiki.jenkins.io/display/JENKINS/Thanks+for+using+OSX+Installer
-#sudo defaults read /Library/Preferences/org.jenkins-ci
-#sudo defaults write /Library/Preferences/org.jenkins-ci heapSize 8192M
-#sudo defaults write /Library/Preferences/org.jenkins-ci minHeapSize 1024M
-#sudo defaults write /Library/Preferences/org.jenkins-ci minPermGen 1024M
-#sudo defaults write /Library/Preferences/org.jenkins-ci permGen 2048M
-#sudo defaults write /Library/Preferences/org.jenkins-ci httpPort -1
-#TODO sudo defaults write /Library/Preferences/org.jenkins-ci httpsPort 443
-#sudo defaults write /Library/Preferences/org.jenkins-ci httpsPort 8383
-#sudo defaults write /Library/Preferences/org.jenkins-ci httpsKeyStore /etc/ssl/almonde-jenkins.misys.global.ad/almonde-jenkins.misys.global.ad.jks
-#sudo defaults write /Library/Preferences/org.jenkins-ci httpsKeyStorePassword changeit
-
 System.setProperty("org.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS", "true")
 System.setProperty("org.jenkinsci.plugins.durabletask.BourneShellScript.FORCE_SHELL_WRAPPER", "true")
 System.setProperty("org.jenkinsci.plugins.durabletask.BourneShellScript.FORCE_BINARY_WRAPPER", "true")
@@ -144,7 +119,7 @@ System.setProperty("hudson.model.DirectoryBrowserSupport.CSP", "")
 System.setProperty("permissive-script-security.enabled", "true")
 System.setProperty("org.jenkinsci.plugins.gitclient.Git.timeOut", "120")
 System.setProperty("hudson.plugins.git.GitSCM.verbose", "true")
-System.setProperty("org.jenkinsci.plugins.docker.workflow.client.DockerClient.CLIENT_TIMEOUT", "240")
+System.setProperty("org.jenkinsci.plugins.docker.workflow.client.DockerClient.CLIENT_TIMEOUT", "600")
 
 #System.setProperty("http.connect.timeout", "100")
 #System.setProperty("http.connect.request.timeout", "600")
@@ -171,4 +146,6 @@ curl -L https://github.com/jenkins-x/jx/releases/download/v1.2.18/jx-linux-amd64
 sudo mv jx /usr/local/bin
 
 #API endpoint
-#http://home.nabla.mobi:8381/job/nabla-projects-interview-visma-nightly/lastSuccessfulBuild/api/json?tree=actions[remoteUrls,lastBuildRevision[SHA1]]&pretty=true
+#http://home.albandrieu.com:8381/job/nabla-projects-interview-visma-nightly/lastSuccessfulBuild/api/json?tree=actions[remoteUrls,lastBuildRevision[SHA1]]&pretty=true
+
+exit 0

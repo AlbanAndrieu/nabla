@@ -58,7 +58,7 @@ systemctl stop apt-cacher-ng
 
 #update-rc.d -f todo remove
 
-systemctl disable apport
+#systemctl disable apport
 systemctl disable webmin remove
 systemctl disable usermin remove
 systemctl disable jetty remove
@@ -106,5 +106,3 @@ systemctl disable osspd remove
 systemctl disable cups remove
 systemctl disable cups-browsed remove
 systemctl disable ypbind remove
-
-#sudo apt purge apport

@@ -13,11 +13,11 @@
 	<packaging>pom</packaging>
 	<name>Dependencies pom file</name>
 	<description>The Dependencies pom file is a superpom to centralize all third parties</description>
-	<url>http://maven.nabla.mobi/dependencies</url>
-	<inceptionYear>2018</inceptionYear>
+	<url>http://maven.albandrieu.com/dependencies</url>
+	<inceptionYear>2020</inceptionYear>
 	<organization>
 		<name>Nabla Software</name>
-		<url>http://home.nabla.mobi/</url>
+		<url>http://albandrieu.com/</url>
 	</organization>
 	<licenses>
 		<license>
@@ -140,7 +140,9 @@
 		<asm.version>3.3.1</asm.version>
 		<aspectj.version>1.8.13</aspectj.version>
 		<aspectj.weaver.version>${aspectj.version}</aspectj.weaver.version>
-		<atmosphere.version>1.1.0.RC5</atmosphere.version>
+		<atmosphere.gwt.client.version>1.1.0.RC5</atmosphere.gwt.client.version>
+		<atmosphere.gwt.server.version>1.1.0.RC5</atmosphere.gwt.server.version>
+		<atmosphere.version>2.5.13</atmosphere.version>
 		<avalon.framework.version>4.1.3</avalon.framework.version>
 		<axiom.api.version>1.2.10</axiom.api.version>
 		<axiom.dom.version>${axiom.api.version}</axiom.dom.version>
@@ -164,7 +166,7 @@
 		<bundle.symbolicName>${project.artifactId}</bundle.symbolicName>
 		<c3p0.version>0.8.5.2</c3p0.version>
 		<camel.version>2.13.0</camel.version>
-		<cargo.core.uberjar.version>1.7.10</cargo.core.uberjar.version>
+		<cargo.core.uberjar.version>1.7.11</cargo.core.uberjar.version>
 		<!-- TODO move to profile jmeter -->
 		<cargo.host>localhost</cargo.host>
 		<cargo.port>80</cargo.port>
@@ -178,7 +180,9 @@
 		<classworlds.version>1.1</classworlds.version>
 		<clickstream.version>1.0.2</clickstream.version>
 		<!-- Test Coverage/Sonar - Clover - Do not change this version without checking if everything is working well -->
-		<clover.version>4.0.6</clover.version>
+		<clover.cenqua.version>3.3.0</clover.cenqua.version>
+		<!-- old version which moved to com.atlassian.clover » clover -->
+		<clover.version>4.1.2</clover.version>
 		<cobertura.format>xml</cobertura.format>
 		<commons.beanutils.version>1.8.3</commons.beanutils.version>
 		<commons.cli.version>1.2</commons.cli.version>
@@ -225,12 +229,14 @@
 		<displaytag.version>1.2</displaytag.version>
 		<documentation.output.directory>${project.build.directory}/docs</documentation.output.directory>
 		<dom4j.version>1.6.1</dom4j.version>
-		<doxia.core.version>1.8</doxia.core.version>
+		<doxia.core.version>1.9.1</doxia.core.version>
 		<doxia.module.twiki.version>${doxia.version}</doxia.module.twiki.version>
-		<doxia.version>1.8.1</doxia.version>
+		<doxia.version>1.9.2</doxia.version>
 		<!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 		<!--<drools.version>6.2.0.CR4</drools.version>-->
 		<drools.api.version>5.2.0.M1</drools.api.version>
+		<drools.rhq.plugin.version>7.11.0.Final</drools.rhq.plugin.version>
+		<drools.simulator.version>6.5.0.Final</drools.simulator.version>
 		<drools.transformer.xstream.version>5.1.0.M2</drools.transformer.xstream.version>
 		<!--<webdriver.chrome.driver>/var/lib/chromedriver</webdriver.chrome.driver>-->
 		<!-- warning overrided in customs/pom.xml depending on architecture -->
@@ -239,6 +245,10 @@
 		<!--<arquillian>arq-jbossas-managed</arquillian>-->
 		<!-- warning overrided in customs/pom.xml depending on architecture -->
 		<drools.version>7.6.0.Final</drools.version>
+		<drools.wb.categories.editor.client.version>6.2.0.CR4</drools.wb.categories.editor.client.version>
+		<drools.wb.verifier.api.version>7.11.0.Final</drools.wb.verifier.api.version>
+		<drools.wb.verifier.core.version>7.11.0.Final</drools.wb.verifier.core.version>
+		<drools.wb.webapp.version>6.2.0.CR4</drools.wb.webapp.version>
 		<dwr.version>2.0.1</dwr.version>
 		<!-- NOT needed instead remove jmock-junit4 because it does not work with jacoco
                 <jmock.version>2.6.0</jmock.version>
@@ -265,8 +275,10 @@
 		<!-- TODO remove overrided to 1.0.1-SNAPSHOT-->
 		<environment>development</environment>
 		<errai.jboss7.support.version>2.0.Beta4</errai.jboss7.support.version>
+		<errai.js.version>${errai.version}</errai.js.version>
 		<!-- OK <errai.version>2.0.Beta3</errai.version>-->
 		<errai.version>2.3.2.Final</errai.version>
+		<!--<errai.js.version>3.2.5.Final</errai.js.version>-->
 		<esper.version>4.11.0</esper.version>
 		<express-jar.artifactId>ehcache</express-jar.artifactId>
 		<ezmorph.version>1.0.6</ezmorph.version>
@@ -441,8 +453,10 @@
 		<javax.websocket.api>1.0</javax.websocket.api>
 		<javax.ws.rs-api.version>2.0</javax.ws.rs-api.version>
 		<jaws.version>1.0</jaws.version>
-		<jaxb.api.version>2.1</jaxb.api.version>
-		<jaxb.impl.version>2.1.13</jaxb.impl.version>
+		<jaxb.api.version>${jaxb.version}</jaxb.api.version>
+		<jaxb.core.version>${jaxb.version}</jaxb.core.version>
+		<jaxb.impl.version>${jaxb.version}</jaxb.impl.version>
+		<jaxb.version>2.2.11</jaxb.version>
 		<jaxen.version>1.1.4</jaxen.version>
 		<jaxrs.doclet.version>0.0.4-SNAPSHOT</jaxrs.doclet.version>
 		<jaxws.rt.version>2.2.8</jaxws.rt.version>
@@ -471,8 +485,12 @@
 		<jbossws.client.version>2.0.1.SP2</jbossws.client.version>
 		<jbossws.framework.version>3.0.1-GA</jbossws.framework.version>
 		<jbossws.native.client.version>3.2.0.GA</jbossws.native.client.version>
+		<jbpm.bom.version>7.34.0.Final</jbpm.bom.version>
+		<jbpm.designer.distribution.wars.version>7.0.0.Final</jbpm.designer.distribution.wars.version>
+		<jbpm.identity.version>3.3.1</jbpm.identity.version>
 		<jbpm.jpdl.version>3.2.3</jbpm.jpdl.version>
-		<jbpm.version>3.3.1.GA</jbpm.version>
+		<!--<jbpm.version>3.3.1.GA</jbpm.version>-->
+		<jbpm.version>7.34.0.Final</jbpm.version>
 		<jcip.annotations.version>1.0-1</jcip.annotations.version>
 		<jdbc.derby.version>10.14.1.0</jdbc.derby.version>
 		<!--TODO same as jdbc.sybase.version <jconn.version>6.0</jconn.version>-->
@@ -539,7 +557,7 @@
 		<log4j.version>1.2.17</log4j.version>
 		<log4jdbc.remix.version>0.2.7</log4jdbc.remix.version>
 		<logback.version>1.1.7</logback.version>
-		<lombok.version>1.16.20</lombok.version>2
+		<lombok.version>1.16.20</lombok.version>
 		<lucene.version>3.6.2</lucene.version>
 		<maven.animal.sniffer.plugin.version>1.18</maven.animal.sniffer.plugin.version>
 		<maven.ant.plugin.version>2.4</maven.ant.plugin.version>
@@ -678,12 +696,13 @@
 		<maven.pax.plugin.version>1.6.0</maven.pax.plugin.version>
 		<maven.pitest.plugin.version>1.5.0</maven.pitest.plugin.version>
 		<maven.plexus.util.plugin.version>1.1</maven.plexus.util.plugin.version>
-		<maven.plugin.api.plugin.version>${maven.version}</maven.plugin.api.plugin.version>
+		<maven.plugin.api.plugin.version>3.6.3</maven.plugin.api.plugin.version>
 		<maven.plugin.plugin.plugin.version>3.5</maven.plugin.plugin.plugin.version>
 		<maven.pmd.plugin.version>3.10.0</maven.pmd.plugin.version>
 		<maven.processor.plugin.version>3.3.3</maven.processor.plugin.version>
 		<maven.proguard.plugin.version>2.0.14</maven.proguard.plugin.version>
 		<maven.project.info.reports.plugin.version>2.9</maven.project.info.reports.plugin.version>
+		<!--<maven.project.info.reports.plugin.version>3.0.0</maven.project.info.reports.plugin.version> NOK -->
 		<!-- Plugin version definitions -->
 		<maven.project.version>3.0-alpha-2</maven.project.version>
 		<maven.properties.plugin.version>1.0.0</maven.properties.plugin.version>
@@ -705,6 +724,7 @@
 		<maven.shared.jar.version>1.0</maven.shared.jar.version>
 		<maven.site.github.plugin.version>0.12</maven.site.github.plugin.version>
 		<!--<maven.site.old.plugin.version>2.3</maven.site.old.plugin.version>-->
+		<!--<maven.site.plugin.version>3.9.0-rc.2</maven.site.plugin.version>-->
 		<maven.site.plugin.version>3.8.2</maven.site.plugin.version>
 		<maven.sonar.plugin.version>3.7.0.1746</maven.sonar.plugin.version>
 		<maven.sonar.report.plugin.version>2.2.1</maven.sonar.report.plugin.version>
@@ -744,7 +764,7 @@
 		<maven.xdoclet.plugin.version>1.0</maven.xdoclet.plugin.version>
 		<maven.xml.plugin.version>1.0.2</maven.xml.plugin.version>
 		<maven.zap.plugin.version>1.2-SNAPSHOT</maven.zap.plugin.version>
-		<mimepull.version></mimepull.version>
+		<mimepull.version>1.9.13</mimepull.version>
 		<mockito.version>1.10.19</mockito.version>
 		<!-- WARNING jmockit does not work wit jacoco coverage -->
 		<mockrunner.version>1.0.0</mockrunner.version>
@@ -911,8 +931,8 @@
 		<saxon.version>8.7</saxon.version>
 		<scala.short.version>2.11</scala.short.version>
 		<!-- for gatling to work -->
-		<scala.suffix>_2.11</scala.suffix>
-		<scala.version>2.11.7</scala.version>
+		<scala.suffix>_2.12</scala.suffix>
+		<scala.version>2.13.1</scala.version>
 		<!--
                 <scala.dep.version>${scala-short.version}.6</scala.dep.version>
                 <scala.lib.version>${scala-short.version}.6</scala.lib.version>
@@ -1000,7 +1020,7 @@
 		<sonar.global.exclusions>**/generated/**</sonar.global.exclusions>
 		<sonar.groovy.codenarc.reportPath>target/CodeNarcReport.xml</sonar.groovy.codenarc.reportPath>
 		<!--<sonar.surefire.reportsPath>${project.build.directory}/clover/surefire-reports</sonar.surefire.reportsPath> -->
-		<!--<sonar.host.url>http://home.nabla.mobi:9000</sonar.host.url>-->
+		<!--<sonar.host.url>http://albandrieu.com:9000</sonar.host.url>-->
 		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 		<!--<sonar.sources>src/main/java,src/main/js,src/main/webapp,src/generated/java,src/generated/js, **/web.xml, **/*.xhtml</sonar.sources>-->
 		<!-- DO NOT SET below sonar properties for all projects
@@ -1040,13 +1060,13 @@
                 <jetty.context.path.to.replace>jetty.context.path</jetty.context.path.to.replace>
                 <jetty.context.path>/nabla</jetty.context.path>
                 -->
-		<!--<sonar.jdbc.url>jdbc:mysql://home.nabla.mobi:3306/sonar</sonar.jdbc.url>-->
+		<!--<sonar.jdbc.url>jdbc:mysql://albandrieu.com:3306/sonar</sonar.jdbc.url>-->
 		<!--<sonar.jdbc.driver>com.mysql.jdbc.Driver</sonar.jdbc.driver>-->
 
 		<!--
         <sonar.jdbc.driver>org.h2.Driver</sonar.jdbc.driver>
         <sonar.jdbc.password>sonar</sonar.jdbc.password>
-        <sonar.jdbc.url>jdbc:h2:tcp://home.nabla.mobi:9092/sonar</sonar.jdbc.url>
+        <sonar.jdbc.url>jdbc:h2:tcp://albandrieu.com:9092/sonar</sonar.jdbc.url>
         <sonar.jdbc.username>sonar</sonar.jdbc.username>
         <sonar.pdf.password>microsoft</sonar.pdf.password>
         <sonar.pdf.username>admin</sonar.pdf.username>
@@ -1133,10 +1153,10 @@
 		<!-- OK http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
 		<!--<org.jboss.shrinkwrap.bom.version>2.1.1</org.jboss.shrinkwrap.bom.version>-->
 		<version.shrinkwrap_shrinkwrap>1.2.2</version.shrinkwrap_shrinkwrap>
-		<wagon.ftp.plugin.version>3.0.0</wagon.ftp.plugin.version>
-		<wagon.ssh.plugin.version>3.0.0</wagon.ssh.plugin.version>
+		<wagon.ftp.plugin.version>3.3.4</wagon.ftp.plugin.version>
+		<wagon.ssh.plugin.version>3.3.4</wagon.ssh.plugin.version>
 		<wagon.svn.plugin.version>1.12</wagon.svn.plugin.version>
-		<wagon.webdav.jackrabbit.version>3.0.0</wagon.webdav.jackrabbit.version>
+		<wagon.webdav.jackrabbit.version>3.3.4</wagon.webdav.jackrabbit.version>
 		<web.framework>struts</web.framework>
 		<webtest.version>R_1600</webtest.version>
 		<!-- http://central.maven.org/maven2/org/jboss/bom/jboss-bom-parent/1.0.7.Final/jboss-bom-parent-1.0.7.Final.pom -->
@@ -2344,6 +2364,11 @@
 				<artifactId>errai-tools</artifactId>
 				<version>${errai.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.jboss.errai</groupId>
+				<artifactId>errai-js</artifactId>
+				<version>${errai.js.version}</version>
+			</dependency>
 			<!-- Errai JAX-RS -->
 			<dependency>
 				<groupId>org.jboss.errai</groupId>
@@ -2422,12 +2447,12 @@
 			<dependency>
 				<groupId>org.atmosphere</groupId>
 				<artifactId>atmosphere-gwt-server</artifactId>
-				<version>${atmosphere.version}</version>
+				<version>${atmosphere.gwt.server.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.atmosphere</groupId>
 				<artifactId>atmosphere-gwt-client</artifactId>
-				<version>${atmosphere.version}</version>
+				<version>${atmosphere.gwt.client.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>org.atmosphere</groupId>
@@ -2496,6 +2521,16 @@
 						<groupId>javax.servlet</groupId>
 					</exclusion>
 				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-identity</artifactId>
+				<version>${jbpm.identity.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm-designer-distribution-wars</artifactId>
+				<version>${jbpm.designer.distribution.wars.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>jboss</groupId>
@@ -3604,13 +3639,16 @@
 				<groupId>javax.xml.bind</groupId>
 				<artifactId>jaxb-api</artifactId>
 				<version>${jaxb.api.version}</version>
-				<!--<scope>compile</scope>-->
+			</dependency>
+			<dependency>
+				<groupId>com.sun.xml.bind</groupId>
+				<artifactId>jaxb-core</artifactId>
+				<version>${jaxb.core.version}</version>
 			</dependency>
 			<dependency>
 				<groupId>com.sun.xml.bind</groupId>
 				<artifactId>jaxb-impl</artifactId>
 				<version>${jaxb.impl.version}</version>
-				<!--<scope>compile</scope>-->
 				<exclusions>
 					<exclusion>
 						<artifactId>stax-api</artifactId>
@@ -4039,6 +4077,37 @@
 				<artifactId>drools-transformer-xstream</artifactId>
 				<version>${drools.transformer.xstream.version}</version>
 			</dependency>
+			<dependency>
+				<groupId>org.drools</groupId>
+				<artifactId>drools-wb-webapp</artifactId>
+				<version>${drools.wb.webapp.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.drools</groupId>
+				<artifactId>drools-wb-verifier-core</artifactId>
+				<version>${drools.wb.verifier.core.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.drools</groupId>
+				<artifactId>drools-wb-verifier-api</artifactId>
+				<version>${drools.wb.verifier.api.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.drools</groupId>
+				<artifactId>drools-wb-categories-editor-client</artifactId>
+				<version>${drools.wb.categories.editor.client.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.drools</groupId>
+				<artifactId>drools-simulator</artifactId>
+				<version>${drools.simulator.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.drools</groupId>
+				<artifactId>drools-rhq-plugin</artifactId>
+				<version>${drools.rhq.plugin.version}</version>
+			</dependency>
+
 			<dependency>
 				<groupId>com.thoughtworks.xstream</groupId>
 				<artifactId>xstream</artifactId>
@@ -5022,6 +5091,15 @@
 				<scope>import</scope>
 				<!--<scope>provided</scope>-->
 			</dependency>
+
+			<dependency>
+				<groupId>org.jbpm</groupId>
+				<artifactId>jbpm</artifactId>
+				<version>${jbpm.bom.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+
 			<dependency>
 				<groupId>org.seleniumhq.selenium</groupId>
 				<artifactId>selenium-java</artifactId>
@@ -6748,9 +6826,9 @@
                         <nodeVersion>v${node.version}</nodeVersion>
                         <npmVersion>${npm.version}</npmVersion>
                         <yarnVersion>v${yarn.version}</yarnVersion>
-                        <nodeDownloadRoot>http://home.nabla.mobi/html/download/nodejs/</nodeDownloadRoot>
-                        <npmDownloadRoot>http://home.nabla.mobi/html/download/npm/-/</npmDownloadRoot>
-                        <yarnDownloadRoot>http://home.nabla.mobi/html/download//yarn/</yarnDownloadRoot>
+                        <nodeDownloadRoot>http://albandrieu.com/download/nodejs/</nodeDownloadRoot>
+                        <npmDownloadRoot>http://albandrieu.com/download/npm/-/</npmDownloadRoot>
+                        <yarnDownloadRoot>http://albandrieu.com/download/yarn/</yarnDownloadRoot>
                     </configuration>
                     -->
 				</plugin>
@@ -6796,9 +6874,9 @@
 						<!--<executable>${java.home}/bin/javac</executable> WARNING define in main/pom.xml -->
 						<compilerArgument>-Xlint:cast,unchecked,fallthrough,finally,serial</compilerArgument>
 						<!--
-                                                        <verbose>true</verbose> <excludes>
-                                                        <exclude>**/*Point*.java</exclude> </excludes>
-                                                -->
+								<verbose>true</verbose> <excludes>
+								<exclude>**/*Point*.java</exclude> </excludes>
+						-->
 					</configuration>
 				</plugin>
 				<plugin>
@@ -7064,6 +7142,7 @@
 							<artifactId>doxia-site-renderer</artifactId>
 							<version>${doxia.version}</version>
 						</dependency>
+
 						<dependency>
 							<groupId>com.nabla.project</groupId>
 							<artifactId>skin</artifactId>
@@ -7081,6 +7160,7 @@
                         <version>${maven.downloads.github.plugin.version}</version>
                 </plugin>
                 -->
+				<!--
 				<plugin>
 					<groupId>com.github.github</groupId>
 					<artifactId>site-maven-plugin</artifactId>
@@ -7089,6 +7169,7 @@
 						<message>Creating site for ${project.name} ${project.version}</message>
 					</configuration>
 				</plugin>
+				-->
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-resources-plugin</artifactId>
@@ -7425,7 +7506,7 @@
 					</dependencies>
 					<configuration>
 						<providerSelection>2.0</providerSelection>
-						<debug>${maven.compile  r.debug}</debug>
+						<debug>${maven.compiler.debug}</debug>
 						<stacktrace>${maven.compiler.debug}</stacktrace>
 						<targetBytecode>${jdkLevel}</targetBytecode>
 						<!-- is the value to compile for a JDK 1.5 or later JVM. -->
@@ -8290,10 +8371,10 @@ var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga
 						<nexusAnalyzerEnabled>false</nexusAnalyzerEnabled>
 						<!--
                         <nexusUrl>http://albandrieu.com:8081/nexus</nexusUrl>
-                        <cveUrl12Modified>http://home.nabla.mobi/download/nist/nvdcve-Modified.xml.gz</cveUrl12Modified>
-                        <cveUrl20Modified>http://home.nabla.mobi/download/nist/nvdcve-2.0-Modified.xml.gz</cveUrl20Modified>
-                        <cveUrl12Base>http://home.nabla.mobi/download/nist/nvdcve-%d.xml</cveUrl12Base>
-                        <cveUrl20Base>http://home.nabla.mobi/download/nist/nvdcve-2.0-%d.xml</cveUrl20Base>
+                        <cveUrl12Modified>http://albandrieu.com/download/nist/nvdcve-Modified.xml.gz</cveUrl12Modified>
+                        <cveUrl20Modified>http://albandrieu.com/download/nist/nvdcve-2.0-Modified.xml.gz</cveUrl20Modified>
+                        <cveUrl12Base>http://albandrieu.com/download/nist/nvdcve-%d.xml</cveUrl12Base>
+                        <cveUrl20Base>http://albandrieu.com/download/nist/nvdcve-2.0-%d.xml</cveUrl20Base>
                         -->
 					</configuration>
 				</plugin>
@@ -9771,6 +9852,7 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 									<artifactId>doxia-site-renderer</artifactId>
 									<version>${doxia.version}</version>
 								</dependency>
+
 								<dependency>
 									<groupId>com.nabla.project</groupId>
 									<artifactId>skin</artifactId>

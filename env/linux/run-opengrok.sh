@@ -1,7 +1,7 @@
 #!/bin/bash
 set -xv
 
-#https://github.com/OpenGrok/OpenGrok/wiki/How-to-install-OpenGrok
+# https://github.com/oracle/opengrok/wiki/How-to-setup-OpenGrok
 
 cd /workspace
 
@@ -44,7 +44,7 @@ sudo chown tomcat7:tomcat7 source.war
 ./OpenGrok index /workspace/users/albandri10
 java -Xmx1524m -jar opengrok.jar -W /var/opengrok/etc/configuration.xml -P -S -v -s /workspace/users/albandri10  -d /workspace/opengrok/data
 
- more /var/opengrok/etc/configuration.xml
+more /var/opengrok/etc/configuration.xml
 
 grant codeBase "file:${catalina.base}/webapps/source/" {
   permission java.security.AllPermission;
@@ -52,3 +52,5 @@ grant codeBase "file:${catalina.base}/webapps/source/" {
 grant codeBase "file:${catalina.base}/webapps/source/WEB-INF/lib/" {
   permission java.security.AllPermission;
 };
+
+exit 0

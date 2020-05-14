@@ -6,7 +6,6 @@
 #set -eo pipefail
 
 WORKING_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}"  )" && pwd  )"
-
 # Ansible managed
 
 ####################
@@ -90,7 +89,7 @@ then
 fi
 export SVN_EDITOR=${EDITOR}
 
-export PATH=/usr/local/bin:/usr/sbin:/sbin:/usr/bin:/bin
+export PATH=/usr/local/bin:/usr/sbin:/sbin:/usr/bin:/bin:${PATH}
 if [ -d "${HOME}/bin" ] ; then
     PATH="${HOME}/bin:$PATH"
 fi
@@ -99,15 +98,6 @@ if [ -d "${WORKSPACE_ENV}/${ARCH}/bin" ] ; then
 fi
 if [ -d "${DRIVE_PATH}/cygwin/bin" ] ; then
     PATH="${DRIVE_PATH}/cygwin/bin:$PATH"
-fi
-if [ -d "${HOME}/.linuxbrew/bin" ] ; then
-    PATH="${HOME}/.linuxbrew/bin:$PATH"
-fi
-if [ -d "${HOME}/.git-radar" ] ; then
-    PATH="${HOME}/.git-radar/:$PATH"
-fi
-if [ -d "/home/linuxbrew/.linuxbrew/bin/" ] ; then
-    PATH="/home/linuxbrew/.linuxbrew/bin/:$PATH"
 fi
 if [ -d "/snap/bin" ] ; then
     PATH="/snap/bin/:$PATH"
@@ -179,7 +169,8 @@ export QTDIR=${DRIVE_PATH}/usr/lib/qt3
 export ZAPROXY_HOME=${DRIVE_PATH}/workspace/divers/zaproxy-read-only/build/zap
 export HUDSON_HOME=${DRIVE_PATH}/workspace/hudson
 export JENKINS_HOME=${DRIVE_PATH}/jenkins
-export TOMCAT_HOME=${DRIVE_PATH}/var/lib/tomcat7
+export TOMCAT_BASE=tomcat9
+export TOMCAT_HOME=${DRIVE_PATH}/var/lib/${TOMCAT_BASE}
 export SONAR_HOME=${DRIVE_PATH}/workspace/sonar
 export SONAR_RUNNER_HOME=${DRIVE_PATH}/workspace/sonar-runner
 export PATH=${SONAR_RUNNER_HOME}/bin:${PATH}
@@ -190,7 +181,7 @@ export CROWD_HOME=${DRIVE_PATH}/var/crowd-home
 export NEXUS_HOME=${DRIVE_PATH}/workspace/nexus
 export FISHEYE_HOME=${DRIVE_PATH}/workspace/fecru
 export FISHEYE_INST=${DRIVE_PATH}/workspace/fisheye
-export OPENGROK_TOMCAT_BASE=${DRIVE_PATH}/var/lib/tomcat7
+export OPENGROK_TOMCAT_BASE=${DRIVE_PATH}/var/lib/${TOMCAT_BASE}
 
 export SYBASE_OCS=OCS-15_0
 export SYBASE_VERSION=12.5
@@ -201,7 +192,6 @@ export ORACLE_HOME=${DRIVE_PATH}/oraclexe/app/oracle/product/${ORACLE_VERSION}/s
 
 export SNYK_TOKEN=c89235c8-165b-47f1-8a67-c6b39292bda4
 #snyk auth $SNYK_TOKEN
-export MICROSCANNER_TOKEN=NzdhNTQ2ZGZmYmEz
 
 ###
 # Alias
@@ -225,33 +215,52 @@ then
   export CORBA_ROOT=${PROJECT_THIRDPARTY_PATH}/tao
   export ACE_ROOT=${CORBA_ROOT}/ACE_wrappers
 
-  echo -e "${cyan} ACE_ROOT : ${ACE_ROOT} ${NC}"
-
   TAO_ROOT=${ACE_ROOT}/tao
   export TAO_ROOT
-
-  echo -e "${cyan} TAO_ROOT : ${TAO_ROOT} ${NC}"
 
   MPC_ROOT=${ACE_ROOT}/MPC
   export MPC_ROOT
 
-  echo -e "${cyan} MPC_ROOT : ${MPC_ROOT} ${NC}"
-
   CIAO_ROOT=${TAO_ROOT}/CIAO
   export CIAO_ROOT
-
-  echo -e "${cyan} CIAO_ROOT : ${CIAO_ROOT} ${NC}"
 
   DANCE_ROOT=${CIAO_ROOT}/DANCE
   export DANCE_ROOT
 
-  echo -e "${cyan} DANCE_ROOT : ${DANCE_ROOT} ${NC}"
-
-  DDS_ROOT=${CIO_ROOT}/connectors/dds4ccm
+  DDS_ROOT=${CIAO_ROOT}/connectors/dds4ccm
   export DDS_ROOT
 
-  echo -e "${cyan} DDS_ROOT : ${DDS_ROOT} ${NC}"
+else
+  export CORBA_ROOT=${PROJECT_THIRDPARTY_PATH}/tao
+  export ACE_ROOT=${PROJECT_THIRDPARTY_PATH}/ACE/ACE_wrappers
+
+  TAO_ROOT=${ACE_ROOT}/TAO
+  export TAO_ROOT
+
+  MPC_ROOT=${ACE_ROOT}/MPC
+  export MPC_ROOT
+
+  CIAO_ROOT=${PROJECT_THIRDPARTY_PATH}/CIAO
+  export CIAO_ROOT
+
+  DANCE_ROOT=${CIAO_ROOT}/DAnCE
+  export DANCE_ROOT
+
+  DDS_ROOT=${CIAO_ROOT}/connectors/dds4ccm
+  export DDS_ROOT
 fi
+
+echo -e "${cyan} ACE_ROOT : ${ACE_ROOT} ${NC}"
+
+echo -e "${cyan} TAO_ROOT : ${TAO_ROOT} ${NC}"
+
+echo -e "${cyan} MPC_ROOT : ${MPC_ROOT} ${NC}"
+
+echo -e "${cyan} CIAO_ROOT : ${CIAO_ROOT} ${NC}"
+
+echo -e "${cyan} DANCE_ROOT : ${DANCE_ROOT} ${NC}"
+
+echo -e "${cyan} DDS_ROOT : ${DDS_ROOT} ${NC}"
 
 export BOOST_VERSION=1.41.0
 export GETTEXT_VERSION=0.17
@@ -274,9 +283,9 @@ export BOOST=$BOOST_ROOT
 export CMAKE_HOME=/usr/share/cmake-2.6.4
 export CMAKE_ROOT=${CMAKE_HOME}
 
-# PYTHON 3.6
+# PYTHON 3.8
 #See run-python.sh script
-#export PYTHON_MAJOR_VERSION=3.6
+#export PYTHON_MAJOR_VERSION=3.8
 
 if [ -f ${HOME}/run-python.sh ]; then
     echo -e "${green} ${HOME}/run-python.sh ${NC}"
@@ -299,7 +308,7 @@ fi
 export SCONS_DIR=/usr/lib/scons/SCons
 
 # ALIAS to scons-local
-export SCONS='/usr/bin/python2.7 /opt/ansible/env/bin/scons' # for virtualenv
+export SCONS='/usr/bin/python2.7 /opt/ansible/env/bin/scons'
 alias scons="${SCONS}"
 #alias scons='/usr/bin/python2.7 /opt/ansible/env/bin/scons'
 
@@ -335,11 +344,7 @@ then
   ln -s ${DRIVE_PATH}/Program\ Files\ \(x86\) /ProgramFilesx86
   #export JAVA_HOME="/ProgramFilesx86/Java/jdk1.5.0_22"
 fi
-#export JAVA_HOME=/usr/lib/jvm/java-8-oracle/
 export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64/
-#export JAVA_HOME=/usr/lib/jvm/default-java/
-#dpkg -L openjfx
-export JAVAFX_HOME="/usr/share/openjfx/lib"
 
 export JRE_HOME=${JAVA_HOME}/jre
 #export JDK_HOME JRE_HOME JAVA_HOME
@@ -377,7 +382,7 @@ if [ 1 -eq 1 ] ; then
   then
     echo -e "${cyan} Enable ECLIPSE_DEBUG_PORT : ${ECLIPSE_DEBUG_PORT} ${NC}"
 
-    JAVA_OPTS="${JAVA_OPTS} -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=2924,server=y,suspend=n"
+    #JAVA_OPTS="${JAVA_OPTS} -Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket,address=2924,server=y,suspend=n"
 
     echo -e "${cyan} DEBUG JAVA_OPTS=${JAVA_OPTS} ${NC}"
   fi
@@ -477,17 +482,14 @@ POLICY
   fi
 
   # ---- DripStat arguments
-  #DS_JAR=/usr/share/tomcat7/dripstat/dripstat.jar;
+  #DS_JAR=/usr/share/${TOMCAT_BASE}/dripstat/dripstat.jar;
   #export DS_JAR
   #JAVA_OPTS="$JAVA_OPTS -javaagent:$DS_JAR";
   #export JAVA_OPTS
 fi
 
 # MAVEN
-#export M2_HOME=/usr/local/apache-maven-3.2.1
-export M2_HOME=/opt/maven/apache-maven-3.3.9
-#export M2_HOME=/opt/maven/apache-maven-3.6.3
-
+export M2_HOME=/opt/maven/apache-maven-3.5.0
 export M2=${M2_HOME}/bin
 export PATH=${M2}:$PATH
 #export MAVEN_OPTS="-Xms512m -Xmx1024m"
@@ -523,8 +525,8 @@ export MAVEN_OPTS
 
 export M2_REPO=${WORKSPACE}/.m2/repository
 mkdir -p ${M2_REPO} || true
-mkdir ${HOME}/.m2 || true
-ln -s "${M2_REPO}/" ${HOME}/.m2/repository/ || true
+mkdir "${HOME}/.m2"  2> /dev/null
+#ln -s "${M2_REPO}/" "${HOME}/.m2/repository/" || true
 echo -e "${cyan} Maven repo is in : ${M2_REPO} ${NC}"
 
 # ANT
@@ -542,9 +544,9 @@ export PATH=${BEES_HOME}:$PATH
 alias jboss='${JBOSS_HOME}/bin/run.sh > ${PROJECT_DEV}/jboss.txt'
 
 # TOMCAT
-export CATALINA_HOME=${DRIVE_PATH}/usr/share/tomcat7
+export CATALINA_HOME=${DRIVE_PATH}/usr/share/${TOMCAT_BASE}
 # Customize tomcat in CATALINA_BASE
-export CATALINA_BASE=${DRIVE_PATH}/var/lib/tomcat7
+export CATALINA_BASE=${DRIVE_PATH}/var/lib/${TOMCAT_BASE}
 CATALINA_OPTS=""
 #CATALINA_OPTS="-Dappserver.home=$CATALINA_HOME -Dappserver.base=$CATALINA_HOME -Dapplication.property.dir=${CATALINA_HOME}/project"
 if [ 1 -eq 1 ] ; then
@@ -553,7 +555,7 @@ fi
 
 if [ 1 -eq 1 ] ; then
   # ---- New Relic switch automatically added to start command on 2015 Jan 14, 14:16:32
-  NR_JAR=/usr/share/tomcat7/newrelic/newrelic.jar;
+  NR_JAR=/usr/share/${TOMCAT_BASE}/newrelic/newrelic.jar;
   export NR_JAR
   CATALINA_OPTS="$CATALINA_OPTS -javaagent:$NR_JAR";
 fi
@@ -641,9 +643,8 @@ export LD_LIBRARY_PATH=/opt/oracle/instantclient_12_2:$LD_LIBRARY_PATH
 export PATH=/opt/oracle/instantclient_12_2:$PATH
 
 # TIBCO
-TIBRV_VERSION=8.4
-export TIBCO_HOME=${DRIVE_PATH}/home/albandri/tibco
-export TIBRV_HOME=${DRIVE_PATH}/home/albandri/tibco/tibrv/${TIBRV_VERSION}
+export TIBCO_HOME=${DRIVE_PATH}/home/albandrieu/tibco
+export TIBRV_HOME=${DRIVE_PATH}/home/albandrieu/tibco/tibrv/8.4
 export PATH=${TIBRV_HOME}/bin:${PATH}
 export LD_LIBRARY_PATH=/usr/local/lib:${LD_LIBRARY_PATH}:${TIBRV_HOME}/lib
 
@@ -658,11 +659,30 @@ then
 fi
 
 # KUBERNETES
-source <(kubectl completion bash)
+#source <(kubectl completion bash)
+snap alias microk8s.kubectl kubectl
 alias k=kubectl
 complete -F __start_kubectl k
-#export KUBECONFIG=$KUBECONFIG:config:config-albandri:config-albandrieu
-unset KUBECONFIG
+export KUBECONFIG=$KUBECONFIG:config:config-albandri
+
+
+#BREW PATH
+#Must be run after run-python.sh
+
+if [ -d "${HOME}/.linuxbrew/bin" ] ; then
+    PATH="${HOME}/.linuxbrew/bin:$PATH"
+fi
+if [ -d "${HOME}/.git-radar" ] ; then
+    PATH="${HOME}/.git-radar/:$PATH"
+fi
+if [ -d "/home/linuxbrew/.linuxbrew/bin/" ] ; then
+    PATH="/home/linuxbrew/.linuxbrew/bin/:$PATH"
+fi
+if [ -d "/opt/Symantec/symantec_antivirus/" ] ; then
+    PATH="/opt/Symantec/symantec_antivirus/:$PATH"
+fi
+
+export PATH=/usr/local/bin:/usr/sbin:/sbin:/usr/bin:/bin:${PATH}
 
 ###
 # INCLUDE LANGUAGE SPECIFIC
@@ -862,6 +882,7 @@ esac
 #If you put below it will hard code DISPLAY and you will not be able to connect
 #export DISPLAY=:0.0
 #export DISPLAY=localhost:10.0
+#export DISPLAY=:0.0
 
 #instead us ansible local role
 #export LC_CTYPE=en_US.UTF-8
@@ -895,8 +916,6 @@ fi
 
 export SHELLCHECK_OPTS="-e SC2154 -e SC2086"
 
-source "${PROJECT_DEV}/nabla/env/home/pass.env.sh"
-
 command -v docker || {
 	echo -e "Docker | docker not found in system PATH, please make sure that docker is installed"
 	echo -e "Docker | Recommended docker version is >= 18.09.9,"
@@ -908,8 +927,8 @@ command -v docker-compose || {
 #	exit 1
 }
 
-echo -e "${cyan} PATH is ${PATH} ${NC}"
-
 source "${PROJECT_DEV}/nabla/env/home/pass.env.sh"
+
+echo -e "${cyan} PATH is ${PATH} ${NC}"
 
 #exit 0

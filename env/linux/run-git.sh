@@ -53,6 +53,7 @@ git config lfs.contenttype 0
 
 #See http://omerkatz.com/blog/2013/5/23/git-hooks-part-2-implementing-git-hooks-using-python
 git config --global init.templatedir /workspace/users/albandri30/nabla-hooks/hooks
+git config --global init.templatedir /workspace/users/albandrieu30/nabla-hooks/hooks
 
 git config --global user.email "alban.andrieu@free.fr"
 git config --global user.name "Andrieu, Alban"

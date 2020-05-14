@@ -8,7 +8,7 @@
 	<name>Users</name>
 	<!-- This element provides a basic description of your project -->
 	<description>Users</description>
-	<!--<url>http://www.maven.nabla.mobi</url>-->
+	<!--<url>http://www.maven.albandrieu.com</url>-->
 	<url>https://github.com/AlbanAndrieu/nabla</url>
 	<prerequisites>
 		<maven>3.0.4</maven>
@@ -29,11 +29,10 @@
 	<properties>
 		<archiva.dir>C:\apache-archiva-1.3\data\repositories</archiva.dir>
 		<project.project.distributionManagement.repository.url>file://localhost/${archiva.dir}</project.project.distributionManagement.repository.url>
-		<!--<wagon.webdav.plugin.version>1.0-beta-2</wagon.webdav.plugin.version> -->
-		<wagon.webdav.jackrabbit.version>1.0-beta-7</wagon.webdav.jackrabbit.version>
-		<wagon.svn.plugin.version>1.8</wagon.svn.plugin.version>
-		<wagon.ftp.plugin.version>2.2</wagon.ftp.plugin.version>
-		<wagon.ssh.plugin.version>1.0-beta-6</wagon.ssh.plugin.version>
+		<wagon.webdav.jackrabbit.version>3.3.4</wagon.webdav.jackrabbit.version>
+		<wagon.svn.plugin.version>1.12</wagon.svn.plugin.version>
+		<wagon.ftp.plugin.version>3.3.4</wagon.ftp.plugin.version>
+		<wagon.ssh.plugin.version>3.3.4</wagon.ssh.plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 	</properties>
@@ -565,7 +564,7 @@
                         <url>file:/var/www/docs</url> -->
 					<!--<url>file://${deploy.dir}</url> -->
 					<!--<url>file:/tmp</url>-->
-					<url>ftp://home.albandrieu.com:8021/maven</url>
+					<url>ftp://albandrieu.com:8021/maven</url>
 				</site>
 			</distributionManagement>
 		</profile>
@@ -578,8 +577,6 @@
 				</property>
 			</activation>
 			<build>
-				<!-- <plugins> <plugin> <artifactId>maven-gpg-plugin</artifactId> <inherited>true</inherited>
-                    </plugin> </plugins> -->
 			</build>
 			<distributionManagement>
 				<repository>
@@ -595,11 +592,10 @@
 					<url>http://albandrieu.com:8081/nexus/content/repositories/snapshots</url>
 				</snapshotRepository>
 				<site>
-					<!--<id>website</id>-->
 					<id>webdav</id>
 					<name>Project Website</name>
 					<!--<url>ftp://www.nabla.mobi/maven</url>-->
-					<url>dav:http://home.albandrieu.com:8087/nabla/</url>
+					<url>dav:http://albandrieu.com:8087/nabla/</url>
 				</site>
 			</distributionManagement>
 			<properties>

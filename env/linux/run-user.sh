@@ -38,7 +38,8 @@ id ${USER}
 echo "Add nexus user"
 printf "\033[1;32msudo useradd --no-create-home --system -s /sbin/nologin nexus -c \"Nexus nabla\" -u 1001 -G root,docker \033[0m\n"
 
-<<<<<<< HEAD
+sudo useradd --no-create-home --system -s /sbin/nologin transmission -c "Transmission nabla" -u 921 -G media,www-data,docker
+
 echo "Add media group"
 sudo groupadd -g 8675309 media
 "sudo usermod -a -G media ${USER}"
@@ -50,7 +51,34 @@ sudo groupadd -g 80 www
 sudo groupadd -g 1001 tomcat7
 sudo groupadd -g 666 webdav
 sudo groupadd -g 1002 docker
+sudo usermod -a -G docker albandri
+sudo usermod -a -G docker albandrieu
+sudo usermod -a -G www-data albandrieu
+sudo usermod -a -G docker nexus3
 
-=======
->>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
+#To assign a new UID to user called foo, enter:
+#sudo usermod -u 117 jenkins
+
+#To assign a new GID to group called docker, enter:
+#sudo groupmod -g 2000 docker
+
+# TODO do not mount albandri AND albandrieu to /home, xrdp will not work
+
+#Disable kerberos
+pam-auth-update
+
+# User jenkins specific for docker run
+#sudo chmod -R 777 /home/jenkins/.config/configstore/
+sudo chmod -R 777 /jenkins/.config/
+sudo chmod 777 /jenkins/.cache/
+
+sudo mkdir -p /jenkins/.local/share/bower/
+#sudo chmod 777 /home/jenkins/.local/share/bower/
+sudo chmod 777 /jenkins/.local/
+sudo chmod 777 /jenkins/.local/share/
+sudo chmod 777 /jenkins/.local/share/bower/
+
+sudo ln -s /docker /var/lib/docker
+sudo ln -s /jenkins /var/lib/jenkins
+
 exit 0

@@ -39,7 +39,7 @@ To make it permanent, you need the following lines in /etc/fstab:
 ======================================================================
 
 #pkg_add -r jenkins
-http://192.168.0.24:8686/jenkins
+http://192.168.1.62/jenkins
 http://albandrieu.com:8686/jenkins
 
 edit /usr/local/etc/rc.d/jenkins

@@ -1,13 +1,10 @@
 #!/bin/bash
 #set -xv
 
-<<<<<<< HEAD
 pip install --upgrade pip
 pip list --outdated --format=freeze
 /usr/local/bin/freenas-update check
 
-=======
->>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
 #http://doc.freenas.org/index.php/Plugins#Accessing_the_Plugins_Jail
 jls
 

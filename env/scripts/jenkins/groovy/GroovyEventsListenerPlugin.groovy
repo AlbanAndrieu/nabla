@@ -1,23 +1,27 @@
 import groovy.json.*
 import hudson.model.Hudson.*
 import jenkins.model.*
+import java.lang.management.RuntimeMXBean
+import java.lang.management.ManagementFactory
+import hudson.model.*
+//import jenkins.metrics.impl.TimeInQueueAction
+
+//@Grab('org.jenkins-ci.plugins.workflow:workflow-job:2.37')
 import org.jenkinsci.plugins.workflow.job.WorkflowRun
 import org.jenkinsci.plugins.workflow.flow.FlowExecution;
 import org.jenkinsci.plugins.workflow.graph.FlowGraphWalker;
 import org.jenkinsci.plugins.workflow.graph.FlowNode;
-import org.jenkinsci.plugins.workflow.graph.StepStartNode;
+//import org.jenkinsci.plugins.workflow.graph.StepStartNode;
 import org.jenkinsci.plugins.workflow.cps.nodes.StepStartNode;
 import org.jenkinsci.plugins.workflow.actions.WorkspaceAction
-
 
 //import java.util.Base64 // requires java8
 //auth = "Basic " + Base64.getEncoder().encodeToString("elastic:changeme".getBytes()) // if no java8, compute basicAuth externally and hardcode it here
 auth = null
-nexusUrl = 'https://tcm-nexus.misys.global.ad/nexus/repository/jenkins-events-listener/regex.json'
-esUrl = 'http://bm-es:9200'
+nexusUrl = 'http://localhost/jenkins-events-listener/regex.json'
+esUrl = 'http://monitoring_elasticsearch:9200'
 jenkinsIndex = 'new.jenkins-'+ new Date().format('yyyyMM')
 timeout = 5 //seconds
-
 
 now = System.currentTimeMillis() // ms since epoch
 instance = Jenkins.instance
@@ -88,31 +92,31 @@ if (event == Event.JOB_FINALIZED) {
 
     def getChangeSets = run.getChangeSets()
 
-    if (getChangeSets) {
-        def authorEmail = []
-        def changeSet = getChangeSets
-        for (int i; i < changeSet.size(); i++) {
-            def changeLogSet = changeSet[i]
-            if (changeLogSet instanceof org.jenkinsci.plugins.multiplescms.MultiSCMChangeLogSet) {
-                for (int x; x < changeLogSet.getItems().size(); x++){
-                    //for older version of git plugin
-                    //authorEmail.add(changeLogSet.getItems()[x].getAuthor().toString().toLowerCase() + '@finastra.com')
-                    authorEmail.add(changeLogSet.getItems()[x].getAuthorEmail().toLowerCase())
-                }
-            }
-            else {
-                for (int j; j < changeLogSet.getLogs().size(); j++) {
-                    //for older version of git plugin
-                    //authorEmail.add(changeLogSet.getLogs()[j].getAuthor().toString().toLowerCase() + '@finastra.com')
-                    authorEmail.add(changeLogSet.getLogs()[j].getAuthorEmail().toLowerCase())
-                }
-            }
-        }
-        doc += [
-            'gitAuthorEmail': authorEmail.unique(),
-            'gitAuthorEmailString': authorEmail.unique().join(', '),
-        ]
-    }
+    //if (getChangeSets) {
+    //    def authorEmail = []
+    //    def changeSet = getChangeSets
+    //    for (int i; i < changeSet.size(); i++) {
+    //        def changeLogSet = changeSet[i]
+    //        if (changeLogSet instanceof org.jenkinsci.plugins.multiplescms.MultiSCMChangeLogSet) {
+    //            for (int x; x < changeLogSet.getItems().size(); x++){
+    //                //for older version of git plugin
+    //                //authorEmail.add(changeLogSet.getItems()[x].getAuthor().toString().toLowerCase() + '@finastra.com')
+    //                authorEmail.add(changeLogSet.getItems()[x].getAuthorEmail().toLowerCase())
+    //            }
+    //        }
+    //        else {
+    //            for (int j; j < changeLogSet.getLogs().size(); j++) {
+    //                //for older version of git plugin
+    //                //authorEmail.add(changeLogSet.getLogs()[j].getAuthor().toString().toLowerCase() + '@finastra.com')
+    //                authorEmail.add(changeLogSet.getLogs()[j].getAuthorEmail().toLowerCase())
+    //            }
+    //        }
+    //    }
+    //    doc += [
+    //        'gitAuthorEmail': authorEmail.unique(),
+    //        'gitAuthorEmailString': authorEmail.unique().join(', '),
+    //    ]
+    //}
 
     if (env.containsKey('GIT_URL')) {
         doc += [

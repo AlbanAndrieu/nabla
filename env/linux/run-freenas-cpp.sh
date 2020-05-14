@@ -7,13 +7,14 @@ pkg install python
 
 pkg install scons
 pkg install cmake
+cd /usr/ports/devel/doxygen/ && make install clean
 pkg install doxygen
 
 cd /usr/ports && make search name=clang
 #Port:	lang/clang38
 #Moved:	devel/llvm90
 cd /usr/ports/devel/llvm90 && make install clean
-pkg install llvm90
+pkg install llvm80 llvm90
 pkg install gcc
 #-Wl,-rpath=/usr/local/lib/gcc9
 

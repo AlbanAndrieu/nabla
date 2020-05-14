@@ -77,7 +77,7 @@ sudo htpasswd -c /etc/nginx/conf.d/kibana-write.htpasswd albandri
 ll /var/lib/elasticsearch/elasticsearch/nodes/
 
 #test
-curl -XGET 'http://localhost:9200/_cluster/health?pretty=true'
+curl -XGET 'localhost:9200/_cat/nodes?v&pretty'
 
 The following command remove's ES' built-in replication:
 
@@ -95,7 +95,7 @@ curl -XPUT 'localhost:9200/_settings' -d '
 #install monitoring plugins
 #http://www.elastichq.org/support_plugin.html
 cd /usr/share/elasticsearch/bin
-sudo ./plugin  remove royrusso/elasticsearch-HQ
+sudo ./plugin remove royrusso/elasticsearch-HQ
 sudo ./plugin install royrusso/elasticsearch-HQ
 echo http://localhost:9200/_plugin/HQ/
 

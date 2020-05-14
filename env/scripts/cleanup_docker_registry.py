@@ -1,24 +1,16 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 # TODO: add colored output
-<<<<<<< HEAD
-import argparse
-=======
->>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
-import os
-import re
-import sys
+import requests
+from datetime import timedelta
+from datetime import datetime
 from collections import (
     OrderedDict,
 )
-from datetime import datetime
-from datetime import timedelta
-
-<<<<<<< HEAD
-=======
+import sys
+import re
+import os
 import argparse
->>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705
-import requests
 
 SCRIPT_DIR = os.path.dirname(os.path.realpath(__file__))
 MISYS_CRT_FILE = os.path.join(SCRIPT_DIR, 'ssl', 'nabla.crt')

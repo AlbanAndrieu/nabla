@@ -82,7 +82,7 @@ sudo cpan install Tree::Simple::View::ASCII
 #sudo apt-get remove libsvn1 subversion
 #sudo apt-get remove subversion
 
-sudo gedit /etc/apt/sources.list
+sudo geany /etc/apt/sources.list
 ls /etc/apt/sources.list.d/
 #Append the following line
 #NOK deb http://us.archive.ubuntu.com/ubuntu precise main

@@ -78,6 +78,7 @@ du -sh .[!.]* *
 #\rm -Rf /var/lib/docker/overlay2/*
 \rm -Rf /workspace/jboss-as-7.1.1.Final/standalone/data/content*
 \rm -Rf /usr/share/doc/
+\rm -Rf /var/cache/apt/archives/
 
 #systemctl stop mysql
 #ls /var/log/mysql/mysql.err
@@ -168,6 +169,9 @@ sudo rm -f /etc/apt/sources.list.d/ppa_webupd8team_atom_disco.list*
 sudo rm -f /etc/apt/sources.list.d/ppa_linuxuprising_shutter.list*
 sudo rm -f /etc/apt/sources.list.d/ppa_brightbox_ruby_ng_disco.list*
 sudo rm -f /etc/apt/sources.list.d/ppa_deadsnakes_ppa_disco.list*
+sudo rm -f /etc/apt/sources.list.d/oguzhaninan-ubuntu-stacer-eoan.list*
+sudo rm -f /etc/apt/sources.list.d/owasp-wte.list*
+sudo rm -f /etc/apt/sources.list.d/zfs-native-ubuntu-stable-focal.list*
 
 sudo add-apt-repository \
 "deb [arch=amd64] https://download.docker.com/linux/ubuntu \

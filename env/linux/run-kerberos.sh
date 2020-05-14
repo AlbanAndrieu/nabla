@@ -2,7 +2,6 @@
 set -xv
 
 #http://guide.ubuntu-fr.org/server/kerberos.html
-<<<<<<< HEAD
 #sudo apt-get install krb5-kdc krb5-admin-server
 
 #sudo krb5_newrealm
@@ -12,13 +11,15 @@ set -xv
 sudo apt-get install krb5-user
 #ALBANDRIEU.COM
 #nabla
-sudo apt-get install libpam-krb5 
-sudo modprobe rpcsec_gss_krb5 
+sudo apt-get install libpam-krb5
+sudo modprobe rpcsec_gss_krb5
+
+less /etc/krb5.conf
+
+klist
+grep passwd /etc/nsswitch.conf
+
+#Disable kerberos
+pam-auth-update
 
 exit 0
-=======
-sudo apt-get install krb5-kdc krb5-admin-server
-
-sudo krb5_newrealm
-Enter KDC database master key : microsoft
->>>>>>> 9053cf3bd92d78dfb9f33cf5b39354fcbe34c705

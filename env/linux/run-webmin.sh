@@ -58,7 +58,7 @@ cpan install Authen::OATH
 echo "https://albandrieu.com:10000/"
 
 #See https://www.digitalocean.com/community/tutorials/how-to-install-webmin-on-ubuntu-16-04
-#letsencrypt
+./run-letsencrypt.sh
 
 #Private key /etc/webmin/miniserv.pem
 ls -lrta /etc/webmin/miniserv.csr
