@@ -280,7 +280,7 @@ export CMAKE_ROOT=${CMAKE_HOME}
 
 if [ -f ${HOME}/run-python.sh ]; then
     echo -e "${green} ${HOME}/run-python.sh ${NC}"
-    source ${HOME}/run-python.sh
+    #source ${HOME}/run-python.sh
 fi
 
 #export PYTHON_DIR=${DRIVE_PATH}/usr/lib/python3.6
