@@ -19,4 +19,7 @@ snap-store
 
 #See account https://snapcraft.io/snap-store
 
+snap refresh --time
+sudo snap set system refresh.timer=sat,10:00~12:00
+
 exit 0

@@ -127,6 +127,8 @@ System.setProperty("org.jenkinsci.plugins.docker.workflow.client.DockerClient.CL
 System.setProperty("http.socket.timeout", "300")
 System.getProperty("http.socket.timeout")
 
+System.setProperty("org.jenkinsci.plugins.workflow.libs.SCMSourceRetriever.INCLUDE_SRC_TEST_IN_LIBRARIES", "false")
+
 #Hook
 $JENKINS_URL/git/notifyCommit
 $JENKINS_URL/bitbucket-hook/

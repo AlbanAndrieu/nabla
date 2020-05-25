@@ -172,6 +172,7 @@ sudo rm -f /etc/apt/sources.list.d/ppa_deadsnakes_ppa_disco.list*
 sudo rm -f /etc/apt/sources.list.d/oguzhaninan-ubuntu-stacer-eoan.list*
 sudo rm -f /etc/apt/sources.list.d/owasp-wte.list*
 sudo rm -f /etc/apt/sources.list.d/zfs-native-ubuntu-stable-focal.list*
+sudo rm -f /etc/apt/sources.list.d/skype-stable.list*
 
 sudo add-apt-repository \
 "deb [arch=amd64] https://download.docker.com/linux/ubuntu \

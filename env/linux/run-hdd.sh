@@ -27,11 +27,13 @@ dmsetup remove_all
 
 sudo lvscan
 
-sudo apt-get install system-config-lvm system-storage-manager kvpm
+#sudo apt-get install system-config-lvm system-storage-manager kvpm
 #system-config-lvm is no longer available in Centos 7 and has been replaced with system storage manager in Centos 7
 #yum install system-storage-manager
 #yum install gnome-disk-utility
 #yum install baobab
+sudo apt install partitionmanager
+
 sudo ssm list
 
 #Lunch the gui
@@ -78,6 +80,23 @@ partprobe -s
 #init disk for use by LVM
 #pvcreate /dev/sdb
 
+#SSD : intel rst premium with intel optane system acceleration
+#Ubuntu
+pvcreate /dev/sdb /dev/sdc
+vgcreate vg-sata /dev/sdb /dev/sdc
+lvcreate --size 500G --name docker --type raid0  vg-sata
+lvcreate --size 500G --name data --mirrors 1 --type raid1 --nosync vg-sata
+
+sudo mkfs -t ext4  /dev/vg-sata/docker
+sudo mkfs -t ext4  /dev/vg-sata/data
+
+# Check LVM RAID Status
+sudo lvs -a -o name,copy_percent,devices vg-sata
+
+# See https://blog.programster.org/create-raid-with-lvm
+dm=$(basename $(readlink /dev/vg-sata/data))
+sudo dmsetup table /dev/${dm}
+
 sudo apt-get install scsitools
 sudo rescan-scsi-bus
 ls -1d /sys/class/scsi_device/*/device/block/*
@@ -90,7 +109,7 @@ echo 1>/sys/class/block/sda/device/rescan
 #sh -c 'echo "1" > /sys/class/scsi_disk/2\:0\:0\:0/device/rescan'
 
 #On RedHat
-pvresize /dev/sdb
+#pvresize /dev/sdb
 
 #On Ubuntu
 #sudo apt-get install parted
@@ -155,8 +174,8 @@ mkfs -t xfs /dev/centos_tmpvcaccent7/workspace
 mkfs.xfs -n ftype=1 /dev/centos_tmpvcaccent7/docker
 
 sudo nano /etc/fstab
-#/dev/sdd1       /data       ext4    defaults,auto,_netdev 0 0
-/dev/vg_iscsi/docker       /docker       ext4    defaults,auto,_netdev 0 0
+/dev/vg-sata/data       /data       ext4    defaults,auto,_netdev 0 0
+/dev/vg-sata/docker       /docker       ext4    defaults,auto,_netdev 0 0
 /dev/vg_iscsi/workspace       /workspace        ext4    defaults,auto,_netdev 0 0
 /dev/sdb1       /home/albandri       ext4    defaults,auto,_netdev 0 0
 #/dev/sdc1       /home/albandrieu       ext4    defaults,auto,_netdev 0 0
@@ -424,6 +443,8 @@ lsblk
 #e2fsck -fy /dev/mapper/centos_tmpvcaccent7-docker
 #resize2fs /dev/mapper/centos_tmpvcaccent7-docker 4G
 lvreduce -L -10G /dev/mapper/centos_tmpvcaccent7-docker
+
+#sudo lvremove /dev/vg_iscsi/docker
 
 #See https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-direct-lvm-mode-for-production
 

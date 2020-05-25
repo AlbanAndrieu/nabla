@@ -20,6 +20,8 @@ ssh -D 9696 albandri@albandri.misys.global.ad
 As jenkins@192.168.0.29
 
 ssh-keygen
+#ssh-keygen -f ~/test-key-rsa -t rsa -b 4096
+
 #https://serverfault.com/questions/132970/can-i-automatically-add-a-new-host-to-known-hosts
 #Add wifi
 ssh-keyscan 192.168.0.19 >> ~/.ssh/known_hosts

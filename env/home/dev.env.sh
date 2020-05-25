@@ -247,7 +247,7 @@ else
   export DANCE_ROOT
 
   DDS_ROOT=${CIAO_ROOT}/connectors/dds4ccm
-  export DDS_ROOT  
+  export DDS_ROOT
 fi
 
 echo -e "${cyan} ACE_ROOT : ${ACE_ROOT} ${NC}"
@@ -261,7 +261,7 @@ echo -e "${cyan} CIAO_ROOT : ${CIAO_ROOT} ${NC}"
 echo -e "${cyan} DANCE_ROOT : ${DANCE_ROOT} ${NC}"
 
 echo -e "${cyan} DDS_ROOT : ${DDS_ROOT} ${NC}"
-  
+
 export BOOST_VERSION=1.41.0
 export GETTEXT_VERSION=0.17
 export XERCES_VERSION=2.8.0
@@ -663,7 +663,7 @@ fi
 snap alias microk8s.kubectl kubectl
 alias k=kubectl
 complete -F __start_kubectl k
-export KUBECONFIG=$KUBECONFIG:config:config-albandri
+#export KUBECONFIG=$KUBECONFIG:config:config-albandri
 
 
 #BREW PATH

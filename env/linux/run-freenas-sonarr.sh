@@ -20,4 +20,6 @@ ln -s /media/music music
 # /usr/local/etc/transmission/home/Downloads/serie/ /media/serie/
 # /usr/local/sabnzbd/Downloads/complete/serie/ /media/serie
 
-exit 
+# sonarr 351
+
+exit
