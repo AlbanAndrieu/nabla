@@ -1,8 +1,9 @@
 #!/bin/bash
 set -xv
 
-# See http://c-nergy.be/blog/?p=13667
-./run-xrdp-install.sh -s yes
+# See http://c-nergy.be/blog/?p=14029
+# Based on xrdp-installer-1.0.sh
+run-xrdp-install.sh -s
 
 ls -lrta ~/.xsession*
 

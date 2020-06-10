@@ -27,7 +27,10 @@ sudo apt-get install oracle-java14-installer visualvm
 #Switching between Oracle Java 8 and Java 7
 #sudo update-java-alternatives -s java-7-oracle
 #sudo update-java-alternatives -s java-8-oracle
+sudo update-java-alternatives --list
 sudo update-java-alternatives -s java-14-oracle
+sudo update-java-alternatives -s java-1.11.0-openjdk-amd64
+sudo update-java-alternatives -s java-1.8.0-openjdk-amd64
 
 #sudo apt remove oracle-java14-set-default
 

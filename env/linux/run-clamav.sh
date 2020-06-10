@@ -52,7 +52,7 @@ sudo clamd ping
 
 clamdtop
 
-sudo nano /etc/cron.daily/daily_scan
+sudo nano /etc/cron.monthly/clam_scan
 #-i – display information only about infected files
 #-r – scan all subdirectories recursively
 clamscan --max-filesize=3999M --max-scansize=3999M --exclude-dir=/media/* --exclude-dir=/home/test/* --exclude-dir=/sys/* --exclude-dir=/proc/* -i -r / >> /var/log/clamav/clamav-cron-albandrieu.log
@@ -61,4 +61,4 @@ telnet 192.168.1.25 3310
 
 # For Windows, see http://fr.clamwin.com/
 
-exit
+exit 0

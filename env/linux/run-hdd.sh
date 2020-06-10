@@ -86,9 +86,11 @@ pvcreate /dev/sdb /dev/sdc
 vgcreate vg-sata /dev/sdb /dev/sdc
 lvcreate --size 500G --name docker --type raid0  vg-sata
 lvcreate --size 500G --name data --mirrors 1 --type raid1 --nosync vg-sata
+lvcreate --size 500G --name games --mirrors 1 --type raid1 --nosync vg-sata
 
 sudo mkfs -t ext4  /dev/vg-sata/docker
 sudo mkfs -t ext4  /dev/vg-sata/data
+sudo mkfs -t ext4  /dev/vg-sata/games
 
 # Check LVM RAID Status
 sudo lvs -a -o name,copy_percent,devices vg-sata
@@ -153,8 +155,8 @@ vgdisplay
 lvcreate -l 12805 -n workspace rhel_fr1cslvcacrhel71
 lvcreate -l 12805 -n docker rhel_fr1cslvcacrhel71
 #Ubuntu
-lvcreate -L 500G -n workspace vg_iscsi
-lvcreate -L 100G -n docker vg_iscsi
+#lvcreate -L 500G -n workspace vg_iscsi
+#lvcreate -L 100G -n docker vg_iscsi
 #CentOS 7
 lvcreate -l 12805 -n workspace centos_tmpvcaccent7
 lvcreate -l 12794 -n docker centos_tmpvcaccent7

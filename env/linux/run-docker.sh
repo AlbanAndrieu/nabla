@@ -443,4 +443,10 @@ docker network prune
 
 sudo apt-get install lxc
 
+containerd --version
+#containerd containerd.io 1.2.13 7ad184331fa3e55e52b890ea95e65ba581ae3429
+
+# Show kernel only
+sudo journalctl -k
+
 exit 0

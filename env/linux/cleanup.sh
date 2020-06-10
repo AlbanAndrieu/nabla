@@ -32,6 +32,7 @@ du -sh .[!.]* *
 #\rm -Rf ~/.eclipse/*
 #\rm -Rf ~/.ansible
 #\rm -Rf ~/ansible
+\rm -Rf ~/.ansible/roles/
 \rm -Rf ~/.cpan/*
 \rm -Rf ~/.svn/*
 \rm -Rf ~/.thunderbird/*

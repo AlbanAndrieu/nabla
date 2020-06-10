@@ -535,7 +535,7 @@ export PATH=${ANT_HOME}/bin:${ANT_HOME}/lib:$PATH
 export ANT_OPTS="-Xmx512m"
 
 # JBOSS
-export JBOSS_HOME=${DRIVE_PATH}/workspace/jboss-as-7.1.1.Final
+export JBOSS_HOME=${PROJECT_THIRDPARTY_PATH}/jboss-as-7.1.1.Final
 export PATH=${JBOSS_HOME}/bin:$PATH
 
 # JBOSS
@@ -665,6 +665,7 @@ alias k=kubectl
 complete -F __start_kubectl k
 #export KUBECONFIG=$KUBECONFIG:config:config-albandri
 
+export GOPATH="${PROJECT_HOME}/${PROJECT_USER}${PROJECT_MAJOR_VERSION}"
 
 #BREW PATH
 #Must be run after run-python.sh
