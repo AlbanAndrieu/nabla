@@ -57,7 +57,7 @@ sudo journalctl -xe
 #https://www.virtualbox.org/manual/ch07.html
 VBoxManage modifyvm "Windows7Misys" --vrde on
 VBoxManage modifyvm "Windows7Misys" --vrdeport 5000,5010-5012
-VBoxManage showvminfo  "Windows7Misys"
+VBoxManage showvminfo "Windows7Misys"
 vboxmanage modifyvm "Windows7Misys" --vrdeproperty "Security/Method=negotiate"
 
 Display -> Remote Display
@@ -80,6 +80,11 @@ Domain : NABLA
 
 Advanced -> Security : RDP
 Advanced -> Disable clipboard sync
+
+# Windows Remote Desktop Protocol
+# mstsc
+# mstsc /v:10.41.40.139
+mstsc /v:10.41.40.40
 
 #remmina is a client to connect with RDP or VNC
 rm -Rf ~/.freerdp

@@ -10,6 +10,8 @@ set -xv
 #./install-cpu.sh
 #ll /usr/lib/x86_64-linux-gnu/libOpenCL.so
 
+# Ubuntu 18
+
 cd ~/Downloads/
 wget http://registrationcenter-download.intel.com/akdlm/irc_nas/9019/opencl_runtime_16.1_x64_ubuntu_5.2.0.10002.tgz
 cd opencl_runtime_16.1_x64_ubuntu_5.2.0.10002
@@ -36,3 +38,9 @@ lspci |grep NVIDIA
 #sudo apt-get install nvidia-cg-toolkit
 sudo apt-get install clinfo
 clinfo
+
+# Ubuntu 19
+sudo apt-get install opencl-headers
+sudo apt-get install beignet beignet-dev
+
+exit 0
