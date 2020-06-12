@@ -247,7 +247,7 @@ else
   export DANCE_ROOT
 
   DDS_ROOT=${CIAO_ROOT}/connectors/dds4ccm
-  export DDS_ROOT  
+  export DDS_ROOT
 fi
 
 echo -e "${cyan} ACE_ROOT : ${ACE_ROOT} ${NC}"
@@ -261,7 +261,7 @@ echo -e "${cyan} CIAO_ROOT : ${CIAO_ROOT} ${NC}"
 echo -e "${cyan} DANCE_ROOT : ${DANCE_ROOT} ${NC}"
 
 echo -e "${cyan} DDS_ROOT : ${DDS_ROOT} ${NC}"
-  
+
 export BOOST_VERSION=1.41.0
 export GETTEXT_VERSION=0.17
 export XERCES_VERSION=2.8.0
@@ -535,7 +535,7 @@ export PATH=${ANT_HOME}/bin:${ANT_HOME}/lib:$PATH
 export ANT_OPTS="-Xmx512m"
 
 # JBOSS
-export JBOSS_HOME=${DRIVE_PATH}/workspace/jboss-as-7.1.1.Final
+export JBOSS_HOME=${PROJECT_THIRDPARTY_PATH}/jboss-as-7.1.1.Final
 export PATH=${JBOSS_HOME}/bin:$PATH
 
 # JBOSS
@@ -663,8 +663,9 @@ fi
 snap alias microk8s.kubectl kubectl
 alias k=kubectl
 complete -F __start_kubectl k
-export KUBECONFIG=$KUBECONFIG:config:config-albandri
+#export KUBECONFIG=$KUBECONFIG:config:config-albandri
 
+export GOPATH="${PROJECT_HOME}/${PROJECT_USER}${PROJECT_MAJOR_VERSION}"
 
 #BREW PATH
 #Must be run after run-python.sh

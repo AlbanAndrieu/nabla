@@ -196,3 +196,8 @@ GRANT ALL ON sonar.* TO 'sonar'@'127.0.0.1';
 #GRANT ALL ON sonar.* TO 'sonar'@'albandri' IDENTIFIED BY 'sonar';
 FLUSH PRIVILEGES;
 #Use sonar instead of root inside Jenkins
+
+./mvnw clean install sonar:sonar -Dserver=jetty9x  -Dsonar.branch.target=develop  -Dsonar.branch.name=develop
+/usr/local/sonar-runner/bin/sonar-scanner -Dproject.settings=sonar-project.properties -Dsonar.projectVersion=1.7.8 -Dsonar.branch.name=develop -Dsonar.branch.target=develop
+
+exit 0

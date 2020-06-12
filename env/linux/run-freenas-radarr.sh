@@ -19,4 +19,6 @@ ln -s /media/movie movie
 # /usr/local/etc/transmission/home/Downloads/movie/ /media/movie/
 # /usr/local/sabnzbd/Downloads/complete/movie/ /media/movie
 
-exit 
+# radarr 352
+
+exit

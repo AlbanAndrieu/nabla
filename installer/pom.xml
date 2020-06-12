@@ -16,10 +16,4 @@
 		<module>etl-installer</module>
 		<module>visma-installer</module>
 	</modules>
-	<scm>
-		<connection>scm:svn:http://alban.googlecode.com/svn/${project.svn.path}/installer</connection>
-		<developerConnection>scm:svn:https://alban.googlecode.com/svn/${project.svn.path}/installer</developerConnection>
-		<tag>HEAD</tag>
-		<url>https://alban.googlecode.com/svn/${project.svn.path}/installer</url>
-	</scm>
 </project>
