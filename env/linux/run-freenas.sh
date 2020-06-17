@@ -19,15 +19,15 @@ wakeonlan 7C:05:07:0E:D9:88
 #from Shell
 /etc/netcli
 
-#WebUI
+# WebUI
 #Set nginx_enable to YES: sysrc nginx_enable=YES
 #modify nginx.conf: nano /usr/local/etc/nginx/nginx.conf
-#listen                  192.168.0.46:7000 default_server ssl http2;
+#listen                  192.168.1.62:7000 default_server ssl http2;
 #listen                  [::]:7000 default_server ssl http2;
 #
 #ssl_certificate         "/etc/certificates/freenas-pre-certui.crt";
 #ssl_certificate_key     "/etc/certificates/freenas-pre-certui.key";
-#listen       192.168.0.46:80;
+#listen       192.168.1.62:80;
 #listen       [::]:80;
 #Remove the IPv6 listen line
 #Start Nginx Service: service nginx start
@@ -36,9 +36,8 @@ service django restart
 
 sqlite3 /data/freenas-v1.db "update system_settings set stg_guiprotocol = 'http';"
 
-echo "https://192.168.0.46:7000/"
+echo "https://192.168.1.62:7000/"
 echo "https://albandrieu.com:7000/"
-echo "https://freenas.freeboxos.fr:7000/"
 #https://[fe80::160c:76ff:fe64:65dd]:7000/
 https://[fe80::7e05:7ff:fe0e:d988]:7000/
 
@@ -72,7 +71,7 @@ minidlna-1.0.24_1-amd64
 transmission-2.77-amd64
 firefly-1696_7-amd64
 
-#freenas IP is 192.168.0.46
+#freenas IP is 192.168.1.62
 
 #IPv4 Default Gateway
 #NOK 192.168.1.1
@@ -109,18 +108,8 @@ tail -f /mnt/dpool/jail/software/var/log/minidlna.log
 
 #Firefly
 #do redirect to jail
-http://192.168.0.46:3689/
+http://192.168.1.62:3689/
 http://albandrieu.com:3689/index.html
-
-#transmission
-http://192.168.0.01:9091/
-http://albandrieu.com:9091/transmission/web/
-#in the jail
-cd /usr/pbi/transmission-amd64/etc/transmission/home/
-edit /usr/pbi/transmission-amd64/etc/transmission/home/settings.json
-
-#install transmission rempte gui
-#https://code.google.com/p/transmisson-remote-gui/downloads/list
 
 #couchpotato
 http://albandrieu.com:5050/
@@ -206,83 +195,8 @@ user : admin
 #disableRemoteSecurity="1"
 #http://192.168.0.15:32400/web/index.html
 
-#mount by hand
-sudo apt-get install nfs-common
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media /media -o user=albandri
-sudo umount /media/ftp
-sudo umount /media/photo
-sudo umount /media/music
-sudo umount /media/video
-sudo umount /image
-sudo umount /archive
-sudo umount /jenkins-tmp
-sudo umount /workspace-tmp
-sudo umount /workspace/users/albandri10
-
-#sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/ftp /media/ftp -o user=albandri
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/download /media/download
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/ftp /media/ftp
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/movie /media/movie
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/music /media/music
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/photo /media/photo
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/serie /media/serie
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/torrentfile /media/torrentfile
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/video /media/video
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/media/webdav /media/webdav
-sudo mount -t zfs 192.168.0.46:/mnt/dpool/image /image
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/archive /archive
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/backup /backup
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/jenkins /media/jenkins
-rsync -anv /jenkins/ /media/jenkins
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/jenkins-slave /jenkins-slave
-sudo mount -t nfs 192.168.0.46:/mnt/dpool/workspace /workspace-tmp
-#sudo mount -t nfs 192.168.0.46:/mnt/dpool/workspace/users/albandri10 /workspace/users/albandri10
-
-#iscsi
-#See run-hdd.sh
-
-#TODO
-#https://github.com/zfsonlinux/pkg-zfs/wiki/Ubuntu-ZFS-mountall-FAQ-and-troubleshooting
-#connect to freenas
-zfs get mountpoint /mnt/dpool/media/ftp
-#zfs set mountpoint=/export/media/ftp /mnt/dpool/media/ftp
-zfs set mountpoint=/dpool/media/ftp dpool/media/ftp
-zfs get mountpoint dpool/media/ftp
-zfs set mountpoint=legacy dpool/media/ftp
-
-sudo gedit /etc/fstab
-#<server>:</remote/export></local/directory><nfs-type><options> 0 0
-freenas:/mnt/dpool/media/ftp /media/ftp nfs rw 0 0
-freenas:/mnt/dpool/media/photo /media/photo nfs rw 0 0
-freenas:/mnt/dpool/media/music /media/music nfs rw 0 0
-freenas:/mnt/dpool/media/video /media/video nfs rw 0 0
-192.168.1.1:/mnt/dpool/image /image nfs defaults 0 0
-freenas:/mnt/dpool/archive /archive nfs rw 0 0
-freenas:/mnt/dpool/backup /backup nfs rw 0 0
-freenas:/mnt/dpool/jenkins /jenkins nfs rw 0 0
-freenas:/mnt/dpool/workspace /workspace-tmp nfs rw 0 0
-#freenas:/mnt/dpool/media/ftp  /media/ftp  zfs  defaults  0  0
-
-#mount main disk from ubuntu usb
-#http://www.linuxquestions.org/questions/linux-general-1/cannot-edit-fstab-in-recovery-mode-filesystem-is-read-only-540195/
-umount /mnt/sda1
-mount -o rw /dev/sda1 /mnt/sda1
-
-#workaround
-http://askubuntu.com/questions/76901/nfs-mount-fails-on-startup
-cd /etc/init.d/
-sudo gedit /etc/init.d/mountall.sh
-sudo chmod +x mountall.sh
-sudo update-rc.d mountall.sh defaults
-less /var/log/syslog | grep -i nfs
-
 #install java
-ssh root@192.168.0.46
-
-#http://doc.freenas.org/index.php/Plugins#Accessing_the_Plugins_Jail
-jls
-#jexec 1 /bin/tcsh
-jexec 9
+ssh root@192.168.1.62
 
 #http://orw.se/blog/index.php/install-java-on-freenas-7-3/
 setenv PACKAGESITE ftp://ftp.freebsd.org/pub/FreeBSD/ports/i386/packages-8.3-release/Latest/
@@ -293,40 +207,7 @@ pkg install sudo
 
 pkg install wget
 
-pkg install ansible
-
-pkg install python
-pkg install py27-pip
-pip install pygal
-
-cd /usr/ports/security/openssh-askpass/ && make install clean
-#pkg install OpenSSH-askpass
-ls /usr/local/bin/ssh-askpass
-
-#for Xvfb
-pkg install xorg-vfbserver
-#/usr/local/bin/Xvfb
-
-#See https://www.freebsd.org/doc/handbook/desktop-browsers.html
-pkg install firefox
-#pkg install firefox-esr
-pkg install chromium
-
-npm install -g bower
-npm install -g nsp
-#npm install -g phantomjs-prebuilt
-#npm i phantom@4.0.5 -g
-npm search phantomjs
-
-pkg install phantomjs
-cd /usr/ports/lang/phantomjs/ && make install clean
-
-pkg info phantomjs
-ls -lrta /usr/local/bin/phantomjs
-#ls -lrta /usr/local/lib/node_modules/
-
-#pkg install libass
-#pkg install ffmpeg
+./run-freenas-jenkins-slave.sh
 
 #pkg install ar-ae_fonts_mono ar-ae_fonts1_ttf croscorefonts
 pkg install xterm rxvt-unicode
@@ -368,7 +249,7 @@ echo $SHELL
 #chmod -R 755 /mnt/dpool/albandri/.ssh
 #chown -R albandri:albandri /mnt/dpool/albandri/.ssh
 #chmod 600 /mnt/dpool/albandri/.ssh/authorized_keys
-scp ~/.ssh/id_rsa.pub albandri@192.168.0.46:
+scp ~/.ssh/id_rsa.pub albandri@192.168.1.62:
 cat ~/id_rsa.pub >> ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/authorized_keys
 
@@ -512,7 +393,6 @@ $CONFIG = array(
 );
 ?>
 
-
 /mnt/dpool/jail/software/usr/local/www/owncloud/data
 
 #hors jail
@@ -550,40 +430,10 @@ mkdir /usr/pbi/minidlna-amd64/media
 #tomcat
 pkg install tomcat7
 
-#jenkins
-#https://wiki.jenkins.io/display/JENKINS/Installing+Jenkins+inside+a+FreeNAS+jail
-#http://www.slideshare.net/iXsystems/jenkins-bhyve
-pkg install devel/jenkins-lts
-#pkg install /devel/jenkins
-======================================================================
+ssh-keygen
+cat ~/.ssh/id_rsa.pub | ssh 192.168.1.62 "cat >> .ssh/authorized_keys"
 
-This OpenJDK implementation requires fdescfs(5) mounted on /dev/fd and
-procfs(5) mounted on /proc.
+#Add https://www.ixsystems.com/documentation/freenas/11.3-RELEASE/tasks.html#cloud-sync-tasks
+#https://rclone.org/
 
-If you have not done it yet, please do the following:
-
-        mount -t fdescfs fdesc /dev/fd
-        mount -t procfs proc /proc
-
-To make it permanent, you need the following lines in /etc/fstab:
-
-        fdesc   /dev/fd         fdescfs         rw      0       0
-        proc    /proc           procfs          rw      0       0
-
-======================================================================
-
-#install webmin
-#See https://doxfer.webmin.com/Webmin/Installation
-
-pkg update
-pkg install webmin
-/usr/local/lib/webmin/setup.sh
-echo "webmin_enable="YES"" >> /etc/rc.conf
-/usr/local/etc/rc.d/webmin start
-
-admin
-
-echo "https://192.168.0.26:10000"
-echo "https://192.168.0.28:10000"
-echo "https://192.168.0.23:10000"
-echo "https://192.168.0.25:10000/"
+exit 0

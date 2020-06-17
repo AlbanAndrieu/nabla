@@ -11,12 +11,15 @@ sudo nano /etc/resolv.conf
 #if you have issue with you dns configuration not updated automatically by DHCP
 
 #http://askubuntu.com/questions/54888/resolvconf-u-gives-the-error-resolvconf-error-etc-resolv-conf-must-be-a-sym
+sudo apt install resolvconf
 dpkg-reconfigure resolvconf
 sudo resolvconf -u
 
-sudo nano /etc/resolvconf/resolv.conf.d/head
+#sudo nano /etc/resolvconf/resolv.conf.d/head
+sudo nano /etc/resolvconf/resolv.conf.d/base
 #Add
-nameserver 8.8.4.4
+#nameserver 8.8.4.4
+search home albandrieu.com misys.global.ad
 
 sudo service network-manager restart
 less /etc/resolv.conf
@@ -27,7 +30,6 @@ less /etc/resolv.conf
 sudo apt-get purge modemmanager
 sudo apt-get install modemmanager
 
-dpkg-reconfigure nis
 #change
 
 #check
@@ -47,12 +49,13 @@ yptest
 
 dmesg
 service nis stop
-ipconfig /flushdns
+
+./run-dns.sh
 
 #systemctl disable bind9
 #sudo update-rc.d bind9 disable
 
-#showmount -e ptxidns01
+#showmount -e nabla
 
 # Try accessing by hand
 #systemctl stop autofs

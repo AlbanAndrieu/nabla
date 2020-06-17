@@ -1,8 +1,7 @@
 #!/bin/bash
 set -xv
 
-#First install docker
-#./run-docker.sh
+./run-kubernetes-microk8s.sh
 
 #See https://kubernetes.io/docs/tasks/tools/install-kubectl/
 
@@ -16,7 +15,8 @@ cat <<EOF >/etc/apt/sources.list.d/kubernetes.list
 deb http://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 sudo apt-get update
-sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-get install -y kubelet=1.13.12-00 kubeadm=1.13.12-00 kubectl=1.13.12-00 # ubuntu 18
+#sudo apt-get install -y kubelet=1.17.2-00 kubeadm=1.17.2-00 kubectl=1.17.2-00 # ubuntu 19
 sudo apt-mark hold kubelet kubeadm kubectl
 #sudo apt-mark unhold kubelet kubeadm kubectl
 #sudo snap install kubectl --classic
@@ -29,10 +29,7 @@ kubectl version
 echo "source <(kubectl completion bash)" >> ~/.bashrc
 
 #Install minikube
-#See https://github.com/kubernetes/minikube/releases
-#curl -Lo minikube https://storage.googleapis.com/minikube/releases/v0.26.1/minikube-linux-amd64 && chmod +x minikube && sudo mv minikube /usr/local/bin/
-
-#minikube start
+./run-minikube.sh
 
 #See https://kubernetes.io/docs/getting-started-guides/ubuntu/local/
 sudo snap install conjure-up --classic
@@ -44,7 +41,6 @@ conjure-up kubernetes
 
 #https://github.com/GoogleContainerTools/skaffold
 curl -Lo skaffold https://storage.googleapis.com/skaffold/releases/latest/skaffold-linux-amd64 && chmod +x skaffold && sudo mv skaffold /usr/local/bin
-
 skaffold version
 
 #https://github.com/jenkins-x/jx
@@ -158,5 +154,8 @@ kubectl --kubeconfig ./kube.config cluster-info dump | tee cluster-info.log
 export no_proxy=$(hostname -i)
 curl -v http://10.41.40.40:6443
 
+kubectl --kubeconfig kube.config get pod -A
+
+kubectl get all --namespace=kube-system
 
 exit 0

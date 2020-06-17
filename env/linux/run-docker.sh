@@ -41,12 +41,6 @@ echo manual | sudo tee /etc/init/docker.override
 #Upgrade kernel
 sudo apt-get install --install-recommends linux-generic-hwe-16.04 xserver-xorg-hwe-16.04
 
-#-------------
-
-#Check docker
-curl https://raw.githubusercontent.com/docker/docker/master/contrib/check-config.sh > check-config.sh
-bash ./check-config.sh
-
 #------------------
 
 #See https://docs.docker.com/engine/installation/linux/linux-postinstall/#specify-dns-servers-for-docker
@@ -57,6 +51,7 @@ gksudo geany /etc/NetworkManager/NetworkManager.conf
 
 #nano /etc/docker/daemon.json
 #   {
+#  "userns-remap": "jenkins",
 #  "dns": ["172.17.0.1"],
 #  "exec-opts": ["native.cgroupdriver=systemd"],
 #  "log-driver": ["json-file"],
@@ -65,13 +60,26 @@ gksudo geany /etc/NetworkManager/NetworkManager.conf
 #   },
 #   "debug": true
 #   }
-sudo sh -x 'cat > /etc/docker/daemon.json <<EOF
+#sudo sh -x 'cat > /etc/docker/daemon.json <<EOF
+#{
+#  "exec-opts": ["native.cgroupdriver=cgroupfs"],
+#  "insecure-registries":["hostname.com"],
+#  "storage-driver": "overlay2",
+#  "debug": true
+#}
+#EOF'
+# as root
+cat > /etc/docker/daemon.json <<EOF
 {
-  "exec-opts": ["native.cgroupdriver=cgroupfs"],
-  "storage-driver": "overlay2",
-  "debug": true
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
 }
-EOF'
+EOF
+
 #nano /etc/NetworkManager/dnsmasq.d/docker-bridge.conf
 #   listen-address=172.17.0.1
 
@@ -106,7 +114,7 @@ sudo docker version
 #docker plugin install cpuguy83/docker-overlay2-graphdriver-plugin
 
 #gksudo geany /etc/init/docker.conf /etc/systemd/system/docker.service.d/env.conf
-gksudo geany /lib/systemd/system/docker.service
+sudo geany /lib/systemd/system/docker.service
 systemctl cat docker.service
 
 #NOK DOCKER_OPTS="-H 127.0.0.1:4243 -H unix:///var/run/docker.sock"
@@ -120,7 +128,8 @@ DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 8.8
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --label provider=albandri --experimental
 #ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --storage-driver overlay2 --disable-legacy-registry --tlsverify --tlscacert /root/pki/ca.pem --tlscert /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.pem --tlskey /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.key --label provider=albandri
 #For Ubuntu 19.10
-ExecStart=/usr/bin/dockerd -H fd:// --dns 10.21.200.3 --dns 10.41.200.3 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --insecure-registry=registry.misys.global.ad --insecure-registry=registry-tmp.misys.global.ad --userns-remap jenkins
+ExecStart=/usr/bin/dockerd -H fd:// --dns 10.21.200.3 --dns 10.41.200.3 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --insecure-registry=registry.misys.global.ad --insecure-registry=albandrieu --userns-remap jenkins
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 --dns 10.21.200.3 --dns 10.41.200.3 --dns 192.168.1.1 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --insecure-registry=registry.misys.global.ad --insecure-registry=albandrieu
 # -s cpuguy83/docker-overlay2-graphdriver-plugin
 #For RedHat 7.4
 ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --data-root /docker
@@ -130,6 +139,8 @@ ExecStart=/usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 
 #For RedHat CentOS
 #See https://www.ostechnix.com/install-dnf-centos-7/
+
+#See http://192.168.1.57:2376/version
 
 #sudo yum install epel-release
 #sudo yum install dnf
@@ -168,7 +179,7 @@ sudo docker --tlsverify ps
 ls -lrta ~/.docker/config.json
 
 #docker login 10.21.70.133
-docker login registry.nabla.mobi --username=nabla
+docker login registry.albandrieu.com --username=nabla
 
 if curl http://localhost:8380/jenkins 2>/dev/null | grep -iq jenkins; then echo "FAIL"; else echo "OK"; fi
 
@@ -235,7 +246,7 @@ vagrant ssh
 #sudo docker pull dockerfile/ansible
 sudo docker pull nabla/ansible-jenkins-slave-docker
 
-docker run --rm nabla/ansible-jenkins-slave-docker curl http://home.nabla.mobi/html/download/README.html
+docker run --rm nabla/ansible-jenkins-slave-docker curl http://home.albandrieu.com/html/download/README.html
 
 docker run -it nabla/ansible-jenkins-slave-docker /bin/bash
 #Sample using container to buid my local workspace
@@ -408,6 +419,10 @@ sudo systemctl status docker
 
 sudo usermod -aG docker ${USER}
 
+sudo apt-get install -y docker-registry cadvisor
+#See http://localhost:4194/containers/
+nano /lib/systemd/system/cadvisor.service
+
 docker run -it -u 1004:999 -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v /var/run/docker.sock:/var/run/docker.sock --entrypoint /bin/bash fusion-risk/ansible-jenkins-slave:latest
 
 #docker linter
@@ -420,5 +435,18 @@ hadolint Dockerfile
 #wget https://github.com/wagoodman/dive/releases/download/v0.9.1/dive_0.9.1_linux_amd64.deb
 #sudo apt install ./dive_0.9.1_linux_amd64.deb
 brew install dive
+
+#could not find an available, non-overlapping IPv4 address pool among the defaults to assign to the network
+docker network ls
+#system prune -a --volumes
+docker network prune
+
+sudo apt-get install lxc
+
+containerd --version
+#containerd containerd.io 1.2.13 7ad184331fa3e55e52b890ea95e65ba581ae3429
+
+# Show kernel only
+sudo journalctl -k
 
 exit 0

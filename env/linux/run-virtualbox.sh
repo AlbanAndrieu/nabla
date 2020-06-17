@@ -15,7 +15,7 @@ wget -q http://download.virtualbox.org/virtualbox/debian/oracle_vbox.asc -O- | s
 
 sudo apt-get update
 sudo apt-get install dkms
-sudo apt-get install virtualbox-5.0
+sudo apt-get install virtualbox=6.1.4-dfsg-2
 
 sudo mkdir -p /workspace/virtualbox/$USER/.VirtualBox
 sudo chown -R albandri:albandri /workspace/virtualbox/$USER
@@ -34,7 +34,8 @@ sudo mkdir -p /local/virtualbox/Windows7/Shared
 #install oracle vm virtualbox extension pack
 cd ~/.VirtualBox
 
-sudo apt-get install virtualbox-ext-pack
+sudo apt-get install virtualbox-ext-pack 
+sudo apt-get install virtualbox-guest-dkms
 
 wget http://download.virtualbox.org/virtualbox/5.0.16/Oracle_VM_VirtualBox_Extension_Pack-5.0.16-105871.vbox-extpack
 
@@ -100,12 +101,12 @@ sudo service vboxdrv restart
 
 #ubuntu 16.04
 
-sudo apt-get install gcc-5 g++-5
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 50 --slave /usr/bin/g++ g++ /usr/bin/g++-5
-sudo apt-get install gcc-6 g++-6
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 50 --slave /usr/bin/g++ g++ /usr/bin/g++-6
-
-sudo update-alternatives --config gcc
+#sudo apt-get install gcc-5 g++-5
+#sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 50 --slave /usr/bin/g++ g++ /usr/bin/g++-5
+#sudo apt-get install gcc-6 g++-6
+#sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 50 --slave /usr/bin/g++ g++ /usr/bin/g++-6
+#
+#sudo update-alternatives --config gcc
 
 #http://ubuntuhandbook.org/index.php/2016/07/install-linux-kernel-4-7-ubuntu-16-04/
 sudo apt-get install linux-image-extra-4.8.0-34-generic linux-image-extra-virtual
@@ -145,5 +146,8 @@ sudo vim /etc/default/grub
 GRUB_CMDLINE_LINUX_DEFAULT="video=0x0345"
 GRUB_GFXMODE=1280x1024x24
 GRUB_GFXPAYLOAD_LINUX=1280x1024x24
+
 sudo update-grub
 sudo reboot
+
+exit 0

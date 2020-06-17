@@ -52,7 +52,6 @@ glxinfo | grep OpenGL
 #check you video hardware
 sudo lshw -c video
 
-
 sudo hwinfo --framebuffer
 sudo hwinfo --monitor
 lspci -vnn | grep -i VGA
@@ -167,3 +166,25 @@ sudo cvt -r 3840 2160 60
 
 #xrandr --newmode $(cvt 3840 2160 144 | sed -ne 's/"//g;s/Modeline //p')
 xrandr --newmode "3840x2160_144.00"  1833.14  3840 4200 4632 5424  2160 2161 2164 2347  -HSync +Vsync
+
+# Ubuntu 19
+ll /etc/X11/xorg.conf
+Section "Screen"
+    Identifier     "Screen0"
+    Device         "Device0"
+    Monitor        "Monitor0"
+    DefaultDepth    24
+    SubSection     "Display"
+        Depth       24
+    EndSubSection
+    SubSection "Display"
+        Depth        16
+        Modes        "1024x768" "800x600" "640x480"
+    EndSubSection
+    SubSection "Display"
+        Depth        24
+        Modes        "1024x768" "800x600" "640x480"
+    EndSubSection
+EndSection
+
+exit 0

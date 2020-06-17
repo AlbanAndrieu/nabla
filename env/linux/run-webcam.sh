@@ -51,6 +51,7 @@ gphoto2 --auto-detect
 
 #identify webcam
 lsusb -v
+#us 001 Device 011: ID 046d:081b Logitech, Inc. Webcam C310
 
 #install webcam security tool
 sudo apt-get install motion
@@ -68,3 +69,8 @@ echo "http://localhost:8082 http://localhost:8083"
 
 sudo apt-get install wput
 #on_picture_save wput ftp://user@password@server %f
+
+# App to display camera
+sudo apt-get install cheese
+
+exit 0

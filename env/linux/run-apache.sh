@@ -9,6 +9,7 @@ sudo apt-get install apache2
 #sudo apt-get install libapache2-mod-php5
 sudo apt-get install libapache2-mod-fastcgi #(for cgi/PHP-FPM) or
 sudo apt-get install libapache2-mod-php7.0
+sudo apt-get install libapache2-mod-auth-openidc
 sudo /etc/init.d/apache2 restart
 
 #For webmin
@@ -138,7 +139,6 @@ Listen 7074
 
 #http://technique.arscenic.org/lamp-linux-apache-mysql-php/apache/modules-complementaires/article/mod_proxy-rediriger-en-tout
 
-/etc/init.d/apache2 reload
 
 ls -lrta /etc/apache2/conf-enabled
 
@@ -148,12 +148,16 @@ or
 sudo vim /etc/apache2/sites-available/nabla.conf
 sudo a2dissite 000-default
 sudo a2ensite nabla
-sudo a2ensite jenkins
-sudo a2ensite gearman
+#sudo a2ensite jenkins
+sudo a2dissite jenkins
+#sudo a2ensite gearman
 sudo a2ensite sample
 
 sudo a2enmod rewrite vhost_alias expires headers mime autoindex deflate ssl
 sudo a2enmod proxy proxy_ajp proxy_http rewrite deflate headers proxy_balancer proxy_connect proxy_html
+
+#/etc/init.d/apache2 reload
+sudo systemctl reload apache2
 
 #check site that are enable at
 cd /etc/apache2/sites-enabled
@@ -166,9 +170,9 @@ cd /etc/apache2/sites-enabled
         # match this virtual host. For the default virtual host (this file) this
         # value is not decisive as it is used as a last resort host regardless.
         # However, you must set it for any further virtual host explicitly.
-        ServerName www.home.nabla.mobi
+        ServerName www.home.albandrieu.com
 
-        ServerAdmin alban.andrieu@nabla.mobi
+        ServerAdmin alban.andrieu@free.fr
         DocumentRoot /var/www/nabla
 
         # Available loglevels: trace8, ..., trace1, debug, info, notice, warn,
@@ -324,3 +328,15 @@ source /etc/apache2/envvars
 /usr/sbin/apache2 -V
 #sudo chmod 660 /var/log/apache2/modsec_audit.log
 sudo chmod 664 /var/log/apache2/modsec_audit.log
+
+iocage exec apache sed -i '' -e 's?listen = 127.0.0.1:9000?listen = /var/run/php-fpm.sock?g' /usr/local/etc/php-fpm.d/www.conf
+iocage exec apache sed -i '' -e 's/;listen.owner = www/listen.owner = www/g' /usr/local/etc/php-fpm.d/www.conf
+iocage exec apache sed -i '' -e 's/;listen.group = www/listen.group = www/g' /usr/local/etc/php-fpm.d/www.conf
+iocage exec apache sed -i '' -e 's/;listen.mode = 0660/listen.mode = 0600/g' /usr/local/etc/php-fpm.d/www.conf
+iocage exec apache cp /usr/local/etc/php.ini-production /usr/local/etc/php.ini
+iocage exec apache sed -i '' -e 's?;date.timezone =?date.timezone = "Universal"?g' /usr/local/etc/php.ini
+iocage exec apache sed -i '' -e 's?;cgi.fix_pathinfo=1?cgi.fix_pathinfo=0?g' /usr/local/etc/php.ini
+
+edit /mnt/dpool/iocage/jails/organizr/root/usr/local/etc/nginx/
+
+exit 0

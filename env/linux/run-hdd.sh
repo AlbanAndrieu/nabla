@@ -27,11 +27,13 @@ dmsetup remove_all
 
 sudo lvscan
 
-sudo apt-get install system-config-lvm system-storage-manager kvpm
+#sudo apt-get install system-config-lvm system-storage-manager kvpm
 #system-config-lvm is no longer available in Centos 7 and has been replaced with system storage manager in Centos 7
 #yum install system-storage-manager
 #yum install gnome-disk-utility
 #yum install baobab
+sudo apt install partitionmanager
+
 sudo ssm list
 
 #Lunch the gui
@@ -76,7 +78,26 @@ partprobe -s
 #Add more disk space to VM
 #First add another HDD in cloud, it will be visible in VM as sdb
 #init disk for use by LVM
-pvcreate /dev/sdb
+#pvcreate /dev/sdb
+
+#SSD : intel rst premium with intel optane system acceleration
+#Ubuntu
+pvcreate /dev/sdb /dev/sdc
+vgcreate vg-sata /dev/sdb /dev/sdc
+lvcreate --size 500G --name docker --type raid0  vg-sata
+lvcreate --size 500G --name data --mirrors 1 --type raid1 --nosync vg-sata
+lvcreate --size 500G --name games --mirrors 1 --type raid1 --nosync vg-sata
+
+sudo mkfs -t ext4  /dev/vg-sata/docker
+sudo mkfs -t ext4  /dev/vg-sata/data
+sudo mkfs -t ext4  /dev/vg-sata/games
+
+# Check LVM RAID Status
+sudo lvs -a -o name,copy_percent,devices vg-sata
+
+# See https://blog.programster.org/create-raid-with-lvm
+dm=$(basename $(readlink /dev/vg-sata/data))
+sudo dmsetup table /dev/${dm}
 
 sudo apt-get install scsitools
 sudo rescan-scsi-bus
@@ -90,7 +111,7 @@ echo 1>/sys/class/block/sda/device/rescan
 #sh -c 'echo "1" > /sys/class/scsi_disk/2\:0\:0\:0/device/rescan'
 
 #On RedHat
-pvresize /dev/sdb
+#pvresize /dev/sdb
 
 #On Ubuntu
 #sudo apt-get install parted
@@ -98,7 +119,7 @@ pvresize /dev/sdb
 #resize2fs /dev/sda1
 #resize2fs /dev/sda1
 #mount -a
-pvresize /dev/sda5
+pvresize /dev/sdd1
 
 #display atributes of disk
 pvdisplay
@@ -108,9 +129,9 @@ lvdisplay
 # Extends volume group. Please confirm group name.
 #add disk to volume group
 #RedHat
-vgextend rhel_fr1cslvcacrhel71 /dev/sdb
-vgextend VolGroup00 /dev/sdb
-vgextend fr1vslub1604-vg /dev/sdb
+#vgextend rhel_fr1cslvcacrhel71 /dev/sdb
+#vgextend VolGroup00 /dev/sdb
+vgextend vg_iscsi /dev/sdd
 #CentOS 7
 vgextend centos_tmpvcaccent7 /dev/sdb
 #vgextend rhel_fr1cslvcacrhel71 /dev/sdc
@@ -119,18 +140,23 @@ vgextend centos_tmpvcaccent7 /dev/sdb
 #vgcreate docker /dev/xvdf
 #vgcreate docker /dev/sdb
 
+#Create vg_iscsi volume group
+umount /data && vgcreate vg_iscsi /dev/sdd1
+
+fdisk -l /dev/sdd1
+
 # Free disk space should be now visible in VG. Actual number of available physical extents (PE) will be smaller,
 # than expected with disk size, some of the space will be taken by metadata
 vgdisplay
-vgdisplay -v rhel_fr1cslvcacrhel71
-vgdisplay -v VolGroup00
+#vgdisplay -v rhel_fr1cslvcacrhel71
+#vgdisplay -v VolGroup00
 
 #RedHat
 lvcreate -l 12805 -n workspace rhel_fr1cslvcacrhel71
 lvcreate -l 12805 -n docker rhel_fr1cslvcacrhel71
 #Ubuntu
-lvcreate -l 12805 -n workspace fr1vslub1604-vg
-lvcreate -l 12794 -n docker fr1vslub1604-vg
+#lvcreate -L 500G -n workspace vg_iscsi
+#lvcreate -L 100G -n docker vg_iscsi
 #CentOS 7
 lvcreate -l 12805 -n workspace centos_tmpvcaccent7
 lvcreate -l 12794 -n docker centos_tmpvcaccent7
@@ -143,20 +169,27 @@ mkfs -t xfs /dev/rhel_fr1cslvcacrhel71/workspace
 #sudo mkfs -t ext4 /dev/rhel_fr1cslvcacrhel71/docker
 mkfs.xfs -n ftype=1 /dev/rhel_fr1cslvcacrhel71/docker
 #Ubuntu
-mkfs -t ext4 /dev/fr1vslub1604-vg/workspace
-mkfs -t ext4 /dev/fr1vslub1604-vg/docker
+mkfs -t ext4 /dev/vg_iscsi/workspace
+mkfs -t ext4 /dev/vg_iscsi/docker
 #CentOS 7
 mkfs -t xfs /dev/centos_tmpvcaccent7/workspace
 mkfs.xfs -n ftype=1 /dev/centos_tmpvcaccent7/docker
 
-#nano /etc/fstab
-#/dev/rhel_fr1cslvcacrhel71/workspace /workspace ext4 auto 0 2
-#/dev/rhel_fr1cslvcacrhel71/docker /docker ext4 auto 0 2
+sudo nano /etc/fstab
+/dev/vg-sata/data       /data       ext4    defaults,auto,_netdev 0 0
+/dev/vg-sata/docker       /docker       ext4    defaults,auto,_netdev 0 0
+/dev/vg_iscsi/workspace       /workspace        ext4    defaults,auto,_netdev 0 0
+/dev/sdb1       /home/albandri       ext4    defaults,auto,_netdev 0 0
+#/dev/sdc1       /home/albandrieu       ext4    defaults,auto,_netdev 0 0
+#/dev/sdc       /media/iscsi/zvol-openstack        zfs    defaults,auto,_netdev 0 0
+#/dev/sdd       /media/iscsi/zvol-owncloud        zfs    defaults,auto,_netdev 0 0
 /dev/rhel_fr1cslvcacrhel71/workspace /workspace xfs auto 0 2
 /dev/rhel_fr1cslvcacrhel71/docker /docker xfs defaults,usrquota,prjquota  0   0
 #CentOS 7
 /dev/centos_tmpvcaccent7/workspace /workspace xfs auto 0 2
 /dev/centos_tmpvcaccent7/docker /docker xfs defaults,usrquota,prjquota  0   0
+
+sudo mount -a
 
 sudo mkdir /workspace
 sudo mount /workspace
@@ -215,17 +248,61 @@ lspci -vv | grep -i raids
 #ls -lah /dev/cciss/
 
 #https://help.ubuntu.com/lts/serverguide/iscsi-initiator.html
-sudo apt-get install open-iscsi open-iscsi-utils
+sudo apt-get install open-iscsi # open-iscsi-utils
 sudo nano /etc/iscsi/iscsid.conf
 #uncomment
 node.startup = automatic
+sudo /etc/init.d/open-iscsi restart
+systemctl restart open-iscsi
 
-sudo iscsiadm -m discovery -t st -p 192.168.0.46
+# See https://www.howtoforge.com/tutorial/how-to-setup-iscsi-storage-server-on-ubuntu-1804/
+# On freenas in portal Discovery Auth Method to NONE AND Discovery Auth Group empty
+sudo iscsiadm -m discovery -t st -p 192.168.1.24
+# Do not redon discovery it will reset login info
+192.168.1.24:3260,-1 iqn.2011-03.com.albandrieu.istgt:albandri
+192.168.1.24:3260,-1 iqn.2011-03.com.albandrieu.istgt:home
+192.168.1.24:3260,-1 iqn.2011-03.com.albandrieu.istgt:nabla
+#sudo iscsiadm -m node --logout
+
+nano /etc/iscsi/nodes/iqn.2011-03.com.albandrieu.istgt\:nabla/192.168.1.24\,3260
+node.session.auth.authmethod = CHAP
+node.session.auth.username = albandri
+node.session.auth.password = 65
+node.session.auth.username_in = albandrieu
+node.session.auth.password_in = 2y
+#etc...
+
 sudo iscsiadm -m node --login
-#sudo iscsiadm --mode node --targetname iqn.2011-03.org.example.istgt:nabla --portal 192.168.0.46 --login
+#sudo iscsiadm --mode node --targetname iqn.2011-03.com.albandrieu.istgt:nabla --portal 192.168.1.24 --login
+#sudo iscsiadm --mode node --targetname iqn.2011-03.com.albandrieu.istgt:albandri --portal 192.168.1.24 --login
+
+#sudo systemctl restart open-iscsi # failing
+service open-iscsi restart
+
+
+# See https://www.cyberciti.biz/faq/howto-setup-debian-ubuntu-linux-iscsi-initiator/
+nano /etc/iscsi/iscsid.conf
+node.session.auth.authmethod = CHAP
+node.session.auth.username = albandri
+node.session.auth.password = 65
+node.session.auth.username_in = albandrieu
+node.session.auth.password_in = 2y
+
+/etc/init.d/open-iscsi restart
+
+iscsiadm -m session
+
 dmesg | grep sd
 sudo fdisk -l
 lsblk
+
+cat /proc/scsi/scsi
+ls -ld /sys/block/sd*/device
+ls -la /dev/disk/by-id/
+
+# https://www.howtoforge.com/tutorial/how-to-setup-iscsi-storage-server-on-ubuntu-1804/
+#sudo apt-get install tgt
+#sudo systemctl status tgt
 
 fdisk /dev/sdc
 
@@ -297,20 +374,21 @@ fdisk /dev/sdc
 
 fdisk -l
 
-mkfs.ext4 /dev/sdc1
+mkfs.ext4 /dev/sdd1
 
+sudo mkdir -p /data
 #sudo mkdir -p /media/iscsi/zvol-openstack
-sudo mkdir -p /media/iscsi/extent1
 #sudo mkdir -p /media/iscsi/zvol-owncloud
 
-mount /dev/sdc1 /media/iscsi/extent1
+sudo mount /dev/sdd1 /data
 
-sudo nano /etc/fstab
-#/dev/sdb       /media/iscsi/zvol-openstack        zfs    defaults,auto,_netdev 0 0
-/dev/sdc       /media/iscsi/extent1        ext4    defaults,auto,_netdev 0 0
-#/dev/sdd       /media/iscsi/zvol-owncloud        zfs    defaults,auto,_netdev 0 0
+ls -la /dev/disk/by-id/  | grep 6589cfc0000008c24bc3487156982765
+# sdb albandri
+ls -la /dev/disk/by-id/  | grep 6589cfc0000000d5e6acd678f4eaeaac
+# sdc albandrieu
 
-sudo mount -a
+sudo mount /dev/sdb1 /workspace/users/albandri
+sudo mount /dev/sdc1 /workspace/users/albandrieu
 
 # See encrypted diks
 # https://community.linuxmint.com/tutorial/view/2191#appc
@@ -335,7 +413,7 @@ ulimit -a
 swapoff /swapfile
 
 #dd if=/dev/zero of=/swapfile bs=1024 count=65536
-fallocate -l 8G /swapfile
+fallocate -l 50G /swapfile
 
 #Change the persmissions of the newly created file:
 
@@ -367,6 +445,8 @@ lsblk
 #e2fsck -fy /dev/mapper/centos_tmpvcaccent7-docker
 #resize2fs /dev/mapper/centos_tmpvcaccent7-docker 4G
 lvreduce -L -10G /dev/mapper/centos_tmpvcaccent7-docker
+
+#sudo lvremove /dev/vg_iscsi/docker
 
 #See https://docs.docker.com/storage/storagedriver/device-mapper-driver/#configure-direct-lvm-mode-for-production
 

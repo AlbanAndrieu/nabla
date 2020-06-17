@@ -37,20 +37,6 @@ sudo apt-get install maven
 sudo apt-get install ssmtp mailutils
 sudo apt-get install geany gedit
 
-sudo apt-get install openjdk-6-jdk openjdk-7-jdk
-
-sudo add-apt-repository ppa:webupd8team/java
-sudo apt-get update
-sudo apt-get install oracle-java7-installer
-sudo apt-get install oracle-java8-installer
-#sudo ln -s java-7-oracle jdk1.7.0
-#Switching between Oracle Java 8 and Java 7
-sudo update-java-alternatives -s java-7-oracle
-sudo update-java-alternatives -s java-8-oracle
-
-#Setting Java environment variables
-sudo apt-get install oracle-java8-set-default
-
 #for jenkins
 #sudo apt-get install daemon
 
@@ -82,7 +68,7 @@ sudo cpan install Tree::Simple::View::ASCII
 #sudo apt-get remove libsvn1 subversion
 #sudo apt-get remove subversion
 
-sudo gedit /etc/apt/sources.list
+sudo geany /etc/apt/sources.list
 ls /etc/apt/sources.list.d/
 #Append the following line
 #NOK deb http://us.archive.ubuntu.com/ubuntu precise main
@@ -165,12 +151,6 @@ albandri ALL=(ALL) ALL
 xhost +
 
 #sudo mount /dev/sda1 /media/albandri
-
-# ubuntu error messages check
-dmesg -T
-grep EDAC /var/log/messages*
-# memory issues
-egrep 'Out|Killed' /var/log/messages*
 
 ifconfig eth0
 

@@ -4,20 +4,25 @@ set -xv
 #http://www.h-online.com/open/news/item/ZFS-on-Linux-is-ready-for-wide-scale-deployment-1832848.html
 #https://github.com/zfsonlinux/pkg-zfs/wiki/HOWTO-install-Ubuntu-to-a-Native-ZFS-Root-Filesystem
 
-sudo apt-add-repository --yes ppa:zfs-native/stable
-sudo apt-add-repository --yes ppa:zfs-native/grub
-sudo apt-get update
-sudo apt-get install ubuntu-zfs
-sudo apt-get install zfs-fuse
+#sudo apt-add-repository --yes ppa:zfs-native/stable
+#sudo apt-add-repository --yes ppa:zfs-native/grub
+#sudo apt-get update
+#sudo apt-get install ubuntu-zfs
+#sudo apt-get install zfs-fuse
+#
+#sudo zpool upgrade -v
+#
+#sudo apt-get install debootstrap ubuntu-zfs
+#sudo apt-get install --no-install-recommends linux-image-generic linux-headers-generic
+#sudo apt-get install ubuntu-zfs
+#sudo apt-get install grub2-common grub-pc
+#sudo apt-get install zfs-initramfs
+#sudo apt-get dist-upgrade
 
-sudo zpool upgrade -v
-
-sudo apt-get install debootstrap ubuntu-zfs
-sudo apt-get install --no-install-recommends linux-image-generic linux-headers-generic
-sudo apt-get install ubuntu-zfs
-sudo apt-get install grub2-common grub-pc
-sudo apt-get install zfs-initramfs
-sudo apt-get dist-upgrade
+# Ubuntu 20
+# See https://arstechnica.com/gadgets/2020/03/ubuntu-20-04s-zsys-adds-zfs-snapshots-to-package-management/ 
+sudo apt-get install zfsutils-linux zsys
+zsysctl
 
 dmesg | grep ZFS
 
@@ -61,13 +66,11 @@ swap -a /dev/zvol/dsk/rpool/swap
 
 zfs list
 
-
 #issue Load the module manually by running 'insmod <location>/zfs.ko' as root
 sudo apt-get install --reinstall zfs-dkms
 
 #cleaning
 #sudo apt remove zfs.doc
-sudo apt install zfsutils-linux
 
 sudo dkms status
 
@@ -76,3 +79,5 @@ sudo dkms status
 #http://www.unixarena.com/2012/07/zfs-quick-command-reference-with.html
 
 #https://askubuntu.com/questions/404172/zpools-dont-automatically-mount-after-boot
+
+exit 0

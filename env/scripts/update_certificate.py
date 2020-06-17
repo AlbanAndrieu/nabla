@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
-import os
-import subprocess
-from time import sleep
-
-import argparse
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
+from selenium.webdriver.common.keys import Keys
+from selenium import webdriver
+from time import sleep
+import subprocess
+import os
+import argparse
 
 WORKING_DIRECTORY = os.path.dirname(os.path.realpath(__file__))
 

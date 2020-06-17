@@ -218,8 +218,8 @@ def read_cat_resp(resp_data):
     for khost, khostSnaps in sorted(resp_data.iteritems()):
         for snap in khostSnaps:
             if not snap['name'] in allSnaps:
-                    # jezeli istnieje wpis allSnaps[snap['name'] to wyciagam kolumne khosts , dodaje aktualnego khosta do tej listy
-                    # jezeli nie istnieje to tworze nowy wpis
+                # jezeli istnieje wpis allSnaps[snap['name'] to wyciagam kolumne khosts , dodaje aktualnego khosta do tej listy
+                # jezeli nie istnieje to tworze nowy wpis
                 allSnaps[snap['name']] = {
                     'desc': snap['desc'], 'date': snap['date'], 'khosts': khost.split('.')[0],
                 }

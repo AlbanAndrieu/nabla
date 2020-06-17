@@ -29,7 +29,29 @@ less /opt/google/chrome-remote-desktop/chrome-remote-desktop
 sudo systemctl restart chrome-remote-desktop
 
 gsettings get org.gnome.desktop.lockdown disable-lock-screen
-
 gsettings set org.gnome.desktop.lockdown disable-lock-screen 'true'
+
+#ls -lrta /usr/share/polkit-1/actions/org.freedesktop.color.policy
+
+# See https://c-nergy.be/blog/?p=14051
+# See https://askubuntu.com/questions/1193810/authentication-required-to-refresh-system-repositories-in-ubuntu-19-10
+cd /etc/polkit-1/localauthority/50-local.d
+nano 45-allow-colord.pkla
+
+[Allow Colord all Users]
+Identity=unix-user:*
+Action=org.freedesktop.color-manager.create-device;org.freedesktop.color-manager.create-profile;org.freedesktop.color-manager.delete-device;org.freedesktop.color-manager.delete-profile;org.freedesktop.color-manager.modify-device;org.freedesktop.color-manager.modify-profile
+ResultAny=no
+ResultInactive=no
+ResultActive=yes
+
+nano 46-allow-update-repo.pkla
+
+[Allow Package Management all Users]
+Identity=unix-user:*
+Action=org.freedesktop.packagekit.system-sources-refresh
+ResultAny=yes
+ResultInactive=yes
+ResultActive=yes
 
 exit 0

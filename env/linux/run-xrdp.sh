@@ -1,12 +1,18 @@
 #!/bin/bash
 set -xv
 
+# See http://c-nergy.be/blog/?p=14029
+# Based on xrdp-installer-1.0.sh
+run-xrdp-install.sh -s
+
+ls -lrta ~/.xsession*
+
 # See https://medium.com/@vivekteega/how-to-setup-an-xrdp-server-on-ubuntu-18-04-89f7e205bd4e
 #sudo apt-get purge xrdp
 
 sudo ufw allow 3389/tcp
 
-rm -f ~/.xsession
+rm -f ~/.xsession*
 
 #sudo apt-get install xfce4
 #Optional stuff
@@ -25,6 +31,14 @@ rm -f ~/.xsession
 sudo apt-get install xrdp
 sudo apt-get install gnome-session-flashback
 #echo "gnome-session --session=gnome-fallback" > ~/.xsession
+#echo "gnome-session --session=gnome-flashback-metacity --disable-acceleration-check & gnome-panel" >~/.xsession
+
+#echo unity > ~/.xsession
+cat <<EOF > ~/.xsessionrc
+export GNOME_SHELL_SESSION_MODE=ubuntu
+export XDG_CURRENT_DESKTOP=ubuntu:GNOME
+export XDG_CONFIG_DIRS=/etc/xdg/xdg-ubuntu:/etc/xdg
+EOF
 
 #See https://c-nergy.be/blog/?p=12469
 sudo apt-get install xrdp-pulseaudio-installer
@@ -44,7 +58,7 @@ sudo journalctl -xe
 #https://www.virtualbox.org/manual/ch07.html
 VBoxManage modifyvm "Windows7Misys" --vrde on
 VBoxManage modifyvm "Windows7Misys" --vrdeport 5000,5010-5012
-VBoxManage showvminfo  "Windows7Misys"
+VBoxManage showvminfo "Windows7Misys"
 vboxmanage modifyvm "Windows7Misys" --vrdeproperty "Security/Method=negotiate"
 
 Display -> Remote Display
@@ -63,10 +77,15 @@ localhost:5001 # if I connect a VM running on my Virtual Box server.
 
 With RDP
 Username : aandrieu
-Domain : MISYSROOT
+Domain : NABLA
 
 Advanced -> Security : RDP
 Advanced -> Disable clipboard sync
+
+# Windows Remote Desktop Protocol
+# mstsc
+# mstsc /v:10.41.40.139
+mstsc /v:10.41.40.40
 
 #remmina is a client to connect with RDP or VNC
 rm -Rf ~/.freerdp
@@ -86,3 +105,9 @@ export DISPLAY=:0.0
 
 #sudo apt install freerdp-x11
 #xfreerdp --sec rdp -d NABLA -u aandrieu WINDOWSBOX
+
+# Kill other session
+who -u
+# DO NOT MOUNT on /home user for XRDP to WORK
+
+exit 0
