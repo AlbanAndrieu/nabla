@@ -1,10 +1,6 @@
 #!/bin/bash
 set -xv
 
-OpenId
-http://www.google.com/a/cpanel/nabla.mobi/SetupIdp
-TODO SONAR connect to OpenID
-
 # Generate the RSA keys and certificate
 openssl req -x509 -nodes -days 365 -newkey rsa:1024 -sha1 -subj \
   '/C=FR/ST=IDF/L=Paris/CN=www.nabla.mobi' -keyout \
@@ -56,3 +52,7 @@ Use same settings as incoming mail server
 UA-56011797-1
 
 #https://www.thefanclub.co.za/overgrive
+
+#https://console.developers.google.com/apis/dashboard?project=nabla-01
+
+exit 0

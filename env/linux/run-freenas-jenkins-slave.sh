@@ -1,3 +1,5 @@
+#!/bin/bash
+set -xv
 
 #Fix wrong version of Feenas in jail
 sudo freebsd-version
@@ -10,15 +12,13 @@ pkg version -v
 
 pkg update && pkg upgrade
 pkg update -f
-portsnap fetch extract update
-#You must run 'portsnap extract' before running 'portsnap update'.
 
 #Install Jenkins
 #https://wiki.jenkins-ci.org/display/JENKINS/Installing+Jenkins+inside+a+FreeNAS+jail
 
 pkg_add -r jenkins
 http://192.168.0.23:8380/
-http://home.nabla.mobi:8381/
+http://albandrieu.com:8381/
 /usr/local/etc/rc.d/jenkins onestart
 edit /usr/local/etc/rc.d/jenkins
 /usr/local/etc/rc.d/jenkins stop
@@ -34,7 +34,7 @@ tail -f /mnt/dpool/jail/software/var/log/httpd-access.log
 cd /usr/local/etc/rc.d/
 edit jenkins
 service jenkins restart
-http://home.nabla.mobi:8380/
+http://albandrieu.com:8380/
 192.168.0.23
 tail -f /var/log/jenkins.log
 

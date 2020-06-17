@@ -1,6 +1,9 @@
 #!/bin/bash
 set -xv
 
+portsnap fetch extract update
+#You must run 'portsnap extract' before running 'portsnap update'.
+
 #https://www.tecmint.com/things-to-do-after-installing-freebsd/
 #https://www.freshports.org/x11-servers/xorg-vfbserver/
 
@@ -34,7 +37,7 @@ service django restart
 sqlite3 /data/freenas-v1.db "update system_settings set stg_guiprotocol = 'http';"
 
 echo "https://192.168.0.46:7000/"
-echo "https://home.nabla.mobi:7000/"
+echo "https://albandrieu.com:7000/"
 echo "https://freenas.freeboxos.fr:7000/"
 #https://[fe80::160c:76ff:fe64:65dd]:7000/
 https://[fe80::7e05:7ff:fe0e:d988]:7000/
@@ -107,11 +110,11 @@ tail -f /mnt/dpool/jail/software/var/log/minidlna.log
 #Firefly
 #do redirect to jail
 http://192.168.0.46:3689/
-http://home.nabla.mobi:3689/index.html
+http://albandrieu.com:3689/index.html
 
 #transmission
 http://192.168.0.01:9091/
-http://home.nabla.mobi:9091/transmission/web/
+http://albandrieu.com:9091/transmission/web/
 #in the jail
 cd /usr/pbi/transmission-amd64/etc/transmission/home/
 edit /usr/pbi/transmission-amd64/etc/transmission/home/settings.json
@@ -120,7 +123,7 @@ edit /usr/pbi/transmission-amd64/etc/transmission/home/settings.json
 #https://code.google.com/p/transmisson-remote-gui/downloads/list
 
 #couchpotato
-http://home.nabla.mobi:5050/
+http://albandrieu.com:5050/
 http://192.168.0.4:5050/
 #username : AlbanAndrieu
 #alban.andrieu@free.fr
@@ -131,7 +134,7 @@ http://192.168.0.6:8081/
 API KEY : f98167fbbea5df9cb52e1a5eb642cca1
 
 #sonarr
-http://home.nabla.mobi:8989/
+http://albandrieu.com:8989/
 http://192.168.0.5:8989/
 API KEY : 04617d4e3dd945cd83d79555064f71d0
 
@@ -140,7 +143,7 @@ http://192.168.0.21:8090/
 API KEY : 750d7c4d76786e8851c65795e2ec59de
 
 #sabnzbd_1
-https://home.nabla.mobi:9090/sabnzbd/
+https://albandrieu.com:9090/sabnzbd/
 https://sabnzbd_1:9090/sabnzbd/
 http://192.168.0.3:8080/sabnzbd/wizard/
 #user admin
@@ -188,7 +191,7 @@ http://192.168.0.9:5075/
 API KEY : ab00y7qye6u84lx4eqhwd0yh1wp423
 
 #owncloud
-http://home.nabla.mobi:83/
+http://albandrieu.com:83/
 http://192.168.0.10
 user : admin
 
