@@ -1,8 +1,9 @@
 #!/bin/bash
 set -xv
 
-pkg install screen
-npm install private-bower
+pkg install screen lsof
+npm install -g private-bower
+private-bower
 
 #as non jail
 #start bower
@@ -119,6 +120,7 @@ cd /media/bower/gitRepoCache
 chown -R bower:bower *
 
 lsof -i :5678
+lsof -i :6789
 service bower onestart
 
 http://192.168.1.61:5678/

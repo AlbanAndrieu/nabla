@@ -1,6 +1,9 @@
 #!/bin/bash
 set -xv
 
+portsnap fetch extract update
+#You must run 'portsnap extract' before running 'portsnap update'.
+
 #https://www.tecmint.com/things-to-do-after-installing-freebsd/
 #https://www.freshports.org/x11-servers/xorg-vfbserver/
 
