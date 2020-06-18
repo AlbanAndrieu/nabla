@@ -96,6 +96,10 @@ lsof +D /var/spool/mqueue-client/ || true
 #rm -f /var/log/kern.log
 #rm -f /var/log/syslog*
 
+# Display log before deleting
+lastlog
+#RUN rm -f /var/lib/dpkg/available-old /var/lib/dpkg/status-old /var/cache/debconf/config.dat-old /var/cache/debconf/config.dat /var/cache/debconf/templates.dat-old /var/cache/debconf/templates.dat /var/log/lastlog /var/log/faillog
+
 brew cleanup || true
 
 ./cleanup-jenkins.sh

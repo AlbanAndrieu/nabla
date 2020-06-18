@@ -117,6 +117,14 @@ sudo docker version
 sudo geany /lib/systemd/system/docker.service
 systemctl cat docker.service
 
+[Unit]
+Description=Docker Application Container Engine
+Documentation=https://docs.docker.com
+BindsTo=containerd.service
+After=network-online.target firewalld.service containerd.service autofs.service iscsid.service openvpn.service
+Wants=network-online.target autofs.service iscsid.service openvpn.service
+Requires=docker.socket
+
 #NOK DOCKER_OPTS="-H 127.0.0.1:4243 -H unix:///var/run/docker.sock"
 #NOK DOCKER_OPTS="-H albandri.misys.global.ad:4243 -H unix:///var/run/docker.sock"
 #DOCKER_OPTS="-H tcp://82.231.208.223:4243 -H unix:///var/run/docker.sock"
