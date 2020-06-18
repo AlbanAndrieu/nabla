@@ -32,6 +32,7 @@ du -sh .[!.]* *
 #\rm -Rf ~/.eclipse/*
 #\rm -Rf ~/.ansible
 #\rm -Rf ~/ansible
+\rm -Rf ~/.ansible/roles/
 \rm -Rf ~/.cpan/*
 \rm -Rf ~/.svn/*
 \rm -Rf ~/.thunderbird/*
@@ -94,6 +95,10 @@ lsof +D /var/spool/mqueue-client/ || true
 #rm -f /var/log/bandwidth
 #rm -f /var/log/kern.log
 #rm -f /var/log/syslog*
+
+# Display log before deleting
+lastlog
+#RUN rm -f /var/lib/dpkg/available-old /var/lib/dpkg/status-old /var/cache/debconf/config.dat-old /var/cache/debconf/config.dat /var/cache/debconf/templates.dat-old /var/cache/debconf/templates.dat /var/log/lastlog /var/log/faillog
 
 brew cleanup || true
 
@@ -172,6 +177,7 @@ sudo rm -f /etc/apt/sources.list.d/ppa_deadsnakes_ppa_disco.list*
 sudo rm -f /etc/apt/sources.list.d/oguzhaninan-ubuntu-stacer-eoan.list*
 sudo rm -f /etc/apt/sources.list.d/owasp-wte.list*
 sudo rm -f /etc/apt/sources.list.d/zfs-native-ubuntu-stable-focal.list*
+sudo rm -f /etc/apt/sources.list.d/skype-stable.list*
 
 sudo add-apt-repository \
 "deb [arch=amd64] https://download.docker.com/linux/ubuntu \

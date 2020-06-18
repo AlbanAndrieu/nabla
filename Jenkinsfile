@@ -1,8 +1,15 @@
 #!/usr/bin/env groovy
-/*
-    Point of this Jenkinsfile is to:
-    - define global behavior
-*/
+@Library(value='jenkins-pipeline-scripts@master', changelog=false) _
+
+String DOCKER_REGISTRY="index.docker.io/v1".trim()
+String DOCKER_ORGANISATION="nabla".trim()
+String DOCKER_TAG="latest".trim()
+String DOCKER_NAME="ansible-jenkins-slave-docker".trim()
+
+String DOCKER_REGISTRY_URL="https://${DOCKER_REGISTRY}".trim()
+String DOCKER_REGISTRY_CREDENTIAL=env.DOCKER_REGISTRY_CREDENTIAL ?: "hub-docker-nabla".trim()
+String DOCKER_IMAGE="${DOCKER_ORGANISATION}/${DOCKER_NAME}:${DOCKER_TAG}".trim()
+
 def utils
 
 def isReleaseBranch() {
@@ -10,7 +17,7 @@ def isReleaseBranch() {
 }
 
 pipeline {
-    //agent { label 'docker-inside' }
+    //agent { label 'molecule' }
     agent none
     triggers {
         cron '@daily'
@@ -32,7 +39,7 @@ pipeline {
     stages {
         stage('Preparation') { // for display purposes
             steps {
-                node('docker-inside') {
+                node('molecule') {
                     //checkout scm
 
                     script {
@@ -85,7 +92,7 @@ exit 0
                 SONAR_SCANNER_OPTS = "-Xmx1g"
             }
             steps {
-                node('docker-inside') {
+                node('molecule') {
                     sh "pwd"
                     sh "/usr/local/sonar-runner/bin/sonar-scanner -D sonar-project.properties"
                 } // node
@@ -94,7 +101,7 @@ exit 0
 
         stage('Results') {
             steps {
-                node('docker-inside') {
+                node('molecule') {
                     step([
                             $class: "WarningsPublisher",
                             canComputeNew: false,
@@ -145,7 +152,7 @@ exit 0
 
         stage('Archive Artifacts') {
             steps {
-                node('docker-inside') {
+                node('molecule') {
                     script {
 
                         if ((BRANCH_NAME == 'develop') || (BRANCH_NAME ==~ /release\/.*/) || (BRANCH_NAME ==~ /master\/.*/)) {
@@ -205,12 +212,12 @@ exit 0
     post {
         // always means, well, always run.
         always {
-            node('docker-inside') {
+            node('molecule') {
                 echo "Hi there"
-                script {
-                    utils = load "Jenkinsfile-vars"
-                    utils.notifyMe()
-                }
+                //script {
+                //    utils = load "Jenkinsfile-vars"
+                //    utils.notifyMe()
+                //}
             } // node
         }
         failure {

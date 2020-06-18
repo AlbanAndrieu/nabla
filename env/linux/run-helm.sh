@@ -47,8 +47,12 @@ helm version --short --client
 #helm init --client-only
 helm init
 
-helm repo add finastra --username aandrieu --password XXX https://registry-tmp.misys.global.ad/chartrepo/kondor
-helm search repo kondor
+helm repo add stable https://kubernetes-charts.storage.googleapis.com/
+#helm repo add custom --username aandrieu --password XXX https://registry-tmp.misys.global.ad/chartrepo/kondor
+helm repo add custom --username aandrieu --password XXX https://registry-tmp.misys.global.ad/chartrepo/fusion-risk
+helm repo add harbor http://albandrieu:6532/chartrepo/library
+
+helm search repo harbor
 helm fetch finastra/treasury --version 348.20.0-20200307T050112.shae5a6f0c.166
 #(find ./ -type d -name charts |sort -u |while read x; do ls -1d $x/*; done ) |while read c; do helm template $c |grep global-bakery >/dev/null && echo $c; done
 
@@ -59,6 +63,7 @@ helm init --service-account=tiller --history-max 200
 
 #See http://127.0.0.1:8879/charts
 
+#Now, add the public stable helm repo for installing the stable charts.
 helm repo list
 
 #See https://helm.sh/blog/migrate-from-helm-v2-to-helm-v3/
@@ -67,5 +72,27 @@ helm plugin list
 helm 2to3
 
 #See https://hub.helm.sh/
+
+# See https://mydeveloperplanet.com/2018/10/03/create-install-upgrade-rollback-a-helm-chart-part-1/
+helm create testChart
+helm lint testChart
+
+helm package testChart
+mkdir testChartDir
+mv testChart-0.1.0.tgz testChartDir/
+helm repo index  testChartDir/ --url http://albandrieu:6532/chartrepo/library
+
+helm repo update
+helm install --name my-release harbor/testchart
+
+# Cleaning
+helm list
+
+#helm plugin install https://github.com/chartmuseum/helm-push.git
+#helm chart push albandrieu:6532/library/testChart:0.1.0
+
+#helm push testChart --version="$(git log -1 --pretty=format:%h)" harbor --username admin --password microsoft
+#--verify
+helm install harbor/testChart --generate-name --debug --version 0.1.0
 
 exit 0

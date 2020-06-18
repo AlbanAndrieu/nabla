@@ -10,10 +10,10 @@ rm -f /var/log/jenkins/jenkins.log
 ls /Applications/Jenkins/jenkins.war
 cd /Applications/Jenkins/
 wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
-sudo launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist
+sudo su - Jenkins
+launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist
 tail -f /var/log/jenkins/jenkins.log
 cd /Users/Shared/Jenkins/Home
-sudo su - Jenkins
 mkdir init.groovy.d/
 
 sudo launchctl start org.apache.httpd
@@ -72,6 +72,13 @@ sudo chown -R jenkins:staff /Volumes/DATA/jobs/
 #See https://jenkins.io/download/lts/macos/
 ssh -X aandrieu@10.41.40.126
 brew install jenkins-lts
+cd /usr/local/Cellar/jenkins-lts/2.222.1
+nano homebrew.mxcl.jenkins-lts.plist
+ln -s /Users/Shared/Jenkins/Home ~/.jenkins
+
 brew services start jenkins-lts
+
+#      <string>--httpListenAddress=0.0.0.0</string>
+#      <string>--httpPort=8380</string>
 
 exit 0

@@ -41,3 +41,28 @@ convert image.png -quality 95 image.jpg
 #http://www.howtogeek.com/109369/how-to-quickly-resize-convert-modify-images-from-the-linux-terminal/
 convert image.png -resize 200x200 image.png
 convert chronon-icon.png -resize 200x200 chronon-icon-200-200.png
+
+# See https://www.modpagespeed.com/doc/console
+
+nano /etc/apache2/sites-available/vhosts.conf
+
+#inside <VirtualHost *:80>
+
+ModPagespeedStatistics on
+ModPagespeedStatisticsLogging on
+ModPagespeedLogDir /var/log/pagespeed
+<Location /pagespeed_admin>
+  Order allow,deny
+  #Allow from localhost
+  #Allow from 127.0.0.1
+  Allow from all
+  SetHandler pagespeed_admin
+</Location>
+ModPagespeedEnableCachePurge on
+
+sudo service apache2 reload
+
+# http://albandrieu.com/pagespeed_admin/console
+
+exit 0
+

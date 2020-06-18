@@ -19,4 +19,17 @@ snap-store
 
 #See account https://snapcraft.io/snap-store
 
+snap refresh --time
+sudo snap set system refresh.timer=sat,10:00~12:00
+
+
+#NetworkManager
+nmcli d
+nmcli c show docker0 | grep "IP"
+nmcli c show "Wired connection 1" | grep "IP"
+
+sudo systemctl restart snapd.service
+journalctl -u snapd.service
+#Lookup api.snapcraft.io: no such host
+
 exit 0

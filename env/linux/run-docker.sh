@@ -60,13 +60,26 @@ gksudo geany /etc/NetworkManager/NetworkManager.conf
 #   },
 #   "debug": true
 #   }
-sudo sh -x 'cat > /etc/docker/daemon.json <<EOF
+#sudo sh -x 'cat > /etc/docker/daemon.json <<EOF
+#{
+#  "exec-opts": ["native.cgroupdriver=cgroupfs"],
+#  "insecure-registries":["hostname.com"],
+#  "storage-driver": "overlay2",
+#  "debug": true
+#}
+#EOF'
+# as root
+cat > /etc/docker/daemon.json <<EOF
 {
-  "exec-opts": ["native.cgroupdriver=cgroupfs"],
-  "storage-driver": "overlay2",
-  "debug": true
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
 }
-EOF'
+EOF
+
 #nano /etc/NetworkManager/dnsmasq.d/docker-bridge.conf
 #   listen-address=172.17.0.1
 
@@ -101,8 +114,16 @@ sudo docker version
 #docker plugin install cpuguy83/docker-overlay2-graphdriver-plugin
 
 #gksudo geany /etc/init/docker.conf /etc/systemd/system/docker.service.d/env.conf
-geany /lib/systemd/system/docker.service
+sudo geany /lib/systemd/system/docker.service
 systemctl cat docker.service
+
+[Unit]
+Description=Docker Application Container Engine
+Documentation=https://docs.docker.com
+BindsTo=containerd.service
+After=network-online.target firewalld.service containerd.service autofs.service iscsid.service openvpn.service
+Wants=network-online.target autofs.service iscsid.service openvpn.service
+Requires=docker.socket
 
 #NOK DOCKER_OPTS="-H 127.0.0.1:4243 -H unix:///var/run/docker.sock"
 #NOK DOCKER_OPTS="-H albandri.misys.global.ad:4243 -H unix:///var/run/docker.sock"
@@ -115,8 +136,8 @@ DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 8.8
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --label provider=albandri --experimental
 #ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --storage-driver overlay2 --disable-legacy-registry --tlsverify --tlscacert /root/pki/ca.pem --tlscert /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.pem --tlskey /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.key --label provider=albandri
 #For Ubuntu 19.10
-ExecStart=/usr/bin/dockerd -H fd:// --dns 10.21.200.3 --dns 10.41.200.3 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --insecure-registry=registry.misys.global.ad --insecure-registry=registry-tmp.misys.global.ad --userns-remap jenkins
-ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 --dns 10.21.200.3 --dns 10.41.200.3 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --insecure-registry=registry.misys.global.ad --insecure-registry=registry-tmp.misys.global.ad
+ExecStart=/usr/bin/dockerd -H fd:// --dns 10.21.200.3 --dns 10.41.200.3 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --insecure-registry=registry.misys.global.ad --insecure-registry=albandrieu --userns-remap jenkins
+ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 --dns 10.21.200.3 --dns 10.41.200.3 --dns 192.168.1.1 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --insecure-registry=registry.misys.global.ad --insecure-registry=albandrieu
 # -s cpuguy83/docker-overlay2-graphdriver-plugin
 #For RedHat 7.4
 ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --data-root /docker
@@ -429,5 +450,11 @@ docker network ls
 docker network prune
 
 sudo apt-get install lxc
- 
+
+containerd --version
+#containerd containerd.io 1.2.13 7ad184331fa3e55e52b890ea95e65ba581ae3429
+
+# Show kernel only
+sudo journalctl -k
+
 exit 0
