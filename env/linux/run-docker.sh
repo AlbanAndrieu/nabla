@@ -185,6 +185,20 @@ journalctl -xe
 sudo docker --tlsverify ps
 
 ls -lrta ~/.docker/config.json
+less ~/.docker/config.json
+#{
+#        "auths": {
+#                "https://index.docker.io/v1/": {},
+#                "acr.azurecr.io": {},
+#                "registry-tmp.albandrieu.com": {},
+#                "registry.albandrieu.com": {}
+#        },
+#        "HttpHeaders": {
+#                "User-Agent": "Docker-Client/19.03.8 (linux)"
+#        },
+#        "experimental": "enabled",
+#        "credsStore": "pass"
+#}
 
 #docker login 10.21.70.133
 docker login registry.albandrieu.com --username=nabla
@@ -260,7 +274,7 @@ docker run -it nabla/ansible-jenkins-slave-docker /bin/bash
 #Sample using container to buid my local workspace
 docker run -t -d -w /sandbox/project-to-build -v /workspace/users/albandri30/:/sandbox/project-to-build:rw --name sandbox nabla/ansible-jenkins-slave:latest cat
 #More advance sample using jenkins user on my workstation in order to get bash completion, git-radar and most of the dev tools I need
-docker run -it -u 1004:999 --rm --net=host --pid=host --dns-search=misys.global.ad --init -w /sandbox/project-to-build -v /workspace/users/albandri30/:/sandbox/project-to-build:rw -v /workspace:/workspace -v /jenkins:/home/jenkins -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v /etc/bash_completion.d:/etc/bash_completion.d:ro -v/data1/home/albandri/.git-radar/:/home/jenkins/.git-radar/ --name sandbox nabla/ansible-jenkins-slave:latest /bin/bash
+docker run -it -u 1004:999 --rm --net=host --pid=host --dns-search=albandrieu.com --init -w /sandbox/project-to-build -v /workspace/users/albandri30/:/sandbox/project-to-build:rw -v /workspace:/workspace -v /jenkins:/home/jenkins -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v /etc/bash_completion.d:/etc/bash_completion.d:ro -v/data1/home/albandri/.git-radar/:/home/jenkins/.git-radar/ --name sandbox nabla/ansible-jenkins-slave:latest /bin/bash
 #do you stuff
 docker commit 44f8471b6047 jenkins-1
 sudo docker run --rm -i -t fec8ae404140 /usr/sbin/sshd -D
@@ -401,9 +415,9 @@ xeyes ## run an X11 demo app in the client
 #https://docs.docker.com/config/daemon/#read-the-logs
 journalctl -u docker.service
 
-#https://registry.misys.global.ad/docs/api
-#https://registry.misys.global.ad/api/v0/repositories
-#https://registry.misys.global.ad/api/v0/imagescan/status
+#https://registry.albandrieu.com/docs/api
+#https://registry.albandrieu.com/api/v0/repositories
+#https://registry.albandrieu.com/api/v0/imagescan/status
 
 #See https://github.com/GoogleContainerTools/container-structure-test
 curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64 && chmod +x container-structure-test-linux-amd64 && sudo mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
@@ -456,5 +470,10 @@ containerd --version
 
 # Show kernel only
 sudo journalctl -k
+
+export DOCKER_CLI_EXPERIMENTAL=enabled
+#Add "experimental": "enabled" to ~/.docker/config.json
+
+docker buildx ls
 
 exit 0
