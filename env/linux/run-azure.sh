@@ -38,4 +38,22 @@ az webapp start \
 
 # See https://azure.microsoft.com/fr-fr/downloads/
 
+az --version
+
+# ACR and helm repo access:
+az acr login -n p21d13401013001
+docker login p21d13401013001.azurecr.io --username $SP_APP_ID --password $SP_PASSWD
+
+#AZR-C21-DV-134-01
+
+az acr login -n p21d19702514001
+az acr helm repo add -n p21d19702514001
+
+# AKS access:
+az login
+az account set --subscription DEV-C20-001
+az aks get-credentials --name p21d19702515001 --resource-group AZR-C21-DV-197-02
+
+# See https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml
+
 exit 0

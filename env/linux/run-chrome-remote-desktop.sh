@@ -26,7 +26,6 @@ less /opt/google/chrome-remote-desktop/chrome-remote-desktop
 #echo "exec /usr/bin/cinnamon-session-cinnamon2d" > ~/.chrome-remote-desktop-session
 
 #sudo systemctl disable lightdm.service
-sudo systemctl restart chrome-remote-desktop
 
 gsettings get org.gnome.desktop.lockdown disable-lock-screen
 gsettings set org.gnome.desktop.lockdown disable-lock-screen 'true'
@@ -53,5 +52,7 @@ Action=org.freedesktop.packagekit.system-sources-refresh
 ResultAny=yes
 ResultInactive=yes
 ResultActive=yes
+
+sudo systemctl restart chrome-remote-desktop
 
 exit 0

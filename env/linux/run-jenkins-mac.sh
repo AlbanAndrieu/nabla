@@ -10,8 +10,11 @@ rm -f /var/log/jenkins/jenkins.log
 ls /Applications/Jenkins/jenkins.war
 cd /Applications/Jenkins/
 wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
-sudo su - Jenkins
+chown jenkins:staff /var/log/jenkins
+#less /Library/LaunchDaemons/org.jenkins-ci.plist
+sudo su - jenkins
 launchctl load /Library/LaunchDaemons/org.jenkins-ci.plist
+rm -f /var/log/jenkins/jenkins.log
 tail -f /var/log/jenkins/jenkins.log
 cd /Users/Shared/Jenkins/Home
 mkdir init.groovy.d/

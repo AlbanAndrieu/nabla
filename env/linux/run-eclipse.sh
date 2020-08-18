@@ -117,3 +117,9 @@ scl enable python27 bash
 
 # ctrl z shorti not working
 #rm -f /workspace/users/albandri30/nabla/env/linux/.metadata/.plugins/org.eclipse.e4.workbench/workbench.xmi
+
+# Team Explorer Everywhere
+# See https://github.com/microsoft/team-explorer-everywhere
+# https://docs.microsoft.com/en-us/previous-versions/azure/devops/java/download-eclipse-plug-in?view=azure-devops
+
+exit 0
