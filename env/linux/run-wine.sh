@@ -18,4 +18,19 @@ wineconsole /workspace/users/albandri10/.wine/drive_c/users/albandri/Application
 
 wine /home/albandri/.wine/drive_c/Program\ Files\ \(x86\)/Mozilla\ Firefox/firefox.exe
 
+# See wine database
+# See https://appdb.winehq.org/
+
+# See https://itsfoss.com/use-windows-applications-linux/
+
+# WinePrefix
+# Windows applications need a C: drive. Wine uses a virtual C: drive for this purpose. The directory of this virtual C: drive is called wineprefix. First of all, we need to create a wineprefix. For doing that, fire up a terminal and enter this command:
+winecfg
+
+ls -lrta $HOME/.wine/drive_c/
+
+sudo apt install playonlinux
+
+wineconsole ./target/bin/x86Linux/run_app.exe
+
 exit 0

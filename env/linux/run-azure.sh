@@ -40,20 +40,43 @@ az webapp start \
 
 az --version
 
+az login
+#az login --tenant "0b9b90da-3fe1-457a-b340-f1b67e1024fb"
+az login --use-device-code
+az login --identity
+
 # ACR and helm repo access:
 az acr login -n p21d13401013001
 docker login p21d13401013001.azurecr.io --username $SP_APP_ID --password $SP_PASSWD
 
 #AZR-C21-DV-134-01
 
-az acr login -n p21d19702514001
-az acr helm repo add -n p21d19702514001
+#az account set --subscription PROD-C20-001
+#az aks get-credentials --name p21d13401013001 --resource-group AZR-C21-DV-134-01 --admin
+
+#az ad sp reset-credentials
+az acr list
+az provider operation show --namespace Microsoft.ContainerRegistry
+az acr repository show-manifests -n p21d13401013001 --repository fusion-risk/ansible-jenkins-slave --orderby time_desc
 
 # AKS access:
-az login
 az account set --subscription DEV-C20-001
-az aks get-credentials --name p21d19702515001 --resource-group AZR-C21-DV-197-02
+#NOK az aks get-credentials --name p21d19702515001 --resource-group AZR-C21-DV-197-02
+#az account set --subscription DEV-C01-002
+#az account set --subscription DEV-C30-001
 
 # See https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml
+
+#docker login p21d13401013001.azurecr.io
+docker pull p21d13401013001.azurecr.io/fusion-risk/ansible-jenkins-slave
+
+sudo az aks install-cli
+kubectl version --client
+
+aadgname=todo
+az ad group list --filter "displayname eq '$aadgname'" -O table
+az aks get-credentials -g AKS-Demo -n aksdemocluster
+
+k get no
 
 exit 0
