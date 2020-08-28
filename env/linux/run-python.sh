@@ -193,4 +193,8 @@ python -m  cProfile -o cprofile  setup.py
 # Use gprof2dot to generate .png image of calls
 gprof2dot -f pstats cprofile | dot -Tpng -o output.png
 
+#Python 2.7 dropped
+#See https://setuptools.readthedocs.io/en/latest/python%202%20sunset.html
+sudo pip uninstall -y setuptools
+
 exit 0
