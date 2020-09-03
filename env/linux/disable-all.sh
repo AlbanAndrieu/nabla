@@ -40,7 +40,8 @@ systemctl stop teamviewerd
 systemctl stop slapd
 systemctl stop snmpd
 systemctl stop sendmail
-systemctl stop iscsitarget
+#systemctl stop iscsitarget
+systemctl stop iscsid stop
 systemctl stop nmbd
 systemctl stop smbd
 systemctl stop samba

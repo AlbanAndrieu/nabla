@@ -17,4 +17,7 @@ nano ~/.config/pulse/client.conf
 
 #sudo apt install ofono
 
+# Config bluethooth aukey
+pavucontrol
+
 exit 0

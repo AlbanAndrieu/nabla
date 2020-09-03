@@ -17,4 +17,9 @@ apm install python-debugger language-python
 
 apm install atom-beautify
 
+apm install build
+apm install build-scons
+
+#pip install virtualenvwrapper
+
 exit 0

@@ -2,13 +2,16 @@
 set -xv
 
 # See https://doc.ubuntu-fr.org/imagemagick
+
+# Fix bug https://github.com/ImageMagick/ImageMagick/issues/396
 #sudo sed -i 's/rights="none" pattern="PDF"/rights="read | write" pattern="PDF"/' /etc/ImageMagick-6/policy.xml
 #sudo sed -i 's/rights="none" pattern="EPS"/rights="read | write" pattern="EPS"/' /etc/ImageMagick-6/policy.xml
 #sudo sed -i 's/rights="none" pattern="XPS"/rights="read | write" pattern="XPS"/' /etc/ImageMagick-6/policy.xml
 #sudo sed -i 's/rights="none" pattern="PS"/rights="read | write" pattern="PS"/' /etc/ImageMagick-6/policy.xml
-#Change memory to 2 Gb
-#  <!--<policy domain="resource" name="memory" value="256MiB"/>-->
-#  <policy domain="resource" name="memory" value="2GiB"/>
+#F ix memory bug to 2 Gb
+# https://doc.ubuntu-fr.org/imagemagick#j_obtiens_une_erreur_de_cache
+#sudo sed -i 's/name="memory" value="256MiB"/name="memory" value="3GiB"/' /etc/ImageMagick-6/policy.xml
+#sudo sed -i 's/name="disk" value="1GiB"/name="disk" value="2GiB"/' /etc/ImageMagick-6/policy.xml
 
 #convert *.jpg document.pdf
 convert -compress jpeg images_*.png document.pdf
@@ -16,5 +19,8 @@ convert -compress jpeg images_*.png document.pdf
 # See https://doc.ubuntu-fr.org/pdftk
 #sudo apt-get install pdftk
 #pdftk 1.pdf 2.pdf 3.pdf cat output 123.pdf
+
+# Compress pdf
+convert -density 200x200 -quality 60 -compress jpeg input.pdf output.pdf
 
 exit 0

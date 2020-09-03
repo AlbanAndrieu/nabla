@@ -197,4 +197,50 @@ gprof2dot -f pstats cprofile | dot -Tpng -o output.png
 #See https://setuptools.readthedocs.io/en/latest/python%202%20sunset.html
 sudo pip uninstall -y setuptools
 
+# See https://virtualenvwrapper.readthedocs.io/en/latest/install.html
+
+sudo chown -R jenkins:docker /opt/ansible/
+
+#sudo /usr/local/bin/pip2.7 install virtualenv==20.0.24
+pip2.7 uninstall virtualenv virtualenvwrapper
+pip2.7 list
+
+source /opt/ansible/env38/bin/activate
+export SETUPTOOLS_USE_DISTUTILS=stdlib
+virtualenv --version
+#15.2.0
+#sudo pip3.8 install setuptools virtualenvwrapper
+#sudo apt-get install python3-virtualenv
+#sudo mv /usr/local/bin/virtualenv /usr/local/bin/virtualenv-SAV
+mkvirtualenv --python=/usr/bin/python
+#brew info python
+#brew uninstall --ignore-dependencies python
+
+mkvirtualenv --version
+
+source /opt/ansible/env/bin/activate
+pip uninstall virtualenv #15.2.0
+sudo pip2 install virtualenv==20.0.24
+sudo pip2 install virtualenvwrapper
+
+/opt/ansible/env/bin/pip2 list
+/usr/local/bin/pip3 list
+pip3 list
+/opt/ansible/env38/bin/pip3.8 list
+
+export WORKON_HOME=/opt/ansible/env/
+source /usr/local/bin/virtualenvwrapper.sh
+#VIRTUALENVWRAPPER_PYTHON=/opt/ansible/env38/bin/python
+export VIRTUALENVWRAPPER_PYTHON=/opt/ansible/env/bin/python
+export VIRTUALENVWRAPPER_VIRTUALENV=/opt/ansible/env/bin/virtualenv
+
+lssitepackages
+
+ls -l $VIRTUALENVWRAPPER_PYTHON
+ls -lrta $HOME/.virtualenvs/
+ls -lrta $PROJECT_HOME
+
+#Test creation
+mkvirtualenv test
+
 exit 0

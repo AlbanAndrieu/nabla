@@ -287,10 +287,21 @@ export CMAKE_ROOT=${CMAKE_HOME}
 #See run-python.sh script
 #export PYTHON_MAJOR_VERSION=3.8
 
+# See https://github.com/pypa/setuptools/issues/2353
+export SETUPTOOLS_USE_DISTUTILS=stdlib
+virtualenv --version
+
 if [ -f ${HOME}/run-python.sh ]; then
     echo -e "${green} ${HOME}/run-python.sh ${NC}"
     source "${HOME}/run-python.sh"
 fi
+
+#sudo pip3.8 install setuptools virtualenvwrapper
+export WORKON_HOME=/opt/ansible/
+#export VIRTUALENVWRAPPER_PYTHON=/opt/ansible/env/bin/python
+#export VIRTUALENVWRAPPER_VIRTUALENV=/opt/ansible/env/bin/virtualenv
+##source /usr/local/bin/virtualenvwrapper.sh
+#source /opt/ansible/env/bin/virtualenvwrapper.sh
 
 #export PYTHON_DIR=${DRIVE_PATH}/usr/lib/python3.6
 #export VIRTUALENV_PATH=/opt/ansible/env$(echo $PYTHON_MAJOR_VERSION | sed -r 's/\.//g')
@@ -308,9 +319,9 @@ fi
 export SCONS_DIR=/usr/lib/scons/SCons
 
 # ALIAS to scons-local
-export SCONS='/usr/bin/python2.7 /opt/ansible/env/bin/scons'
-alias scons="${SCONS}"
-#alias scons='/usr/bin/python2.7 /opt/ansible/env/bin/scons'
+# Disable alias scons since we are using https://pypi.org/project/virtualenvwrapper/
+#export SCONS='/usr/bin/python2.7 /opt/ansible/env/bin/scons'
+#alias scons="${SCONS}"
 
 export SCONS_PATH=/usr/lib/scons/SCons/Script
 if [ "$SCONS_PATH" = "" ]

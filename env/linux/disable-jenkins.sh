@@ -41,7 +41,8 @@ sudo service conky stop
 
 sudo service slapd stop
 sudo service snmpd stop
-#sudo service iscsitarget stop
+##sudo service iscsitarget stop
+#sudo service iscsid stop
 sudo service nmbd stop
 sudo service smbd stop
 sudo service lightdm stop

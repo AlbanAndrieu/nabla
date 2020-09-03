@@ -63,7 +63,8 @@ systemctl stop teamviewerd
 systemctl stop slapd
 #sudo apt-get -y remove slapd
 systemctl stop snmpd
-#systemctl stop iscsitarget
+##systemctl stop iscsitarget
+systemctl stop iscsid
 systemctl stop nmbd
 systemctl stop smbd
 #systemctl stop lightdm
