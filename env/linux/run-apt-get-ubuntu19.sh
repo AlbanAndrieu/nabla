@@ -11,7 +11,7 @@ sudo systemctl status gdm
 
 # Remove language related ign from apt-get update:
 sudo gedit /etc/apt/apt.conf.d/00aptitude
-#Add 
+#Add
 #Acquire::Languages "none";
 
 exit 0

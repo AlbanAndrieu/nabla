@@ -34,7 +34,7 @@ sudo mkdir -p /local/virtualbox/Windows7/Shared
 #install oracle vm virtualbox extension pack
 cd ~/.VirtualBox
 
-sudo apt-get install virtualbox-ext-pack 
+sudo apt-get install virtualbox-ext-pack
 sudo apt-get install virtualbox-guest-dkms
 
 wget http://download.virtualbox.org/virtualbox/5.0.16/Oracle_VM_VirtualBox_Extension_Pack-5.0.16-105871.vbox-extpack

@@ -20,7 +20,7 @@ set -xv
 #sudo apt-get dist-upgrade
 
 # Ubuntu 20
-# See https://arstechnica.com/gadgets/2020/03/ubuntu-20-04s-zsys-adds-zfs-snapshots-to-package-management/ 
+# See https://arstechnica.com/gadgets/2020/03/ubuntu-20-04s-zsys-adds-zfs-snapshots-to-package-management/
 sudo apt-get install zfsutils-linux zsys
 zsysctl
 

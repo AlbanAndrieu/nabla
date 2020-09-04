@@ -22,12 +22,12 @@ gsystemctl list-units --type service
 
 systemctl list-units --failed
 
-systemctl --no-pager status 
- 
+systemctl --no-pager status
+
 # Issue https://unix.stackexchange.com/questions/533933/systemd-cant-unmask-root-mount-mount
-#systemctl unmask  -- -.mount 
+#systemctl unmask  -- -.mount
 # close gparted
-#sudo rm /run/systemd/system/-.mount 
-sudo systemctl daemon-reload 
- 
+#sudo rm /run/systemd/system/-.mount
+sudo systemctl daemon-reload
+
 exit 0

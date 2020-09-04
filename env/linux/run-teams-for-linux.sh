@@ -12,6 +12,6 @@ sudo dpkg-reconfigure apparmor
 
 sudo nano /etc/apparmor.d/tunables/home.d/my-home
 #@{HOMEDIRS}+=/albandrieu /albandri /jenkins
-sudo nano /var/lib/snapd/apparmor/snap-confine/my-homes 
+sudo nano /var/lib/snapd/apparmor/snap-confine/my-homes
 
 exit 0

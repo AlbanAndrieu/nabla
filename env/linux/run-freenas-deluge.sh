@@ -5,7 +5,7 @@ deluge --version
 
 service deluged stop
 service deluge_web stop
- 
+
 cd ./usr/local/etc/deluge/
 sed -i.bak "/pwd_sha1/d" web.conf
 

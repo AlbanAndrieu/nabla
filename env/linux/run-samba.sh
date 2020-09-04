@@ -45,11 +45,11 @@ sudo nano /etc/samba/smb.conf
 #force user = nobody
 
 # See https://www.cyberciti.biz/faq/how-to-configure-samba-to-use-smbv2-and-disable-smbv1-on-linux-or-unix/
-# Append 
+# Append
 min protocol = SMB2
 client min protocol = SMB2
 #client max protocol = SMB3
-   
+
 #sudo service smbd restart
 sudo systemctl restart smbd.service
 sudo service firewall stop
