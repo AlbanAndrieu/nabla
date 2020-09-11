@@ -45,9 +45,9 @@ git config --global http.sslVerify false
 git config --system core.longpaths true
 git config --global pack.packsizelimit 2g
 git config --system core.autocrlf false
-
 # For issue https://github.com/git-lfs/git-lfs/issues/3171
-git config lfs.contenttype 0
+#git config lfs.contenttype 0
+git config lfs.contenttype true
 #git config core.ignoreStat true
 #git config core.fscache true
 
@@ -116,5 +116,9 @@ sudo apt-get install gitlab-ce
 
 # See https://hub.github.com/
 #alias git=hub
+
+git lfs install --system --skip-repo
+git lfs prune --dry-run
+git lfs checkout
 
 exit 0
