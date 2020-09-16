@@ -23,4 +23,11 @@ convert -compress jpeg images_*.png document.pdf
 # Compress pdf
 convert -density 200x200 -quality 60 -compress jpeg input.pdf output.pdf
 
+# Sign document
+# See https://www.howtogeek.com/164668/how-to-electronically-sign-documents-without-printing-and-scanning-them/
+
+sudo apt install xournal
+
+# See https://www.hellosign.com/ to sign using internet
+
 exit 0

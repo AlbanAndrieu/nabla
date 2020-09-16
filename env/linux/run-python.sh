@@ -242,4 +242,10 @@ ls -lrta $PROJECT_HOME
 #Test creation
 mkvirtualenv test
 
+#pip3 install --upgrade pip==20.2.2 wheel==0.34.2 setuptools==46.1.3
+
+# Issue on jenkins user
+# ModuleNotFoundError: No module named 'setuptools._distutils'
+rm -Rf /jenkins/.local/lib/python3.8/site-packages/
+
 exit 0
