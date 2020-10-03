@@ -79,4 +79,14 @@ az aks get-credentials -g AKS-Demo -n aksdemocluster
 
 k get no
 
+# Ansible
+
+wget https://raw.githubusercontent.com/ansible-collections/community.general/main/scripts/inventory/azure_rm.py
+chmod +x ./azure_rm.py
+./azure_rm.py --help
+
+nano $HOME/.azure/credentials
+
+ansible -i azure_rm.py Testing -m shell -a "/bin/uname -a"
+
 exit 0

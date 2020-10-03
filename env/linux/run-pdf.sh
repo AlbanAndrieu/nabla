@@ -8,7 +8,7 @@ set -xv
 #sudo sed -i 's/rights="none" pattern="EPS"/rights="read | write" pattern="EPS"/' /etc/ImageMagick-6/policy.xml
 #sudo sed -i 's/rights="none" pattern="XPS"/rights="read | write" pattern="XPS"/' /etc/ImageMagick-6/policy.xml
 #sudo sed -i 's/rights="none" pattern="PS"/rights="read | write" pattern="PS"/' /etc/ImageMagick-6/policy.xml
-#F ix memory bug to 2 Gb
+# Fix memory bug to 2 Gb
 # https://doc.ubuntu-fr.org/imagemagick#j_obtiens_une_erreur_de_cache
 #sudo sed -i 's/name="memory" value="256MiB"/name="memory" value="3GiB"/' /etc/ImageMagick-6/policy.xml
 #sudo sed -i 's/name="disk" value="1GiB"/name="disk" value="2GiB"/' /etc/ImageMagick-6/policy.xml

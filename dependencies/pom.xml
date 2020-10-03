@@ -1075,7 +1075,8 @@
 		<!--<sonar.projectVersion>jenkins-${env.BUILD_NUMBER}</sonar.projectVersion>-->
 		<sonar.links.ci>${env.BUILD_URL}</sonar.links.ci>
 		<sonar.links.scm>https://github.com/AlbanAndrieu</sonar.links.scm>
-		<sonar.login>50cb615252d00e68f3678b321335a8d1f13a9145</sonar.login>
+		<!--<sonar.login>50cb615252d00e68f3678b321335a8d1f13a9145</sonar.login>-->
+        <sonar.login>818224bf27cc74d98389c3d5c567e58ea7e058eb</sonar.login> <!-- albandrieu -->
 		<sonar.organization>albanandrieu-github</sonar.organization>
 
 		<sonar.pitest.mode>reuseReport</sonar.pitest.mode>

@@ -56,5 +56,6 @@ sudo service firewall stop
 
 smb://10.25.40.104/share/
 smb://10.25.40.139/share/
+smb://192.168.1.57/share/
 
 exit 0
