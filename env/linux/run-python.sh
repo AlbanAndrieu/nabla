@@ -248,4 +248,18 @@ mkvirtualenv test
 # ModuleNotFoundError: No module named 'setuptools._distutils'
 rm -Rf /jenkins/.local/lib/python3.8/site-packages/
 
+# Issue ModuleNotFoundError: No module named 'virtualenv.seed.via_app_data'
+# https://news.julien-anne.fr/ubuntu-20-04-python3-et-virtualenv-installation-et-erreurs-potentielles/
+sudo apt remove python3-virtualenv
+pip3 install virtualenv==20.0.23
+/usr/bin/python3.8 -m pip install --upgrade pip
+#Successfully installed pip-20.2.3
+
+#Add in ~/.bashrc
+if [ -d "/home/${USER}/.local/bin" ] ; then
+    export PATH=/home/${USER}/.local/bin:${PATH}
+fi
+
+pip2 install --user "setuptools<45"
+
 exit 0

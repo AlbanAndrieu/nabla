@@ -136,7 +136,10 @@ DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 8.8
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --label provider=albandri --experimental
 #ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --storage-driver overlay2 --disable-legacy-registry --tlsverify --tlscacert /root/pki/ca.pem --tlscert /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.pem --tlskey /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.key --label provider=albandri
 #For Ubuntu 19.10 and 20
-ExecStart=/usr/bin/dockerd -H fd:// --dns 10.21.200.3 --dns 10.41.200.3 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --insecure-registry=registry.misys.global.ad --insecure-registry=albandrieu --userns-remap jenkins
+#ExecStart=/usr/bin/dockerd -H fd:// --dns 10.21.200.3 --dns 10.41.200.3 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --insecure-registry=registry.misys.global.ad --insecure-registry=albandrieu --userns-remap jenkins
+Environment="HTTP_PROXY=http://192.168.1.57:3128"
+Environment="HTTPS_PROXY=http://192.168.1.57:3128"
+Environment="NO_PROXY=localhost,127.0.0.1,.nabla.mobi,.albandrieu.com,.azure.io"
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 --dns 10.21.200.3 --dns 10.41.200.3 --dns 192.168.1.1 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --insecure-registry=registry.misys.global.ad --insecure-registry=albandrieu
 # -s cpuguy83/docker-overlay2-graphdriver-plugin
 #For RedHat 7.4

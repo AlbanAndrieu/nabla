@@ -13,7 +13,8 @@ sudo apt-get install network-manager-openconnect network-manager-openconnect-gno
 sudo apt-get install vpnc network-manager-vpnc
 
 sudo service networking restart
-#A rebbot is required
+sudo service network-manager restart
+#A reboot is required
 #sudo reboot
 
 #---------------------------------

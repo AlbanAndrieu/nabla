@@ -83,4 +83,6 @@ cd /media/jenkins/scm-sync-configuration/checkoutConfiguration
 git config --global user.email "alban.andrieu@free.fr"
 git config --global user.name "AlbanAndrieu"
 
+edit /media/workspace/zfs-log_parsing_rules
+
 exit 0

@@ -300,6 +300,12 @@ fi
 export WORKON_HOME=/opt/ansible/
 #export VIRTUALENVWRAPPER_PYTHON=/opt/ansible/env/bin/python
 #export VIRTUALENVWRAPPER_VIRTUALENV=/opt/ansible/env/bin/virtualenv
+
+#TO user virtualenv from user
+if [ -d "/home/${USER}/.local/bin" ] ; then
+    export PATH=/home/${USER}/.local/bin:${PATH}
+fi
+
 ##source /usr/local/bin/virtualenvwrapper.sh
 #source /opt/ansible/env/bin/virtualenvwrapper.sh
 
@@ -310,6 +316,7 @@ export WORKON_HOME=/opt/ansible/
 ##export PYTHONPATH=$PYTHONPATH:${DRIVE_PATH}/usr/lib/python3.6/dist-packages/
 #export PYTHONPATH="${VIRTUALENV_PATH}/lib/python${PYTHON_MAJOR_VERSION}/site-packages/"
 #source ${VIRTUALENV_PATH}/bin/activate
+#. ${VIRTUALENV_PATH}/bin/activate
 
 # ALIAS to python
 #alias python='/usr/bin/python3.6'

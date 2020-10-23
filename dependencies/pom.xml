@@ -186,7 +186,7 @@
 		<cobertura.format>xml</cobertura.format>
 		<commons.beanutils.version>1.8.3</commons.beanutils.version>
 		<commons.cli.version>1.2</commons.cli.version>
-		<commons.codec.version>1.7</commons.codec.version>
+		<commons.codec.version>1.10</commons.codec.version>
 		<commons.collections.version>3.2.1</commons.collections.version>
 		<commons.configuration.version>1.6</commons.configuration.version>
 		<commons.dbcp>1.2.2</commons.dbcp>
@@ -494,7 +494,7 @@
 		<jcip.annotations.version>1.0-1</jcip.annotations.version>
 		<jdbc.derby.version>10.14.1.0</jdbc.derby.version>
 		<!--TODO same as jdbc.sybase.version <jconn.version>6.0</jconn.version>-->
-		<jdbc.h2.version>1.4.190</jdbc.h2.version>
+		<jdbc.h2.version>1.4.197</jdbc.h2.version>
 		<jdbc.hsqldb.version>1.8.0.10</jdbc.hsqldb.version>
 		<!-- deprecated, please move to above org.hsqldb -->
 		<!--<jconnect.version>6.0.5.26312</jconnect.version>-->
@@ -692,6 +692,7 @@
 		<maven.nexus.staging.plugin.version>1.6.8</maven.nexus.staging.plugin.version>
 		<maven.one.plugin.version>1.3</maven.one.plugin.version>
 		<maven.org.liquibase.plugin.version>3.8.6</maven.org.liquibase.plugin.version>
+		<maven.org.flyway.plugin.version>7.0.0</maven.org.flyway.plugin.version>
 		<maven.patch.plugin.version>1.2</maven.patch.plugin.version>
 		<maven.pax.plugin.version>1.6.0</maven.pax.plugin.version>
 		<maven.pitest.plugin.version>1.5.0</maven.pitest.plugin.version>
@@ -8897,6 +8898,8 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 					<artifactId>exec-maven-plugin</artifactId>
 					<version>${maven.exec.plugin.version}</version>
 				</plugin>
+				<!-- See https://docs.spring.io/spring-boot/docs/1.3.5.RELEASE/reference/html/howto-database-initialization.html#howto-execute-flyway-database-migrations-on-startup -->
+				<!-- TODO check for https://flywaydb.org/ -->
 				<plugin>
 					<groupId>org.liquibase</groupId>
 					<artifactId>liquibase-maven-plugin</artifactId>
@@ -8905,6 +8908,22 @@ pmUUnpvpstuummmmmUUnpvpstuummmmmUUEXYiXUUn]]></license>
 						<propertyFileWillOverride>true</propertyFileWillOverride>
 						<!--<propertyFile>target/classes/liquibase.properties</propertyFile>-->
 					</configuration>
+				</plugin>
+				<plugin>
+					<groupId>org.flywaydb</groupId>
+					<artifactId>flyway-maven-plugin</artifactId>
+					<version>${maven.org.flyway.plugin.version}</version>
+					<configuration>
+						<url>jdbc:h2:file:./target/foobar</url>
+						<user>sa</user>
+					</configuration>
+					<dependencies>
+						<dependency>
+							<groupId>com.h2database</groupId>
+							<artifactId>h2</artifactId>
+							<version>${jdbc.h2.version}</version>
+						</dependency>
+					</dependencies>
 				</plugin>
 				<plugin>
 					<groupId>org.codehaus.mojo</groupId>

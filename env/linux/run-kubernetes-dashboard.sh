@@ -19,6 +19,7 @@ service/kubernetes-dashboard            ClusterIP      10.152.183.244
 token=$(microk8s.kubectl -n kube-system get secret | grep default-token | cut -d " " -f1)
 microk8s.kubectl -n kube-system describe secret $token
 
+# START dashboard
 #kubectl proxy
 sudo microk8s.kubectl proxy --accept-hosts=.* --address=0.0.0.0 &
 
