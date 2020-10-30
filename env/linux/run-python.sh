@@ -262,4 +262,16 @@ fi
 
 pip2 install --user "setuptools<45"
 
+# See https://stackoverflow.com/questions/25981703/pip-install-fails-with-connection-error-ssl-certificate-verify-failed-certi
+
+# /c/Python27/Scripts/pip2.7.exe --trusted-host pypi.org --trusted-host files.pythonhosted.org install pywin32==228 distro==1.5.0
+# /c/Python27/python.exe -m pip --trusted-host pypi.org --trusted-host files.pythonhosted.org install --upgrade pip
+
+#mkdir ~/.config/pip
+#geany ~/.config/pip/pip.conf
+#[global]
+#trusted-host = pypi.python.org
+#               pypi.org
+#               files.pythonhosted.org
+
 exit 0
