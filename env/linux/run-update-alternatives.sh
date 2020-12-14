@@ -1,9 +1,18 @@
 #!/bin/bash
 set -xv
 
+#RedHat
+#alternatives --install /usr/bin/python python /usr/local/bin/python3.6 2
+#alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+#alternatives --list | grep -i python
+
+#Ubuntu
+#ls -la /etc/alternatives/python*
+
 update-alternatives --list python
 sudo update-alternatives --remove-all python
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 1
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 6
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.7 7
 sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.8 8
 update-alternatives --config python

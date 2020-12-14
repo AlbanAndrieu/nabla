@@ -60,14 +60,16 @@ gksudo geany /etc/NetworkManager/NetworkManager.conf
 #   },
 #   "debug": true
 #   }
-#sudo sh -x 'cat > /etc/docker/daemon.json <<EOF
-#{
-#  "exec-opts": ["native.cgroupdriver=cgroupfs"],
-#  "insecure-registries":["hostname.com"],
-#  "storage-driver": "overlay2",
-#  "debug": true
-#}
-#EOF'
+# kubernetes
+sudo sh -x 'cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=cgroupfs"],
+  "insecure-registries":["hostname.com"],
+  "storage-driver": "overlay2",
+  "debug": true,
+  "insecure-registries" : ["localhost:32000"]
+}
+EOF'
 # as root
 cat > /etc/docker/daemon.json <<EOF
 {
@@ -76,7 +78,8 @@ cat > /etc/docker/daemon.json <<EOF
   "log-opts": {
     "max-size": "100m"
   },
-  "storage-driver": "overlay2"
+  "storage-driver": "overlay2",
+  "debug": true
 }
 EOF
 
@@ -125,9 +128,6 @@ After=network-online.target firewalld.service containerd.service autofs.service 
 Wants=network-online.target autofs.service iscsid.service openvpn.service
 Requires=docker.socket
 
-#NOK DOCKER_OPTS="-H 127.0.0.1:4243 -H unix:///var/run/docker.sock"
-#NOK DOCKER_OPTS="-H albandri.misys.global.ad:4243 -H unix:///var/run/docker.sock"
-#DOCKER_OPTS="-H tcp://82.231.208.223:4243 -H unix:///var/run/docker.sock"
 DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock"
 #DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.25.200.3"
 DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 8.8.8.8 --dns 8.8.8.4"
@@ -425,9 +425,7 @@ journalctl -u docker.service
 #See https://github.com/GoogleContainerTools/container-structure-test
 curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64 && chmod +x container-structure-test-linux-amd64 && sudo mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
 
-#ls -lrta /var/run/docker.sock
-#chmod 777 /var/run/docker.sock
-#For non sudo user
+#For non sudo user such as clair : docker-compose exec clairctl clairctl report -l infoslack/dvwa
 #sudo chmod 666 /var/run/docker.sock
 sudo setfacl -m user:jenkins:rw /var/run/docker.sock
 sudo setfacl -m user:albandri:rw /var/run/docker.sock

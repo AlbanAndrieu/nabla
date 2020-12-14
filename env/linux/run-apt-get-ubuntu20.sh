@@ -13,4 +13,7 @@ sudo apt-get install gnome-shell-extension-multi-monitors
 sudo apt-get install gnome-shell-extension-weather
 sudo apt-get install gnome-shell-extension-autohidetopbar gnome-shell-extension-dash-to-panel gnome-shell-extension-hard-disk-led chrome-gnome-shell
 
+sudo ufw disable
+sudo swapoff -a
+
 exit 0

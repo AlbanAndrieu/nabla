@@ -13,8 +13,6 @@ sudo apt-get install apparmor-utils
 #sudo apt-get cups-ipp-utils python-cups
 #sudo apt-get xeroxprtdrv
 
-#See http://localhost:631/admin
-
 #Nabla-Guest
 #Passwrord : guest@ccess12
 #

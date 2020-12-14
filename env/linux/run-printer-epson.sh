@@ -18,7 +18,8 @@ sudo apt --fix-broken install
 sudo /usr/local/EPAva/printer/snx100/uninstall-snx100.sh
 
 #sudo ./pips-snx100-ubuntu8.04-3.5.0-CG.install
-sudo ./pips-snx100-ubuntu8.04-3.3.0-CG.install
+#sudo ./pips-snx100-ubuntu8.04-3.3.0-CG.install
+sudo ./pips-snx100-ubuntu8.04-3.5.0-CG.install
 
 ls -lrta /usr/local/EPAva/printer/snx100/
 
@@ -50,7 +51,7 @@ sudo gtklp
 
 sudo usermod -a -G lpadmin albandrieu
 #sudo lpadmin -p sx100 -E -v ekplp:/var/ekpd/ekplp0 -m /usr/local/EPAva/printer/snx100/ekssx100.ppd
-sudo lpadmin -p sx100 -E -v usb://EPSON/Stylus%20SX100?serial=KQHZ592124&interface=1 -m /usr/local/EPAva/printer/snx100/ekssx100.ppd
+sudo lpadmin -p sx105 -E -v usb://EPSON/Stylus%20SX100?serial=KQHZ592124&interface=1 -m /usr/local/EPAva/printer/snx100/ekssx100.ppd
 geany /usr/share/doc/pips-core-3.5.0/UsersManual.en.txt
 #geany /usr/share/doc/pips-snx100-3.5.0/Stylus_NX100_Manual.txt
 

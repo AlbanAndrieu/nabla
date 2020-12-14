@@ -45,8 +45,14 @@ http://albandrieu.com:8686/jenkins
 edit /usr/local/etc/rc.d/jenkins
 #--ajp13ListenAddress=192.168.0.14 --ajp13Port=8009
 #REMOVE --prefix=/jenkins for jenkins apps on android
-: ${jenkins_java_opts="-Xmx2048m -XX:MaxPermSize=512m -Djava.awt.headless=true"}
-: ${jenkins_args="--webroot=${jenkins_home}/war --httpListenAddress=0.0.0.0 --httpPort=8380 --prefix=/"}
+#: ${jenkins_enable:=NO}
+#: ${jenkins_home="/usr/local/jenkins"}
+#: ${jenkins_args="--webroot=${jenkins_home}/war --httpPort=8180 --prefix=/jenkin
+#: ${jenkins_java_home="/usr/local/openjdk8"}
+#: ${jenkins_user="jenkins"}
+#: ${jenkins_group="jenkins"}
+#: ${jenkins_log_file="/var/log/jenkins.log"}
+
 echo 'jenkins_enable="YES"' >> /etc/rc.conf
 
 cd /usr/local/etc/rc.d/
@@ -69,7 +75,7 @@ mv jenkins jenkins-BACK-SAV
 ln -s /media/jenkins jenkins
 
 cd /usr/local/jenkins
-nano config,xml
+nano config.xml
 #<!--<useSecurity>true</useSecurity>-->
 
 #/usr/local/etc/rc.d/jenkins onestart
@@ -84,5 +90,11 @@ git config --global user.email "alban.andrieu@free.fr"
 git config --global user.name "AlbanAndrieu"
 
 edit /media/workspace/zfs-log_parsing_rules
+
+./run-freenas-nginx.sh
+
+BASE=administrativeMonitor/hudson.diagnosis.ReverseProxySetupMonitor
+curl -iL -e http://your.reverse.proxy/jenkins/manage \
+            http://your.reverse.proxy/jenkins/${BASE}/test
 
 exit 0

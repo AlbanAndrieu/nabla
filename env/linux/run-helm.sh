@@ -4,7 +4,14 @@ set -xv
 # See https://github.com/helm/helm/blob/master/docs/install.md
 
 #brew install kubernetes-helm
+sudo snap remove helm
 sudo snap install helm --classic
+
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+#/usr/local/bin/helm version --short --client
+
 #The Kubernetes package manager
 #
 #Common actions for Helm:
@@ -45,7 +52,12 @@ sudo snap install helm --classic
 
 helm version --short --client
 #helm init --client-only
-helm init
+#helm init
+
+#sudo dpkg-reconfigure apparmor
+sudo nano /etc/apparmor.d/tunables/home.d/albandri
+@{HOMEDIRS}+=/data1/home/
+sudo systemctl restart apparmor.service
 
 helm repo add stable https://kubernetes-charts.storage.googleapis.com/
 #helm repo add custom --username aandrieu --password XXX https://registry-tmp.misys.global.ad/chartrepo/kondor
@@ -94,5 +106,19 @@ helm list
 #helm push testChart --version="$(git log -1 --pretty=format:%h)" harbor --username admin --password microsoft
 #--verify
 helm install harbor/testChart --generate-name --debug --version 0.1.0
+
+sudo apt-get install bash-completion
+## Bash
+echo 'source <(kubectl completion bash)' >>~/.bashrc
+#helm completion bash > /etc/bash_completion.d/helm
+
+# See https://artifacthub.io/packages/search?page=1&repo=helm-stable
+
+helm search repo stable
+
+# See https://www.jenkins.io/doc/book/installing/kubernetes/
+helm repo add jenkinsci https://charts.jenkins.io
+helm repo update
+helm search repo jenkinsci
 
 exit 0

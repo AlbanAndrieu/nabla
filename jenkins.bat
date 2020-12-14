@@ -12,6 +12,9 @@ call mvn -B versions:display-plugin-updates -Psample > plugin-updates.log 2>&1
 call mvn -B versions:update-parent -DparentVersion=1.0.0-SNAPSHOT
 call mvn -B versions:set -DnewVersion=1.0.1-SNAPSHOT
 call mvn -B dependency:tree -Psample -DoutputFile=dependency-tree.dot -DoutputType=dot > dependency-tree.log 2>&1
+REM sudo apt install xdot
+REM xdot dependency-tree.dot
+REM dot -Tpdf dependency-tree.dot -o  dependency-tree.pdf
 call mvn -B dependency:resolve-plugins -Psample > dependency-tree.log 2>&1
 call mvn -B dependency:build-classpath -Psample > dependency-classpath.log 2>&1
 call mvn -B dependency:copy-dependencies -Psample > dependency-dependencies.log 2>&1

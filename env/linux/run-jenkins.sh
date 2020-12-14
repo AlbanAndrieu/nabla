@@ -127,7 +127,7 @@ System.setProperty("org.jenkinsci.plugins.docker.workflow.client.DockerClient.CL
 System.setProperty("http.socket.timeout", "300")
 System.getProperty("http.socket.timeout")
 
-System.setProperty("org.jenkinsci.plugins.workflow.libs.SCMSourceRetriever.INCLUDE_SRC_TEST_IN_LIBRARIES", "false")
+System.setProperty("org.jenkinsci.plugins.workflow.libs.SCMSourceRetriever.INCLUDE_SRC_TEST_IN_LIBRARIES", "true")
 
 #Hook
 $JENKINS_URL/git/notifyCommit
@@ -149,5 +149,26 @@ sudo mv jx /usr/local/bin
 
 #API endpoint
 #http://home.albandrieu.com:8381/job/nabla-projects-interview-visma-nightly/lastSuccessfulBuild/api/json?tree=actions[remoteUrls,lastBuildRevision[SHA1]]&pretty=true
+
+https://github.com/jenkinsci/kubernetes-operator
+
+helm repo add jenkins https://raw.githubusercontent.com/jenkinsci/kubernetes-operator/master/chart
+helm inspect values jenkins/jenkins-operator  > jenkins-operator-values.xml
+helm install jenkins-operator  jenkins/jenkins-operator -n jenkins
+helm status jenkins-operator -n jenkins
+
+NOTES:
+1. Watch Jenkins instance being created:
+$ kubectl --namespace jenkins get pods -w
+
+2. Get Jenkins credentials:
+$ kubectl --namespace jenkins get secret jenkins-operator-credentials-jenkins -o 'jsonpath={.data.user}' | base64 -d
+$ kubectl --namespace jenkins get secret jenkins-operator-credentials-jenkins -o 'jsonpath={.data.password}' | base64 -d
+
+3. Connect to Jenkins (actual Kubernetes cluster):
+$ kubectl --namespace jenkins port-forward jenkins-jenkins 8080:8080
+
+Now open the browser and enter http://localhost:8080
+
 
 exit 0

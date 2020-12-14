@@ -1,7 +1,11 @@
 #!/bin/bash
 #set -xv
 
+sudo apt-get install latexila
+
 sudo apt-get install texlive-full
+
+sudo apt-get install texlive texlive-latex-extra texlive-lang-french
 
 sudo apt-get install texmaker
 

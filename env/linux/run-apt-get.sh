@@ -82,12 +82,6 @@ sudo apt-get install subversion
 
 sudo chmod +x ~/.subversion/svn-merge-meld.py
 
-sudo gedit /etc/apt/sources.list
-#comment the following line
-deb http://extras.ubuntu.com/ubuntu precise main
-#deb http://us.archive.ubuntu.com/ubuntu/ precise main universe
-deb http://us.archive.ubuntu.com/ubuntu/ precise main universe restricted multiverse
-
 #check out
 cd /workspace/users/albandri10
 svn co https://alban.googlecode.com/svn/trunk/env env
@@ -371,12 +365,6 @@ eog plot.svg
 sudo service apparmor stop
 sudo update-rc.d -f apparmor remove
 sudo apt-get remove apparmor apparmor-utils
-
-#chmod 777 /var/run/docker.sock
-#For non sudo user
-#sudo chmod 666 /var/run/docker.sock
-setfacl -m user:jenkins:rw /var/run/docker.sock
-ls -lrta /var/run/docker.sock
 
 #Ubuntu 19.04 upgrade
 #A start job is running for Hold until boot finishes up

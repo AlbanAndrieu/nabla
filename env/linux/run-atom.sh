@@ -22,4 +22,6 @@ apm install build-scons
 
 #pip install virtualenvwrapper
 
+apm install markdown-toc
+
 exit 0

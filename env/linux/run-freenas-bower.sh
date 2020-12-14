@@ -2,8 +2,12 @@
 set -xv
 
 pkg install screen lsof
+pkg install node
 npm install -g private-bower
-private-bower
+/usr/local/bin/node: Undefined symbol "nghttp2_option_set_max_settings"
+pkg version -vRx node
+
+pkg upgrade
 
 #as non jail
 #start bower
@@ -131,6 +135,5 @@ cd  /usr/local/lib/node_modules/private-bower/gitRepoCache
 #https://github.com/jquery/jquery/tree/2.1.4
 git fetch && git fetch --tags
 git checkout 2.1.4
-
 
 exit 0

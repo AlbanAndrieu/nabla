@@ -45,18 +45,7 @@ rm /root/Python-2.7.3
 sudo virtualenv /opt/ansible/env36 -p /usr/bin/python3.6
 source /opt/ansible/env36/bin/activate
 
-#RedHat
-#alternatives --install /usr/bin/python python /usr/local/bin/python3.6 2
-#alternatives --install /usr/bin/python python /usr/bin/python2.7 1
-#alternatives --list | grep -i python
-
-#Ubuntu
-#ls -la /etc/alternatives/python*
-#sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 30
-#sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.5 20
-#sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 100
-#sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.6  5
-#sudo update-alternatives --config python
+./run-update-alternatives.sh
 
 #pip3 install docker-py
 #pip3 install -U docker-compose
@@ -273,5 +262,9 @@ pip2 install --user "setuptools<45"
 #trusted-host = pypi.python.org
 #               pypi.org
 #               files.pythonhosted.org
+
+# BUG infinit loop pip 20.3 : See https://github.com/pypa/pip/issues/9011
+# Downgrade to
+/opt/ansible/env37/bin/pip3.7 install --upgrade pip==20.2.4
 
 exit 0
