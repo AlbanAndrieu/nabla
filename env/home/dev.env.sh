@@ -679,17 +679,19 @@ fi
 # KUBERNETES
 # https://github.com/ubuntu/microk8s/issues/56
 # Creating a wrapper shell script (kubectlx) that runs kubectl with the kubeconfig option
-echo -e '#!/bin/bash \nkubectl --kubeconfig=$HOME/.kube/config $@' > /snap/bin/kubectlx
+echo -e '#!/bin/bash \nkubectl --kubeconfig=$HOME/.kube/config $@' > /snap/bin/kubectlxx
 # Making the wrapper shell script executable
-chmod +x /snap/bin/kubectlx
+chmod +x /snap/bin/kubectlxx
 # Setting a shell alias for kubectlx
 #echo "alias kubectl=kubectlx" >> ~/.bash_profile
-alias kubectl=kubectlx
+#unalias kubectl
+#alias kubectl=kubectlx
 snap alias microk8s.kubectl kubectl
-alias k=kubectlx
+alias k=kubectlxx
 complete -F __start_kubectl k
 #export KUBECONFIG=$KUBECONFIG:config:config-albandri
 #source <(kubectlx completion bash)
+alias mkctl="microk8s kubectl"
 
 export GOPATH="${PROJECT_HOME}/${PROJECT_USER}${PROJECT_MAJOR_VERSION}"
 

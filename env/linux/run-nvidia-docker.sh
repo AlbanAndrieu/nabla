@@ -12,7 +12,13 @@ nvidia-smi
 
 docker run --gpus all nvidia/cuda:10.0-base nvidia-smi
 # docker run --gpus 2 nvidia/cuda:10.0-base nvidia-smi
+# NOK docker run --gpus all --rm nvidia/cuda nvidia-smi
+#  unsatisfied condition: cuda>=11.1
 
 # See https://github.com/NVIDIA/nvidia-docker/wiki/Frequently-Asked-Questions#how-do-i-install-the-nvidia-driver
+
+sudo journalctl -n -u nvidia-docker
+
+nvidia-container-cli -k -d /dev/tty info
 
 exit 0

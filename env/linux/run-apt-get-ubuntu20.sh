@@ -16,4 +16,8 @@ sudo apt-get install gnome-shell-extension-autohidetopbar gnome-shell-extension-
 sudo ufw disable
 sudo swapoff -a
 
+sudo add-apt-repository -y ppa:teejee2008/ppa
+sudo apt update
+sudo apt install timeshift
+
 exit 0

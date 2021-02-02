@@ -170,5 +170,4 @@ $ kubectl --namespace jenkins port-forward jenkins-jenkins 8080:8080
 
 Now open the browser and enter http://localhost:8080
 
-
 exit 0

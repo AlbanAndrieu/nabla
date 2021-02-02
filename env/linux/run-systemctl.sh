@@ -18,9 +18,12 @@ nano /lib/systemd/system/docker.service
 #Wants=network-online.target iscsid.service
 systemctl cat docker.service
 
-gsystemctl list-units --type service
+systemctl list-units --type service
 
 systemctl list-units --failed
+#systemctl disable autoprotect.service
+#systemctl disable vboxweb.service
+sudo systemctl status snap.bluez.bluez.service
 
 systemctl --no-pager status
 
@@ -29,5 +32,8 @@ systemctl --no-pager status
 # close gparted
 #sudo rm /run/systemd/system/-.mount
 sudo systemctl daemon-reload
+
+systemd-analyze plot > /home/albandrieu/Downloads/file.svg
+
 
 exit 0

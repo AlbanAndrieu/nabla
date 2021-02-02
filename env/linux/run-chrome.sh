@@ -28,6 +28,7 @@ set -xv
 
 gnome-keyring-daemon --start --replace --foreground --components=secrets,ssh,pcks11 &
 #gnome-keyring-daemon &
+mv ~/.config/google-chrome ~/.config/google-chrome-SAV
 /usr/bin/google-chrome
 
 #chrome://flags/#allow-insecure-localhost

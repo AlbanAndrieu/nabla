@@ -107,3 +107,8 @@ systemctl disable osspd remove
 systemctl disable cups remove
 systemctl disable cups-browsed remove
 systemctl disable ypbind remove
+
+systemctl disable autoprotect.service
+systemctl disable vboxweb.service
+
+exit 0
