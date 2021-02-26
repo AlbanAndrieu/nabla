@@ -34,7 +34,7 @@ sudo mkdir -p /local/virtualbox/Windows7/Shared
 #install oracle vm virtualbox extension pack
 cd ~/.VirtualBox
 
-sudo apt-get install virtualbox-ext-pack 
+sudo apt-get install virtualbox-ext-pack
 sudo apt-get install virtualbox-guest-dkms
 
 wget http://download.virtualbox.org/virtualbox/5.0.16/Oracle_VM_VirtualBox_Extension_Pack-5.0.16-105871.vbox-extpack
@@ -104,7 +104,7 @@ sudo service vboxdrv restart
 #sudo apt-get install gcc-5 g++-5
 #sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 50 --slave /usr/bin/g++ g++ /usr/bin/g++-5
 #sudo apt-get install gcc-6 g++-6
-#sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 50 --slave /usr/bin/g++ g++ /usr/bin/g++-6
+#sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-6
 #
 #sudo update-alternatives --config gcc
 

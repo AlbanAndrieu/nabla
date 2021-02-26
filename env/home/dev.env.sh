@@ -659,11 +659,19 @@ then
 fi
 
 # KUBERNETES
-#source <(kubectl completion bash)
+# https://github.com/ubuntu/microk8s/issues/56
+# Creating a wrapper shell script (kubectlx) that runs kubectl with the kubeconfig option
+echo -e '#!/bin/bash \nkubectl --kubeconfig=$HOME/.kube/config $@' > /snap/bin/kubectlx
+# Making the wrapper shell script executable
+chmod +x /snap/bin/kubectlx
+# Setting a shell alias for kubectlx
+#echo "alias kubectl=kubectlx" >> ~/.bash_profile
+alias kubectl=kubectlx
 snap alias microk8s.kubectl kubectl
-alias k=kubectl
+alias k=kubectlx
 complete -F __start_kubectl k
 #export KUBECONFIG=$KUBECONFIG:config:config-albandri
+#source <(kubectlx completion bash)
 
 export GOPATH="${PROJECT_HOME}/${PROJECT_USER}${PROJECT_MAJOR_VERSION}"
 

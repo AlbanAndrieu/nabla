@@ -124,7 +124,7 @@ rc6.d contains the services which runs in runlevel 6
 #sudo update-rc.d varnish start 30 5 . stop 30 0 1 6 .
 #Dans ce cas là, monscript sera uniquement lancé dans le runlevel 5 et avec une priorité de 30. Il sera stoppé dans les runlevels 0,1,6 avec une priorité de 30 également.
 #Les runlevels 2,3,4,5 pour le lancer et 0,1,6 pour le stopper. La priorité par défaut est de 20.
-#Si vous n’êtes pas bien certain de ce que vous faîtes, vous pouvez toujours lancer une simulation afin d’éviter la bourde… Pour cela, il est possible d’utiliser l’argument -n à votre commande qui affichera ce qu’aurait fait update-rc.d
+#Si vous nêtes pas bien certain de ce que vous faîtes, vous pouvez toujours lancer une simulation afin d’éviter la bourde… Pour cela, il est possible d’utiliser l’argument -n à votre commande qui affichera ce qu’aurait fait update-rc.d
 
 #test
 sudo update-rc.d -n varnish start 85 2 3 4 5 . stop 20 0 1 6 .
