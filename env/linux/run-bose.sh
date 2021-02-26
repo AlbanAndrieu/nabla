@@ -7,6 +7,12 @@ set -xv
 #sleep bud 078052Z83190046AE
 #bose NC 700 078702Y93253058AE
 
+# Seetings, inside PulseAudio Volume Control
+# https://freedesktop.org/software/pulseaudio/pavucontrol/
+#-> Volume Control -> COnfiguration -> BOSE NC 700 HP
+#--------->>>> Headset HeadUnit (HSP/HFP)
+
+# NOK
 #Bose Store La Défense
 #Téléphone : 01 47 96 80 85
 

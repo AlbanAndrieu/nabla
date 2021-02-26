@@ -10,4 +10,6 @@ netstat -anp | grep -E "(Active|State|barrier|24800)"
 
 #https://github.com/debauchee/barrier/issues/190#issuecomment-445582840
 
+# Disable SSL in the congig and use VPN IP 10.119.217.12
+
 exit 0

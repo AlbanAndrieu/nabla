@@ -7,6 +7,7 @@ egrep -c '(vmx|svm)' /proc/cpuinfo
 egrep -c ' lm ' /proc/cpuinfo
 
 sudo apt-get install qemu-kvm libvirt-daemon-system libvirt-clients bridge-utils
+#sudo apt-get install qemu-kvm libvirt-bin ubuntu-vm-builder bridge-utils ia32-libs-multiarch
 
 sudo kvm-ok
 

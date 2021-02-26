@@ -477,4 +477,9 @@ export DOCKER_CLI_EXPERIMENTAL=enabled
 
 docker buildx ls
 
+# Bug : Cannot remove file: “Structure needs cleaning”
+systemctl reset-failed docker.service
+umount /dev/mapper/vg--sata-docker
+e2fsck /dev/mapper/vg--sata-docker
+
 exit 0
