@@ -58,13 +58,6 @@ repos:
     -   id: fix-encoding-pragma
     -   id: requirements-txt-fixer
     -   id: sort-simple-yaml
-    -   id: flake8
-        exclude: >
-                  (?x)^(
-                      env/scripts/zodclient.py|
-                      env/scripts/server-connector.py
-                  )$
-        args: [--max-line-length=120]
     -   id: file-contents-sorter
 -   repo: https://github.com/pre-commit/pre-commit.git
     rev: v2.8.2
@@ -111,6 +104,17 @@ repos:
     rev: v1.5.4
     hooks:
     -   id: autopep8
+-   repo: https://gitlab.com/pycqa/flake8
+    rev: 3.8.4
+    hooks:
+    -   id: flake8
+        args: [--max-line-length=120]
+    -   id: flake8
+        exclude: >
+                  (?x)^(
+                      env/scripts/zodclient.py|
+                      env/scripts/server-connector.py
+                  )$
 #-   repo: https://github.com/PyCQA/bandit
 #    rev: master
 #    hooks:
