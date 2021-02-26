@@ -293,7 +293,7 @@ virtualenv --version
 
 if [ -f ${HOME}/run-python.sh ]; then
     echo -e "${green} ${HOME}/run-python.sh ${NC}"
-    source "${HOME}/run-python.sh"
+    #source ${HOME}/run-python.sh
 fi
 
 #sudo pip3.8 install setuptools virtualenvwrapper
