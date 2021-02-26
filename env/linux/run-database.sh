@@ -57,4 +57,3 @@ tsql -H DATABASESRV01 -p 1433 -U 'sa' -P 'microsoft'
 isql -v DATABASESRV01_2016 'sa' 'microsoft'
 
 osql -S DATABASESRV01_2016 -U 'sa' -P 'microsoft'
-

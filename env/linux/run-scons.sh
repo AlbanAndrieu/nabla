@@ -53,6 +53,9 @@ ldd -u -r target/bin/x86Linux/run_app
 
 #nm --demangle --dynamic --defined-only --extern-only target/lib/x86Linux/debug64/shared/libmain_library.so
 readelf -d target/bin/x86Linux/run_app |head -20
+# See tuto https://undo.io/resources/gdb-watchpoint/build-for-debug-in-gdb/
+readelf --debug-dump target/bin/x86Linux/run_app | less
+readelf --debug-dump=loc target/bin/x86Linux/run_app | less
 
 #sudo yum update glibc
 ldd --version

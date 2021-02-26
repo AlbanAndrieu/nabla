@@ -26,6 +26,8 @@ sudo apt-get install inotify-tools
 
 sudo clamscan --max-filesize=3999M --max-scansize=3999M --exclude-dir=/kgr/* --exclude-dir=/home/* --exclude-dir=/sys/* --exclude-dir=/proc/* -i -r /
 
+sudo clamscan -i -r --alert-encrypted=yes --alert-encrypted-archive=yes --alert-macro=yes --alert-encrypted-doc=yes --alert-phishing-ssl=yes --alert-phishing-cloak=yes /home
+
 #sudo freshclam
 #clamscan -r --bell -i /
 #Schedule a scan tommorrow

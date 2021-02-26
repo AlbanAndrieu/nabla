@@ -9,7 +9,7 @@ sudo ./install.sh
 cd /opt/Symantec/symantec_antivirus/
 /opt/Symantec/symantec_antivirus/sav info -d
 sudo /opt/Symantec/symantec_antivirus/sav info -s
-/opt/Symantec/symantec_antivirus/sav info -p 
+/opt/Symantec/symantec_antivirus/sav info -p
 /opt/Symantec/symantec_antivirus/sav info -e
 /opt/Symantec/symantec_antivirus/sav manage -p
 /opt/Symantec/symantec_antivirus/sav manage -s
@@ -36,7 +36,7 @@ sudo bash ./sadiag.sh
 
 #See https://knowledge.broadcom.com/external/article?legacyId=TECH231013
 
-# Stop 
+# Stop
 # /etc/init.d/symcfgd stop
 # /etc/init.d/smcd stop
 
@@ -61,8 +61,8 @@ sudo /opt/Symantec/symantec_antivirus/sav manualscan --clscan / &
 #Rebuild SEP kernel
 #See for full info https://knowledge.broadcom.com/external/article?legacyId=TECH132773
 
-sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 70 
-sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 70 
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-7 70
+sudo update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-7 70
 sudo update-alternatives --config gcc
 sudo update-alternatives --config g++
 
@@ -121,5 +121,5 @@ export PATH=$PATH:/opt/Symantec/symantec_antivirus/
 
 tail -f /var/symantec/sep/Logs/syslog.log
 /opt/Symantec/symantec_antivirus/sav log -e
- 
+
 exit 0

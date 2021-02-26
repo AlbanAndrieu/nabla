@@ -150,4 +150,19 @@ GRUB_GFXPAYLOAD_LINUX=1280x1024x24
 sudo update-grub
 sudo reboot
 
+# below is not starting at boot
+systemctl status vboxweb.service
+#systemctl disable vboxweb-service
+# See https://askubuntu.com/questions/1131056/virtualbox-web-service-missing-after-clean-installation-on-ubuntu-18-04-1-lts
+#cd /etc/init.d/
+#services=(vboxautostart-service vboxweb-service vboxballoonctrl-service)
+#base_url="https://www.virtualbox.org/svn/vbox/trunk/src/VBox/Installer/linux"
+#for service in "${services[@]}"
+#    do
+#      wget "${base_url}/${service}".sh -O "${service}" \
+#      && chmod +x "$service"  \
+#      && update-rc.d "$service" defaults 90 10
+#    done
+service --status-all | grep vbox
+
 exit 0

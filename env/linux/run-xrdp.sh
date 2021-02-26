@@ -110,4 +110,6 @@ export DISPLAY=:0.0
 who -u
 # DO NOT MOUNT on /home user for XRDP to WORK
 
+sudo adduser xrdp ssl-cert
+
 exit 0

@@ -45,18 +45,7 @@ rm /root/Python-2.7.3
 sudo virtualenv /opt/ansible/env36 -p /usr/bin/python3.6
 source /opt/ansible/env36/bin/activate
 
-#RedHat
-#alternatives --install /usr/bin/python python /usr/local/bin/python3.6 2
-#alternatives --install /usr/bin/python python /usr/bin/python2.7 1
-#alternatives --list | grep -i python
-
-#Ubuntu
-#ls -la /etc/alternatives/python*
-#sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.6 30
-#sudo update-alternatives --install /usr/bin/python python /usr/bin/python3.5 20
-#sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.7 100
-#sudo update-alternatives --install /usr/bin/python python /usr/bin/python2.6  5
-#sudo update-alternatives --config python
+./run-update-alternatives.sh
 
 #pip3 install docker-py
 #pip3 install -U docker-compose
@@ -108,16 +97,16 @@ sudo pip2.7 install ansicolors termcolor colorama
 sudo pip2.7 freeze > requirements-current-2.7.txt
 sudo pip2.7 install -r requirements.txt
 
-sudo pip3.6 install ansicolors termcolor colorama
-sudo pip3.6 freeze > requirements-current-3.6.txt
-sudo pip3.6 install -r requirements-current-3.6.txt
+sudo pip3.8 install ansicolors termcolor colorama
+sudo pip3.8 freeze > requirements-current-3.8.txt
+sudo pip3.8 install -r requirements-current-3.8.txt
 
 #Upgrade requirements.txt
 #pip install pip-tools pip-review
 #pip-review --auto
 pip install pip-upgrader
 
-pip-upgrade requirements-current-3.6.txt
+pip-upgrade requirements-current-3.8.txt
 
 #pip uninstall docker docker-py docker-compose
 
@@ -130,14 +119,12 @@ curl https://bootstrap.pypa.io/get-pip.py | sudo python3.6
 sudo pip2.7 uninstall docker
 sudo pip2.7 uninstall docker-py
 sudo pip2.7 uninstall docker-compose
-sudo pip2.7 install docker-compose==1.9.0
+sudo pip2.7 install docker-compose==1.25.5
 
-docker-compose --version
-
-sudo pip3.6 uninstall docker
-sudo pip3.6 uninstall docker-py
-sudo pip3.6 uninstall docker-compose
-sudo pip3.6 install docker-compose==1.9.0
+#sudo pip3.6 uninstall docker
+#sudo pip3.6 uninstall docker-py
+#sudo pip3.6 uninstall docker-compose
+#sudo pip3.6 install docker-compose==1.9.0
 
 docker-compose --version
 
@@ -165,8 +152,8 @@ sudo apt-get install libcurl3 python-pip
 sudo apt-get install libcurl4 python-pip
 
 #recreate virtualenv
-sudo rm -Rf /opt/ansible/env36
-virtualenv --no-site-packages /opt/ansible/env36 -p python3.6
+sudo rm -Rf /opt/ansible/env38
+virtualenv --no-site-packages /opt/ansible/env38 -p python3.8
 
 # Could not import python modules: apt, apt_pkg. Please install python3-apt package.
 sudo apt-get remove --purge python-apt
@@ -196,5 +183,88 @@ gprof2dot -f pstats cprofile | dot -Tpng -o output.png
 #Python 2.7 dropped
 #See https://setuptools.readthedocs.io/en/latest/python%202%20sunset.html
 sudo pip uninstall -y setuptools
+
+# See https://virtualenvwrapper.readthedocs.io/en/latest/install.html
+
+sudo chown -R jenkins:docker /opt/ansible/
+
+#sudo /usr/local/bin/pip2.7 install virtualenv==20.0.24
+pip2.7 uninstall virtualenv virtualenvwrapper
+pip2.7 list
+
+source /opt/ansible/env38/bin/activate
+export SETUPTOOLS_USE_DISTUTILS=stdlib
+virtualenv --version
+#15.2.0
+#sudo pip3.8 install setuptools virtualenvwrapper
+#sudo apt-get install python3-virtualenv
+#sudo mv /usr/local/bin/virtualenv /usr/local/bin/virtualenv-SAV
+mkvirtualenv --python=/usr/bin/python
+#brew info python
+#brew uninstall --ignore-dependencies python
+
+mkvirtualenv --version
+
+source /opt/ansible/env/bin/activate
+pip uninstall virtualenv #15.2.0
+sudo pip2 install virtualenv==20.0.23
+sudo pip2 install virtualenvwrapper
+
+/opt/ansible/env/bin/pip2 list
+/usr/local/bin/pip3 list
+pip3 list
+/opt/ansible/env38/bin/pip3.8 list
+#sudo /opt/ansible/env38/bin/pip3.8 install virtualenv==20.0.24
+
+export WORKON_HOME=/opt/ansible/env/
+source /usr/local/bin/virtualenvwrapper.sh
+#VIRTUALENVWRAPPER_PYTHON=/opt/ansible/env38/bin/python
+export VIRTUALENVWRAPPER_PYTHON=/opt/ansible/env/bin/python
+export VIRTUALENVWRAPPER_VIRTUALENV=/opt/ansible/env/bin/virtualenv
+
+lssitepackages
+
+ls -l $VIRTUALENVWRAPPER_PYTHON
+ls -lrta $HOME/.virtualenvs/
+ls -lrta $PROJECT_HOME
+
+#Test creation
+mkvirtualenv test
+
+#pip3 install --upgrade pip==20.2.2 wheel==0.34.2 setuptools==46.1.3
+
+# Issue on jenkins user
+# ModuleNotFoundError: No module named 'setuptools._distutils'
+rm -Rf /jenkins/.local/lib/python3.8/site-packages/
+
+# Issue ModuleNotFoundError: No module named 'virtualenv.seed.via_app_data'
+# https://news.julien-anne.fr/ubuntu-20-04-python3-et-virtualenv-installation-et-erreurs-potentielles/
+sudo apt remove python3-virtualenv
+pip3 install virtualenv==20.0.23
+/usr/bin/python3.8 -m pip install --upgrade pip
+#Successfully installed pip-20.2.3
+
+#Add in ~/.bashrc
+if [ -d "/home/${USER}/.local/bin" ] ; then
+    export PATH=/home/${USER}/.local/bin:${PATH}
+fi
+
+pip2 install --user "setuptools<45"
+
+# See https://stackoverflow.com/questions/25981703/pip-install-fails-with-connection-error-ssl-certificate-verify-failed-certi
+
+# /c/Python27/Scripts/pip2.7.exe --trusted-host pypi.org --trusted-host files.pythonhosted.org install pywin32==228 distro==1.5.0
+# /c/Python27/python.exe -m pip --trusted-host pypi.org --trusted-host files.pythonhosted.org install --upgrade pip
+
+#mkdir ~/.config/pip
+#geany ~/.config/pip/pip.conf
+#[global]
+#trusted-host = pypi.python.org
+#               pypi.org
+#               files.pythonhosted.org
+
+# BUG infinit loop pip 20.3 : See https://github.com/pypa/pip/issues/9011
+# Downgrade to
+/opt/ansible/env37/bin/pip3.7 install --upgrade pip==20.2.4
 
 exit 0

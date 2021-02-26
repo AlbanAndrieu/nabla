@@ -19,8 +19,9 @@ service/kubernetes-dashboard            ClusterIP      10.152.183.244
 token=$(microk8s.kubectl -n kube-system get secret | grep default-token | cut -d " " -f1)
 microk8s.kubectl -n kube-system describe secret $token
 
+# START dashboard
 #kubectl proxy
-sudo microk8s.kubectl proxy --accept-hosts=.* --address=0.0.0.0 &
+microk8s.kubectl proxy --accept-hosts=.* --address=0.0.0.0 &
 
 #See http://192.168.1.57:8001/api/v1/namespaces/kube-system/services/https:kubernetes-dashboard:/proxy/#/login
 #See http://localhost:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/#/overview?namespace=default
@@ -28,10 +29,12 @@ sudo microk8s.kubectl proxy --accept-hosts=.* --address=0.0.0.0 &
 
 # See https://github.com/kubernetes/dashboard/blob/master/docs/user/accessing-dashboard/1.7.x-and-above.md
 # See https://logz.io/blog/getting-started-with-kubernetes-using-microk8s/
-sudo microk8s.kubectl -n kube-system edit deploy kubernetes-dashboard -o yaml
+microk8s.kubectl -n kube-system edit deploy kubernetes-dashboard -o yaml
 # Add - --enable-skip-login
 
 #kubectl -n kubernetes-dashboard get secret
 #kubectl -n kubernetes-dashboard edit service kubernetes-dashboard
+
+sudo snap install kontena-lens --classic
 
 exit 0

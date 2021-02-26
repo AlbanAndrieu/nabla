@@ -46,8 +46,18 @@ az login --use-device-code
 az login --identity
 
 # ACR and helm repo access:
-az acr login -n p21d13401013001
-docker login p21d13401013001.azurecr.io --username $SP_APP_ID --password $SP_PASSWD
+# on windows SET AZURE_CLI_DISABLE_CONNECTION_VERIFICATION="true"
+#First
+az login
+az acr login --name p21d13401013001 --subscription DEV-C20-001
+#If you don't have X11 on the machine:
+#az acr login --name p21d13401013001 --expose-token
+#docker login p21d13401013001.azurecr.io --username $SP_APP_ID --password $SP_PASSWD
+
+az acr check-health -n p21d13401013001 --yes
+
+#Test
+#docker pull p21d13401013001.azurecr.io/global-bakery/deps-alpine3.8
 
 #AZR-C21-DV-134-01
 
@@ -78,5 +88,15 @@ az ad group list --filter "displayname eq '$aadgname'" -O table
 az aks get-credentials -g AKS-Demo -n aksdemocluster
 
 k get no
+
+# Ansible
+
+wget https://raw.githubusercontent.com/ansible-collections/community.general/main/scripts/inventory/azure_rm.py
+chmod +x ./azure_rm.py
+./azure_rm.py --help
+
+nano $HOME/.azure/credentials
+
+ansible -i azure_rm.py Testing -m shell -a "/bin/uname -a"
 
 exit 0

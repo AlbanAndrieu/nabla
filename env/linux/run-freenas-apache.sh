@@ -115,26 +115,21 @@ certbot certonly
 #nabla.mobi,albandrieu.com,sample.nabla.mobi,alban-andrieu.fr,alban-andrieu.com,alban-andrieu.eu,bababou.fr,bababou.eu
 #1
 #/usr/local/www/apache24/data
-#/usr/local/www/apache24/data/sample
-#/usr/local/www/apache24/data/alban
-#/usr/local/www/apache24/data/bababou
+
+#NOK /usr/local/www/apache24/data/sample
+#NOK /usr/local/www/apache24/data/alban
+#NOK /usr/local/www/apache24/data/bababou
 
 #TODO freenas.nabla.mobi,jenkins.nabla.mobi
 
 less /usr/local/etc/letsencrypt/renewal/albandrieu.com.conf
 
-cert = /usr/local/etc/letsencrypt/live/albandrieu.com/cert.pem
-privkey = /usr/local/etc/letsencrypt/live/albandrieu.com/privkey.pem
-chain = /usr/local/etc/letsencrypt/live/albandrieu.com/chain.pem
-fullchain = /usr/local/etc/letsencrypt/live/albandrieu.com/fullchain.pem
-
-/usr/local/etc/letsencrypt/live/albandrieu.com/fullchain.pem
+cert = /usr/local/etc/letsencrypt/live/albandrieu.com-0001/cert.pem
+privkey = /usr/local/etc/letsencrypt/live/albandrieu.com-0001/privkey.pem
+chain = /usr/local/etc/letsencrypt/live/albandrieu.com-0001/chain.pem
+fullchain = /usr/local/etc/letsencrypt/live/albandrieu.com-0001/fullchain.pem
 
 nano /usr/local/etc/apache24/httpd.conf
-
-SSLEngine On
-SSLCertificateFile "/usr/local/etc/letsencrypt/live/albandrieu.com/cert.pem"
-SSLCertificateKeyFile "/usr/local/etc/letsencrypt/live/albandrieu.com/privkey.pem"
 
 #certbot certonly --standalone -d albandrieu.com
 
@@ -142,6 +137,10 @@ ServerAlias www.albandrieu.com
 
 nano /usr/local/etc/apache24/extra/httpd-vhosts.conf
 nano /usr/local/etc/apache24/extra/httpd-ssl.conf
+
+SSLEngine On
+SSLCertificateFile "/usr/local/etc/letsencrypt/live/albandrieu.com-0001/cert.pem"
+SSLCertificateKeyFile "/usr/local/etc/letsencrypt/live/albandrieu.com-0001/privkey.pem"
 
 openssl s_client -connect localhost:443
 

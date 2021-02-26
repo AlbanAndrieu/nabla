@@ -20,7 +20,7 @@ iocage exec jackett rm /usr/local/share/Jackett.Binaries.Mono.tar.gz
 iocage exec jackett "pw user add jackett -c jackett -u 818 -d /nonexistent -s /usr/bin/nologin"
 iocage exec jackett chown -R jackett:jackett /usr/local/share/Jackett /config
 iocage exec jackett mkdir /usr/local/etc/rc.d
-#Create an rc file for jackett using your favorite editor at 
+#Create an rc file for jackett using your favorite editor at
 nano /mnt/dpool/iocage/jails/jackett/root/usr/local/etc/rc.d/jackett
 
 iocage exec jackett chmod u+x /usr/local/etc/rc.d/jackett
@@ -42,4 +42,4 @@ Jackett should be available at http://192.168.1.24:9117
 
 iocage df
 
-exit 
+exit
