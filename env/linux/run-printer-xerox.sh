@@ -13,8 +13,6 @@ sudo apt-get install apparmor-utils
 #sudo apt-get cups-ipp-utils python-cups
 #sudo apt-get xeroxprtdrv
 
-#See http://localhost:631/admin
-
 #Nabla-Guest
 #Passwrord : guest@ccess12
 #
@@ -24,3 +22,5 @@ sudo apt-get install apparmor-utils
 #PEAP Version : automatic
 #Inner authentification : MSCHAPv2
 #NABLA/aandrieu
+
+exit 0

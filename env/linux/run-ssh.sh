@@ -34,3 +34,5 @@ cat .ssh/id_rsa.pub | ssh jenkins@192.168.0.29 'cat >> .ssh/authorized_keys'
 
 #Permissions for '.ssh/id_rsa' are too open
 chmod 400 ~/.ssh/id_rsa*
+
+exit 0

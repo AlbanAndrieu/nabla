@@ -34,7 +34,7 @@ sudo mkdir -p /local/virtualbox/Windows7/Shared
 #install oracle vm virtualbox extension pack
 cd ~/.VirtualBox
 
-sudo apt-get install virtualbox-ext-pack 
+sudo apt-get install virtualbox-ext-pack
 sudo apt-get install virtualbox-guest-dkms
 
 wget http://download.virtualbox.org/virtualbox/5.0.16/Oracle_VM_VirtualBox_Extension_Pack-5.0.16-105871.vbox-extpack
@@ -104,7 +104,7 @@ sudo service vboxdrv restart
 #sudo apt-get install gcc-5 g++-5
 #sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-5 50 --slave /usr/bin/g++ g++ /usr/bin/g++-5
 #sudo apt-get install gcc-6 g++-6
-#sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 50 --slave /usr/bin/g++ g++ /usr/bin/g++-6
+#sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-6 60 --slave /usr/bin/g++ g++ /usr/bin/g++-6
 #
 #sudo update-alternatives --config gcc
 
@@ -149,5 +149,20 @@ GRUB_GFXPAYLOAD_LINUX=1280x1024x24
 
 sudo update-grub
 sudo reboot
+
+# below is not starting at boot
+systemctl status vboxweb.service
+#systemctl disable vboxweb-service
+# See https://askubuntu.com/questions/1131056/virtualbox-web-service-missing-after-clean-installation-on-ubuntu-18-04-1-lts
+#cd /etc/init.d/
+#services=(vboxautostart-service vboxweb-service vboxballoonctrl-service)
+#base_url="https://www.virtualbox.org/svn/vbox/trunk/src/VBox/Installer/linux"
+#for service in "${services[@]}"
+#    do
+#      wget "${base_url}/${service}".sh -O "${service}" \
+#      && chmod +x "$service"  \
+#      && update-rc.d "$service" defaults 90 10
+#    done
+service --status-all | grep vbox
 
 exit 0

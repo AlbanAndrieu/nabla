@@ -28,4 +28,7 @@ sudo cp ./conky-x86_64.AppImage /usr/bin/conky
 #See https://linuxconfig.org/system-monitoring-on-ubuntu-18-04-linux-with-conky
 chmod +x $HOME/.conky/conky-startup.sh
 
+# See https://forum.ubuntu-fr.org/viewtopic.php?pid=1656078#p1656078
+# See https://forum.ubuntu-fr.org/viewtopic.php?pid=1660467#p1660467
 
+exit 0

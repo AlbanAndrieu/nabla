@@ -287,10 +287,27 @@ export CMAKE_ROOT=${CMAKE_HOME}
 #See run-python.sh script
 #export PYTHON_MAJOR_VERSION=3.8
 
+# See https://github.com/pypa/setuptools/issues/2353
+export SETUPTOOLS_USE_DISTUTILS=stdlib
+virtualenv --version
+
 if [ -f ${HOME}/run-python.sh ]; then
     echo -e "${green} ${HOME}/run-python.sh ${NC}"
-    source "${HOME}/run-python.sh"
+    #source ${HOME}/run-python.sh
 fi
+
+#sudo pip3.8 install setuptools virtualenvwrapper
+export WORKON_HOME=/opt/ansible/
+#export VIRTUALENVWRAPPER_PYTHON=/opt/ansible/env/bin/python
+#export VIRTUALENVWRAPPER_VIRTUALENV=/opt/ansible/env/bin/virtualenv
+
+#TO user virtualenv from user
+if [ -d "/home/${USER}/.local/bin" ] ; then
+    export PATH=/home/${USER}/.local/bin:${PATH}
+fi
+
+##source /usr/local/bin/virtualenvwrapper.sh
+#source /opt/ansible/env/bin/virtualenvwrapper.sh
 
 #export PYTHON_DIR=${DRIVE_PATH}/usr/lib/python3.6
 #export VIRTUALENV_PATH=/opt/ansible/env$(echo $PYTHON_MAJOR_VERSION | sed -r 's/\.//g')
@@ -299,6 +316,7 @@ fi
 ##export PYTHONPATH=$PYTHONPATH:${DRIVE_PATH}/usr/lib/python3.6/dist-packages/
 #export PYTHONPATH="${VIRTUALENV_PATH}/lib/python${PYTHON_MAJOR_VERSION}/site-packages/"
 #source ${VIRTUALENV_PATH}/bin/activate
+#. ${VIRTUALENV_PATH}/bin/activate
 
 # ALIAS to python
 #alias python='/usr/bin/python3.6'
@@ -308,9 +326,9 @@ fi
 export SCONS_DIR=/usr/lib/scons/SCons
 
 # ALIAS to scons-local
-export SCONS='/usr/bin/python2.7 /opt/ansible/env/bin/scons'
-alias scons="${SCONS}"
-#alias scons='/usr/bin/python2.7 /opt/ansible/env/bin/scons'
+# Disable alias scons since we are using https://pypi.org/project/virtualenvwrapper/
+#export SCONS='/usr/bin/python2.7 /opt/ansible/env/bin/scons'
+#alias scons="${SCONS}"
 
 export SCONS_PATH=/usr/lib/scons/SCons/Script
 if [ "$SCONS_PATH" = "" ]
@@ -661,17 +679,19 @@ fi
 # KUBERNETES
 # https://github.com/ubuntu/microk8s/issues/56
 # Creating a wrapper shell script (kubectlx) that runs kubectl with the kubeconfig option
-echo -e '#!/bin/bash \nkubectl --kubeconfig=$HOME/.kube/config $@' > /snap/bin/kubectlx
+echo -e '#!/bin/bash \nkubectl --kubeconfig=$HOME/.kube/config $@' > /snap/bin/kubectlxx
 # Making the wrapper shell script executable
-chmod +x /snap/bin/kubectlx
+chmod +x /snap/bin/kubectlxx
 # Setting a shell alias for kubectlx
 #echo "alias kubectl=kubectlx" >> ~/.bash_profile
-alias kubectl=kubectlx
+#unalias kubectl
+#alias kubectl=kubectlx
 snap alias microk8s.kubectl kubectl
-alias k=kubectlx
+alias k=kubectlxx
 complete -F __start_kubectl k
 #export KUBECONFIG=$KUBECONFIG:config:config-albandri
 #source <(kubectlx completion bash)
+alias mkctl="microk8s kubectl"
 
 export GOPATH="${PROJECT_HOME}/${PROJECT_USER}${PROJECT_MAJOR_VERSION}"
 

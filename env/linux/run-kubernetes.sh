@@ -128,14 +128,7 @@ kubeadm join 10.41.40.40:6443 --token em40d6.ork5gj1u2ngn7vmf \
 kubeadm join 150.151.160.25:6443 --token gokjm5.t6y5zshdw14ditgq \
     --discovery-token-ca-cert-hash sha256:f45a448c0609119af281b7ee7c6abcff8bda7f713fadaaaf8f5a75562fc3c2ff
 
-#See https://github.com/kubernetes/dashboard#kubernetes-dashboard
-#kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta6/aio/deploy/recommended.yaml
-kubectl config view
-#kubectl proxy
-kubectl proxy --address 0.0.0.0 --port=8582 --accept-hosts '.*'
-curl http://localhost:8582/api/
-#See http://localhost:8582/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy/
+./run-kubernetes-dashboard.sh
 
 sudo kubectl get nodes
 
@@ -157,5 +150,17 @@ curl -v http://10.41.40.40:6443
 kubectl --kubeconfig kube.config get pod -A
 
 kubectl get all --namespace=kube-system
+
+# See https://github.com/ahmetb/kubectx#installation
+git clone https://github.com/ahmetb/kubectx.git ~/.kubectx
+COMPDIR=$(pkg-config --variable=completionsdir bash-completion)
+sudo ln -sf ~/.kubectx/completion/kubens.bash $COMPDIR/kubens
+sudo ln -sf ~/.kubectx/completion/kubectx.bash $COMPDIR/kubectx
+cat << FOE >> ~/.bashrc
+#kubectx and kubens
+export PATH=~/.kubectx:\$PATH
+FOE
+
+# See https://kubernetes.io/fr/docs/concepts/workloads/pods/init-containers/
 
 exit 0

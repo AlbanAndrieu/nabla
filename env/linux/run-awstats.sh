@@ -41,7 +41,7 @@ pkg install awstats
 #Use webmin
 #Write report to /usr/local/www/apache24/data/nabla/webalizer/
 
-# You will see the generator in 
+# You will see the generator in
 ls -lrta /usr/local/etc/webmin/webalizer/
 
 #See http://www.quesaco.org/Installer-et-configurer-awstats

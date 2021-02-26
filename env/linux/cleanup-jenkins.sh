@@ -43,6 +43,8 @@ find ${JENKINS_HOME}/jobs -name 'htmlreports' -type d -exec rm -rv {} \;
 find ${JENKINS_HOME}/jobs -size +500M -mtime +180 -type f -print
 #find ${JENKINS_HOME}/jobs -size +500M -mtime +180 -type f -print | xargs rm -r $1
 
+#sudo rm -Rf /jenkins/users/*
+
 echo "End cleaning jenkins"
 
 exit 0

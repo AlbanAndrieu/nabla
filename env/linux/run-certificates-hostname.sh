@@ -5,7 +5,7 @@ set -xv
 
 # For letsencrypt
 export CERT_HOST_NAME=albandrieu.com home.albandrieu.com
-#apache.albandrieu.com nabla.albandrieu.com 
+#apache.albandrieu.com nabla.albandrieu.com
 #albandrieu.albandrieu.com jenkins.albandrieu.com sample.albandrieu.com bababou.albandrieu.com
 # 82.124.241.189 192.168.1.57 192.168.1.61 192.168.1.24 127.0.0.1
 

@@ -64,8 +64,8 @@
 # using iocage commands (just swap to jexec commands if still using warden jails):
 #
 # 1) Editing the run_clamav_scan.sh script
-#	 There are four user-defined fields within the script.  If you are using iocage, 
-#	 and are happy for the email to go to root and using the jail name ClamAV; then 
+#	 There are four user-defined fields within the script.  If you are using iocage,
+#	 and are happy for the email to go to root and using the jail name ClamAV; then
 #	 there is no need to edit any of them.  Otherwise edit as per the notes in that
 #	 section of the script.
 #
@@ -120,8 +120,8 @@
 #	 iocage stop ClamAV
 #
 # 5) Add the shares (i.e. datasets) you wish to scan
-#	 Using the Jails -> Mount Points feature (I recommend Read-Only mounts).  Remember, 
-#	 if the files/directories are not mounted then you will not be able to scan them 
+#	 Using the Jails -> Mount Points feature (I recommend Read-Only mounts).  Remember,
+#	 if the files/directories are not mounted then you will not be able to scan them
 #	 with this script.
 #
 #	 I recommend you mount them into the /mnt directory and use the same naming scheme
@@ -136,7 +136,7 @@
 #	 iocage start ClamAV
 #
 # 6) Setup a Tasks -> Cron Jobs on the FreeNAS server
-#    Run this script with the scan location as a parameter,  i.e. run_clamav_scan.sh "scan target".  
+#    Run this script with the scan location as a parameter,  i.e. run_clamav_scan.sh "scan target".
 #	 This script does some error checking and then runs the scan - an email will be sent
 #	 upon completion.  You can configure multiple scans with different scan locations
 #	 and start times based on your needs.  The script can now be run concurrently as

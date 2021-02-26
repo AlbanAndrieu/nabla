@@ -1,5 +1,15 @@
 # nabla
 
+# Table of contents
+
+<!-- toc -->
+
+- [Migration](#migration)
+- [Description](#description)
+- [Eclipse](#eclipse)
+
+<!-- tocstop -->
+
 ### Migration
 Automatically exported from code.google.com/p/alban
 BUT divided in git submodule project :

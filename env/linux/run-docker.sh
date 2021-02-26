@@ -60,14 +60,16 @@ gksudo geany /etc/NetworkManager/NetworkManager.conf
 #   },
 #   "debug": true
 #   }
-#sudo sh -x 'cat > /etc/docker/daemon.json <<EOF
-#{
-#  "exec-opts": ["native.cgroupdriver=cgroupfs"],
-#  "insecure-registries":["hostname.com"],
-#  "storage-driver": "overlay2",
-#  "debug": true
-#}
-#EOF'
+# kubernetes
+sudo sh -x 'cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=cgroupfs"],
+  "insecure-registries":["hostname.com"],
+  "storage-driver": "overlay2",
+  "debug": true,
+  "insecure-registries" : ["localhost:32000"]
+}
+EOF'
 # as root
 cat > /etc/docker/daemon.json <<EOF
 {
@@ -76,7 +78,8 @@ cat > /etc/docker/daemon.json <<EOF
   "log-opts": {
     "max-size": "100m"
   },
-  "storage-driver": "overlay2"
+  "storage-driver": "overlay2",
+  "debug": true
 }
 EOF
 
@@ -125,9 +128,6 @@ After=network-online.target firewalld.service containerd.service autofs.service 
 Wants=network-online.target autofs.service iscsid.service openvpn.service
 Requires=docker.socket
 
-#NOK DOCKER_OPTS="-H 127.0.0.1:4243 -H unix:///var/run/docker.sock"
-#NOK DOCKER_OPTS="-H albandri.misys.global.ad:4243 -H unix:///var/run/docker.sock"
-#DOCKER_OPTS="-H tcp://82.231.208.223:4243 -H unix:///var/run/docker.sock"
 DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock"
 #DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.25.200.3"
 DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 8.8.8.8 --dns 8.8.8.4"
@@ -135,8 +135,11 @@ DOCKER_OPTS="-H tcp://192.168.0.29:4243 -H unix:///var/run/docker.sock --dns 8.8
 #For Ubuntu 16.04
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --label provider=albandri --experimental
 #ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 -H unix:///var/run/docker.sock --dns 10.21.200.3 --dns 10.41.200.3 --data-root /docker --storage-driver overlay2 --disable-legacy-registry --tlsverify --tlscacert /root/pki/ca.pem --tlscert /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.pem --tlskey /etc/ssl/albandri.misys.global.ad/albandri.misys.global.ad.key --label provider=albandri
-#For Ubuntu 19.10
-ExecStart=/usr/bin/dockerd -H fd:// --dns 10.21.200.3 --dns 10.41.200.3 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --insecure-registry=registry.misys.global.ad --insecure-registry=albandrieu --userns-remap jenkins
+#For Ubuntu 19.10 and 20
+#ExecStart=/usr/bin/dockerd -H fd:// --dns 10.21.200.3 --dns 10.41.200.3 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --insecure-registry=registry.misys.global.ad --insecure-registry=albandrieu --userns-remap jenkins
+Environment="HTTP_PROXY=http://192.168.1.57:3128"
+Environment="HTTPS_PROXY=http://192.168.1.57:3128"
+Environment="NO_PROXY=localhost,127.0.0.1,.nabla.mobi,.albandrieu.com,.azure.io"
 ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2376 --dns 10.21.200.3 --dns 10.41.200.3 --dns 192.168.1.1 --containerd=/run/containerd/containerd.sock --data-root /docker --label provider=albandri --insecure-registry=registry.misys.global.ad --insecure-registry=albandrieu
 # -s cpuguy83/docker-overlay2-graphdriver-plugin
 #For RedHat 7.4
@@ -185,6 +188,20 @@ journalctl -xe
 sudo docker --tlsverify ps
 
 ls -lrta ~/.docker/config.json
+less ~/.docker/config.json
+#{
+#        "auths": {
+#                "https://index.docker.io/v1/": {},
+#                "acr.azurecr.io": {},
+#                "registry-tmp.albandrieu.com": {},
+#                "registry.albandrieu.com": {}
+#        },
+#        "HttpHeaders": {
+#                "User-Agent": "Docker-Client/19.03.8 (linux)"
+#        },
+#        "experimental": "enabled",
+#        "credsStore": "pass"
+#}
 
 #docker login 10.21.70.133
 docker login registry.albandrieu.com --username=nabla
@@ -260,7 +277,7 @@ docker run -it nabla/ansible-jenkins-slave-docker /bin/bash
 #Sample using container to buid my local workspace
 docker run -t -d -w /sandbox/project-to-build -v /workspace/users/albandri30/:/sandbox/project-to-build:rw --name sandbox nabla/ansible-jenkins-slave:latest cat
 #More advance sample using jenkins user on my workstation in order to get bash completion, git-radar and most of the dev tools I need
-docker run -it -u 1004:999 --rm --net=host --pid=host --dns-search=misys.global.ad --init -w /sandbox/project-to-build -v /workspace/users/albandri30/:/sandbox/project-to-build:rw -v /workspace:/workspace -v /jenkins:/home/jenkins -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v /etc/bash_completion.d:/etc/bash_completion.d:ro -v/data1/home/albandri/.git-radar/:/home/jenkins/.git-radar/ --name sandbox nabla/ansible-jenkins-slave:latest /bin/bash
+docker run -it -u 1004:999 --rm --net=host --pid=host --dns-search=albandrieu.com --init -w /sandbox/project-to-build -v /workspace/users/albandri30/:/sandbox/project-to-build:rw -v /workspace:/workspace -v /jenkins:/home/jenkins -v /etc/passwd:/etc/passwd:ro -v /etc/group:/etc/group:ro -v /etc/bash_completion.d:/etc/bash_completion.d:ro -v/data1/home/albandri/.git-radar/:/home/jenkins/.git-radar/ --name sandbox nabla/ansible-jenkins-slave:latest /bin/bash
 #do you stuff
 docker commit 44f8471b6047 jenkins-1
 sudo docker run --rm -i -t fec8ae404140 /usr/sbin/sshd -D
@@ -401,16 +418,14 @@ xeyes ## run an X11 demo app in the client
 #https://docs.docker.com/config/daemon/#read-the-logs
 journalctl -u docker.service
 
-#https://registry.misys.global.ad/docs/api
-#https://registry.misys.global.ad/api/v0/repositories
-#https://registry.misys.global.ad/api/v0/imagescan/status
+#https://registry.albandrieu.com/docs/api
+#https://registry.albandrieu.com/api/v0/repositories
+#https://registry.albandrieu.com/api/v0/imagescan/status
 
 #See https://github.com/GoogleContainerTools/container-structure-test
 curl -LO https://storage.googleapis.com/container-structure-test/latest/container-structure-test-linux-amd64 && chmod +x container-structure-test-linux-amd64 && sudo mv container-structure-test-linux-amd64 /usr/local/bin/container-structure-test
 
-#ls -lrta /var/run/docker.sock
-#chmod 777 /var/run/docker.sock
-#For non sudo user
+#For non sudo user such as clair : docker-compose exec clairctl clairctl report -l infoslack/dvwa
 #sudo chmod 666 /var/run/docker.sock
 sudo setfacl -m user:jenkins:rw /var/run/docker.sock
 sudo setfacl -m user:albandri:rw /var/run/docker.sock
@@ -456,5 +471,10 @@ containerd --version
 
 # Show kernel only
 sudo journalctl -k
+
+export DOCKER_CLI_EXPERIMENTAL=enabled
+#Add "experimental": "enabled" to ~/.docker/config.json
+
+docker buildx ls
 
 exit 0

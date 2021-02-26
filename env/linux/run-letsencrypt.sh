@@ -108,4 +108,4 @@ Adresse IPv6 (AAAA-record) : 2a01:e35:2fdf:4a20:0:0:0:1
 IPv4: 82.253.244.162
 IPv6: 2a01:0e35:2fdf:4a20:0000:0000:0000:0001
 
-exit 0 
+exit 0

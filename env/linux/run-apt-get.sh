@@ -82,12 +82,6 @@ sudo apt-get install subversion
 
 sudo chmod +x ~/.subversion/svn-merge-meld.py
 
-sudo gedit /etc/apt/sources.list
-#comment the following line
-deb http://extras.ubuntu.com/ubuntu precise main
-#deb http://us.archive.ubuntu.com/ubuntu/ precise main universe
-deb http://us.archive.ubuntu.com/ubuntu/ precise main universe restricted multiverse
-
 #check out
 cd /workspace/users/albandri10
 svn co https://alban.googlecode.com/svn/trunk/env env
@@ -124,7 +118,7 @@ rc6.d contains the services which runs in runlevel 6
 #sudo update-rc.d varnish start 30 5 . stop 30 0 1 6 .
 #Dans ce cas là, monscript sera uniquement lancé dans le runlevel 5 et avec une priorité de 30. Il sera stoppé dans les runlevels 0,1,6 avec une priorité de 30 également.
 #Les runlevels 2,3,4,5 pour le lancer et 0,1,6 pour le stopper. La priorité par défaut est de 20.
-#Si vous n’êtes pas bien certain de ce que vous faîtes, vous pouvez toujours lancer une simulation afin d’éviter la bourde… Pour cela, il est possible d’utiliser l’argument -n à votre commande qui affichera ce qu’aurait fait update-rc.d
+#Si vous nêtes pas bien certain de ce que vous faîtes, vous pouvez toujours lancer une simulation afin d’éviter la bourde… Pour cela, il est possible d’utiliser l’argument -n à votre commande qui affichera ce qu’aurait fait update-rc.d
 
 #test
 sudo update-rc.d -n varnish start 85 2 3 4 5 . stop 20 0 1 6 .
@@ -371,12 +365,6 @@ eog plot.svg
 sudo service apparmor stop
 sudo update-rc.d -f apparmor remove
 sudo apt-get remove apparmor apparmor-utils
-
-#chmod 777 /var/run/docker.sock
-#For non sudo user
-#sudo chmod 666 /var/run/docker.sock
-setfacl -m user:jenkins:rw /var/run/docker.sock
-ls -lrta /var/run/docker.sock
 
 #Ubuntu 19.04 upgrade
 #A start job is running for Hold until boot finishes up

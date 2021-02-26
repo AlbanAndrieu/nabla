@@ -44,12 +44,14 @@ git config --global core.whitespace trailing-space,-space-before-tab,indent-with
 git config --global http.sslVerify false
 git config --system core.longpaths true
 git config --global pack.packsizelimit 2g
-git config --system core.autocrlf false
-
+#git config --global core.autocrlf true
+git config --system core.autocrlf false #  for mingw to keep linux LR instead of windows CR LF
 # For issue https://github.com/git-lfs/git-lfs/issues/3171
-git config lfs.contenttype 0
+#git config lfs.contenttype 0
+git config lfs.contenttype true
 #git config core.ignoreStat true
 #git config core.fscache true
+git config --global --unset-all gui.recentrepo
 
 #See http://omerkatz.com/blog/2013/5/23/git-hooks-part-2-implementing-git-hooks-using-python
 git config --global init.templatedir /workspace/users/albandri30/nabla-hooks/hooks
@@ -93,10 +95,6 @@ git diff --no-ext-diff
 #curl https://packages.gitlab.com/install/repositories/gitlab/gitlab-ee/script.deb.sh | sudo bash
 #sudo EXTERNAL_URL="https://gitlab.com/AlbanAndrieu" apt-get install gitlab-ee
 
-#See https://tecadmin.net/install-gitlab-ce-on-ubuntu/ for gitlab-ce
-curl -sS https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh | sudo bash
-sudo apt-get install gitlab-ce
-
 #Checkout BitBucket PR
 #See https://gist.github.com/piscisaureus/3342247
 #Locate the section for your github remote in the .git/config file. It looks like this:
@@ -116,5 +114,9 @@ sudo apt-get install gitlab-ce
 
 # See https://hub.github.com/
 #alias git=hub
+
+git lfs install --system --skip-repo
+git lfs prune --dry-run
+git lfs checkout
 
 exit 0

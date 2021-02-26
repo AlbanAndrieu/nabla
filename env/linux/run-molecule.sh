@@ -16,7 +16,7 @@ python3 -m ara.setup.path
 python3 -m ara.setup.action_plugins
 python3 -m ara.setup.callback_plugins
 python3 -m ara.setup.ansible | tee ansible.cfg
-  
+
 #sudo rm -Rf /usr/local/bin/molecule
 molecule check
 

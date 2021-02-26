@@ -44,7 +44,8 @@ pass git push -u --all
 
 gpg2 --list-keys
 # for "albandrieu"
-gpg2 --list-secret-keys
+#gpg2 --list-secret-keys
+gpg --list-secret-keys --keyid-format LONG
 pass git init 35A6FBF1C59ECF2E3784818D05D23C3B33AC3AAF
 gpg2 --edit-key 35A6FBF1C59ECF2E3784818D05D23C3B33AC3AAF
 #then you have to trust your own key first (gpg --edit-key 64290B2D, trust, 5, save).
@@ -55,6 +56,12 @@ echo '{ "credsStore": "pass" }' > ~/.docker/config.json
 docker logout
 docker login
 #...
+
+git config --global user.signingkey 62DA9DD0B9FBDA514B3E4CFCEA3851498F7EB90D
+test -r ~/.bash_profile && echo 'export GPG_TTY=$(tty)' >> ~/.bash_profile
+echo 'export GPG_TTY=$(tty)' >> ~/.profile
+
+gpg --armor --export 35A6FBF1C59ECF2E3784818D05D23C3B33AC3AAF
 
 pass
 

@@ -26,7 +26,7 @@ iocage exec lidarr rm /usr/local/share/Lidarr.master.0.7.1.1381.linux.tar.gz
 iocage exec lidarr "pw user add lidarr -c lidarr -u 353 -d /nonexistent -s /usr/bin/nologin"
 iocage exec lidarr chown -R lidarr:lidarr /usr/local/share/Lidarr /config
 #iocage exec lidarr mkdir /usr/local/etc/rc.d
-#Create an rc file for lidarr using your favorite editor at 
+#Create an rc file for lidarr using your favorite editor at
 nano /mnt/dpool/iocage/jails/lidarr/root/usr/local/etc/rc.d/lidarr
 
 iocage exec sonarr "pw user add transmission -c media -u 921 -d /nonexistent -s /usr/bin/nologin"
@@ -46,4 +46,4 @@ lidarr should be available at http://192.168.1.24:8683
 
 iocage df
 
-exit 
+exit
