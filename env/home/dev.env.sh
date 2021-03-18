@@ -681,7 +681,7 @@ fi
 # Creating a wrapper shell script (kubectlx) that runs kubectl with the kubeconfig option
 echo -e '#!/bin/bash \nkubectl --kubeconfig=$HOME/.kube/config $@' > /snap/bin/kubectlxx
 # Making the wrapper shell script executable
-chmod +x /snap/bin/kubectlxx
+#chmod +x /snap/bin/kubectlxx
 # Setting a shell alias for kubectlx
 #echo "alias kubectl=kubectlx" >> ~/.bash_profile
 #unalias kubectl

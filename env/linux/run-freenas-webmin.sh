@@ -31,7 +31,7 @@ service webmin start
 
 tail -f /var/log/webmin/miniserv.error
 
-echo "https://192.168.1.62:10000"
+echo "https://192.168.1.61:10000"
 
 ls -lrta /usr/local/etc/webmin/webalizer/
 

@@ -109,6 +109,7 @@ cd /usr/ports/security/py-certbot && make install clean
 #    weekly_certbot_enable="YES"
 
 certbot certonly
+certbot renew
 
 #INPUT
 #2

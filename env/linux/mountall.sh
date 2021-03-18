@@ -55,6 +55,7 @@ sudo mount -t nfs nabla:/mnt/dpool/workspace /workspace-tmp
 #sudo mount -t nfs nabla:/mnt/dpool/workspace/users/albandri10 /workspace/users/albandri10
 #sudo mkdir /media/owncloud
 #sudo mount -t nfs nabla:/mnt/dpool/owncloud /media/owncloud
+sudo mount -t nfs nabla:/mnt/dpool/bitcoin /media/bitcoin
 
 #sudo nano /etc/fstab
 ##<server>:</remote/export></local/directory><nfs-type><options> 0 0
@@ -72,6 +73,7 @@ nabla:/mnt/dpool/backup /media/backup nfs4 defaults,user,auto,noatime,bg,rsize=1
 nabla:/mnt/dpool/jenkins /media/jenkins nfs4 defaults,user,auto,noatime,bg,rsize=16384,wsize=16384 0 0
 nabla:/mnt/dpool/jenkins-slave /media/jenkins-slave nfs4 defaults,user,auto,noatime,bg,rsize=16384,wsize=16384 0 0
 nabla:/mnt/dpool/workspace /workspace-tmp nfs4 defaults,user,auto,noatime,bg,rsize=16384,wsize=16384 0 0
+nabla:/mnt/dpool/bitcoin /media/bitcoin nfs4 defaults,user,auto,noatime,bg,rsize=16384,wsize=16384 0 0
 #nabla:/mnt/dpool/media/ftp  /media/ftp  zfs  defaults  0  0
 
 echo "Mount freenas NABLA NFS directories"
