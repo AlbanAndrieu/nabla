@@ -57,6 +57,11 @@ kubectl krew version
 kubectl krew search
 
 kubectl krew install flame
+#sudo apt install openjdk-8-dbg
+sudo apt install openjdk-11-dbg
+gdb /usr/lib/jvm/java-1.11.0-openjdk-amd64/lib/server/libjvm.so -ex 'info address UseG1GC'
+gdb /usr/lib/jvm/java-14-oracle/lib/server/libjvm.so -ex 'info address UseG1GC'
+kubectl flame "my-helm-sample-cb64797d8-kwv9p" -t 1m --lang java -f /tmp/flamegraph.svg --namespace fr-standalone-aandrieu --kubeconfig ~/.kube/config
 kubectl krew install graph
 #kubectl graph pods --field-selector status.phase=Running -n kube-system | dot -T svg -o pods.svg
 kubectl graph pods --field-selector status.phase=Running -n fr-standalone-aandrieu --kubeconfig=$HOME/.kube/config | dot -T svg -o pods.svg

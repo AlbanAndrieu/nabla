@@ -156,10 +156,23 @@ git clone https://github.com/ahmetb/kubectx.git ~/.kubectx
 COMPDIR=$(pkg-config --variable=completionsdir bash-completion)
 sudo ln -sf ~/.kubectx/completion/kubens.bash $COMPDIR/kubens
 sudo ln -sf ~/.kubectx/completion/kubectx.bash $COMPDIR/kubectx
+
+sudo ln -s /home/albandrieu/.kubectx/kubens /usr/local/bin/kubens
+sudo ln -s /home/albandrieu/.kubectx/kubectx /usr/local/bin/kubectx
+
+# Fix ~/.kubectx/kubectx line 196
+#    if hash kubectlxx 2>/dev/null; then
+#      KUBECTL=kubectlxx
+
 cat << FOE >> ~/.bashrc
 #kubectx and kubens
 export PATH=~/.kubectx:\$PATH
 FOE
+
+cd $HOME
+wget https://raw.githubusercontent.com/ahmetb/kubectl-alias/master/.kubectl_aliases
+
+function kubectl() { echo "+ kubectlxx $@">&2; command kubectlxx $@; }
 
 # See https://kubernetes.io/fr/docs/concepts/workloads/pods/init-containers/
 

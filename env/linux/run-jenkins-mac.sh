@@ -24,7 +24,7 @@ sudo launchctl start org.apache.httpd
 ls -lrta /private/var/log/apache2/error_log
 
 #/Users/devel/.ssh/org.jenkins-ci
-JENKINS_HOME_^P^Z/Users/Shared/Jenkins/Home
+JENKINS_HOME_/Users/Shared/Jenkins/Home
 
 sudo launchctl list org.jenkins-ci
 #{

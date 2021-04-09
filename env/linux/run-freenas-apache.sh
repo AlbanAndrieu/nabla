@@ -110,6 +110,7 @@ cd /usr/ports/security/py-certbot && make install clean
 
 certbot certonly
 certbot renew
+# AND restart apache
 
 #INPUT
 #2
