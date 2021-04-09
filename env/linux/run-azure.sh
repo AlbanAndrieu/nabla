@@ -1,6 +1,9 @@
 #!/bin/bash
 #set -xv
 
+# See https://docs.microsoft.com/fr-fr/powershell/scripting/install/installing-powershell-core-on-linux?view=powershell-7.1
+sudo apt-get install -y powershell
+
 # See https://docs.microsoft.com/fr-fr/cli/azure/install-azure-cli-apt?view=azure-cli-latest
 
 sudo apt install azure-cli
@@ -53,6 +56,7 @@ az acr login --name p21d13401013001 --subscription DEV-C20-001
 #If you don't have X11 on the machine:
 #az acr login --name p21d13401013001 --expose-token
 #docker login p21d13401013001.azurecr.io --username $SP_APP_ID --password $SP_PASSWD
+docker login p21d50501532001.azurecr.io
 
 az acr check-health -n p21d13401013001 --yes
 

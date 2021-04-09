@@ -23,6 +23,7 @@ code --install-extension janjoerke.jenkins-pipeline-linter-connector
 #ext install janjoerke.jenkins-pipeline-linter-connector
 code --install-extension madhavd1.javadoc-tools
 code --install-extension joaompinto.vscode-graphviz
+code --install-extension ms-vscode.azurecli
 
 # See ~/.config/Code/User/settings.json
 #    "java.home": "/usr/lib/jvm/java-14-oracle/"
