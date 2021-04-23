@@ -1,6 +1,10 @@
 #!/bin/bash
 set -xv
 
+# See https://github.com/lensapp/lens/releases/tag/v4.1.3
+
+sudo snap install kontena-lens --classic
+
 #See https://github.com/roboll/helmfile/releases
 
 wget https://github.com/roboll/helmfile/releases/download/v0.138.2/helmfile_linux_amd64
