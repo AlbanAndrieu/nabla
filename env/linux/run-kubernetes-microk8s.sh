@@ -121,4 +121,6 @@ sudo lsof -i :10252
 #By default, the storage addon persists all volumes in
 ls -lrta /var/snap/microk8s/common/default-storage
 
+k get pods --watch
+
 exit 0

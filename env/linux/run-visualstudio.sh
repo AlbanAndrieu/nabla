@@ -15,8 +15,15 @@ fs.inotify.max_user_watches=524288
 code --install-extension ms-vscode.cpptools austin.code-gnu-global twxs.cmake ms-vscode.cmake-tools fireblackhat.conan-tools ms-azuretools.vscode-docker ms-python.python
 code --install-extension james-yu.latex-workshop tecosaur.latex-u tilities
 code --install-extension vscjava.vscode-java-pack redhat.vscode-xml
+code --install-extension sonarsource.sonarlint-vscode
 code --install-extension msjsdiag.debugger-for-chrome
 code --install-extension ms-python.python
+code --install-extension ansenhuang.vscode-view-readme
+code --install-extension janjoerke.jenkins-pipeline-linter-connector
+#ext install janjoerke.jenkins-pipeline-linter-connector
+code --install-extension madhavd1.javadoc-tools
+code --install-extension joaompinto.vscode-graphviz
+code --install-extension ms-vscode.azurecli
 
 # See ~/.config/Code/User/settings.json
 #    "java.home": "/usr/lib/jvm/java-14-oracle/"

@@ -67,4 +67,7 @@ MulticastDNS setting: no
           DNS Domain: finastra.global
 
 
+# Add search to VPN
+nm-connection-editor
+
 exit 0
