@@ -750,11 +750,6 @@ fi
 
 #export PATH=$PATH:~/.fabric8/bin
 
-# BITCON
-
-export BDB_PREFIX="${PROJECT_HOME}/${PROJECT_USER}${PROJECT_MAJOR_VERSION}/bitcoin/db4"
-export ASAN_SYMBOLIZER_PATH='/usr/bin/llvm-symbolizer'
-
 export PATH=/usr/local/bin:/usr/sbin:/sbin:/usr/bin:/bin:${PATH}
 
 ###
@@ -819,8 +814,13 @@ export LD_LIBRARY_PATH=${PROJECT_TARGET_PATH}/lib/${ARCH}/opt:${PROJECT_TARGET_P
 
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
+# BITCON
+
+export BDB_PREFIX="${PROJECT_HOME}/${PROJECT_USER}${PROJECT_MAJOR_VERSION}/bitcoin/db4"
+export ASAN_SYMBOLIZER_PATH='/usr/bin/llvm-symbolizer'
+
 #AddressSanitizer to sanitize your code!
-export ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer-3.8
+#export ASAN_SYMBOLIZER_PATH=/usr/bin/llvm-symbolizer-3.8
 export ASAN_OPTIONS=alloc_dealloc_mismatch=0,symbolize=1
 
 ##

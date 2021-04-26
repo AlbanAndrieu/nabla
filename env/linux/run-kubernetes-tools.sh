@@ -94,4 +94,7 @@ helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
 helm install my-nginx ingress-nginx/ingress-nginx
 
+# See https://github.com/derailed/k9s
+curl -sS https://webinstall.dev/k9s | bash
+
 exit 0

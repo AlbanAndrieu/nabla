@@ -63,7 +63,7 @@ az acr login --name p21d50501532001 # pegasus push
 az acr show --name p21d50501532001 --query id --output tsv
 #If you don't have X11 on the machine:
 #az acr login --name p21d13401013001 --expose-token
-#docker login p21d13401013001.azurecr.io --username $SP_APP_ID --password $SP_PASSWD
+docker login p21d13401013001.azurecr.io --username $SP_APP_ID --password $SP_PASSWD
 docker login p21d50501532001.azurecr.io
 
 az acr check-health -n p21d13401013001 --yes
@@ -84,7 +84,7 @@ az acr repository show-manifests -n p21d13401013001 --repository fusion-risk/ans
 # AKS access:
 az account set --subscription DEV-C20-001
 #NOK az aks get-credentials --name p21d19702515001 --resource-group AZR-C21-DV-197-02
-az aks get-credentials --name p21d50501532001 --resource-group AZR-C21-DV-505-01
+az aks get-credentials --name p21d50501533001 --resource-group AZR-C21-DV-505-01
 
 # See https://docs.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml
 

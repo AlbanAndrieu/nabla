@@ -50,9 +50,7 @@ sudo systemd-resolve -i eno1 --set-domain="~."
 
 #---------------------------------
 
- sudo systemd-resolve --status
-
-#parravpn.finastra.com
+sudo systemd-resolve --status
 
 Link 70 (vpn0)
       Current Scopes: DNS
@@ -62,12 +60,29 @@ MulticastDNS setting: no
   DNSOverTLS setting: no
       DNSSEC setting: no
     DNSSEC supported: no
-         DNS Servers: 10.21.200.1
-                      10.21.200.15
-          DNS Domain: finastra.global
 
+# See https://unix.stackexchange.com/questions/316156/network-manager-not-taking-dns-search-into-account-for-vpn-gnome-ubuntu-16-04-1
+ll /etc/NetworkManager/system-connections
+dns-search=misys.global.ad;finastra.global;.provides.io;
+
+systemctl restart NetworkManager.service
+
+systemd-resolve --status
+
+sudo nano /etc/default/openvpn
+
+# See https://gist.github.com/plembo/26027128bc7cbdbb0b967a2fb275da50
 
 # Add search to VPN
 nm-connection-editor
+
+sudo nmcli con show
+
+nmcli con | grep -i vpn
+nmcli con show --active
+
+sudo service openvpn status
+
+# Check IP https://www.hostip.fr/
 
 exit 0
