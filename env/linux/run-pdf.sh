@@ -30,4 +30,11 @@ sudo apt install xournal
 
 # See https://www.hellosign.com/ to sign using internet
 
+# Merge pdf
+sudo snap install pdftk
+pdftk file1.pdf file2.pdf cat output mergedfile.pdf
+
+#sudo apt-get install pdfshuffler
+sudo apt-get install pdfarranger
+
 exit 0

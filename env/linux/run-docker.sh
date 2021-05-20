@@ -73,15 +73,22 @@ EOF'
 # as root
 cat > /etc/docker/daemon.json <<EOF
 {
-  "exec-opts": ["native.cgroupdriver=systemd"],
   "log-driver": "json-file",
+  "exec-opts": ["native.cgroupdriver=systemd"],
   "log-opts": {
     "max-size": "100m"
   },
   "storage-driver": "overlay2",
+  "icc": false,
+  "userland-proxy": false,
+  "no-new-privileges": true,
   "debug": true
 }
 EOF
+
+# NOK "userns-remap": "default",
+#  "disable-legacy-registry": true,
+
 
 #nano /etc/NetworkManager/dnsmasq.d/docker-bridge.conf
 #   listen-address=172.17.0.1
@@ -486,5 +493,8 @@ e2fsck /dev/mapper/vg--sata-docker -y
 cd /docker/image
 mv overlay2 overlay2-TODELETE
 sudo service docker restart
+
+# See https://www.digitalocean.com/community/tutorials/how-to-audit-docker-host-security-with-docker-bench-for-security-on-ubuntu-16-04
+sudo systemctl restart auditd
 
 exit 0

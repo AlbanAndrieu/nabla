@@ -29,7 +29,7 @@ for job in jobs:
                 buildTimes[number] = duration
 
     # load values from url
-    url = 'http://albandrieu.com:8686/job/' + \
+    url = 'http://albandrieu.com/jenkins/job/' + \
         job + '/api/json?tree=builds[number,duration]'
     print('Reading data from ' + url)
     response = urllib.request.urlopen(url)

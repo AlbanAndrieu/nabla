@@ -1521,11 +1521,11 @@
 				</plugins>
 			</build>
 		</profile>
+    <!--
 		<profile>
 			<id>cobertura</id>
 			<build>
 				<plugins>
-					<!-- cobertura -->
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>cobertura-maven-plugin</artifactId>
@@ -1554,13 +1554,10 @@
 			</build>
 			<properties>
 				<sonar.groovy.cobertura.reportPath>target/site/cobertura/coverage.xml</sonar.groovy.cobertura.reportPath>
-				<!--
-							<sonar.java.coveragePlugin>cobertura</sonar.java.coveragePlugin>
-							<sonar.language>grvy</sonar.language>
-							-->
 				<sonar.grvy.coveragePlugin>cobertura</sonar.grvy.coveragePlugin>
 			</properties>
 		</profile>
+    -->
 		<!--
 				This profile is used to launch integration tests with the failsafe plugin
 
@@ -2376,32 +2373,6 @@
                                                                     </reportSets>
                                                                 </plugin>
                                                                 -->
-								<!-- Comment gerer un rapport de couverture des tests -->
-								<!-- Code Coverage by Cobertura -->
-								<!-- TODO doesn not work with JAVA 8
-                                                                <plugin>
-                                                                        <groupId>org.codehaus.mojo</groupId>
-                                                                        <artifactId>cobertura-maven-plugin</artifactId>
-                                                                        <version>${maven.cobertura.plugin.version}</version>
-                                                                        <configuration>
-																				-->
-								<!--<aggregate>true</aggregate>-->
-								<!--
-                                                                                <formats>
-                                                                                        <format>xml</format>
-                                                                                        <format>html</format>
-                                                                                </formats>
-                                                                        </configuration>
-                                                                </plugin>
-                                                                -->
-								<!-- dashboard must be done at the end in order to have a complete report -->
-								<!--
-                                                                <plugin>
-                                                                        <groupId>org.codehaus.mojo</groupId>
-                                                                        <artifactId>dashboard-maven-plugin</artifactId>
-                                                                        <version>${maven.dashboard.plugin.version}</version>
-                                                                </plugin>
--->
 								<plugin>
 									<groupId>com.atlassian.maven.plugins</groupId>
 									<artifactId>maven-clover2-plugin</artifactId>
@@ -2526,7 +2497,7 @@
 											</executions>
 										</plugin>
 -->
-					<!-- Delete code coverage database when 'mvn clean' is executed -->
+					<!-- Delete code coverage database when 'mvn clean' is executed
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>cobertura-maven-plugin</artifactId>
@@ -2535,7 +2506,6 @@
 							<execution>
 								<goals>
 									<goal>clean</goal>
-									<!--<goal>check</goal> comment to avoid running tests twice-->
 								</goals>
 							</execution>
 						</executions>
@@ -2563,61 +2533,7 @@
 							</check>
 						</configuration>
 					</plugin>
-					<!--
-                                        <plugin>
-                                                <groupId>org.codehaus.mojo</groupId>
-                                                <artifactId>dashboard-maven-plugin</artifactId>
-                                                <version>${maven.dashboard.plugin.version}</version>
-                                                <configuration>
-                                                        <dialect>org.hibernate.dialect.DerbyDialect</dialect>
-                                                        <driverClass>org.apache.derby.jdbc.ClientDriver</driverClass>
-                                                        <connectionUrl>jdbc:derby://localhost:1527/myDB;create=true</connectionUrl>
-                                                        <username>usr</username>
-                                                        <password>usr</password>
-                                                        <configLocation>project/myDashboardConfig.xml</configLocation>
-                                                        <keepVersionAsDiscriminantCriteria>false</keepVersionAsDiscriminantCriteria>
-                                                </configuration>
-                                                <dependencies>
-                                                        <dependency>
-                                                                <groupId>org.apache.derby</groupId>
-                                                                <artifactId>derbyclient</artifactId>
-                                                                <version>${jdbc.derby.version}</version>
-                                                        </dependency>
-                                                        -->
-					<!--
-                                                        <dependency>
-                                                                <groupId>org.apache.derby</groupId>
-                                                                <artifactId>derby</artifactId>
-                                                                <version>${jdbc.derby.version}</version>
-                                                                <scope>compile</scope>
-                                                        </dependency>
-                                                        <dependency>
-                                                                <groupId>org.apache.derby</groupId>
-                                                                <artifactId>derbytools</artifactId>
-                                                                <version>${jdbc.derby.version}</version>
-                                                                <scope>compile</scope>
-                                                        </dependency>
-                                                        <dependency>
-                                                                <groupId>org.apache.derby</groupId>
-                                                                <artifactId>derbynet</artifactId>
-                                                                <version>${jdbc.derby.version}</version>
-                                                                <scope>compile</scope>
-                                                        </dependency>
-                                                        <dependency>
-                                                                <groupId>com.nabla.project</groupId>
-                                                                <artifactId>build-tools</artifactId>
-                                                                <version>1.0.1-SNAPSHOT</version>
-                                                        </dependency>
-                                                        -->
-					<!--
-                                                        <dependency>
-                                                                <groupId>commons-logging</groupId>
-                                                                <artifactId>commons-logging</artifactId>
-                                                                <version>${commons.logging.version}</version>
-                                                        </dependency>
-                                                </dependencies>
-                                        </plugin>
-                                        -->
+          -->
 					<plugin>
 						<groupId>org.codehaus.mojo</groupId>
 						<artifactId>taglist-maven-plugin</artifactId>

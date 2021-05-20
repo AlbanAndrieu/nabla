@@ -33,34 +33,63 @@ service apache24 restart
 
 #####################
 
-pkg install databases/mysql80-server
+#NOK pkg install databases/mysql80-server
+
+#Installed packages to be REMOVED:
+#	cdash: 2.2.3_2
+#	mysql57-client: 5.7.33
+
+#pkg install devel/cdash
+#Moved:	devel/llvm90
+cd /usr/ports/devel/cdash && make install clean
+
+pkg install mysql57-server
+
+sudo sysrc mysql_enable=yes
 service mysql-server start
 mysql_secure_installation
 
 #https://www.ostechnix.com/install-phpmyadmin-apache-nginx-freebsd-10-2/
-pkg install phpMyAdmin5-php74-5.0.1
+pkg install phpMyAdmin5-php74-5.1.0
 pkg install mod_php74
-#pkg install php72-mysql php72-mysqli
-#pkg install php72-mysqli php72-json php72-mbstring php72-session
+pkg install php74-mysqli php74-json php74-mbstring php74-session php74-iconv
 
-#pkg search php72
-#pkg install php72-bcmath php72-curl php72-gd php72-mbstring php72-pdo_mysql php72-xsl
+#pkg search php74
+sudo nano /usr/local/www/apache24/data/info.php
+<?php phpinfo(); ?>
+http://192.168.1.61/info.php
 
-    Alias /phpmyadmin/ "/usr/local/www/phpMyAdmin/"
+---------------
+edit /usr/local/etc/php.ini
+extension=mysqli.so
+extension=mbstring.so
 
-    <Directory "/usr/local/www/phpMyAdmin/">
-        Options None
-        AllowOverride Limit
+extension=session.so
+extension=json.so
+extension=iconv.so
 
-        Require local
-        Require host .example.com
-    </Directory>
+# Check
+php -m
+
+To make phpMyAdmin available through your web site, I suggest
+that you add something like the following to httpd.conf:
+
+Alias /phpmyadmin/ "/usr/local/www/phpMyAdmin/"
+
+<Directory "/usr/local/www/phpMyAdmin/">
+    Options None
+    AllowOverride Limit
+
+    Require local
+    Require host .albandrieu.com
+</Directory>
 
 http://192.168.1.61/phpMyAdmin/
 
-pkg install cdash
-
 #################
+
+# In webmin
+#from "/var/db/mysql/my.cnf" to "/usr/local/etc/mysql/my.cnf"
 
 #Access denied for user ''@'localhost' to database 'cdash'
 
@@ -72,6 +101,20 @@ create user 'cdash'@'localhost' identified by 'microsoft';
 grant all privileges on cdash.* to 'cdash'@'localhost' with grant option;
 FLUSH PRIVILEGES;
 quit;
+
+cd /usr/local/www/CDash
+
+less /var/log/httpd-albandrieu.com-error.log
+[Thu May 13 02:36:31.531739 2021] [php7:error] [pid 41234] [client 192.168.1.57:60700] script '/usr/local/www/CDash/version.php' not found or unable to stat
+[Thu May 13 02:36:33.910827 2021] [php7:error] [pid 41234] [client 192.168.1.57:60700] PHP Fatal error:  Uncaught Error: Call to undefined function mysql_connect()
+in /usr/local/www/CDash/cdash/pdocore.php:48\nStack trace:\n
+#0 /usr/local/www/CDash/cdash/pdocore.php(441): pdo_connect('localhost', 'root', 'microsoft')\n
+#1 /usr/local/www/CDash/cdash/log.php(19): require_once('/usr/local/www/...')\n
+#2 /usr/local/www/CDash/cdash/pdo.php(18): require_once('/usr/local/www/...')\n
+#3/usr/local/www/CDash/index.php(19): require_once('/usr/local/www/...')\n
+#4 {main}\n  thrown in /usr/local/www/CDash/cdash/pdocore.php on line 48
+/var/log/httpd-albandrieu.com-error.log (END)
+$CDASH_FORWARDING_IP='192.%'; // should be an SQL format
 
 nano /usr/local/etc/apache24/httpd.conf
 
@@ -114,7 +157,7 @@ certbot renew
 
 #INPUT
 #2
-#nabla.mobi,albandrieu.com,sample.nabla.mobi,alban-andrieu.fr,alban-andrieu.com,alban-andrieu.eu,bababou.fr,bababou.eu
+#albandrieu.com,nabla.albandrieu.com,home.albandrieu.com,cv.albandrieu.com,sample.albandrieu.com
 #1
 #/usr/local/www/apache24/data
 
@@ -160,6 +203,8 @@ pkg install py37-fail2ban
 pkg install webalizer
 pkg install awstats
 
+# https://192.168.1.61:10000/webalizer/view_log.cgi/%252Fvar%252Flog%252Fhttpd%252Dalbandrieu%252Ecom%252Daccess%252Elog/index.html?xnavigation=1
+
 #See run-awstats.sh
 
 grep deflate /usr/local/etc/apache24/httpd.conf
@@ -196,6 +241,10 @@ nano /usr/local/etc/apache24/Includes/mod_deflate.conf
             CustomLog /var/log/deflate_log deflate
         </IfModule>
 </IfModule>
+
+-----------------------------
+
+run-freenas-jenkins.sh
 
 -----------------------------
 

@@ -9,9 +9,6 @@ echo "Start cleaning"
 
 # As jenkins user
 
-#Inside your home directory
-du -sh .[!.]* *
-
 #http://doc.ubuntu-fr.org/nettoyer_ubuntu
 \rm -Rf /usr/local/sonar/.local
 \rm -Rf /usr/local/sonar/Downloads/*
@@ -271,5 +268,24 @@ sudo apt install fdupes
 #CentOS
 #yum clean all
 #rm -rf /var/cache/yum
+
+#Inside your home directory
+du -sh .[!.]* *
+
+# Find core dump
+find / -xdev -name core -ls -o  -path "/lib*" -prune
+
+# List disk space usage
+
+snap list --all
+snap list --all | awk '/désactivé|disabled/{print $1, $3}'
+snap list --all | awk '/désactivé|disabled/{print $1, $3}' | while read snapname revision; do sudo snap remove "$snapname" --revision="$revision"; done
+#sudo snap remove  atom  --revision 275
+
+echo && snap list --all && echo && df -Th | grep -Ev "tmpfs|squashfs"
+sudo snap set system refresh.retain=2
+
+#sudo apt install ncdu
+sudo ncdu -x /
 
 exit 0
