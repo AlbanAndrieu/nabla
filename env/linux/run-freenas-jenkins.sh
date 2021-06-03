@@ -1,6 +1,8 @@
 #!/bin/bash
 #set -xv
 
+# See http://192.168.1.62/jenkins/
+
 #Fix wrong version of Feenas in jail
 freebsd-version
 jls
@@ -60,8 +62,9 @@ edit jenkins
 
 cd /usr/local/share/jenkins/
 ls -lrta jenkins.war
-mv jenkins.war jenkins.war-2.176.4
+mv jenkins.war jenkins.war-2.277.4
 /usr/local/bin/wget http://mirrors.jenkins.io/war-stable/latest/jenkins.war
+#--> https://get.jenkins.io/war-stable/2.263.4/jenkins.war
 
 # install by hand
 #pkg_info | grep jenkins
@@ -91,10 +94,67 @@ git config --global user.name "AlbanAndrieu"
 
 edit /media/workspace/zfs-log_parsing_rules
 
-./run-freenas-nginx.sh
+#./run-freenas-nginx.sh\
+
+# See http://dnaeon.github.io/apache-proxy-freebsd/
+
+#Add mod_proxy xlm2ec inside
+nano /usr/local/etc/apache24/httpd.conf
+
+nano /usr/local/etc/apache24/extra/httpd-vhosts.conf
+
+<VirtualHost *:80>
+    #<IfModule alias_module>
+    #    Redirect permanent / https://albandrieu.com/
+    #</IfModule>
+
+    ServerAdmin alban.andrieu@free.fr
+    #DocumentRoot "/usr/local/docs/dummy-host.example.com"
+    DocumentRoot "/usr/local/www/apache24/data/"
+    ServerName albandrieu.com
+    ServerAlias www.albandrieu.com
+    ErrorLog "/var/log/httpd-albandrieu.com-error.log"
+    CustomLog "/var/log/httpd-albandrieu.com-access.log" common
+
+    ProxyPass /jenkins http://192.168.1.62:80/jenkins/ nocanon
+    ProxyPassReverse /jenkins http://192.168.1.62:80/jenkins/
+    ProxyRequests Off
+    AllowEncodedSlashes NoDecode
+
+</VirtualHost>
+
+<VirtualHost *:80>
+#<IfModule alias_module>
+#    Redirect permanent / https://albandrieu.com/
+#</IfModule>
+
+ServerAdmin alban.andrieu@free.fr
+#DocumentRoot "/usr/local/docs/dummy-host.example.com"
+DocumentRoot "/usr/local/www/apache24/data/"
+ServerName jenkins.albandrieu.com
+ServerAlias www.jenkins.albandrieu.com
+ErrorLog "/var/log/httpd-albandrieu.com-error.log"
+CustomLog "/var/log/httpd-albandrieu.com-access.log" common
+
+ProxyPass /jenkins http://192.168.1.62:80/jenkins/ nocanon
+ProxyPassReverse /jenkins http://192.168.1.62:80/jenkins/
+ProxyRequests Off
+AllowEncodedSlashes NoDecode
+
+</VirtualHost>
+
+<VirtualHost *:443>
+    SSLEngine On
+    SSLCertificateFile "/usr/local/etc/letsencrypt/live/albandrieu.com-0001/cer.pem"/>
+    SSLCertificateKeyFile "/usr/local/etc/letsencrypt/live/albandrieu.com-0001/privkey.pem">
+.....
+
+# For detailed information about these directives see
+# <URL:http://httpd.apache.org/docs/2.4/mod/mod_proxy_html.html>
+# and for mod_xml2enc see
 
 BASE=administrativeMonitor/hudson.diagnosis.ReverseProxySetupMonitor
-curl -iL -e http://your.reverse.proxy/jenkins/manage \
-            http://your.reverse.proxy/jenkins/${BASE}/test
+curl -iL -e http://jenkins.albandrieu.com/jenkins/manage \
+            http://jenkins.albandrieu.com/jenkins/${BASE}/test
 
 exit 0

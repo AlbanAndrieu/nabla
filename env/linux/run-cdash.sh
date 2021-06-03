@@ -40,3 +40,5 @@ voir /usr/share/apache2/
 voir /var/www/htdocs/CDash
 
 http://localhost/htdocs/CDash/
+
+exit 0

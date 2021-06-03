@@ -135,7 +135,7 @@
 		<appfuse.version>2.1.0-M1</appfuse.version>
 		<application.server>jboss</application.server>
 		<appsensor.core.version>2.3.2</appsensor.core.version>
-		<asm.ow2.version>7.1</asm.ow2.version>
+		<asm.ow2.version>9.1</asm.ow2.version>
 		<!-- error running openejb -->
 		<asm.version>3.3.1</asm.version>
 		<aspectj.version>1.8.13</aspectj.version>
@@ -433,7 +433,7 @@
 		<izpack.version>5.0.10</izpack.version>
 		<jackson.version>1.9.13</jackson.version>
 		<jacoco.agent.version>${jacoco.version}</jacoco.agent.version>
-		<jacoco.version>0.8.5</jacoco.version>
+		<jacoco.version>0.8.7</jacoco.version>
 		<!-- Hibernate Search does not work with Lucene 2.9.4 3.0.0 -->
 		<jakarta.httpcore.version>4.0-alpha4</jakarta.httpcore.version>
 		<jarjar.version>0.6</jarjar.version>
