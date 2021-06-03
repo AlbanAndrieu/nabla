@@ -16,9 +16,9 @@ sudo apt-get update
 #sudo apt-get install oracle-java7-installer
 #sudo apt-get install oracle-java8-installer
 #sudo apt-get install oracle-java11-set-default-local oracle-java11-installer-local
-sudo apt-get install oracle-java14-installer visualvm
+#sudo apt-get install oracle-java11-installer-local
+#sudo apt-get install oracle-java14-installer visualvm
 #sudo ln -s java-7-oracle jdk1.7.0
-
 
 #Setting Java environment variables
 #sudo apt-get install oracle-java8-set-default

@@ -487,4 +487,11 @@ cd /docker/image
 mv overlay2 overlay2-TODELETE
 sudo service docker restart
 
+# See https://github.com/justone/dockviz
+docker pull nate/dockviz
+
+# if docker client using local unix socket
+alias dockviz="docker run -it --rm -v /var/run/docker.sock:/var/run/docker.sock nate/dockviz"
+dockviz images -t
+
 exit 0

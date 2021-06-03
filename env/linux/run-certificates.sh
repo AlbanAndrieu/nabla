@@ -165,6 +165,9 @@ sudo update-ca-certificates
 #sudo dpkg-reconfigure ca-certificates
 less /etc/ssl/certs/ca-certificates.crt
 
+curl --cacert /etc/ssl/certs/ca-certificates.crt jira.albandrieu.com
+openssl s_client -connect jira.albandrieu.com:443  -servername jira.albandrieu.com  -CApath /etc/ssl/certs
+
 #Test it
 curl --cacert /etc/ssl/certs/ https://albandrieu.com:8686/jenkins/
 openssl s_client -connect albandrieu.albandrieu.com:443 -CApath /etc/ssl/certs
@@ -205,6 +208,7 @@ ls -lrta $JAVA_HOME/jre/lib/security/
 
 keytool -list -keystore  /etc/ssl/certs/java/cacerts -alias debian:uk1vswcert01-ca.pem
 keytool -list -keystore  /etc/ssl/certs/java/cacerts -alias debian:uk1vswcert01-ca-4.pem
+keytool -list -keystore  /etc/ssl/certs/java/cacerts -alias jira.albandrieu.com
 
 #get root CA
 openssl s_client -connect google.com:443 < /dev/null | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > ca.crt
