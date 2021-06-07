@@ -5,7 +5,7 @@ set -xv
 #https://linuxconfig.org/how-to-install-the-nvidia-drivers-on-ubuntu-19-04-disco-dingo-linux
 #https://linuxconfig.org/how-to-install-the-nvidia-drivers-on-ubuntu-19-10-eoan-ermine-linux
 
-sudo apt remove --purge nvidia-driver-435
+sudo apt remove --purge nvidia-driver-435 nvidia-driver-440
 
 ubuntu-drivers devices
 #== /sys/devices/pci0000:00/0000:00:01.0/0000:01:00.0 ==
@@ -20,7 +20,7 @@ ubuntu-drivers devices
 apt search nvidia-driver*
 #nvidia-driver-435/eoan,now 435.21-0ubuntu2 amd64 [installed]
 
-sudo apt-get install nvidia-driver-435 nvidia-settings
+sudo apt-get install nvidia-driver-460 nvidia-settings
 
 sudo nvidia-settings
 

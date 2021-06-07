@@ -20,4 +20,6 @@ sudo add-apt-repository -y ppa:teejee2008/ppa
 sudo apt update
 sudo apt install timeshift
 
+# See https://stackoverflow.com/questions/67298443/when-gcc-11-will-appear-in-ubuntu-repositories
+
 exit 0

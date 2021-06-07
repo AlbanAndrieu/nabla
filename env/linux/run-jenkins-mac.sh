@@ -20,6 +20,9 @@ tail -f /var/log/jenkins/jenkins.log
 cd /Users/Shared/Jenkins/Home
 mkdir init.groovy.d/
 
+cd /Users/Shared/Jenkins/Home/plugins
+wget https://updates.jenkins.io/download/plugins/strict-crumb-issuer/2.1.0/strict-crumb-issuer.hpi
+
 sudo launchctl start org.apache.httpd
 ls -lrta /private/var/log/apache2/error_log
 
