@@ -330,7 +330,7 @@ export SCONS_DIR=/usr/lib/scons/SCons
 
 # ALIAS to scons-local
 # Disable alias scons since we are using https://pypi.org/project/virtualenvwrapper/
-#export SCONS='/usr/bin/python2.7 /opt/ansible/env/bin/scons'
+export SCONS='/usr/bin/python2.7 /opt/ansible/env/bin/scons'
 #alias scons="${SCONS}"
 
 export SCONS_PATH=/usr/lib/scons/SCons/Script
