@@ -1,10 +1,10 @@
 #!/bin/bash
 set -xv
 
-#First install docker
+# First install docker
 #./run-docker.sh
 
-# See https://ubuntu.com/blog/deploying-kubernetes-locally-microk8s
+# See https://microk8s.io/ -> https://ubuntu.com/blog/deploying-kubernetes-locally-microk8s
 
 #See https://wiki.debian.org/AppArmor/HowToUse
 cat /sys/module/apparmor/parameters/enabled
@@ -20,9 +20,9 @@ sudo rm -r /var/snap/microk8s
 sudo snap remove eks
 sudo snap remove microk8s
 #sudo snap install microk8s --classic
-#sudo snap install microk8s --classic --channel=1.18/stable
-#sudo snap refresh microk8s --classic --channel=1.19/stable
-sudo snap install microk8s --classic --channel=1.20/stable
+#sudo snap install microk8s --classic --channel=1.20/stable
+#sudo snap refresh microk8s --classic --channel=1.20/stable
+
 snap info microk8s
 
 systemctl status snap.microk8s.daemon-kubelet
@@ -59,7 +59,8 @@ microk8s.kubectl cluster-info
 microk8s.kubectl get all
 
 #Turn on the services you want
-microk8s enable dns registry storage
+#microk8s enable dns registry storage
+microk8s enable dashboard dns registry istio
 #microk8s enable dashboard
 microk8s enable gpu
 #sudo geany /var/snap/microk8s/current/args/kubelet
@@ -69,10 +70,12 @@ microk8s enable gpu
 
 microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443
 
-./run-kubernetes-dashboard.sh
-
 #Access the Kubernetes dashboard
-#microk8s dashboard-proxy
+chrome://flags/#allow-insecure-localhost
+
+#./run-kubernetes-dashboard.sh
+microk8s dashboard-proxy
+# See https://10.41.40.40:10443/#/overview?namespace=default
 #sudo microk8s.kubectl proxy --accept-hosts=.* --address=0.0.0.0 &
 
 #See https://github.com/kubernetes/dashboard#getting-started
@@ -87,11 +90,14 @@ microk8s.kubectl get service --all-namespaces
 #sudo microk8s.stop
 
 microk8s.kubectl get nodes -o wide
+# Main https://10.41.40.40:10443/
 microk8s add-node
 # trottt
-microk8s join 10.41.40.23:25000/TODO
+microk8s join 10.41.40.40:25000/TODO
 microk8s remove-node albandrieu.com
-#On albandrieu.com
+# albandri
+microk8s join 10.41.40.40:25000/TODO
+# On albandrieu.com
 microk8s leave
 
 microk8s enable ha-cluster

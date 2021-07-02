@@ -22,4 +22,6 @@ sudo apt install timeshift
 
 sudo do-release-upgrade -d -f DistUpgradeViewGtk3
 
+# See https://stackoverflow.com/questions/67298443/when-gcc-11-will-appear-in-ubuntu-repositories
+
 exit 0

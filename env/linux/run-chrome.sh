@@ -31,6 +31,7 @@ gnome-keyring-daemon --start --replace --foreground --components=secrets,ssh,pck
 mv ~/.config/google-chrome ~/.config/google-chrome-SAV
 /usr/bin/google-chrome
 
+# kubernetes dashboard
 #chrome://flags/#allow-insecure-localhost
 
 #RedHat fix
@@ -39,5 +40,6 @@ mv ~/.config/google-chrome ~/.config/google-chrome-SAV
 
 #Bug video
 #See https://gist.github.com/ruario/3c873d43eb20553d5014bd4d29fe37f1#file-latest-widevine-sh
+
 
 exit 0
